@@ -1,0 +1,973 @@
+/*Root*/
+:root {
+  --mineshaft: #343434;
+  --mineshaft-rgba: rgba(52, 52, 52, 0.8);
+  --white: #ffffff;
+  --silver: #c5c5c5;
+  --tahitigold: #e88a04;
+  --dustygray: #949494;
+  --red: #c20000;
+  --green: #119400;
+
+  /*Social Media*/
+  --facebook: #3a549e;
+  --instgram: #;
+  background: rgb(245, 133, 41);
+  /*background: -moz-linear-gradient(152deg, rgba(245,133,41,1) 0%, rgba(254,218,119,1) 25%, rgba(221,42,123,1) 50%, rgba(129,52,175,1) 75%, rgba(81,91,212,1) 100%);
+background: -webkit-linear-gradient(152deg, rgba(245,133,41,1) 0%, rgba(254,218,119,1) 25%, rgba(221,42,123,1) 50%, rgba(129,52,175,1) 75%, rgba(81,91,212,1) 100%);
+background: linear-gradient(152deg, rgba(245,133,41,1) 0%, rgba(254,218,119,1) 25%, rgba(221,42,123,1) 50%, rgba(129,52,175,1) 75%, rgba(81,91,212,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f58529",endColorstr="#515bd4",GradientType=1);*/
+  --twitter: #00aff0;
+  --youtube: #e90101;
+
+  --plyr-color-main: var(--tahitigold) !important;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Comfortaa:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+.player {
+  --plyr-color-main: #e88a04 !important;
+}
+
+html {
+  height: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background-image: url("../media/assets/fitness-colage.png") !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0 !important;
+  background: rgb(255, 255, 255);
+  background: -moz-linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 70%);
+  background: -webkit-linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 70%);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 70%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#343434",GradientType=1);
+}
+
+.top-down-grad-dark {
+  background: rgb(255, 255, 255);
+  background: -moz-linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 100%);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#343434",GradientType=1);
+}
+
+.down-top-grad-dark {
+  background: rgb(255, 255, 255);
+  background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#343434",GradientType=1);
+}
+
+.down-top-grad-tahiti {
+  background: rgb(255,255,255);
+  background: -moz-linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(232,138,4,1) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(232,138,4,1) 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(232,138,4,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#e88a04",GradientType=1);
+}
+
+.top-down-grad-tahiti {
+  background: rgb(255,255,255);
+  background: -moz-linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(232,138,4,1) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(232,138,4,1) 100%);
+  background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(232,138,4,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#e88a04",GradientType=1);
+}
+
+.down-top-grad-white {
+  background: rgb(0,0,0);
+  background: -moz-linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ffffff",GradientType=1);
+}
+
+.top-down-grad-white {
+  background: rgb(0,0,0);
+  background: -moz-linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ffffff",GradientType=1);
+}
+
+.left-right-grad-tahiti-mineshaft {
+  background: rgb(232,138,4);
+  background: -moz-linear-gradient(90deg, rgba(232,138,4,1) 0%, rgba(52,52,52,0.5) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(232,138,4,1) 0%, rgba(52,52,52,-.5) 100%);
+  background: linear-gradient(90deg, rgba(232,138,4,1) 0%, rgba(52,52,52,0.5) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e88a04",endColorstr="#343434",GradientType=1);
+}
+
+.left-right-grad-white-mineshaft {
+  background: rgb(255,255,255);
+  background: -moz-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(52,52,52,0.5) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(52,52,52,0.5) 100%);
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(52,52,52,0.5) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#343434",GradientType=1);
+}
+
+.left-right-grad-mineshaft {
+  background: rgb(52,52,52);
+  background: -moz-linear-gradient(90deg, rgba(52,52,52,1) 0%, rgba(52,52,52,0.5) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(52,52,52,1) 0%, rgba(52,52,52,0.5) 100%);
+  background: linear-gradient(90deg, rgba(52,52,52,1) 0%, rgba(52,52,52,0.5) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#343434",endColorstr="#343434",GradientType=1);
+}
+
+p {
+  font-family: "Outfit", sans-serif !important;
+}
+
+.social-link-icon-insta {
+  color: var(--white) !important;
+  background-color: var(--mineshaft);
+  transition: 0.3s;
+  border-radius: 15px !important;
+}
+
+.social-link-icon-insta:hover {
+  transform: scale(1.1, 1.1);
+
+  background: rgb(245, 133, 41);
+  background: linear-gradient(152deg, rgba(245, 133, 41, 1) 0%, rgba(254, 218, 119, 1) 25%, rgba(221, 42, 123, 1) 50%, rgba(129, 52, 175, 1) 75%, rgba(81, 91, 212, 1) 100%);
+
+  border-radius: 25px !important;
+}
+
+.social-link-icon-twitter {
+  color: var(--white) !important;
+  background-color: var(--mineshaft);
+  transition: 0.3s;
+  border-radius: 15px !important;
+}
+
+.social-link-icon-twitter:hover {
+  transform: scale(1.1, 1.1);
+  background-color: var(--twitter) !important;
+  border-radius: 25px !important;
+}
+
+.social-link-icon-fb {
+  color: var(--white) !important;
+  background-color: var(--mineshaft);
+  transition: 0.3s;
+  border-radius: 15px !important;
+}
+
+.social-link-icon-fb:hover {
+  transform: scale(1.1, 1.1);
+  background-color: var(--facebook) !important;
+  border-radius: 25px !important;
+}
+
+.social-link-icon-yt {
+  color: var(--white) !important;
+  background-color: var(--mineshaft);
+  transition: 0.3s;
+  border-radius: 15px !important;
+}
+
+.social-link-icon-yt:hover {
+  transform: scale(1.1, 1.1);
+  background-color: var(--youtube) !important;
+  border-radius: 25px !important;
+}
+
+.general-light-link-item {
+  color: var(--mineshaft) !important;
+  background-color: var(--white);
+  border-radius: 25px;
+  transition: 0.3s;
+  border-radius: 15px !important;
+}
+
+.general-light-link-item:hover {
+  color: var(--tahitigold) !important;
+  transform: scale(0.9, 0.9);
+  background-color: var(--mineshaft) !important;
+  border-radius: 25px !important;
+}
+
+.general-dark-link-item {
+  color: var(--tahitigold) !important;
+  background-color: var(--mineshaft);
+  border-radius: 25px;
+  border: var(--tahitigold) solid 2px !important;
+  transition: 0.3s;
+  border-radius: 15px !important;
+}
+
+.general-dark-link-item:hover {
+  color: var(--white) !important;
+  transform: scale(0.9, 0.9);
+  background-color: var(--tahitigold) !important;
+  border-radius: 25px !important;
+  border: var(--white) solid 2px !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /*font-family: "Audiowide", cursive;*/
+  font-family: "Comfortaa", cursive;
+  font-weight: bold;
+  /*color: var(--tahitigold);*/
+}
+
+/*=========================> Custom - Scrollbar for .global-scroll*/
+/* width */
+*::-webkit-scrollbar {
+  /*height: 10px;*/
+  width: 10px;
+}
+/* Track */
+*::-webkit-scrollbar-track {
+  background: var(--tahitigold) !important;
+  /*padding: 5px 0;
+  margin: 30px 0;
+  border-radius: 50rem;*/
+}
+/* Handle */
+*::-webkit-scrollbar-thumb {
+  background: var(--mineshaft) !important;
+  /*border-radius: 50rem;*/
+}
+
+/* width */
+.survey-frame::-webkit-scrollbar {
+  width: 5px;
+}
+/* Track */
+.survey-frame::-webkit-scrollbar-track {
+  background: var(--mineshaft) !important;
+  /*padding-top: 5px;
+  margin: 10px 0;*/
+  border-radius: 50rem;
+}
+/* Handle */
+.survey-frame::-webkit-scrollbar-thumb {
+  background: var(--white) !important;
+  border-radius: 50rem;
+}
+
+.no-scroller {
+  overflow-y: auto !important;
+  max-height: 100vh !important;
+}
+
+/* width */
+.no-scroller::-webkit-scrollbar {
+  width: 0px !important;
+}
+/* Track */
+.no-scroller::-webkit-scrollbar-track {
+  background: var(--mineshaft) !important;
+  padding-top: 5px;
+  margin: 10px 0;
+  border-radius: 50rem;
+}
+/* Handle */
+.no-scroller::-webkit-scrollbar-thumb {
+  background: var(--white) !important;
+  border-radius: 50rem;
+}
+
+/*chart-col-bar*/
+/* width */
+.chart-col-bar-item::-webkit-scrollbar {
+  width: 0px !important;
+}
+/* Track */
+.chart-col-bar-item::-webkit-scrollbar-track {
+  background: var(--mineshaft) !important;
+  padding-top: 5px;
+  margin: 10px 0;
+  border-radius: 50rem;
+}
+/* Handle */
+.chart-col-bar-item::-webkit-scrollbar-thumb {
+  background: var(--white) !important;
+  border-radius: 50rem;
+}
+/*=========================> end custom scrollbar*/
+
+.audiowide-font {
+  font-family: "Audiowide", cursive !important;
+}
+
+.comfortaa-font {
+  font-family: "Comfortaa", cursive !important;
+}
+
+.outfit-font {
+  font-family: "Outfit", sans-serif !important;
+}
+
+.logo-size-1 {
+  max-height: 50px !important;
+}
+
+.logo-size-2 {
+  max-height: 100px !important;
+}
+
+.logo-size-3 {
+  max-height: 150px !important;
+}
+
+.user-profile-pic {
+  background-image: url("../media/profiles/system_tmp/photo-1574680096145-d05b474e2155.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: local;
+
+  height: 200px !important;
+  width: 200px !important;
+  overflow: hidden;
+
+  margin-top: -100px; 
+  max-height: 200px; 
+  border-radius: 50%; 
+  border-color: var(--tahitigold) !important; 
+  background-color: var(--mineshaft);
+}
+
+.material-icons {
+  font-size: 48px !important;
+}
+
+.navbar-style {
+  background-color: var(--mineshaft);
+  color: var(--white);
+}
+
+.onefit-buttons-style-light {
+  background: var(--white);
+  color: #333 !important;
+
+  border: 0;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+
+.onefit-buttons-style-light:hover {
+  color: var(--tahitigold) !important;
+  border-bottom: solid var(--tahitigold) 5px;
+
+  transform: scale(1.1, 1.1);
+}
+
+.onefit-buttons-style-light:active {
+  color: var(--tahitigold) !important;
+  border: solid var(--tahitigold) 7px;
+  transform: scale(0.5, 0.5);
+}
+
+.onefit-buttons-style-light-modal {
+  background: var(--white);
+  color: var(--mineshaft) !important;
+  font-size: 20px !important;
+
+  border: 0;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+
+.onefit-buttons-style-dark-modal {
+  background: var(--mineshaft);
+  color: var(--white) !important;
+  font-size: 15px !important;
+  font-family: "Comfortaa", cursive !important;
+
+  border: 0;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+
+.onefit-buttons-style-dark {
+  background: var(--mineshaft);
+  color: var(--white) !important;
+
+  border: 0;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+
+.onefit-buttons-style-dark:hover {
+  color: var(--tahitigold) !important;
+  border-bottom: solid var(--tahitigold) 5px;
+  transform: scale(1.1, 1.1);
+}
+
+.onefit-buttons-style-dark:active {
+  color: var(--tahitigold) !important;
+  border: solid var(--tahitigold) 7px;
+  transform: scale(0.5, 0.5);
+}
+
+.onefit-buttons-style-tahiti {
+  background: var(--tahitigold);
+  color: var(--mineshaft) !important;
+
+  border: 0;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+
+.onefit-buttons-style-tahiti:hover {
+  color: var(--white) !important;
+  border-bottom: solid var(--white) 5px;
+  transform: scale(1.1, 1.1);
+}
+
+.onefit-buttons-style-tahiti:active {
+  color: var(--mineshaft) !important;
+  border: solid var(--mineshaft) 7px;
+  transform: scale(0.5, 0.5);
+}
+
+.onefit-buttons-style-danger {
+  background: var(--red);
+  color: var(--white) !important;
+
+  border: 0;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+
+.onefit-buttons-style-danger:hover {
+  color: var(--white) !important;
+  border-bottom: solid var(--white) 5px;
+  transform: scale(1.1, 1.1);
+}
+
+.onefit-buttons-style-danger:active {
+  color: var(--red) !important;
+  background-color: var(--white);
+  border: solid var(--red) 7px;
+  transform: scale(0.5, 0.5);
+}
+
+.application-error-msg {
+  display: flex;
+  position: fixed;
+  color: #fff;
+  background: #333;
+  top: 30px;
+  left: 50vw;
+  margin-left: -25vw;
+
+  width: 50vw;
+  z-index: 1031;
+  padding: 20px 25px;
+  border-radius: 25px;
+  text-align: center;
+
+  align-items: center;
+  justify-content: space-around;
+}
+
+.feature-tab-nav-content {
+  border-radius: 25px !important;
+  overflow-x: hidden !important;
+  background-color: var(--mineshaft);
+  color: var(--white);
+  font-size: 18px !important;
+}
+
+.content-tab {
+  min-height: 70vh;
+  color: var(--white);
+  background-color: var(--mineshaft-rgba);
+  font-family: "Outfit", sans-serif !important;
+  border-radius: 25px;
+
+  border-left: var(--tahitigold) solid 5px;
+  border-bottom: var(--tahitigold) solid 5px;
+}
+
+.offcanvas-menu-primary-style {
+  background-image: url("/media/assets/fitness-colage.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  color: var(--mineshaft);
+  overflow-x: hidden;
+}
+
+.offcanvas-menu-primary-style a {
+  color: var(--white) !important;
+  /*font-family: "Outfit", sans-serif;*/
+  font-family: "Comfortaa", cursive !important;
+}
+
+.offcanvas-menu-primary-style a:hover {
+  color: var(--tahitigold) !important;
+}
+
+#offcanvas-menu {
+  background-color: rgba(52, 52, 52, 0.9); /*rgba(248, 158, 0, 0.9)*/
+}
+
+.mainapp-footer {
+  background-color: rgba(52, 52, 52, 0.7);
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: var(--mineshaft);
+  transition: 0.3s;
+}
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .show > .nav-link {
+  color: var(--white) !important;
+  border-left: var(--white) solid 5px;
+  padding-left: 20px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: var(--tahitigold);
+  border-left: var(--tahitigold) solid 5px;
+  padding-left: 20px;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: var(--white);
+  background-color: var(--tahitigold);
+  border-color: var(--tahitigold);
+  border-width: 5px;
+}
+.nav-tabs .nav-link {
+  margin-bottom: -1 px;
+  background: 0 0;
+  border: 0;
+  border-radius: 15px 15px 0 0;
+  color: var(--tahitigold);
+}
+
+.nav-tabs .nav-link:hover {
+  color: var(--white);
+  border-bottom: var(--tahitigold) solid 5px;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: var(--white);
+    background: rgb(232,138,4);
+background: linear-gradient(180deg, rgba(232,138,4,1) 0%, rgba(52,52,52,1) 100%);
+
+    border-radius: 25px 25px 0 0;
+    border-top: var(--white) solid 5px;
+    /*border-bottom: var(--tahitigold) solid 5px;*/
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--white);
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    border-radius: 25px 25px 0 0 !important;
+    transition: 0.4s;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.nav-link:hover {
+  /*border-bottom: var(--tahitigold) 5px solid;*/
+  color: var(--tahitigold);
+  transform: scale(1.1, 1.1);
+}
+
+.form-control-text-input {
+  border-radius: 50rem;
+  font-size: 20px;
+  text-align: center !important;
+  border: 0;
+  width: 100%;
+  color: var(--mineshaft);
+
+  transition: 0.2s;
+}
+
+.form-control-text-input:focus {
+  outline: 0;
+  border-left: var(--tahitigold) solid 10px;
+  border-right: var(--tahitigold) solid 10px;
+  color: var(--tahitigold);
+
+  border-radius: 50rem;
+}
+
+.form-control-select-input {
+  border-radius: 50rem;
+  font-size: 20px;
+  text-align: center !important;
+  border: 0;
+  width: 100%;
+
+  transition: 0.2s;
+}
+
+.onefit-inputs-style {
+  border-radius: 50rem;
+  outline: 0;
+  border: 0;
+  width: 100%;
+  padding: 20px;
+}
+
+.quick-post-input {
+  border-radius: 25px;
+  font-size: 18px;
+  border: 0;
+  border-radius: 25px;
+  width: 100%;
+  padding: 20px;
+
+  transition: 0.3s;
+}
+
+.quick-post-input:focus {
+  outline: 0;
+  border-bottom: var(--tahitigold) solid 5px;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.max-100vh {
+  max-height: 100vh !important;
+}
+
+.max-100vw {
+  max-width: 100vw !important;
+}
+
+.max-50vh {
+  max-height: 50vh !important;
+}
+
+.max-50vw {
+  max-width: 50vw !important;
+}
+
+.form-control-confirm-button {
+  background: var(--tahitigold);
+  color: var(--white) !important;
+  font-size: 40px;
+
+  border: 0;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+.form-control-confirm-button:hover {
+  background: var(--tahitigold);
+  color: var(--white) !important;
+  border-bottom: var(--mineshaft) solid 10px;
+}
+
+.form-control-cancel-button {
+  background: red;
+  color: var(--white) !important;
+  font-size: 40px;
+
+  border: 0;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+.tunnel-bg-container {
+  background: url("../media/assets/One-Tunnel.png");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.fitness-bg-container {
+  background-image: url("../media/assets/fitness-colage.png") !important;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.grid-container {
+  margin: 0 auto;
+  max-width: 1170px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 2rem;
+}
+
+.variable-grid-container {
+  margin: 0 auto;
+  max-width: 1170px;
+  display: grid;
+  /*grid-gap: 15px;*/
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  /*grid-auto-rows: 200px;
+  grid-auto-flow: dense;*/
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 2rem;
+
+  overflow-x: auto;
+}
+
+.wide-grid-tile {
+  grid-column: span 2;
+  border-radius: 25px;
+}
+
+.full-wide-grid-tile {
+  grid-column: span 4;
+  border-radius: 25px;
+}
+
+.tall-grid-tile {
+  grid-row: span 2;
+  border-radius: 25px;
+}
+
+.full-tall-grid-tile {
+  grid-row: span 2;
+  border-radius: 25px;
+}
+
+.grid-tile {
+  border-radius: 25px;
+}
+
+.grid-tile-100 {
+  width: 1170px;
+}
+
+.content-panel-border-style {
+  border-left: var(--tahitigold) solid 5px;
+  border-bottom: var(--tahitigold) solid 5px;
+  border-radius: 25px;
+  color: var(--white);
+  background-color: var(--mineshaft);
+  overflow: hidden;
+}
+.social-link {
+  cursor: pointer;
+}
+
+.social-link a {
+  color: var(--white) !important;
+}
+
+.social-link span {
+  background-color: var(--tahitigold) !important;
+}
+
+.social-link a:hover {
+  color: var(--tahitigold) !important;
+}
+
+.social-link a:focus {
+  color: var(--tahitigold) !important;
+}
+
+.social-update-card {
+  background-color: var(--mineshaft);
+  color: var(--white);
+  /*border: var(--white) solid 5px;*/
+  border-radius: 25px !important;
+  overflow: hidden;
+}
+
+.social-update-profile-pic {
+  background-image: url("../media/profiles/0_default/default_profile_pic.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: local;
+
+  height: 150px !important;
+  width: 150px !important;
+  overflow: hidden;
+  margin: auto !important;
+  
+  border-radius: 50%; 
+  border-color: var(--tahitigold) !important; 
+  background-color: var(--mineshaft);
+}
+
+.group-card-profile-pic {
+  background-image: url("../media/profiles/system_tmp/photo-1574680096145-d05b474e2155.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: local;
+
+  height: 300px !important;
+  width: 300px !important;
+  overflow: hidden;
+  
+  border-radius: 50%; 
+  border-color: var(--tahitigold); 
+  border-left: var(--tahitigold) solid 15px;
+  border-right: var(--mineshaft) solid 50px;
+  border-top: var(--mineshaft) solid 15px;
+  border-bottom: var(--tahitigold) solid 15px;
+  background-color: var(--mineshaft);
+
+  transition: .4s;
+}
+
+.group-card-profile-pic:hover {
+  border-color: var(--tahitigold); 
+  border-left: var(--tahitigold) solid 50px;
+  border-right: var(--mineshaft) solid 15px;
+  border-top: var(--mineshaft) solid 15px;
+  border-bottom: var(--tahitigold) solid 15px;
+}
+
+.post-content {
+  font-size: 40px !important;
+}
+
+div.horizontal-scroll {
+  width: 100%;
+  height: auto;
+  overflow-x: auto;
+  border-radius: 25px;
+  white-space: nowrap;
+}
+
+div.horizontal-scroll-card {
+  display: inline-block;
+  min-width: 10vw;
+  min-height: 100px;
+  border-radius: 25px;
+  background-color: var(--mineshaft);
+}
+
+div.horizontal-scroll-card-nav {
+  display: inline-block;
+  width: 200vw;
+  min-height: 5vh;
+  /*border-radius: 25px;
+  background-color: var(--mineshaft);*/
+}
+
+.modal-grid-tile-transform {
+  transition: 0.3s;
+}
+.modal-grid-tile-transform:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.training-schedule-container {
+  min-height: 500px;
+  width: 100%;
+  border-radius: 25px;
+}
+
+.chart-col-bar {
+  background-color: var(--mineshaft);
+  color: var(--white);
+  font-weight: bold;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+.chart-col-bar:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.chart-col-bar-item {
+  min-height: 100px;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.chart-col-bar-item img {
+  max-height: 50px;
+  filter: invert(100%);
+}
+
+.chart-col-bar-item:hover {
+  transform: scale(0.8, 0.8);
+}
+
+.accordion-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    color: var(--mineshaft);
+    text-align: left;
+    background-color: var(--white);
+    border: 0;
+    border-radius: 25px !important;
+    overflow-anchor: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,border-radius .15s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--white);
+    background-color: var(--tahitigold);
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+
+.accordion-body {
+  background-color: var(--mineshaft);
+  color: var(--white);
+}
+
+.accordion-item {
+  background-color: var(--mineshaft);
+  border-radius: 25px !important;
+  overflow: hidden;
+}
+
+/*Animations Only!*/
+.my-pulse-animation {
+  background: transparent;
+  border-radius: 50rem;
+  animation: animate 4s linear infinite;
+  cursor: pointer;
+}
+
+@keyframes animate {
+  0% {
+    box-shadow: 0 0 0 0 var(--tahitigold);
+  }
+  40% {
+    box-shadow: 0 0 0 50px rgba(255, 165, 0, 0);
+  }
+  80% {
+    box-shadow: 0 0 0 50px rgba(255, 165, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(255, 165, 0, 0);
+  }
+}

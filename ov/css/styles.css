@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@200;300;400;600;900&family=NTR&display=swap");
+
+:root {
+  --df_primarycolormain: #333;
+  --df_primarycolorsupport: #fff;
+  --df_primarycoloraccent: #ffa500;
+  --df_primarybgmain: #333;
+  --df_primarybgsupport: #fff;
+  --df_primarybgaccent: #ffa500;
+
+  --lt_primarycolormain: #fff;
+  --lt_primarycolorsupport: #333;
+  --lt_primarycoloraccent: #ffa500;
+  --lt_primarybgmain: #fff;
+  --lt_primarybgsupport: #333;
+  --lt_primarybgaccent: #ffa500;
+
+  --alt_primarycolormain: #ffa500;
+  --alt_primarycolorsupport: #333;
+  --alt_primarycoloraccent: #fff;
+  --alt_primarybgmain: #ffa500;
+  --alt_primarybgsupport: #333;
+  --alt_primarybgaccent: #fff;
+}
+
+.light-h-text {
+  font-weight: 100;
+}
+
+.fitness-bg {
+  background: url(../media/images/fitness-colage.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.tunnel-bg {
+  background: url(../media/assets/One-Tunnel.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.tunnel-bg-50 {
+  background: url(../media/assets/One-Tunnel-White-50pct.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.tunnel-bg-80 {
+  background: url(../media/assets/One-Tunnel-White-80pct.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.tunnel-bg-white {
+  background: url(../media/assets/One-Tunnel-White.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.application-error-msg {
+  display: flex;
+  position: fixed;
+  color: #fff;
+  background: #333;
+  top: 30px;
+  left: 50vw;
+  margin-left: -25vw;
+
+  width: 50vw;
+  z-index: 1031;
+  padding: 20px 25px;
+  border-radius: 25px;
+  text-align: center;
+
+  align-items: center;
+  justify-content: space-around;
+}
+
+.grid-container {
+  /*width: 90vw;*/
+  margin: 0 auto;
+  max-width: 1170px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 2rem;
+}
+
+.grid-tile {
+  background: #333 !important;
+  color: #fff !important;
+  padding: 25px;
+  border-radius: 25px;
+  /*max-width: 50% !important;*/
+}
+
+.dark-grad-fade-panel {
+  background: rgb(51, 51, 51);
+  background: -moz-linear-gradient(180deg, rgba(51, 51, 51, 1) 20%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(51, 51, 51, 1) 20%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, rgba(51, 51, 51, 1) 20%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#333333",endColorstr="#ffffff",GradientType=1);
+}
+
+.navigation-item {
+  transition: 0.3s;
+}
+.navigation-item:hover {
+  background: #fff !important;
+  /*padding: 24px !important;*/
+  color: #333 !important;
+  border-left: #ffa500 solid 5px !important;
+  border-left: #ffa500 solid 5px !important;
+  border-top: 0 !important;
+  border-right: 0 !important;
+}

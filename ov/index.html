@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+    <!--fontawesome-->
+    <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
+
+    <link rel="stylesheet" href="css/styles_depracated.css" />
+
+    <title>onefit&trade; &copy; 2021 AdaptivConcept</title>
+
+    <style>
+      .site-description {
+		background: rgba(225, 225, 225, 0.9);
+		color: #333 !important;
+        border-radius: 25px;
+        transition: 0.3s;
+      }
+      /*.site-description:hover {
+        color: #333 !important;
+      }*/
+    </style>
+  </head>
+  <body class="fitness-bg h-100">
+	  <!--Dark fade gradient-->
+	  <div class="h-100 w-100 dark-grad-fade-panel" style="position: fixed; top: 0; left: 0"></div>
+	  
+    <!--navigation modal-->
+    <!-- Modal -->
+    <div class="modal fade" id="navigationModal" tabindex="-1" aria-labelledby="navigationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content content-panel-border-style fitness-bgz" style="border-radius: 25px !important; background: #333">
+          <div class="modal-header border-0">
+            <h5 class="modal-title text-center" id="navigationModalLabel" style="color: #ffa500">Navigation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pt-0">
+            <hr class="bg-white m-0" />
+            <ul class="list-group">
+              <li class="list-group-item bg-transparent border-0 navigation-item" id="nav-to-about" style="cursor: pointer">About Us</li>
+              <li class="list-group-item bg-transparent border-0 navigation-item" id="nav-to-services" style="cursor: pointer">Services and Programs</li>
+              <li class="list-group-item bg-transparent border-0 navigation-item" id="nav-to-contact" style="cursor: pointer">Contact Us</li>
+              <li class="list-group-item bg-transparent border-0 navigation-item" id="nav-to-forgotpwd" style="cursor: pointer">Forgot password?</li>
+              <li class="list-group-item bg-transparent border-0 navigation-item" id="nav-to-register" style="cursor: pointer">Register an account</li>
+            </ul>
+          </div>
+          <div class="modal-footer border-0">
+            <button type="button" class="onefit-buttons-style p-4" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar text-white sticky-top m-0" style="background: #333">
+      <a class="navbar-brand align-items-center" href="#">
+        <img src="media/assets/One-Symbol-Logo-Two-Tone.png" class="d-inline-block align-top" alt="onefit logo" style="height: 50px; width: auto" />
+      </a>
+      <h1 class="light-h-text">one<span style="color: #ffa500 !important">fit</span><span style="font-size: 10px">&trade;</span></h1>
+      <button class="menu-toggle" type="button" data-toggle="modal" data-target="#navigationModal">
+        <i class="fas fa-fingerprint m-4"></i>
+      </button>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-xl py-4">
+          <div class="content-panel-border-style p-4 tunnel-bg text-center" style="border-radius: 25px">
+            <img src="media/assets/One-Logo-Vertical.png" class="img-fluid my-4" alt="one fitness" style="max-height: 50vh" />
+            <p class="my-4 text-center" style="color: #fff; font-size: 10px">Crafted by Adaptiv Concept (Media) &copy; 2021</p>
+          </div>
+        </div>
+        <div class="col-xl py-4 text-center" style="max-height: 90vh; overflow-y: auto; overflow-x: hidden">
+          <div class="my-2 pt-4 site-description text-center">
+            <h1>Welcome to one<span style="color: #ffa500 !important">fit</span><span style="font-size: 10px">&trade;</span></h1>
+            <p class="mt-2 p-4">
+              one<span style="color: #ffa500 !important">fit</span><span style="font-size: 10px">&trade;</span> is a community based fitness, wellness and lifestyle platform. We aim to assist people from all backgrounds find a better state of being by accessing inspirational and instructional resources, connecting trainers with trainees and developing fitness groups in all spheres of physical activity and athletisism. We will help you reach your fitness goals, find friends, obtain knowledge about uplifting yourself. Register an account today to get a personalized training and eating plans from professional trainers and dieticians as well as resources from health professionals. Proudly brought to you by AdaptivConcept (Media), LMM 1-ON-1 Trainer and One-On-One Fitness Network. &copy; 2021
+            </p>
+          </div>
+
+          <div class="content-panel-border-style login-form tunnel-bg mb-4 shadow" style="width: 100%">
+            <h2 class="text-center pt-4" style="color: #ffa500">Sign In</h2>
+            <hr class="mx-4 bg-white" />
+
+            <form class="text-center px-4 pb-4 pt-0">
+              <div class="output-container my-2" id="output-container"></div>
+
+              <div class="form-group my-4">
+                <input type="text" id="username" placeholder="username/email" />
+              </div>
+
+              <div class="form-group">
+                <input type="password" id="password" placeholder="password" />
+              </div>
+              <a href="" class="forgot-password">Forgot password?</a>
+            </form>
+            <div class="text-center">
+              <button type="button" class="mb-4" id="signin-btn"><i class="fas fa-sign-in-alt" style="color: #ffa500"></i> Sign In</button>
+            </div>
+            <div class="text-center">
+              <button type="button" class="mb-4" id="signup-btn"><i class="fas fa-file-signature" style="color: #ffa500"></i> Don't have an account? Sign Up Now</button>
+            </div>
+          </div>
+
+          <div class="content-panel-border-style p-4 tunnel-bg -white" style="border-radius: 25px; color: #fff">
+            <h2 class="text-center" style="color: #ffa500">Social</h2>
+            <hr class="bg-white" />
+
+            <ul class="list-group bg-transparent" style="font-size: 30px">
+              <li class="list-group-item bg-transparent border-0" style="cursor: pointer" onClick="launchLink('www.google.com')">Follow us on Instagram <i class="fab fa-instagram"></i></li>
+              <li class="list-group-item bg-transparent border-0" style="cursor: pointer" onClick="launchLink('www.google.com')">Follow us on Twitter <i class="fab fa-twitter"></i></li>
+              <li class="list-group-item bg-transparent border-0" style="cursor: pointer" onClick="launchLink('www.google.com')">Follow us on Facebook <i class="fab fa-facebook"></i></li>
+              <li class="list-group-item bg-transparent border-0" style="cursor: pointer" onClick="launchLink('www.google.com')">
+                Subscribe to the channel on Youtube
+                <i class="fab fa-youtube"></i>
+              </li>
+            </ul>
+
+            <h5 class="mt-4 text-left"><i class="fab fa-twitter"></i> Twitter Feed</h5>
+
+            <!--<a class="twitter-timeline" href="https://twitter.com/tweet_shurriken?ref_src=twsrc%5Etfw">Tweets by tweet_shurriken</a>-->
+			<div style="border-radius: 25px!important; overflow: hidden">
+			 <a class="twitter-timeline" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by OnefitNet</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+			</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var signinbtn = document.getElementById("signin-btn");
+      var navToReg = document.getElementById("nav-to-register");
+      signinbtn.addEventListener("click", signin);
+
+      navToReg.addEventListener("click", function () {
+        window.location.href = "registration/client-registration.php";
+      });
+
+      document.getElementById("output-container").addEventListener("click", function () {
+        document.getElementById("output-container").innerHTML = "";
+        document.getElementById("output-container").style.display = "none";
+      });
+
+      function signin() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var outputContainer = document.getElementById("output-container");
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            var output = this.responseText;
+
+            if (output.startsWith("|[System Error]|")) {
+              //an error has occured
+              //alert(output);
+              outputContainer.style.display = "block";
+              outputContainer.innerHTML = output;
+            } else {
+              //save the details to local storage
+              localStorage.setItem("user-detail", output);
+              window.location.href = "app/main.php?auth=1&usr=" + username;
+            }
+          }
+        };
+        xhttp.open("GET", "scripts/user-signin.php?username=" + username + "&password=" + password, true);
+        xhttp.send();
+      }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+  </body>
+</html>

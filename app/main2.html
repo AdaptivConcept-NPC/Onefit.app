@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- Enable users to add your web application or webpage link to the Home screen. Replace icon.png with your icon file path -->
+    <link rel="apple-touch-icon" href="../media/assets/One-Symbol-Logo-Dark-Bg.png" />
+    <!-- Specify a launch screen image that is displayed while your web application launches. Replace app.png with your image file path -->
+    <link rel="apple-touch-startup-image" href="../media/assets/One-Symbol-Logo-Dark-Bg.png" />
+    <!-- Mobile Internet Explorer allows us to activate ClearType technology for smoothing fonts for easy reading -->
+    <meta http-equiv="cleartype" content="on" />
+    <!-- Specify whether or not telephone numbers in the HTML content should appear as hypertext links -->
+    <meta name="format-detection" content="telephone=no" />
+    <!-- Changes the logical window size used when displaying a page mobile browsers -->
+    <meta name="viewport" content="width = device-width, initial-scale=1, user-scalable=yes" />
+
+    <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
+
+    <!--Bootstrap CSS CDN-->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+    CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+    <!--Custom CSS External Files-->
+    <link rel="stylesheet" href="../css/styles.css" />
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+    <!--Local Styles-->
+    <style>
+      :root {
+        --primarycolormain: #333;
+        --primarycolorsupport: #fff;
+        --primarycoloraccent: #ffa500;
+        --primarybgmain: #333;
+        --primarybgsupport: #fff;
+        --primarybgaccent: #ffa500;
+      }
+
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+        color: var(--primarycolormain);
+        /*background: var(--primarybgaccent);*/
+        background: url("../media/images/fitness-colage.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-family: "MuseoModerno", cursive !important;
+      }
+
+      body {
+        height: 100% !important;
+        width: 100% !important;
+        color: var(--primarycolormain);
+        font-family: "NTR", sans-serif !important ;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background: rgb(51, 51, 51);
+        background: -moz-linear-gradient(180deg, rgba(51, 51, 51, 1) 20%, rgba(255, 255, 255, 0) 100%);
+        background: -webkit-linear-gradient(180deg, rgba(51, 51, 51, 1) 20%, rgba(255, 255, 255, 0) 100%);
+        background: linear-gradient(180deg, rgba(51, 51, 51, 1) 20%, rgba(255, 255, 255, 0) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#333333",endColorstr="#ffffff",GradientType=1);
+      }
+
+      a {
+        color: white !important;
+      }
+
+      a:hover {
+        color: #ffa500 !important;
+      }
+
+      /*=========================> Custom - Scrollbar for .global-scroll*/
+      /* width */
+      *::-webkit-scrollbar {
+        width: 10px;
+      }
+      /* Track */
+      *::-webkit-scrollbar-track {
+        background: #333 !important;
+        padding: 5px 5px;
+        margin-top: 100px;
+        border-radius: 50rem;
+      }
+      /* Handle */
+      *::-webkit-scrollbar-thumb {
+        background: #ffa500 !important;
+        border-radius: 50rem;
+        width: 10px;
+      }
+
+      .main-container {
+      }
+
+      .top-content {
+      }
+
+      .rounded-panel {
+        border-radius: 25px;
+        background: var(--primarybgmain);
+        color: var(--primarycolorsupport);
+        border-left: #ffa500 solid 5px;
+        border-bottom: #ffa500 solid 5px;
+        border-radius: 25px;
+      }
+
+      .onefit-buttons-style {
+        background: #fff;
+        color: #333 !important;
+
+        border: 0;
+        border-radius: 15px;
+        transition: 0.3s;
+      }
+
+      .onefit-buttons-style:hover {
+        color: #ffa500 !important;
+        border-bottom: solid #ffa500 5px;
+      }
+
+      .onefit-buttons-style:active {
+        color: #ffa500 !important;
+        border: solid #ffa500 7px;
+      }
+
+      .onefit-buttons-style-cancel {
+        background: red;
+        color: #fff !important;
+
+        border: 0;
+        border-radius: 15px;
+        transition: 0.3s;
+      }
+
+      .onefit-buttons-style-cancel:hover {
+        border-bottom: solid #fff 5px;
+      }
+
+      .onefit-buttons-style-cancel:active {
+        color: #fff !important;
+        border: solid #fff 7px;
+      }
+
+      .onefit-buttons-style-flat {
+        background: #fff;
+        color: #333 !important;
+
+        border: 0;
+        border-radius: 15px;
+        transition: 0.3s;
+      }
+
+      .onefit-buttons-style-flat:hover {
+        color: #ffa500 !important;
+      }
+
+      .onefit-inputs-style {
+        padding: 10px;
+        border: 0;
+        border-radius: 25px;
+        width: 100%;
+      }
+
+      .nav-menu-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 200px;
+      }
+
+      .nav-menu-list-item button {
+        display: block;
+        padding: 8px 16px;
+        text-decoration: none;
+
+        background: transparent;
+        color: var(--primarycolorsupport);
+
+        border: 0;
+        border-radius: 15px;
+        transition: 0.3s;
+      }
+
+      .nav-menu-list-item button.active {
+        background-color: var(--primarybgaccent);
+        color: var(--primarycolormain);
+      }
+
+      .nav-menu-list-item button:hover:not(.active) {
+        background-color: transparent;
+        color: var(--primarycoloraccent);
+
+        border-bottom: solid #ffa500 5px;
+      }
+
+      .rounded-element {
+        border-radius: 25px !important;
+        overflow: hidden;
+      }
+
+      .rounded-panel-show-hover {
+        border-radius: 25px !important;
+        transition: 0.3s;
+      }
+
+      .rounded-panel-show-hover:hover {
+        background: var(--primarybgmain);
+        color: var(--primarycolorsupport);
+        border-left: #ffa500 solid 5px;
+        border-bottom: #ffa500 solid 5px;
+      }
+
+      .main-modal-style {
+      }
+
+      .pulse-box-m-theme {
+        background: transparent;
+        border-radius: 50rem;
+        animation: animate 4s linear infinite;
+        cursor: pointer;
+      }
+
+      @keyframes animate {
+        0% {
+          box-shadow: 0 0 0 0 var(--primarycoloraccent);
+        }
+        40% {
+          box-shadow: 0 0 0 50px rgba(255, 165, 0, 0);
+        }
+        80% {
+          box-shadow: 0 0 0 50px rgba(255, 165, 0, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 rgba(255, 165, 0, 0);
+        }
+      }
+
+      .navigation-item {
+        color: #fff !important;
+        transition: 0.3s;
+      }
+      .navigation-item:hover {
+        background: #fff !important;
+        /*padding: 24px !important;*/
+        color: #333 !important;
+        border-left: #ffa500 solid 5px !important;
+        border-top: 0 !important;
+        border-right: 0 !important;
+      }
+    </style>
+
+    <title>onefit&trade; &copy; 2021 AdaptivConcept</title>
+  </head>
+
+  <body>
+    <!-- Strictly All Modals Section -->
+    <!-- OffCanva Menu Items -->
+    <ul class="nav-menu-list w-100 w3-collapsez w3-animate-top" id="page-nav-bar-vertical" style="display: nonez">
+      <h5 class="text-center"><i class="fas fa-bars"></i> Navigation Menu</h5>
+      <li class="nav-menu-list-item my-2"><button class="tablink w-100 active" onclick="openLink(event, 'Tab1')">Home</button></li>
+      <li class="nav-menu-list-item my-2"><button class="tablink w-100" onclick="openLink(event, 'Tab2')">Profile</button></li>
+      <li class="nav-menu-list-item my-2"><button class="tablink w-100" onclick="openLink(event, 'Tab3')">Discovery</button></li>
+      <li class="nav-menu-list-item my-2"><button class="tablink w-100" onclick="openLink(event, 'Tab4')">Onefit Studio</button></li>
+      <li class="nav-menu-list-item my-2"><button class="tablink w-100" onclick="openLink(event, 'Tab5')">Onefit Store</button></li>
+      <li class="nav-menu-list-item my-2"><button class="tablink w-100" onclick="openLink(event, 'Tab6')">Onefit Social</button></li>
+      <li class="nav-menu-list-item my-2"><button class="tablink w-100" onclick="openLink(event, 'Tab7')">Data Centre</button></li>
+      <li class="nav-menu-list-item my-2"><button class="tablink w-100" onclick="openLink(event, 'Tab8')">Achievements</button></li>
+      <li class="nav-menu-list-item my-2"><button class="tablink w-100" onclick="openLink(event, 'Tab9')">Media</button></li>
+      <li class="nav-menu-list-item my-2"><button class="tablink w-100" onclick="openLink(event, 'Tab10')">Communications</button></li>
+      <li class="nav-menu-list-item my-2"><button class="tablink w-100" onclick="openLink(event, 'Tab11')">Settings</button></li>
+      <li class="nav-menu-list-item my-2">
+        <button class="tablinkz" onclick="" style="z-index: 2; position: fixed; bottom: 50px; left: 0; background: #ffa500 !important; border-radius: 0 25px 25px 0; overflow: hidden">Post Update</button>
+      </li>
+    </ul>
+
+    <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+      <div class="offcanvas-header">
+        <h5 id="offcanvasTopLabel">Offcanvas top</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="rounded-panel-show-hover shadow p-2 mb-4">
+          <div class="row my-4 align-items-center">
+            <div class="col-xl-4">
+              <button class="onefit-buttons-style-flat btn-block p-4 my-2 btn-block" onclick="w3_open()" style="display: block; font-size: 20px" id="nav-menu-icon">
+                <i class="fas fa-bars"></i>
+              </button>
+            </div>
+            <div class="col-xl-8">
+              <button class="onefit-buttons-style btn-block p-2 my-2" id="launchMainShareModel" style="font-size: 40px" type="button" data-toggle="modal" data-target="#mainShareModalScrollable">+ <br /><span class="d-none d-lg-block d-xl-block">Share</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Share Modal -->
+    <div class="modal fade" id="mainShareModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content content-panel-border-style" style="border-radius: 25px !important; background: #333">
+          <div class="modal-header border-0">
+            <h2 class="modal-title" id="mainShareModalScrollableTitle" style="color: #ffa500">Share</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-white">
+            <p class="mb-4">
+              Share Your Content with the Community. Please check out the <a class="font-weight-bold">Community Content Guideline <i class="fas fa-external-link-alt"></i></a>
+            </p>
+
+            <ul class="list-group">
+              <li class="list-group-item bg-transparent border-0 navigation-item rounded-pill shadow my-2 text-center" id="nav-to-about" style="cursor: pointer; font-size: 30px">Status Update <i class="fas fa-arrow-right"></i></li>
+              <li class="list-group-item bg-transparent border-0 navigation-item rounded-pill shadow my-2 text-center" id="nav-to-services" style="cursor: pointer; font-size: 30px">Resource <i class="fas fa-arrow-right"></i></li>
+              <li class="list-group-item bg-transparent border-0 navigation-item rounded-pill shadow my-2 text-center" id="nav-to-contact" style="cursor: pointer; font-size: 30px">Blog Post <i class="fas fa-arrow-right"></i></li>
+              <li class="list-group-item bg-transparent border-0 navigation-item rounded-pill shadow my-2 text-center" id="nav-to-forgotpwd" style="cursor: pointer; font-size: 30px">Media <i class="fas fa-arrow-right"></i></li>
+            </ul>
+          </div>
+          <div class="modal-footer border-0 fitness-bg">
+            <button type="button" class="onefit-buttons-style-cancel p-4" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation modal -->
+    <div class="modal fade" id="navigationModal" tabindex="-1" aria-labelledby="navigationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content content-panel-border-style fitness-bgz" style="border-radius: 25px !important; background: #333">
+          <div class="modal-header border-0 fitness-bgz">
+            <h5 class="modal-title text-center" id="navigationModalLabel" style="color: #ffa500">Navigation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pt-0">
+            <hr class="bg-white m-0" />
+
+            <ul class="list-group">
+              <li class="list-group-item bg-transparent border-0 navigation-item" id="nav-to-about" style="cursor: pointer">About Us</li>
+              <li class="list-group-item bg-transparent border-0 navigation-item" id="nav-to-services" style="cursor: pointer">Services and Programs</li>
+              <li class="list-group-item bg-transparent border-0 navigation-item" id="nav-to-contact" style="cursor: pointer">Contact Us</li>
+              <li class="list-group-item bg-transparent border-0 navigation-item" id="nav-to-forgotpwd" style="cursor: pointer">Forgot password?</li>
+              <li class="list-group-item bg-transparent border-0 navigation-item" id="nav-to-register" style="cursor: pointer">Register an account</li>
+            </ul>
+          </div>
+          <div class="modal-footer border-0 fitness-bg">
+            <button type="button" class="onefit-buttons-style-cancel p-4" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ./ Strictly All Modals Section -->
+    <!--XXXXXXX End of Strictly All Modals Section XXXXXXX-->
+
+    <!--Display an Error Message if an error occures during PHP Script Execution-->
+    <?php if($app_err_msg!=""){echo $app_err_msg;} ?>
+
+    <nav class="navbar navbar-fixed-top text-white fixed-top m-0" style="background: #333">
+      <a class="navbar-brand align-items-center pulse-box-m-theme p-4" onclick="toggleNavMenu()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+        <!--data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false"-->
+        <img src="../media/assets/One-Symbol-Logo-Two-Tone.png" class="d-inline-block align-top" alt="onefit logo" style="height: 50px; width: auto" />
+      </a>
+
+      <h1 class="light-h-text">one<span style="color: #ffa500 !important">fit</span><span style="font-size: 10px">&trade;</span></h1>
+
+      <button class="menu-togglez onefit-buttons-style" type="button" data-toggle="modal" data-target="#navigationModal">
+        <i class="fas fa-fingerprint m-4"></i>
+      </button>
+    </nav>
+
+    <div class="text-white w-100 m-0 p-4" style="position: fixed; bottom: 0; left: 0; background: #333; z-index: 10002">
+      <div class="row align-items-end">
+        <div class="col-md text-left">
+          <div class="d-inline">
+            <button type="button" class="onefit-buttons-style p-4 shadow float-leftz mr-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="fas fa-ellipsis-h"></i></button>
+            <button type="button" class="onefit-buttons-style p-4 shadow float-rightz mr-2"><i class="fas fa-caret-square-up"></i></button>
+          </div>
+        </div>
+        <div class="col-md text-center">
+          <div class="p-2 mx-4 shadow-lg" style="border-radius: 25px"><img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid" /></div>
+        </div>
+        <div class="col-md text-right">
+          <span class="m-0 float-right" style="font-size: 10px">Crafted by AdaptivConcept &copy; 2021</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid h-100 m-0 p-4" style="padding-top: 120px !important; padding-bottom: 120px !important">
+      <div class="row h-100" style="border-radius: 25px; overflowz: hidden">
+        <!--<div class="col-md-2">
+                
+            </div>-->
+        <div class="col-md-12 h-100" style="border-radius: 25px; overflow: hidden">
+          <div class="scroll-container-h100 h-100 w-100" style="overflow-y: scroll; padding-bottom: 300px">
+            <div id="Tab1" class="rounded-panel shadow pt-4 w3-container city w3-animate-right -opacity" style="display: block">
+              <!--Page Title-->
+              <div class="d-inline">
+                <button class="onefit-buttons-style p-4 mr-2"><i class="fas fa-tv"></i> OnefitNet.TV</button>
+                also on <i class="fab fa-youtube"></i>
+              </div>
+
+              <div class="text-center w-100">
+                <h1 class="text-center">
+                  Welcome back
+                  <?php echo $usrprof_name;?>.
+                </h1>
+
+                <p class="my-4">You have 0 activities today. Let's get warmed up and jump in.</p>
+
+                <img src="../media/assets/One-Logo.png" alt="onefitnetwork logo" class="my-2 img-fluid" style="max-width: 70% !important" />
+              </div>
+
+              <hr class="my-4 bg-white" />
+
+              <!--Banner Ads Carousel and Twitter feed-->
+              <div class="row my-4 align-items-center">
+                <div class="col-md-8">
+                  <div id="AdBannerCarousel1Home" class="carousel slide rounded-element" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="../media/images/fitness/10.jpg" class="d-block w-100" alt="..." />
+                      </div>
+                      <div class="carousel-item">
+                        <img src="../media/images/fitness/5.jpg" class="d-block w-100" alt="..." />
+                      </div>
+                      <div class="carousel-item">
+                        <img src="../media/images/fitness/6.jpg" class="d-block w-100" alt="..." />
+                      </div>
+                    </div>
+                  </div>
+                  <h2 class="text-left">Latest</h2>
+                  <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item bg-transparent rounded-pill shadow my-2"><i class="fas fa-bullseye" style="color: #ffa500; font-size: 25px"></i> Community Feed</li>
+                    <li class="list-group-item bg-transparent rounded-pill shadow my-2"><i class="fas fa-bullseye" style="color: #ffa500; font-size: 25px"></i> Your Dashboard</li>
+                    <li class="list-group-item bg-transparent rounded-pill shadow my-2"><i class="fas fa-bullseye" style="color: #ffa500; font-size: 25px"></i> Discover People</li>
+                    <li class="list-group-item bg-transparent rounded-pill shadow my-2"><i class="fas fa-bullseye" style="color: #ffa500; font-size: 25px"></i> Discover Posts</li>
+                    <li class="list-group-item bg-transparent rounded-pill shadow my-2"><i class="fas fa-bullseye" style="color: #ffa500; font-size: 25px"></i> Discover Groups</li>
+                  </ul>
+                </div>
+                <div class="col-md-4 text-center pt-4">
+                  <i class="fab fa-twitter"></i> Social @one<span style="color: #ffa500">fit_za</span>
+                  <div class="rounded-element no-scroller" style="max-height: 70vh; overflow-y: scroll !important">
+                    <a class="twitter-timeline" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by OnefitNet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  </div>
+                </div>
+              </div>
+
+              <!--User Profile Card-->
+              <div class="container-fluid" id="UserProfileCard">
+                <div class="p-4 shadow-lg" style="background: rgba(51, 51, 51, 0.7); border-radius: 25px">
+                  <div class="text-center border-top border-warning" style="font-size: 30px; font-family: 'MuseoModerno', cursive; border-radius: 25px">
+                    <?php echo $usrprof_name.' '.$usrprof_surname.' <br><span id="" class="profile-username-tag" style="font-size: 25px">@<span style="color: #ffa500 !important">'.$usrprof_username.'</span></span
+                    >';?>
+                  </div>
+                  <hr class="bg-white" hidden />
+                  <div class="text-center">
+                    <div class="my-4 pb-4 border-bottom border-warning" id="user-about" style="font-size: 20px; border-radius: 25px">
+                      <?php echo $usr_about;?>
+                    </div>
+
+                    <?php echo $userSocialItems;?>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="Tab2" class="rounded-panel shadow p-2z w3-container city w3-animate-right -left" style="display: none">
+              <h2>Profile</h2>
+              <p>Paris is the capital of France.</p>
+              <p>The Paris area is one of the largest population centers in Europe, with more than 12 million inhabitants.</p>
+            </div>
+
+            <div id="Tab3" class="rounded-panel shadow p-2z w3-container city w3-animate-right -top" style="display: none">
+              <div class="sticky-top dark-grad-fade-panel" stylez="padding-top: 100px !important">
+                <h1 class="mb-4">Discovery</h1>
+                <p class="text-right" style="font-size: 10px">powered by AdaptEngine™</p>
+
+                <div class="row align-items-center">
+                  <div class="col-md-10">
+                    <input type="search" class="onefit-inputs-style" id="discover-search-input" placeholder="Search" />
+                  </div>
+                  <div class="col-md-2 text-left">
+                    <button class="onefit-buttons-style my-4" id="search-discover">
+                      <i class="fas fa-search m-4"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <nav class="nav nav-tabs justify-content-center content-tab align-items-center" id="nav-tab-discover" role="tablist">
+                <a class="nav-item nav-link active" id="discover-nav-people-tab" data-toggle="tab" href="#discover-nav-people" role="tab" aria-controls="discover-nav-people" aria-selected="true">Trainees</a>
+                <a class="nav-item nav-link" id="discover-nav-posts-tab" data-toggle="tab" href="#discover-nav-posts" role="tab" aria-controls="discover-nav-posts" aria-selected="false">Trainers</a>
+                <a class="nav-item nav-link" id="discover-nav-groups-tab" data-toggle="tab" href="#discover-nav-groups" role="tab" aria-controls="discover-nav-groups" aria-selected="false">Onefoodie</a>
+                <a class="nav-item nav-link" id="discover-nav-resources-tab" data-toggle="tab" href="#discover-nav-resources" role="tab" aria-controls="discover-nav-resources" aria-selected="false">Fitness Programs</a>
+                <a class="nav-item nav-link" id="discover-nav-programs-tab" data-toggle="tab" href="#discover-nav-programs" role="tab" aria-controls="discover-nav-programs" aria-selected="false">Wellnes Program</a>
+              </nav>
+
+              <div class="tab-content" id="nav-tabContent-discover">
+                <div class="tab-pane fade show active" id="discover-nav-people" role="tabpanel" aria-labelledby="discover-nav-people-tab">
+                  <div class="grid-container"><?php echo $discoverPeopleList; ?></div>
+                </div>
+                <div class="tab-pane fade" id="discover-nav-posts" role="tabpanel" aria-labelledby="discover-nav-posts-tab"><?php echo $discoverPostsList;?></div>
+                <div class="tab-pane fade" id="discover-nav-groups" role="tabpanel" aria-labelledby="discover-nav-groups-tab">
+                  <div class="grid-container"><?php echo $discoverGroupsList;?></div>
+                </div>
+                <div class="tab-pane fade" id="discover-nav-resources" role="tabpanel" aria-labelledby="discover-nav-resources-tab">
+                  <div class="grid-container"><?php echo $discoverResourcesList;?></div>
+                </div>
+                <div class="tab-pane fade" id="discover-nav-programs" role="tabpanel" aria-labelledby="discover-nav-programs-tab">
+                  <div class="grid-container"><?php echo $discoverProgramsList;?></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="Tab4" class="rounded-panel shadow w3-container city w3-animate-right -bottom" style="display: none">
+              <h2>Onefit Studio</h2>
+              <p>Paris is the capital of France.</p>
+              <p>The Paris area is one of the largest population centers in Europe, with more than 12 million inhabitants.</p>
+            </div>
+
+            <div id="Tab5" class="rounded-panel shadow w3-container city w3-animate-right -zoom" style="display: none">
+              <h2>Onefit Store</h2>
+
+              <p>It is the center of the Greater Tokyo Area, and the most populous metropolitan area in the world.</p>
+            </div>
+
+            <div id="Tab6" class="rounded-panel shadow w3-container city w3-animate-right -left" style="display: none">
+              <h2>Onefit Social</h2>
+              <p>Paris is the capital of France.</p>
+              <p>The Paris area is one of the largest population centers in Europe, with more than 12 million inhabitants.</p>
+            </div>
+
+            <div id="Tab7" class="rounded-panel shadow w3-container city w3-animate-right -top" style="display: none">
+              <h2>Data Centre</h2>
+              <p>Tokyo is the capital of Japan.</p>
+              <p>It is the center of the Greater Tokyo Area, and the most populous metropolitan area in the world.</p>
+            </div>
+
+            <div id="Tab8" class="rounded-panel shadow w3-container city w3-animate-right -right" style="display: none">
+              <h2>Achievements</h2>
+              <p>London is the capital city of England.</p>
+              <p>It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+            </div>
+
+            <div id="Tab9" class="rounded-panel shadow w3-container city w3-animate-right -bottom" style="display: none">
+              <h2>Media</h2>
+              <p>Paris is the capital of France.</p>
+              <p>The Paris area is one of the largest population centers in Europe, with more than 12 million inhabitants.</p>
+            </div>
+
+            <div id="Tab10" class="rounded-panel shadow w3-container city w3-animate-right -zoom" style="display: none">
+              <h2>Communications</h2>
+              <p>Tokyo is the capital of Japan.</p>
+              <p>It is the center of the Greater Tokyo Area, and the most populous metropolitan area in the world.</p>
+            </div>
+
+            <div id="Tab11" class="rounded-panel shadow w3-container city w3-animate-right -zoom" style="display: none">
+              <h2>Settings</h2>
+              <p>Tokyo is the capital of Japan.</p>
+              <p>It is the center of the Greater Tokyo Area, and the most populous metropolitan area in the world.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openLink(evt, tabName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("city");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        document.getElementById(tabName).style.display = "block";
+      }
+
+      function toggleNavMenu() {
+        if (document.getElementById("page-nav-bar-vertical").style.display == "block") {
+          w3_close();
+        } else {
+          w3_open();
+        }
+      }
+
+      function w3_open() {
+        //alert("Open Nav Menu");
+        document.getElementById("page-nav-bar-vertical").style.display = "block";
+        document.getElementById("nav-menu-icon").style.display = "none";
+      }
+
+      function w3_close() {
+        //alert("Close Nav Menu");
+        document.getElementById("page-nav-bar-vertical").style.display = "none";
+        document.getElementById("nav-menu-icon").style.display = "block";
+      }
+    </script>
+
+    <!--JQuery, Bootstrap JS and Popper CDNs-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+  </body>
+</html>
