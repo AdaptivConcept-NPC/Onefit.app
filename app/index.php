@@ -2557,7 +2557,7 @@ function getAllTrainers()
                                 </div>
                             </div>
                         </div>
-                        <div class="wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
+                        <div class="full-wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
                             <h4>One<span style="color: #e88a04">fit</span>.Muse</h4>
                             <p>the activities list will be able to switch through the different programs of the use</p>
 
@@ -2568,7 +2568,7 @@ function getAllTrainers()
 
                                     <hr class="text-white">
                                     <div class="p-4">
-                                        <button class="onefit-buttons-style-dark p-4 shadow mb-4">
+                                        <button class="onefit-buttons-style-light p-4 shadow mb-4">
                                             + Share you <span class="fw-bold comfortaa-font fs-5">Original Music</span>
                                         </button>
 
