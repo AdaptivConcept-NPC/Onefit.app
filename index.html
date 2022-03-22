@@ -41,37 +41,41 @@
         <div id="offcanvas-menu">
           <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
             <img src="media/assets/One-Symbol-Logo-White.png" alt="" class="img-fluid logo-size-2" />
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Navigation</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <h5 class="offcanvas-title text-center" id="offcanvasNavbarLabel">Navigation</h5>
+            <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="offcanvas"
+              aria-label="Close">
+              <span class="material-icons material-icons-round"> cancel </span>
+            </button>
           </div>
           <hr class="text-dark" />
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 comfortaa-font fs-3">
               <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link active p-4" aria-current="page" href="#"
+                  style="border-radius: 25px !important;">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Services</a>
+                <a class="nav-link p-4" href="#" style="border-radius: 25px !important;">Services</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link p-4" href="#" style="border-radius: 25px !important;">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+                <a class="nav-link p-4" href="#" style="border-radius: 25px !important;">Contact</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Onefit.app&trade;</a>
+                <a class="nav-link p-4" href="#" style="border-radius: 25px !important;">Onefit.app&trade;</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Onefit.Edu&trade; (Blog)</a>
+                <a class="nav-link p-4" href="#" style="border-radius: 25px !important;">Onefit.Edu&trade; (Blog)</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Onefit.Shop&trade;</a>
+                <a class="nav-link p-4" href="#" style="border-radius: 25px !important;">Onefit.Shop&trade;</a>
               </li>
               <hr class="text-dark" />
               <li class="nav-item">
-                <a class="nav-link onefit-buttons-style-dark p-4 text-center" href="#"
-                  style="border-bottom: 0 !important">Account Registration</a>
+                <a class="nav-link onefit-buttons-style-dark p-4 text-center" href="registration/"
+                  style="border-radius: 25px !important;">Account Registration</a>
               </li>
             </ul>
           </div>
@@ -109,14 +113,12 @@
           action="scripts/php/userprofile/login.php" autocomplete="off" target="_blank">
           <div class="mb-3 d-gridz">
             <label for="onefitUserEmail" class="form-label fs-4">Email address</label>
-            <input type="email" class="form-controlz form-control-text-input shadow" id="onefitUserEmail"
+            <input type="email" class="form-controlz form-control-text-input shadow p-2" id="onefitUserEmail"
               name="onefitUserEmail" aria-describedby="emailHelp" />
-            <div id="emailHelp" class="form-text" style="color: #e88a04">We'll never share your email with anyone else.
-            </div>
           </div>
           <div class="mb-3 d-gridz">
             <label for="onefitUserPassword" class="form-label fs-4">Password</label>
-            <input type="password" class="form-controlz form-control-text-input shadow text-center"
+            <input type="password" class="form-controlz form-control-text-input shadow text-center p-2"
               id="onefitUserPassword" name="onefitUserPassword" />
           </div>
           <div class="mb-3 form-check text-start">
@@ -125,24 +127,25 @@
           </div>
           <div class="d-grid gap-2">
             <button type="submit" class="btn btn-primary form-control-confirm-button shadow"
-              onclick="toggleLoadCurtain()">Let's
-              Go!</button>
+              onclick="toggleLoadCurtain()">
+              Sign In</button>
           </div>
         </form>
       </div>
 
       <div class="col-sm py-4 tunnel-bg-container shadow" style="border-radius: 25px; color: #fff">
         <div class="d-grid gap-2">
-          <button class="onefit-buttons-style-light py-4"><i class="fab fa-google"></i> Sign in with
+          <button class="onefit-buttons-style-light py-4 shadow"><i class="fab fa-google"></i> Sign in with
             <strong>Google</strong></button>
-          <button class="onefit-buttons-style-light py-4"><i class="fab fa-twitter"></i> Sign in with
+          <button class="onefit-buttons-style-light py-4 shadow"><i class="fab fa-twitter"></i> Sign in with
             <strong>Twitter</strong></button>
-          <button class="onefit-buttons-style-light py-4"><i class="fab fa-facebook"></i> Sign in with
+          <button class="onefit-buttons-style-light py-4 shadow"><i class="fab fa-facebook"></i> Sign in with
             <strong>Facebook</strong></button>
 
           <hr class="text-white" />
 
-          <a href="" class="onefit-buttons-style-dark fw-bold p-4 comfortaa-font" style="text-decoration: none">Or
+          <a href="registration/" class="onefit-buttons-style-dark fw-bold p-4 comfortaa-font"
+            style="text-decoration: none">Or
             Create an Account >>></a>
         </div>
       </div>
@@ -153,12 +156,14 @@
       <span class="material-icons material-icons-outlined"> tv </span>
       <p style="font-size: 10px">Latest Training Programs | <span class="comfortaa-font"
           style="color: #e88a04">OnefitNet.TV</span></p>
-      <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="" class="img-fluid shadow"
-        style="width: 100%; border-radius: 25px 25px 0 0" />
-      <div class="d-grid gap-2">
-        <button class="onefit-buttons-style-light"
-          style="font-size: 10px !important; max-height: 10vh; border-radius: 0 0 25px 25px !important"><i
-            class="fas fa-play-circle"></i></button>
+
+      <div class="video-card-container">
+        <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="" class="img-fluid shadow" />
+        <button class="onefit-buttons-style-light shadow play-btn p-4" onclick="playVideo()">
+          <span class="material-icons material-icons-round" style="font-size: 50px !important;">
+            play_circle_outline
+          </span>
+        </button>
       </div>
     </div>
     <!-- ./ Carousal -->
@@ -236,182 +241,185 @@
   <!-- Footer -->
 
   <div class="navbar navbar-dark fixed-bottom navbar-stylez down-top-grad-dark py-4">
-    <div class="collapse w-100 fitness-bg-container no-scroller shadow-lg"
+    <div class="collapse w-100z fitness-bg-container no-scroller shadow-lg"
       style="max-height: 90vh !important; overflow-y: auto;" id="navbarToggleExternalContent">
       <div class="p-4 down-top-grad-dark">
         <div class="row text-center align-items-start">
-          <div class="col-md m-4 py-4 content-panel-border-style"
-            style="padding-bottom: 40px; border-radius: 25px; background-color: #343434;">
-            <span class="material-icons material-icons-outlined" style="color: #fff;"> tv </span>
-            <h5 class="fs-1 h4" style="color: #e88a04;"> OnefitNet.TV</h5>
-            <hr class="text-white" />
+          <div class="col-lg">
+            <div class="content-panel-border-style p-4"
+              style="padding-bottom: 40px; border-radius: 25px; background-color: #343434;">
+              <span class="material-icons material-icons-outlined" style="color: #fff;"> tv </span>
+              <h5 class="fs-1 h4" style="color: #e88a04;"> OnefitNet.TV</h5>
+              <hr class="text-white" />
 
-            <p class="my-4" style="font-size: 10px">Latest Training Programs | <span class="comfortaa-font"
-                style="color: #e88a04">OnefitNet.TV</span></p>
+              <p class="my-4" style="font-size: 10px">Latest Training Programs | <span class="comfortaa-font"
+                  style="color: #e88a04">OnefitNet.TV</span></p>
 
-            <ol class="list-group list-group-numbered bg-transparent">
-              <li class="list-group-item bg-transparentz border-0 general-dark-link-item shadow my-2"
-                style="cursor: pointer" onClick="launchLink('www.google.com')">
-                <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4"
-                  style="border-radius: 25px;">
+              <ol class="list-group list-group-numberedz bg-transparent no-scroller"
+                style="max-height: 80vh !important; overflow-y: auto;">
+                <li class="list-group-item bg-transparentz border-0 general-dark-link-item shadow my-2"
+                  style="cursor: pointer" onClick="launchLink('www.google.com')">
+                  <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4"
+                    style="border-radius: 25px;">
+                  <hr class="text-white" style="height: 5px;">
 
-                <div class="row my-2 align-items-center">
-                  <div class="col-sm-2">
-                    <img src="media/assets/icons/icons8-sports-mode-50.png" class="img-fluid" alt="placeholder"
-                      style="border-radius: 5px; background-color: #e88a04;">
+                  <div class="row my-2 align-items-center">
+                    <div class="col-sm-2">
+                      <img src="media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder"
+                        style="border-radius: 5px; background-color: #e88a04;">
+                    </div>
+                    <div class="col-sm">
+                      <h5>Ep.1 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
+                      <button class="onefit-buttons-style-dark shadow p-4 comfortaa-font">
+                        Subscribe to <span class="comfortaa-font" style="color: #e88a04">OnefitNet.TV</span>
+                      </button>
+                    </div>
                   </div>
-                  <div class="col-sm">
-                    <h5>Ep.# - Episode Title | Head Trainer.: Name</h5>
-                  </div>
-                </div>
-                <hr class="text-dark">
-              </li>
-              <li class="list-group-item bg-transparentz border-0 general-dark-link-item shadow my-2"
-                style="cursor: pointer" onClick="launchLink('www.google.com')">
-                <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4"
-                  style="border-radius: 25px;">
+                </li>
+                <li class="list-group-item bg-transparentz border-0 general-dark-link-item shadow my-2"
+                  style="cursor: pointer" onClick="launchLink('www.google.com')">
+                  <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4"
+                    style="border-radius: 25px;">
+                  <hr class="text-white" style="height: 5px;">
 
-                <div class="row my-2 align-items-center">
-                  <div class="col-sm-2">
-                    <img src="media/assets/icons/icons8-sports-mode-50.png" class="img-fluid" alt="placeholder"
-                      style="border-radius: 5px; background-color: #e88a04;">
+                  <div class="row my-2 align-items-center">
+                    <div class="col-sm-2">
+                      <img src="media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder"
+                        style="border-radius: 5px; background-color: #e88a04;">
+                    </div>
+                    <div class="col-sm">
+                      <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
+                      <button class="onefit-buttons-style-dark shadow p-4 comfortaa-font">
+                        Subscribe to <span class="comfortaa-font" style="color: #e88a04">OnefitNet.TV</span>
+                      </button>
+                    </div>
                   </div>
-                  <div class="col-sm">
-                    <h5>Ep.# - Episode Title | Head Trainer.: Name</h5>
-                  </div>
-                </div>
-                <hr class="text-dark">
-              </li>
-              <li class="list-group-item bg-transparentz border-0 general-dark-link-item shadow my-2"
-                style="cursor: pointer" onClick="launchLink('www.google.com')">
-                <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4"
-                  style="border-radius: 25px;">
-
-                <div class="row my-2 align-items-center">
-                  <div class="col-sm-2">
-                    <img src="media/assets/icons/icons8-sports-mode-50.png" class="img-fluid" alt="placeholder"
-                      style="border-radius: 5px; background-color: #e88a04;">
-                  </div>
-                  <div class="col-sm">
-                    <h5>Ep.# - Episode Title | Head Trainer.: Name</h5>
-                  </div>
-                </div>
-                <hr class="text-dark">
-              </li>
-              <li class="list-group-item bg-transparentz border-0 general-dark-link-item shadow my-2"
-                style="cursor: pointer" onClick="launchLink('www.google.com')">
-                <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4"
-                  style="border-radius: 25px;">
-
-                <div class="row my-2 align-items-center">
-                  <div class="col-sm-2">
-                    <img src="media/assets/icons/icons8-sports-mode-50.png" class="img-fluid" alt="placeholder"
-                      style="border-radius: 5px; background-color: #e88a04;">
-                  </div>
-                  <div class="col-sm">
-                    <h5>Ep.# - Episode Title | Head Trainer.: Name</h5>
-                  </div>
-                </div>
-                <hr class="text-dark">
-              </li>
-            </ol>
+                </li>
+              </ol>
+            </div>
           </div>
-          <div class="col-md m-4 py-4 content-panel-border-style"
-            style="padding-bottom: 40px; border-radius: 25px; background-color: #343434;">
-            <span class="material-icons material-icons-outlined" style="color: #fff;">tag</span>
-            <h5 class="fs-1 h4" style="color: #e88a04;">Social</h5>
-            <hr class="text-white" />
-            <ul class="list-group bg-transparent comfortaa-font">
-              <li class="list-group-item bg-transparent border-0 social-link-icon-insta my-2 shadow"
-                style="cursor: pointer" onClick="launchLink('www.google.com')">
-                <div class="row align-items-center">
-                  <div class="col-4 text-end">
-                    <i class="fab fa-instagram" style="font-size: 40px;"></i>
+          <div class="col-lg">
+            <div class="content-panel-border-style p-4"
+              style="padding-bottom: 40px; border-radius: 25px; background-color: #343434;">
+              <span class="material-icons material-icons-outlined" style="color: #fff;">tag</span>
+              <h5 class="fs-1 h4" style="color: #e88a04;">Social</h5>
+              <hr class="text-white" />
+              <ul class="list-group bg-transparent comfortaa-font">
+                <li class="list-group-item bg-transparent border-0 social-link-icon-insta my-2 shadow"
+                  style="cursor: pointer" onClick="launchLink('www.google.com')">
+                  <div class="row align-items-center">
+                    <div class="col-4 text-end">
+                      <i class="fab fa-instagram" style="font-size: 40px;"></i>
+                    </div>
+                    <div class="col text-center" style="color: #e88a04;">
+                      |
+                    </div>
+                    <div class="col text-start">
+                      @onefit_net
+                    </div>
                   </div>
-                  <div class="col text-center" style="color: #e88a04;">
-                    |
+                </li>
+                <li class="list-group-item bg-transparent border-0 social-link-icon-twitter my-2 shadow"
+                  style="cursor: pointer" onClick="launchLink('www.google.com')">
+                  <div class="row align-items-center">
+                    <div class="col-4 text-end">
+                      <i class="fab fa-twitter" style="font-size: 40px;"></i>
+                    </div>
+                    <div class="col text-center" style="color: #e88a04;">
+                      |
+                    </div>
+                    <div class="col text-start">
+                      @onefitnet_za
+                    </div>
                   </div>
-                  <div class="col text-start">
-                    @onefit_net
+                </li>
+                <li class="list-group-item bg-transparent border-0 social-link-icon-fb my-2 shadow"
+                  style="cursor: pointer" onClick="launchLink('www.google.com')">
+                  <div class="row align-items-center">
+                    <div class="col-4 text-end">
+                      <i class="fab fa-facebook" style="font-size: 40px;"></i>
+                    </div>
+                    <div class="col text-center" style="color: #e88a04;">
+                      |
+                    </div>
+                    <div class="col text-start">
+                      /OnefitNetwork
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="list-group-item bg-transparent border-0 social-link-icon-twitter my-2 shadow"
-                style="cursor: pointer" onClick="launchLink('www.google.com')">
-                <div class="row align-items-center">
-                  <div class="col-4 text-end">
-                    <i class="fab fa-twitter" style="font-size: 40px;"></i>
+                </li>
+                <li class="list-group-item bg-transparent border-0 social-link-icon-yt my-2 shadow"
+                  style="cursor: pointer" onClick="launchLink('www.google.com')">
+                  <div class="row align-items-center">
+                    <div class="col-4 text-end">
+                      <i class="fab fa-youtube" style="font-size: 40px;"></i>
+                    </div>
+                    <div class="col text-center" style="color: #e88a04;">
+                      |
+                    </div>
+                    <div class="col text-start">
+                      OnefitNet.TV
+                    </div>
                   </div>
-                  <div class="col text-center" style="color: #e88a04;">
-                    |
-                  </div>
-                  <div class="col text-start">
-                    @onefitnet_za
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item bg-transparent border-0 social-link-icon-fb my-2 shadow"
-                style="cursor: pointer" onClick="launchLink('www.google.com')">
-                <div class="row align-items-center">
-                  <div class="col-4 text-end">
-                    <i class="fab fa-facebook" style="font-size: 40px;"></i>
-                  </div>
-                  <div class="col text-center" style="color: #e88a04;">
-                    |
-                  </div>
-                  <div class="col text-start">
-                    /OnefitNetwork
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item bg-transparent border-0 social-link-icon-yt my-2 shadow"
-                style="cursor: pointer" onClick="launchLink('www.google.com')">
-                <div class="row align-items-center">
-                  <div class="col-4 text-end">
-                    <i class="fab fa-youtube" style="font-size: 40px;"></i>
-                  </div>
-                  <div class="col text-center" style="color: #e88a04;">
-                    |
-                  </div>
-                  <div class="col text-start">
-                    OnefitNet.TV
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md m-4 py-4 content-panel-border-style"
-            style="padding-bottom: 40px; border-radius: 25px; background-color: #343434;">
-            <span class="material-icons material-icons-outlined" style="color: #fff;">error_outline</span>
-            <h5 class="fs-1 h4" style="color: #e88a04;">Important</h5>
-            <hr class="text-white" />
+                </li>
+              </ul>
 
-            <div>
-              <ul class="justify-content-end flex-grow-1 pe-3 comfortaa-font fs-3">
-                <li class="my-2 shadow general-dark-link-item" style="border-radius: 25px;">
-                  <a class="nav-link" href="#">Home</a>
+              <span class="material-icons material-icons-outlined mt-4" style="color: #fff;">error_outline</span>
+              <h5 class="fs-1 h4" style="color: #e88a04;">Important</h5>
+              <hr class="text-white" />
+              <ul class="list-group bg-transparent comfortaa-font">
+                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
+                  style="cursor: pointer" onClick="launchLink('www.google.com')">
+                  Our COVID-19 Responsibility
                 </li>
-                <li class="my-2 m shadow general-dark-link-item" style="border-radius: 25px;">
-                  <a class="nav-link" href="#">Services</a>
+                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
+                  style="cursor: pointer" onClick="launchLink('www.google.com')">
+                  Privacy Policy
                 </li>
-                <li class="my-2 shadow general-dark-link-item" style="border-radius: 25px;">
-                  <a class="nav-link" href="#">About</a>
+                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
+                  style="cursor: pointer" onClick="launchLink('www.google.com')">
+                  Terms of use
                 </li>
-                <li class="my-2 shadow general-dark-link-item" style="border-radius: 25px;">
-                  <a class="nav-link" href="#">Contact</a>
+                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
+                  style="cursor: pointer" onClick="launchLink('www.google.com')">
+                  Refund Policy
                 </li>
-                <li class="my-2 shadow general-dark-link-item" style="border-radius: 25px;">
-                  <a class="nav-link active" aria-current="page" href="#">Onefit.app&trade;</a>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg">
+            <div class="content-panel-border-style p-4"
+              style="padding-bottom: 40px; border-radius: 25px; background-color: #343434;">
+              <span class="material-icons material-icons-outlined" style="color: #fff;">double_arrow</span>
+              <h5 class="fs-1 h4" style="color: #e88a04;">Navigation</h5>
+              <hr class="text-white" />
+              <ul class="list-group justify-content-end flex-grow-1z pe-3 comfortaa-font fs-3">
+                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
+                  <button class="nav-link onefit-buttons-style-dark p-4 text-center" href="#">Home</button>
                 </li>
-                <li class="my-2 shadow general-dark-link-item" style="border-radius: 25px;">
-                  <a class="nav-link" href="#">Onefit.Edu&trade; (Blog)</a>
+                <li class="my-2 m shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
+                  <button class="nav-link onefit-buttons-style-dark p-4 text-center" href="#">Services</button>
                 </li>
-                <li class="my-2 shadow general-dark-link-item" style="border-radius: 25px;">
-                  <a class="nav-link" href="#">Onefit.Shop&trade;</a>
+                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
+                  <button class="nav-link onefit-buttons-style-dark p-4 text-center" href="#">About</button>
+                </li>
+                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
+                  <button class="nav-link onefit-buttons-style-dark p-4 text-center" href="#">Contact</button>
+                </li>
+                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
+                  <button class="nav-link onefit-buttons-style-dark p-4 text-center active" aria-current="page"
+                    href="#">Onefit.app&trade;</button>
+                </li>
+                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
+                  <button class="nav-link onefit-buttons-style-dark p-4 text-center" href="#">Onefit.Edu&trade;
+                    (Blog)</button>
+                </li>
+                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
+                  <button class="nav-link onefit-buttons-style-dark p-4 text-center"
+                    href="#">Onefit.Shop&trade;</button>
                 </li>
                 <hr class="text-dark" />
-                <li class="my-2 shadow general-dark-link-item" style="border-radius: 25px;">
-                  <a class="nav-link onefit-buttons-style-dark p-4 text-center" href="#"
+                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
+                  <a class="nav-link onefit-buttons-style-dark p-4 text-center" href="registration/"
                     style="border-bottom: 0 !important">Account
                     Registration</a>
                 </li>

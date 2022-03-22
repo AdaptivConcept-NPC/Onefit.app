@@ -47,7 +47,7 @@
               <hr class="text-dark" />
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 comfortaa-font fs-3">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Home</a>
+                  <a class="nav-link" href="../">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Services</a>
@@ -59,18 +59,13 @@
                   <a class="nav-link" href="#">Contact</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Onefit.app&trade;</a>
+                  <a class="nav-link" aria-current="page" href="../">Onefit.app&trade;</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Onefit.Edu&trade; (Blog)</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Onefit.Shop&trade;</a>
-                </li>
-                <hr class="text-dark" />
-                <li class="nav-item">
-                  <a class="nav-link onefit-buttons-style-dark p-4 text-center" href="#"
-                    style="border-bottom: 0 !important">Account Registration</a>
                 </li>
               </ul>
             </div>
@@ -82,9 +77,10 @@
 
     <div class="row align-items-center">
       <div class="col-xl py-4">
-        <div class="content-panel-border-style p-4 tunnel-bg text-center" style="border-radius: 25px">
-          <img src="../../media/assets/One-Logo-Vertical.png" class="img-fluid my-4" alt="one fitness"
+        <div class="content-panel-border-style p-4 tunnel-bg text-center shadow" style="border-radius: 25px">
+          <img src="../media/assets/One-Logo-Vertical.png" class="img-fluid my-4 screen" alt="one fitness"
             style="max-height: 50vh" />
+
           <p class="my-4 text-center" style="color: #fff; font-size: 10px">Crafted by Adaptiv Concept (Media) &copy;
             2021</p>
         </div>
@@ -103,34 +99,38 @@
             </div>
 
             <div class="form-group my-4">
-              <input class="form-control-text-input" type="text" name="reg-name" id="reg-name" placeholder="Name"
+              <input class="form-control-text-input p-4" type="text" name="reg-name" id="reg-name" placeholder="Name"
                 required />
             </div>
 
             <div class="form-group">
-              <input class="form-control-text-input" type="text" name="reg-surname" id="reg-surname"
+              <input class="form-control-text-input p-4" type="text" name="reg-surname" id="reg-surname"
                 placeholder="Surname" required />
             </div>
             <div class="form-group my-4">
-              <input class="form-control-text-input" type="email" name="reg-email" id="reg-email"
+              <input class="form-control-text-input p-4" type="email" name="reg-email" id="reg-email"
                 placeholder="Email address" required />
+              <div id="emailHelp" class="form-text text-center style=" color: #e88a04">We'll never share your email with
+                anyone
+                else.
+              </div>
             </div>
 
             <div class="form-group">
-              <input class="form-control-text-input" type="phone" name="reg-contact" id="reg-contact"
+              <input class="form-control-text-input p-4" type="phone" name="reg-contact" id="reg-contact"
                 placeholder="Phone number" required />
             </div>
             <div class="form-group my-4">
-              <input class="form-control-text-input" type="text" name="reg-idnum" id="reg-idnum"
+              <input class="form-control-text-input p-4" type="text" name="reg-idnum" id="reg-idnum"
                 placeholder="ID/Passport number" required />
             </div>
 
             <div class="form-group">
-              <input class="form-control-text-input" type="date" name="reg-dob" id="reg-dob" placeholder="Date of birth"
-                required />
+              <input class="form-control-text-input p-4" type="date" name="reg-dob" id="reg-dob"
+                placeholder="Date of birth" required />
             </div>
             <div class="form-group my-4">
-              <select class="custom-select form-control-select-input" name="reg-gender" id="reg-gender"
+              <select class="custom-select form-control-select-input p-4" name="reg-gender" id="reg-gender"
                 placeholder="Gender" required>
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
@@ -138,8 +138,8 @@
             </div>
 
             <div class="form-group">
-              <select class="custom-select form-control-select-input" name="reg-race" id="reg-race" placeholder="Race"
-                required>
+              <select class="custom-select form-control-select-input p-4" name="reg-race" id="reg-race"
+                placeholder="Race" required>
                 <option value="black">Black</option>
                 <option value="white">White</option>
                 <option value="coloured">Coloured</option>
@@ -147,7 +147,7 @@
               </select>
             </div>
             <div class="form-group my-4">
-              <select class="custom-select form-control-select-input" name="reg-nationality" id="reg-nationality"
+              <select class="custom-select form-control-select-input p-4" name="reg-nationality" id="reg-nationality"
                 placeholder="Nationality" required>
                 <option value='South Africa'>South Africa</option>
                 <option value='Afghanistan'>Afghanistan</option>
@@ -411,19 +411,19 @@
             </div>
 
             <div class="form-group">
-              <input class="form-control-text-input" type="text" name="reg-username" id="reg-username"
+              <input class="form-control-text-input p-4" type="text" name="reg-username" id="reg-username"
                 placeholder="Username" required />
             </div>
             <div class="form-group my-4">
-              <input class="form-control-text-input" type="password" name="reg-password" id="reg-password"
+              <input class="form-control-text-input p-4" type="password" name="reg-password" id="reg-password"
                 placeholder="Password" required />
             </div>
 
             <div class="form-group">
-              <input class="form-control-text-input" type="password" name="reg-confirmpassword" id="reg-confirmpassword"
-                placeholder="Confirm password" required />
+              <input class="form-control-text-input p-4" type="password" name="reg-confirmpassword"
+                id="reg-confirmpassword" placeholder="Confirm password" required />
             </div>
-            <div class="text-center d-grid gap-2 py-2">
+            <div class="text-center d-gridz gap-2 py-2">
               <button type="submit" class="my-4 p-4 onefit-buttons-style-dark btn-lg" id="signup-btn"><i
                   class="fas fa-sign-in-alt" style="color: #ffa500"></i>
                 Sign Up</button>

@@ -34,7 +34,7 @@
   <!-- Container -->
   <div class="container">
 
-    <!-- Social Update Card -->
+    <!-- Social Update Card - Dark -->
     <div class="mb-4 p-0 social-update-card shadow-lg" style="border-bottom: #e88a04 solid 5px;"
       id="post-'.$usrposts_postid.'-'.$usrposts_user.'">
       <div class="row align-items-center px-4 py-4 m-0" style="border-radius: 25px!important;">
@@ -114,10 +114,11 @@
         <!-- ./ function buttons-->
       </div>
     </div>
-    <!-- ./ Social Update Card -->
+    <!-- ./ Social Update Card - Dark -->
 
-    <!-- Community Update Card -->
-    <div class="px-2 mx-0 my-4 social-update-card" style="border-bottom: #e88a04 solid 5px;" id="post-'.$commpost_postid.'-'.$commpost_user.'">
+    <!-- Community Update Card - Dark -->
+    <div class="px-2 mx-0 my-4 social-update-card" style="border-bottom: #e88a04 solid 5px;"
+      id="post-'.$commpost_postid.'-'.$commpost_user.'">
       <div class="row align-items-center px-4 py-4 m-0" style="border-radius: 25px!important;">
         <div class="col-4 -md text-center">
           '.$currentUserAccountProdImg.'
@@ -195,7 +196,171 @@
         <!-- ./ function buttons -->
       </div>
     </div>
-    <!-- Community Update Card -->
+    <!-- Community Update Card - Dark -->
+
+    <!-- Social Update Card - Light -->
+    <div class="mb-4 p-0 social-update-card shadow-lg" style="border-bottom: #e88a04 solid 5px;"
+      id="post-'.$usrposts_postid.'-'.$usrposts_user.'">
+      <div class="row align-items-center px-4 py-4 m-0" style="border-radius: 25px!important;">
+        <div class="col-4 -md text-center">
+          '.$currentUserAccountProdImg.'
+
+          <div class="social-update-profile-pic shadow-sm"
+            style="background-image: url('../media/profiles/system_tmp/photo-1574680096145-d05b474e2155.jpg');"></div>
+        </div>
+        <div class="col-8 -md text-end">
+          <div class="d-grid gap-4">
+            <h3 class="text-truncate">'.$usrposts_name.' '.$usrposts_surname.'</h3>
+            <span style="font-size: 10px">@<span style="color: #ffa500">'.$usrposts_user.'</span>
+          </div>
+        </div>
+      </div>
+      <div class="post-content px-4 px-0 fs-4 text-break down-top-grad-dark" style="border-radius: 25px!important;">
+        <hr class="bg-white">
+        <div>
+          <p class="my-2">'.$usrposts_message.'</p>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md text-center">
+            <hr class="bg-white">
+          </div>
+          <div class="col-md-3 text-center">
+            <p class="text-right p-3 rounded-pill bg-white text-dark m-0" style="font-size: 10px">'.$usrposts_postdate.'
+            </p>
+          </div>
+        </div>
+
+        <!--function buttons-->
+        <ul class="list-group list-group-horizontal -sm my-4">
+          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
+              onclick="socialFunctions(action, origin)">
+              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                favorite
+              </span>
+              <span class="d-none d-lg-block">Like</span>
+            </button>
+
+          </li>
+          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
+              onclick="socialFunctions(action, origin)">
+              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                insert_comment
+              </span>
+              <span class="d-none d-lg-block">
+                Comment
+              </span>
+            </button>
+
+          </li>
+          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
+              onclick="socialFunctions(action, origin)">
+              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                share
+              </span>
+              <span class="d-none d-lg-block">Share</span>
+            </button>
+
+          </li>
+          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
+              onclick="socialFunctions(action, origin)">
+              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                bookmarks
+              </span>
+              <span class="d-none d-lg-block">Save</span>
+            </button>
+
+          </li>
+        </ul>
+        <!-- ./ function buttons-->
+      </div>
+    </div>
+    <!-- ./ Social Update Card - Light -->
+
+    <!-- Community Update Card - Light -->
+    <div class="px-2 mx-0 my-4 social-update-card" style="border-bottom: #e88a04 solid 5px;"
+      id="post-'.$commpost_postid.'-'.$commpost_user.'">
+      <div class="row align-items-center px-4 py-4 m-0" style="border-radius: 25px!important;">
+        <div class="col-4 -md text-center">
+          '.$currentUserAccountProdImg.'
+
+          <div class="social-update-profile-pic shadow-sm"
+            style="background-image: url('../media/profiles/system_tmp/photo-1574680096145-d05b474e2155.jpg');"></div>
+        </div>
+        <div class="col-8 -md text-end">
+          <div class="d-grid gap-4">
+            <h3 class="text-truncate">'.$commpost_usr_name.' '.$commpost_usr_surname.'</h3>
+            <span style="font-size: 10px">@<span style="color: #ffa500">'.$commpost_user.'</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="post-content">
+        <hr class="bg-white">
+        <div>
+          <p class="my-2">'.$commpost_message.'</p>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md text-center">
+            <hr class="bg-white">
+          </div>
+          <div class="col-md-3 text-center">
+            <p class="text-right p-3 rounded-pill bg-white text-dark m-0" style="font-size: 10px">'.$commpost_postdate.'
+            </p>
+          </div>
+        </div>
+
+        <!-- function buttons -->
+        <ul class="list-group list-group-horizontal -sm my-4">
+          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
+              onclick="socialFunctions(action, origin)">
+              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                favorite
+              </span>
+              <span class="d-none d-lg-block">Like</span>
+            </button>
+
+          </li>
+          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
+              onclick="socialFunctions(action, origin)">
+              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                insert_comment
+              </span>
+              <span class="d-none d-lg-block">
+                Comment
+              </span>
+            </button>
+
+          </li>
+          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
+              onclick="socialFunctions(action, origin)">
+              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                share
+              </span>
+              <span class="d-none d-lg-block">Share</span>
+            </button>
+
+          </li>
+          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
+              onclick="socialFunctions(action, origin)">
+              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                bookmarks
+              </span>
+              <span class="d-none d-lg-block">Save</span>
+            </button>
+
+          </li>
+        </ul>
+        <!-- ./ function buttons -->
+      </div>
+    </div>
+    <!-- Community Update Card - Light -->
 
     <div class="grid-container">
 
@@ -240,7 +405,7 @@
       <!-- ************ User Notifications -->
       <!-- Notifications Card for Communications Tab -->
       <div class="grid-tile">
-        <div class="px-2 mx-0 content-panel-border-style my-4" id="notifcation-'.$notif_id.'">
+        <div class="px-2 mx-0 content-panel-border-style my-4 down-top-grad-dark" id="notifcation-'.$notif_id.'">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1 fw-bold text-truncate">'.$notif_title.'</h5>
             <small class="text-end">'.$notif_date.' (# days ago)</small>
@@ -267,8 +432,8 @@
       <div class="grid-tile">
         <div class="my-4 content-panel-border-style tunnel-bg-container"
           style="border-radius: 25px; background-color: #ffa500;">
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" id="notifcation-'.$notif_id.'"
-            style="border-radius: 25px !important;">
+          <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true"
+            id="notifcation-'.$notif_id.'" style="border-radius: 25px !important;">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1 fw-bold text-truncate">'.$notif_title.'</h5>
               <small class="text-end">'.$notif_date.' (# days ago)</small>
@@ -340,6 +505,29 @@
       </div>
       <!-- User Resources - Tile -->
 
+      <!-- Community Resources - Tile -->
+      <div class="grid-tile">
+        <div class="p-0 mx-0 my-4 tunnel-bg-container" style="border-radius: 25px;"
+          id="resource-'.$usrresources_resourceid.'-'.$currentUser_Usrnm.'" style="max-width: 100%!important">
+          <div class="content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaft p-4">
+            <h3 class=" text-truncate">'.$usrresources_title.' <span
+                style="font-size: 10px">'.$usrresources_type.'</span></h3>
+            <p><span style="color: #ffa500">'.$usrresources_description.'</span></p>
+            <p><i class="fas fa-link"></i> | '.$usrresources_link.'</p>
+            <p>Shared by: @'.$usrresources_type.'</p>
+
+            '.$openlinkbtn.'
+            <button class="onefit-buttons-style-light p-4 fw-bold fs-5 comfortaa-font m-4 shadow" type="button"
+              onclick="openIntLink('."'".$usrresources_link."'".', '."'media'".')">
+              View media <i class="fas fa-photo-video"></i>
+            </button>
+
+            <p class="text-right" style="font-size: 8px">'.$usrresources_sharedate.'</p>
+          </div>
+        </div>
+      </div>
+      <!-- Community Resources - Tile -->
+
       <!-- User Friends - Tahiti Grad -->
       <div class="grid-tile">
         <div class="my-4 container-fluid tunnel-bg-container" id="friend-'.$friendid.'-'.$friendUsername.'"
@@ -359,15 +547,13 @@
                   <span class="material-icons material-icons-round">public</span>
                 </div>
 
-                <button class="onefit-buttons-style-dark my-4 shadow" onclick="openProfiler('."'".$friendUsername."'".')>
-
-                  <div class=" d-grid gap-2 mx-4 my-2">
+                <button class="onefit-buttons-style-dark my-4 shadow"
+                  onclick="openProfiler('."'".$friendUsername."'".')><div class=" d-grid gap-2 mx-4 my-2">
                   <span class="material-icons material-icons-round">account_circle</span>
                   <p style="font-size: 10px;">Profile</p>
               </div>
               </button>
               <button class="onefit-buttons-style-dark my-4 shadow" onclick="followUser('."'".$friendUsername."'".')>
-
                   <div class=" d-grid gap-2 mx-4 my-2">
                 <span class="material-icons material-icons-round">person_add</span>
                 <p style="font-size: 10px;">Follow</p>
@@ -376,7 +562,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
   <!-- ./ User Friends - Tahiti Grad -->

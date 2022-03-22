@@ -16,78 +16,83 @@ if ($dbconn->connect_error) die("Fatal Error");
 $userAuth = false;
 $currentUser_Usrnm = "";
 
+//output/display variables
+$outputSocialItems = $outputProfileUserSubsGroupsList = $outputProfileUsersPostsList = $outputProfileUsersResourcesList = $outputProfileUsersProgramsList = $outputProfileUserFriendsList = $outputProfileUsersFavesList = $outputProfileUserMediaList = $outputProfileUserNotifications = $outputProfileUserChats = $outputProfileUserPref = $outputProfileUserChallenges = NULL;
+
 // user profile demographic details
-$usr_userid = $usrprof_username = $usrprof_name = $usrprof_surname = $usrprof_idnumber = $usrprof_email = $usrprof_contact = $usrprof_dob = $usrprof_gender = $usrprof_race = $usrprof_nationality = $usrprof_acc_active = $usr_profileid = $usr_about = $usr_profiletype = $usr_profilepicurl = $usr_verification = "";
+$usr_userid = $usrprof_username = $usrprof_name = $usrprof_surname = $usrprof_idnumber = $usrprof_email = $usrprof_contact = $usrprof_dob = $usrprof_gender = $usrprof_race = $usrprof_nationality = $usrprof_acc_active = $usr_profileid = $usr_about = $usr_profiletype = $usr_profilepicurl = $usr_verification = NULL;
 
 // storing the other profile details
-$socialItems = $profileUserSubsGroupsList = $profileUsersPostsList = $profileUsersResourcesList = $profileUsersProgramsList = $profileUserFriendsList = $profileUsersFavesList = $profileUserMediaList = $profileUserNotifications = $profileUserChats = $profileUserPref = $profileUserChallenges = $currentUserAccountProdImg = "";
+$socialItems = $profileUserSubsGroupsList = $profileUsersPostsList = $profileUsersResourcesList = $profileUsersProgramsList = $profileUserFriendsList = $profileUsersFavesList = $profileUserMediaList = $profileUserNotifications = $profileUserChats = $profileUserPref = $profileUserChallenges = $currentUserAccountProdImg = NULL;
 
 // storing the community content
-$outputCommunityGroups = $outputCommunityNews = $outputCommunityResources = $outputCommunityUpdates = "";
+$outputCommunityGroups = $outputCommunityNews = $outputCommunityResources = $outputCommunityUpdates = NULL;
 
 // storing the discovery content
-$discoveryAllUsersList = $discoveryFitProgsIndi = $discoveryFitProgsTeams = $discoveryAllTrainees = $discoveryAllTrainers = "";
+$discoveryAllUsersList = $discoveryFitProgsIndi = $discoveryFitProgsTeams = $discoveryAllTrainees = $discoveryAllTrainers = $discoverygroups = NULL;
 
 //getUserChats
-$convo_conversationid = $convo_secondaryuser = $secondaryuser_name = $secondaryuser_surname = $communicationUserMessages = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$convo_conversationid = $convo_secondaryuser = $secondaryuser_name = $secondaryuser_surname = $communicationUserMessages = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getUserFriends
-$friendid = $friendUsername = $friendName = $friendSurname = $profileUserFriendsList =  $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$friendid = $friendUsername = $friendName = $friendSurname = $profileUserFriendsList =  $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getUserGroups
-$grps_groupid = $grps_refcode = $grps_name = $grps_description = $grps_category = $grps_privacy = $grps_createdby = $grps_createdate = $profileUserSubsGroupsList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$grps_groupid = $grps_refcode = $grps_name = $grps_description = $grps_category = $grps_privacy = $grps_createdby = $grps_createdate = $profileUserSubsGroupsList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getUserMedia
-$fileList = $profileUserMediaList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$fileList = $profileUserMediaList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getUserNotifications
-$notif_id = $notif_title = $notif_message = $notif_date = $communicationUserNotifications =  $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$notif_id = $notif_title = $notif_message = $notif_date = $communicationUserNotifications =  $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getUserPref
 
 //getUserProgSubs
-$programs_progid = $programs_refcode = $programs_title = $programs_description = $programs_duration = $programs_category = $programs_privacy = $programs_creator = $programs_active = $profileUsersProgramsList =  $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$programs_progid = $programs_refcode = $programs_title = $programs_description = $programs_duration = $programs_category = $programs_privacy = $programs_creator = $programs_active = $profileUsersProgramsList =  $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getUserResources
-$usrresources_resourceid = $usrresources_title = $usrresources_description = $usrresources_type = $usrresources_link = $usrresources_sharedate = $usrresources_sharename = $usrresources_sharesurname = $profileUsersResourcesList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$usrresources_resourceid = $usrresources_title = $usrresources_description = $usrresources_type = $usrresources_link = $usrresources_sharedate = $usrresources_sharename = $usrresources_sharesurname = $profileUsersResourcesList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getUserSaves
-$fave_id = $fave_ref = $fave_date = $post_id = $post_date = $post_msg = $mod_date = $poster_name = $poster_surname = $poster_username = $profileUsersFavesList =  $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$fave_id = $fave_ref = $fave_date = $post_id = $post_date = $post_msg = $mod_date = $poster_name = $poster_surname = $poster_username = $profileUsersFavesList =  $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getUserSocials
-$usr_socialnet = $usr_socialhandle = $usr_sociallink = $socialNetworkIcon = $socialItems = $userSocialItemsList =  $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$usr_socialnet = $usr_socialhandle = $usr_sociallink = $socialNetworkIcon = $socialItems = $userSocialItemsList =  $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getUserUpdates
-$usrposts_postid = $usrposts_postdate = $usrposts_message = $usrposts_user = $usrposts_faveref  = $usrposts_name = $usrposts_surname = $profileUsersPostsList =  $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$usrposts_postid = $usrposts_postdate = $usrposts_message = $usrposts_user = $usrposts_faveref  = $usrposts_name = $usrposts_surname = $profileUsersPostsList =  $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getCommunityGroups
-$grps_groupid = $grps_refcode = $grps_name = $grps_description = $grps_category = $grps_privacy = $grps_createdby = $grps_createdate = $discoverGroupsList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$grps_groupid = $grps_refcode = $grps_name = $grps_description = $grps_category = $grps_privacy = $grps_createdby = $grps_createdate = $discoverGroupsList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getCommunityNews
-$news_id = $news_title = $news_content = $news_createdby = $news_date = $news_poster_name = $news_poster_surname = $communicationNews = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$news_id = $news_title = $news_content = $news_createdby = $news_date = $news_poster_name = $news_poster_surname = $communicationNews = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getCommunityResources
-$resourceid = $resource_title = $resource_descr = $resource_type = $resource_link = $sharedbyUsername = $sharedate = $openlinkbtn = $outputCommunityResources = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$resourceid = $resource_title = $resource_descr = $resource_type = $resource_link = $sharedbyUsername = $sharedate = $openlinkbtn = $outputCommunityResources = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
-$commpost_postid = $commpost_postdate = $commpost_message = $commpost_user = $commpost_faveref = $commpost_usr_name = $commpost_usr_surname = $communityPosts = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$commpost_postid = $commpost_postdate = $commpost_message = $commpost_user = $commpost_faveref = $commpost_usr_name = $commpost_usr_surname = $communityPosts = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getAllUsers
-$usrs_userid = $usrs_username = $usrs_name = $usrs_surname = $usrs_idnumber = $usrs_email = $usrs_contact = $usrs_dob = $usrs_gender = $usrs_race = $usrs_nationality = $usrs_acc_active = $usrs_prof_acctype = $discoverPeopleList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$usrs_userid = $usrs_username = $usrs_name = $usrs_surname = $usrs_idnumber = $usrs_email = $usrs_contact = $usrs_dob = $usrs_gender = $usrs_race = $usrs_nationality = $usrs_acc_active = $usrs_prof_acctype = $discoverPeopleList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getFitProgramsIndi
-$indi_programs_progid = $indi_programs_refcode = $indi_programs_title = $indi_programs_description = $indi_programs_duration = $indi_programs_category = $indi_programs_privacy = $indi_programs_creator = $indi_programs_active = $discoverIndiProgramsList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$indi_programs_progid = $indi_programs_refcode = $indi_programs_title = $indi_programs_description = $indi_programs_duration = $indi_programs_category = $indi_programs_privacy = $indi_programs_creator = $indi_programs_active = $discoverIndiProgramsList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getFitProgramsTeams
-$team_programs_progid = $team_programs_refcode = $team_programs_title = $team_programs_description = $team_programs_duration = $team_programs_category = $team_programs_privacy = $team_programs_creator = $team_programs_active = $discoverteamProgramsList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$team_programs_progid = $team_programs_refcode = $team_programs_title = $team_programs_description = $team_programs_duration = $team_programs_category = $team_programs_privacy = $team_programs_creator = $team_programs_active = $discoverteamProgramsList = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getAllTrainees
-$usrs_userid = $usrs_username = $usrs_name = $usrs_surname = $usrs_idnumber = $usrs_email = $usrs_contact = $usrs_dob = $usrs_gender = $usrs_race = $usrs_nationality = $usrs_acc_active = $activitiesTraineesList = $usrs_prof_acctype = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$usrs_userid = $usrs_username = $usrs_name = $usrs_surname = $usrs_idnumber = $usrs_email = $usrs_contact = $usrs_dob = $usrs_gender = $usrs_race = $usrs_nationality = $usrs_acc_active = $activitiesTraineesList = $usrs_prof_acctype = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 //getAllTrainers
-$usrs_userid = $usrs_username = $usrs_name = $usrs_surname = $usrs_idnumber = $usrs_email = $usrs_contact = $usrs_dob = $usrs_gender = $usrs_race = $usrs_nationality = $usrs_acc_active = $activitiesTrainersList = $usrs_prof_acctype = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = "";
+$usrs_userid = $usrs_username = $usrs_name = $usrs_surname = $usrs_idnumber = $usrs_email = $usrs_contact = $usrs_dob = $usrs_gender = $usrs_race = $usrs_nationality = $usrs_acc_active = $activitiesTrainersList = $usrs_prof_acctype = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
 // misc
-$currentuser_img_url = $otheruser_img_url = $verifIcon = $output_msg = $app_err_msg = $output = $uctDateTime = "";
+$currentuser_img_url = $otheruser_img_url = $verifIcon = $otherUserverifIcon = $output_msg = $app_err_msg = $output = NULL;
+$uctDateTime = new DateTime(date('Y-m-d H:i:s'));
+$uctDateTime->setTimezone(new DateTimeZone("UTC"));
 
 
 if (isset($_SESSION["currentUserAuth"])) {
@@ -125,12 +130,13 @@ if (isset($_SESSION["currentUserAuth"])) {
 
             // get the other profile details
             //$currentUserAccountProdImg = '<img src="../media/profiles/'.$usrprof_username.'/'.$usr_profilepicurl.'" alt="'.$usrprof_name.' '.$usrprof_surname.' - Profile Picture" class="img-fluid">';
+            if ($usr_profilepicurl == "default" || $usr_profilepicurl == null || $usr_profilepicurl == "") {
+                $currentuser_img_url = "../media/profiles/0_default/default_profile_pic.png";
+            } else {
+                $currentuser_img_url = "../media/profiles/$currentUser_Usrnm/$usr_profilepicurl";
+            }
 
-            $currentuser_img_url = "'../media/profiles/$currentUser_Usrnm/$usr_profilepicurl'";
-
-            $currentUserAccountProdImg = '<div class="social-update-profile-pic shadow-sm" style="height: 200px !important; width:  200px !important; margin-top: -100px; background-color: url(' . $currentuser_img_url . ')"></div>';
-
-            $currentUserAccountProdImg = '<div class="social-update-profile-pic shadow-sm" style="height: 200px !important; width:  200px !important; margin-top: -100px; background-color: url(' . $currentuser_img_url . ')"></div>';
+            $currentUserAccountProdImg = '<div class="social-update-profile-pic shadow" style="background-position: center !important; background-size: contain !important; background-repeat: no-repeat !important; background-attachment: local !important; height: 150px !important; width:  150px !important; background: url(' . "'$currentuser_img_url'" . ') !important"></div>';
 
             $outputSocialItems = getUserSocials();
             $outputProfileUserSubsGroupsList = getUserGroups();
@@ -141,7 +147,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             $outputProfileUsersFavesList = getUserSaves();
             $outputProfileUserMediaList = getUserMedia();
             $outputProfileUserNotifications = getUserNotifications();
-            $outputProfileUserChats = getUserChats();
+            $outputProfileUserChats = getUserChatConversations();
             $outputProfileUserPref = getUserPref();
             $outputProfileUserChallenges = getUserChallenges();
 
@@ -175,11 +181,22 @@ if (isset($_SESSION["currentUserAuth"])) {
         header("Location: ../scripts/php/destroy_session.php");
     }
 } else {
-    $uctDateTime->setTimezone(new DateTimeZone("UTC"));
-    $currentUser_Usrnm = "Guest-" . generateRandomString(8) . "_" . $uctDateTime;
+    //destroy session,
+    header("Location: ../scripts/php/destroy_session.php");
+    //$currentUser_Usrnm = "Guest-" . generateRandomString(8) . "_"; // . $uctDateTime;
 }
 
 //Functions
+function dateDifference($start_date, $end_date)
+{
+    // calulating the difference in timestamps 
+    $diff = strtotime($start_date) - strtotime($end_date);
+
+    // 1 day = 24 hours 
+    // 24 * 60 * 60 = 86400 seconds
+    return ceil(abs($diff / 86400));
+}
+
 //Content Load Functions - User Profile
 function getUserChallenges()
 {
@@ -187,19 +204,19 @@ function getUserChallenges()
 
     return $output;
 }
-function getUserChats()
+function getUserChatConversations()
 {
     global $convo_conversationid, $convo_secondaryuser, $secondaryuser_name, $secondaryuser_surname, $communicationUserMessages, $dbconn, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
 
     //messages
     //$sql = "SELECT * FROM messages msg INNER JOIN users u ON msg.receiver = u.username WHERE msg.sender = '$currentUser_Usrnm';";
     /*$sql = "SELECT * FROM ((user_conversations uc 
-  INNER JOIN users u ON uc.secondary_user = u.username) 
-  INNER JOIN user_conversation_messages ucm  ON ucm.conversation_id = uc.conversation_id) 
-  WHERE uc.primary_user = '$currentUser_Usrnm' ORDER BY ucm.send_date DESC LIMIT 1;";*/
+    INNER JOIN users u ON uc.secondary_user = u.username) 
+    INNER JOIN user_conversation_messages ucm  ON ucm.conversation_id = uc.conversation_id) 
+    WHERE uc.primary_user = '$currentUser_Usrnm' ORDER BY ucm.send_date DESC LIMIT 1;";*/
     $sql = "SELECT * FROM user_conversations uc 
-  INNER JOIN users u ON uc.secondary_user = u.username
-  WHERE uc.primary_user = '$currentUser_Usrnm' ORDER BY uc.conversation_id DESC;";
+    INNER JOIN users u ON uc.secondary_user = u.username
+    WHERE uc.primary_user = '$currentUser_Usrnm' ORDER BY uc.conversation_id DESC;";
 
     //LEFT OUTER JOIN user_conversation_messages ucm  ON ucm.conversation_id = uc.conversation_id) 
 
@@ -220,19 +237,24 @@ function getUserChats()
             $secondaryuser_surname = $row["user_surname"];
 
             $communicationUserMessages .= '
-      <li class="list-group-item bg-transparent my-2" id="conversation-' . $convo_conversationid . '">
-        <div class="row align-items-center content-panel-border-style" style="border-radius: 25px 0 25px 25px; overflow: hidden; background: #333">
-          <div class="col-sm-4">
-            <img src="../media/images/fitness/10.jpg" class="img-fluid" alt="" style="border-radius: 25px" />
-          </div>
-          <div class="col-sm py-2">
-            <div class="">' . $secondaryuser_name . ' ' . $secondaryuser_surname . ' <span id="" class="msgr-username-tag">(@' . $convo_secondaryuser . ')</span></div>
-          </div>
-          <div class="col-sm-2 py-2 text-center">
-            <button class="null-btn text-white shadow btn-block" onclick="openMessenger(' . "'" . $convo_conversationid . "'" . ', ' . "'" . $currentUser_Usrnm . "'" . ', ' . "'" . $convo_secondaryuser . "'" . ')" style="font-size: large"><i class="fas fa-chevron-right"></i></button>
-          </div>
-        </div>
-      </li>';
+            <li class="list-group-item bg-transparent text-white" id="conversation-' . $convo_conversationid . '">
+                <div class="row align-items-center" style="min-height: 100px;">
+                    <div class="col-sm-3 text-center">
+                        <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                    </div>
+                    <div class="col-sm text-center">
+                        <p class="fs-5 my-0 text-truncate">' . $secondaryuser_name . ' ' . $secondaryuser_surname . ' </p>
+                    </div>
+                    <div class="col-sm-3 text-center d-grid py-2">
+                        <button type="button" class="onefit-buttons-style-dark p-4 position-relative" onclick="openMessenger(' . "'" . $convo_conversationid . "'" . ', ' . "'" . $currentUser_Usrnm . "'" . ', ' . "'" . $convo_secondaryuser . "'" . ')">
+                            Open
+                            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dangerz border border-light rounded-circle my-pulse-animation-tahiti" style="background-color: #e88a04 !important;">
+                                <span class="visually-hidden">New Message</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </li>';
 
             $output = $communicationUserMessages;
         }
@@ -246,51 +268,124 @@ function getUserChats()
 
     return $output;
 }
-function getUserFriends()
+function getUserDetails($username)
 {
-    global $friendid, $friendUsername, $friendName, $friendSurname, $profileUserFriendsList, $dbconn, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
+    global $currentUser_Usrnm, $dbconn;
 
-    //users friends list
-    $sql = "SELECT * FROM friends f INNER JOIN users u ON f.friend_username = u.username WHERE f.username = '$currentUser_Usrnm' AND f.friendship_status = 1";
+    $otherUserverifIcon = $usrdetails_userid = $usrdetails_username = $usrdetails_name = $usrdetails_surname = $usrdetails_idnumber = $usrdetails_email = $usrdetails_contact = $usrdetails_dob = $usrdetails_race = $usrdetails_nationality = $usrdetails_acc_active = $usrdetails_profileid = $usrdetails_about = $usrdetails_profiletype = $usrdetails_profilepicurl = $usrdetails_verification = $currentUserAccountProdImg = "";
+
+    // Load the user profile information
+    $sql = "SELECT * FROM users u INNER JOIN user_profiles up ON u.username = up.username WHERE u.username = '$username';";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 
         while ($row = mysqli_fetch_assoc($result)) {
-            $friendid = $row["friend_username"];
+            $usrdetails_userid = $row["user_id"];
+            $usrdetails_username = $row["username"];
+            $usrdetails_name = $row["user_name"];
+            $usrdetails_surname = $row["user_surname"];
+            $usrdetails_idnumber = $row["id_number"];
+            $usrdetails_email = $row["user_email"];
+            $usrdetails_contact = $row["contact_number"];
+            $usrdetails_dob = $row["date_of_birth"];
+            $usrdetails_gender = $row["user_gender"];
+            $usrdetails_race = $row["user_race"];
+            $usrdetails_nationality = $row["user_nationality"];
+            $usrdetails_acc_active = $row["account_active"];
+            $usrdetails_profileid = $row["user_profile_id"];
+            $usrdetails_about = $row["about"];
+            $usrdetails_profiletype = $row["profile_type"];
+            $usrdetails_profilepicurl = $row["profile_url"];
+            $usrdetails_verification = $row["verification"];
+        }
+
+        // get the other profile details
+        //$currentUserAccountProdImg = '<img src="../media/profiles/'.$usrprof_username.'/'.$usr_profilepicurl.'" alt="'.$usrprof_name.' '.$usrprof_surname.' - Profile Picture" class="img-fluid">';
+
+        $otheruser_img_url = "'../media/profiles/$currentUser_Usrnm/$usrdetails_profilepicurl'";
+
+        $otherUserAccountProdImg = '<div class="social-update-profile-pic shadow" style="height: 200px !important; width:  200px !important; background-color: url(' . $otheruser_img_url . ')"></div>';
+
+        // verification icon
+        if ($usrdetails_verification == true) {
+            $otherUserverifIcon = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> verified_user </span>';
+        } else {
+            $otherUserverifIcon = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> groups </span>';
+        }
+
+        return $result;
+    } else {
+        $output_msg = "|[System Error]|:. [Profile load (Account details - 2) - " . mysqli_error($dbconn) . "]";
+        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+
+        $output = $app_err_msg;
+    }
+
+    return $output;
+}
+function getUserFriends()
+{
+    global $friendid, $friendUsername, $friendName, $friendSurname, $profileUserFriendsList, $dbconn, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
+    $frnd_profilepicurl = $currentUserAccountProdImg = $currentuser_img_url = $verifIcon = "";
+    $usr_verification = false;
+
+    //users friends list
+    $sql = "SELECT f.friend_id, f.friend_username, u.user_name, u.user_surname, up.profile_url, up.verification FROM friends f 
+    INNER JOIN users u ON f.friend_username = u.username 
+    INNER JOIN user_profiles up ON f.friend_username = up.username
+    WHERE f.username = '$currentUser_Usrnm' AND f.friendship_status = 1";
+
+    if ($result = mysqli_query($dbconn, $sql)) {
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $friendid = $row["friend_id"];
             $friendUsername = $row["friend_username"];
 
             $friendName = $row["user_name"];
             $friendSurname = $row["user_surname"];
 
-            $profileUserFriendsList .= '
-      <!-- User Friends - dark Grad -->
-  <div class="grid-tile">
-    <div class="my-4 container-fluid tunnel-bg-container" id="friend-' . $friendid . '-' . $friendUsername . '"
-      style="border-radius: 25px;">
-      <div class="top-down-grad-light" style="border-radius: 25px;">
-        <div
-          class="row align-items-center content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaftz left-right-grad-mineshaft">
-          <div class="col-xlg-2 text-center p-0">
-            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;"
-              alt="prof thumbnail">
-          </div>
-          <div class="col-xlg-6 text-center p-0">
-            <h3 class="text-white">' . $friendName . ' ' . $friendSurname . '</h3>
-            <p style="font-size: 10px">@' . $friendUsername . '</p>
-            <p style="font-size: 10px">Level.: 1</p>
-            <span class="material-icons material-icons-round">public</span>
-          </div>
-          <div class="col-xlg-4 text-center p-0">
-            <button class="onefit-buttons-style-light p-4 my-4 shadow" onclick="openProfiler(' . "'" . $friendUsername . "'" . ')>
-                  View profile <i class=" fas fa-chevron-circle-right"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+            $frnd_profilepicurl = $row["profile_url"];
 
-    </div>
-  </div>
-  <!-- ./ User Friends - dark Grad -->';
+            if ($frnd_profilepicurl == "default" || $frnd_profilepicurl == null || $frnd_profilepicurl == "") {
+                $currentuser_img_url = "../media/profiles/0_default/default_profile_pic.png";
+            } else {
+                $currentuser_img_url = "../media/profiles/$friendUsername/$frnd_profilepicurl";
+            }
+
+            //$currentUserAccountProdImg = '<div class="social-update-profile-pic shadow" style="background-position: center !important; background-size: contain !important; background-repeat: no-repeat !important; background-attachment: local !important; height: 200px !important; width:  200px !important; background: url(' . $currentuser_img_url . ') !important"></div>';
+
+            // verification icon
+            if ($usr_verification == true) {
+                $verifIcon = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> verified_user </span>';
+            } else {
+                $verifIcon = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> public </span>';
+            }
+
+            $profileUserFriendsList .= '
+            <!-- User Friends - dark Grad -->
+            <div class="grid-tile p-0">
+                <div class="my-4 tunnel-bg-container" id="friend-' . $friendid . '-' . $friendUsername . '" style="border-radius: 25px;">
+                    <div class="top-down-grad-light" style="border-radius: 25px;">
+                        <div class="row align-items-center content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaftz left-right-grad-mineshaft">
+                            <div class="col-xlg-2 text-center p-4">
+                                <img src="' . $currentuser_img_url . '" class="img-fluid rounded-circle shadow" style="border-radius: 25px;" alt="prof thumbnail">
+                            </div>
+                            <div class="col-xlg-6 text-center p-4">
+                                <h3 class="text-white">' . $friendName . ' ' . $friendSurname . '</h3>
+                                <p style="font-size: 10px">@' . $friendUsername . '</p>
+                                <p style="font-size: 10px">Level.: 1</p>
+                                ' . $verifIcon . '
+                            </div>
+                            <div class="col-xlg-4 text-center p-4">
+                                <button class="onefit-buttons-style-light p-4 my-4 shadow" onclick="openProfiler(' . "'" . $friendUsername . "'" . ')">
+                                    View profile <i class=" fas fa-chevron-circle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./ User Friends - dark Grad -->';
         }
 
         $output = $profileUserFriendsList;
@@ -330,22 +425,38 @@ function getUserGroups()
             $grps_createdate = $row["creation_date"];
 
             $profileUserSubsGroupsList .= '
-      <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="group-' . $grps_groupid . '-' . $grps_refcode . '">
-        <div class="row align-items-center">
-          <div class="col-md -4 text-center">
-            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
-          </div>
-          <div class="col-md -8">
-            <h3>' . $grps_name . ' <span style="font-size: 10px">' . $grps_privacy . '</span></h3>
-            <p><span style="color: #ffa500">' . $grps_description . '</span></p>
-            <p>' . $grps_category . '</p>
-            <button class="null-btn shadow mt-4" onclick="openGroup(' . "'" . $grps_refcode . "'" . ')"><i class="fas fa-chevron-circle-right"></i> Open group</button>
-            <p class="text-right" style="font-size: 8px;">' . $grps_createdate . '</p>
-          </div>
-        </div>
-      </div>';
+            <!-- Group Card -->
+            <div class="grid-tile">
+                <div class="px-2 mx-0 content-panel-border-style my-4 tunnel-bg-container"
+                style="overflow: hidden; border-radius: 25px;" id="group-' . $grps_groupid . '-' . $grps_refcode . '">
+                    <div class="row align-items-center top-down-grad-dark">
+                        <div class="col-lg-4 text-center p-4 w-100">
+                            <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="img-fluid" style="border-radius: 25px;"
+                            alt="preview palceholder - delete">
+                        </div>
+                        <div class="col-lg -8 p-4 left-right-grad-tahiti-mineshaft" style="border-radius: 25px; color: #343434;">
+                            <div class="row">
+                                <div class="col-md text-dark">
+                                <h3>' . $grps_name . ' <span style="font-size: 10px; color: #fff;">' . $grps_privacy . '</span></h3>
+                                <p>' . $grps_category . '</p>
 
-            $groupMemsArray = $row;
+                                </div>
+                                <div class="col-md text-white">
+                                <p class="text-dark">' . $grps_description . '</p>
+                                <p class="text-right mt-4" style="font-size: 8px;">' . $grps_createdate . '</p>
+                                </div>
+                            </div>
+                            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font shadow my-4"
+                                onclick="openGroup(' . "'" . $grps_refcode . "'" . ')">
+                                Open group <i class="fas fa-chevron-circle-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./ Group Card -->';
+
+            //$groupMemsArray = $row;
         }
         /*echo $discoverGroupsList;
     echo "<br>";
@@ -371,15 +482,15 @@ function getUserMedia()
 
     //users media items
     //Get a list of file paths using the glob function.
-    $fileList = glob("../../media/profiles/$currentUser_Usrnm/*");
+    $fileList = glob("../media/profiles/$currentUser_Usrnm/*");
 
     //Loop through the array that glob returned.
     foreach ($fileList as $filename) {
         //Simply print them out onto the screen.
         //echo $filename, '<br>'; 
         $profileUserMediaList .= '
-      <div class="grid-tile p-0 mx-0 content-panel-border-style my-4 center-container" style="overflow: hidden; max-height: 200px">
-      <img src="' . $filename . '" class="img-fluidz" alt="media image" style="height: 100%">
+      <div class="grid-tile p-0 mx-0 content-panel-border-style my-4 center-container" style="overflow: hidden; max-height: 200px;">
+      <img src="' . $filename . '" class="img-fluid" alt="media image">
       </div>';
     }
 
@@ -395,7 +506,8 @@ function getUserNotifications()
     $sql = "SELECT * FROM notifications WHERE notify_user = '$currentUser_Usrnm' ORDER BY created_by DESC";
 
     if ($result = mysqli_query($dbconn, $sql)) {
-
+        $communicationUserNotifications = '<div class="my-4 text-dark tunnel-bg-container"
+        style="border-radius: 25px;">';
         while ($row = mysqli_fetch_assoc($result)) {
             //`notification_id`, `notification_title`, `notification_message`, `notify_user`, `created_by`, `notification_date`, `notification_read`
 
@@ -405,32 +517,16 @@ function getUserNotifications()
             $notif_date = $row["notification_date"];
 
             $communicationUserNotifications .= '
-      <!-- Notifications Card for Communications Tab -->
-      <div class="grid-tile">
-        <div class="px-2 mx-0 content-panel-border-style my-4" id="notifcation-' . $notif_id . '">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1 fw-bold text-truncate">' . $notif_title . '</h5>
-            <small class="text-end">' . $notif_date . ' (# days ago)</small>
-          </div>
-          <p class="mb-1">' . $notif_message . '</p>
-          <small>' . $grps_category . '</small>
-          <br>
-          <div class="d-flex justify-content-between gap-2 w-100">
-            <button class="badge onefit-buttons-style-light p-2 fw-bold fs-5 comfortaa-font shadow my-4"
-              onclick="viewNotification(' . $notif_id . ')">
-              <span class="material-icons material-icons-round" style="font-size: 20px !important;"> delete </span>
-            </button>
-            <button class="badge onefit-buttons-style-light p-2 fw-bold fs-5 comfortaa-font shadow my-4"
-              onclick="viewNotification(' . $notif_id . ')">
-              <span class="material-icons material-icons-round" style="font-size: 20px !important;"> open_in_full
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <!-- ./ Notifications Card for Communications Tab -->
-      ';
+            <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-' . $notif_id . '" style="border-radius: 25px !important;">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1 fw-bold text-truncate">' . $notif_title . '</h5>
+                    <small class="text-end">' . $notif_date . ' (# days ago)</small>
+                </div>
+                <p class="mb-1" style="max-height: 100px;">' . $notif_message . '</p>
+                <small>' . $grps_category . '</small>
+            </a>';
         }
+        $communicationUserNotifications .= '</div>';
 
         $output = $communicationUserNotifications;
     } else {
@@ -477,22 +573,38 @@ function getUserProgSubs()
             $programs_active = $row["active"];
 
             /*$programs_activityid = $row["prog_activity_id"];
-      $programs_activitytitle = $row["activity_title"];
-      $programs_activityduration = $row["activity_duration"];*/
+            $programs_activitytitle = $row["activity_title"];
+            $programs_activityduration = $row["activity_duration"];*/
 
             $profileUsersProgramsList .= '
-      <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="discover_programs-' . $programs_progid . '-' . $programs_refcode . '">
-        <div class="card bg-transparent">
-          <div class="card-body">
-            <h3 class="card-title">' . $programs_title . ' <span style="font-size: 10px">(' . $programs_privacy . ')</span></h3>
-            <p class="card-subtitle ">Trainer: @' . $programs_creator . '</p>
-            <p class="card-text">' . $programs_description . '</p>
-            <div class="text-center">
-              <button class="null-btn m-4 shadow" onclick="openProgram(' . "'" . $programs_refcode . "'" . ')"><i class="fas fa-chevron-circle-right"></i> View program</button>
-            </div>
-          </div>
-        </div>
-      </div>';
+            <div class="p-0 mx-0 my-4 tunnel-bg-container" style="border-radius: 25px;" id="discover_programs-' . $programs_progid . '-' . $programs_refcode . '">
+                <div class="card content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaft"
+                    style="border-right: 0 !important;">
+                    <div class="card-body">
+                        <img src="../media/profiles/system_tmp/photo-1517838277536-f5f99be501cd.jpg" alt="palceholder" class="img-fluid shadow d-none d-lg-block w-100" style="border-radius: 25px;">
+                        <div class="row align-items-center">
+                            <div class="col-md py-4">
+                                <h3 class="card-title text-truncate">' . $programs_title . ' <span
+                                    style="font-size: 10px">(' . $programs_privacy . ')</span>
+                                </h3>
+                                <p class="card-subtitle ">Head Trainer: @' . $programs_creator . '</p>
+                                <p class="card-text">' . $programs_description . '</p>
+                            </div>
+                            <div class="col-md-8 text-center d-lg-none">
+                                <img src="../media/profiles/system_tmp/photo-1517838277536-f5f99be501cd.jpg" alt="palceholder"
+                                class="img-fluid shadow" style="border-radius: 25px; max-height: 30vh;">
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button class="onefit-buttons-style-light p-4 fw-bold fs-5 comfortaa-font m-4 shadow"
+                            onclick="openProgram(' . "'" . $programs_refcode . "'" . ')">
+                            View Program <i class="fas fa-chevron-circle-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>';
         }
 
         $output = $profileUsersProgramsList;
@@ -540,18 +652,28 @@ function getUserResources()
             }
 
             $profileUsersResourcesList .= '
-      <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="resource-' . $usrresources_resourceid . '-' . $currentUser_Usrnm . '" style="max-width: 100%!important">
-        <div>
-          <h3>' . $usrresources_title . ' <span style="font-size: 10px">' . $usrresources_type . '</span></h3>
-          <p><span style="color: #ffa500">' . $usrresources_description . '</span></p>
-          <p><i class="fas fa-link"></i> | ' . $usrresources_link . '</p>
-          <p>Shared by: @' . $usrresources_type . '</p>
+            <!-- User Resources - Tile -->
+            <div class="grid-tile">
+                <div class="p-0 mx-0 my-4 tunnel-bg-container" style="border-radius: 25px;"
+                id="resource-' . $usrresources_resourceid . '-' . $currentUser_Usrnm . '" style="max-width: 100%!important">
+                <div class="content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaft p-4">
+                    <h3 class=" text-truncate">' . $usrresources_title . ' <span
+                        style="font-size: 10px">' . $usrresources_type . '</span></h3>
+                    <p><span style="color: #ffa500">' . $usrresources_description . '</span></p>
+                    <p><i class="fas fa-link"></i> | ' . $usrresources_link . '</p>
+                    <p>Shared by: @' . $usrresources_type . '</p>
 
-          ' . $openlinkbtn . '
+                    ' . $openlinkbtn . '
+                    <button class="onefit-buttons-style-light p-4 fw-bold fs-5 comfortaa-font m-4 shadow" type="button"
+                    onclick="openIntLink(' . "'" . $usrresources_link . "'" . ', ' . "'media'" . ')">
+                    View media <i class="fas fa-photo-video"></i>
+                    </button>
 
-          <p class="text-right" style="font-size: 8px">' . $usrresources_sharedate . '</p>
-        </div>
-      </div>';
+                    <p class="text-right" style="font-size: 8px">' . $usrresources_sharedate . '</p>
+                </div>
+                </div>
+            </div>
+            <!-- User Resources - Tile -->';
         }
 
         $output = $profileUsersResourcesList;
@@ -571,9 +693,9 @@ function getUserSaves()
 
     //Favourites
     $sql = "SELECT * FROM ((fave_saves fs
-  INNER JOIN users u ON fs.username = u.username) 
-  INNER JOIN community_posts cp ON fs.fave_ref = cp.favourite_ref)
-  WHERE fs.username = '$currentUser_Usrnm';";
+    INNER JOIN users u ON fs.username = u.username) 
+    INNER JOIN community_posts cp ON fs.fave_ref = cp.favourite_ref)
+    WHERE fs.username = '$currentUser_Usrnm';";
 
     if ($result = mysqli_query($dbconn, $sql)) {
         while ($row = mysqli_fetch_assoc($result)) {
@@ -590,38 +712,63 @@ function getUserSaves()
             $poster_username = $row['username'];
 
             $profileUsersFavesList .= '
-      <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="fave-' . $fave_id . '">
-        <div class="row align-items-center p-2">
-          <div class="col-md-4 text-center">
-            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
-          </div>
-          <div class="col-md-8">
-            <h3>' . $poster_name . ' ' . $poster_surname . ' <span style="font-size: 10px">@<span style="color: #ffa500">' . $poster_username . '</span></span></h3>
-          </div>
-        </div>
-        <div class="post-content">
-          <hr class="bg-white">
+            <div class="grid-tile px-2 mx-0 content-panel-border-style my-4 down-top-grad-tahiti" id="fave-' . $fave_id . '">
+                <div class="row align-items-center p-2">
+                    <div class="col-md-4 text-center">
+                        <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
+                    </div>
+                    <div class="col-md-8">
+                        <h3>' . $poster_name . ' ' . $poster_surname . ' <span style="font-size: 10px">@<span style="color: #ffa500">' . $poster_username . '</span></span></h3>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <hr class="bg-white">
 
-          <p class="my-2">' . $post_msg . '</p>
-          <p class="text-right" style="font-size: 8px">' . $post_date . '</p>
+                    <p class="my-2">' . $post_msg . '</p>
+                    <p class="text-right" style="font-size: 8px">' . $post_date . '</p>
 
-          <!--function buttons-->
-          <ul class="list-group list-group-horizontal -sm mt-4">
-            <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 pl-0 pr-2">
-              <i class="fas fa-heart"></i> <span class="d-none d-lg-block">Dope</span>
-            </li>
-            <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 pl-0 pr-2">
-              <i class="fas fa-comment-alt"></i> <span class="d-none d-lg-block">Comment</span>
-            </li>
-            <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 pl-0 pr-2">
-              <i class="fas fa-share-alt"></i> <span class="d-none d-lg-block">Share</span>
-            </li>
-            <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 pl-0 pr-0">
-              <i class="fas fa-bookmark"></i> <span class="d-none d-lg-block">Fave</span>
-            </li>
-          </ul>
-        </div>
-      </div>';
+                    <!--function buttons-->
+                    <ul class="list-group list-group-horizontal my-4 no-scroller">
+                        <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font" onclick="socialFunctions(' . $post_id . ', ' . "'$currentUser_Usrnm'" . ', ' . "'like'" . ', ' . "'user_faves'" . ')">
+                                <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                                    favorite
+                                </span>
+                                <span class="d-none d-lg-block">
+                                    Like
+                                </span>
+                            </button>
+                        </li>
+                        <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font" onclick="socialFunctions(' . $post_id . ', ' . "'$currentUser_Usrnm'" . ', ' . "'comment'" . ', ' . "'user_faves'" . ')">
+                                <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                                    insert_comment
+                                </span>
+                                <span class="d-none d-lg-block">
+                                    Comment
+                                </span>
+                            </button>
+                        </li>
+                        <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font" onclick="socialFunctions(' . $post_id . ', ' . "'$currentUser_Usrnm'" . ', ' . "'share'" . ', ' . "'user_faves'" . ')">
+                                <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                                    share
+                                </span>
+                                <span class="d-none d-lg-block">Share</span>
+                            </button>
+                        </li>
+                        <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font" onclick="socialFunctions(' . $post_id . ', ' . "'$currentUser_Usrnm'" . ', ' . "'save'" . ', ' . "'user_faves'" . ')">
+                                <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                                    remove_circle_outline
+                                </span>
+                                <span class="d-none d-lg-block">Remove</span>
+                            </button>
+                        </li>
+                    </ul>
+                    <!-- ./ function buttons -->
+                </div>
+            </div>';
         }
 
         $output = $profileUsersFavesList;
@@ -689,7 +836,10 @@ function getUserUpdates()
 {
     global $usrposts_postid, $usrposts_postdate, $usrposts_message, $usrposts_user, $usrposts_faveref, $currentUserAccountProdImg, $usrposts_name, $usrposts_surname, $profileUsersPostsList, $dbconn, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
 
-    $sql = "SELECT * FROM community_posts cp INNER JOIN users u ON cp.username = u.username WHERE cp.username = '$currentUser_Usrnm';";
+    $sql = "SELECT * FROM community_posts cp 
+    INNER JOIN users u ON cp.username = u.username 
+    INNER JOIN user_profiles up ON u.username = up.username
+    WHERE cp.username = '$currentUser_Usrnm';";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 
@@ -704,85 +854,108 @@ function getUserUpdates()
             $usrposts_name = $row["user_name"];
             $usrposts_surname = $row["user_surname"];
 
+            $usrposts_profilepicurl = $row["profile_url"];
+            $usrposts_verification = $row["verification"];
+
+            //calc post date
+            /* $date1 = $row["post_date"]; //date('Y-m-d', $usrposts_postdate); //date_create("2013-03-15");
+            $date2 = date_create("2013-12-12");
+            $diff = date_diff($date1, $date2);
+            echo $diff->format("%a days"); */
+
+            // verification icon
+            if ($usrposts_verification == "verified") {
+                $usrposts_verification_output = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> verified_user </span>';
+            } else {
+                $usrposts_verification_output = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> public </span>';
+            }
+
+            // start date 
+            $start_date = $usrposts_postdate;
+
+            // end date 
+            $current_datetime = new DateTime(date('Y-m-d H:i:s'));
+            $end_date = $current_datetime->format('Y-m-d H:i:s');
+
+            // call dateDifference() function to find the number of days between two dates
+            $dateDiff = dateDifference($start_date, $end_date);
+
+            //echo "Difference between two dates: " . $dateDiff . " Days ";
+
             $profileUsersPostsList .= '
-         <!-- Social Update Card -->
-    <div class="mb-4 p-0 social-update-card shadow-lg" style="border-bottom: #e88a04 solid 5px;"
-      id="post-' . $usrposts_postid . '-' . $usrposts_user . '">
-      <div class="row align-items-center px-4 py-4 m-0 down-top-grad-darkz" style="border-radius: 25px!important;">
-        <div class="col-4 -md text-center">
-          ' . $currentUserAccountProdImg . '
-          
-        </div>
-        <div class="col-8 -md text-end">
-          <div class="d-grid gap-4">
-            <h3 class="text-truncate">' . $usrposts_name . ' ' . $usrposts_surname . '</h3>
-            <span style="font-size: 10px">@<span style="color: #ffa500">' . $usrposts_user . '</span>
-          </div>
-        </div>
-      </div>
-      <div class="post-content px-4 px-0 fs-4 text-break down-top-grad-dark" style="border-radius: 25px!important;">
-        <hr class="bg-white">
-        <div>
-          <p class="my-2">' . $usrposts_message . '</p>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md text-center">
-            <hr class="bg-white">
-          </div>
-          <div class="col-md-3 text-center">
-            <p class="text-right p-3 rounded-pill bg-white text-dark m-0" style="font-size: 10px">' . $usrposts_postdate . '
-            </p>
-          </div>
-        </div>
+            <!-- Social Update Card -->
+            <div class="my-4 p-0 social-update-card shadow-lg" style="border-bottom: #e88a04 solid 5px;"
+            id="post-' . $usrposts_postid . '-' . $usrposts_user . '">
+            <div class="row align-items-center px-4 py-4 m-0 down-top-grad-darkz" style="border-radius: 25px!important;">
+                <div class="col-md-4  text-center">
+                    ' . $currentUserAccountProdImg . '
+                </div>
+                <div class="col-md-8 text-end">
+                    <div class="d-grid gap-4 p-2" style="border-radius: 15px!important; background-color: rgba(52, 52, 52, 0.8) !important;">
+                        <h3 class="text-truncate">' . $usrposts_name . ' ' . $usrposts_surname . ' ' . $usrposts_verification_output . '</h3>
+                        <span style="font-size: 10px">@<span style="color: #ffa500">' . $usrposts_user . '</span>
+                    </div>
+                </div>
+            </div>
+            <div class="post-content px-4 px-0 fs-4 text-break down-top-grad-dark" style="border-radius: 25px!important;">
+                <hr class="bg-white">
+                <div>
+                    <p class="my-2 text-break">' . $usrposts_message . '</p>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md text-center">
+                        <hr class="bg-white">
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <p class="text-right p-3 rounded-pill bg-white text-dark m-0" style="font-size: 10px">' . $dateDiff . ' days ago <!--(' . $usrposts_postdate . ')-->
+                        </p>
+                    </div>
+                </div>
 
-        <!--function buttons-->
-        <ul class="list-group list-group-horizontal -sm my-4">
-          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
-            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
-              onclick="socialFunctions(action, origin)">
-              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
-                favorite
-              </span>
-              <span class="d-none d-lg-block">Like</span>
-            </button>
-
-          </li>
-          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
-            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
-              onclick="socialFunctions(action, origin)">
-              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
-                insert_comment
-              </span>
-              <span class="d-none d-lg-block">
-                Comment
-              </span>
-            </button>
-
-          </li>
-          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
-            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
-              onclick="socialFunctions(action, origin)">
-              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
-                share
-              </span>
-              <span class="d-none d-lg-block">Share</span>
-            </button>
-
-          </li>
-          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
-            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
-              onclick="socialFunctions(action, origin)">
-              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
-                bookmarks
-              </span>
-              <span class="d-none d-lg-block">Save</span>
-            </button>
-
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!-- ./ Social Update Card -->';
+                <!--function buttons-->
+                <ul class="list-group list-group-horizontal -sm my-4 no-scroller" style="overflow-x: auto;">
+                    <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                        <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
+                        onclick="socialFunctions(' . $usrposts_postid . ', ' . "'$currentUser_Usrnm'" . ', ' . "'like'" . ', ' . "'user_profile'" . ')">
+                            <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                                favorite
+                            </span>
+                            <span class="d-none d-lg-block">Like</span>
+                        </button>
+                    </li>
+                    <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                        <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
+                        onclick="socialFunctions(' . $usrposts_postid . ', ' . "'$currentUser_Usrnm'" . ', ' . "'comment'" . ', ' . "'user_profile'" . ')">
+                            <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                                insert_comment
+                            </span>
+                            <span class="d-none d-lg-block">
+                                Comment
+                            </span>
+                        </button>
+                    </li>
+                    <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                        <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
+                        onclick="socialFunctions(' . $usrposts_postid . ', ' . "'$currentUser_Usrnm'" . ', ' . "'share'" . ', ' . "'user_profile'" . ')">
+                            <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                                share
+                            </span>
+                            <span class="d-none d-lg-block">Share</span>
+                        </button>
+                    </li>
+                    <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                        <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
+                        onclick="socialFunctions(' . $usrposts_postid . ', ' . "'$currentUser_Usrnm'" . ', ' . "'save'" . ', ' . "'user_profile'" . ')">
+                            <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                                bookmarks
+                            </span>
+                            <span class="d-none d-lg-block">Save</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            </div>
+            <!-- ./ Social Update Card -->';
         }
 
         $output = $profileUsersPostsList;
@@ -820,42 +993,42 @@ function getCommunityGroups()
             $grps_createdate = $row["creation_date"];
 
             $discoverGroupsList .= '
-        <!-- Group Card -->
-      <div class="grid-tile">
-        <div class="px-2 mx-0 content-panel-border-style my-4 tunnel-bg-container"
-          style="overflow: hidden; border-radius: 25px;" id="group-' . $grps_groupid . '-' . $grps_refcode . '">
-          <div class="row align-items-center top-down-grad-dark">
-            <div class="col-lg-4 text-center p-4 w-100">
-             <img src="../media/profiles/' . $currentUser_Usrnm . '/' . $usr_profilepicurl . '" class="img-fluid"
-                style="border-radius: 25px;" alt="prof thumbnail">
+            <!-- Group Card -->
+            <div class="grid-tile">
+                <div class="px-2 mx-0 content-panel-border-style my-4 tunnel-bg-container"
+                style="overflow: hidden; border-radius: 25px;" id="group-' . $grps_groupid . '-' . $grps_refcode . '">
+                <div class="row align-items-center top-down-grad-dark">
+                    <div class="col-lg-4 text-center p-4 w-100">
+                    <img src="../media/profiles/' . $currentUser_Usrnm . '/' . $usr_profilepicurl . '" class="img-fluid"
+                        style="border-radius: 25px;" alt="prof thumbnail">
 
-               <!--<img src="../media/assets/OnefitNet Profile Pic Redone.png" class="img-fluid" style="border-radius: 25px;"
-                alt="preview palceholder - delete">
+                    <!--<img src="../media/assets/OnefitNet Profile Pic Redone.png" class="img-fluid" style="border-radius: 25px;"
+                        alt="preview palceholder - delete">
 
-              <div class="group-card-profile-pic shadow" hidden>
-              </div>-->
-            </div>
-            <div class="col-lg -8 p-4 left-right-grad-tahiti-mineshaft" style="border-radius: 25px; color: #343434;">
-              <div class="row">
-                <div class="col-md text-dark">
-                  <h3>' . $grps_name . ' <span style="font-size: 10px; color: #fff;">' . $grps_privacy . '</span></h3>
-                  <p>' . $grps_category . '</p>
+                    <div class="group-card-profile-pic shadow" hidden>
+                    </div>-->
+                    </div>
+                    <div class="col-lg -8 p-4 left-right-grad-tahiti-mineshaft" style="border-radius: 25px; color: #343434;">
+                    <div class="row">
+                        <div class="col-md text-dark">
+                        <h3>' . $grps_name . ' <span style="font-size: 10px; color: #fff;">' . $grps_privacy . '</span></h3>
+                        <p>' . $grps_category . '</p>
 
+                        </div>
+                        <div class="col-md text-white">
+                        <p class="text-dark">' . $grps_description . '</p>
+                        <p class="text-right mt-4" style="font-size: 8px;">' . $grps_createdate . '</p>
+                        </div>
+                    </div>
+                    <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font shadow my-4"
+                        onclick="openGroup(' . "'" . $grps_refcode . "'" . ')">
+                        Open group <i class="fas fa-chevron-circle-right"></i>
+                    </button>
+                    </div>
                 </div>
-                <div class="col-md text-white">
-                  <p class="text-dark">' . $grps_description . '</p>
-                  <p class="text-right mt-4" style="font-size: 8px;">' . $grps_createdate . '</p>
                 </div>
-              </div>
-              <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font shadow my-4"
-                onclick="openGroup(' . "'" . $grps_refcode . "'" . ')">
-                Open group <i class="fas fa-chevron-circle-right"></i>
-              </button>
             </div>
-          </div>
-        </div>
-      </div>
-      <!-- ./ Group Card -->';
+            <!-- ./ Group Card -->';
         }
         //echo $discoverPeopleList;
         //die();
@@ -893,12 +1066,12 @@ function getCommunityNews()
             $news_poster_surname = $row["user_surname"];
 
             $communicationNews .= '
-      <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="news-' . $news_id . '">
-        <h3>' . $news_title . ' <span style="font-size: 10px">By ' . $news_poster_name . ' ' . $news_poster_surname . ' (@' . $news_createdby . ')</span></h3>
-        <p><span style="color: #ffa500">' . $news_content . '</span></p>
-        <p class="text-right" style="font-size: 8px">' . $news_date . '</p>
-      </div>
-      ';
+            <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="news-' . $news_id . '">
+                <h3>' . $news_title . ' <span style="font-size: 10px">By ' . $news_poster_name . ' ' . $news_poster_surname . ' (@' . $news_createdby . ')</span></h3>
+                <p><span style="color: #ffa500">' . $news_content . '</span></p>
+                <p class="text-right" style="font-size: 8px">' . $news_date . '</p>
+            </div>
+            ';
         }
 
         $output = $communicationNews;
@@ -944,23 +1117,23 @@ function getCommunityResources()
             }
 
             $outputCommunityResources .= '
-      <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="resource-' . $resourceid . '-' . $sharedbyUsername . '">
-        <div class="row align-items-center">
-          <div class="col-md-4 text-center">
-            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
-          </div>
-          <div class="col-md-8">
-            <h3>' . $resource_title . ' <span style="font-size: 10px">' . $resource_type . '</span></h3>
-            <p><span style="color: #ffa500">' . $resource_descr . '</span></p>
-            <p><i class="fas fa-link"></i> | ' . $resource_link . '</p>
-            <p>Shared by: @' . $sharedbyUsername . '</p>
+            <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="resource-' . $resourceid . '-' . $sharedbyUsername . '">
+                <div class="row align-items-center">
+                <div class="col-md-4 text-center">
+                    <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
+                </div>
+                <div class="col-md-8">
+                    <h3>' . $resource_title . ' <span style="font-size: 10px">' . $resource_type . '</span></h3>
+                    <p><span style="color: #ffa500">' . $resource_descr . '</span></p>
+                    <p><i class="fas fa-link"></i> | ' . $resource_link . '</p>
+                    <p>Shared by: @' . $sharedbyUsername . '</p>
 
-            ' . $openlinkbtn . '
+                    ' . $openlinkbtn . '
 
-            <p class="text-right" style="font-size: 8px;">' . $sharedate . '</p>
-          </div>
-        </div>
-      </div>';
+                    <p class="text-right" style="font-size: 8px;">' . $sharedate . '</p>
+                </div>
+                </div>
+            </div>';
         }
         //$discoverResourcesList = $homeCommunityResources;
         $output = $outputCommunityResources;
@@ -980,9 +1153,14 @@ function getCommunityUpdates()
 
     //local
     $commpost_img_url = "";
+    $commpostUserAccountProdImg = "";
+    $commpostusr_profilepicurl = "";
+    $commpostusr_verification = "";
 
     //community posts (latest 50 posts)
-    $sql = "SELECT * FROM community_posts cp INNER JOIN users u ON cp.username = u.username;";
+    $sql = "SELECT * FROM community_posts cp 
+    INNER JOIN users u ON cp.username = u.username
+    INNER JOIN user_profiles up ON u.username = up.username;";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 
@@ -991,92 +1169,115 @@ function getCommunityUpdates()
             $commpost_postid = $row["post_id"];
             $commpost_postdate = $row["post_date"];
             $commpost_message = $row["post_message"];
-            $commpost_user = $row["username"];
+            $commpost_username = $row["username"];
             $commpost_faveref = $row["favourite_ref"];
             $commpost_usr_name = $row["user_name"];
             $commpost_usr_surname = $row["user_surname"];
 
-            $commpost_img_url = "../media/profiles/$currentUser_Usrnm/photo-1574680096145-d05b474e2155.jpg";
+            $commpostusr_profilepicurl = $row["profile_url"];
+            $commpostusr_verification = $row["verification"];
+
+            // start date 
+            $start_date = $commpost_postdate;
+
+            // end date 
+            $current_datetime = new DateTime(date('Y-m-d H:i:s'));
+            $end_date = $current_datetime->format('Y-m-d H:i:s');
+
+            // call dateDifference() function to find the number of days between two dates
+            $dateDiff = dateDifference($start_date, $end_date);
+
+            //echo "Difference between two dates: " . $dateDiff . " Days ";
+
+            // verification icon
+            if ($commpostusr_verification == "verified") {
+                $commpostusr_verification_output = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> verified_user </span>';
+            } else {
+                $commpostusr_verification_output = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> public </span>';
+            }
+
+            //profile picture
+            if ($commpostusr_profilepicurl == "default" || $commpostusr_profilepicurl == null || $commpostusr_profilepicurl == "") {
+                $commpost_img_url = "'../media/profiles/0_default/default_profile_pic.png'";
+            } else {
+                $commpost_img_url = "'../media/profiles/$commpost_username/$commpostusr_profilepicurl'";
+            }
+
+            $commpostUserAccountProdImg = '<div class="social-update-profile-pic shadow" style="background-position: center !important; background-size: cover !important; background-repeat: no-repeat !important; background-attachment: local !important; height: 150px !important; width:  150px !important; background: url(' . $commpost_img_url . ') !important;"></div>';
+
 
             $communityPosts .= '
-      <!-- Community Update Card -->
-    <div class="px-2 mx-0 my-4 social-update-card" style="border-bottom: #e88a04 solid 5px;" id="post-' . $commpost_postid . '-' . $commpost_user . '">
-      <div class="row align-items-center px-4 py-4 m-0" style="border-radius: 25px!important;">
-        <div class="col-4 -md text-center">
+            <!-- Community Update Card -->
+            <div class="px-2 mx-0 my-4 social-update-card" style="border-bottom: #e88a04 solid 5px;" id="post-' . $commpost_postid . '-' . $commpost_username . '">
+                <div class="row align-items-center px-4 py-4 m-0" style="border-radius: 25px!important;">
+                    <div class="col-md-4 text-center">
+                    ' . $commpostUserAccountProdImg . '
+                    </div>
+                    <div class="col-md-8 text-end">
+                    <div class="d-grid gap-4 p-2" style="border-radius: 15px!important; background-color: rgba(52, 52, 52, 0.8) !important;">
+                        <h3 class="text-truncate">' . $commpost_usr_name . ' ' . $commpost_usr_surname . ' ' . $commpostusr_verification_output . '</h3>
+                        <span style="font-size: 10px">@<span style="color: #ffa500">' . $commpost_username . '</span></span>
+                    </div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <hr class="bg-white">
+                    <div>
+                    <p class="m-4 text-break">' . $commpost_message . '</p>
+                    </div>
+                    <div class="row align-items-center">
+                    <div class="col-md text-center">
+                        <hr class="bg-white">
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <p class="text-right p-3 rounded-pill bg-white text-dark m-0" style="font-size: 10px">' . $dateDiff . ' days ago <!--(' . $commpost_postdate . ')-->
+                        </p>
+                    </div>
+                    </div>
 
-          <div class="social-update-profile-pic shadow-sm"></div>
-        </div>
-        <div class="col-8 -md text-end">
-          <div class="d-grid gap-4">
-            <h3 class="text-truncate">' . $commpost_usr_name . ' ' . $commpost_usr_surname . '</h3>
-            <span style="font-size: 10px">@<span style="color: #ffa500">' . $commpost_user . '</span></span>
-          </div>
-        </div>
-      </div>
-      <div class="post-content">
-        <hr class="bg-white">
-        <div>
-          <p class="my-2">' . $commpost_message . '</p>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-md text-center">
-            <hr class="bg-white">
-          </div>
-          <div class="col-md-3 text-center">
-            <p class="text-right p-3 rounded-pill bg-white text-dark m-0" style="font-size: 10px">' . $commpost_postdate . '
-            </p>
-          </div>
-        </div>
-
-        <!-- function buttons -->
-        <ul class="list-group list-group-horizontal -sm my-4">
-          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
-            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
-              onclick="socialFunctions(action, origin)">
-              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
-                favorite
-              </span>
-              <span class="d-none d-lg-block">Like</span>
-            </button>
-
-          </li>
-          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
-            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
-              onclick="socialFunctions(action, origin)">
-              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
-                insert_comment
-              </span>
-              <span class="d-none d-lg-block">
-                Comment
-              </span>
-            </button>
-
-          </li>
-          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
-            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
-              onclick="socialFunctions(action, origin)">
-              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
-                share
-              </span>
-              <span class="d-none d-lg-block">Share</span>
-            </button>
-
-          </li>
-          <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
-            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font"
-              onclick="socialFunctions(action, origin)">
-              <span class="material-icons material-icons-round" style="font-size: 30px !important;">
-                bookmarks
-              </span>
-              <span class="d-none d-lg-block">Save</span>
-            </button>
-
-          </li>
-        </ul>
-        <!-- ./ function buttons -->
-      </div>
-    </div>
-    <!-- Community Update Card -->';
+                    <!-- function buttons -->
+                    <ul class="list-group list-group-horizontal my-4 no-scroller">
+                        <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font" onclick="socialFunctions(' . $commpost_postid . ', ' . "'$commpost_username'" . ', ' . "'like'" . ', ' . "'community_posts'" . ')">
+                                <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                                    favorite
+                                </span>
+                                <span class="d-none d-lg-block">
+                                    Like
+                                </span>
+                            </button>
+                        </li>
+                        <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font" onclick="socialFunctions(' . $commpost_postid . ', ' . "'$currentUser_Usrnm'" . ', ' . "'comment'" . ', ' . "'community_posts'" . ')">
+                                <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                                    insert_comment
+                                </span>
+                                <span class="d-none d-lg-block">
+                                    Comment
+                                </span>
+                            </button>
+                        </li>
+                        <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font" onclick="socialFunctions(' . $commpost_postid . ', ' . "'$currentUser_Usrnm'" . ', ' . "'share'" . ', ' . "'community_posts'" . ')">
+                                <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                                    share
+                                </span>
+                                <span class="d-none d-lg-block">Share</span>
+                            </button>
+                        </li>
+                        <li class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                            <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font" onclick="socialFunctions(' . $commpost_postid . ', ' . "'$currentUser_Usrnm'" . ', ' . "'save'" . ', ' . "'community_posts'" . ')">
+                                <span class="material-icons material-icons-round" style="font-size: 30px !important;">
+                                    bookmarks
+                                </span>
+                                <span class="d-none d-lg-block">Save</span>
+                            </button>
+                        </li>
+                    </ul>
+                    <!-- ./ function buttons -->
+                </div>
+            </div>
+            <!-- Community Update Card -->';
         }
 
         $output = $communityPosts;
@@ -1094,7 +1295,16 @@ function getCommunityUpdates()
 //Content Load Functions - Discovery Specific Content
 function getAllUsers()
 {
-    global $dbconn, $usrs_userid, $usrs_username, $usrs_name, $usrs_surname, $usrs_idnumber, $usrs_email, $usrs_contact, $usrs_dob, $usrs_gender, $usrs_race, $usrs_nationality, $usrs_acc_active, $usrs_prof_acctype, $discoverPeopleList, $activitiesTraineesList, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
+    global $dbconn, $usrs_userid, $usrs_username, $usrs_name, $usrs_surname, $usrs_idnumber, $usrs_email, $usrs_contact, $usrs_dob, $usrs_gender, $usrs_race, $usrs_nationality, $usrs_acc_active, $usrs_prof_acctype, $discoverPeopleList, $activitiesTraineesList, $currentUser_Usrnm, $output, $output_msg, $app_err_msg, $usr_profileid, $usr_about, $usr_profiletype, $usr_profilepicurl, $usr_verification;
+
+    $allusrs_userid = null;
+    $allusrs_username = $allusrs_name = $allusrs_surname = $allusrs_idnumber = $allusrs_email = $allusrs_contact = $allusrs_dob = $allusrs_gender = $allusrs_race = $allusrs_nationality = "";
+    $allusrs_acc_active = false;
+    $allusrs_prof_acctype = "Community";
+    $allusrs_profileid = null;
+    $allusrs_about = $allusrs_profilepicurl =  $allusrs_verification =  $allusrs_verification_output = $allusers_account_prod_img = $allusers_img_url = "";
+
+    $users_exist = false;
 
     //loading: Discover (load max of 50 records)
     //People
@@ -1103,42 +1313,101 @@ function getAllUsers()
     if ($result = mysqli_query($dbconn, $sql)) {
 
         while ($row = mysqli_fetch_assoc($result)) {
+            $users_exist = true;
+            $allusrs_userid = $row["user_id"];
+            $allusrs_username = $row["username"];
+            $allusrs_name = $row["user_name"];
+            $allusrs_surname = $row["user_surname"];
+            $allusrs_idnumber = $row["id_number"];
+            $allusrs_email = $row["user_email"];
+            $allusrs_contact = $row["contact_number"];
+            $allusrs_dob = $row["date_of_birth"];
+            $allusrs_gender = $row["user_gender"];
+            $allusrs_race = $row["user_race"];
+            $allusrs_nationality = $row["user_nationality"];
+            $allusrs_acc_active = $row["account_active"];
 
-            $usrs_userid = $row["user_id"];
-            $usrs_username = $row["username"];
-            $usrs_name = $row["user_name"];
-            $usrs_surname = $row["user_surname"];
-            $usrs_idnumber = $row["id_number"];
-            $usrs_email = $row["user_email"];
-            $usrs_contact = $row["contact_number"];
-            $usrs_dob = $row["date_of_birth"];
-            $usrs_gender = $row["user_gender"];
-            $usrs_race = $row["user_race"];
-            $usrs_nationality = $row["user_nationality"];
-            $usrs_acc_active = $row["account_active"];
+            $allusrs_profileid = $row["user_profile_id"];
+            $allusrs_about = $row["about"];
+            $allusrs_prof_acctype = $row["profile_type"];
+            $allusrs_profilepicurl = $row["profile_url"];
+            $allusrs_verification = $row["verification"];
 
-            $usrs_prof_acctype = $row["profile_type"];
+            // verification icon
+            if ($allusrs_verification == "verified") {
+                $allusrs_verification_output = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> verified_user </span>';
+            } else {
+                $allusrs_verification_output = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> public </span>';
+            }
+
+            //profile picture
+            if ($allusrs_profilepicurl == "default" || $allusrs_profilepicurl == null || $allusrs_profilepicurl == "") {
+                $allusers_img_url = "../media/profiles/0_default/default_profile_pic.png";
+            } else {
+                $allusers_img_url = "../media/profiles/$allusrs_username/$allusrs_profilepicurl";
+            }
+
+            $allusers_account_prod_img = '<div class="social-update-profile-pic shadow" style="background-position: center !important; background-size: cover !important; background-repeat: no-repeat !important; background-attachment: local !important; height: 150px !important; width:  150px !important; background: url(' . $allusers_img_url . ') !important;"></div>';
+
 
             $discoverPeopleList .= '
-      <div class="grid-tile px-2 mx-0 container content-panel-border-style my-4" id="discover_people-' . $usrs_userid . '-' . $usrs_username . '">
-        <div class="card bg-transparent align-items-center">
-          <div class="text-center">
-            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
-          </div>
-          <div class="card-body">
-            <h3>' . $usrs_name . ' ' . $usrs_surname . '</h3>
-            <p>@<span style="color: #ffa500">' . $usrs_username . '</span></p>
-            <div class="text-center">
-              <button class="null-btn m-4 shadow" onclick="openProfiler(' . "'" . $usrs_username . "'" . ')"><i class="fas fa-chevron-circle-right"></i> View profile</button>
+            <!-- All Users Card - dark Grad -->
+            <div class="grid-tile">
+              <div class="my-4 container-fluid tunnel-bg-container" id="discover_trainee-' . $allusrs_userid . '-' . $allusrs_username . '"
+                style="border-radius: 25px;">
+                <div class="top-down-grad-light" style="border-radius: 25px;">
+                  <div
+                    class="row align-items-center content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaftz left-right-grad-mineshaft">
+                    <div class="col-xlg-2 text-center p-4">
+                      <img src="' . $allusers_img_url . '" class="img-fluid rounded-circle shadow" style="border-radius: 25px;" alt="prof thumbnail" hidden>
+                      ' . $allusers_account_prod_img . '
+                    </div>
+                    <div class="col-xlg-6 text-center p-4">
+                      <h3 class="text-white">' . $allusrs_name . ' ' . $allusrs_surname . '</h3>
+                      <p style="font-size: 10px">@' . $allusrs_username . '</p>
+                      <p style="font-size: 10px">Level.: 1</p>
+                      ' . $allusrs_verification_output . '
+                    </div>
+                    <div class="col-xlg-4 text-center p-4">
+                      <button class="onefit-buttons-style-light p-4 my-4 shadow" onclick="openProfiler(' . "'" . $allusrs_username . "'" . ')">
+                            View profile <i class=" fas fa-chevron-circle-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+          
+              </div>
             </div>
-          </div>
-        </div>
-      </div>';
+            <!-- ./ All Users Card - dark Grad -->';
         }
         //echo $discoverPeopleList;
         //die();
 
-        $output = $activitiesTraineesList;
+        /* <div class="grid-tile px-2 mx-0 container content-panel-border-style my-4" id="discover_people-' . $allusrs_userid . '-' . $allusrs_username . '">
+                <div class="card bg-transparent align-items-center">
+                <div class="text-center">
+                    <!--<img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">-->
+                    ' . $allusers_account_prod_img . '
+                </div>
+                <div class="card-body">
+                    <h3>' . $allusrs_name . ' ' . $allusrs_surname . '</h3>
+                    <p>@<span style="color: #ffa500">' . $allusrs_username . '</span></p>
+                    <div class="text-center">
+                    <button class="null-btn m-4 shadow" onclick="openProfiler(' . "'" . $allusrs_username . "'" . ')"><i class="fas fa-chevron-circle-right"></i> View profile</button>
+                    </div>
+                </div>
+                </div>
+            </div> */
+
+        if ($users_exist == true) {
+            $output = $discoverPeopleList;
+        } else {
+            $output = <<<_END
+            <div class="text-center" style="padding: 100px 10px;">
+                No users available
+            </div>
+            _END;
+        }
     } else {
         $output_msg = "|[System Error]|:. [Discover load (All People) - " . mysqli_error($dbconn) . "]";
         $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
@@ -1172,22 +1441,22 @@ function getFitProgramsIndi()
             $indi_programs_active = $row["active"];
 
             /*$programs_activityid = $row["prog_activity_id"];
-      $programs_activitytitle = $row["activity_title"];
-      $programs_activityduration = $row["activity_duration"];*/
+            $programs_activitytitle = $row["activity_title"];
+            $programs_activityduration = $row["activity_duration"];*/
 
             $discoverIndiProgramsList .= '
-      <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="discover_programs-' . $indi_programs_progid . '-' . $indi_programs_refcode . '">
-        <div class="card bg-transparent">
-          <div class="card-body">
-            <h3 class="card-title">' . $indi_programs_title . ' <span style="font-size: 10px">(' . $indi_programs_privacy . ')</span></h3>
-            <p class="card-subtitle ">Trainer: @' . $indi_programs_creator . '</p>
-            <p class="card-text">' . $indi_programs_description . '</p>
-            <div class="text-center">
-              <button class="null-btn m-4 shadow" onclick="openProgram(' . "'" . $indi_programs_refcode . "'" . ')"><i class="fas fa-chevron-circle-right"></i> View program</button>
-            </div>
-          </div>
-        </div>
-      </div>';
+            <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="discover_programs-' . $indi_programs_progid . '-' . $indi_programs_refcode . '">
+                <div class="card bg-transparent">
+                    <div class="card-body">
+                        <h3 class="card-title">' . $indi_programs_title . ' <span style="font-size: 10px">(' . $indi_programs_privacy . ')</span></h3>
+                        <p class="card-subtitle ">Trainer: @' . $indi_programs_creator . '</p>
+                        <p class="card-text">' . $indi_programs_description . '</p>
+                        <div class="text-center">
+                        <button class="null-btn m-4 shadow" onclick="openProgram(' . "'" . $indi_programs_refcode . "'" . ')"><i class="fas fa-chevron-circle-right"></i> View program</button>
+                        </div>
+                    </div>
+                </div>
+            </div>';
         }
 
         $output = $discoverIndiProgramsList;
@@ -1224,22 +1493,22 @@ function getFitProgramsTeams()
             $team_programs_active = $row["active"];
 
             /*$programs_activityid = $row["prog_activity_id"];
-      $programs_activitytitle = $row["activity_title"];
-      $programs_activityduration = $row["activity_duration"];*/
+            $programs_activitytitle = $row["activity_title"];
+            $programs_activityduration = $row["activity_duration"];*/
 
             $discoverTeamProgramsList .= '
-      <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="discover_programs-' . $team_programs_progid . '-' . $team_programs_refcode . '">
-        <div class="card bg-transparent">
-          <div class="card-body">
-            <h3 class="card-title">' . $team_programs_title . ' <span style="font-size: 10px">(' . $team_programs_privacy . ')</span></h3>
-            <p class="card-subtitle ">Trainer: @' . $team_programs_creator . '</p>
-            <p class="card-text">' . $team_programs_description . '</p>
-            <div class="text-center">
-              <button class="null-btn m-4 shadow" onclick="openProgram(' . "'" . $team_programs_refcode . "'" . ')"><i class="fas fa-chevron-circle-right"></i> View program</button>
-            </div>
-          </div>
-        </div>
-      </div>';
+            <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="discover_programs-' . $team_programs_progid . '-' . $team_programs_refcode . '">
+                <div class="card bg-transparent">
+                <div class="card-body">
+                    <h3 class="card-title">' . $team_programs_title . ' <span style="font-size: 10px">(' . $team_programs_privacy . ')</span></h3>
+                    <p class="card-subtitle ">Trainer: @' . $team_programs_creator . '</p>
+                    <p class="card-text">' . $team_programs_description . '</p>
+                    <div class="text-center">
+                    <button class="null-btn m-4 shadow" onclick="openProgram(' . "'" . $team_programs_refcode . "'" . ')"><i class="fas fa-chevron-circle-right"></i> View program</button>
+                    </div>
+                </div>
+                </div>
+            </div>';
         }
 
         $output = $discoverTeamProgramsList;
@@ -1255,7 +1524,13 @@ function getFitProgramsTeams()
 }
 function getAllTrainees()
 {
-    global $dbconn, $usrs_userid, $usrs_username, $usrs_name, $usrs_surname, $usrs_idnumber, $usrs_email, $usrs_contact, $usrs_dob, $usrs_gender, $usrs_race, $usrs_nationality, $usrs_acc_active, $activitiesTraineesList, $usrs_prof_acctype, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
+    global $dbconn, $usrs_userid, $usrs_username, $usrs_name, $usrs_surname, $usrs_idnumber, $usrs_email, $usrs_contact, $usrs_dob, $usrs_gender, $usrs_race, $usrs_nationality, $usrs_acc_active, $activitiesTraineesList, $usrs_prof_acctype, $currentUser_Usrnm, $output, $output_msg, $app_err_msg, $usr_profileid, $usr_about, $usr_profiletype, $usr_profilepicurl, $usr_verification;
+
+    $trainee_userid = null;
+    $trainee_username = $trainee_name = $trainee_surname = $trainee_idnumber = $trainee_email = $trainee_contact = $trainee_dob = $trainee_gender = $trainee_race = $trainee_nationality = $trainee_acc_active = $trainee_prof_acctype = "";
+
+    $trainee_profileid = null;
+    $trainee_about = $trainee_profiletype = $trainee_profilepicurl = $trainee_verification = $trainee_verification_output = $trainee_img_url = $trainee_account_prod_img = "";
 
     //loading: Discover (load max of 50 records)
     //People
@@ -1264,54 +1539,69 @@ function getAllTrainees()
     if ($result = mysqli_query($dbconn, $sql)) {
 
         while ($row = mysqli_fetch_assoc($result)) {
+            $trainee_userid = $row["user_id"];
+            $trainee_username = $row["username"];
+            $trainee_name = $row["user_name"];
+            $trainee_surname = $row["user_surname"];
+            $trainee_idnumber = $row["id_number"];
+            $trainee_email = $row["user_email"];
+            $trainee_contact = $row["contact_number"];
+            $trainee_dob = $row["date_of_birth"];
+            $trainee_gender = $row["user_gender"];
+            $trainee_race = $row["user_race"];
+            $trainee_nationality = $row["user_nationality"];
+            $trainee_acc_active = $row["account_active"];
 
-            $usrs_userid = $row["user_id"];
-            $usrs_username = $row["username"];
-            $usrs_name = $row["user_name"];
-            $usrs_surname = $row["user_surname"];
-            $usrs_idnumber = $row["id_number"];
-            $usrs_email = $row["user_email"];
-            $usrs_contact = $row["contact_number"];
-            $usrs_dob = $row["date_of_birth"];
-            $usrs_gender = $row["user_gender"];
-            $usrs_race = $row["user_race"];
-            $usrs_nationality = $row["user_nationality"];
-            $usrs_acc_active = $row["account_active"];
-            $usrs_prof_acctype = $row["profile_type"];
+            $trainee_profileid = $row["user_profile_id"];
+            $trainee_about = $row["about"];
+            $trainee_prof_acctype = $row["profile_type"];
+            $trainee_profilepicurl = $row["profile_url"];
+            $trainee_verification = $row["verification"];
 
-            /*$discoverPeopleList .= '
-      <div class="grid-tile px-2 mx-0 container content-panel-border-style my-4" id="discover_people-'.$usrs_userid.'-'.$usrs_username.'">
-        <div class="card bg-transparent align-items-center">
-          <div class="text-center">
-            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
-          </div>
-          <div class="card-body">
-            <h3>'.$usrs_name.' '.$usrs_surname.'</h3>
-            <p>@<span style="color: #ffa500">'.$usrs_username.'</span></p>
-            <div class="text-center">
-              <button class="null-btn m-4 shadow" onclick="openProfiler('."'".$usrs_username."'".')"><i class="fas fa-chevron-circle-right"></i> View profile</button>
-            </div>
-          </div>
-        </div>
-      </div>';*/
+            // verification icon
+            if ($trainee_verification == "verified") {
+                $trainee_verification_output = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> verified_user </span>';
+            } else {
+                $trainee_verification_output = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> public </span>';
+            }
+
+            //profile picture
+            if ($trainee_profilepicurl == "default" || $trainee_profilepicurl == null || $trainee_profilepicurl == "") {
+                $trainee_img_url = "../media/profiles/0_default/default_profile_pic.png";
+            } else {
+                $trainee_img_url = "../media/profiles/$trainee_username/$trainee_profilepicurl";
+            }
+
+            $trainee_account_prod_img = '<div class="social-update-profile-pic shadow" style="background-position: center !important; background-size: cover !important; background-repeat: no-repeat !important; background-attachment: local !important; height: 150px !important; width:  150px !important; background: url(' . $trainee_img_url . ') !important;"></div>';
 
             //compile list of trainers
-            if ($usrs_prof_acctype == "trainee") {
+            if ($trainee_prof_acctype == "trainee") {
                 $activitiesTraineesList .= '
-        <div class="grid-tile px-2 mx-0 container content-panel-border-style my-4" id="discover_people-' . $usrs_userid . '-' . $usrs_username . '">
-          <div class="card bg-transparent align-items-center">
-            <div class="text-center">
-              <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
-            </div>
-            <div class="card-body">
-              <h3>' . $usrs_name . ' ' . $usrs_surname . '</h3>
-              <p>@<span style="color: #ffa500">' . $usrs_username . '</span></p>
-              <div class="text-center">
-                <button class="null-btn m-4 shadow" onclick="openProfiler(' . "'" . $usrs_username . "'" . ')"><i class="fas fa-chevron-circle-right"></i> View profile</button>
-              </div>
-            </div>
-          </div>
-        </div>';
+                <!-- Trainees Card - dark Grad -->
+                <div class="grid-tile">
+                    <div class="my-4 container-fluid tunnel-bg-container" id="discover_trainee-' . $trainee_userid . '-' . $trainee_username . '" style="border-radius: 25px;">
+                        <div class="top-down-grad-light" style="border-radius: 25px;">
+                            <div class="row align-items-center content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaftz left-right-grad-mineshaft">
+                                <div class="col-xlg-2 text-center p-4">
+                                    <img src="' . $trainee_img_url . '" class="img-fluid rounded-circle shadow" style="border-radius: 25px;" alt="prof thumbnail" hidden>
+                                    ' . $trainee_account_prod_img . '
+                                </div>
+                                <div class="col-xlg-6 text-center p-4">
+                                    <h3 class="text-white">' . $trainee_name . ' ' . $trainee_surname . '</h3>
+                                    <p style="font-size: 10px">@' . $trainee_username . '</p>
+                                    <p style="font-size: 10px">Level.: 1</p>
+                                    ' . $trainee_verification_output . '
+                                </div>
+                                <div class="col-xlg-4 text-center p-4">
+                                    <button class="onefit-buttons-style-light p-4 my-4 shadow" onclick="openProfiler(' . "'" . $usrs_username . "'" . ')">
+                                        View profile <i class=" fas fa-chevron-circle-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./ Trainees Card - dark Grad -->';
             }
         }
         //echo $discoverPeopleList;
@@ -1330,7 +1620,13 @@ function getAllTrainees()
 }
 function getAllTrainers()
 {
-    global $dbconn, $usrs_userid, $usrs_username, $usrs_name, $usrs_surname, $usrs_idnumber, $usrs_email, $usrs_contact, $usrs_dob, $usrs_gender, $usrs_race, $usrs_nationality, $usrs_acc_active, $activitiesTrainersList, $usrs_prof_acctype, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
+    global $dbconn, $usrs_userid, $usrs_username, $usrs_name, $usrs_surname, $usrs_idnumber, $usrs_email, $usrs_contact, $usrs_dob, $usrs_gender, $usrs_race, $usrs_nationality, $usrs_acc_active, $activitiesTrainersList, $usrs_prof_acctype, $currentUser_Usrnm, $output, $output_msg, $app_err_msg, $usr_profileid, $usr_about, $usr_profiletype, $usr_profilepicurl, $usr_verification;
+
+    $trainer_userid = null;
+    $trainer_username = $trainer_name = $trainer_surname = $trainer_idnumber = $trainer_email = $trainer_contact = $trainer_dob = $trainer_gender = $trainer_race = $trainer_nationality = $trainer_acc_active = $trainer_prof_acctype = "";
+
+    $trainer_profileid = null;
+    $trainer_about = $trainer_profiletype = $trainer_profilepicurl = $trainer_verification = $trainer_img_url = $trainer_account_prod_img = "";
 
     //loading: Discover (load max of 50 records)
     //People
@@ -1340,55 +1636,72 @@ function getAllTrainers()
 
         while ($row = mysqli_fetch_assoc($result)) {
 
-            $usrs_userid = $row["user_id"];
+            $trainer_userid = $row["user_id"];
+            $trainer_username = $row["username"];
+            $trainer_name = $row["user_name"];
+            $trainer_surname = $row["user_surname"];
+            $trainer_idnumber = $row["id_number"];
+            $trainer_email = $row["user_email"];
+            $trainer_contact = $row["contact_number"];
+            $trainer_dob = $row["date_of_birth"];
+            $trainer_gender = $row["user_gender"];
+            $trainer_race = $row["user_race"];
+            $trainer_nationality = $row["user_nationality"];
+            $trainer_acc_active = $row["account_active"];
 
-            $usrs_username = $row["username"];
-            $usrs_name = $row["user_name"];
-            $usrs_surname = $row["user_surname"];
-            $usrs_idnumber = $row["id_number"];
-            $usrs_email = $row["user_email"];
-            $usrs_contact = $row["contact_number"];
-            $usrs_dob = $row["date_of_birth"];
-            $usrs_gender = $row["user_gender"];
-            $usrs_race = $row["user_race"];
-            $usrs_nationality = $row["user_nationality"];
-            $usrs_acc_active = $row["account_active"];
+            $trainer_profileid = $row["user_profile_id"];
+            $trainer_about = $row["about"];
+            $trainer_prof_acctype = $row["profile_type"];
+            $trainer_profilepicurl = $row["profile_url"];
+            $trainer_verification = $row["verification"];
 
-            $usrs_prof_acctype = $row["profile_type"];
+            // verification icon
+            if ($trainer_verification == "verified") {
+                $trainer_verification_output = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> verified_user </span>';
+            } else {
+                $trainer_verification_output = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> public </span>';
+            }
 
-            /*$discoverPeopleList .= '
-      <div class="grid-tile px-2 mx-0 container content-panel-border-style my-4" id="discover_people-'.$usrs_userid.'-'.$usrs_username.'">
-        <div class="card bg-transparent align-items-center">
-          <div class="text-center">
-            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
-          </div>
-          <div class="card-body">
-            <h3>'.$usrs_name.' '.$usrs_surname.'</h3>
-            <p>@<span style="color: #ffa500">'.$usrs_username.'</span></p>
-            <div class="text-center">
-              <button class="null-btn m-4 shadow" onclick="openProfiler('."'".$usrs_username."'".')"><i class="fas fa-chevron-circle-right"></i> View profile</button>
-            </div>
-          </div>
-        </div>
-      </div>';*/
+            //profile picture
+            if ($trainer_profilepicurl == "default" || $trainer_profilepicurl == null || $trainer_profilepicurl == "") {
+                $trainer_img_url = "../media/profiles/0_default/default_profile_pic.png";
+            } else {
+                $trainer_img_url = "../media/profiles/$trainer_username/$trainer_profilepicurl";
+            }
+
+            $trainer_account_prod_img = '<div class="social-update-profile-pic shadow" style="background-position: center !important; background-size: cover !important; background-repeat: no-repeat !important; background-attachment: local !important; height: 150px !important; width:  150px !important; background: url(' . $trainer_img_url . ') !important;"></div>';
 
             //compile list of trainers
-            if ($usrs_prof_acctype == "trainee") {
+            if ($trainer_prof_acctype == "trainer") {
                 $activitiesTrainersList .= '
-        <div class="grid-tile px-2 mx-0 container content-panel-border-style my-4" id="discover_people-' . $usrs_userid . '-' . $usrs_username . '">
-          <div class="card bg-transparent align-items-center">
-            <div class="text-center">
-              <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
-            </div>
-            <div class="card-body">
-              <h3>' . $usrs_name . ' ' . $usrs_surname . '</h3>
-              <p>@<span style="color: #ffa500">' . $usrs_username . '</span></p>
-              <div class="text-center">
-                <button class="null-btn m-4 shadow" onclick="openProfiler(' . "'" . $usrs_username . "'" . ')"><i class="fas fa-chevron-circle-right"></i> View profile</button>
-              </div>
-            </div>
-          </div>
-        </div>';
+                <!-- All Trainers Card - dark Grad -->
+                <div class="grid-tile">
+                  <div class="my-4 container-fluid tunnel-bg-container" id="discover_trainer-' . $trainer_userid . '-' . $trainer_username . '"
+                    style="border-radius: 25px;">
+                    <div class="top-down-grad-light" style="border-radius: 25px;">
+                      <div
+                        class="row align-items-center content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaftz left-right-grad-mineshaft">
+                        <div class="col-xlg-2 text-center p-4">
+                          <img src="' . $trainer_img_url . '" class="img-fluid rounded-circle shadow" style="border-radius: 25px;" alt="prof thumbnail" hidden>
+                          ' . $trainer_account_prod_img . '
+                        </div>
+                        <div class="col-xlg-6 text-center p-4">
+                          <h3 class="text-white">' . $trainer_name . ' ' . $trainer_surname . '</h3>
+                          <p style="font-size: 10px">@' . $trainer_username . '</p>
+                          <p style="font-size: 10px">Level.: 1</p>
+                          ' . $trainer_verification_output . '
+                        </div>
+                        <div class="col-xlg-4 text-center p-4">
+                          <button class="onefit-buttons-style-light p-4 my-4 shadow" onclick="openProfiler(' . "'" . $trainer_username . "'" . ')">
+                                View profile <i class=" fas fa-chevron-circle-right"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+              
+                  </div>
+                </div>
+                <!-- ./ All Trainers Card - dark Grad -->';
             }
         }
         //echo $discoverPeopleList;
@@ -1414,7 +1727,7 @@ function getAllTrainers()
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title> - Onefit.app&trade; | Onefit.Net&trade; &copy; <?php echo date('Y'); ?></title>
 
     <!--fontawesome-->
     <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
@@ -1424,6 +1737,7 @@ function getAllTrainers()
 
     <!-- Plyr.io Media Player -->
     <link rel="stylesheet" href="https://cdn.plyr.io/1.8.2/plyr.css">
+
     <!-- Plry.io JS CDN -->
     <script src="https://cdn.plyr.io/1.8.2/plyr.js"></script>
     <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
@@ -1436,18 +1750,28 @@ function getAllTrainers()
 
     <!-- My CSS styles -->
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/digital-clock.css" />
 
     <!-- Google Charts Code -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <!-- Timeline chart -->
+    <!-- Load Google Charts -->
     <script type="text/javascript">
         google.charts.load('current', {
-            'packages': ['timeline']
+            'packages': ['timeline', 'corechart']
         });
-        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawUserTimelineChart);
+        google.charts.setOnLoadCallback(drawHeartRateMonitorChart);
+        google.charts.setOnLoadCallback(drawBodyTempMonitorChart);
+        google.charts.setOnLoadCallback(drawSpeedChart);
+        google.charts.setOnLoadCallback(drawStepCounterChart);
+        google.charts.setOnLoadCallback(drawWeightMonitorChart);
+        //body_temp_monitor_chart 
+        //speed_chart
+        //step_counter_chart 
+        //weight_monitor_chart 
 
-        function drawChart() {
+        function drawUserTimelineChart() {
             var container = document.getElementById('timeline');
             var chart = new google.visualization.Timeline(container);
             var dataTable = new google.visualization.DataTable();
@@ -1470,41 +1794,459 @@ function getAllTrainers()
             });
 
             dataTable.addRows([
-                ['1', 'George Washington', new Date(1789, 3, 30), new Date(1797, 2, 4)],
-                ['2', 'John Adams', new Date(1797, 2, 4), new Date(1801, 2, 4)],
-                ['3', 'Thomas Jefferson', new Date(1801, 2, 4), new Date(1809, 2, 4)]
+                ['1', 'Program 1: Activity 1', new Date(1789, 3, 30), new Date(1797, 2, 4)],
+                ['2', 'Program 1: Activity 2', new Date(1797, 2, 4), new Date(1801, 2, 4)],
+                ['3', 'Program 1: Activity 3', new Date(1801, 2, 4), new Date(1809, 2, 4)]
             ]);
 
             var options = {
                 timeline: {
                     showRowLabels: true
+                },
+                chartArea: {
+                    width: '1000',
+                    height: '200'
+                },
+                legend: {
+                    position: 'in'
+                },
+                titlePosition: 'in',
+                axisTitlesPosition: 'in',
+                hAxis: {
+                    textPosition: 'in',
+                    slantedText: true,
+                    slantedTextAngle: -90
+                },
+                vAxis: {
+                    textPosition: 'in'
                 }
             };
 
             chart.draw(dataTable, options);
+        }
+
+        function drawHeartRateMonitorChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Time', 'BPM Average'],
+                ['09:05 AM', 100],
+                ['09:10 AM', 170],
+                ['09:15 AM', 660],
+                ['09:20 AM', 130]
+            ]);
+
+            var options = {
+                title: 'Heart Rate Monitor',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                trendlines: {
+                    0: {
+                        type: 'linear',
+                        color: 'green',
+                        lineWidth: 3,
+                        opacity: 0.3,
+                        showR2: true,
+                        visibleInLegend: true
+                    }
+                },
+                slantedText: true,
+                chartArea: {
+                    width: '100%',
+                    height: '100%'
+                },
+                legend: {
+                    position: 'in'
+                },
+                titlePosition: 'in',
+                axisTitlesPosition: 'in',
+                hAxis: {
+                    textPosition: 'in',
+                    slantedText: true,
+                    slantedTextAngle: -90
+                },
+                vAxis: {
+                    textPosition: 'in'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('heart_rate_monitor_chart'));
+
+            chart.draw(data, options);
+        }
+
+        function drawBodyTempMonitorChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Days', 'Temperature Readings'],
+                ['Sunday (13/03/2022)', 38.7],
+                ['Monday (14/03/2022)', 38.2],
+                ['Tuesday (15/03/2022)', 36.5],
+                ['Wednesday (16/03/2022)', 37.1],
+                ['Thursday (17/03/2022)', 36.8],
+                ['Friday (18/03/2022)', 35.9],
+                ['Saturday (19/03/2022)', 38.1]
+            ]);
+
+            var options = {
+                title: 'Body Temperature Monitor',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                trendlines: {
+                    0: {
+                        type: 'linear',
+                        color: 'green',
+                        lineWidth: 3,
+                        opacity: 0.3,
+                        showR2: true,
+                        visibleInLegend: true
+                    }
+                },
+                slantedText: true,
+                chartArea: {
+                    width: '100%',
+                    height: '100%'
+                },
+                legend: {
+                    position: 'in'
+                },
+                titlePosition: 'in',
+                axisTitlesPosition: 'in',
+                hAxis: {
+                    textPosition: 'in',
+                    slantedText: true,
+                    slantedTextAngle: -90
+                },
+                vAxis: {
+                    textPosition: 'in'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('body_temp_monitor_chart'));
+
+            chart.draw(data, options);
+        }
+
+        function drawSpeedChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Time', 'Average Speed (meters per second - m/s)'],
+                ['Sunday (13/03/2022)', 0],
+                ['Monday (14/03/2022)', 10],
+                ['Tuesday (15/03/2022)', 13],
+                ['Wednesday (16/03/2022)', 18],
+                ['Thursday (17/03/2022)', 15],
+                ['Friday (18/03/2022)', 16],
+                ['Saturday (19/03/2022)', 8]
+            ]);
+
+            var options = {
+                title: 'Average Speed Monitor',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                trendlines: {
+                    0: {
+                        type: 'linear',
+                        color: 'green',
+                        lineWidth: 3,
+                        opacity: 0.3,
+                        showR2: true,
+                        visibleInLegend: true
+                    }
+                },
+                slantedText: true,
+                chartArea: {
+                    width: '100%',
+                    height: '100%'
+                },
+                legend: {
+                    position: 'in'
+                },
+                titlePosition: 'in',
+                axisTitlesPosition: 'in',
+                hAxis: {
+                    textPosition: 'in',
+                    slantedText: true,
+                    slantedTextAngle: -90
+                },
+                vAxis: {
+                    textPosition: 'in'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('speed_chart'));
+
+            chart.draw(data, options);
+        }
+
+        function drawStepCounterChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Days', 'Steps taken'],
+                ['Sunday (13/03/2022)', 126],
+                ['Monday (14/03/2022)', 235],
+                ['Tuesday (15/03/2022)', 120],
+                ['Wednesday (16/03/2022)', 467],
+                ['Thursday (17/03/2022)', 593],
+                ['Friday (18/03/2022)', 421],
+                ['Saturday (19/03/2022)', 467]
+            ]);
+
+            var options = {
+                title: 'Daily Step Counter',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                trendlines: {
+                    0: {
+                        type: 'linear',
+                        color: 'green',
+                        lineWidth: 3,
+                        opacity: 0.3,
+                        showR2: true,
+                        visibleInLegend: true
+                    }
+                },
+                slantedText: true,
+                chartArea: {
+                    width: '100%',
+                    height: '100%'
+                },
+                legend: {
+                    position: 'in'
+                },
+                titlePosition: 'in',
+                axisTitlesPosition: 'in',
+                hAxis: {
+                    textPosition: 'in',
+                    slantedText: true,
+                    slantedTextAngle: -90
+                },
+                vAxis: {
+                    textPosition: 'in'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('step_counter_chart'));
+
+            chart.draw(data, options);
+        }
+
+        function drawWeightMonitorChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Days', 'BPM Average'],
+                ['Sunday (13/03/2022)', 126],
+                ['Monday (14/03/2022)', 235],
+                ['Tuesday (15/03/2022)', 120],
+                ['Wednesday (16/03/2022)', 467],
+                ['Thursday (17/03/2022)', 593],
+                ['Friday (18/03/2022)', 421],
+                ['Saturday (19/03/2022)', 467]
+            ]);
+
+            var options = {
+                title: 'Weight / BMI Monitor',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                trendlines: {
+                    0: {
+                        type: 'linear',
+                        color: 'green',
+                        lineWidth: 3,
+                        opacity: 0.3,
+                        showR2: true,
+                        visibleInLegend: true
+                    }
+                },
+                slantedText: true,
+                chartArea: {
+                    width: '100%',
+                    height: '100%'
+                },
+                legend: {
+                    position: 'in'
+                },
+                titlePosition: 'in',
+                axisTitlesPosition: 'in',
+                hAxis: {
+                    textPosition: 'in',
+                    slantedText: true,
+                    slantedTextAngle: -90
+                },
+                vAxis: {
+                    textPosition: 'in'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('weight_monitor_chart'));
+
+            chart.draw(data, options);
         }
     </script>
     <!-- ./ Google Charts Code -->
 
     <!-- Site Scripts -->
     <script src="../scripts/js/script.js"></script>
-    <script src="../scripts/js/ap_requests.js"></script>
+    <script src="../scripts/js/api_requests.js"></script>
+
     <!-- ./ Site Scripts -->
+
+    <!-- JQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- ./ JQuery CDN -->
+
+    <!-- For Digital Clock Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+    <!-- ./ For Digital Clock Plugin -->
+
+    <!-- Map Highlight -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js"></script>
+    <script src="../scripts/js/mapoid/mapoid.js"></script>
+    <!-- ./ Map Highlight -->
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap" rel="stylesheet">
 </head>
 
 <body onload="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
-    <!-- Navigation bar -->
-    <div class="container py-4 text-center">
-        <a class="navbar-brand m-0 fs-1 text-white comfortaa-font" href="#">
+    <!-- Facebook API -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0" nonce="47FC3Uf9"></script>
+    <!-- ./ Facebook API -->
+
+    <!-- Navigation bar, Cart & Other functions -->
+    <div class="container -fluid text-center pt-4">
+        <a class="navbar-brand my-4 p-4 fs-1 text-white comfortaa-font" href="#">
             One<span style="color: #e88a04">fit</span>.app<span style="font-size: 10px">&trade;</span>
         </a>
+
+        <!-- Cart Container  -->
+        <div class="container py-4">
+            <div class="row align-items-start">
+                <div class="col-md-9 text-white">
+                    <p class="text-end" hidden>Your Cart (0 items)</p>
+                    <div class="collapse show down-top-grad-dark w3-animate-left comfortaa-font" style="border-radius: 25px; overflow: hidden;" id="cart-panel">
+                        <div class="p-4 shadow" id="">
+                            <div class="text-end">
+                                <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4" type="button">
+                                    <p>
+                                        <span class="material-icons material-icons-round">
+                                            storefront
+                                        </span>
+                                        <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span style="color: #e88a04 !important;">.Store</span></span>
+                                    </p>
+                                </button>
+                                <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4" type="button">
+                                    <p>
+                                        <span class="material-icons material-icons-round">
+                                            point_of_sale
+                                        </span>
+                                        <span class="align-middle"><span class="d-none d-lg-block">Proceed to </span>Checkout</span>
+                                    </p>
+                                </button>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 py-4">
+                                    <p class="text-start">Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #e88a04;">20220201-879ds6fsdf_id</span> ]</p>
+                                    <hr class="text-white">
+                                    <h1><span style="color: #e88a04;">Total:</span> R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 10px; color: #e88a04;">ZAR</span></h1>
+                                    <ul class="list-group list-group-flush list-group-numbered shadow py-4 no-scroller" id="" style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
+                                        <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
+                                        <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
+                                        <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
+                                        <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 py-4">
+                                    <p class="text-start">Cart Items (4)</p>
+                                    <hr class="text-white">
+                                    <div class="horizontal-scroll">
+                                        <div class="horizontal-scroll-card p-4 shadow">
+                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
+                                            <p class="fw-bold text-truncate text-center py-4">
+                                                R149.00 | Aiwa Smart Band ASB-40
+                                            </p>
+                                        </div>
+                                        <div class="horizontal-scroll-card p-4 shadow">
+                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
+                                            <p class="fw-bold text-truncate text-center py-4">
+                                                R149.00 | Aiwa Smart Band ASB-40
+                                            </p>
+                                        </div>
+                                        <div class="horizontal-scroll-card p-4 shadow">
+                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
+                                            <p class="fw-bold text-truncate text-center py-4">
+                                                R149.00 | Aiwa Smart Band ASB-40
+                                            </p>
+                                        </div>
+                                        <div class="horizontal-scroll-card p-4 shadow">
+                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
+                                            <p class="fw-bold text-truncate text-center py-4">
+                                                R149.00 | Aiwa Smart Band ASB-40
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 text-end d-grid gap-2 py-4">
+                    <button class="navbar-toggler shadowz onefit-buttons-style-dark p-2" type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel">
+                        <div class="row px-4 py-2">
+                            <div class="col-sm border-start border-end border-light p-2">
+                                <div class="d-grid gap-2">
+                                    <span class="material-icons material-icons-round" style="font-size: 40px !important"> shopping_bag </span>
+                                    <span class="d-nonez d-lg-blockz" id="" style="font-size: 10px;">Cart (<span class="fw-bold comfortaa-font" style="color: #e88a04;">4</span>)</span>
+                                </div>
+                            </div>
+                            <div class="col-sm fw-bold comfortaa-font border-start border-end border-light p-2">
+                                <span class="align-middle" style="font-size: 10px; color: #e88a04;">ZAR</span><br> 0.00
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- ./ Cart Container  -->
+
+        <!-- Create Button - hidden on screens smaller than lg -->
+        <div class="create-btn-container my-pulse-animation-tahiti comfortaa-font d-grid gap-2 d-none d-lg-block">
+            <div class="collapse p-4 w3-animate-bottom" id="collapseCreateCommandList">
+                <ul class="list-groupz list-group-flush list-group border-0 text-white fw-bold text-center comfortaa-font" style="overflow: initial !important;">
+                    <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Social Update</button></li>
+                    <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Community Resource</button></li>
+                    <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Share Media</button></li>
+                    <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Chat Message</button></li>
+                </ul>
+            </div>
+            <div class="d-grid gap-2 w-100">
+                <button class="p-4 m-0 shadow onefit-buttons-style-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCreateCommandList" aria-expanded="false" aria-controls="collapseCreateCommandList">
+                    <div class="d-grid">
+                        <span class="material-icons material-icons-round" style="font-size: 48px !important;">
+                            brush
+                        </span>
+                        <p style="font-size: 20px;">Create</p>
+                    </div>
+                </button>
+            </div>
+
+        </div>
+        <!-- ./ Create Button - hidden on screens smaller than lg -->
     </div>
-    <!-- ./ Navigation bar -->
+    <!-- ./ Navigation bar, Cart & Other functions -->
 
     <!-- Main Content -->
-    <div class="container-fluid px-0" style="padding-bottom: 100px">
-        <!--   -->
-        <nav class="navbar navbar-light sticky-top navbar-style" style="border-radius: 0 0 25px 25px; max-height: 100vh !important;">
+    <div class="container -fluid" style="padding-bottom: 100px">
+        <!-- Main Navigation Bar -->
+        <nav class="navbar navbar-light sticky-top navbar-style w-100 mb-4" style="border-radius: 25px; max-height: 100vh !important;">
             <!-- App Function Buttons -->
             <div class="container -fluid">
                 <button class="onefit-buttons-style-dark p-2 shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
@@ -1527,7 +2269,7 @@ function getAllTrainers()
                     <button class="onefit-buttons-style-dark p-2 shadow d-nonez d-lg-blockz" style="overflow: hidden; font-size: 10px;" type="button" data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal">
                         <div class="d-grid gap-2 text-center">
                             <!-- Profile Picture -->
-                            <img src="../media/assets/One-Symbol-Logo-White.png" alt="Onefit Logo" class="p-1 img-fluid my-pulse-animationz" style="height: 50px; width: 50px; border-radius: 15px; border-color: #e88a04 !important" />
+                            <img src="../media/assets/One-Symbol-Logo-White.png" alt="Onefit Logo" class="p-1 img-fluid my-pulse-animation-tahitiz" style="height: 50px; width: 50px; border-radius: 15px; border-color: #e88a04 !important" />
                             <!-- ./ Profile Picture -->
                             <span class="d-none d-lg-block">Latest</span>
                         </div>
@@ -1551,10 +2293,10 @@ function getAllTrainers()
                 </button>
 
                 <!-- Navigation Menu Offcanvas -->
-                <div class="offcanvas offcanvas-end offcanvas-menu-primary-style" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas offcanvas-end offcanvas-menu-primary-style fitness-bg-containerz" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div class="h-100" id="offcanvas-menu">
                         <div class="offcanvas-header shadow fs-1" style="background-color: #343434; color: #fff">
-                            <img src="../media/assets/One-Symbol-Logo-Dark-Mix.png" alt="" class="img-fluid logo-size-2 pulse-animation" />
+                            <img src="../media/assets/One-Symbol-Logo-White.png" alt="" class="img-fluid logo-size-2 pulse-animation" />
 
                             <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="overflow-x: hidden;">
                                 Navigation
@@ -1566,29 +2308,38 @@ function getAllTrainers()
                         <div class="offcanvas-body" style="padding-bottom: 40px; overflow-y: auto; overflow-x: hidden; max-height: 80vh;">
                             <ul class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Dashboard</a>
+                                    <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Dashboard</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Services</a>
+                                    <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Services</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">About</a>
+                                    <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Contact</a>
+                                    <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Contact</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Onefit.app&trade;</a>
+                                    <a class="nav-link active p-4" style="border-radius: 25px !important;" aria-current="page" href="#">Onefit.app&trade;</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Onefit.Edu&trade; (Blog)</a>
+                                    <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Onefit.Edu&trade; (Blog)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Onefit.Shop&trade;</a>
+                                    <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Onefit.Shop&trade;</a>
                                 </li>
                                 <hr class="text-dark" style="height: 5px;" />
-                                <li class="nav-item">
-                                    <a class="nav-link onefit-buttons-style-dark p-4 text-center" href="#" style="border-bottom: 0 !important">Account Registration</a>
+                                <li class="nav-item d-grid gap-2">
+                                    <button class="onefit-buttons-style-danger p-4 text-center my-4" onclick="launchLink('../scripts/php/destroy_session.php')" style="border-radius: 25px !important;">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-4">
+                                                <img src="<?php echo $currentuser_img_url; ?>" class="img-fluid rounded-circle" height="50" width="50" alt="user profile picture">
+                                            </div>
+                                            <div class="col-md-8">
+                                                Sign Out
+                                            </div>
+                                        </div>
+                                    </button>
                                 </li>
                             </ul>
                         </div>
@@ -1602,7 +2353,7 @@ function getAllTrainers()
                     Notifications
                 </button>
 
-                <div class="offcanvas offcanvas-start offcanvas-menu-primary-style" tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
+                <div class="offcanvas offcanvas-start offcanvas-menu-primary-style fitness-bg-containerz" tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
                     <div class="offcanvas-header align-center shadow" style="background-color: #fff;">
                         <span class="material-icons material-icons-round" style="font-size: 48px !important"> notifications </span>
 
@@ -1614,78 +2365,275 @@ function getAllTrainers()
                         </button>
                     </div>
                     <div class="offcanvas-body" style="background-color: rgba(255, 255, 255, 0.8);">
-                        <ul class="list-group list-group-flush shadow p-4z" id="notif-list" style="border-radius: 25px; max-height: 60vh;">
+                        <ul class="list-group list-group-flush shadow p-4z" id="notif-list" style="border-radius: 25px; max-height: 60vh;" hidden>
                             <li class="list-group-item border-dark">An item</li>
                             <li class="list-group-item border-dark">A second item</li>
                             <li class="list-group-item border-dark">A third item</li>
                             <li class="list-group-item border-dark">A fourth item</li>
                             <li class="list-group-item border-dark">And a fifth one</li>
                         </ul>
+                        <div id="communicationUserNotifications">
+                            <?php echo $outputProfileUserNotifications; ?>
+                        </div>
+                        <?php echo $communicationUserNotifications; ?>
                     </div>
                 </div>
                 <!-- ./Notifocation List Offcanvas -->
             </div>
             <!-- ./ App Function Buttons -->
         </nav>
+        <!-- ./ Main Navigation Bar -->
 
         <!-- Tab Content -->
         <div class="container">
             <div class="tab-container" id="tab-container">
-                <div id="TabHome" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
-                    <h1>Dashboard</h1>
+                <div id="TabHome" class="shadow w3-container w3-animate-right content-tab p-4" style="display: block">
+                    <h1 class="text-center">Dashboard</h1>
                     <p>This is the Dashboard Page.</p>
 
                     <div class="variable-grid-container">
-                        <div class="wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
+                        <div class="full-wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
                             <h4>Activities list/lineup</h4>
-                            <p>the activities list will be able to switch through the different programs of the use</p>
+                            <p class="mb-4">the activities list will be able to switch through the different programs of the use</p>
+
+                            <h5>Sunday (dd/mm/yyyy)</h5>
+                            <!-- Digital Clock -->
+                            <div id="clock" class="dark mb-4 shadow">
+                                <div class="display no-scroller">
+                                    <div class="weekdays"></div>
+                                    <div class="ampm"></div>
+                                    <div class="alarm"></div>
+                                    <div class="digits"></div>
+                                </div>
+                            </div>
+                            <!-- ./. Digital Clock -->
+
+                            <div class="row align-items-start text-white" id="training-schedule-chart-grid">
+                                <div class="col-md-8">
+                                    <div class="horizontal-scroll-card w-100 p-4 shadow">
+                                        <h5 class="text-center">Your Assessments for the day</h5>
+                                        <hr class="text-white" style="height: 5px;">
+
+                                        <ol class="list-group list-group-flush border-0 my-4">
+                                            <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                                    <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                                </span>
+                                                <div class="ms-2 me-auto">
+                                                    <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                                    Frequency: Daily<br />
+                                                    Mendatory: Optional
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                                    <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                                </span>
+                                                <div class="ms-2 me-auto">
+                                                    <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                                    Frequency: Daily<br />
+                                                    Mendatory: Optional
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important">
+                                                        pending_actions </span>
+                                                </span>
+                                                <div class="ms-2 me-auto">
+                                                    <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                                    Frequency: Daily<br />
+                                                    Mendatory: Yes
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important">
+                                                        pending_actions </span>
+                                                </span>
+                                                <div class="ms-2 me-auto">
+                                                    <div class="fw-bold" style="color: #e88a04">Athlete Wellness Survey</div>
+                                                    Frequency: Daily<br />
+                                                    Mendatory: Yes
+                                                </div>
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 text-white text-center" id="home-day-1-col">
+
+                                    <div class="chart-col-bar p-2 shadow comfortaa-font">
+                                        <h5>Today's Workout Activities</h5>
+
+                                        <hr class="text-white" style="height: 5px;">
+
+                                        <div class="down-top-grad-tahiti py-4 mb-4" style="border-radius: 0 0 25px 25px;">
+                                            <p class="fs-5 fw-bold">
+                                                Regeneration
+                                            </p>
+                                            <p style="color: #343434;">
+                                                RPE 1-3
+                                            </p>
+                                        </div>
+
+                                        <hr class="text-white" style="height: 5px;" hidden>
+
+                                        <div class="chart-col-bar-item text-center position-relative">
+                                            <p>Cycling / Spinning</p>
+                                            <img src="../media/assets/icons/cycling.png" alt="" class="img-fluid">
+                                        </div>
+                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                        <div class="chart-col-bar-item text-center">
+                                            <p>Strength & Core</p>
+                                            <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
+                                        </div>
+                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                        <p class="text-center fs-5 fw-bold">Day 1/-6 <br>(Sunday, dd/mm/yyyy)</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content Card - Dashboard -->
+                        <div class="grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
+                            <h4>News, Resources, Blog and Ads Feed</h4>
+                            <small class="text-muted" id="">Content</small>
+                            <p style="color: #e88a04;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
+                            <div class="text-center">
+                                <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Content Card - Dashboard -->
+
+                        <div class="full-tall-grid-tile wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
+                            <h4>Social Updates Feed</h4>
+                            <p class="mb-4">Check out what the Community is up to. Feel free to post an Update about your fitness journey.</p>
+
+                            <div class="no-scroller px-2" id="dashboard-Community-Posts" style="max-height: 50vh; overflow-y: auto; overflow-x: hidden; box-shadow: inset 0px 0px 40px 0px rgba(232, 138, 4, 1); border-radius: 25px">
+                                <!--rgba(232, 138, 4, 1)-->
+                                <?php echo $outputCommunityUpdates; ?>
+                            </div>
                         </div>
                         <div class="tall-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
-                            <h4>Social Updates Feed</h4>
-                            <p>the activities list will be able to switch through the different programs of the use</p>
+                            <<h4>News, Resources, Blog and Ads Feed</h4>
+                                <small class="text-muted" id="">Content</small>
+                                <p style="color: #e88a04;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
+                                <div class="text-center">
+                                    <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
                         </div>
-                        <div class="grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
-                            <h4>Resources, blog and Ads Feed</h4>
-                            <p>the activities list will be able to switch through the different programs of the use</p>
+                        <div class="tall-grid-tile full-wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
+                            <h4>Google Community Surveys</h4>
+                            <p class="mb-4">the activities list will be able to switch through the different programs of the use</p>
+
+                            <iframe class="w-100 tunnel-bg-container shadow" style="border-radius: 25px; overflow: hidden;" height="450" src="https://datastudio.google.com/embed/reporting/2a409a10-e7c0-4375-a22d-bfab63e728db/page/guiJC" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>
-                        <div class="grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
-                            <h4>Resources, blog and Ads Feed</h4>
-                            <p>the activities list will be able to switch through the different programs of the use</p>
+
+                        <div class="wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
+                            <h4>News, Resources, Blog and Ads Feed</h4>
+                            <small class="text-muted" id="">Content</small>
+                            <p style="color: #e88a04;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
+                            <div class="text-center">
+                                <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
-                            <h4>Resources, blog and Ads Feed</h4>
-                            <p>the activities list will be able to switch through the different programs of the use</p>
-                        </div>
-                        <div class="grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
-                            <h4>Resources, blog and Ads Feed</h4>
-                            <p>the activities list will be able to switch through the different programs of the use</p>
-                        </div>
-                        <div class="grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
-                            <h4>Resources, blog and Ads Feed</h4>
-                            <p>the activities list will be able to switch through the different programs of the use</p>
+                        <div class="tall-grid-tile grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
+                            <h4>News, Resources, Blog and Ads Feed</h4>
+                            <small class="text-muted" id="">Content</small>
+                            <p style="color: #e88a04;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
+                            <div class="text-center">
+                                <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
-                            <h4>Resources, blog and Ads Feed</h4>
+                            <h4>One<span style="color: #e88a04">fit</span>.Muse</h4>
                             <p>the activities list will be able to switch through the different programs of the use</p>
-                        </div>
-                    </div>
 
-                    <div class="row" hidden>
-                        <div class="col-md-4">
-                            <h1>Activities list/lineup</h1>
-                            <p>the activities list will be able to switch through the different programs of the use</p>
+                            <div class="row">
+                                <div class="col-md-4 p-0">
+
+                                    <p>Playlists</p>
+
+                                    <hr class="text-white">
+                                    <div class="p-4">
+                                        <button class="onefit-buttons-style-dark p-4 shadow mb-4">
+                                            + Share you <span class="fw-bold comfortaa-font fs-5">Original Music</span>
+                                        </button>
+
+                                        <img src="../media/assets/muse_thumbnails/Gym-Playlist-Energetic-Tracks-For-Workout-Fitness-English-2018-20180602225519-500x500.jpg" class="img-fluid shadow my-2" style="border-radius: 25px;" alt="example thumbnail">
+
+                                        <img src="../media/assets/muse_thumbnails/Gym-Playlist-Energetic-Tracks-For-Workout-Fitness-English-2018-20180602225519-500x500.jpg" class="img-fluid shadow my-2" style="border-radius: 25px;" alt="example thumbnail">
+
+                                        <img src="../media/assets/muse_thumbnails/Gym-Playlist-Energetic-Tracks-For-Workout-Fitness-English-2018-20180602225519-500x500.jpg" class="img-fluid shadow my-2" style="border-radius: 25px;" alt="example thumbnail">
+                                    </div>
+                                </div>
+                                <div class="col-md-8 p-0">
+                                    <p>Tracks</p>
+                                    <hr class="text-white">
+                                    <ul class="list-group list-group-flush list-group-numbered" style="border-radius: 25px !important; overflow: hidden;">
+                                        <li class="list-group-item">
+                                            <button class="onefit-buttons-style-dark shadow p-2 my-2">
+                                                <div class="row align-items-center w-100">
+                                                    <div class="col">
+                                                        <span class="material-icons material-icons-round shadow-lg" style="font-size: 20px !important;">
+                                                            play_arrow
+                                                        </span>
+                                                    </div>
+                                                    <div class="col">
+                                                        Song Title (00:00)
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <button class="onefit-buttons-style-dark shadow p-2 my-2">
+                                                <div class="row align-items-center w-100">
+                                                    <div class="col">
+                                                        <span class="material-icons material-icons-round shadow-lg" style="font-size: 20px !important;">
+                                                            play_arrow
+                                                        </span>
+                                                    </div>
+                                                    <div class="col">
+                                                        Song Title (00:00)
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <button class="onefit-buttons-style-dark shadow p-2 my-2">
+                                                <div class="row align-items-center w-100">
+                                                    <div class="col">
+                                                        <span class="material-icons material-icons-round shadow-lg" style="font-size: 20px !important;">
+                                                            play_arrow
+                                                        </span>
+                                                    </div>
+                                                    <div class="col">
+                                                        Song Title (00:00)
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <h1>Social Updates Feed</h1>
-                        </div>
-                        <div class="col-md-2">
-                            <h1>Resources, blog and Ads Feed</h1>
-                            <p>AdMarket, Onefoodie and Store</p>
-                        </div>
+
                     </div>
                 </div>
                 <div id="TabProfile" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
-                    <h1>Profile</h1>
+                    <h1 class="text-center">My Profile</h1>
                     <hr class="text-white" />
                     <div id="profile-panel-container">
                         <!-- Profile Tab: User Profile -->
@@ -1699,16 +2647,19 @@ function getAllTrainers()
                                 <!-- ./ Users Profile Banner -->
 
                                 <!-- Profile Picture -->
-                                <?php echo $currentUserAccountProdImg; ?>
+                                <div style="margin-top: -100px !important">
+                                    <?php echo $currentUserAccountProdImg; ?>
+                                </div>
                                 <!-- ./ Profile Picture -->
-                                <p class='outfit-font mt-2 username-tag'>@<?php echo $currentUser_Usrnm; ?></p>
+                                <p class='outfit-font mt-2 username-tag' hidden>@<?php echo $currentUser_Usrnm; ?></p>
                             </div>
                             <!--<hr class='text-white' />-->
                             <ol class='list-group list-group-numberedz list-group-flush'>
                                 <li class='list-group-item d-flex justify-content-between align-items-start bg-transparent text-white'>
                                     <div class='ms-2 me-auto'>
-                                        <div class='fw-bold users-name-tag' style='color: #e88a04'>
-                                            <?php echo $usrprof_name . " " . $usrprof_surname; ?></div>
+                                        <div class='fw-bold users-name-tag fs-5' style='color: #e88a04'>
+                                            <?php echo $usrprof_name . " " . $usrprof_surname; ?>
+                                        </div>
                                         <span class='username-tag'>@<?php echo $currentUser_Usrnm; ?></span><br />
                                         Lvl. 1
                                     </div>
@@ -1743,33 +2694,89 @@ function getAllTrainers()
                             <!--Users Social Media Links-->
                             <div id='userSocialItems'><?php echo $userSocialItemsList; ?></div>
 
-                            <div class='row my-4'>
-                                <div class='col-md p-4'>
-                                    <h5 class='fs-1'>Updates</h5>
+                            <div class='row my-4 px-4 align-items-start'>
+                                <div class='col-lg p-4' style="max-height: 100vh; overflow-y: auto;">
+                                    <!-- Share an Update -->
+                                    <h5 class='fs-1'>Share an Update </h5>
+                                    <div class="container shadow mb-4" style="border-radius: 25px;" id="profile-social-post-update-container">
+                                        <div class="row align-items-center collapsez" id="tab-nav-social-quickpostz">
+                                            <div class="col-sm d-grid gap-2 py-4 px-0">
+                                                <!-- Quick Post to Social -->
+                                                <div class="social-quick-post d-grid">
+                                                    <textarea name="" class="w-100 quick-post-input" id="" cols="30" rows="10" placeholder="Share an update with the Community.">Share an update with the Community.</textarea>
+                                                </div>
+                                                <!-- ./ Quick Post to Social -->
+                                            </div>
+                                            <div class="col-md-4 d-grid gap-2">
+                                                <div class="row text-center">
+                                                    <div class="col-sm px-0">
+                                                        <div class="d-grid">
+                                                            <button type="button" class="onefit-buttons-style-light p-2 m-1">
+                                                                <span class="material-icons material-icons-round" style="font-size: 18px !important">
+                                                                    attach_file </span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm px-0">
+                                                        <div class="d-grid">
+                                                            <button type="button" class="onefit-buttons-style-light p-2 m-1">
+                                                                <span class="material-icons material-icons-round" style="font-size: 18px !important">
+                                                                    perm_media </span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm px-0">
+                                                        <div class="d-grid">
+                                                            <button type="button" class="onefit-buttons-style-light p-2 m-1">
+                                                                <span class="material-icons material-icons-round" style="font-size: 18px !important"> link
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="onefit-buttons-style-light p-4">
+                                                    <i class="fas fa-paper-plane" style="font-size: 38px !important"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ./ Share an Update -->
+
+                                    <h5 class='fs-1'>My Updates </h5>
                                     <div id='profileUsersPostsList' style='max-height: 100vh, overflow-y: auto;'><?php echo $outputProfileUsersPostsList; ?></div>
                                 </div>
-                                <div class='col-md-4 p-4'>
-                                    <h5 class='fs-1'>Media</h5>
-                                    <div id='profileUserMediaList'> <?php echo $outputProfileUserMediaList; ?> </div>
+                                <div class='col-lg-4 p-4z sticky-top shadow no-scroller' style="max-height: 100vh; overflow-y: auto; z-index: 900!important; border-radius: 25px;">
+                                    <h5 class='fs-1'>My Media</h5>
+                                    <div id='profileUserMediaList' class="grid-container"> <?php echo $outputProfileUserMediaList; ?> </div>
                                     <hr class='text-white' style='height: 5px;'>
-                                    <h5 class='fs-1'>Resources</h5>
+                                    <h5 class='fs-1'>My Resources</h5>
                                     <div id='profileUsersResourcesList'> <?php echo $outputProfileUsersResourcesList; ?> </div>
                                     <hr class='text-white' style='height: 5px;'>
-                                    <h5 class='fs-1'>Friends</h5>
+                                    <h5 class='fs-1'>My Friends</h5>
                                     <div id='profileUserFriendsList'> <?php echo $outputProfileUserFriendsList; ?> </div>
                                     <hr class='text-white' style='height: 5px;'>
-                                    <h5 class='fs-1'>Followers</h5>
-                                    <hr class='text-white' style='height: 5px;'>
-                                    <h5 class='fs-1'>Following</h5>
-                                    <hr class='text-white' style='height: 5px;'>
-                                    <h5 class='fs-1'>Programs</h5>
+                                    <h5 class='fs-1'>My Programs</h5>
                                     <div id='profileUsersProgramsList'> <?php echo $outputProfileUsersProgramsList; ?> </div>
                                     <hr class='text-white' style='height: 5px;'>
-                                    <h5 class='fs-1'>Saved</h5>
+                                    <h5 class='fs-1'>My Saves</h5>
                                     <div id='profileUsersFavesList'> <?php echo $outputProfileUsersFavesList; ?> </div>
                                     <hr class='text-white' style='height: 5px;'>
-                                    <h5 class='fs-1'>Groups</h5>
+                                    <h5 class='fs-1'>My Groups</h5>
                                     <div id='profileUserSubsGroupsList'> <?php echo $profileUserSubsGroupsList; ?> </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4">
+                                <h5 class='fs-1'>Followers</h5>
+                                <hr class='text-white' style='height: 5px;'>
+                                <div class="grid-container mb-4">
+
+                                </div>
+
+                                <h5 class='fs-1'>Following</h5>
+                                <hr class='text-white' style='height: 5px;'>
+                                <div class="grid-container mb-4">
+
                                 </div>
                             </div>
                         </div>
@@ -1806,13 +2813,15 @@ function getAllTrainers()
 
                             <button class="nav-link" id="nav-discovery-trainees-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-trainees" type="button" role="tab" aria-controls="nav-discovery-trainees" aria-selected="false">Trainees</button>
 
-                            <button class="nav-link" id="nav-discovery-posts-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-posts" type="button" role="tab" aria-controls="nav-discovery-posts" aria-selected="false">Updates</button>
+                            <button class="nav-link" id="nav-discovery-groups-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-groups" type="button" role="tab" aria-controls="nav-discovery-groups" aria-selected="false">Groups</button>
+
+                            <button class="nav-link" id="nav-discovery-posts-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-posts" type="button" role="tab" aria-controls="nav-discovery-posts" aria-selected="false">Community Updates</button>
 
                             <button class="nav-link" id="nav-discovery-onefoodie-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-onefoodie" type="button" role="tab" aria-controls="nav-discovery-onefoodie" aria-selected="false">Onefoodie&trade;</button>
 
-                            <button class="nav-link" id="nav-discovery-fit-progs-indi-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-fit-progs-indi" type="button" role="tab" aria-controls="nav-discovery-fit-progs-indi" aria-selected="false">Fitness Programs</button>
+                            <button class="nav-link" id="nav-discovery-fit-progs-indi-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-fit-progs-indi" type="button" role="tab" aria-controls="nav-discovery-fit-progs-indi" aria-selected="false">Indi-Fitness</button>
 
-                            <button class="nav-link" id="nav-discovery-fit-progs-team-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-fit-progs-team" type="button" role="tab" aria-controls="nav-discovery-fit-progs-team" aria-selected="false">Fitness Programs</button>
+                            <button class="nav-link" id="nav-discovery-fit-progs-team-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-fit-progs-team" type="button" role="tab" aria-controls="nav-discovery-fit-progs-team" aria-selected="false">Team-Fitness</button>
 
                             <button class="nav-link" id="nav-discovery-well-progs-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-well-progs" type="button" role="tab" aria-controls="nav-discovery-well-progs" aria-selected="false">Wellness Programs</button>
 
@@ -1820,43 +2829,83 @@ function getAllTrainers()
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tab-DiscoveryContent">
-                        <div class="tab-pane fade" id="nav-discovery-trainers" role="tabpanel" aria-labelledby="nav-discovery-trainers-tab">
-                            <?php echo $discoveryAllTrainers; ?>
+                        <div class="tab-pane fade show active" id="nav-discovery-trainers" role="tabpanel" aria-labelledby="nav-discovery-trainers-tab">
+                            <h1 class="text-center p-4 shadow rounded-pill">Onefit.Net - Trainers</h1>
+
+                            <div class="grid-container">
+                                <?php echo $discoveryAllTrainers; ?>
+                            </div>
                         </div>
-                        <div class="tab-pane fade show active" id="nav-discovery-trainees" role="tabpanel" aria-labelledby="nav-discovery-trainees-tab">
-                            <?php echo $discoveryAllTrainees; ?>
+                        <div class="tab-pane fade" id="nav-discovery-trainees" role="tabpanel" aria-labelledby="nav-discovery-trainees-tab">
+                            <h1 class="text-center p-4 shadow rounded-pill">Onefit.Net - Trainees</h1>
+
+                            <div class="grid-container">
+                                <?php echo $discoveryAllTrainees; ?>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show" id="nav-discovery-groups" role="tabpanel" aria-labelledby="nav-discovery-groups-tab">
+                            <h1 class="text-center p-4 shadow rounded-pill">Onefit.Net - Groups</h1>
+
+                            <div class="grid-container">
+                                <?php echo $outputCommunityGroups; ?>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="nav-discovery-posts" role="tabpanel" aria-labelledby="nav-discovery-posts-tab">
-                            <div class="text-center" style="margin: 25vh 0" id="comm-updates-search-container">
-                                <h4><i class="fas fa-search"></i>Type on the search bar to see some posts</h4>
+                            <h1 class="text-center p-4 shadow rounded-pill">Onefit.Net - Community Updates</h1>
 
+                            <div class="text-center" id="comm-updates-search-container">
                                 <?php echo $outputCommunityUpdates; ?>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="nav-discovery-onefoodie" role="tabpanel" aria-labelledby="nav-discovery-onefoodie-tab">
-                            <!--<php echo $onefoodieDietBar; ?>-->
-                            <p>Onefoodie Diet Bar</p>
+                            <h1 class="text-center p-4 shadow rounded-pill">Onefoodie Diet Bar</h1>
+
+                            <div class="d-flex justify-content-center my-4">
+                                <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="nav-discovery-fit-progs-indi" role="tabpanel" aria-labelledby="nav-discovery-fit-progs-indi-tab">
-                            <p>Indi</p>
-                            <?php echo $discoveryFitProgsIndi; ?>
+                            <h1 class="text-center p-4 shadow rounded-pill">Indi.Fitness Programs</h1>
+                            <div class="grid-container">
+                                <?php echo $discoveryFitProgsIndi; ?>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="nav-discovery-fit-progs-team" role="tabpanel" aria-labelledby="nav-discovery-fit-progs-team-tab">
-                            <p>Team Athletics</p>
-                            <?php echo $discoveryFitProgsTeams; ?>
+                            <h1 class="text-center p-4 shadow rounded-pill">Team-Athletics Training Programs</h1>
+                            <div class="grid-container">
+                                <?php echo $discoveryFitProgsTeams; ?>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="nav-discovery-well-progs" role="tabpanel" aria-labelledby="nav-discovery-well-progs-tab">
-                            <?php echo $output; ?>
+                            <h1 class="text-center p-4 shadow rounded-pill">Wellness &amp; Rehabilitation Programs</h1>
+
+                            <div class="d-flex justify-content-center my-4">
+                                <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="nav-discovery-fitengine" role="tabpanel" aria-labelledby="nav-discovery-fitengine-tab">
-                            Loading...
+                            <h1 class="text-center p-4 shadow rounded-pill">FitEngine Resources</h1>
+
+                            <div class="d-flex justify-content-center my-4">
+                                <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+
+                            <div class="grid-container">
+                                <?php echo $outputCommunityResources; ?>
+                            </div>
                         </div>
 
 
                     </div>
                 </div>
                 <div id="TabStudio" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
-                    <h1><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Studio
+                    <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Studio
                     </h1>
                     <hr class="text-white" />
                     • Onefit.Community Streams (Onefit.tv) – Live stream sessions of scheduled Community (public) & Group-based
@@ -1873,52 +2922,87 @@ function getAllTrainers()
 
                     <div class="grid-container studio-tab-grid">
                         <div class="grid-tile -100 max-100vh shadow p-4 down-top-grad-dark">
-                            <h2><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Community Streams (Onefit.tv)</h2>
+                            <h2 class="text-center"><span class="material-icons material-icons-outlined"> tv </span> <span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Community Streams (Onefit.tv)</h2>
                             <p>Live stream sessions of scheduled Community (public) & Group-based fitness program guidance classes.
                                 (Scheduled Program Guidance Classes and Community Events on Onefit App and Socials that are open to all
                                 visitors, casual subscribers, and premium members (Onefit.app, Zoom, Skype, Teams)</p>
 
-                            <!--<video preload="none" id="player" class="player" settings controls crossorigin
-                data-poster="../media/assets/fitness-colage.png"></video>-->
+                            <!--<video preload="none" id="player" class="player" settings controls crossorigin data-poster="../media/assets/YouTube Thumbnail 1280x720 px.gif"></video>-->
+                            <hr class="text-white" style="height: 5px;">
+
+                            <p style="font-size: 10px">Latest Training Programs | <span class="comfortaa-font" style="color: #e88a04">OnefitNet.TV</span></p>
+
+                            <div class="video-card-container">
+                                <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="" class="img-fluid shadow" />
+                                <button class="onefit-buttons-style-light shadow play-btn p-4" onclick="playVideo()">
+                                    <span class="material-icons material-icons-round" style="font-size: 50px !important;">
+                                        play_circle_outline
+                                    </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
                     <div class="grid-container studio-tab-grid">
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark">
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
+                            <h4>Stream library</h4>
+                            <p>Live stream recording history (Community and Private)</p>
+                            <hr class="text-white" />
+                        </div>
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
                             <h4>Personal Training Centre</h4>
                             <p>Scheduling of Private/One-On-One Live Streams and/or physical interaction with Personal Trainers
                                 (Streams: Onefit.app, Zoom, Skype, Teams | Physical: Your nearest Gym Company Gym/nearest Virgin Active
                                 and House-Call)</p>
+                            <hr class="text-white" />
                         </div>
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark">
-                            <h4>Stream library</h4>
-                            <p>Live stream recording history (Community and Private)</p>
-                        </div>
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark">
-                            <h4><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Muse
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
+                            <h4><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Muse<span class="material-icons material-icons-round">
+                                    equalizer
+                                </span>
                             </h4>
                             <p>Music Centre/Music Playlist</p>
+
+                            <hr class="text-white" />
+                            <p class="outfit-font fw-bold text-center">No media playing.</p>
+                            <div class="text-center">
+                                <div class="row my-4">
+                                    <div class="col-sm">
+                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('prev')"><span class="material-icons material-icons-round">skip_previous</span></button>
+                                    </div>
+                                    <div class="col-sm">
+                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('togglePlay')"><span class="material-icons material-icons-round">play_circle</span></button>
+                                    </div>
+                                    <div class="col-sm">
+                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('next')"><span class="material-icons material-icons-round">skip_next</span></button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark">
-                            <h4>Athletic Fitness</h4>
-                            <p>Athletic Fitness Programs for Individuals.</p>
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
+                            <h4>Indi-Home and Gym</h4>
+                            <p>Home and Gym Fitness Programs &amp; Guides for Individuals</p>
+                            <hr class="text-white" />
                         </div>
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark">
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
+                            <h4>Indi-Athletics Fitness</h4>
+                            <p>Advanced Athletic Fitness Programs &amp; Guides for Individuals.</p>
+                            <hr class="text-white" />
+                        </div>
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
                             <h4>Team-Based Athletics</h4>
                             <p>Athletic Fitness Programs for Teams in Sports.</p>
+                            <hr class="text-white" />
                         </div>
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark">
-                            <h4>Indi-Home and Gym</h4>
-                            <p>Home and Gym Fitness Programs for Individuals</p>
-                        </div>
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark">
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
                             <h4>Diet Menu</h4>
                             <p>Healthy Eating Guide</p>
+                            <hr class="text-white" />
                         </div>
                     </div>
                 </div>
                 <div id="TabStore" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
-                    <h1><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Store
+                    <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Store
                     </h1>
                     <hr class="text-white" />
                     • Sale of Activity Trackers and Smart Watches (wearables) • Sale of Fitness Equipment (weights, weight
@@ -1926,75 +3010,696 @@ function getAllTrainers()
                     treadmills, scales, etc.) • Sale of Supplements and Vitamins • Sale of Membership Subscriptions (3 Month, 6
                     Month, and Annual)
 
-                    <h5 class="fs-1 fw-bold"><span class="material-icons material-icons-round"> devices_other </span> Activity
-                        Trackers and Smart Watches (wearables)</h5>
-                    <img src="../media/assets/smartwatches/Watch Banner.png" alt="" class="img-fluid">
+                    <img src="../media/assets/smartwatches/Watch Banner.png" alt="" class="img-fluid w-100 my-4 shadow" style="border-radius: 25px;">
 
-                    <h5 class="fs-1 fw-bold"><span class="material-icons material-icons-round"> fitness_center </span> Fitness
-                        Equipment (weights, weight benches, treadmills, scales, etc.)</h5>
-
-                    <h5 class="fs-1 fw-bold"><span class="material-icons material-icons-round"> medication </span> Supplements and
-                        Vitamins</h5>
-
-                    <h5 class="fs-1 fw-bold"><span class="material-icons material-icons-round"> verified_user </span> Membership
-                    </h5>
-                    <div class="card-group">
-                        <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
-                            <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Basic Starter - 3 Month</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                                    content.
-                                    This content is a little bit longer.</p>
+                    <!-- Store Items Container -->
+                    <div class="p-4" style="background-color: #343434; border-radius: 25px;">
+                        <h5 class="fs-1 fw-bold text-center mb-4">
+                            Browse our range of smart watches and activity trackers, weight-lifting and exercise equipment, fitness accessories, apparel, and more!...
+                        </h5>
+                        <p class="text-center">Need some stuff for your fitness journey, we have you coverd. Browse our selection of products and get them delivered to your door for free. It is in your benefit to become a Member of the Onefit Community today because all registered users and Premium Mmembers get Loyalty Discounts on every purchase. Go ahead and Register today, or better yet, become a Member to reap greater fitness rewards.</p>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="d-grid gap-2">
+                                    <button class="onefit-buttons-style-dark p-4 mb-4" type="button" data-bs-toggle="collapse" data-bs-target="#store-items-nav-menu" aria-expanded="true" aria-controls="store-items-nav-menu">
+                                        <div class="d-grid gap-2">
+                                            <span class="material-icons material-icons-round"> menu </span>
+                                            <p style="font-size: 10px;">Store Items</p>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="collapse show w3-animate-bottom" id="store-items-nav-menu">
+                                    <div class="nav flex-column nav-pills" id="v-pills-store-Equipment-tab" role="tablist" aria-orientation="vertical">
+                                        <button class="nav-link active" id="v-pills-social-store-wearables-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-wearables" type="button" role="tab" aria-controls="v-pills-social-store-wearables" aria-selected="true">
+                                            <span class="material-icons material-icons-outlined">watch</span>
+                                            <p>Wearables</p>
+                                        </button>
+                                        <button class="nav-link" id="v-pills-social-store-weights-bumbells-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-weights-bumbells" type="button" role="tab" aria-controls="v-pills-social-store-weights-bumbells" aria-selected="false">
+                                            <div class="d-grid gap-2">
+                                                <span class="material-icons material-icons-round">fitness_center</span>
+                                                <p style="font-size: 10px;">Weights &amp; Dumbells</p>
+                                            </div>
+                                        </button>
+                                        <button class="nav-link" id="v-pills-social-store-equipment-exercisemachines-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-equipment-exercisemachines" type="button" role="tab" aria-controls="v-pills-social-store-equipment-exercisemachines" aria-selected="false">
+                                            <div class="d-grid gap-2">
+                                                <span class="material-icons material-icons-round">monitor_weight</span>
+                                                <p style="font-size: 10px;">Exercise Machines</p>
+                                            </div>
+                                        </button>
+                                        <button class="nav-link" id="v-pills-social-store-fitness-accessories-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-fitness-accessories" type="button" role="tab" aria-controls="v-pills-social-store-fitness-accessories" aria-selected="false">
+                                            <div class="d-grid gap-2">
+                                                <span class="material-icons material-icons-round">backpack</span>
+                                                <p style="font-size: 10px;">Fitness Accessories</p>
+                                            </div>
+                                        </button>
+                                        <button class="nav-link" id="v-pills-social-store-apparel-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-apparel" type="button" role="tab" aria-controls="v-pills-social-store-apparel" aria-selected="false">
+                                            <div class="d-grid gap-2">
+                                                <span class="material-icons material-icons-round">checkroom</span>
+                                                <p style="font-size: 10px;">Apparel</p>
+                                            </div>
+                                        </button>
+                                        <button class="nav-link" id="v-pills-social-store-nutrition-supplements-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-nutrition-supplements" type="button" role="tab" aria-controls="v-pills-social-store-nutrition-supplements" aria-selected="false">
+                                            <div class="d-grid gap-2">
+                                                <span class="material-icons material-icons-round">medication</span>
+                                                <p style="font-size: 10px;">Nutrition &amp; Supplements</p>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
-                        <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
-                            <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Onefit.Training</h5>
-                                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
-                        <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
-                            <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Team Athletics - Annual</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                                    content.
-                                    This card has even longer content than the first to show that equal height action.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
+                            <div class="col-md-9">
+                                <div class="tab-content" id="v-pills-tabContent">
+                                    <div class="tab-pane fade show active w3-animate-right" id="v-pills-social-store-wearables" role="tabpanel" aria-labelledby="v-pills-social-store-wearables-tab">
+                                        <h5 class="fs-1 fw-bold text-center rounded-pill p-4 shadow">Smart Watches &amp; Activity Trackers</h5>
+                                        <hr>
+                                        <div class="text-center my-4" style="padding: 100px 10px;">
+                                            <small class="text-muted">No items to display. Check back soon.</small>
+                                        </div>
+                                        <!-- Smart watch Card Grid -->
+                                        <div class="container">
+                                            <div class="grid-container" id="store-smart-watch-grid-container">
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">Aiwa Smart Band ASB-40</h5>
+                                                        <h5 class="card-title">R149</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets//smartwatches/Apple Watch Series 3 GPS 38mm Silver Aluminium Case - White Sport Band R4400.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">Apple Watch Series 3 GPS 38mm Silver Aluminium Case - White Sport Band</h5>
+                                                        <h5 class="card-title">R4400</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/apple-watch-series-3-receives-a-massive-discount-530399-2.jpg" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">Apple Watch Series 3</h5>
+                                                        <h5 class="card-title">R4500</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/Astrum Wireless Bluetooth IP68 Sports Smart Watch - M2 Black R639.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">Astrum Wireless Bluetooth IP68 Sports Smart Watch - M2 Black</h5>
+                                                        <h5 class="card-title">R639</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/FITBIT ALTA HR LARGE BLUE_GREY FITNESS TRACKER R24999.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">fitbit Alta HR Large Blue / Grey Fitness Tracker</h5>
+                                                        <h5 class="card-title">R2499</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/Fitbit Charge 4 Activity Tracker R2900.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">Fitbit Charge 4 Activity Tracker</h5>
+                                                        <h5 class="card-title">R2900</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/fitbit-versa2-3qtr-black.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">fitbit Versa 2 3QTR Black</h5>
+                                                        <h5 class="card-title">R1999</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/FocusFit Pro - X3C IP68 Smartwatch and Fitness Tracker R798.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">FocusFit Pro - X3C IP68 Smartwatch and Fitness Tracker</h5>
+                                                        <h5 class="card-title">R798</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/FocusFit Pro-T500 Smartwatch and Fitness Tracker R348.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">FocusFit Pro-T500 Smartwatch and Fitness Tracker</h5>
+                                                        <h5 class="card-title">R348</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/G30 smartwatch-heartrate monitor-bluetooth call-blood pressure (black) R799.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">G30 smartwatch-heartrate monitor-bluetooth call-blood pressure (black)</h5>
+                                                        <h5 class="card-title">R799</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/Genius F2 Activity Smart Watch R579.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">Genius F2 Activity Smart Watch</h5>
+                                                        <h5 class="card-title">R579</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/HUAWEI WATCH GT 2e Black R2899.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">HUAWEI WATCH GT 2e Black</h5>
+                                                        <h5 class="card-title">R2899</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/Series 7 Smart Watch Black R549.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">Series 7 Smart Watch Black</h5>
+                                                        <h5 class="card-title">R549</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/SM-R500NZKABTU_samsung_watch_01.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">SM-R500NZKABTU Samsung Watch</h5>
+                                                        <h5 class="card-title">R2990</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/Tempo Pulse 2.0 Black Fitness Watch R999.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">Tempo Pulse 2.0 Black Fitness Watch</h5>
+                                                        <h5 class="card-title">R999</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/smartwatches/Xiaomi - Mi Smart Band 4 Android & iOS Fitness Watch - Black R189.png" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">Xiaomi - Mi Smart Band 4 Android & iOS Fitness Watch - Black</h5>
+                                                        <h5 class="card-title">R189</h5>
+                                                        <p class="card-text">Watch Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Watch Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                            <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- ./ Smart watch Card Grid -->
+                                    </div>
+                                    <div class="tab-pane fade show w3-animate-right" id="v-pills-social-store-weights-bumbells" role="tabpanel" aria-labelledby="v-pills-social-store-weights-bumbells-tab">
+                                        <h5 class="fs-1 fw-bold text-center rounded-pill p-4 shadow">Weights &amp; Dumbells</h5>
+                                        <hr>
+                                        <div class="text-center my-4" style="padding: 100px 10px;">
+                                            <small class="text-muted">No items to display. Check back soon.</small>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade show w3-animate-right" id="v-pills-social-store-equipment-exercisemachines" role="tabpanel" aria-labelledby="v-pills-social-store-equipment-exercisemachines-tab">
+                                        <h5 class="fs-1 fw-bold text-center rounded-pill p-4 shadow">Exercise Machines</h5>
+                                        <hr>
+                                        <div class="text-center my-4" style="padding: 100px 10px;">
+                                            <small class="text-muted">No items to display. Check back soon.</small>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade show w3-animate-right" id="v-pills-social-store-fitness-accessories" role="tabpanel" aria-labelledby="v-pills-social-store-fitness-accessories-tab">
+                                        <h5 class="fs-1 fw-bold text-center rounded-pill p-4 shadow">Fitness Accessories</h5>
+                                        <hr>
+                                        <div class="text-center my-4" style="padding: 100px 10px;">
+                                            <small class="text-muted">No items to display. Check back soon.</small>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade show w3-animate-right" id="v-pills-social-store-apparel" role="tabpanel" aria-labelledby="v-pills-social-store-apparel-tab">
+                                        <h5 class="fs-1 fw-bold text-center rounded-pill p-4 shadow">Apparel</h5>
+                                        <hr>
+                                        <div class="text-center my-4" style="padding: 100px 10px;">
+                                            <small class="text-muted">No items to display. Check back soon.</small>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade show w3-animate-right" id="v-pills-social-store-nutrition-supplements" role="tabpanel" aria-labelledby="v-pills-social-store-nutrition-supplements-tab">
+                                        <h5 class="fs-1 fw-bold text-center rounded-pill p-4 shadow">Nutrition &amp; Supplements</h5>
+                                        <hr>
+                                        <div class="text-center my-4" style="padding: 100px 10px;">
+                                            <small class="text-muted">No items to display. Check back soon.</small>
+                                        </div>
+                                        <!-- Meds and Supplements Card Grid -->
+                                        <h5 class="fs-1 fw-bold"><span class="material-icons material-icons-round"> medication </span> Supplements and Vitamins</h5>
+                                        <div class="card-group">
+                                            <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                                                <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <h5 class="card-title fs-4">Supplement 1</h5>
+                                                    <h5 class="card-title">Supplement Price</h5>
+                                                    <p class="card-text">Supplement Description.</p>
+                                                    <hr>
+                                                    <p class="card-text">Supplement Features</p>
+                                                    <ol class="list-group list-group-numbered">
+                                                        <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                                        <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                                        <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                                        <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                                        <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                                    </ol>
+                                                </div>
+                                                <div class="card-footer d-grid">
+                                                    <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                        Add to Cart
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Meds and Supplements Card Grid -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- ./ Store Items Container -->
+
+                    <!-- Membership Sales Card Grid -->
+                    <h5 class="fs-1 fw-bold text-center my-4"><span class="material-icons material-icons-round"> verified_user </span> Membership </h5>
+                    <div class="card-groupz grid-container">
+                        <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                            <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Community Fitness - Free</h5>
+                                <p class="card-text">The Community Fitness account offers Trainees with access to the Onefit Community Content and Group Training Programs.
+                                    Sign up today to get access to over 100 curated fitness prograns and tailored suggestions, including fitness and wellness tracking features.</p>
+
+                                <ol class="list-group list-group-numbered">
+                                    <li class="list-group-item border-0 bg-transparent text-white">Community Fitness Programs and Resources</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Community Live Streams</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Group-Training Community Streams</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                </ol>
+                            </div>
+                            <div class="card-footer d-grid">
+                                <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                    Free
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                            <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Indi.Starter Training (Basic) - 3 Months</h5>
+                                <p class="card-text">The Indi.Starter account offers Trainees access to Curated Premium Fitness Programs from Level-1 to Level-3 of our
+                                    Catalogue as well as access to Personal Trainer Support services to make transitioning into Fitness Process much easier.</p>
+
+                                <ol class="list-group list-group-numbered">
+                                    <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1 to Level-2 Fitness Programs</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and Private 1-</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer Support</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                </ol>
+                            </div>
+                            <div class="card-footer d-grid">
+                                <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                    R1800 (3 Months)
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                            <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Indi.Pro Training (Pro) - 12 Months</h5>
+                                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+
+                                <ol class="list-group list-group-numbered">
+                                    <li class="list-group-item border-0 bg-transparent text-white">Community Fitness Programs</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Community Live Streams</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Group-Training Community Streams</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Weekly</li>
+                                </ol>
+                            </div>
+                            <div class="card-footer d-grid">
+                                <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                    R5200 (12 Months)
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                            <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Team.Pro Training (Pro) - Contact Sales</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                    content.
+                                    This card has even longer content than the first to show that equal height action.</p>
+
+                                <ol class="list-group list-group-numbered">
+                                    <li class="list-group-item border-0 bg-transparent text-white">Community Fitness Programs</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Community Live Streams</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Group-Training Community Streams</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                                    <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                                </ol>
+                            </div>
+                            <div class="card-footer d-grid">
+                                <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                    Contact Sales
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Membership Sales Card Grid -->
                 </div>
-                <div id="TabSocial" class="shadow w3-container w3-animate-right content-tab p-4" style="display: block">
-                    <h1><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Social
+                <div id="TabSocial" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
+                    <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Social
                     </h1>
                     <hr class="text-white" />
                     • Community Status Update Feed • Shared Resources Feed • Social Chat Messenger • Public Achievements • Public
                     Events Lineup (Community live stream) • Community Rewards Program
 
+                    <!-- User Status Bar -->
+                    <div class="horizontal-scroll py-4 no-scroller shadow">
+                        <div class="horizontal-scroll-card p-4 m-1 shadow">
+                            <h5>Status 1</h5>
+                        </div>
+                        <div class="horizontal-scroll-card p-4 m-1 shadow">
+                            <h5>Status 2</h5>
+                        </div>
+                        <div class="horizontal-scroll-card p-4 m-1 shadow">
+                            <h5>Status 3</h5>
+                        </div>
+                    </div>
+                    <!-- ./ User Status Bar -->
+
+                    <!-- Post new update -->
+                    <div class="container" id="social-post-update-container">
+                        <div class="row align-items-center collapsez" id="tab-nav-social-quickpostz">
+                            <div class="col-sm d-grid gap-2 py-4 px-0">
+                                <!-- Quick Post to Social -->
+                                <div class="social-quick-post d-grid">
+                                    <textarea name="" class="w-100 quick-post-input" id="" cols="30" rows="10" placeholder="Share an update with the Community.">Share an update with the Community.</textarea>
+                                </div>
+                                <!-- ./ Quick Post to Social -->
+                            </div>
+                            <div class="col-md-4 d-grid gap-2">
+                                <div class="row text-center">
+                                    <div class="col-sm px-0">
+                                        <div class="d-grid">
+                                            <button type="button" class="onefit-buttons-style-light p-2 m-1">
+                                                <span class="material-icons material-icons-round" style="font-size: 18px !important">
+                                                    attach_file </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm px-0">
+                                        <div class="d-grid">
+                                            <button type="button" class="onefit-buttons-style-light p-2 m-1">
+                                                <span class="material-icons material-icons-round" style="font-size: 18px !important">
+                                                    perm_media </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm px-0">
+                                        <div class="d-grid">
+                                            <button type="button" class="onefit-buttons-style-light p-2 m-1">
+                                                <span class="material-icons material-icons-round" style="font-size: 18px !important"> link
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="onefit-buttons-style-light p-4">
+                                    <i class="fas fa-paper-plane" style="font-size: 38px !important"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./ Post new update -->
+
                     <!-- Horizontal Tab Selection visible on screens smaller than lg and is fixed to bottom of viewport -->
                     <div class="navbar fixed-bottom navbar-style pb-0 mb-0 d-lg-none">
-                        <div class="text-end w-100" style="margin-top: -85px">
-                            <button class="py-2 px-4 mx-4 shadow onefit-buttons-style-light" type="button" data-bs-toggle="collapse" data-bs-target="#social-collapse-bottom-nav" aria-expanded="false" aria-controls="social-collapse-bottom-nav">
+                        <div class="text-end w-100 align-items-center" style="margin-top: -100px">
+                            <!-- toggle H-Menu Button -->
+                            <button class="py-2 px-4 ms-0 me-4 shadow onefit-buttons-style-dark comfortaa-font" id="social-toggle-bottom-nav" type="button" data-bs-toggle="collapse" data-bs-target="#social-collapse-bottom-nav" aria-expanded="false" aria-controls="social-collapse-bottom-nav">
                                 <!--style="background-color: #e88a04; color: #343434; border: 0; height: 60px; width: 60px"-->
-                                <span class="material-icons material-icons-round" id="social-toggle-bottom-nav" style="font-size: 24px !important;">
-                                    style
-                                </span>
+                                <div class="d-grid">
+                                    <span class="material-icons material-icons-round" style="font-size: 24px !important;">
+                                        style
+                                    </span>
+                                    <p style="font-size: 10px;">Feeds</p>
+                                </div>
                             </button>
+                            <!-- ./ toggle H-Menu Button -->
+
+                            <!-- Create button -->
+                            <button class="py-2 px-4 ms-0 me-4 shadow onefit-buttons-style-dark comfortaa-font" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCreateCommandList" aria-expanded="false" aria-controls="collapseCreateCommandList">
+                                <div class="d-grid">
+                                    <span class="material-icons material-icons-round" style="font-size: 24px !important;">
+                                        brush
+                                    </span>
+                                    <p style="font-size: 10px;">Create</p>
+                                </div>
+                            </button>
+
+                            <div class="collapse p-4 w3-animate-bottom" id="collapseCreateCommandList">
+                                <h3 class="text-center">Create Content</h3>
+                                <hr class="bg-white">
+                                <ul class="list-groupz list-group-flush list-group border-0 text-white fw-bold text-center comfortaa-font" style="overflow: initial !important;">
+                                    <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Social Update</button></li>
+                                    <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Community Resource</button></li>
+                                    <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Share Media</button></li>
+                                    <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Chat Message</button></li>
+                                </ul>
+                            </div>
+                            <!-- ./ Create button -->
                         </div>
-                        <div class="collapse" id="social-collapse-bottom-nav">
-                            <div class="container horizontal-scroll no-scroller">
-                                <div class="horizontal-scroll-card -nav">
+                        <div class="collapse w-100 p-4 w3-animate-bottom" id="social-collapse-bottom-nav">
+                            <h3 class="text-center">Social Feeds</h3>
+                            <hr class="bg-white">
+                            <div class="containerz horizontal-scrollz no-scroller">
+                                <div class="horizontal-scroll-cardz -nav">
                                     <ul class="nav nav-pills mb-3 align-items-center justify-content-center w-100" id="pills-tab" role="tablist">
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link active" id="v-pills-social-commfeed-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-commfeed" type="button" role="tab" aria-controls="v-pills-social-commfeed" aria-selected="true">
@@ -2156,72 +3861,90 @@ function getAllTrainers()
                         <div class="col-md-8">
                             <!-- .Social Main Content Tab Container -->
                             <div class="tab-content" id="v-pills-tabContent">
-                                <div class="tab-pane fade show active" id="v-pills-social-commfeed" role="tabpanel" aria-labelledby="v-pills-social-commfeed-tab" style="max-height: 100vh !important; overflow-y: auto">
-                                    <h5 class="fs-1">Community Updates</h5>
-                                    <div id="Community-Posts" style="max-height: 100vh; overflow-y auto; overflow-x: hidden;">
-                                        <?php echo $outputCommunityUpdates; ?>
+                                <div class="tab-pane show active w3-animate-right" id="v-pills-social-commfeed" role="tabpanel" aria-labelledby="v-pills-social-commfeed-tab">
+                                    <!-- style="max-height: 100vh !important; overflow-y: auto"-->
+                                    <h5 class="fs-1 text-center rounded-pill p-4 shadow">Community Updates</h5>
+                                    <div class="shadow">
+                                        <div class="no-scroller px-2" id="Community-Posts" style="max-height: 100vh; overflow-y: auto; overflow-x: hidden; box-shadow: inset 0px 0px 40px 0px rgba(232, 138, 4, 1); border-radius: 25px">
+                                            <!--rgba(232, 138, 4, 1)-->
+                                            <?php echo $outputCommunityUpdates; ?>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="v-pills-social-resfeed" role="tabpanel" aria-labelledby="v-pills-social-resfeed-tab">
-                                    <h5 class="fs-1">Community Resources</h5>
-                                    <div id="Community-Resources" style="max-height: 100vh; overflow-y auto; overflow-x: hidden;">
+                                <div class="tab-pane w3-animate-right" id="v-pills-social-resfeed" role="tabpanel" aria-labelledby="v-pills-social-resfeed-tab">
+                                    <h5 class="fs-1 text-center rounded-pill p-4 shadow">Community Resources</h5>
+                                    <div id="Community-Resources" style="max-height: 100vh; overflow-y: auto; overflow-x: hidden;">
                                         <?php echo $outputCommunityResources; ?>
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="v-pills-social-groups" role="tabpanel" aria-labelledby="v-pills-social-groups-tab">
-                                    <h5 class="fs-1">Groups &amp; Clubs</h5>
-                                    <div id="Community-Groups" style="max-height: 100vh; overflow-y auto; overflow-x: hidden;">
+                                <div class="tab-pane w3-animate-right" id="v-pills-social-groups" role="tabpanel" aria-labelledby="v-pills-social-groups-tab">
+                                    <h5 class="fs-1 text-center rounded-pill p-4 shadow">Groups &amp; Clubs</h5>
+                                    <div id="Community-Groups" style="max-height: 100vh; overflow-y: auto; overflow-x: hidden;">
                                         <?php echo $outputCommunityGroups; ?>
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="v-pills-social-pubevents" role="tabpanel" aria-labelledby="v-pills-social-pubevents-tab">
-                                    <h5 class="fs-1">Public Events Lineup (Community Live Stream)</h5>
+                                <div class="tab-pane w3-animate-right" id="v-pills-social-pubevents" role="tabpanel" aria-labelledby="v-pills-social-pubevents-tab">
+                                    <h5 class="fs-1 text-center rounded-pill p-4 shadow">Public Events Lineup (Community Live Stream)</h5>
+                                    <div class="text-center my-4" style="padding: 100px 10px;">
+                                        <small class="text-muted">No items to display. Check back soon.</small>
+                                    </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="v-pills-social-pubachieve" role="tabpanel" aria-labelledby="v-pills-social-pubachieve-tab">
-                                    <h5 class="fs-1">Public Achievements Feed</h5>
+                                <div class="tab-pane w3-animate-right" id="v-pills-social-pubachieve" role="tabpanel" aria-labelledby="v-pills-social-pubachieve-tab">
+                                    <h5 class="fs-1 text-center rounded-pill p-4 shadow">Public Achievements Feed</h5>
+                                    <div class="text-center my-4" style="padding: 100px 10px;">
+                                        <small class="text-muted">No items to display. Check back soon.</small>
+                                    </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="v-pills-social-followers" role="tabpanel" aria-labelledby="v-pills-social-followers-tab">
-                                    <h5 class="fs-1">Followers</h5>
-                                    <div id="Community-Followers" style="max-height: 100vh; overflow-y auto; overflow-x: hidden;">
+                                <div class="tab-pane w3-animate-right" id="v-pills-social-followers" role="tabpanel" aria-labelledby="v-pills-social-followers-tab">
+                                    <h5 class="fs-1 text-center rounded-pill p-4 shadow">Followers</h5>
+                                    <div id="Community-Followers" style="max-height: 100vh; overflow-y: auto; overflow-x: hidden;">
                                         <?php echo $discoveryAllUsersList; ?>
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="v-pills-social-following" role="tabpanel" aria-labelledby="v-pills-social-following-tab">
-                                    <h5 class="fs-1">Following</h5>
-                                    <div id="Community-Following" style="max-height: 100vh; overflow-y auto; overflow-x: hidden;">
+                                <div class="tab-pane w3-animate-right" id="v-pills-social-following" role="tabpanel" aria-labelledby="v-pills-social-following-tab">
+                                    <h5 class="fs-1 text-center rounded-pill p-4 shadow">Following</h5>
+                                    <div id="Community-Following" style="max-height: 100vh; overflow-y: auto; overflow-x: hidden;">
                                         <?php echo $discoveryAllUsersList; ?>
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="v-pills-social-commrewards" role="tabpanel" aria-labelledby="v-pills-social-commrewards-tab">
-                                    <h5 class="fs-1">Community Rewards Program</h5>
+                                <div class="tab-pane w3-animate-right" id="v-pills-social-commrewards" role="tabpanel" aria-labelledby="v-pills-social-commrewards-tab">
+                                    <h5 class="fs-1 text-center rounded-pill p-4 shadow">Community Rewards Program</h5>
                                 </div>
-
                             </div>
                             <!-- ./ .Social Main Content Tab Container -->
                         </div>
                         <div class="col-md">
                             <h5>Trending</h5>
+                            <div class="text-center my-4" style="padding: 100px 10px;">
+                                <small class="text-muted">No items to display. Check back soon.</small>
+                            </div>
+                            <hr class="text-white">
+
                             <h5>Who to follow</h5>
+                            <div class="text-center my-4" style="padding: 100px 10px;">
+                                <small class="text-muted">No items to display. Check back soon.</small>
+                            </div>
+                            <hr class="text-white">
                         </div>
                     </div>
                 </div>
                 <div id="TabData" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
-                    <h1>Fitness Insights</h1>
-                    <p>Data Centre</p>
+                    <h1 class="text-center">Fitness Insights</h1>
+                    <p class="text-center my-4">Data Centre</p>
                     <hr class="text-white" style="height: 5px;">
 
                     <!-- Timelines and Calender -->
-                    <h5 class="mt-4 fs-1">Fitness Timeline</h5>
+                    <h5 class="mt-4 fs-1 text-center">Fitness Timeline</h5>
                     <!-- Activity Calender -->
-                    <div id="activities-calender" hidden></div>
-                    <img src="../media/assets/12month-calendar.png" alt="calender placeholder" class="img-fluid mb-4">
+                    <div id="activities-calender"></div>
+                    <img hidden src="../media/assets/12month-calendar.png" alt="calender placeholder" class="img-fluid mb-4">
                     <!-- ./ Activity Calender -->
                     <!-- Timeline Chart -->
                     <div id="timeline" class="w-100 my-4" style="min-height: 200px; overflow-x: auto;"></div>
@@ -2230,7 +3953,7 @@ function getAllTrainers()
 
                     <!-- User Smart Device Activity Tracking -->
                     <hr class="text-white" style="height: 5px;">
-                    <h5 class="mt-4 fs-1">Activity Tracking</h5>
+                    <h5 class="mt-4 fs-1 text-center">Activity Tracking</h5>
                     <div class="container p-4 shadow-lg d-inline-block border-start border-end" style="border-radius: 25px; border-color: #e88a04 !important; background-color: #343434">
                         <div class="row align-items-center text-center comfortaa-font">
                             <div class="col-sm py-2 d-inline">
@@ -2245,7 +3968,7 @@ function getAllTrainers()
                                 Temp
                             </div>
                             <div class="col-sm py-2 d-inline">
-                                <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid my-pulse-animation" />
+                                <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid my-pulse-animation-tahiti" />
                             </div>
                             <div class="col-sm py-2 d-inline">
                                 <!--<i class="fas fa-bolt"></i>-->
@@ -2263,42 +3986,87 @@ function getAllTrainers()
                         <!-- detailed metric list -->
                         <ul class="list-group list-group-flush text-white border-0">
                             <li class="list-group-item bg-transparent text-white" style="border-color: #e88a04;">
-                                <div class="row">
-                                    <div class="col-4">Metric 1</div>
-                                    <div class="col">
-                                        Chart
+                                <div class="row align-items-center">
+                                    <div class="col-lg-4 text-center">
+                                        <h1 class="text-truncate">Heart Rate Monitor</h1>
+                                        <div class="d-grid gap-2 mt-4">
+                                            <span class="material-icons material-icons-round">
+                                                favorite
+                                            </span>
+                                            <h1>65<span style="font-size: 10px;" class="align-top">BPM</span></h1>
+                                            <p class="text-muted fw-bold">75 BPM, 5h ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg py-4">
+                                        <div id="heart_rate_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div>
                                     </div>
                                 </div>
                             </li>
                             <li class="list-group-item bg-transparent text-white" style="border-color: #e88a04;">
-                                <div class="row">
-                                    <div class="col-4">Metric 2</div>
-                                    <div class="col">
-                                        Chart
+                                <div class="row align-items-center">
+                                    <div class="col-lg-4 text-center">
+                                        <h1 class="text-truncate">Body Temp Monitor</h1>
+                                        <div class="d-grid gap-2 mt-4">
+                                            <span class="material-icons material-icons-round">
+                                                device_thermostat
+                                            </span>
+                                            <h1>36.9<span style="font-size: 10px;" class="align-top">&deg;C</span></h1>
+                                            <p class="text-muted fw-bold">37.2&deg;C, 10m ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg py-4">
+                                        <div id="body_temp_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div>
                                     </div>
                                 </div>
                             </li>
                             <li class="list-group-item bg-transparent text-white" style="border-color: #e88a04;">
-                                <div class="row">
-                                    <div class="col-4">Metric 3</div>
-                                    <div class="col">
-                                        Chart
+                                <div class="row align-items-center">
+                                    <div class="col-lg-4 text-center">
+                                        <h1 class="text-truncate">Avg. Speed</h1>
+                                        <div class="d-grid gap-2 mt-4">
+                                            <span class="material-icons material-icons-round">
+                                                bolt
+                                            </span>
+                                            <h1>10<span style="font-size: 10px;" class="align-top">m/s</span></h1>
+                                            <p class="text-muted fw-bold">Highest Marked Speed: 15m/s</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg py-4">
+                                        <div id="speed_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div>
                                     </div>
                                 </div>
                             </li>
                             <li class="list-group-item bg-transparent text-white" style="border-color: #e88a04;">
-                                <div class="row">
-                                    <div class="col-4">Metric 4</div>
-                                    <div class="col">
-                                        Chart
+                                <div class="row align-items-center">
+                                    <div class="col-lg-4 text-center">
+                                        <h1 class="text-truncate">Step Counter</h1>
+                                        <div class="d-grid gap-2 mt-4">
+                                            <span class="material-icons material-icons-round">
+                                                directions_walk
+                                            </span>
+                                            <h1>1896<span style="font-size: 10px;" class="align-top">Steps</span></h1>
+                                            <p class="text-muted fw-bold">213 Steps remaining (Achievement)</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg py-4">
+                                        <div id="step_counter_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div>
                                     </div>
                                 </div>
                             </li>
                             <li class="list-group-item bg-transparent text-white" style="border-color: #e88a04;">
-                                <div class="row">
-                                    <div class="col-4">Metric 5</div>
-                                    <div class="col">
-                                        Chart
+                                <div class="row align-items-center">
+                                    <div class="col-lg-4 text-center">
+                                        <h1 class="text-truncate">Avg. Weight / BMI</h1>
+                                        <div class="d-grid gap-2 mt-4">
+                                            <span class="material-icons material-icons-round">
+                                                monitor_weight
+                                            </span>
+                                            <h1>60<span style="font-size: 10px;" class="align-top">kg</span></h1>
+                                            <p class="text-muted fw-bold">75kg, 1w ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg py-4">
+                                        <div id="weight_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div>
                                     </div>
                                 </div>
                             </li>
@@ -2307,15 +4075,36 @@ function getAllTrainers()
                     </div>
                     <!-- ./ User Smart Device Activity Tracking -->
 
-                    <!-- Weekly Surveys -->
+                    <!-- Weekly Activities -->
                     <hr class="text-white" style="height: 5px;">
-                    <h5 class="mt-4 fs-1">Weekly Surveys (Start Date - End Date)</h5>
+                    <h5 class="mt-4 fs-1 text-center">Weekly Assessments</h5>
+                    <p class="fs-5 text-center"> Training Week: (<span id="weekly-survey-duration-dates">Start Date - End Date</span>)</p>
                     <div class="horizontal-scroll shadow">
                         <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Monday</h5>
+                            <h5>Sunday (dd/mm/yyyy)</h5>
                             <hr class="text-white" style="height: 5px;">
 
                             <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
@@ -2340,12 +4129,31 @@ function getAllTrainers()
                                 </li>
                             </ol>
                         </div>
-
                         <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Tuesday</h5>
+                            <h5>Monday (dd/mm/yyyy)</h5>
                             <hr class="text-white" style="height: 5px;">
 
                             <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
@@ -2370,12 +4178,31 @@ function getAllTrainers()
                                 </li>
                             </ol>
                         </div>
-
                         <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Wednesday</h5>
+                            <h5>Tuesday (dd/mm/yyyy)</h5>
                             <hr class="text-white" style="height: 5px;">
 
                             <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
@@ -2400,12 +4227,31 @@ function getAllTrainers()
                                 </li>
                             </ol>
                         </div>
-
                         <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Thursday</h5>
+                            <h5>Wednesday (dd/mm/yyyy)</h5>
                             <hr class="text-white" style="height: 5px;">
 
                             <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
@@ -2430,12 +4276,31 @@ function getAllTrainers()
                                 </li>
                             </ol>
                         </div>
-
                         <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Friday</h5>
+                            <h5>Thursday (dd/mm/yyyy)</h5>
                             <hr class="text-white" style="height: 5px;">
 
                             <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
@@ -2460,12 +4325,31 @@ function getAllTrainers()
                                 </li>
                             </ol>
                         </div>
-
                         <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Saturday</h5>
+                            <h5>Friday (dd/mm/yyyy)</h5>
                             <hr class="text-white" style="height: 5px;">
 
                             <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
@@ -2490,12 +4374,31 @@ function getAllTrainers()
                                 </li>
                             </ol>
                         </div>
-
                         <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Sunday</h5>
+                            <h5>Saturday (dd/mm/yyyy)</h5>
                             <hr class="text-white" style="height: 5px;">
 
                             <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
@@ -2521,249 +4424,861 @@ function getAllTrainers()
                             </ol>
                         </div>
                     </div>
-                    <!-- ./ Weekly Surveys -->
+                    <!-- ./ Weekly Activities -->
 
-                    <!-- User Wellness Tracking Log -->
-                    <hr class="text-white" style="height: 5px;">
-                    <h5 class="mt-4 fs-1">Wellness Tracking</h5>
-                    <p class="fs-3">Wellness Rating: 90%</p>
-                    <div class="row my-4">
-                        <div class="col-md-4">
-                            <h5>Survey log</h5>
+                    <!-- Community Surveys -->
+                    <div>
+                        <!-- User Wellness Tracking Log -->
+                        <hr class="text-white" style="height: 5px;">
+                        <p class="text-center fw-bold">One<span style="color: #e88a04">fit.</span>Social <span class="material-icons material-icons-two-tone">hub</span></p>
+
+                        <div class="fs-5 fw-bold text-center mb-4 rounded-pill p-4 bg-white" style="color: #e88a04">
+                            <i class="fab fa-google" style="font-size: 40px!important" aria-hidden="true"></i>
+                            <hr>
+                            <span class="align-center">Google Community Surveys</span>
                         </div>
-                        <div class="col-md">
-                            <p>Survey Charts / Results</p>
+
+                        <h5 class="mt-4 fs-1 text-center mb-4">Wellness Tracking</h5>
+                        <p class="fs-3 mt-4">Community Wellness Rating: 90%</p>
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc0sL0-Gm6J-Hy03z_F872L5nQAdigfbZArNYBhBGbB-iOqmg/viewform?embedded=true" height="3016" frameborder="0" marginheight="0" marginwidth="0" class="w-100 no-scroller tunnel-bg-container-inverse" style="max-height: 100vh!important; border-radius: 25px;">Loading…</iframe>
+                        <div class="row my-4">
+                            <div class="col-md-4">
+                                <h5>Survey log</h5>
+                            </div>
+                            <div class="col-md">
+                                <p>Survey Charts / Results</p>
+                            </div>
                         </div>
+                        <!-- ./ User Wellness Tracking Log -->
+
+                        <!-- User Load Monitoring Log -->
+                        <hr class="text-white" style="height: 5px;">
+                        <h5 class="mt-4 fs-1 text-center mb-4">Load Monitoring</h5>
+                        <p class="fs-3 mt-4">Community Load Rating: 90%</p>
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOJqnXT2LxRK9GK6DfmYObzkbu28D-qT_XzN-vUBsUyaOX0Q/viewform?embedded=true" height="1879" frameborder="0" marginheight="0" marginwidth="0" class="w-100 no-scroller tunnel-bg-container-inverse" style="max-height: 100vh!important; border-radius: 25px;">Loading…</iframe>
+                        <div class="row my-4">
+                            <div class="col-md-4">
+                                <h5>Survey log</h5>
+                            </div>
+                            <div class="col-md">
+                                <p>Survey Charts / Results</p>
+                            </div>
+                        </div>
+                        <!-- ./ User Load Monitoring Log -->
                     </div>
-                    <!-- ./ User Wellness Tracking Log -->
+                    <!-- ./ Community Surveys -->
 
-                    <!-- User Load Monitoring Log -->
+                    <!-- Indi Athletics Training Panel -->
                     <hr class="text-white" style="height: 5px;">
-                    <h5 class="mt-4 fs-1">Load Monitoring</h5>
-                    <p class="fs-3">Load Rating: 90%</p>
-                    <div class="row my-4">
-                        <div class="col-md-4">
-                            <h5>Survey log</h5>
-                        </div>
-                        <div class="col-md">
-                            <p>Survey Charts / Results</p>
-                        </div>
-                    </div>
-                    <!-- ./ User Load Monitoring Log -->
-
-                    <hr class="text-white" style="height: 5px;">
-                    <h5 class="mt-4 fs-1">Indi-Training / Indi-Athlete-Training</h5>
-
-                    <hr class="text-white" style="height: 5px;">
-                    <h5 class="nt-4 fs-1">Team Athletics Training</h5>
-                    <div id="team-athletics-container">
-                        <p class="fs-5">Training Schedule</p>
-                        <div class="training-schedule-container p-4 text-center down-top-grad-white">
-                            <h1>Training week for those who played 45+ minutes in previous match</h1>
-                            <hr class="text-white" style="height: 5px;">
-
-                            <div class="row align-items-end text-dark" id="training-schedule-chart-grid">
-                                <div class="col" id="day-1-col">
-                                    <p class="fs-3 fw-bold">Regeneration</p>
-                                    <p>RPE 1-3</p>
-                                    <div class="chart-col-bar p-2 shadow progress-bar progress-bar-stripedz bg-warningz">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Cycling / Spinning</p>
-                                            <img src="../media/assets/icons/cycling.png" alt="" class="img-fluid">
-                                        </div>
-                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Strength & Core</p>
-                                            <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
-                                        </div>
+                    <h1 class="my-4 fs-1 text-center p-4 down-top-grad-tahiti rounded-pill">Indi-Athlete Training</h1>
+                    <div class="accordion accordion-flush" id="accordionFlushIATRegiment">
+                        <div class="accordion-item p-2 my-2 shadow">
+                            <h2 class="accordion-header m-0" id="flush-headingIATOne">
+                                <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseIATOne" aria-expanded="true" aria-controls="flush-collapseIATOne">
+                                    Indi-Training (<span id="training-date-str">Date</span>)
+                                </button>
+                            </h2>
+                            <div id="flush-collapseIATOne" class="accordion-collapse collapse show w3-animate-bottom" aria-labelledby="flush-headingIATOne" data-bs-parent="#accordionFlushIATRegiment">
+                                <div class="accordion-body">
+                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Program Title</p>
+                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
+                                        Subscribe to an Indi Fitness Program to get started
                                     </div>
 
-                                    <hr class="text-white">
-                                    <p class="text-center">Day 1/-6</p>
-                                </div>
-
-                                <div class="col" id="day-1-col">
-                                    <p class="fs-3 fw-bold">Recovery</p>
-                                    <p>RPE 0</p>
-                                    <div class="chart-col-bar p-2 shadow">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Ice Bath</p>
-                                            <img src="../media/assets/icons/bath-tub.png" alt="" class="img-fluid">
-                                        </div>
-
+                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Pre-Training</p>
+                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
+                                        Subscribe to an Indi Fitness Program to get started
                                     </div>
 
-                                    <hr class="text-white">
-                                    <p class="text-center">Day 2/-5</p>
-                                </div>
-
-                                <div class="col" id="day-1-col">
-                                    <p class="fs-3 fw-bold">Longer picth / strides</p>
-                                    <p>RPE 4-6</p>
-                                    <div class="chart-col-bar p-2 shadow">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>RST</p>
-                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
-                                        </div>
-                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Tactics</p>
-                                            <img src="../media/assets/icons/thinking.png" alt="" class="img-fluid">
-                                        </div>
-                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Practice Kick-Off</p>
-                                            <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
-                                        </div>
+                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Warm-Up</p>
+                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
+                                        Subscribe to an Indi Fitness Program to get started
                                     </div>
 
-                                    <hr class="text-white">
-                                    <p class="text-center">Day 3/-4</p>
-                                </div>
-
-                                <div class="col" id="day-1-col">
-                                    <p class="fs-3 fw-bold">Strength / change of directon</p>
-                                    <p>RPE 7-10</p>
-                                    <div class="chart-col-bar p-2 shadow">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Multi-directional WU</p>
-                                            <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
-                                        </div>
-                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>SSGs</p>
-                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
-                                        </div>
-                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Strength</p>
-                                            <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
-                                        </div>
-                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Practice Kick-Off</p>
-                                            <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
-                                        </div>
+                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Mid-Training</p>
+                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
+                                        Subscribe to an Indi Fitness Program to get started
                                     </div>
 
-                                    <hr class="text-white">
-                                    <p class="text-center">Day 4/-3</p>
-                                </div>
-
-                                <div class="col" id="day-1-col">
-                                    <p class="fs-3 fw-bold">Taper</p>
-                                    <p>RPE 1-3</p>
-                                    <div class="chart-col-bar p-2 shadow">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Multi-directional WU</p>
-                                            <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
-                                        </div>
-                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Tempo runs</p>
-                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
-                                        </div>
+                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Post-Training</p>
+                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
+                                        Subscribe to an Indi Fitness Program to get started
                                     </div>
 
-                                    <hr class="text-white">
-                                    <p class="text-center">Day 5/-2</p>
-                                </div>
-                                <div class="col" id="day-1-col">
-                                    <p class="fs-3 fw-bold">Match prep</p>
-                                    <p>RPE 2-4</p>
-                                    <div class="chart-col-bar p-2 shadow">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Multi-directional WU</p>
-                                            <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
+                                    <h5>Identify Painful Areas</h5>
+                                    <p>Identification of pain on body chart - Select Areas where pain is being experienced</p>
+                                    <p>Themographic Body Chart - Trainer will enter temperature data in a capturing form.</p>
+                                    <p>Rate your Muscle Soreness according to the scale above</p>
+                                    <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" style="border-radius: 15px;" class="img-fluid mb-4 shadow">
+
+                                    <div class="row align-items-start">
+                                        <div class="col-md no-sroller" style="overflow-x:auto;">
+                                            <h5>(Front)</h5>
+                                            <img src="../media/assets/body_charts/muscle-men-body-map-front.jpg" alt="" class="img-fluidz map image-map-male-front" usemap="#image-map-male-front-indi">
+                                            <map name="image-map-male-front-indi">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Head')" target="" alt="Male-Front-Head " title="Male-Front-Head " coords="249,98,221,109,218,145,210,143,212,156,220,166,221,177,232,190,241,230,246,232,250,237,255,232,258,225,265,192,276,178,279,165,286,156,286,143,280,138,280,122,270,105" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Left')" target="" alt="Male-Front-Pectoralis-Major-Left" title="Male-Front-Pectoralis-Major-Left" coords="253,305,254,256,265,235,289,236,302,241,317,244,325,257,328,270,319,269,315,282,309,300,295,311,272,314" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Right')" target="" alt="Male-Front-Pectoralis-Major-Right" title="Male-Front-Pectoralis-Major-Right" coords="246,303,245,254,235,235,211,235,194,241,177,245,173,259,170,274,181,265,184,279,185,293,194,305,213,315,238,310" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Left')" target="" alt="Male-Front-Trapezius-Left" title="Male-Front-Trapezius-Left" coords="275,182,266,195,258,236,276,232,305,226,284,213,274,203" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Right')" target="" alt="Male-Front-Trapezius-Right" title="Male-Front-Trapezius-Right" coords="224,184,230,192,235,213,241,234,231,233,209,230,196,225,214,215,226,207" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Left')" target="" alt="Male-Front-Adominalis-Upper-Left" title="Male-Front-Adominalis-Upper-Left" coords="250,312,250,369,287,373,286,315,272,315,257,308" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Right')" target="" alt="Male-Front-Adominalis-Upper-Right" title="Male-Front-Adominalis-Upper-Right" coords="247,310,248,367,213,373,213,317,224,314" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Left')" target="" alt="Male-Front-Adominalis-Lower-Left" title="Male-Front-Adominalis-Lower-Left" coords="251,374,250,448,253,485,265,485,284,430,287,376,263,373" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Right')" target="" alt="Male-Front-Adominalis-Lower-Right" title="Male-Front-Adominalis-Lower-Right" coords="230,371,250,374,247,439,246,486,233,484,215,426,215,376" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Left')" target="" alt="Male-Front-External_Oblique-Left" title="Male-Front-External_Oblique-Left" coords="290,314,288,379,287,431,291,447,301,435,312,430,316,429,311,386,310,368,314,355,304,334,300,322" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Right')" target="" alt="Male-Front-External_Oblique-Right" title="Male-Front-External_Oblique-Right" coords="212,442,213,426,209,395,210,365,211,316,196,329,185,345,192,376,183,423,196,433,205,442" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Left')" target="" alt="Male-Front-Serratus_Anterior-Left" title="Male-Front-Serratus_Anterior-Left" coords="291,312,300,319,308,340,314,349,318,321,323,327,323,292,326,270,321,269,310,301" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Right')" target="" alt="Male-Front-Serratus_Anterior-Right" title="Male-Front-Serratus_Anterior-Right" coords="210,315,194,330,184,343,181,320,177,326,176,294,175,270,180,268,184,299,194,307" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Left')" target="" alt="Male-Front-Deltoid-Left" title="Male-Front-Deltoid-Left" coords="357,301,359,268,352,244,327,224,313,224,293,236,320,244,328,257,330,276" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Right')" target="" alt="Male-Front-Deltoid-Right" title="Male-Front-Deltoid-Right" coords="144,298,141,269,145,246,167,227,188,225,206,235,174,244,168,279" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Left')" target="" alt="Male-Front-Bicep_Long_Head-Left" title="Male-Front-Bicep_Long_Head-Left" coords="362,365,366,346,363,335,364,320,357,303,331,276,344,302,354,323" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Right')" target="" alt="Male-Front-Bicep_Long_Head-Right" title="Male-Front-Bicep_Long_Head-Right" coords="139,362,132,346,135,336,139,315,145,299,170,277,154,305,147,321,142,344" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Left')" target="" alt="Male-Front-Bicep_Short_Head-Left" title="Male-Front-Bicep_Short_Head-Left" coords="362,366,346,356,337,333,336,355,324,329,326,273,332,281,352,320,358,348" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Right')" target="" alt="Male-Front-Bicep_Short_Head-Right" title="Male-Front-Bicep_Short_Head-Right" coords="138,369,152,357,164,339,165,357,177,326,175,272,164,292,151,315,144,336" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Left')" target="" alt="Male-Front-Brachioradialis-Left" title="Male-Front-Brachioradialis-Left" coords="407,451,397,464,384,465,359,420,347,395,338,379,336,366,337,354,338,337,345,349,346,354,363,366,367,345,379,361,387,391,393,414,397,428" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Right')" target="" alt="Male-Front-Brachioradialis-Right" title="Male-Front-Brachioradialis-Right" coords="117,465,105,464,94,453,111,408,117,378,131,349,138,358,139,372,152,355,156,346,163,343,163,377,143,419,127,441" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Lef')" target="" alt="Male-Front-Hand-Left" title="Male-Front-Hand-Left" coords="384,468,397,467,408,454,449,494,441,529,432,543,419,544,401,535,384,491" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Right')" target="" alt="Male-Front-Hand-Right" title="Male-Front-Hand-Right" coords="94,455,103,465,116,469,101,536,82,543,67,541,58,526,52,491,82,462" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Left')" target="" alt="Male-Front-Sartorius-Left" title="Male-Front-Sartorius-Left" coords="310,432,308,454,305,471,299,495,287,536,278,563,273,603,273,622,285,658,276,642,272,628,269,610,266,590,268,571,268,557,279,515,285,487,292,477,298,453" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Right')" target="" alt="Male-Front-Sartorius-Right" title="Male-Front-Sartorius-Right" coords="189,434,190,447,191,459,197,480,205,513,212,536,223,569,226,599,225,625,220,641,215,655,224,643,227,616,230,603,231,577,231,546,220,511,215,496,211,483,206,475,202,453" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Left')" target="" alt="Male-Front-Abductor-Left" title="Male-Front-Abductor-Left" coords="257,502,266,488,275,471,304,437,291,473,281,498,276,522,267,558,267,575,265,588,257,559,256,534,253,520" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Right')" target="" alt="Male-Front-Abductor-Right" title="Male-Front-Abductor-Right" coords="245,510,246,523,245,538,242,557,232,597,231,543,213,482,205,469,200,447,191,432,208,453,216,461,227,475,235,493" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Left')" target="" alt="Male-Front-Vastus_Medialis-Left" title="Male-Front-Vastus_Medialis-Left" coords="287,538,279,562,274,603,273,620,279,629,289,634,297,624,294,595,286,569" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Right')" target="" alt="Male-Front-Vastus_Medialis-Right" title="Male-Front-Vastus_Medialis-Right" coords="226,631,215,639,205,630,204,610,212,582,215,554,214,545,221,568,225,599" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Left')" target="" alt="Male-Front-Vastus_Laterialis-Left" title="Male-Front-Vastus_Laterialis-Left" coords="317,482,326,501,329,537,328,572,324,594,320,608,319,628,311,626,307,611,311,595,319,576,323,538,321,509" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Right')" target="" alt="Male-Front-Vastus_Laterialis-Right" title="Male-Front-Vastus_Laterialis-Right" coords="184,480,174,503,171,536,172,572,174,592,179,607,180,621,184,626,190,619,193,608,187,593,179,566,178,524,182,497" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Left')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Left" title="Male-Front-Tensor_Fasciae_Latae-Left" coords="317,427,323,451,324,480,329,505,313,476,310,451,312,434" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Right')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Right" title="Male-Front-Tensor_Fasciae_Latae-Right" coords="183,426,188,434,189,454,185,472,173,506,177,462,178,445" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Left')" target="" alt="Male-Front-Tibialis_Anterior-Left" title="Male-Front-Tibialis_Anterior-Left" coords="316,655,317,677,320,713,320,735,309,773,308,827,303,827,306,749,307,702,308,673" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Right')" target="" alt="Male-Front-Tibialis_Anterior-Right" title="Male-Front-Tibialis_Anterior-Right" coords="182,657,179,717,179,733,184,750,190,773,191,824,197,825,194,732,191,698,190,678,189,664" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Left')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Left" title="Male-Front-Extensor_Digitorum_Longus-Left" coords="320,716,326,723,325,731,317,775,317,823,309,827,309,775,321,735" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Right')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Right" title="Male-Front-Extensor_Digitorum_Longus-Right" coords="179,720,175,723,173,734,181,773,182,803,183,820,190,825,189,773,178,731" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Left')" target="" alt="Male-Front-Peroneus_Longus-Left" title="Male-Front-Peroneus_Longus-Left" coords="318,656,325,667,329,698,327,722,321,713" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Right')" target="" alt="Male-Front-Peroneus_Longus-Right" title="Male-Front-Peroneus_Longus-Right" coords="180,655,174,667,171,702,173,727,178,717,179,690" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Left')" target="" alt="Male-Front-Gastrocnemius-Left" title="Male-Front-Gastrocnemius-Left" coords="282,676,295,702,295,737,287,749,285,760,277,736,278,703" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Right')" target="" alt="Male-Front-Gastrocnemius-Right" title="Male-Front-Gastrocnemius-Right" coords="217,673,205,697,203,738,210,745,215,761,221,737,221,703" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Left')" target="" alt="Male-Front-Soleus-Left" title="Male-Front-Soleus-Left" coords="294,826,295,740,288,750,285,761,292,789" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Right')" target="" alt="Male-Front-Soleus-Right" title="Male-Front-Soleus-Right" coords="205,825,203,741,209,747,215,764,207,794" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Left')" target="" alt="Male-Front-Patella-Left" title="Male-Front-Patella-Left" coords="301,646,17" shape="circle">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Right')" target="" alt="Male-Front-Patella-Right" title="Male-Front-Patella-Right" coords="195,645,17" shape="circle">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Left')" target="" alt="Male-Front-Tibia-Left" title="Male-Front-Tibia-Left" coords="301,826,296,825,297,700,283,676,279,654,292,663,302,665,311,662,306,675,306,719" shape="poly">
+                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Right')" target="" alt="Male-Front-Tibia-Right" title="Male-Front-Tibia-Right" coords="204,826,197,827,195,730,191,665,202,662,210,655,215,660,217,669,204,694,203,712,201,739" shape="poly">
+                                            </map>
                                         </div>
-                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Tactics</p>
-                                            <img src="../media/assets/icons/thinking.png" alt="" class="img-fluid">
+                                        <div class="col-md no-sroller" style="overflow-x:auto;">
+                                            <h5>(Back)</h5>
+                                            <img src="../media/assets/body_charts/muscle-men-body-map-back.jpg" alt="" class="img-fluidz" usemap="#image-map-male-back-indi" hiddenz>
                                         </div>
-                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Short SSGs</p>
-                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
+                                        <div class="col-md-4">
+                                            <h5>Muscles</h5>
+                                            <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
+                                                <li class="list-group-item">
+                                                    <div class="row">
+                                                        <div class="col-md">
+                                                            <p class="fs-5 fw-bold">Muscle Title</p>
+                                                        </div>
+                                                        <div class="col-md">
+                                                            <p class="fs-5 fw-bold">Pain Intensity</p>
+                                                            <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" class="img-fluid mb-4">
+                                                            <p>Rate your Muscle Soreness according to the scale above</p>
+                                                            <div class="input-group">
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity1" value="Intensity-1">
+                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity1">1</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity2" value="Intensity-2">
+                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity2">2</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity3" value="Intensity-3">
+                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity3">3</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity4" value="Intensity-4">
+                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity4">4</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity5" value="Intensity-5">
+                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity5">5</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="">
+                                                                <p class="fs-5 fw-bold">Temp Reading (&#176;C)</p>
+                                                                <input type="text" name="" id="" class="onefit-inputs-style rounded-pill shadow" placeholder="Temp Reading (&#176;C)">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-
-                                    <hr class="text-white">
-                                    <p class="text-center">Day 6/-1</p>
-                                </div>
-                                <div class="col" id="day-1-col">
-                                    <p class="fs-3 fw-bold">Match</p>
-                                    <p>RPE 7-10</p>
-                                    <div class="chart-col-bar p-2 shadow">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Pre-match WU</p>
-                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
-                                        </div>
-                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Match Kick-Off - We Play to Win!</p>
-                                            <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
-                                        </div>
-                                    </div>
-
-                                    <hr class="text-white">
-                                    <p class="text-center">Match Day</p>
                                 </div>
                             </div>
                         </div>
+                        <div class="accordion-item p-2 my-2 shadow">
+                            <h2 class="accordion-header m-0" id="flush-headingIATTwo">
+                                <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseIATTwo" aria-expanded="false" aria-controls="flush-collapseIATTwo">
+                                    Indi-Training Programs
+                                </button>
+                            </h2>
+                            <div id="flush-collapseIATTwo" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingIATTwo" data-bs-parent="#accordionFlushIATRegiment">
+                                <div class="accordion-body">
+                                    <div class="grid-container">
+                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                            <p class="fs-2 fw-bold">Warm-Up Drills</p>
+                                        </div>
 
-                        <img src="../media/assets/example.png" alt="training week for ..." class="img-fluid my-4" hidden>
+                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                            <p class="fs-2 fw-bold">Pair Drills</p>
+                                        </div>
 
-                        <p class="fs-5">Match Schedule</p>
-                        <table class="table table-dark table-striped my-4">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Match #</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Venue</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Team A vs Team B</td>
-                                    <td>Stadium 1</td>
-                                    <td>Saturday, 5 February 2022</td>
-                                    <td>13:00</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                            <p class="fs-2 fw-bold">Speed & Reaction Drills</p>
+                                        </div>
 
-                        <p class="fs-5 fw-bold">Daily Activities</p>
+                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                            <p class="fs-2 fw-bold">Dribbling Drills</p>
+                                        </div>
+
+                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                            <p class="fs-2 fw-bold">Shooting Drills</p>
+                                        </div>
+
+                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                            <p class="fs-2 fw-bold">Shooting Drills</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./ Indi Athlectics Training Panel -->
+
+                    <!-- Team Athletics Training Panel -->
+                    <hr class="text-white" style="height: 5px;">
+                    <h1 class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti my-4">Team-Athletics Training</h1>
+                    <div id="team-athletics-container mt-4">
                         <div class="accordion accordion-flush" id="accordionFlushTATRegiment">
                             <div class="accordion-item p-2 my-2 shadow">
                                 <h2 class="accordion-header m-0" id="flush-headingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                        Training Day (<span id="training-date-str">Date</span>)
+                                    <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                                        Weekly Training Schedule (<span id="weekly-training-date-duration-str">Date</span>)
                                     </button>
                                 </h2>
-                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushTATRegiment">
+                                <div id="flush-collapseOne" class="accordion-collapse collapse show w3-animate-bottom" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushTATRegiment">
                                     <div class="accordion-body">
-                                        <p class="fs-2">Program Title: Here</p>
+                                        <h5 class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">Upcoming Match Schedule</h5>
+                                        <div class="table-responsive mb-4">
+                                            <table class="table table-light table-striped my-4 shadow" style="border-radius: 25px !important; overflow: hidden;">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Match #</th>
+                                                        <th scope="col">Match Title</th>
+                                                        <th scope="col">Home Team</th>
+                                                        <th scope="col">Away Team</th>
+                                                        <th scope="col">Match Venue</th>
+                                                        <th scope="col">Match Date</th>
+                                                        <th scope="col">Start Time</th>
+                                                        <th scope="col">Standard Match Duration (Minutes)</th>
+                                                        <th scope="col">Observed Match Duration (Minutes)</th>
+                                                        <th scope="col">Match Result</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>League Friendly - Team A (Home) vs Team B (Away)</td>
+                                                        <td>Team A</td>
+                                                        <td>Team B</td>
+                                                        <td>Stadium 1</td>
+                                                        <td>Saturday, 5 February 2022</td>
+                                                        <td>13:00</td>
+                                                        <td>90</td>
+                                                        <td>94</td>
+                                                        <td>Pending</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">2</th>
+                                                        <td>League Friendly - Team A (Home) vs Team B (Away)</td>
+                                                        <td>Team A</td>
+                                                        <td>Team B</td>
+                                                        <td>Stadium 1</td>
+                                                        <td>Saturday, 5 February 2022</td>
+                                                        <td>13:00</td>
+                                                        <td>90</td>
+                                                        <td>94</td>
+                                                        <td>Pending</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">3</th>
+                                                        <td>League Friendly - Team A (Home) vs Team B (Away)</td>
+                                                        <td>Team A</td>
+                                                        <td>Team B</td>
+                                                        <td>Stadium 1</td>
+                                                        <td>Saturday, 5 February 2022</td>
+                                                        <td>13:00</td>
+                                                        <td>90</td>
+                                                        <td>94</td>
+                                                        <td>Pending</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
 
-                                        <p class="fs-5">Pre-Training</p>
-                                        <p>Warm-Up</p>
+                                        <p class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">Weekly Training Schedule</p>
+                                        <img src="../media/assets/example.png" alt="training week for ..." class="img-fluid mb-4" hidden>
+                                        <div class="training-schedule-container p-4 text-center down-top-grad-white">
+                                            <h5>Training week for those who played 45+ minutes in previous match</h5>
 
-                                        <p class="fs-5">Mid-Training</p>
-                                        <p>Activities List</p>
-
-                                        <p class="fs-5">Post-Training</p>
-                                        <p>Identification of pain on body chart - Select Areas where pain is being experienced</p>
-                                        <p>Themographic Body Chart - Trainer will enter temperature data in a capturing form.</p>
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <h5>Identify Painful Areas</h5>
-                                                <img src="../media/assets/body charts/muscle-men-bodies-is-part-body-vector-37707857.jpg" alt="" class="img-fluid">
+                                            <div class="my-4 text-center d-grid gap-2">
+                                                <button class="onefit-buttons-style-tahiti p-4 my-2" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="add-weekly-activity-btn remove-weekly-activity-btn">
+                                                    <span class="material-icons material-icons-round">
+                                                        edit_calendar
+                                                    </span>
+                                                    <p style="font-size: 10px;">Edit Weekly Schedule</p>
+                                                </button>
                                             </div>
-                                            <div class="col-md">
-                                                <h5>Muscles</h5>
+                                            <hr class="text-white" style="height: 5px;">
+
+                                            <div class="row align-items-end text-dark" id="training-schedule-chart-grid">
+                                                <div class="col" id="day-1-col">
+                                                    <p class="fs-3 fw-bold">
+                                                        Regeneration
+                                                        <!-- Edit training day title - Day 1 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-1')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                    </p>
+                                                    <p>
+                                                        RPE 1-3
+                                                        <!-- Edit RPE - Day 1 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-1')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit RPE - Day 1 -->
+                                                    </p>
+                                                    <div class="chart-col-bar p-2 shadow progress-bar progress-bar-stripedz bg-warningz">
+                                                        <div class="chart-col-bar-item text-center position-relative">
+                                                            <p>Cycling / Spinning</p>
+                                                            <img src="../media/assets/icons/cycling.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-1')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Strength & Core</p>
+                                                            <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                    </div>
+
+                                                    <hr class="text-dark">
+
+                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-1')">
+                                                            <span class="material-icons material-icons-round">
+                                                                add_circle
+                                                            </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <p class="text-center fs-5 fw-bold">Day 1/-6</p>
+                                                </div>
+
+                                                <div class="col" id="day-2-col">
+                                                    <p class="fs-3 fw-bold">
+                                                        Recovery
+                                                        <!-- Edit training day title - Day 1 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-2')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                    </p>
+
+                                                    <p>
+                                                        RPE 0
+                                                        <!-- Edit RPE - Day 1 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-2')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit RPE - Day 1 -->
+                                                    </p>
+
+                                                    <div class="chart-col-bar p-2 shadow">
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Ice Bath</p>
+                                                            <img src="../media/assets/icons/bath-tub.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-2', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                    </div>
+
+                                                    <hr class="text-dark">
+
+                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-2')">
+                                                            <span class="material-icons material-icons-round">
+                                                                add_circle
+                                                            </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <p class="text-center fs-5 fw-bold">Day 2/-5</p>
+                                                </div>
+
+                                                <div class="col" id="day-3-col">
+                                                    <p class="fs-3 fw-bold">
+                                                        Longer pitch / strides
+                                                        <!-- Edit training day title - Day 1 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-3')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                    </p>
+
+                                                    <p>
+                                                        RPE 4-6
+                                                        <!-- Edit RPE - Day 1 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-3')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit RPE - Day 1 -->
+                                                    </p>
+
+                                                    <div class="chart-col-bar p-2 shadow">
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>RST</p>
+                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Tactics</p>
+                                                            <img src="../media/assets/icons/thinking.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Practice Kick-Off</p>
+                                                            <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                    </div>
+
+                                                    <hr class="text-dark">
+
+                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-3')">
+                                                            <span class="material-icons material-icons-round">
+                                                                add_circle
+                                                            </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <p class="text-center fs-5 fw-bold">Day 3/-4</p>
+                                                </div>
+
+                                                <div class="col" id="day-4-col">
+                                                    <p class="fs-3 fw-bold">
+                                                        Strength / change of directon
+                                                        <!-- Edit training day title - Day 1 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-4')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                    </p>
+
+                                                    <p>
+                                                        RPE 7-10
+                                                        <!-- Edit RPE - Day 1 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-4')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit RPE - Day 1 -->
+                                                    </p>
+
+                                                    <div class="chart-col-bar p-2 shadow">
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Multi-directional WU</p>
+                                                            <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>SSGs</p>
+                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Strength</p>
+                                                            <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Practice Kick-Off</p>
+                                                            <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                    </div>
+
+                                                    <hr class="text-dark">
+
+                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-4')">
+                                                            <span class="material-icons material-icons-round">
+                                                                add_circle
+                                                            </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <p class="text-center fs-5 fw-bold">Day 4/-3</p>
+                                                </div>
+
+                                                <div class="col" id="day-5-col">
+                                                    <p class="fs-3 fw-bold">
+                                                        Taper
+                                                        <!-- Edit training day title - Day 1 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-5')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                    </p>
+
+                                                    <p>
+                                                        RPE 1-3
+                                                        <!-- Edit RPE - Day 1 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-5')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit RPE - Day 1 -->
+                                                    </p>
+
+                                                    <div class="chart-col-bar p-2 shadow">
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Multi-directional WU</p>
+                                                            <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-5', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Tempo runs</p>
+                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-5', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                    </div>
+
+                                                    <hr class="text-dark">
+
+                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-5')">
+                                                            <span class="material-icons material-icons-round">
+                                                                add_circle
+                                                            </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <p class="text-center fs-5 fw-bold">Day 5/-2</p>
+                                                </div>
+
+                                                <div class="col" id="day-6-col">
+                                                    <p class="fs-3 fw-bold">
+                                                        Match prep
+                                                        <!-- Edit training day title - Day 1 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-6')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                    </p>
+
+                                                    <p>
+                                                        RPE 2-4
+                                                        <!-- Edit RPE - Day 1 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-6')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit RPE - Day 1 -->
+                                                    </p>
+
+                                                    <div class="chart-col-bar p-2 shadow">
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Multi-directional WU</p>
+                                                            <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Tactics</p>
+                                                            <img src="../media/assets/icons/thinking.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Short SSGs</p>
+                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                    </div>
+
+                                                    <hr class="text-dark">
+
+                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-6')">
+                                                            <span class="material-icons material-icons-round">
+                                                                add_circle
+                                                            </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <p class="text-center fs-5 fw-bold">Day 6/-1</p>
+                                                </div>
+
+                                                <div class="col" id="day-7-col">
+                                                    <p class="fs-3 fw-bold">
+                                                        Match
+                                                        <!-- Edit training day title - Day 7 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-7')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit training day title - Day 7 -->
+                                                    </p>
+
+                                                    <p>
+                                                        RPE 7-10
+                                                        <!-- Edit RPE - Day 7 -->
+                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-7')">
+                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Edit RPE - Day 7 -->
+                                                    </p>
+
+                                                    <div class="chart-col-bar p-2 shadow">
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Pre-match WU</p>
+                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                        <div class="chart-col-bar-item text-center">
+                                                            <p>Match Kick-Off - We Play to Win!</p>
+                                                            <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
+
+                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                        delete
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                    </div>
+
+                                                    <hr class="text-dark">
+
+                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-6')">
+                                                            <span class="material-icons material-icons-round">
+                                                                add_circle
+                                                            </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <p class="text-center fs-5 fw-bold">Day 7 (Match Day)</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2771,54 +5286,479 @@ function getAllTrainers()
                             </div>
                             <div class="accordion-item p-2 my-2 shadow">
                                 <h2 class="accordion-header m-0" id="flush-headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                        Match Day (<span id="match-date-str">Date</span>)
+                                    <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="true" aria-controls="flush-collapseTwo">
+                                        Daily Workout (<span id="training-date-str">Date</span>)
                                     </button>
                                 </h2>
-                                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushTATRegiment">
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushTATRegiment">
                                     <div class="accordion-body">
-                                        <p class="fs-2">Matchday: Carbohydrate Feuling Plan</p>
-                                        <img src="../media/assets/body charts/carbohydrate fueling plan.jpeg" alt="carbohydrate fueling plan template" class="img-fluid mb-4">
+                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Program Title</p>
 
-                                        <p class="fs-5">Pre-Match</p>
-                                        <p>Pe-Match warm up jog / routine / drill</p>
-                                        <p class="fs-5">Mid-Match</p>
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <h5>Formation</h5>
-                                                <img src="../media/assets/body charts/SoccerFieldDimensions.jpg" alt="" class="img-fluid">
-                                            </div>
-                                            <div class="col-md">
-                                                <h5>Players</h5>
+                                        SoccerXpert - Soccer Drill Template
+                                        Source: https://www.soccerxpert.com/drills
+
+                                        Latest Soccer Drills
+                                        Below you will find a few of the latest soccer drills posted to SoccerXpert
+
+                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Pre-Training</p>
+                                        <div id="pre-training-activities">
+                                            <div class="card mb-3 shadow" style="background-color: #343434 !important; color: #fff !important; border-radius: 25px !important;">
+                                                <div class="row g-0 align-items-center">
+                                                    <div class="col-md-4 p-4">
+                                                        <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-1-Thumbnail.png" class="img-fluid rounded-startz w-100 shadow" style="border-radius: 25px;" alt="thumbnail placeholder">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title fw-bold text-center">1v1 Speed and Reaction Game</h5>
+                                                            <hr>
+                                                            <ul class="list-group list-group-horizontal-md border-0 text-center">
+                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                    Chris Johnson
+                                                                </li>
+                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                    10,871 Views
+                                                                </li>
+                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                    Rating 0 (0 Reviews)
+                                                                </li>
+                                                            </ul>
+                                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-1.png" class="img-fluid w-100 my-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <p class="fs-5">Post-Match</p>
+
+                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Warm-Up</p>
+                                        <div id="warm-up-activities">
+                                            <div class="card mb-3 shadow" style="background-color: #343434 !important; color: #fff !important; border-radius: 25px !important;">
+                                                <div class="row g-0 align-items-center">
+                                                    <div class="col-md-4 p-4">
+                                                        <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-1-Thumbnail.png" class="img-fluid rounded-startz w-100 shadow" style="border-radius: 25px;" alt="thumbnail placeholder">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title fw-bold text-center">1v1 Speed and Reaction Game</h5>
+                                                            <hr>
+                                                            <ul class="list-group list-group-horizontal-md border-0 text-center">
+                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                    Chris Johnson
+                                                                </li>
+                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                    10,871 Views
+                                                                </li>
+                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                    Rating 0 (0 Reviews)
+                                                                </li>
+                                                            </ul>
+                                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-1.png" class="img-fluid w-100 my-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card mb-3 shadow" style="background-color: #343434 !important; color: #fff !important; border-radius: 25px !important;">
+                                                <div class="row g-0 align-items-center">
+                                                    <div class="col-md-4 p-4">
+                                                        <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-2-Thumbnail.png" class="img-fluid rounded-startz w-100 shadow" style="border-radius: 25px;" alt="thumbnail placeholder">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title fw-bold text-center">Soccer Tic-Tac-Toe Warm-Up</h5>
+                                                            <hr>
+                                                            <ul class="list-group list-group-horizontal-md border-0 text-center">
+                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                    Chris Johnson
+                                                                </li>
+                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                    30,837 Views
+                                                                </li>
+                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                    Rating 0 (0 Reviews)
+                                                                </li>
+                                                            </ul>
+                                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-2.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Mid-Training</p>
+                                        <div id="mid-training-activities">
+                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-3.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-4.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-5.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-6.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-7.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-8.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-9.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-10.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                        </div>
+
+
+                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Post-Training</p>
+                                        <h5>Identify Painful Areas</h5>
+                                        <p>Identification of pain on body chart - Select Areas where pain is being experienced</p>
+                                        <p>Themographic Body Chart - Trainer will enter temperature data in a capturing form.</p>
+                                        <p>Rate your Muscle Soreness according to the scale above</p>
+                                        <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" style="border-radius: 15px;" class="img-fluid mb-4 shadow">
+
+                                        <div class="row align-items-start">
+                                            <div class="col-md no-sroller" style="overflow-x:auto;">
+                                                <h5>(Front)</h5>
+                                                <img src="../media/assets/body_charts/muscle-men-body-map-front.jpg" alt="" class="img-fluidz map image-map-male-front" usemap="#image-map-male-front">
+                                                <map name="image-map-male-front">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Head')" target="" alt="Male-Front-Head " title="Male-Front-Head " coords="249,98,221,109,218,145,210,143,212,156,220,166,221,177,232,190,241,230,246,232,250,237,255,232,258,225,265,192,276,178,279,165,286,156,286,143,280,138,280,122,270,105" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Left')" target="" alt="Male-Front-Pectoralis-Major-Left" title="Male-Front-Pectoralis-Major-Left" coords="253,305,254,256,265,235,289,236,302,241,317,244,325,257,328,270,319,269,315,282,309,300,295,311,272,314" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Right')" target="" alt="Male-Front-Pectoralis-Major-Right" title="Male-Front-Pectoralis-Major-Right" coords="246,303,245,254,235,235,211,235,194,241,177,245,173,259,170,274,181,265,184,279,185,293,194,305,213,315,238,310" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Left')" target="" alt="Male-Front-Trapezius-Left" title="Male-Front-Trapezius-Left" coords="275,182,266,195,258,236,276,232,305,226,284,213,274,203" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Right')" target="" alt="Male-Front-Trapezius-Right" title="Male-Front-Trapezius-Right" coords="224,184,230,192,235,213,241,234,231,233,209,230,196,225,214,215,226,207" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Left')" target="" alt="Male-Front-Adominalis-Upper-Left" title="Male-Front-Adominalis-Upper-Left" coords="250,312,250,369,287,373,286,315,272,315,257,308" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Right')" target="" alt="Male-Front-Adominalis-Upper-Right" title="Male-Front-Adominalis-Upper-Right" coords="247,310,248,367,213,373,213,317,224,314" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Left')" target="" alt="Male-Front-Adominalis-Lower-Left" title="Male-Front-Adominalis-Lower-Left" coords="251,374,250,448,253,485,265,485,284,430,287,376,263,373" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Right')" target="" alt="Male-Front-Adominalis-Lower-Right" title="Male-Front-Adominalis-Lower-Right" coords="230,371,250,374,247,439,246,486,233,484,215,426,215,376" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Left')" target="" alt="Male-Front-External_Oblique-Left" title="Male-Front-External_Oblique-Left" coords="290,314,288,379,287,431,291,447,301,435,312,430,316,429,311,386,310,368,314,355,304,334,300,322" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Right')" target="" alt="Male-Front-External_Oblique-Right" title="Male-Front-External_Oblique-Right" coords="212,442,213,426,209,395,210,365,211,316,196,329,185,345,192,376,183,423,196,433,205,442" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Left')" target="" alt="Male-Front-Serratus_Anterior-Left" title="Male-Front-Serratus_Anterior-Left" coords="291,312,300,319,308,340,314,349,318,321,323,327,323,292,326,270,321,269,310,301" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Right')" target="" alt="Male-Front-Serratus_Anterior-Right" title="Male-Front-Serratus_Anterior-Right" coords="210,315,194,330,184,343,181,320,177,326,176,294,175,270,180,268,184,299,194,307" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Left')" target="" alt="Male-Front-Deltoid-Left" title="Male-Front-Deltoid-Left" coords="357,301,359,268,352,244,327,224,313,224,293,236,320,244,328,257,330,276" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Right')" target="" alt="Male-Front-Deltoid-Right" title="Male-Front-Deltoid-Right" coords="144,298,141,269,145,246,167,227,188,225,206,235,174,244,168,279" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Left')" target="" alt="Male-Front-Bicep_Long_Head-Left" title="Male-Front-Bicep_Long_Head-Left" coords="362,365,366,346,363,335,364,320,357,303,331,276,344,302,354,323" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Right')" target="" alt="Male-Front-Bicep_Long_Head-Right" title="Male-Front-Bicep_Long_Head-Right" coords="139,362,132,346,135,336,139,315,145,299,170,277,154,305,147,321,142,344" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Left')" target="" alt="Male-Front-Bicep_Short_Head-Left" title="Male-Front-Bicep_Short_Head-Left" coords="362,366,346,356,337,333,336,355,324,329,326,273,332,281,352,320,358,348" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Right')" target="" alt="Male-Front-Bicep_Short_Head-Right" title="Male-Front-Bicep_Short_Head-Right" coords="138,369,152,357,164,339,165,357,177,326,175,272,164,292,151,315,144,336" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Left')" target="" alt="Male-Front-Brachioradialis-Left" title="Male-Front-Brachioradialis-Left" coords="407,451,397,464,384,465,359,420,347,395,338,379,336,366,337,354,338,337,345,349,346,354,363,366,367,345,379,361,387,391,393,414,397,428" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Right')" target="" alt="Male-Front-Brachioradialis-Right" title="Male-Front-Brachioradialis-Right" coords="117,465,105,464,94,453,111,408,117,378,131,349,138,358,139,372,152,355,156,346,163,343,163,377,143,419,127,441" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Lef')" target="" alt="Male-Front-Hand-Left" title="Male-Front-Hand-Left" coords="384,468,397,467,408,454,449,494,441,529,432,543,419,544,401,535,384,491" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Right')" target="" alt="Male-Front-Hand-Right" title="Male-Front-Hand-Right" coords="94,455,103,465,116,469,101,536,82,543,67,541,58,526,52,491,82,462" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Left')" target="" alt="Male-Front-Sartorius-Left" title="Male-Front-Sartorius-Left" coords="310,432,308,454,305,471,299,495,287,536,278,563,273,603,273,622,285,658,276,642,272,628,269,610,266,590,268,571,268,557,279,515,285,487,292,477,298,453" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Right')" target="" alt="Male-Front-Sartorius-Right" title="Male-Front-Sartorius-Right" coords="189,434,190,447,191,459,197,480,205,513,212,536,223,569,226,599,225,625,220,641,215,655,224,643,227,616,230,603,231,577,231,546,220,511,215,496,211,483,206,475,202,453" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Left')" target="" alt="Male-Front-Abductor-Left" title="Male-Front-Abductor-Left" coords="257,502,266,488,275,471,304,437,291,473,281,498,276,522,267,558,267,575,265,588,257,559,256,534,253,520" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Right')" target="" alt="Male-Front-Abductor-Right" title="Male-Front-Abductor-Right" coords="245,510,246,523,245,538,242,557,232,597,231,543,213,482,205,469,200,447,191,432,208,453,216,461,227,475,235,493" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Left')" target="" alt="Male-Front-Vastus_Medialis-Left" title="Male-Front-Vastus_Medialis-Left" coords="287,538,279,562,274,603,273,620,279,629,289,634,297,624,294,595,286,569" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Right')" target="" alt="Male-Front-Vastus_Medialis-Right" title="Male-Front-Vastus_Medialis-Right" coords="226,631,215,639,205,630,204,610,212,582,215,554,214,545,221,568,225,599" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Left')" target="" alt="Male-Front-Vastus_Laterialis-Left" title="Male-Front-Vastus_Laterialis-Left" coords="317,482,326,501,329,537,328,572,324,594,320,608,319,628,311,626,307,611,311,595,319,576,323,538,321,509" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Right')" target="" alt="Male-Front-Vastus_Laterialis-Right" title="Male-Front-Vastus_Laterialis-Right" coords="184,480,174,503,171,536,172,572,174,592,179,607,180,621,184,626,190,619,193,608,187,593,179,566,178,524,182,497" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Left')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Left" title="Male-Front-Tensor_Fasciae_Latae-Left" coords="317,427,323,451,324,480,329,505,313,476,310,451,312,434" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Right')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Right" title="Male-Front-Tensor_Fasciae_Latae-Right" coords="183,426,188,434,189,454,185,472,173,506,177,462,178,445" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Left')" target="" alt="Male-Front-Tibialis_Anterior-Left" title="Male-Front-Tibialis_Anterior-Left" coords="316,655,317,677,320,713,320,735,309,773,308,827,303,827,306,749,307,702,308,673" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Right')" target="" alt="Male-Front-Tibialis_Anterior-Right" title="Male-Front-Tibialis_Anterior-Right" coords="182,657,179,717,179,733,184,750,190,773,191,824,197,825,194,732,191,698,190,678,189,664" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Left')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Left" title="Male-Front-Extensor_Digitorum_Longus-Left" coords="320,716,326,723,325,731,317,775,317,823,309,827,309,775,321,735" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Right')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Right" title="Male-Front-Extensor_Digitorum_Longus-Right" coords="179,720,175,723,173,734,181,773,182,803,183,820,190,825,189,773,178,731" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Left')" target="" alt="Male-Front-Peroneus_Longus-Left" title="Male-Front-Peroneus_Longus-Left" coords="318,656,325,667,329,698,327,722,321,713" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Right')" target="" alt="Male-Front-Peroneus_Longus-Right" title="Male-Front-Peroneus_Longus-Right" coords="180,655,174,667,171,702,173,727,178,717,179,690" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Left')" target="" alt="Male-Front-Gastrocnemius-Left" title="Male-Front-Gastrocnemius-Left" coords="282,676,295,702,295,737,287,749,285,760,277,736,278,703" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Right')" target="" alt="Male-Front-Gastrocnemius-Right" title="Male-Front-Gastrocnemius-Right" coords="217,673,205,697,203,738,210,745,215,761,221,737,221,703" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Left')" target="" alt="Male-Front-Soleus-Left" title="Male-Front-Soleus-Left" coords="294,826,295,740,288,750,285,761,292,789" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Right')" target="" alt="Male-Front-Soleus-Right" title="Male-Front-Soleus-Right" coords="205,825,203,741,209,747,215,764,207,794" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Left')" target="" alt="Male-Front-Patella-Left" title="Male-Front-Patella-Left" coords="301,646,17" shape="circle">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Right')" target="" alt="Male-Front-Patella-Right" title="Male-Front-Patella-Right" coords="195,645,17" shape="circle">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Left')" target="" alt="Male-Front-Tibia-Left" title="Male-Front-Tibia-Left" coords="301,826,296,825,297,700,283,676,279,654,292,663,302,665,311,662,306,675,306,719" shape="poly">
+                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Right')" target="" alt="Male-Front-Tibia-Right" title="Male-Front-Tibia-Right" coords="204,826,197,827,195,730,191,665,202,662,210,655,215,660,217,669,204,694,203,712,201,739" shape="poly">
+                                                </map>
+                                            </div>
+                                            <div class="col-md no-sroller" style="overflow-x:auto;">
+                                                <h5>(Back)</h5>
+                                                <img src="../media/assets/body_charts/muscle-men-body-map-back.jpg" alt="" class="img-fluidz" usemap="#image-map-male-back" hiddenz>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <h5>Muscles</h5>
+                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
+                                                    <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <p class="fs-5 fw-bold">Muscle Title</p>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <p class="fs-5 fw-bold">Pain Intensity</p>
+                                                                <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" class="img-fluid mb-4">
+                                                                <p>Rate your Muscle Soreness according to the scale above</p>
+                                                                <div class="input-group">
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity1" value="Intensity-1">
+                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity1">1</label>
+                                                                    </div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity2" value="Intensity-2">
+                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity2">2</label>
+                                                                    </div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity3" value="Intensity-3">
+                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity3">3</label>
+                                                                    </div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity4" value="Intensity-4">
+                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity4">4</label>
+                                                                    </div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity5" value="Intensity-5">
+                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity5">5</label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="">
+                                                                    <p class="fs-5 fw-bold">Temp Reading (&#176;C)</p>
+                                                                    <input type="text" name="" id="" class="onefit-inputs-style" placeholder="Temp Reading (&#176;C)">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="accordion-item p-2 my-2 shadow">
                                 <h2 class="accordion-header m-0" id="flush-headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                        Training Programs
+                                    <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                        Match Day Activities (<span id="match-date-str">Date</span>)
                                     </button>
                                 </h2>
-                                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushTATRegiment">
+                                <div id="flush-collapseThree" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushTATRegiment">
                                     <div class="accordion-body">
+                                        <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
+                                            No Scheduled Match this week.
+                                        </div>
+
+                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Matchday: Carbohydrate Feuling Plan</p>
+                                        <img src="../media/assets/body_charts/carbohydrate fueling plan.jpeg" alt="carbohydrate fueling plan template" class="img-fluid mb-4 shadow" style="border-radius: 25px;">
+
+                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Pre-Match</p>
+                                        <p>Pe-Match warm up jog / routine / drill</p>
+
+                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Mid-Match</p>
+                                        <div class="row">
+                                            <div class="col-md">
+                                                <h5>Tactical Formation</h5>
+                                                <img src="../media/assets/body_charts/SoccerFieldDimensions.jpg" alt="" class="img-fluid" style="border-radius: 25px;">
+                                            </div>
+                                            <div class="col-md">
+                                                <h5>Players</h5>
+                                                <p class="text-end">Main Squad</p>
+                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
+                                                    <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-sm">
+                                                                Thumbnail
+                                                            </div>
+                                                            <div class="col-sm">
+                                                                Player Names
+                                                            </div>
+                                                            <div class="col-sm">
+                                                                View Profile Btn
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                                <p class="text-end mt-4">Substitutes</p>
+                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
+                                                    <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-sm">
+                                                                Thumbnail
+                                                            </div>
+                                                            <div class="col-sm">
+                                                                Player Names
+                                                            </div>
+                                                            <div class="col-sm">
+                                                                View Profile Btn
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                                <p class="text-end mt-4">Reserves</p>
+                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
+                                                    <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-sm">
+                                                                Thumbnail
+                                                            </div>
+                                                            <div class="col-sm">
+                                                                Player Names
+                                                            </div>
+                                                            <div class="col-sm">
+                                                                View Profile Btn
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Post-Match</p>
+                                        <img src="../media/assets/body_charts/training recovery plan.jpeg" class="img-fluid" alt="recovery chart Sample" hidden>
+                                        <div class="recovery-chart">
+                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #e88a04; color: #343434 !important;">WITHIN 30 MINUTES</h5>
+                                            <p class="fw-bold text-center">CHOOSE AT LEAST ONE WHITE BOX OPTION</p>
+                                            <div class="grid-container my-4">
+                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
+                                                    <span class="align-middle fw-bold">Carbohydrate / Protein Recovery Drink
+                                                        <hr class="bg-white">
+                                                    </span>
+                                                </div>
+                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
+                                                    <span class="align-middle fw-bold">Carbohydrate Food
+                                                        <hr class="bg-white">
+                                                    </span>
+                                                </div>
+                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('30min','option-1')">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                        <label class="form-check-label text-center" for="min30-option-1-check">
+                                                            <span class="align-middle fw-bold">Light Exercise / Stretch Cool Down</span>
+                                                        </label>
+                                                    </div>
+                                                    <hr class="bg-dark">
+                                                </div>
+                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('30min','option-2')">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                        <label class="form-check-label text-center" for="min30-option-2-check">
+                                                            <span class="align-middle fw-bold">Cold Water Immersion - 10 Minutes</span>
+                                                        </label>
+                                                    </div>
+                                                    <hr class="bg-dark">
+                                                </div>
+                                            </div>
+
+                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #e88a04; color: #343434 !important;">WITHIN 1 HOUR</h5>
+                                            <p class="fw-bold text-center">CHOOSE AT LEAST ONE WHITE BOX OPTION</p>
+                                            <div class="grid-container my-4">
+                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
+                                                    <span class="align-middle fw-bold">1 X 500ML Rehydrate Drink</span>
+                                                    <hr class="bg-white">
+                                                </div>
+                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
+                                                    <span class="align-middle fw-bold">Carbohydrate Food</span>
+                                                    <hr class="bg-white">
+                                                </div>
+                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('1hr','option-1')">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                        <label class="form-check-label text-center" for="hr1-option-1-check">
+                                                            <span class="align-middle fw-bold">Lower Limb Massage</span>
+                                                        </label>
+                                                    </div>
+                                                    <hr class="bg-dark">
+                                                </div>
+                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('1hr','option-2')">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                        <label class="form-check-label text-center" for="hr1-option-2-check">
+                                                            <span class="align-middle fw-bold">Compression Tights Until Bed</span>
+                                                        </label>
+                                                    </div>
+                                                    <hr class="bg-dark">
+                                                </div>
+                                            </div>
+
+                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #e88a04; color: #343434 !important;">WITHIN 24 HOURS</h5>
+                                            <p class="fw-bold text-center">CHOOSE AT LEAST THREE WHITE BOX OPTION</p>
+                                            <input type="number" value="0" class="form-control" id="hr24-selection-count">
+                                            <div class="grid-container my-4">
+                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
+                                                    <span class="align-middle fw-bold">2 X 500ML Rehydrate Drink</span>
+                                                    <hr class="bg-white">
+                                                </div>
+                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
+                                                    <span class="align-middle fw-bold">Rest - Aim for 8 Hours Sleep</span>
+                                                    <hr class="bg-white">
+                                                </div>
+                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-1')">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                            <span class="align-middle fw-bold">Light Exercise and Foam Roll</span>
+                                                        </label>
+                                                    </div>
+                                                    <hr class="bg-dark">
+                                                </div>
+                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-2')">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                            <span class="align-middle fw-bold">Contrast Bath - 2 Minutes Hot / 2 Minutes Cold X 4</span>
+                                                        </label>
+                                                    </div>
+                                                    <hr class="bg-dark">
+                                                </div>
+                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-3')">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                            <span class="align-middle fw-bold">Mobility and Stretching in Pool</span>
+                                                        </label>
+                                                    </div>
+                                                    <hr class="bg-dark">
+                                                </div>
+                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-4')">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                            <span class="align-middle fw-bold">Massage</span>
+                                                        </label>
+                                                    </div>
+                                                    <hr class="bg-dark">
+                                                </div>
+                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-5')">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                            <span class="align-middle fw-bold">Recovery Pump Trousers</span>
+                                                        </label>
+                                                    </div>
+                                                    <hr class="bg-dark">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item p-2 my-2 shadow">
+                                <h2 class="accordion-header m-0" id="flush-headingFour">
+                                    <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                        Team-Athletics Training Programs (Administrators)
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseFour" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushTATRegiment">
+                                    <div class="accordion-body">
+                                        <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-Filters.png" class="img-fluid w-100 my-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+
                                         <div class="grid-container">
                                             <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                <p class="fs-2 fw-bold">Hello</p>
+                                                <p class="fs-2 fw-bold comfortaa-font">Warm-Up Drills</p>
                                             </div>
 
                                             <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                <p class="fs-2 fw-bold">Hello</p>
+                                                <p class="fs-2 fw-bold comfortaa-font">Pair Drills</p>
                                             </div>
 
                                             <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                <p class="fs-2 fw-bold">Hello</p>
+                                                <p class="fs-2 fw-bold comfortaa-font">Speed & Reaction Drills</p>
                                             </div>
 
                                             <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                <p class="fs-2 fw-bold">Hello</p>
+                                                <p class="fs-2 fw-bold comfortaa-font">Dribbling Drills</p>
+                                            </div>
+
+                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                <p class="fs-2 fw-bold comfortaa-font">Shooting Drills</p>
+                                            </div>
+
+                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                <p class="fs-2 fw-bold comfortaa-font">Shooting Drills</p>
                                             </div>
                                         </div>
                                     </div>
@@ -2826,15 +5766,16 @@ function getAllTrainers()
                             </div>
                         </div>
                     </div>
+                    <!-- ./ Team Athlectics Training Panel -->
 
                     <hr class="text-white" style="height: 5px;">
                     <h5 class="mt-4 fs-1"><span class="material-icons material-icons-round">stars</span> Challenges</h5>
-                    <p>Daily Challenges</p>
-                    <p>Weekly Challenges</p>
-                    <p>Monthly Monthly</p>
+                    <h5>Daily Challenges</h5>
+                    <h5>Weekly Challenges</h5>
+                    <h5>Monthly Monthly</h5>
                 </div>
                 <div id="TabAchievements" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
-                    <h1>Achievements</h1>
+                    <h1 class="text-center">Achievements</h1>
                     <hr class="text-white" />
                     <h5>Goals</h5>
                     <hr class="text-white">
@@ -2847,17 +5788,20 @@ function getAllTrainers()
                     <hr class="text-white">
                 </div>
                 <div id="TabMedia" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
-                    <h1>Media</h1>
+                    <h1 class="text-center">Media</h1>
                     <hr class="text-white" />
-                    <p>Photos</p>
-                    <div id="Users-Images">
-                        <?php echo $profileUserMediaList; ?>
+
+                    <h1 class="fs-1 fw-bold rounded-pill p-4 text-center my-4">Photos</h1>
+                    <div id="Users-Images" class="grid-container">
+                        <?php echo $outputProfileUserMediaList; ?>
                     </div>
-                    <p>Videos</p>
-                    <p>Stream library – Live stream recording history (Community and Private)</p>
+
+                    <h1 class="fs-1 fw-bold rounded-pill p-4 text-center my-4">Videos</h1>
+
+                    <h1 class="fs-1 fw-bold rounded-pill p-4 text-center my-4">Stream library – Live stream recording history (Community and Private)</h1>
                 </div>
                 <div id="TabCommunication" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
-                    <h1>Communications</h1>
+                    <h1 class="text-center">Communications</h1>
                     <hr class="text-white" />
                     <p>• Notifications</p>
                     <div id="communicationUserNotifications">
@@ -2867,10 +5811,16 @@ function getAllTrainers()
                     <div id="communicationNews">
                         <?php echo $outputCommunityNews; ?>
                     </div>
+                    <p>• Chat Messenger</p>
+                    <div class="p-0 mb-4 d-grid gap-2 my-pulse-animation-dark rounded-pill">
+                        <button class="onefit-buttons-style-dark p-4 text-center fs-1 comfortaa-font shadow rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat">
+                            One<span style="color:#e88a04;">fit.</span>Chat
+                        </button>
+                    </div>
                     <p>• Social AdMarket</p>
                 </div>
                 <div id="TabSettings" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
-                    <h1>Preferences</h1>
+                    <h1 class="text-center">Preferences</h1>
                     <hr class="text-white" />
                     <div id="userPrefContainer">
                         <?php echo $profileUserPref; ?>
@@ -2913,7 +5863,7 @@ function getAllTrainers()
                         <!-- ./ Users Profile Banner -->
 
                         <!-- Profile Picture -->
-                        <img src="../media/assets/One-Symbol-Logo-Two-Tone.png" alt="Onefit Logo" class="p-3 img-fluid my-pulse-animation borderz" style="margin-top: -100px; max-height: 200px; border-radius: 50%; border-color: #e88a04 !important; background-color: #343434" />
+                        <img src="../media/assets/One-Symbol-Logo-Two-Tone.png" alt="Onefit Logo" class="p-3 img-fluid my-pulse-animation-tahiti borderz" style="margin-top: -100px; max-height: 200px; border-radius: 50%; border-color: #e88a04 !important; background-color: #343434" />
                         <!-- ./ Profile Picture -->
                         <p class="outfit-font mt-2">@Username</p>
                     </div>
@@ -2944,7 +5894,7 @@ function getAllTrainers()
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Achievements</div>
+                                        <div class="fw-bold text-center" style="color: #e88a04">Achievements</div>
                                         18 Activities Remaining<br />
                                         4 Challenges Remaining
                                     </div>
@@ -3000,7 +5950,7 @@ function getAllTrainers()
                                 <div class="col-sm py-2 d-inline">
                                     <!--<i class="fas fa-heart"></i>-->
                                     <span class="material-icons material-icons-round"> monitor_heart </span>
-                                    HeartRate
+                                    Heart Rate
                                 </div>
                                 <div class="col-sm py-2 d-inline"><span style="color: #e88a04">|</span></div>
                                 <div class="col-sm py-2 d-inline">
@@ -3009,7 +5959,7 @@ function getAllTrainers()
                                     Temp
                                 </div>
                                 <div class="col-sm py-2 d-inline">
-                                    <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid my-pulse-animation" />
+                                    <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid my-pulse-animation-tahiti" />
                                 </div>
                                 <div class="col-sm py-2 d-inline">
                                     <!--<i class="fas fa-bolt"></i>-->
@@ -3032,6 +5982,19 @@ function getAllTrainers()
                                 </span></h5>
                             <hr class="text-white" />
                             <p class="outfit-font fw-bold">No media playing.</p>
+                            <div class="container">
+                                <div class="row my-4">
+                                    <div class="col-sm">
+                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('prev')"><span class="material-icons material-icons-round">skip_previous</span></button>
+                                    </div>
+                                    <div class="col-sm">
+                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('togglePlay')"><span class="material-icons material-icons-round">play_circle</span></button>
+                                    </div>
+                                    <div class="col-sm">
+                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('next')"><span class="material-icons material-icons-round">skip_next</span></button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3166,7 +6129,7 @@ function getAllTrainers()
                     </div>
 
                     <div class="row align-items-center collapse" id="tab-nav-social-quickpost">
-                        <div class="col-sm d-grid gap-2 py-4">
+                        <div class="col-sm d-grid gap-2 py-4 px-0">
                             <!-- Quick Post to Social -->
                             <div class="social-quick-post d-grid">
                                 <textarea name="" class="w-100 quick-post-input" id="" cols="30" rows="3" placeholder="Share an update with the Community.">Share an update with the Community.</textarea>
@@ -3175,7 +6138,7 @@ function getAllTrainers()
                         </div>
                         <div class="col-sm-4 d-grid gap-2">
                             <div class="row text-center">
-                                <div class="col -sm pr-0">
+                                <div class="col -sm px-0">
                                     <div class="d-grid">
                                         <button type="button" class="onefit-buttons-style-light p-2 m-1">
                                             <span class="material-icons material-icons-round" style="font-size: 18px !important">
@@ -3191,7 +6154,7 @@ function getAllTrainers()
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col -sm pl-0">
+                                <div class="col -sm px-0">
                                     <div class="d-grid">
                                         <button type="button" class="onefit-buttons-style-light p-2 m-1">
                                             <span class="material-icons material-icons-round" style="font-size: 18px !important"> link
@@ -3216,7 +6179,7 @@ function getAllTrainers()
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
             <div class="modal-content feature-tab-nav-content">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title fs-1" id="tabLatestSocialModalLabel">Latest Updates & Socials</h5>
+                    <h5 class="modal-title fs-1" id="tabLatestSocialModalLabel">One<span style="color: #e88a04">fit.</span>Net Updates &amp; Socials</h5>
                     <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
                         <span class="material-icons material-icons-round"> cancel </span>
                     </button>
@@ -3231,14 +6194,14 @@ function getAllTrainers()
                                 <!--<span class="material-icons material-icons-round" style="font-size: 48px !important"> account_circle </span>-->
 
                                 <!-- Users Profile Banner -->
-                                <div class="shadow -lg m-0" style="border-radius: 25px 25px 0 0; height: 200px; width: 100%; overflow: hidden; background-image: url('../media/images/fitness/Battle-ropes-Cordes-ondulatoires-EVO-Fitness-1200x675.jpg'); background-position: center; background-attachment: local; background-clip: content-box; background-size: cover">
+                                <div class="shadow -lg m-0" style="border-radius: 30px 30px 100% 100%; height: 400px; width: 100%; overflow: hidden; background-image: url('../media/assets/fitness-colage.png'); background-position: center; background-attachment: local; background-clip: content-box; background-size: cover; border-bottom: solid 5px white;">
                                 </div>
                                 <!-- ./ Users Profile Banner -->
 
                                 <!-- Profile Picture -->
-                                <img src="../media/assets/One-Symbol-Logo-Two-Tone.png" alt="Onefit Logo" class="p-3 img-fluid my-pulse-animation borderz" style="margin-top: -50px; max-height: 100px; border-radius: 50%; border-color: #e88a04 !important; background-color: #343434" />
+                                <img src="../media/assets/One-Symbol-Logo-Two-Tone.png" alt="Onefit Logo" class="p-3 img-fluid my-pulse-animation-darkz shadow" style="margin-top: -100px; height: 200px; border-radius: 50%; border-color: #e88a04 !important; background-color: #343434" />
                                 <!-- ./ Profile Picture -->
-                                <p class="outfit-font mt-2">@Username</p>
+                                <p class="mt-2 mt-4 fs-1 fw-bold comfortaa-font">One<span style="color: #e88a04;">fit</span>.app</p>
                             </div>
                             <!-- ./ UPPL Header (with Banner and Profile Pic) -->
 
@@ -3247,57 +6210,70 @@ function getAllTrainers()
                                     <ol class="list-group list-group-flush border-0 my-4">
                                         <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                             <div class="ms-2 me-auto">
-                                                <div class="fw-bold" style="color: #e88a04">Thabang Mposula</div>
-                                                @username<br />
-                                                Lvl. 1
+                                                <div class="fw-bold" style="color: #e88a04">One-On-One Fitness Network&reg;</div>
+                                                @OnefitNet<br />
+                                                Community Growth: <br>
+                                                1 Trainee (<i class="fas fa-solid fa-dash"></i> 0%)
                                             </div>
                                             <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
                                                 <span class="material-icons material-icons-round" style="font-size: 20px !important">
-                                                    verified_user </span>
+                                                    workspace_premium </span>
+                                                Awards Issued
                                             </span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                             <div class="ms-2 me-auto">
-                                                <div class="fw-bold" style="color: #e88a04">Followers</div>
-                                                2 Mutual Friends<br />
-                                                6 Messages
+                                                <div class="fw-bold text-end" style="color: #e88a04">Followers</div>
+                                                2 Trainees<br />
+                                                6 Trainers<br />
+                                                20 Groups<br />
+                                                16 000 Resources<br />
+                                                89 Fitness Programs<br />
+                                                20 Diet Programs<br />
+                                                5 Wellness Programs
                                             </div>
                                             <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px"><span class="material-icons material-icons-round" style="font-size: 20px !important"> people_alt
                                                 </span> 6</span>
                                         </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                            <div class="ms-2 me-auto">
-                                                <div class="fw-bold" style="color: #e88a04">Achievements</div>
-                                                18 Activities Remaining<br />
-                                                4 Challenges Remaining
-                                            </div>
-                                            <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px"><span class="material-icons material-icons-round" style="font-size: 20px !important"> emoji_events
-                                                </span> 3</span>
-                                        </li>
                                     </ol>
                                 </div>
                                 <div class="col-md-5 text-center">
-                                    <h3>Social</h3>
+                                    <h3>Support us on Socials</h3>
                                     <div class="container-fluid">
                                         <div class="row align-items-center" style="font-size: 40px;">
                                             <div class="col m">
-                                                <button class="border-0 social-link-icon-insta p-4 my-4" style="cursor: pointer" onClick="launchLink('www.google.com')"><i class="fab fa-instagram"></i>
+                                                <button class="border-0 social-link-icon-insta p-4 my-4 shadow" style="cursor: pointer" onClick="launchLink('www.google.com')">
+                                                    <div class="d-grid gap-2">
+                                                        <i class="fab fa-instagram"></i>
+                                                        <p style="font-size: 10px !important;">Instagram</p>
+                                                    </div>
                                                 </button>
                                             </div>
 
                                             <div class="col">
-                                                <button class="border-0 social-link-icon-twitter p-4 my-4" style="cursor: pointer" onClick="launchLink('www.google.com')"><i class="fab fa-twitter"></i>
+                                                <button class="border-0 social-link-icon-twitter p-4 my-4 shadow" style="cursor: pointer" onClick="launchLink('www.google.com')">
+                                                    <div class="d-grid gap-2">
+                                                        <i class="fab fa-twitter"></i>
+                                                        <p style="font-size: 10px !important;">Twitter</p>
+                                                    </div>
                                                 </button>
                                             </div>
 
                                             <div class="col">
-                                                <button class="border-0 social-link-icon-fb p-4 my-4" style="cursor: pointer" onClick="launchLink('www.google.com')"><i class="fab fa-facebook"></i>
+                                                <button class="border-0 social-link-icon-fb p-4 my-4 shadow" style="cursor: pointer" onClick="launchLink('www.google.com')">
+                                                    <div class="d-grid gap-2">
+                                                        <i class="fab fa-facebook"></i>
+                                                        <p style="font-size: 10px !important;">Facebook</p>
+                                                    </div>
                                                 </button>
                                             </div>
 
                                             <div class="col">
-                                                <button class="border-0 social-link-icon-yt p-4 my-4" style="cursor: pointer" onClick="launchLink('www.google.com')">
-                                                    <i class="fab fa-youtube"></i>
+                                                <button class="border-0 social-link-icon-yt p-4 my-4 shadow" style="cursor: pointer" onClick="launchLink('www.google.com')">
+                                                    <div class="d-grid gap-2">
+                                                        <i class="fab fa-youtube"></i>
+                                                        <p style="font-size: 10px !important;">Youtube</p>
+                                                    </div>
                                                 </button>
                                             </div>
 
@@ -3318,18 +6294,25 @@ function getAllTrainers()
                                     </div>
                                     <!-- ./ Twitter feed -->
                                 </div>
-                                <div class="col-md text-center">
+                                <div class="col-md text-center border-start border-end border-warning" style="border-color: #e88a04 !important;">
                                     <h4>Facebook Feed</h4>
                                     <div class="d-flex align-items-center">
-                                        <strong>Loading...</strong>
-                                        <div class="spinner-border text-light ms-auto" role="status" aria-hidden="true"></div>
+                                        <div style="display: none;">
+                                            <strong>Loading Facebook Feed...</strong>
+                                            <div class="spinner-border text-light ms-auto" role="status" aria-hidden="true"></div>
+                                        </div>
+
+                                        <!-- Facebook feed -->
+                                        <div class="fb-page" data-href="https://web.facebook.com/OnefitnetworkZA" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                            <blockquote cite="https://web.facebook.com/OnefitnetworkZA" class="fb-xfbml-parse-ignore"><a href="https://web.facebook.com/OnefitnetworkZA">One-On-One Fitness Network</a></blockquote>
+                                        </div>
+                                        <!-- ./ Facebook feed -->
                                     </div>
                                 </div>
                                 <div class="col-md text-center">
                                     <h4>Instagram Feed</h4>
-                                    <div class="d-flex align-items-center">
-                                        <strong>Loading...</strong>
-                                        <div class="spinner-border text-light ms-auto" role="status" aria-hidden="true"></div>
+                                    <div class="text-center">
+                                        <div class="spinner-border text-light ms-auto" style="width: 5rem; height: 5rem;" role="status" aria-hidden="true"></div>
                                     </div>
                                 </div>
                                 <!--<div class="col-md">
@@ -3347,17 +6330,27 @@ function getAllTrainers()
                         <button class="onefit-buttons-style-dark fs-5 fw-bold my-4 px-4 pt-4 text-center comfortaa-font border-0" type="button" data-bs-toggle="collapse" data-bs-target="#tab-nav-social-quickpost" aria-expanded="false" aria-controls="tab-nav-social-quickpost"><i class="fas fa-paper-plane"></i> | <span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Social</button>
                     </div>
 
-                    <div class="row align-items-center collapse" id="tab-nav-social-quickpost">
-                        <div class="col-sm d-grid gap-2 py-4">
+                    <div class="row align-items-end collapse no-scroller shadow" style="max-height: 50vh !important; overflow-y: auto; border-radius: 25px;" id="tab-nav-social-quickpost">
+                        <div class="col-sm d-grid gap-2 py-4 px-0">
                             <!-- Quick Post to Social -->
                             <div class="social-quick-post d-grid">
-                                <textarea name="" class="w-100 quick-post-input" id="" cols="30" rows="3" placeholder="Share an update with the Community.">Share an update with the Community.</textarea>
+                                <textarea name="" class="w-100 quick-post-input" id="" cols="30" rows="10" style="height: 40vh!important" placeholder="Share an update with the Community.">Share an update with the Community.</textarea>
                             </div>
                             <!-- ./ Quick Post to Social -->
                         </div>
-                        <div class="col-sm-4 d-grid gap-2">
+                        <div class="col-sm-4 d-grid gap-2 py-4" style="overflow-x: hidden">
+                            <!-- Onefit.Social Feed - Hide the feed container on screens smaller than large -->
+                            <div class="onefit-social-container d-grid gap-2">
+                                <button class="onefit-buttons-style-dark p-4 mb-4 shadow comfortaa-font">
+                                    <span class="align-middle"> Open <br> <span class="fw-bold" style="color:#e88a04!important; font-size: 40px;">.Social</span></span> <span class="align-middle material-icons material-icons-outlined">hub</span>
+                                </button>
+                                <div class="mb-4 no-scroller" hidden style="max-height: 18vh; overflow-y: auto;">
+                                    <?php echo $outputCommunityUpdates; ?>
+                                </div>
+                            </div>
+
                             <div class="row text-center">
-                                <div class="col -sm pr-0">
+                                <div class="col -sm px-0">
                                     <div class="d-grid">
                                         <button type="button" class="onefit-buttons-style-light p-2 m-1">
                                             <span class="material-icons material-icons-round" style="font-size: 18px !important">
@@ -3373,7 +6366,7 @@ function getAllTrainers()
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col -sm pl-0">
+                                <div class="col -sm px-0">
                                     <div class="d-grid">
                                         <button type="button" class="onefit-buttons-style-light p-2 m-1">
                                             <span class="material-icons material-icons-round" style="font-size: 18px !important"> link
@@ -3393,6 +6386,282 @@ function getAllTrainers()
     </div>
     <!-- ./ >>>>>>>>>> Latest Socials Feed Modal -->
 
+    <!-- Chat Modal -->
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat" hidden>Toggle bottom offcanvas</button>
+
+    <div class="offcanvas offcanvas-bottom" style="height: 100vh !important;" tabindex="-1" id="offcanvasBottomOnefitChat" aria-labelledby="offcanvasBottomOnefitChatLabel">
+        <div class="offcanvas-body small p-0 no-scroller" style="overflow-x: hidden;">
+            <div class="card text-center m-0 border-0" style="height:100%">
+                <div class="card-header bg-transparentz border-0 shadow sticky-top" style="background-color: #343434 !important; color: #fff !important;">
+                    <div class="offcanvas-header">
+                        <button class="onefit-buttons-style-dark p-4 shadow" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMyUserChats" aria-expanded="false" aria-controls="collapseMyUserChats">
+                            <span class="material-icons material-icons-round">
+                                3p
+                            </span>
+                        </button>
+
+                        <h3 class="offcanvas-title" id="offcanvasBottomOnefitChatLabel">
+                            <span class=" text-truncate">One<span style="color: #e88a04">fit.</span></span>Chat
+                        </h3>
+
+                        <!--<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
+
+                        <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="offcanvas" aria-label="Close">
+                            <span class="material-icons material-icons-round"> cancel </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="row h-100 px-4 no-scroller" style="max-height: 70vh; overflow-y: auto !important;">
+                        <div class="col-sm-4 collapse w3-animate-top" id="collapseMyUserChats">
+                            <!--Users Chats List-->
+                            <ul class="list-group list-group-flush text-start top-down-grad-dark" style="padding-bottom: 100px !important;">
+                                <?php echo $outputProfileUserChats; ?>
+                            </ul>
+                            <!-- ./ Users Chats List-->
+                        </div>
+                        <div class="col-sm shadow no-scroller my-4 p-2 text-white down-top-grad-dark" style="border-radius: 25px; overflow-y: auto; overflow-x: hidden; max-height: 65vh !important;margin-bottom: 200px !important;">
+                            <div class="row align-items-center">
+                                <div class="col-4 d-grid gap-2">
+                                    <!-- Selected Users Friend Chat Profile Strip -->
+                                    <button type="button" class="onefit-buttons-style-dark p-2 my-4 position-relative">
+                                        <div class="container">
+                                            <div class="row align-items-center" style="min-height: 100px;">
+                                                <div class="col -3 text-center">
+                                                    <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                                </div>
+                                                <div class="col text-center">
+                                                    <p class="fs-5 my-0 text-truncate">Visit Profile</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dangerz border border-light rounded-circle my-pulse-animation-tahiti" style="background-color: #e88a04 !important;">
+                                            <span class="visually-hidden">New Message Alert</span>
+                                        </span>
+                                    </button>
+                                    <!-- ./ Selected Users Friend Chat Profile Strip -->
+                                </div>
+                                <div class="col text-dark">
+                                    <h1>Stuff</h1>
+                                </div>
+                            </div>
+
+
+                            <div class="tunnel-bg-container content-panel-border-style no-scroller p-4 shadow" style="width: 100%; height: 100%; background-color: rgba(52, 52, 52, 0.8) !important; overflow-y: auto !important; overflow-x: hidden !important;">
+                                <!-- User Chat Bubble - Left (Users Friend) -->
+                                <div class="row align-items-center">
+                                    <div class="col-sm text-start">
+                                        <div class="d-grid gap-2">
+                                            <div class="text-start" style="width: 100%;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                            </div>
+
+                                            <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
+                                                <div class="talktext">
+                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 text-start"></div>
+                                </div>
+                                <!-- ./ User Chat Bubble - Left (Users Friend) -->
+
+                                <!-- User Chat Bubble - Right (User) -->
+                                <div class="row align-items-start">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm text-end">
+                                        <div class="d-grid gap-2">
+                                            <div class="text-end" style="width: 100%;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                            </div>
+
+                                            <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
+                                                <div class="talktext">
+                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ./ User Chat Bubble - Right (User) -->
+                                <!-- User Chat Bubble - Left (Users Friend) -->
+                                <div class="row align-items-center">
+                                    <div class="col-sm text-start">
+                                        <div class="d-grid gap-2">
+                                            <div class="text-start" style="width: 100%;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                            </div>
+
+                                            <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
+                                                <div class="talktext">
+                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 text-start"></div>
+                                </div>
+                                <!-- ./ User Chat Bubble - Left (Users Friend) -->
+
+                                <!-- User Chat Bubble - Right (User) -->
+                                <div class="row align-items-start">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm text-end">
+                                        <div class="d-grid gap-2">
+                                            <div class="text-end" style="width: 100%;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                            </div>
+
+                                            <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
+                                                <div class="talktext">
+                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ./ User Chat Bubble - Right (User) -->
+                                <!-- User Chat Bubble - Left (Users Friend) -->
+                                <div class="row align-items-center">
+                                    <div class="col-sm text-start">
+                                        <div class="d-grid gap-2">
+                                            <div class="text-start" style="width: 100%;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                            </div>
+
+                                            <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
+                                                <div class="talktext">
+                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 text-start"></div>
+                                </div>
+                                <!-- ./ User Chat Bubble - Left (Users Friend) -->
+
+                                <!-- User Chat Bubble - Right (User) -->
+                                <div class="row align-items-start">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm text-end">
+                                        <div class="d-grid gap-2">
+                                            <div class="text-end" style="width: 100%;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                            </div>
+
+                                            <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
+                                                <div class="talktext">
+                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ./ User Chat Bubble - Right (User) -->
+                                <!-- User Chat Bubble - Left (Users Friend) -->
+                                <div class="row align-items-center">
+                                    <div class="col-sm text-start">
+                                        <div class="d-grid gap-2">
+                                            <div class="text-start" style="width: 100%;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                            </div>
+
+                                            <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
+                                                <div class="talktext">
+                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 text-start"></div>
+                                </div>
+                                <!-- ./ User Chat Bubble - Left (Users Friend) -->
+
+                                <!-- User Chat Bubble - Right (User) -->
+                                <div class="row align-items-start">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm text-end">
+                                        <div class="d-grid gap-2">
+                                            <div class="text-end" style="width: 100%;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                            </div>
+
+                                            <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
+                                                <div class="talktext">
+                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ./ User Chat Bubble - Right (User) -->
+                                <!-- User Chat Bubble - Left (Users Friend) -->
+                                <div class="row align-items-center">
+                                    <div class="col-sm text-start">
+                                        <div class="d-grid gap-2">
+                                            <div class="text-start" style="width: 100%;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                            </div>
+
+                                            <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
+                                                <div class="talktext">
+                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 text-start"></div>
+                                </div>
+                                <!-- ./ User Chat Bubble - Left (Users Friend) -->
+
+                                <!-- User Chat Bubble - Right (User) -->
+                                <div class="row align-items-start">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm text-end">
+                                        <div class="d-grid gap-2">
+                                            <div class="text-end" style="width: 100%;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                            </div>
+
+                                            <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
+                                                <div class="talktext">
+                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ./ User Chat Bubble - Right (User) -->
+
+                                <!--Users Chat Conversation Panel-->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0 fixed-bottom down-top-grad-dark">
+                    <div class="row py-4 align-items-end">
+                        <div class="col-sm">
+                            <textarea class="onefit-inputs-style p-4 shadow" style="border-radius: 25px !important;" name="" id="" cols="30" rows="3">Wassup, Dude?</textarea>
+                        </div>
+                        <div class="col-sm-2 d-grid gap-2">
+                            <button class="onefit-buttons-style-dark p-4 shadow">
+                                <span class="material-icons material-icons-round">
+                                    try
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./ Chat Modal -->
+
+
+
     <!-- ./ Modals ----------------------------------------------------------------------------------------- -->
 
     <script>
@@ -3402,7 +6671,9 @@ function getAllTrainers()
 
             if (auth = true) {
                 //call all client functions
-                alert("auth = true | User: " + usernm);
+                //alert("auth = true | User: " + usernm);
+                loadActivityCalender();
+                getCurrentWeekStartEndDates();
 
                 // loadUserProfile();
                 // loadUserSocials();
@@ -3435,6 +6706,47 @@ function getAllTrainers()
                 // loadCommunityResources();
                 // loadCommunityRewards();
             }
+        }
+
+        function toggleMapSelection(selection) {
+            alert("Muscle Selected: " + selection);
+        }
+
+        function toggleRecoverySelection(period, option) {
+            alert("Period: " + period + " | Option Selected: " + option);
+        }
+
+        function musePlayerController(playerAction) {
+            alert("Muse Player Action: " + playerAction);
+        }
+
+        function launchLink(link) {
+            window.location.href = link;
+        }
+
+        Date.prototype.getWeek = function(start) {
+            //Calcing the starting point
+            start = start || 0;
+            var today = new Date(this.setHours(0, 0, 0, 0));
+            var day = today.getDay() - start;
+            var date = today.getDate() - day;
+
+            // Grabbing Start/End Dates
+            var StartDate = new Date(today.setDate(date));
+            var EndDate = new Date(today.setDate(date + 6));
+            return [StartDate, EndDate];
+        }
+
+        function getCurrentWeekStartEndDates() {
+            // test code
+            var elemDatesOutput1 = document.getElementById("weekly-survey-duration-dates");
+            var elemDatesOutput2 = document.getElementById("weekly-training-date-duration-str");
+
+            var Dates = new Date().getWeek();
+            //alert(Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString());
+
+            elemDatesOutput1.innerHTML = Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString();
+            elemDatesOutput2.innerHTML = Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString();
         }
 
         function loadUserProfile() {
@@ -3819,12 +7131,12 @@ function getAllTrainers()
                         //alert(output);
 
                         convoContainer.innerHTML = `
-                <div class="application-error-msg shadow d-block" id="application-error-msg">
-                  <h3 class=" d-block" style="color: red">An error has occured</h3>
-                  <p class=" d-block">It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport('` + userParam + `','` + output + `')">support</a></p>
-                  <div class="application-error-msg-output d-block" style="font-size: 10px">` + output + `</div>
-                </div>
-                `;
+                        <div class="application-error-msg shadow d-block" id="application-error-msg">
+                        <h3 class=" d-block" style="color: red">An error has occured</h3>
+                        <p class=" d-block">It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport('` + userParam + `','` + output + `')">support</a></p>
+                        <div class="application-error-msg-output d-block" style="font-size: 10px">` + output + `</div>
+                        </div>
+                        `;
 
                         var applicationErrMsg = document.getElementById('application-error-msg');
 
@@ -3837,7 +7149,7 @@ function getAllTrainers()
                     }
                 }
             };
-            xhttp.open("GET", "../scripts/php/calender.php?month=" + currMonth + "&year=" + currYear, true);
+            xhttp.open("GET", "../scripts/php/userprofile/calender.php?month=" + currMonth + "&year=" + currYear, true);
             xhttp.send();
         }
 
@@ -3871,7 +7183,60 @@ function getAllTrainers()
         function socialFunctions(action, origin) {
             alert("Action: " + action + " | Origin: " + origin);
         }
+
+        //freeNBAUnofficial();
+
+        //jQuery Code Only
+        //$.noConflict();
+        $(document).ready(function() {
+
+            $("map[name=image-map-male-front]").mapoid({
+                click: function(e) {
+                    /*// stroke color
+                    strokeColor: 'black',
+                    // stroke width
+                    strokeWidth: 1,
+                    // fill color
+                    fillColor: 'black',
+                    // 0-1
+                    fillOpacity: 0.5,
+                    // in milliseconds
+                    fadeTime: 500,
+                    // an array of selected areas
+                    selectedArea: false,
+                    // select on click
+                    selectOnClick: true*/
+
+                    //alert('click');
+                    e.preventDefault();
+                    var clickedArea = $(this); // remember clicked area
+                    // foreach area
+                    $("map[name=image-map-male-front]").each(function() {
+                        hData = $(this).data('maphilight') || {}; // get
+                        hData.alwaysOn = $(this).is(clickedArea); // modify
+                        $(this).data('maphilight', hData).trigger('alwaysOn.maphilight'); // set
+                    });
+                }
+            });
+            //JQuery Image Map Highlighting
+            //$('.map').maphilight();
+
+            //$('.map').maphilight();
+
+            /*$('#musclepart').click(function(e) {
+                e.preventDefault();
+                var clickedArea = $(this); // remember clicked area
+                // foreach area
+                $('#musclepart').each(function() {
+                    hData = $(this).data('maphilight') || {}; // get
+                    hData.alwaysOn = $(this).is(clickedArea); // modify
+                    $(this).data('maphilight', hData).trigger('alwaysOn.maphilight'); // set
+                });
+            });*/
+        });
     </script>
+
+    <script src="../scripts/js/digital-clock.js"></script>
 
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
