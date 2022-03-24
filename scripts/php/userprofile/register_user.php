@@ -35,7 +35,7 @@ header("Location: ../../../registration/profile_builder.html?panel=1&id=");
 
 /*$query = "INSERT INTO users(user_id, username, password_hash, user_name, user_surname, id_number, user_email, contact_number, date_of_birth, user_gender, user_race, user_nationality, account_active) VALUES (null, '$name', '$surname', '$email', '$contact', '$idnum', '$dob', '$gender', '$race', '$nation', '$usrnm', '$pwdhash', 0)";*/
 
-function sanitizeString($var){
+/* function sanitizeString($var){
   if(get_magic_quotes_gpc())
   $var = stripslashes($var);
   $var = strip_tags($var);
@@ -47,5 +47,4 @@ function sanitizeMySQL($connection, $var){
   $var = $connection->real_escape_string($var);
   $var = sanitizeString($var);
   return $var;
-}
-?>
+} */

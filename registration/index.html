@@ -77,19 +77,27 @@
 
     <div class="row align-items-center">
       <div class="col-xl py-4">
-        <div class="content-panel-border-style p-4 tunnel-bg text-center shadow" style="border-radius: 25px">
-          <img src="../media/assets/One-Logo-Vertical.png" class="img-fluid my-4 screen" alt="one fitness"
+        <div class="content-panel-border-style p-4 tunnel-bg-container text-center shadow" style="border-radius: 25px">
+          <img src="../media/assets/One-Logo-Vertical.png" class="img-fluid my-4 screenz" alt="one fitness"
             style="max-height: 50vh" />
 
-          <p class="my-4 text-center" style="color: #fff; font-size: 10px">Crafted by Adaptiv Concept (Media) &copy;
+          <p class="my-4 text-center comfortaa-font" style="color: #fff; font-size: 10px">Crafted by Adaptiv Concept
+            (Media) &copy;
             2021</p>
         </div>
       </div>
       <div class="col-xl py-4 text-center" style="max-height: 90vh; overflow-y: auto; overflow-x: hidden">
         <div class="content-panel-border-style registration-form tunnel-bg mb-4 shadow"
           style="width: 100%; border-radius: 25px; background-color: #343434;">
-          <h2 class="text-center pt-4" style="color: #ffa500"><i class="fas fa-file-signature"></i> Sign up for an
-            account, it's free</h2>
+          <h2 class="text-center fs-1 pt-4" style="color: #ffa500"><i class="fas fa-file-signature"></i> Sign up for a
+            Community
+            account, it's free.</h2>
+          <p>Get free access to tons of Fitness, Health and Lifestyle related Resources, News, Blogs and Shopping
+            Content
+            with the Community Account. We also offer Community Members checkout discounts on selected One<span
+              style="color: #e88a04;">fit</span>.Store Products
+            and Services. Sign up today to start the meaningful and insightful fitness journey that you have always been
+            looking for.</p>
           <hr class="mx-4 bg-white" />
 
           <form class="text-center p-4 comfortaa-font fs-5" method="post"
@@ -98,40 +106,43 @@
               <!--<?php echo $output; ?>-->
             </div>
 
+            <div id="emailHelp" class="form-text text-center fw-bold my-4" style=" color: #fff">We have a responsibility
+              to
+              keep your keep your Identity &amp; Privacy safe! <br>
+              - <a href="http://" style=" color: #e88a04;">Privacy
+                Policy</a> -
+            </div>
+
             <div class="form-group my-4">
-              <input class="form-control-text-input p-4" type="text" name="reg-name" id="reg-name" placeholder="Name"
-                required />
+              <input class="form-control-text-input p-4" type="text" name="reg-name" id="reg-name"
+                placeholder="Name (Required)" required />
             </div>
 
             <div class="form-group">
               <input class="form-control-text-input p-4" type="text" name="reg-surname" id="reg-surname"
-                placeholder="Surname" required />
+                placeholder="Surname (Required)" required />
             </div>
             <div class="form-group my-4">
               <input class="form-control-text-input p-4" type="email" name="reg-email" id="reg-email"
-                placeholder="Email address" required />
-              <div id="emailHelp" class="form-text text-center style=" color: #e88a04">We'll never share your email with
-                anyone
-                else.
-              </div>
+                placeholder="Email address (Required)" required />
             </div>
 
             <div class="form-group">
               <input class="form-control-text-input p-4" type="phone" name="reg-contact" id="reg-contact"
-                placeholder="Phone number" required />
+                placeholder="Phone number (Required)" required />
             </div>
             <div class="form-group my-4">
               <input class="form-control-text-input p-4" type="text" name="reg-idnum" id="reg-idnum"
-                placeholder="ID/Passport number" required />
+                placeholder="ID/Passport number (Optional)" />
             </div>
 
             <div class="form-group">
               <input class="form-control-text-input p-4" type="date" name="reg-dob" id="reg-dob"
-                placeholder="Date of birth" required />
+                placeholder="Date of birth (Required)" required />
             </div>
             <div class="form-group my-4">
               <select class="custom-select form-control-select-input p-4" name="reg-gender" id="reg-gender"
-                placeholder="Gender" required>
+                placeholder="Gender (Required)" required>
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
               </select>
@@ -139,7 +150,7 @@
 
             <div class="form-group">
               <select class="custom-select form-control-select-input p-4" name="reg-race" id="reg-race"
-                placeholder="Race" required>
+                placeholder="Race (Required)" required>
                 <option value="black">Black</option>
                 <option value="white">White</option>
                 <option value="coloured">Coloured</option>
@@ -148,7 +159,7 @@
             </div>
             <div class="form-group my-4">
               <select class="custom-select form-control-select-input p-4" name="reg-nationality" id="reg-nationality"
-                placeholder="Nationality" required>
+                placeholder="Nationality (Required)" required>
                 <option value='South Africa'>South Africa</option>
                 <option value='Afghanistan'>Afghanistan</option>
                 <option value='Akrotiri'>Akrotiri</option>
@@ -412,16 +423,16 @@
 
             <div class="form-group">
               <input class="form-control-text-input p-4" type="text" name="reg-username" id="reg-username"
-                placeholder="Username" required />
+                placeholder="Username (Required)" required />
             </div>
             <div class="form-group my-4">
               <input class="form-control-text-input p-4" type="password" name="reg-password" id="reg-password"
-                placeholder="Password" required />
+                placeholder="Password (Required)" required />
             </div>
 
             <div class="form-group">
               <input class="form-control-text-input p-4" type="password" name="reg-confirmpassword"
-                id="reg-confirmpassword" placeholder="Confirm password" required />
+                id="reg-confirmpassword" placeholder="Confirm password (Required)" required />
             </div>
             <div class="text-center d-gridz gap-2 py-2">
               <button type="submit" class="my-4 p-4 onefit-buttons-style-dark btn-lg" id="signup-btn"><i
@@ -429,6 +440,90 @@
                 Sign Up</button>
             </div>
           </form>
+
+          <div class="my-4">
+            <!-- Membership Sales Card Grid -->
+            <h5 class="fs-1 fw-bold text-center my-4">
+              Or Sign Up for Pro Membership
+              <span class="material-icons material-icons-round">
+                verified_user
+              </span>
+            </h5>
+            <div class="card-groupz grid-container">
+              <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Indi.Starter Training (Basic) - 3 Months</h5>
+                  <p class="card-text">The Indi.Starter account offers Trainees access to Curated Premium Fitness
+                    Programs from Level-1 to Level-3 of our
+                    Catalogue as well as access to Personal Trainer Support services to make transitioning into Fitness
+                    Process much easier.</p>
+
+                  <ol class="list-group list-group-numbered">
+                    <li class="list-group-item border-0 bg-transparent text-white">Access to all Community and Level-1
+                      to Level-2 Fitness Programs</li>
+                    <li class="list-group-item border-0 bg-transparent text-white">Access to Community Live Streams and
+                      Private 1-</li>
+                    <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1 Personal Trainer
+                      Support</li>
+                    <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                    <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                  </ol>
+                </div>
+                <div class="card-footer d-grid">
+                  <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                    R1800 (3 Months)
+                  </button>
+                </div>
+              </div>
+              <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+                <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Indi.Pro Training (Pro) - 12 Months</h5>
+                  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
+                  </p>
+
+                  <ol class="list-group list-group-numbered">
+                    <li class="list-group-item border-0 bg-transparent text-white">Community Fitness Programs</li>
+                    <li class="list-group-item border-0 bg-transparent text-white">Community Live Streams</li>
+                    <li class="list-group-item border-0 bg-transparent text-white">Group-Training Community Streams</li>
+                    <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                    <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Weekly</li>
+                  </ol>
+                </div>
+                <div class="card-footer d-grid">
+                  <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                    R5200 (12 Months)
+                  </button>
+                </div>
+              </div>
+              <div class="card wide-grid-tile grid-tile shadow"
+                style="background-color: #343434 !important; overflow: hidden;">
+                <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Team.Pro Training (Pro) - Contact Sales</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                    additional
+                    content.
+                    This card has even longer content than the first to show that equal height action.</p>
+
+                  <ol class="list-group list-group-numbered">
+                    <li class="list-group-item border-0 bg-transparent text-white">Community Fitness Programs</li>
+                    <li class="list-group-item border-0 bg-transparent text-white">Community Live Streams</li>
+                    <li class="list-group-item border-0 bg-transparent text-white">Group-Training Community Streams</li>
+                    <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar Recommendations</li>
+                    <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit Subscriptions</li>
+                  </ol>
+                </div>
+                <div class="card-footer d-grid">
+                  <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                    Contact Sales
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Membership Sales Card Grid -->
+          </div>
 
         </div>
       </div>
