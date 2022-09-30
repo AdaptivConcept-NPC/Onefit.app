@@ -25,6 +25,25 @@
 </head>
 
 <body>
+  <!-- Load Curtain -->
+  <div class="load-curtain" id="LoadCurtain" style="display: none;">
+    <div class="d-flex align-items-center" style="width: 100%; height: 100%;">
+      <div class="text-center w-100">
+        <div class="ring d-flex align-items-center p-4">
+          <!-- <span>
+          </span> -->
+          <div style="width: 100%;">
+            <img src="media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="max-height: 20vh;" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="text-center text-center p-4 fixed-bottom" alt="">
+      <p class="text-center" styl="font-size: 10px !important;">Loading. Please wait.</p>
+    </nav>
+  </div>
+  <!-- ./Load Curtain -->
+
   <!-- Navigation bar -->
   <nav class="navbar navbar-light sticky-top navbar-style">
     <div class="container-fluid">
@@ -112,13 +131,15 @@
     <div class="row align-items-center my-4" style="border-radius: 25px; background-color: rgba(52, 52, 52, 0.8)">
       <div class="col-sm py-4">
         <form class="text-center text-white comfortaa-font align-middle" method="post"
-          action="scripts/php/userprofile/login.php" autocomplete="off" target="_blank">
-          <div class="mb-3 d-gridz">
+          action="scripts/php/userprofile/login.php" autocomplete="off">
+          <!--target="_blank"-->
+          <div class="mb-4 p-4 text-white" id="error-output"></div>
+          <div class="mb-3">
             <label for="onefitUserEmail" class="form-label fs-4">Email address</label>
             <input type="email" class="form-controlz form-control-text-input shadow p-2" id="onefitUserEmail"
               name="onefitUserEmail" aria-describedby="emailHelp" />
           </div>
-          <div class="mb-3 d-gridz">
+          <div class="mb-3">
             <label for="onefitUserPassword" class="form-label fs-4">Password</label>
             <input type="password" class="form-controlz form-control-text-input shadow text-center p-2"
               id="onefitUserPassword" name="onefitUserPassword" />
@@ -440,7 +461,7 @@
       </button>
 
       <p class="text-white align-end me-4z text-center comfortaa-font"> <span style="font-size: 10px;">Crafted by
-          Adaptiv Media Concept
+          AdaptivConcept&reg; NPC
           &copy;
           2022</span> | <a href="http://www.AdaptivConcept.co.za" class="comfortaa-font"
           style=" color: #ffa500;">Support Us</a>
@@ -452,8 +473,37 @@
   <script>
     function toggleLoadCurtain() {
       //Show / Hide the Load Curtain Container
-      alert("toggleLoadCurtain()");
+      var curtain = document.getElementById("LoadCurtain");
+      var toggleState = curtain.style.display.toString();
+      // alert("toggleState: " + toggleState);
+
+      if (toggleState == "none") {
+        curtain.style.display = "block";
+      } else if (toggleState == "block") {
+        curtain.style.display = "none";
+      } else {
+        curtain.style.display = "none";
+      }
     }
+
+    function checkLoginReturnParams() {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const returnStr = urlParams.get('return');
+      const usrnStr = urlParams.get('usrn');
+
+      var errorMsgOutput = document.getElementById('error-output');
+      var usernameFld = document.getElementById('onefitUserEmail');
+
+      if (returnStr == "mismatch") {
+        // set the usrn value in the username/email address field
+        usernameFld.value = usrnStr;
+        errorMsgOutput.innerText = "The email address or password you entered is incorrect. Please try again.";
+        errorMsgOutput.style.display = "block";
+      }
+    }
+
+    document.onload = checkLoginReturnParams();
   </script>
 
   <!-- Bootstrap Bundle JS -->

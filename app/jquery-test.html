@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.min.css" />
+    <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.default.min.css" />
+
+    <script src="../vendor/components/jquery/jquery.js"></script>
+    <script src="../scripts/js/soccer-field-players-positions/jquery.soccerfield.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var data = [
+                { name: 'KEYLOR NAVAS', position: 'C_GK', img: '../media/profiles/0_default/soccer-player.png' },
+                { name: 'MARCELO', position: 'LC_B', img: '../media/profiles/0_default/soccer-player.png' },
+                { name: 'SERGIO RAMOS', position: 'C_B', img: '../media/profiles/0_default/soccer-player.png' },
+                { name: 'CARVAJAL', position: 'RC_B', img: '../media/profiles/0_default/soccer-player.png' },
+                { name: 'CASEMIRO', position: 'C_DM', img: '../media/profiles/0_default/soccer-player.png' },
+                { name: 'KROOS', position: 'L_M', img: '../media/profiles/0_default/soccer-player.png' },
+                { name: 'ISCO', position: 'LC_M', img: '../media/profiles/0_default/soccer-player.png' },
+                { name: 'ASENSIO', position: 'RC_M', img: '../media/profiles/0_default/soccer-player.png' },
+                { name: 'MODRIC', position: 'R_M', img: '../media/profiles/0_default/soccer-player.png' },
+                { name: 'RONALDO', position: 'LC_F', img: '../media/profiles/0_default/soccer-player.png' },
+                { name: 'BENZEMA', position: 'RC_F', img: '../media/profiles/0_default/soccer-player.png' },
+            ];
+
+            $("#soccerfield").soccerfield(data, {
+                field: {
+                    width: "960px",
+                    height: "600px",
+                    img: '../media/assets/field_diagrams/soccer-field-dimensions-1.jpg',
+                    startHidden: false,
+                    animate: false,
+                    fadeTime: 1000,
+                    autoReveal: false,
+                    onReveal: function () {
+                        // triggered on reveal
+                    }
+                },
+                players: {
+                    font_size: 16,
+                    reveal: false,
+                    sim: true, // reveal simultaneously
+                    timeout: 1000,
+                    fadeTime: 1000,
+                    img: true,
+                    onReveal: function () {
+                        // triggered on reveal
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="soccerfield"></div>
+</body>
+
+</html>

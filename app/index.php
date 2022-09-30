@@ -2104,17 +2104,42 @@ function getAllTrainers()
     <!-- ./ For Digital Clock Plugin -->
 
     <!-- Map Highlight -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js"></script>
-    <script src="../scripts/js/mapoid/mapoid.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js"></script>
+    <script src="../scripts/js/mapoid/mapoid.js"></script> -->
     <!-- ./ Map Highlight -->
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap" rel="stylesheet">
+
+    <!-- Soccer field -->
+    <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.min.css" />
+    <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.default.min.css" />
+
+    <!-- <script src="../vendor/components/jquery/jquery.js"></script> -->
+    <script src="../scripts/js/soccer-field-players-positions/jquery.soccerfield.min.js"></script>
 </head>
 
 <body onload="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
+    <!-- Load Curtain -->
+    <div class="load-curtain" id="LoadCurtain" style="display: block;">
+        <div class="d-flex align-items-center" style="width: 100%; height: 100%;">
+            <div class="text-center w-100">
+                <div class="ring d-flex align-items-center p-4">
+                    <!-- <span></span> -->
+                    <div style="width: 100%;">
+                        <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="max-height: 20vh;" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="text-center text-center p-4 fixed-bottom" alt="">
+            <p class="text-center" styl="font-size: 10px !important;">Loading. Please wait.</p>
+        </nav>
+    </div>
+    <!-- ./Load Curtain -->
+
     <!-- Facebook API -->
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0" nonce="47FC3Uf9"></script>
@@ -2128,10 +2153,99 @@ function getAllTrainers()
 
         <!-- Cart Container  -->
         <div class="container py-4">
-            <div class="row align-items-start">
+            <div class="text-center">
+                <button class="navbar-toggler shadowz onefit-buttons-style-dark p-2" type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel">
+                    <div class="row px-4 py-2 align-items-centerz">
+                        <div class="col-sm border-start border-end border-light p-2">
+                            <span class="material-icons material-icons-round align-middle" style="font-size: 50px !important;">
+                                verified_user
+                            </span>
+                        </div>
+                        <div class="col-sm border-start border-end border-light p-2">
+                            <div class="d-grid gap-2">
+                                <span class="material-icons material-icons-round" style="font-size: 20px !important"> shopping_bag </span>
+                                <span class="d-nonez d-lg-blockz" id="" style="font-size: 10px;">Cart (<span class="fw-bold comfortaa-font" style="color: #e88a04;">4</span>)</span>
+                            </div>
+                        </div>
+                        <div class="col-sm fw-bold comfortaa-font border-start border-end border-light p-2">
+                            <span class="align-middle" style="font-size: 10px; color: #e88a04;">ZAR</span><br> 0.00
+                        </div>
+                    </div>
+                </button>
+            </div>
+
+            <div class="collapse showz down-top-grad-dark w3-animate-top comfortaa-font text-white" style="border-radius: 25px; overflow: hidden;" id="cart-panel">
+                <div class="p-4 shadow" id="">
+                    <div class="text-end">
+                        <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4" type="button">
+                            <p>
+                                <span class="material-icons material-icons-round">
+                                    storefront
+                                </span>
+                                <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span style="color: #e88a04 !important;">.Store</span></span>
+                            </p>
+                        </button>
+                        <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4" type="button">
+                            <p>
+                                <span class="material-icons material-icons-round">
+                                    point_of_sale
+                                </span>
+                                <span class="align-middle"><span class="d-none d-lg-block">Proceed to </span>Checkout</span>
+                            </p>
+                        </button>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 py-4">
+                            <p class="text-start">Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #e88a04;">20220201-879ds6fsdf_id</span> ]</p>
+                            <hr class="text-white">
+                            <h1><span style="color: #e88a04;">Total:</span> R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 10px; color: #e88a04;">ZAR</span></h1>
+                            <ul class="list-group list-group-flush list-group-numbered shadow py-4 no-scroller" id="" style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
+                                <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
+                                <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
+                                <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
+                                <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 py-4">
+                            <p class="text-start">Cart Items (4)</p>
+                            <hr class="text-white">
+                            <div class="horizontal-scroll">
+                                <div class="horizontal-scroll-card p-4 shadow">
+                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
+                                    <p class="fw-bold text-truncate text-center py-4">
+                                        R149.00 | Aiwa Smart Band ASB-40
+                                    </p>
+                                </div>
+                                <div class="horizontal-scroll-card p-4 shadow">
+                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
+                                    <p class="fw-bold text-truncate text-center py-4">
+                                        R149.00 | Aiwa Smart Band ASB-40
+                                    </p>
+                                </div>
+                                <div class="horizontal-scroll-card p-4 shadow">
+                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
+                                    <p class="fw-bold text-truncate text-center py-4">
+                                        R149.00 | Aiwa Smart Band ASB-40
+                                    </p>
+                                </div>
+                                <div class="horizontal-scroll-card p-4 shadow">
+                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
+                                    <p class="fw-bold text-truncate text-center py-4">
+                                        R149.00 | Aiwa Smart Band ASB-40
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--<div class="row align-items-start">
                 <div class="col-md-9 text-white">
                     <p class="text-end" hidden>Your Cart (0 items)</p>
-                    <div class="collapse show down-top-grad-dark w3-animate-left comfortaa-font" style="border-radius: 25px; overflow: hidden;" id="cart-panel">
+                    <div class="collapse showz down-top-grad-dark w3-animate-left comfortaa-font" style="border-radius: 25px; overflow: hidden;" id="cart-panel">
                         <div class="p-4 shadow" id="">
                             <div class="text-end">
                                 <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4" type="button">
@@ -2213,7 +2327,7 @@ function getAllTrainers()
                         </div>
                     </button>
                 </div>
-            </div>
+            </div>-->
         </div>
         <!-- ./ Cart Container  -->
 
@@ -2246,9 +2360,9 @@ function getAllTrainers()
     <!-- Main Content -->
     <div class="container -fluid" style="padding-bottom: 100px">
         <!-- Main Navigation Bar -->
-        <nav class="navbar navbar-light sticky-top navbar-style w-100 mb-4" style="border-radius: 25px; max-height: 100vh !important;">
+        <nav class="navbar navbar-light sticky-top navbar-style w-100 mb-4" style="border-radius: 25px; max-height: 100vh !important; border-bottom: #e88a04 solid 5px;">
             <!-- App Function Buttons -->
-            <div class="container -fluid">
+            <div class="container">
                 <button class="onefit-buttons-style-dark p-2 shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> notifications </span>
@@ -2387,7 +2501,7 @@ function getAllTrainers()
         <!-- Tab Content -->
         <div class="container">
             <div class="tab-container" id="tab-container">
-                <div id="TabHome" class="shadow w3-container w3-animate-right content-tab p-4" style="display: block">
+                <div id="TabHome" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: block">
                     <h1 class="text-center">Dashboard</h1>
                     <p>This is the Dashboard Page.</p>
 
@@ -2521,14 +2635,14 @@ function getAllTrainers()
                             </div>
                         </div>
                         <div class="tall-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
-                            <<h4>News, Resources, Blog and Ads Feed</h4>
-                                <small class="text-muted" id="">Content</small>
-                                <p style="color: #e88a04;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
-                                <div class="text-center">
-                                    <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </div>
+                            <h4>News, Resources, Blog and Ads Feed</h4>
+                            <small class="text-muted" id="">Content</small>
+                            <p style="color: #e88a04;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
+                            <div class="text-center">
+                                <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
+                                    <span class="visually-hidden">Loading...</span>
                                 </div>
+                            </div>
                         </div>
                         <div class="tall-grid-tile full-wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
                             <h4>Google Community Surveys</h4>
@@ -2567,9 +2681,9 @@ function getAllTrainers()
                                     <p>Playlists</p>
 
                                     <hr class="text-white">
-                                    <div class="p-4">
-                                        <button class="onefit-buttons-style-light p-4 shadow mb-4">
-                                            + Share you <span class="fw-bold comfortaa-font fs-5">Original Music</span>
+                                    <div class="p-4 d-grid gap-2">
+                                        <button class="onefit-buttons-style-tahiti p-4 shadow mb-4 comfortaa-font">
+                                            + Share your <br><span class="fw-bold fs-5" style="color: #fff !important;">Original Music</span>
                                         </button>
 
                                         <img src="../media/assets/muse_thumbnails/Gym-Playlist-Energetic-Tracks-For-Workout-Fitness-English-2018-20180602225519-500x500.jpg" class="img-fluid shadow my-2" style="border-radius: 25px;" alt="example thumbnail">
@@ -2582,20 +2696,45 @@ function getAllTrainers()
                                 <div class="col-md-8 p-0">
                                     <p>Tracks</p>
                                     <hr class="text-white">
-                                    <ul class="list-group list-group-flush list-group-numbered" style="border-radius: 25px !important; overflow: hidden;">
+                                    <ul class="list-group list-group-flush list-group-numbered" style="border-radius: 25px !important; overflow: hidden; background-color: #343434 !important;">
                                         <li class="list-group-item">
-                                            <button class="onefit-buttons-style-dark shadow p-2 my-2">
-                                                <div class="row align-items-center w-100">
-                                                    <div class="col">
-                                                        <span class="material-icons material-icons-round shadow-lg" style="font-size: 20px !important;">
-                                                            play_arrow
-                                                        </span>
+                                            <div class="row align-items-center">
+                                                <div class="col-md -4 text-center">
+                                                    <!--Thumbnail-->
+                                                    <img src="../media/assets/OnefitNet Profile PicArtboard 2.jpg" alt="Song Thumb" class="img-fluid shadow" style="border-radius: 15px; max-height: 10vh;">
+
+                                                    <div class="d-gridz gap-2 w-100">
+                                                        <button class="onefit-buttons-style-light shadow p-2 px-4 my-4" id="museplayer-togglebtn" type="button" data-bs-toggle="collapse" data-bs-target="#song-playid-songid" aria-expanded="false" aria-controls="song-playid-songid">
+                                                            <div class="row align-items-center w-100 text-center">
+                                                                <div class="col-sm rounded-pill shadow-sm bg-white">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 50px !important;">
+                                                                        art_track
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-sm">
+                                                                    Song Title (00:00)
+                                                                </div>
+                                                            </div>
+                                                        </button>
                                                     </div>
-                                                    <div class="col">
-                                                        Song Title (00:00)
+
+                                                </div>
+                                                <div class="col-xlg-8 collapse showz w3-animate-right" id="song-playid-songid">
+
+                                                    <div class="p-0 shadow" style="min-height: 20vh; border-radius: 25px; color: #fff; background-color: #343434; overflow: hidden;">
+                                                        <div class="card bg-dark text-white border-0">
+                                                            <!-- style="border-radius: 25px !important;" -->
+                                                            <img src="../media/assets/OnefitNet Profile PicArtboard 2.jpg" class="card-img" alt="..."> <!-- style="border-radius: 25px !important;" -->
+                                                            <div class="card-img-overlay top-down-grad-dark">
+                                                                <!-- style="border-radius: 25px !important;" -->
+                                                                <h5 class="card-title">Card title</h5>
+                                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                                <p class="card-text">Last updated 3 mins ago</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </button>
+                                            </div>
                                         </li>
                                         <li class="list-group-item">
                                             <button class="onefit-buttons-style-dark shadow p-2 my-2">
@@ -2632,7 +2771,7 @@ function getAllTrainers()
 
                     </div>
                 </div>
-                <div id="TabProfile" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
+                <div id="TabProfile" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <h1 class="text-center">My Profile</h1>
                     <hr class="text-white" />
                     <div id="profile-panel-container">
@@ -2785,7 +2924,7 @@ function getAllTrainers()
 
 
                 </div>
-                <div id="TabDiscovery" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
+                <div id="TabDiscovery" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <h1>Discovery</h1>
                     <p class="text-right" style="font-size: 10px">powered by AdaptEngine™</p>
 
@@ -2904,7 +3043,7 @@ function getAllTrainers()
 
                     </div>
                 </div>
-                <div id="TabStudio" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
+                <div id="TabStudio" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Studio
                     </h1>
                     <hr class="text-white" />
@@ -2921,7 +3060,8 @@ function getAllTrainers()
                     Programs • Diet Programs (Pre-Defined & Custom)
 
                     <div class="grid-container studio-tab-grid">
-                        <div class="grid-tile -100 max-100vh shadow p-4 down-top-grad-dark">
+                        <div class="grid-tile shadow p-4 down-top-grad-dark">
+                            <!-- -100 max-100vh-->
                             <h2 class="text-center"><span class="material-icons material-icons-outlined"> tv </span> <span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Community Streams (Onefit.tv)</h2>
                             <p>Live stream sessions of scheduled Community (public) & Group-based fitness program guidance classes.
                                 (Scheduled Program Guidance Classes and Community Events on Onefit App and Socials that are open to all
@@ -3001,7 +3141,7 @@ function getAllTrainers()
                         </div>
                     </div>
                 </div>
-                <div id="TabStore" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
+                <div id="TabStore" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Store
                     </h1>
                     <hr class="text-white" />
@@ -3020,7 +3160,7 @@ function getAllTrainers()
                         <p class="text-center">Need some stuff for your fitness journey, we have you coverd. Browse our selection of products and get them delivered to your door for free. It is in your benefit to become a Member of the Onefit Community today because all registered users and Premium Mmembers get Loyalty Discounts on every purchase. Go ahead and Register today, or better yet, become a Member to reap greater fitness rewards.</p>
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="d-grid gap-2">
+                                <div class="d-grid gap-2 d-lg-none d-xl-none d-xxl-none">
                                     <button class="onefit-buttons-style-dark p-4 mb-4" type="button" data-bs-toggle="collapse" data-bs-target="#store-items-nav-menu" aria-expanded="true" aria-controls="store-items-nav-menu">
                                         <div class="d-grid gap-2">
                                             <span class="material-icons material-icons-round"> menu </span>
@@ -3592,7 +3732,7 @@ function getAllTrainers()
                     </div>
                     <!-- Membership Sales Card Grid -->
                 </div>
-                <div id="TabSocial" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
+                <div id="TabSocial" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Social
                     </h1>
                     <hr class="text-white" />
@@ -3935,7 +4075,7 @@ function getAllTrainers()
                         </div>
                     </div>
                 </div>
-                <div id="TabData" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
+                <div id="TabData" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <h1 class="text-center">Fitness Insights</h1>
                     <p class="text-center my-4">Data Centre</p>
                     <hr class="text-white" style="height: 5px;">
@@ -4426,1355 +4566,1505 @@ function getAllTrainers()
                     </div>
                     <!-- ./ Weekly Activities -->
 
-                    <!-- Community Surveys -->
-                    <div>
-                        <!-- User Wellness Tracking Log -->
-                        <hr class="text-white" style="height: 5px;">
-                        <p class="text-center fw-bold">One<span style="color: #e88a04">fit.</span>Social <span class="material-icons material-icons-two-tone">hub</span></p>
-
-                        <div class="fs-5 fw-bold text-center mb-4 rounded-pill p-4 bg-white" style="color: #e88a04">
-                            <i class="fab fa-google" style="font-size: 40px!important" aria-hidden="true"></i>
-                            <hr>
-                            <span class="align-center">Google Community Surveys</span>
-                        </div>
-
-                        <h5 class="mt-4 fs-1 text-center mb-4">Wellness Tracking</h5>
-                        <p class="fs-3 mt-4">Community Wellness Rating: 90%</p>
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc0sL0-Gm6J-Hy03z_F872L5nQAdigfbZArNYBhBGbB-iOqmg/viewform?embedded=true" height="3016" frameborder="0" marginheight="0" marginwidth="0" class="w-100 no-scroller tunnel-bg-container-inverse" style="max-height: 100vh!important; border-radius: 25px;">Loading…</iframe>
-                        <div class="row my-4">
-                            <div class="col-md-4">
-                                <h5>Survey log</h5>
-                            </div>
-                            <div class="col-md">
-                                <p>Survey Charts / Results</p>
-                            </div>
-                        </div>
-                        <!-- ./ User Wellness Tracking Log -->
-
-                        <!-- User Load Monitoring Log -->
-                        <hr class="text-white" style="height: 5px;">
-                        <h5 class="mt-4 fs-1 text-center mb-4">Load Monitoring</h5>
-                        <p class="fs-3 mt-4">Community Load Rating: 90%</p>
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOJqnXT2LxRK9GK6DfmYObzkbu28D-qT_XzN-vUBsUyaOX0Q/viewform?embedded=true" height="1879" frameborder="0" marginheight="0" marginwidth="0" class="w-100 no-scroller tunnel-bg-container-inverse" style="max-height: 100vh!important; border-radius: 25px;">Loading…</iframe>
-                        <div class="row my-4">
-                            <div class="col-md-4">
-                                <h5>Survey log</h5>
-                            </div>
-                            <div class="col-md">
-                                <p>Survey Charts / Results</p>
-                            </div>
-                        </div>
-                        <!-- ./ User Load Monitoring Log -->
-                    </div>
-                    <!-- ./ Community Surveys -->
-
-                    <!-- Indi Athletics Training Panel -->
-                    <hr class="text-white" style="height: 5px;">
-                    <h1 class="my-4 fs-1 text-center p-4 down-top-grad-tahiti rounded-pill">Indi-Athlete Training</h1>
-                    <div class="accordion accordion-flush" id="accordionFlushIATRegiment">
-                        <div class="accordion-item p-2 my-2 shadow">
-                            <h2 class="accordion-header m-0" id="flush-headingIATOne">
-                                <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseIATOne" aria-expanded="true" aria-controls="flush-collapseIATOne">
-                                    Indi-Training (<span id="training-date-str">Date</span>)
+                    <!-- Features: Tab structured -->
+                    <div class="row mt-4 py-4" style="background-color: #333; border-radius: 25px;">
+                        <div class="col-md-3 d-lg-none d-xl-none d-xxl-none">
+                            <div class="d-grid gap-2 d-lg-none d-xl-none d-xxl-none">
+                                <button class="onefit-buttons-style-dark p-4 mb-4" type="button" data-bs-toggle="collapse" data-bs-target="#insights-subfeatures-nav-menu" aria-expanded="true" aria-controls="insights-subfeatures-nav-menu">
+                                    <div class="d-grid gap-2">
+                                        <span class="material-icons material-icons-round"> menu </span>
+                                        <p style="font-size: 10px;">More insights</p>
+                                    </div>
                                 </button>
-                            </h2>
-                            <div id="flush-collapseIATOne" class="accordion-collapse collapse show w3-animate-bottom" aria-labelledby="flush-headingIATOne" data-bs-parent="#accordionFlushIATRegiment">
-                                <div class="accordion-body">
-                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Program Title</p>
-                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
-                                        Subscribe to an Indi Fitness Program to get started
-                                    </div>
-
-                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Pre-Training</p>
-                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
-                                        Subscribe to an Indi Fitness Program to get started
-                                    </div>
-
-                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Warm-Up</p>
-                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
-                                        Subscribe to an Indi Fitness Program to get started
-                                    </div>
-
-                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Mid-Training</p>
-                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
-                                        Subscribe to an Indi Fitness Program to get started
-                                    </div>
-
-                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Post-Training</p>
-                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
-                                        Subscribe to an Indi Fitness Program to get started
-                                    </div>
-
-                                    <h5>Identify Painful Areas</h5>
-                                    <p>Identification of pain on body chart - Select Areas where pain is being experienced</p>
-                                    <p>Themographic Body Chart - Trainer will enter temperature data in a capturing form.</p>
-                                    <p>Rate your Muscle Soreness according to the scale above</p>
-                                    <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" style="border-radius: 15px;" class="img-fluid mb-4 shadow">
-
-                                    <div class="row align-items-start">
-                                        <div class="col-md no-sroller" style="overflow-x:auto;">
-                                            <h5>(Front)</h5>
-                                            <img src="../media/assets/body_charts/muscle-men-body-map-front.jpg" alt="" class="img-fluidz map image-map-male-front" usemap="#image-map-male-front-indi">
-                                            <map name="image-map-male-front-indi">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Head')" target="" alt="Male-Front-Head " title="Male-Front-Head " coords="249,98,221,109,218,145,210,143,212,156,220,166,221,177,232,190,241,230,246,232,250,237,255,232,258,225,265,192,276,178,279,165,286,156,286,143,280,138,280,122,270,105" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Left')" target="" alt="Male-Front-Pectoralis-Major-Left" title="Male-Front-Pectoralis-Major-Left" coords="253,305,254,256,265,235,289,236,302,241,317,244,325,257,328,270,319,269,315,282,309,300,295,311,272,314" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Right')" target="" alt="Male-Front-Pectoralis-Major-Right" title="Male-Front-Pectoralis-Major-Right" coords="246,303,245,254,235,235,211,235,194,241,177,245,173,259,170,274,181,265,184,279,185,293,194,305,213,315,238,310" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Left')" target="" alt="Male-Front-Trapezius-Left" title="Male-Front-Trapezius-Left" coords="275,182,266,195,258,236,276,232,305,226,284,213,274,203" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Right')" target="" alt="Male-Front-Trapezius-Right" title="Male-Front-Trapezius-Right" coords="224,184,230,192,235,213,241,234,231,233,209,230,196,225,214,215,226,207" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Left')" target="" alt="Male-Front-Adominalis-Upper-Left" title="Male-Front-Adominalis-Upper-Left" coords="250,312,250,369,287,373,286,315,272,315,257,308" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Right')" target="" alt="Male-Front-Adominalis-Upper-Right" title="Male-Front-Adominalis-Upper-Right" coords="247,310,248,367,213,373,213,317,224,314" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Left')" target="" alt="Male-Front-Adominalis-Lower-Left" title="Male-Front-Adominalis-Lower-Left" coords="251,374,250,448,253,485,265,485,284,430,287,376,263,373" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Right')" target="" alt="Male-Front-Adominalis-Lower-Right" title="Male-Front-Adominalis-Lower-Right" coords="230,371,250,374,247,439,246,486,233,484,215,426,215,376" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Left')" target="" alt="Male-Front-External_Oblique-Left" title="Male-Front-External_Oblique-Left" coords="290,314,288,379,287,431,291,447,301,435,312,430,316,429,311,386,310,368,314,355,304,334,300,322" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Right')" target="" alt="Male-Front-External_Oblique-Right" title="Male-Front-External_Oblique-Right" coords="212,442,213,426,209,395,210,365,211,316,196,329,185,345,192,376,183,423,196,433,205,442" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Left')" target="" alt="Male-Front-Serratus_Anterior-Left" title="Male-Front-Serratus_Anterior-Left" coords="291,312,300,319,308,340,314,349,318,321,323,327,323,292,326,270,321,269,310,301" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Right')" target="" alt="Male-Front-Serratus_Anterior-Right" title="Male-Front-Serratus_Anterior-Right" coords="210,315,194,330,184,343,181,320,177,326,176,294,175,270,180,268,184,299,194,307" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Left')" target="" alt="Male-Front-Deltoid-Left" title="Male-Front-Deltoid-Left" coords="357,301,359,268,352,244,327,224,313,224,293,236,320,244,328,257,330,276" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Right')" target="" alt="Male-Front-Deltoid-Right" title="Male-Front-Deltoid-Right" coords="144,298,141,269,145,246,167,227,188,225,206,235,174,244,168,279" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Left')" target="" alt="Male-Front-Bicep_Long_Head-Left" title="Male-Front-Bicep_Long_Head-Left" coords="362,365,366,346,363,335,364,320,357,303,331,276,344,302,354,323" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Right')" target="" alt="Male-Front-Bicep_Long_Head-Right" title="Male-Front-Bicep_Long_Head-Right" coords="139,362,132,346,135,336,139,315,145,299,170,277,154,305,147,321,142,344" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Left')" target="" alt="Male-Front-Bicep_Short_Head-Left" title="Male-Front-Bicep_Short_Head-Left" coords="362,366,346,356,337,333,336,355,324,329,326,273,332,281,352,320,358,348" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Right')" target="" alt="Male-Front-Bicep_Short_Head-Right" title="Male-Front-Bicep_Short_Head-Right" coords="138,369,152,357,164,339,165,357,177,326,175,272,164,292,151,315,144,336" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Left')" target="" alt="Male-Front-Brachioradialis-Left" title="Male-Front-Brachioradialis-Left" coords="407,451,397,464,384,465,359,420,347,395,338,379,336,366,337,354,338,337,345,349,346,354,363,366,367,345,379,361,387,391,393,414,397,428" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Right')" target="" alt="Male-Front-Brachioradialis-Right" title="Male-Front-Brachioradialis-Right" coords="117,465,105,464,94,453,111,408,117,378,131,349,138,358,139,372,152,355,156,346,163,343,163,377,143,419,127,441" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Lef')" target="" alt="Male-Front-Hand-Left" title="Male-Front-Hand-Left" coords="384,468,397,467,408,454,449,494,441,529,432,543,419,544,401,535,384,491" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Right')" target="" alt="Male-Front-Hand-Right" title="Male-Front-Hand-Right" coords="94,455,103,465,116,469,101,536,82,543,67,541,58,526,52,491,82,462" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Left')" target="" alt="Male-Front-Sartorius-Left" title="Male-Front-Sartorius-Left" coords="310,432,308,454,305,471,299,495,287,536,278,563,273,603,273,622,285,658,276,642,272,628,269,610,266,590,268,571,268,557,279,515,285,487,292,477,298,453" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Right')" target="" alt="Male-Front-Sartorius-Right" title="Male-Front-Sartorius-Right" coords="189,434,190,447,191,459,197,480,205,513,212,536,223,569,226,599,225,625,220,641,215,655,224,643,227,616,230,603,231,577,231,546,220,511,215,496,211,483,206,475,202,453" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Left')" target="" alt="Male-Front-Abductor-Left" title="Male-Front-Abductor-Left" coords="257,502,266,488,275,471,304,437,291,473,281,498,276,522,267,558,267,575,265,588,257,559,256,534,253,520" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Right')" target="" alt="Male-Front-Abductor-Right" title="Male-Front-Abductor-Right" coords="245,510,246,523,245,538,242,557,232,597,231,543,213,482,205,469,200,447,191,432,208,453,216,461,227,475,235,493" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Left')" target="" alt="Male-Front-Vastus_Medialis-Left" title="Male-Front-Vastus_Medialis-Left" coords="287,538,279,562,274,603,273,620,279,629,289,634,297,624,294,595,286,569" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Right')" target="" alt="Male-Front-Vastus_Medialis-Right" title="Male-Front-Vastus_Medialis-Right" coords="226,631,215,639,205,630,204,610,212,582,215,554,214,545,221,568,225,599" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Left')" target="" alt="Male-Front-Vastus_Laterialis-Left" title="Male-Front-Vastus_Laterialis-Left" coords="317,482,326,501,329,537,328,572,324,594,320,608,319,628,311,626,307,611,311,595,319,576,323,538,321,509" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Right')" target="" alt="Male-Front-Vastus_Laterialis-Right" title="Male-Front-Vastus_Laterialis-Right" coords="184,480,174,503,171,536,172,572,174,592,179,607,180,621,184,626,190,619,193,608,187,593,179,566,178,524,182,497" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Left')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Left" title="Male-Front-Tensor_Fasciae_Latae-Left" coords="317,427,323,451,324,480,329,505,313,476,310,451,312,434" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Right')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Right" title="Male-Front-Tensor_Fasciae_Latae-Right" coords="183,426,188,434,189,454,185,472,173,506,177,462,178,445" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Left')" target="" alt="Male-Front-Tibialis_Anterior-Left" title="Male-Front-Tibialis_Anterior-Left" coords="316,655,317,677,320,713,320,735,309,773,308,827,303,827,306,749,307,702,308,673" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Right')" target="" alt="Male-Front-Tibialis_Anterior-Right" title="Male-Front-Tibialis_Anterior-Right" coords="182,657,179,717,179,733,184,750,190,773,191,824,197,825,194,732,191,698,190,678,189,664" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Left')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Left" title="Male-Front-Extensor_Digitorum_Longus-Left" coords="320,716,326,723,325,731,317,775,317,823,309,827,309,775,321,735" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Right')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Right" title="Male-Front-Extensor_Digitorum_Longus-Right" coords="179,720,175,723,173,734,181,773,182,803,183,820,190,825,189,773,178,731" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Left')" target="" alt="Male-Front-Peroneus_Longus-Left" title="Male-Front-Peroneus_Longus-Left" coords="318,656,325,667,329,698,327,722,321,713" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Right')" target="" alt="Male-Front-Peroneus_Longus-Right" title="Male-Front-Peroneus_Longus-Right" coords="180,655,174,667,171,702,173,727,178,717,179,690" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Left')" target="" alt="Male-Front-Gastrocnemius-Left" title="Male-Front-Gastrocnemius-Left" coords="282,676,295,702,295,737,287,749,285,760,277,736,278,703" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Right')" target="" alt="Male-Front-Gastrocnemius-Right" title="Male-Front-Gastrocnemius-Right" coords="217,673,205,697,203,738,210,745,215,761,221,737,221,703" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Left')" target="" alt="Male-Front-Soleus-Left" title="Male-Front-Soleus-Left" coords="294,826,295,740,288,750,285,761,292,789" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Right')" target="" alt="Male-Front-Soleus-Right" title="Male-Front-Soleus-Right" coords="205,825,203,741,209,747,215,764,207,794" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Left')" target="" alt="Male-Front-Patella-Left" title="Male-Front-Patella-Left" coords="301,646,17" shape="circle">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Right')" target="" alt="Male-Front-Patella-Right" title="Male-Front-Patella-Right" coords="195,645,17" shape="circle">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Left')" target="" alt="Male-Front-Tibia-Left" title="Male-Front-Tibia-Left" coords="301,826,296,825,297,700,283,676,279,654,292,663,302,665,311,662,306,675,306,719" shape="poly">
-                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Right')" target="" alt="Male-Front-Tibia-Right" title="Male-Front-Tibia-Right" coords="204,826,197,827,195,730,191,665,202,662,210,655,215,660,217,669,204,694,203,712,201,739" shape="poly">
-                                            </map>
-                                        </div>
-                                        <div class="col-md no-sroller" style="overflow-x:auto;">
-                                            <h5>(Back)</h5>
-                                            <img src="../media/assets/body_charts/muscle-men-body-map-back.jpg" alt="" class="img-fluidz" usemap="#image-map-male-back-indi" hiddenz>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h5>Muscles</h5>
-                                            <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
-                                                <li class="list-group-item">
-                                                    <div class="row">
-                                                        <div class="col-md">
-                                                            <p class="fs-5 fw-bold">Muscle Title</p>
-                                                        </div>
-                                                        <div class="col-md">
-                                                            <p class="fs-5 fw-bold">Pain Intensity</p>
-                                                            <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" class="img-fluid mb-4">
-                                                            <p>Rate your Muscle Soreness according to the scale above</p>
-                                                            <div class="input-group">
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity1" value="Intensity-1">
-                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity1">1</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity2" value="Intensity-2">
-                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity2">2</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity3" value="Intensity-3">
-                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity3">3</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity4" value="Intensity-4">
-                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity4">4</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity5" value="Intensity-5">
-                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity5">5</label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="">
-                                                                <p class="fs-5 fw-bold">Temp Reading (&#176;C)</p>
-                                                                <input type="text" name="" id="" class="onefit-inputs-style rounded-pill shadow" placeholder="Temp Reading (&#176;C)">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="collapse showz w3-animate-bottom" id="insights-subfeatures-nav-menu">
+                                <div class="nav flex-column nav-pills" id="v-sub-tab-pills-insights-subfeatures-tab" role="tablist" aria-orientation="vertical">
+                                    <button class="nav-link active" id="v-sub-tab-pills-insights-googlesurveys-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-googlesurveys" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-googlesurveys" aria-selected="true">
+                                        <!--onclick="openLink(event, 'InsightsTabGCS')"-->
+                                        <span class="material-icons material-icons-rounded">poll</span>
+                                        <p>Google Community Surveys</p>
+                                    </button>
+                                    <button class="nav-link" id="v-sub-tab-pills-insights-indiathlete-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-indiathlete" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-indiathlete" aria-selected="false">
+                                        <!--onclick="openLink(event, 'InsightsTabIAT')"-->
+                                        <span class="material-icons material-icons-rounded">sports_gymnastics</span>
+                                        <p>Indi-Athletics</p>
+                                    </button>
+                                    <button class="nav-link" id="v-sub-tab-pills-insights-teamathletics-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-teamathletics" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-teamathletics" aria-selected="false">
+                                        <!--onclick="openLink(event, 'InsightsTabCTA')"-->
+                                        <span class="material-icons material-icons-rounded">diversity_2</span>
+                                        <p>Community/Team Athletics</p>
+                                    </button>
+                                    <button class="nav-link" id="v-sub-tab-pills-insights-challenges-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-challenges" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-challenges" aria-selected="false">
+                                        <!--onclick="openLink(event, 'InsightsTabChallenges')"-->
+                                        <span class="material-icons material-icons-rounded">stars</span>
+                                        <p>Challenges</p>
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item p-2 my-2 shadow">
-                            <h2 class="accordion-header m-0" id="flush-headingIATTwo">
-                                <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseIATTwo" aria-expanded="false" aria-controls="flush-collapseIATTwo">
-                                    Indi-Training Programs
-                                </button>
-                            </h2>
-                            <div id="flush-collapseIATTwo" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingIATTwo" data-bs-parent="#accordionFlushIATRegiment">
-                                <div class="accordion-body">
-                                    <div class="grid-container">
-                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                            <p class="fs-2 fw-bold">Warm-Up Drills</p>
+                        <div class="col-md -9">
+                            <div class="tab-content" id="v-pills-tabInsightsSubFeatures">
+                                <div class="tab-pane fade show active w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-googlesurveys" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-googlesurveys-tab">
+                                    <!-- Community Surveys -->
+                                    <div>
+                                        <!-- User Wellness Tracking Log -->
+                                        <p class="text-center fw-bold">One<span style="color: #e88a04">fit.</span>Social <span class="material-icons material-icons-two-tone">hub</span></p>
+
+                                        <div class="fs-5 fw-bold text-center mb-4 rounded-pill p-4 bg-white" style="color: #e88a04">
+                                            <i class="fab fa-google" style="font-size: 40px!important" aria-hidden="true"></i>
+                                            <hr>
+                                            <span class="align-center">Google Community Surveys</span>
                                         </div>
 
-                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                            <p class="fs-2 fw-bold">Pair Drills</p>
-                                        </div>
-
-                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                            <p class="fs-2 fw-bold">Speed & Reaction Drills</p>
-                                        </div>
-
-                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                            <p class="fs-2 fw-bold">Dribbling Drills</p>
-                                        </div>
-
-                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                            <p class="fs-2 fw-bold">Shooting Drills</p>
-                                        </div>
-
-                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                            <p class="fs-2 fw-bold">Shooting Drills</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ./ Indi Athlectics Training Panel -->
-
-                    <!-- Team Athletics Training Panel -->
-                    <hr class="text-white" style="height: 5px;">
-                    <h1 class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti my-4">Team-Athletics Training</h1>
-                    <div id="team-athletics-container mt-4">
-                        <div class="accordion accordion-flush" id="accordionFlushTATRegiment">
-                            <div class="accordion-item p-2 my-2 shadow">
-                                <h2 class="accordion-header m-0" id="flush-headingOne">
-                                    <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
-                                        Weekly Training Schedule (<span id="weekly-training-date-duration-str">Date</span>)
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseOne" class="accordion-collapse collapse show w3-animate-bottom" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushTATRegiment">
-                                    <div class="accordion-body">
-                                        <h5 class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">Upcoming Match Schedule</h5>
-                                        <div class="table-responsive mb-4">
-                                            <table class="table table-light table-striped my-4 shadow" style="border-radius: 25px !important; overflow: hidden;">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Match #</th>
-                                                        <th scope="col">Match Title</th>
-                                                        <th scope="col">Home Team</th>
-                                                        <th scope="col">Away Team</th>
-                                                        <th scope="col">Match Venue</th>
-                                                        <th scope="col">Match Date</th>
-                                                        <th scope="col">Start Time</th>
-                                                        <th scope="col">Standard Match Duration (Minutes)</th>
-                                                        <th scope="col">Observed Match Duration (Minutes)</th>
-                                                        <th scope="col">Match Result</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>League Friendly - Team A (Home) vs Team B (Away)</td>
-                                                        <td>Team A</td>
-                                                        <td>Team B</td>
-                                                        <td>Stadium 1</td>
-                                                        <td>Saturday, 5 February 2022</td>
-                                                        <td>13:00</td>
-                                                        <td>90</td>
-                                                        <td>94</td>
-                                                        <td>Pending</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>League Friendly - Team A (Home) vs Team B (Away)</td>
-                                                        <td>Team A</td>
-                                                        <td>Team B</td>
-                                                        <td>Stadium 1</td>
-                                                        <td>Saturday, 5 February 2022</td>
-                                                        <td>13:00</td>
-                                                        <td>90</td>
-                                                        <td>94</td>
-                                                        <td>Pending</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>League Friendly - Team A (Home) vs Team B (Away)</td>
-                                                        <td>Team A</td>
-                                                        <td>Team B</td>
-                                                        <td>Stadium 1</td>
-                                                        <td>Saturday, 5 February 2022</td>
-                                                        <td>13:00</td>
-                                                        <td>90</td>
-                                                        <td>94</td>
-                                                        <td>Pending</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        <p class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">Weekly Training Schedule</p>
-                                        <img src="../media/assets/example.png" alt="training week for ..." class="img-fluid mb-4" hidden>
-                                        <div class="training-schedule-container p-4 text-center down-top-grad-white">
-                                            <h5>Training week for those who played 45+ minutes in previous match</h5>
-
-                                            <div class="my-4 text-center d-grid gap-2">
-                                                <button class="onefit-buttons-style-tahiti p-4 my-2" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="add-weekly-activity-btn remove-weekly-activity-btn">
-                                                    <span class="material-icons material-icons-round">
-                                                        edit_calendar
-                                                    </span>
-                                                    <p style="font-size: 10px;">Edit Weekly Schedule</p>
-                                                </button>
-                                            </div>
-                                            <hr class="text-white" style="height: 5px;">
-
-                                            <div class="row align-items-end text-dark" id="training-schedule-chart-grid">
-                                                <div class="col" id="day-1-col">
-                                                    <p class="fs-3 fw-bold">
-                                                        Regeneration
-                                                        <!-- Edit training day title - Day 1 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-1')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day title - Day 1 -->
-                                                    </p>
-                                                    <p>
-                                                        RPE 1-3
-                                                        <!-- Edit RPE - Day 1 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-1')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit RPE - Day 1 -->
-                                                    </p>
-                                                    <div class="chart-col-bar p-2 shadow progress-bar progress-bar-stripedz bg-warningz">
-                                                        <div class="chart-col-bar-item text-center position-relative">
-                                                            <p>Cycling / Spinning</p>
-                                                            <img src="../media/assets/icons/cycling.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-1')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Strength & Core</p>
-                                                            <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-1')">
-                                                            <span class="material-icons material-icons-round">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold">Day 1/-6</p>
-                                                </div>
-
-                                                <div class="col" id="day-2-col">
-                                                    <p class="fs-3 fw-bold">
-                                                        Recovery
-                                                        <!-- Edit training day title - Day 1 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-2')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day title - Day 1 -->
-                                                    </p>
-
-                                                    <p>
-                                                        RPE 0
-                                                        <!-- Edit RPE - Day 1 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-2')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit RPE - Day 1 -->
-                                                    </p>
-
-                                                    <div class="chart-col-bar p-2 shadow">
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Ice Bath</p>
-                                                            <img src="../media/assets/icons/bath-tub.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-2', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-2')">
-                                                            <span class="material-icons material-icons-round">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold">Day 2/-5</p>
-                                                </div>
-
-                                                <div class="col" id="day-3-col">
-                                                    <p class="fs-3 fw-bold">
-                                                        Longer pitch / strides
-                                                        <!-- Edit training day title - Day 1 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-3')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day title - Day 1 -->
-                                                    </p>
-
-                                                    <p>
-                                                        RPE 4-6
-                                                        <!-- Edit RPE - Day 1 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-3')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit RPE - Day 1 -->
-                                                    </p>
-
-                                                    <div class="chart-col-bar p-2 shadow">
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>RST</p>
-                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Tactics</p>
-                                                            <img src="../media/assets/icons/thinking.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Practice Kick-Off</p>
-                                                            <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-3')">
-                                                            <span class="material-icons material-icons-round">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold">Day 3/-4</p>
-                                                </div>
-
-                                                <div class="col" id="day-4-col">
-                                                    <p class="fs-3 fw-bold">
-                                                        Strength / change of directon
-                                                        <!-- Edit training day title - Day 1 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-4')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day title - Day 1 -->
-                                                    </p>
-
-                                                    <p>
-                                                        RPE 7-10
-                                                        <!-- Edit RPE - Day 1 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-4')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit RPE - Day 1 -->
-                                                    </p>
-
-                                                    <div class="chart-col-bar p-2 shadow">
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Multi-directional WU</p>
-                                                            <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>SSGs</p>
-                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Strength</p>
-                                                            <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Practice Kick-Off</p>
-                                                            <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-4')">
-                                                            <span class="material-icons material-icons-round">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold">Day 4/-3</p>
-                                                </div>
-
-                                                <div class="col" id="day-5-col">
-                                                    <p class="fs-3 fw-bold">
-                                                        Taper
-                                                        <!-- Edit training day title - Day 1 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-5')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day title - Day 1 -->
-                                                    </p>
-
-                                                    <p>
-                                                        RPE 1-3
-                                                        <!-- Edit RPE - Day 1 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-5')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit RPE - Day 1 -->
-                                                    </p>
-
-                                                    <div class="chart-col-bar p-2 shadow">
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Multi-directional WU</p>
-                                                            <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-5', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Tempo runs</p>
-                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-5', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-5')">
-                                                            <span class="material-icons material-icons-round">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold">Day 5/-2</p>
-                                                </div>
-
-                                                <div class="col" id="day-6-col">
-                                                    <p class="fs-3 fw-bold">
-                                                        Match prep
-                                                        <!-- Edit training day title - Day 1 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-6')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day title - Day 1 -->
-                                                    </p>
-
-                                                    <p>
-                                                        RPE 2-4
-                                                        <!-- Edit RPE - Day 1 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-6')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit RPE - Day 1 -->
-                                                    </p>
-
-                                                    <div class="chart-col-bar p-2 shadow">
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Multi-directional WU</p>
-                                                            <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Tactics</p>
-                                                            <img src="../media/assets/icons/thinking.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Short SSGs</p>
-                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-6')">
-                                                            <span class="material-icons material-icons-round">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold">Day 6/-1</p>
-                                                </div>
-
-                                                <div class="col" id="day-7-col">
-                                                    <p class="fs-3 fw-bold">
-                                                        Match
-                                                        <!-- Edit training day title - Day 7 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-7')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day title - Day 7 -->
-                                                    </p>
-
-                                                    <p>
-                                                        RPE 7-10
-                                                        <!-- Edit RPE - Day 7 -->
-                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-7')">
-                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit RPE - Day 7 -->
-                                                    </p>
-
-                                                    <div class="chart-col-bar p-2 shadow">
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Pre-match WU</p>
-                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                        <div class="chart-col-bar-item text-center">
-                                                            <p>Match Kick-Off - We Play to Win!</p>
-                                                            <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
-
-                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                        delete
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-6')">
-                                                            <span class="material-icons material-icons-round">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold">Day 7 (Match Day)</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item p-2 my-2 shadow">
-                                <h2 class="accordion-header m-0" id="flush-headingTwo">
-                                    <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="true" aria-controls="flush-collapseTwo">
-                                        Daily Workout (<span id="training-date-str">Date</span>)
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseTwo" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushTATRegiment">
-                                    <div class="accordion-body">
-                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Program Title</p>
-
-                                        SoccerXpert - Soccer Drill Template
-                                        Source: https://www.soccerxpert.com/drills
-
-                                        Latest Soccer Drills
-                                        Below you will find a few of the latest soccer drills posted to SoccerXpert
-
-                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Pre-Training</p>
-                                        <div id="pre-training-activities">
-                                            <div class="card mb-3 shadow" style="background-color: #343434 !important; color: #fff !important; border-radius: 25px !important;">
-                                                <div class="row g-0 align-items-center">
-                                                    <div class="col-md-4 p-4">
-                                                        <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-1-Thumbnail.png" class="img-fluid rounded-startz w-100 shadow" style="border-radius: 25px;" alt="thumbnail placeholder">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title fw-bold text-center">1v1 Speed and Reaction Game</h5>
-                                                            <hr>
-                                                            <ul class="list-group list-group-horizontal-md border-0 text-center">
-                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
-                                                                    Chris Johnson
-                                                                </li>
-                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
-                                                                    10,871 Views
-                                                                </li>
-                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
-                                                                    Rating 0 (0 Reviews)
-                                                                </li>
-                                                            </ul>
-                                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-
-                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-1.png" class="img-fluid w-100 my-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Warm-Up</p>
-                                        <div id="warm-up-activities">
-                                            <div class="card mb-3 shadow" style="background-color: #343434 !important; color: #fff !important; border-radius: 25px !important;">
-                                                <div class="row g-0 align-items-center">
-                                                    <div class="col-md-4 p-4">
-                                                        <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-1-Thumbnail.png" class="img-fluid rounded-startz w-100 shadow" style="border-radius: 25px;" alt="thumbnail placeholder">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title fw-bold text-center">1v1 Speed and Reaction Game</h5>
-                                                            <hr>
-                                                            <ul class="list-group list-group-horizontal-md border-0 text-center">
-                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
-                                                                    Chris Johnson
-                                                                </li>
-                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
-                                                                    10,871 Views
-                                                                </li>
-                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
-                                                                    Rating 0 (0 Reviews)
-                                                                </li>
-                                                            </ul>
-                                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-
-                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-1.png" class="img-fluid w-100 my-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="card mb-3 shadow" style="background-color: #343434 !important; color: #fff !important; border-radius: 25px !important;">
-                                                <div class="row g-0 align-items-center">
-                                                    <div class="col-md-4 p-4">
-                                                        <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-2-Thumbnail.png" class="img-fluid rounded-startz w-100 shadow" style="border-radius: 25px;" alt="thumbnail placeholder">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title fw-bold text-center">Soccer Tic-Tac-Toe Warm-Up</h5>
-                                                            <hr>
-                                                            <ul class="list-group list-group-horizontal-md border-0 text-center">
-                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
-                                                                    Chris Johnson
-                                                                </li>
-                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
-                                                                    30,837 Views
-                                                                </li>
-                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
-                                                                    Rating 0 (0 Reviews)
-                                                                </li>
-                                                            </ul>
-                                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-
-                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-2.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Mid-Training</p>
-                                        <div id="mid-training-activities">
-                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-3.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
-                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-4.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
-                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-5.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
-                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-6.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
-                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-7.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
-                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-8.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
-                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-9.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
-                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-10.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
-                                        </div>
-
-
-                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Post-Training</p>
-                                        <h5>Identify Painful Areas</h5>
-                                        <p>Identification of pain on body chart - Select Areas where pain is being experienced</p>
-                                        <p>Themographic Body Chart - Trainer will enter temperature data in a capturing form.</p>
-                                        <p>Rate your Muscle Soreness according to the scale above</p>
-                                        <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" style="border-radius: 15px;" class="img-fluid mb-4 shadow">
-
-                                        <div class="row align-items-start">
-                                            <div class="col-md no-sroller" style="overflow-x:auto;">
-                                                <h5>(Front)</h5>
-                                                <img src="../media/assets/body_charts/muscle-men-body-map-front.jpg" alt="" class="img-fluidz map image-map-male-front" usemap="#image-map-male-front">
-                                                <map name="image-map-male-front">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Head')" target="" alt="Male-Front-Head " title="Male-Front-Head " coords="249,98,221,109,218,145,210,143,212,156,220,166,221,177,232,190,241,230,246,232,250,237,255,232,258,225,265,192,276,178,279,165,286,156,286,143,280,138,280,122,270,105" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Left')" target="" alt="Male-Front-Pectoralis-Major-Left" title="Male-Front-Pectoralis-Major-Left" coords="253,305,254,256,265,235,289,236,302,241,317,244,325,257,328,270,319,269,315,282,309,300,295,311,272,314" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Right')" target="" alt="Male-Front-Pectoralis-Major-Right" title="Male-Front-Pectoralis-Major-Right" coords="246,303,245,254,235,235,211,235,194,241,177,245,173,259,170,274,181,265,184,279,185,293,194,305,213,315,238,310" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Left')" target="" alt="Male-Front-Trapezius-Left" title="Male-Front-Trapezius-Left" coords="275,182,266,195,258,236,276,232,305,226,284,213,274,203" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Right')" target="" alt="Male-Front-Trapezius-Right" title="Male-Front-Trapezius-Right" coords="224,184,230,192,235,213,241,234,231,233,209,230,196,225,214,215,226,207" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Left')" target="" alt="Male-Front-Adominalis-Upper-Left" title="Male-Front-Adominalis-Upper-Left" coords="250,312,250,369,287,373,286,315,272,315,257,308" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Right')" target="" alt="Male-Front-Adominalis-Upper-Right" title="Male-Front-Adominalis-Upper-Right" coords="247,310,248,367,213,373,213,317,224,314" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Left')" target="" alt="Male-Front-Adominalis-Lower-Left" title="Male-Front-Adominalis-Lower-Left" coords="251,374,250,448,253,485,265,485,284,430,287,376,263,373" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Right')" target="" alt="Male-Front-Adominalis-Lower-Right" title="Male-Front-Adominalis-Lower-Right" coords="230,371,250,374,247,439,246,486,233,484,215,426,215,376" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Left')" target="" alt="Male-Front-External_Oblique-Left" title="Male-Front-External_Oblique-Left" coords="290,314,288,379,287,431,291,447,301,435,312,430,316,429,311,386,310,368,314,355,304,334,300,322" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Right')" target="" alt="Male-Front-External_Oblique-Right" title="Male-Front-External_Oblique-Right" coords="212,442,213,426,209,395,210,365,211,316,196,329,185,345,192,376,183,423,196,433,205,442" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Left')" target="" alt="Male-Front-Serratus_Anterior-Left" title="Male-Front-Serratus_Anterior-Left" coords="291,312,300,319,308,340,314,349,318,321,323,327,323,292,326,270,321,269,310,301" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Right')" target="" alt="Male-Front-Serratus_Anterior-Right" title="Male-Front-Serratus_Anterior-Right" coords="210,315,194,330,184,343,181,320,177,326,176,294,175,270,180,268,184,299,194,307" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Left')" target="" alt="Male-Front-Deltoid-Left" title="Male-Front-Deltoid-Left" coords="357,301,359,268,352,244,327,224,313,224,293,236,320,244,328,257,330,276" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Right')" target="" alt="Male-Front-Deltoid-Right" title="Male-Front-Deltoid-Right" coords="144,298,141,269,145,246,167,227,188,225,206,235,174,244,168,279" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Left')" target="" alt="Male-Front-Bicep_Long_Head-Left" title="Male-Front-Bicep_Long_Head-Left" coords="362,365,366,346,363,335,364,320,357,303,331,276,344,302,354,323" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Right')" target="" alt="Male-Front-Bicep_Long_Head-Right" title="Male-Front-Bicep_Long_Head-Right" coords="139,362,132,346,135,336,139,315,145,299,170,277,154,305,147,321,142,344" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Left')" target="" alt="Male-Front-Bicep_Short_Head-Left" title="Male-Front-Bicep_Short_Head-Left" coords="362,366,346,356,337,333,336,355,324,329,326,273,332,281,352,320,358,348" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Right')" target="" alt="Male-Front-Bicep_Short_Head-Right" title="Male-Front-Bicep_Short_Head-Right" coords="138,369,152,357,164,339,165,357,177,326,175,272,164,292,151,315,144,336" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Left')" target="" alt="Male-Front-Brachioradialis-Left" title="Male-Front-Brachioradialis-Left" coords="407,451,397,464,384,465,359,420,347,395,338,379,336,366,337,354,338,337,345,349,346,354,363,366,367,345,379,361,387,391,393,414,397,428" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Right')" target="" alt="Male-Front-Brachioradialis-Right" title="Male-Front-Brachioradialis-Right" coords="117,465,105,464,94,453,111,408,117,378,131,349,138,358,139,372,152,355,156,346,163,343,163,377,143,419,127,441" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Lef')" target="" alt="Male-Front-Hand-Left" title="Male-Front-Hand-Left" coords="384,468,397,467,408,454,449,494,441,529,432,543,419,544,401,535,384,491" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Right')" target="" alt="Male-Front-Hand-Right" title="Male-Front-Hand-Right" coords="94,455,103,465,116,469,101,536,82,543,67,541,58,526,52,491,82,462" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Left')" target="" alt="Male-Front-Sartorius-Left" title="Male-Front-Sartorius-Left" coords="310,432,308,454,305,471,299,495,287,536,278,563,273,603,273,622,285,658,276,642,272,628,269,610,266,590,268,571,268,557,279,515,285,487,292,477,298,453" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Right')" target="" alt="Male-Front-Sartorius-Right" title="Male-Front-Sartorius-Right" coords="189,434,190,447,191,459,197,480,205,513,212,536,223,569,226,599,225,625,220,641,215,655,224,643,227,616,230,603,231,577,231,546,220,511,215,496,211,483,206,475,202,453" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Left')" target="" alt="Male-Front-Abductor-Left" title="Male-Front-Abductor-Left" coords="257,502,266,488,275,471,304,437,291,473,281,498,276,522,267,558,267,575,265,588,257,559,256,534,253,520" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Right')" target="" alt="Male-Front-Abductor-Right" title="Male-Front-Abductor-Right" coords="245,510,246,523,245,538,242,557,232,597,231,543,213,482,205,469,200,447,191,432,208,453,216,461,227,475,235,493" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Left')" target="" alt="Male-Front-Vastus_Medialis-Left" title="Male-Front-Vastus_Medialis-Left" coords="287,538,279,562,274,603,273,620,279,629,289,634,297,624,294,595,286,569" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Right')" target="" alt="Male-Front-Vastus_Medialis-Right" title="Male-Front-Vastus_Medialis-Right" coords="226,631,215,639,205,630,204,610,212,582,215,554,214,545,221,568,225,599" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Left')" target="" alt="Male-Front-Vastus_Laterialis-Left" title="Male-Front-Vastus_Laterialis-Left" coords="317,482,326,501,329,537,328,572,324,594,320,608,319,628,311,626,307,611,311,595,319,576,323,538,321,509" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Right')" target="" alt="Male-Front-Vastus_Laterialis-Right" title="Male-Front-Vastus_Laterialis-Right" coords="184,480,174,503,171,536,172,572,174,592,179,607,180,621,184,626,190,619,193,608,187,593,179,566,178,524,182,497" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Left')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Left" title="Male-Front-Tensor_Fasciae_Latae-Left" coords="317,427,323,451,324,480,329,505,313,476,310,451,312,434" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Right')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Right" title="Male-Front-Tensor_Fasciae_Latae-Right" coords="183,426,188,434,189,454,185,472,173,506,177,462,178,445" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Left')" target="" alt="Male-Front-Tibialis_Anterior-Left" title="Male-Front-Tibialis_Anterior-Left" coords="316,655,317,677,320,713,320,735,309,773,308,827,303,827,306,749,307,702,308,673" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Right')" target="" alt="Male-Front-Tibialis_Anterior-Right" title="Male-Front-Tibialis_Anterior-Right" coords="182,657,179,717,179,733,184,750,190,773,191,824,197,825,194,732,191,698,190,678,189,664" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Left')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Left" title="Male-Front-Extensor_Digitorum_Longus-Left" coords="320,716,326,723,325,731,317,775,317,823,309,827,309,775,321,735" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Right')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Right" title="Male-Front-Extensor_Digitorum_Longus-Right" coords="179,720,175,723,173,734,181,773,182,803,183,820,190,825,189,773,178,731" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Left')" target="" alt="Male-Front-Peroneus_Longus-Left" title="Male-Front-Peroneus_Longus-Left" coords="318,656,325,667,329,698,327,722,321,713" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Right')" target="" alt="Male-Front-Peroneus_Longus-Right" title="Male-Front-Peroneus_Longus-Right" coords="180,655,174,667,171,702,173,727,178,717,179,690" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Left')" target="" alt="Male-Front-Gastrocnemius-Left" title="Male-Front-Gastrocnemius-Left" coords="282,676,295,702,295,737,287,749,285,760,277,736,278,703" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Right')" target="" alt="Male-Front-Gastrocnemius-Right" title="Male-Front-Gastrocnemius-Right" coords="217,673,205,697,203,738,210,745,215,761,221,737,221,703" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Left')" target="" alt="Male-Front-Soleus-Left" title="Male-Front-Soleus-Left" coords="294,826,295,740,288,750,285,761,292,789" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Right')" target="" alt="Male-Front-Soleus-Right" title="Male-Front-Soleus-Right" coords="205,825,203,741,209,747,215,764,207,794" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Left')" target="" alt="Male-Front-Patella-Left" title="Male-Front-Patella-Left" coords="301,646,17" shape="circle">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Right')" target="" alt="Male-Front-Patella-Right" title="Male-Front-Patella-Right" coords="195,645,17" shape="circle">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Left')" target="" alt="Male-Front-Tibia-Left" title="Male-Front-Tibia-Left" coords="301,826,296,825,297,700,283,676,279,654,292,663,302,665,311,662,306,675,306,719" shape="poly">
-                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Right')" target="" alt="Male-Front-Tibia-Right" title="Male-Front-Tibia-Right" coords="204,826,197,827,195,730,191,665,202,662,210,655,215,660,217,669,204,694,203,712,201,739" shape="poly">
-                                                </map>
-                                            </div>
-                                            <div class="col-md no-sroller" style="overflow-x:auto;">
-                                                <h5>(Back)</h5>
-                                                <img src="../media/assets/body_charts/muscle-men-body-map-back.jpg" alt="" class="img-fluidz" usemap="#image-map-male-back" hiddenz>
-                                            </div>
+                                        <h5 class="mt-4 fs-1 text-center mb-4">Wellness Tracking</h5>
+                                        <p class="fs-3 mt-4">Community Wellness Rating: 90%</p>
+                                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc0sL0-Gm6J-Hy03z_F872L5nQAdigfbZArNYBhBGbB-iOqmg/viewform?embedded=true" height="3016" frameborder="0" marginheight="0" marginwidth="0" class="w-100 no-scroller tunnel-bg-container-inverse" style="max-height: 100vh!important; border-radius: 25px;">Loading…</iframe>
+                                        <div class="row my-4">
                                             <div class="col-md-4">
-                                                <h5>Muscles</h5>
-                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
-                                                    <li class="list-group-item">
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                                <p class="fs-5 fw-bold">Muscle Title</p>
-                                                            </div>
-                                                            <div class="col-lg-8">
-                                                                <p class="fs-5 fw-bold">Pain Intensity</p>
-                                                                <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" class="img-fluid mb-4">
-                                                                <p>Rate your Muscle Soreness according to the scale above</p>
-                                                                <div class="input-group">
-                                                                    <div class="form-check form-check-inline">
-                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity1" value="Intensity-1">
-                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity1">1</label>
-                                                                    </div>
-                                                                    <div class="form-check form-check-inline">
-                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity2" value="Intensity-2">
-                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity2">2</label>
-                                                                    </div>
-                                                                    <div class="form-check form-check-inline">
-                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity3" value="Intensity-3">
-                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity3">3</label>
-                                                                    </div>
-                                                                    <div class="form-check form-check-inline">
-                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity4" value="Intensity-4">
-                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity4">4</label>
-                                                                    </div>
-                                                                    <div class="form-check form-check-inline">
-                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity5" value="Intensity-5">
-                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity5">5</label>
-                                                                    </div>
-                                                                </div>
+                                                <h5>Survey log</h5>
+                                            </div>
+                                            <div class="col-md">
+                                                <p>Survey Charts / Results</p>
+                                            </div>
+                                        </div>
+                                        <!-- ./ User Wellness Tracking Log -->
 
-                                                                <div class="">
-                                                                    <p class="fs-5 fw-bold">Temp Reading (&#176;C)</p>
-                                                                    <input type="text" name="" id="" class="onefit-inputs-style" placeholder="Temp Reading (&#176;C)">
-                                                                </div>
-                                                            </div>
+                                        <!-- User Load Monitoring Log -->
+                                        <hr class="text-white" style="height: 5px;">
+                                        <h5 class="mt-4 fs-1 text-center mb-4">Load Monitoring</h5>
+                                        <p class="fs-3 mt-4">Community Load Rating: 90%</p>
+                                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOJqnXT2LxRK9GK6DfmYObzkbu28D-qT_XzN-vUBsUyaOX0Q/viewform?embedded=true" height="1879" frameborder="0" marginheight="0" marginwidth="0" class="w-100 no-scroller tunnel-bg-container-inverse" style="max-height: 100vh!important; border-radius: 25px;">Loading…</iframe>
+                                        <div class="row my-4">
+                                            <div class="col-md-4">
+                                                <h5>Survey log</h5>
+                                            </div>
+                                            <div class="col-md">
+                                                <p>Survey Charts / Results</p>
+                                            </div>
+                                        </div>
+                                        <!-- ./ User Load Monitoring Log -->
+                                    </div>
+                                    <!-- ./ Community Surveys -->
+
+                                    <!-- Next Tab button -->
+                                    <hr class="text-white">
+                                    <div class="my-4 text-center" style="width: 100%">
+                                        <div class="d-flex justify-content-center" style="width: 100%">
+                                            <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabIAT')">
+                                                <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">sports_gymnastics</span>
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 10px !important;">Indi-Athletics</p>
+                                                <span class="material-icons material-icons-rounded" style="font-size: 10px !important;">expand_circle_down</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- ./Next Tab button -->
+                                </div>
+                                <div class="tab-pane fade w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-indiathlete" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-indiathlete-tab">
+                                    <!-- Next Tab button -->
+                                    <div class="my-4 text-center" style="width: 100%">
+                                        <div class="d-flex justify-content-center" style="width: 100%">
+                                            <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabGCS')">
+                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 10px !important;">expand_less</span></p>
+                                                <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">poll</span>
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 10px !important;">Google Community Surveys</p>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr class="text-white">
+                                    <!-- ./Next Tab button -->
+
+                                    <!-- Indi Athletics Training Panel -->
+                                    <h1 class="my-4 fs-1 text-center p-4 down-top-grad-tahiti rounded-pill">Indi-Athlete Training</h1>
+                                    <div class="accordion accordion-flush" id="accordionFlushIATRegiment">
+                                        <div class="accordion-item p-2 my-2 shadow">
+                                            <h2 class="accordion-header m-0" id="flush-headingIATOne">
+                                                <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseIATOne" aria-expanded="true" aria-controls="flush-collapseIATOne">
+                                                    Indi-Training (<span id="training-date-str">Date</span>)
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseIATOne" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingIATOne" data-bs-parent="#accordionFlushIATRegiment">
+                                                <div class="accordion-body">
+                                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Program Title</p>
+                                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
+                                                        Subscribe to an Indi Fitness Program to get started
+                                                    </div>
+
+                                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Pre-Training</p>
+                                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
+                                                        Subscribe to an Indi Fitness Program to get started
+                                                    </div>
+
+                                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Warm-Up</p>
+                                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
+                                                        Subscribe to an Indi Fitness Program to get started
+                                                    </div>
+
+                                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Mid-Training</p>
+                                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
+                                                        Subscribe to an Indi Fitness Program to get started
+                                                    </div>
+
+                                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Post-Training</p>
+                                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
+                                                        Subscribe to an Indi Fitness Program to get started
+                                                    </div>
+
+                                                    <h5>Identify Painful Areas</h5>
+                                                    <p>Identification of pain on body chart - Select Areas where pain is being experienced</p>
+                                                    <p>Themographic Body Chart - Trainer will enter temperature data in a capturing form.</p>
+                                                    <p>Rate your Muscle Soreness according to the scale above</p>
+                                                    <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" style="border-radius: 15px;" class="img-fluid mb-4 shadow">
+
+                                                    <div class="row align-items-start">
+                                                        <div class="col-md no-sroller" style="overflow-x:auto;">
+                                                            <h5>(Front)</h5>
+                                                            <img src="../media/assets/body_charts/muscle-men-body-map-front.jpg" alt="" class="img-fluidz map image-map-male-front" usemap="#image-map-male-front-indi">
+                                                            <map name="image-map-male-front-indi">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Head')" target="" alt="Male-Front-Head " title="Male-Front-Head " coords="249,98,221,109,218,145,210,143,212,156,220,166,221,177,232,190,241,230,246,232,250,237,255,232,258,225,265,192,276,178,279,165,286,156,286,143,280,138,280,122,270,105" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Left')" target="" alt="Male-Front-Pectoralis-Major-Left" title="Male-Front-Pectoralis-Major-Left" coords="253,305,254,256,265,235,289,236,302,241,317,244,325,257,328,270,319,269,315,282,309,300,295,311,272,314" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Right')" target="" alt="Male-Front-Pectoralis-Major-Right" title="Male-Front-Pectoralis-Major-Right" coords="246,303,245,254,235,235,211,235,194,241,177,245,173,259,170,274,181,265,184,279,185,293,194,305,213,315,238,310" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Left')" target="" alt="Male-Front-Trapezius-Left" title="Male-Front-Trapezius-Left" coords="275,182,266,195,258,236,276,232,305,226,284,213,274,203" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Right')" target="" alt="Male-Front-Trapezius-Right" title="Male-Front-Trapezius-Right" coords="224,184,230,192,235,213,241,234,231,233,209,230,196,225,214,215,226,207" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Left')" target="" alt="Male-Front-Adominalis-Upper-Left" title="Male-Front-Adominalis-Upper-Left" coords="250,312,250,369,287,373,286,315,272,315,257,308" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Right')" target="" alt="Male-Front-Adominalis-Upper-Right" title="Male-Front-Adominalis-Upper-Right" coords="247,310,248,367,213,373,213,317,224,314" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Left')" target="" alt="Male-Front-Adominalis-Lower-Left" title="Male-Front-Adominalis-Lower-Left" coords="251,374,250,448,253,485,265,485,284,430,287,376,263,373" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Right')" target="" alt="Male-Front-Adominalis-Lower-Right" title="Male-Front-Adominalis-Lower-Right" coords="230,371,250,374,247,439,246,486,233,484,215,426,215,376" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Left')" target="" alt="Male-Front-External_Oblique-Left" title="Male-Front-External_Oblique-Left" coords="290,314,288,379,287,431,291,447,301,435,312,430,316,429,311,386,310,368,314,355,304,334,300,322" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Right')" target="" alt="Male-Front-External_Oblique-Right" title="Male-Front-External_Oblique-Right" coords="212,442,213,426,209,395,210,365,211,316,196,329,185,345,192,376,183,423,196,433,205,442" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Left')" target="" alt="Male-Front-Serratus_Anterior-Left" title="Male-Front-Serratus_Anterior-Left" coords="291,312,300,319,308,340,314,349,318,321,323,327,323,292,326,270,321,269,310,301" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Right')" target="" alt="Male-Front-Serratus_Anterior-Right" title="Male-Front-Serratus_Anterior-Right" coords="210,315,194,330,184,343,181,320,177,326,176,294,175,270,180,268,184,299,194,307" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Left')" target="" alt="Male-Front-Deltoid-Left" title="Male-Front-Deltoid-Left" coords="357,301,359,268,352,244,327,224,313,224,293,236,320,244,328,257,330,276" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Right')" target="" alt="Male-Front-Deltoid-Right" title="Male-Front-Deltoid-Right" coords="144,298,141,269,145,246,167,227,188,225,206,235,174,244,168,279" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Left')" target="" alt="Male-Front-Bicep_Long_Head-Left" title="Male-Front-Bicep_Long_Head-Left" coords="362,365,366,346,363,335,364,320,357,303,331,276,344,302,354,323" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Right')" target="" alt="Male-Front-Bicep_Long_Head-Right" title="Male-Front-Bicep_Long_Head-Right" coords="139,362,132,346,135,336,139,315,145,299,170,277,154,305,147,321,142,344" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Left')" target="" alt="Male-Front-Bicep_Short_Head-Left" title="Male-Front-Bicep_Short_Head-Left" coords="362,366,346,356,337,333,336,355,324,329,326,273,332,281,352,320,358,348" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Right')" target="" alt="Male-Front-Bicep_Short_Head-Right" title="Male-Front-Bicep_Short_Head-Right" coords="138,369,152,357,164,339,165,357,177,326,175,272,164,292,151,315,144,336" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Left')" target="" alt="Male-Front-Brachioradialis-Left" title="Male-Front-Brachioradialis-Left" coords="407,451,397,464,384,465,359,420,347,395,338,379,336,366,337,354,338,337,345,349,346,354,363,366,367,345,379,361,387,391,393,414,397,428" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Right')" target="" alt="Male-Front-Brachioradialis-Right" title="Male-Front-Brachioradialis-Right" coords="117,465,105,464,94,453,111,408,117,378,131,349,138,358,139,372,152,355,156,346,163,343,163,377,143,419,127,441" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Lef')" target="" alt="Male-Front-Hand-Left" title="Male-Front-Hand-Left" coords="384,468,397,467,408,454,449,494,441,529,432,543,419,544,401,535,384,491" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Right')" target="" alt="Male-Front-Hand-Right" title="Male-Front-Hand-Right" coords="94,455,103,465,116,469,101,536,82,543,67,541,58,526,52,491,82,462" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Left')" target="" alt="Male-Front-Sartorius-Left" title="Male-Front-Sartorius-Left" coords="310,432,308,454,305,471,299,495,287,536,278,563,273,603,273,622,285,658,276,642,272,628,269,610,266,590,268,571,268,557,279,515,285,487,292,477,298,453" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Right')" target="" alt="Male-Front-Sartorius-Right" title="Male-Front-Sartorius-Right" coords="189,434,190,447,191,459,197,480,205,513,212,536,223,569,226,599,225,625,220,641,215,655,224,643,227,616,230,603,231,577,231,546,220,511,215,496,211,483,206,475,202,453" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Left')" target="" alt="Male-Front-Abductor-Left" title="Male-Front-Abductor-Left" coords="257,502,266,488,275,471,304,437,291,473,281,498,276,522,267,558,267,575,265,588,257,559,256,534,253,520" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Right')" target="" alt="Male-Front-Abductor-Right" title="Male-Front-Abductor-Right" coords="245,510,246,523,245,538,242,557,232,597,231,543,213,482,205,469,200,447,191,432,208,453,216,461,227,475,235,493" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Left')" target="" alt="Male-Front-Vastus_Medialis-Left" title="Male-Front-Vastus_Medialis-Left" coords="287,538,279,562,274,603,273,620,279,629,289,634,297,624,294,595,286,569" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Right')" target="" alt="Male-Front-Vastus_Medialis-Right" title="Male-Front-Vastus_Medialis-Right" coords="226,631,215,639,205,630,204,610,212,582,215,554,214,545,221,568,225,599" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Left')" target="" alt="Male-Front-Vastus_Laterialis-Left" title="Male-Front-Vastus_Laterialis-Left" coords="317,482,326,501,329,537,328,572,324,594,320,608,319,628,311,626,307,611,311,595,319,576,323,538,321,509" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Right')" target="" alt="Male-Front-Vastus_Laterialis-Right" title="Male-Front-Vastus_Laterialis-Right" coords="184,480,174,503,171,536,172,572,174,592,179,607,180,621,184,626,190,619,193,608,187,593,179,566,178,524,182,497" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Left')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Left" title="Male-Front-Tensor_Fasciae_Latae-Left" coords="317,427,323,451,324,480,329,505,313,476,310,451,312,434" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Right')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Right" title="Male-Front-Tensor_Fasciae_Latae-Right" coords="183,426,188,434,189,454,185,472,173,506,177,462,178,445" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Left')" target="" alt="Male-Front-Tibialis_Anterior-Left" title="Male-Front-Tibialis_Anterior-Left" coords="316,655,317,677,320,713,320,735,309,773,308,827,303,827,306,749,307,702,308,673" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Right')" target="" alt="Male-Front-Tibialis_Anterior-Right" title="Male-Front-Tibialis_Anterior-Right" coords="182,657,179,717,179,733,184,750,190,773,191,824,197,825,194,732,191,698,190,678,189,664" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Left')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Left" title="Male-Front-Extensor_Digitorum_Longus-Left" coords="320,716,326,723,325,731,317,775,317,823,309,827,309,775,321,735" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Right')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Right" title="Male-Front-Extensor_Digitorum_Longus-Right" coords="179,720,175,723,173,734,181,773,182,803,183,820,190,825,189,773,178,731" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Left')" target="" alt="Male-Front-Peroneus_Longus-Left" title="Male-Front-Peroneus_Longus-Left" coords="318,656,325,667,329,698,327,722,321,713" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Right')" target="" alt="Male-Front-Peroneus_Longus-Right" title="Male-Front-Peroneus_Longus-Right" coords="180,655,174,667,171,702,173,727,178,717,179,690" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Left')" target="" alt="Male-Front-Gastrocnemius-Left" title="Male-Front-Gastrocnemius-Left" coords="282,676,295,702,295,737,287,749,285,760,277,736,278,703" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Right')" target="" alt="Male-Front-Gastrocnemius-Right" title="Male-Front-Gastrocnemius-Right" coords="217,673,205,697,203,738,210,745,215,761,221,737,221,703" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Left')" target="" alt="Male-Front-Soleus-Left" title="Male-Front-Soleus-Left" coords="294,826,295,740,288,750,285,761,292,789" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Right')" target="" alt="Male-Front-Soleus-Right" title="Male-Front-Soleus-Right" coords="205,825,203,741,209,747,215,764,207,794" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Left')" target="" alt="Male-Front-Patella-Left" title="Male-Front-Patella-Left" coords="301,646,17" shape="circle">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Right')" target="" alt="Male-Front-Patella-Right" title="Male-Front-Patella-Right" coords="195,645,17" shape="circle">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Left')" target="" alt="Male-Front-Tibia-Left" title="Male-Front-Tibia-Left" coords="301,826,296,825,297,700,283,676,279,654,292,663,302,665,311,662,306,675,306,719" shape="poly">
+                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Right')" target="" alt="Male-Front-Tibia-Right" title="Male-Front-Tibia-Right" coords="204,826,197,827,195,730,191,665,202,662,210,655,215,660,217,669,204,694,203,712,201,739" shape="poly">
+                                                            </map>
                                                         </div>
-                                                    </li>
-                                                </ul>
+                                                        <div class="col-md no-sroller" style="overflow-x:auto;">
+                                                            <h5>(Back)</h5>
+                                                            <img src="../media/assets/body_charts/muscle-men-body-map-back.jpg" alt="" class="img-fluidz" usemap="#image-map-male-back-indi" hiddenz>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <h5>Muscles</h5>
+                                                            <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
+                                                                <li class="list-group-item">
+                                                                    <div class="row">
+                                                                        <div class="col-md">
+                                                                            <p class="fs-5 fw-bold">Muscle Title</p>
+                                                                        </div>
+                                                                        <div class="col-md">
+                                                                            <p class="fs-5 fw-bold">Pain Intensity</p>
+                                                                            <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" class="img-fluid mb-4">
+                                                                            <p>Rate your Muscle Soreness according to the scale above</p>
+                                                                            <div class="input-group">
+                                                                                <div class="form-check form-check-inline">
+                                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity1" value="Intensity-1">
+                                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity1">1</label>
+                                                                                </div>
+                                                                                <div class="form-check form-check-inline">
+                                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity2" value="Intensity-2">
+                                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity2">2</label>
+                                                                                </div>
+                                                                                <div class="form-check form-check-inline">
+                                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity3" value="Intensity-3">
+                                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity3">3</label>
+                                                                                </div>
+                                                                                <div class="form-check form-check-inline">
+                                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity4" value="Intensity-4">
+                                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity4">4</label>
+                                                                                </div>
+                                                                                <div class="form-check form-check-inline">
+                                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity5" value="Intensity-5">
+                                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity5">5</label>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="">
+                                                                                <p class="fs-5 fw-bold">Temp Reading (&#176;C)</p>
+                                                                                <input type="text" name="" id="" class="onefit-inputs-style rounded-pill shadow" placeholder="Temp Reading (&#176;C)">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item p-2 my-2 shadow">
+                                            <h2 class="accordion-header m-0" id="flush-headingIATTwo">
+                                                <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseIATTwo" aria-expanded="false" aria-controls="flush-collapseIATTwo">
+                                                    Indi-Training Programs
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseIATTwo" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingIATTwo" data-bs-parent="#accordionFlushIATRegiment">
+                                                <div class="accordion-body">
+                                                    <div class="grid-container">
+                                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                            <p class="fs-2 fw-bold">Warm-Up Drills</p>
+                                                        </div>
+
+                                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                            <p class="fs-2 fw-bold">Pair Drills</p>
+                                                        </div>
+
+                                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                            <p class="fs-2 fw-bold">Speed & Reaction Drills</p>
+                                                        </div>
+
+                                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                            <p class="fs-2 fw-bold">Dribbling Drills</p>
+                                                        </div>
+
+                                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                            <p class="fs-2 fw-bold">Shooting Drills</p>
+                                                        </div>
+
+                                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                            <p class="fs-2 fw-bold">Shooting Drills</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item p-2 my-2 shadow">
-                                <h2 class="accordion-header m-0" id="flush-headingThree">
-                                    <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                        Match Day Activities (<span id="match-date-str">Date</span>)
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseThree" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushTATRegiment">
-                                    <div class="accordion-body">
-                                        <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
-                                            No Scheduled Match this week.
+                                    <!-- ./ Indi Athlectics Training Panel -->
+
+                                    <!-- Next Tab button -->
+                                    <hr class="text-white">
+                                    <div class="my-4 text-center" style="width: 100%">
+                                        <div class="d-flex justify-content-center" style="width: 100%">
+                                            <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabCTA')">
+                                                <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">diversity_2</span>
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 10px !important;">Community/Team Athletics</p>
+                                                <span class="material-icons material-icons-rounded" style="font-size: 10px !important;">expand_more</span>
+                                            </button>
                                         </div>
+                                    </div>
+                                    <!-- ./Next Tab button -->
+                                </div>
+                                <div class="tab-pane fade w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-teamathletics" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-teamathletics-tab">
+                                    <!-- Next Tab button -->
+                                    <div class="my-4 text-center" style="width: 100%">
+                                        <div class="d-flex justify-content-center" style="width: 100%">
+                                            <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabIAT')">
+                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 10px !important;">expand_less</span></p>
+                                                <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">sports_gymnastics</span>
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 10px !important;">Indi-Athletics</p>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr class="text-white">
+                                    <!-- ./Next Tab button -->
 
-                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Matchday: Carbohydrate Feuling Plan</p>
-                                        <img src="../media/assets/body_charts/carbohydrate fueling plan.jpeg" alt="carbohydrate fueling plan template" class="img-fluid mb-4 shadow" style="border-radius: 25px;">
+                                    <!-- Team Athletics Training Panel -->
+                                    <h1 class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti my-4">Team-Athletics Training</h1>
+                                    <div id="team-athletics-container mt-4">
+                                        <div class="accordion accordion-flush" id="accordionFlushTATRegiment">
+                                            <div class="accordion-item p-2 my-2 shadow">
+                                                <h2 class="accordion-header m-0" id="flush-headingOne">
+                                                    <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                                                        Weekly Training Schedule (<span id="weekly-training-date-duration-str">Date</span>)
+                                                    </button>
+                                                </h2>
+                                                <div id="flush-collapseOne" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushTATRegiment">
+                                                    <div class="accordion-body">
+                                                        <h5 class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">Upcoming Match Schedule</h5>
+                                                        <div class="table-responsive mb-4">
+                                                            <table class="table table-light table-striped my-4 shadow" style="border-radius: 25px !important; overflow: hidden;">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col">Match #</th>
+                                                                        <th scope="col">Match Title</th>
+                                                                        <th scope="col">Home Team</th>
+                                                                        <th scope="col">Away Team</th>
+                                                                        <th scope="col">Match Venue</th>
+                                                                        <th scope="col">Match Date</th>
+                                                                        <th scope="col">Start Time</th>
+                                                                        <th scope="col">Standard Match Duration (Minutes)</th>
+                                                                        <th scope="col">Observed Match Duration (Minutes)</th>
+                                                                        <th scope="col">Match Result</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th scope="row">1</th>
+                                                                        <td>League Friendly - Team A (Home) vs Team B (Away)</td>
+                                                                        <td>Team A</td>
+                                                                        <td>Team B</td>
+                                                                        <td>Stadium 1</td>
+                                                                        <td>Saturday, 5 February 2022</td>
+                                                                        <td>13:00</td>
+                                                                        <td>90</td>
+                                                                        <td>94</td>
+                                                                        <td>Pending</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">2</th>
+                                                                        <td>League Friendly - Team A (Home) vs Team B (Away)</td>
+                                                                        <td>Team A</td>
+                                                                        <td>Team B</td>
+                                                                        <td>Stadium 1</td>
+                                                                        <td>Saturday, 5 February 2022</td>
+                                                                        <td>13:00</td>
+                                                                        <td>90</td>
+                                                                        <td>94</td>
+                                                                        <td>Pending</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">3</th>
+                                                                        <td>League Friendly - Team A (Home) vs Team B (Away)</td>
+                                                                        <td>Team A</td>
+                                                                        <td>Team B</td>
+                                                                        <td>Stadium 1</td>
+                                                                        <td>Saturday, 5 February 2022</td>
+                                                                        <td>13:00</td>
+                                                                        <td>90</td>
+                                                                        <td>94</td>
+                                                                        <td>Pending</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
 
-                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Pre-Match</p>
-                                        <p>Pe-Match warm up jog / routine / drill</p>
+                                                        <p class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">Weekly Training Schedule</p>
+                                                        <img src="../media/assets/example.png" alt="training week for ..." class="img-fluid mb-4" hidden>
+                                                        <div class="training-schedule-container p-4 text-center down-top-grad-white">
+                                                            <h5>Training week for those who played 45+ minutes in previous match</h5>
 
-                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Mid-Match</p>
-                                        <div class="row">
-                                            <div class="col-md">
+                                                            <div class="my-4 text-center d-grid gap-2">
+                                                                <button class="onefit-buttons-style-tahiti p-4 my-2" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="add-weekly-activity-btn remove-weekly-activity-btn">
+                                                                    <span class="material-icons material-icons-round">
+                                                                        edit_calendar
+                                                                    </span>
+                                                                    <p style="font-size: 10px;">Edit Weekly Schedule</p>
+                                                                </button>
+                                                            </div>
+                                                            <hr class="text-white" style="height: 5px;">
+
+                                                            <div class="row align-items-end text-dark" id="training-schedule-chart-grid">
+                                                                <div class="col" id="day-1-col">
+                                                                    <p class="fs-3 fw-bold">
+                                                                        Regeneration
+                                                                        <!-- Edit training day title - Day 1 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-1')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                                    </p>
+                                                                    <p>
+                                                                        RPE 1-3
+                                                                        <!-- Edit RPE - Day 1 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-1')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit RPE - Day 1 -->
+                                                                    </p>
+                                                                    <div class="chart-col-bar p-2 shadow progress-bar progress-bar-stripedz bg-warningz">
+                                                                        <div class="chart-col-bar-item text-center position-relative">
+                                                                            <p>Cycling / Spinning</p>
+                                                                            <img src="../media/assets/icons/cycling.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-1')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Strength & Core</p>
+                                                                            <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                    </div>
+
+                                                                    <hr class="text-dark">
+
+                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-1')">
+                                                                            <span class="material-icons material-icons-round">
+                                                                                add_circle
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+
+                                                                    <p class="text-center fs-5 fw-bold">Day 1/-6</p>
+                                                                </div>
+
+                                                                <div class="col" id="day-2-col">
+                                                                    <p class="fs-3 fw-bold">
+                                                                        Recovery
+                                                                        <!-- Edit training day title - Day 1 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-2')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                                    </p>
+
+                                                                    <p>
+                                                                        RPE 0
+                                                                        <!-- Edit RPE - Day 1 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-2')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit RPE - Day 1 -->
+                                                                    </p>
+
+                                                                    <div class="chart-col-bar p-2 shadow">
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Ice Bath</p>
+                                                                            <img src="../media/assets/icons/bath-tub.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-2', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                    </div>
+
+                                                                    <hr class="text-dark">
+
+                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-2')">
+                                                                            <span class="material-icons material-icons-round">
+                                                                                add_circle
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+
+                                                                    <p class="text-center fs-5 fw-bold">Day 2/-5</p>
+                                                                </div>
+
+                                                                <div class="col" id="day-3-col">
+                                                                    <p class="fs-3 fw-bold">
+                                                                        Longer pitch / strides
+                                                                        <!-- Edit training day title - Day 1 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-3')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                                    </p>
+
+                                                                    <p>
+                                                                        RPE 4-6
+                                                                        <!-- Edit RPE - Day 1 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-3')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit RPE - Day 1 -->
+                                                                    </p>
+
+                                                                    <div class="chart-col-bar p-2 shadow">
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>RST</p>
+                                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Tactics</p>
+                                                                            <img src="../media/assets/icons/thinking.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Practice Kick-Off</p>
+                                                                            <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                    </div>
+
+                                                                    <hr class="text-dark">
+
+                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-3')">
+                                                                            <span class="material-icons material-icons-round">
+                                                                                add_circle
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+
+                                                                    <p class="text-center fs-5 fw-bold">Day 3/-4</p>
+                                                                </div>
+
+                                                                <div class="col" id="day-4-col">
+                                                                    <p class="fs-3 fw-bold">
+                                                                        Strength / change of directon
+                                                                        <!-- Edit training day title - Day 1 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-4')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                                    </p>
+
+                                                                    <p>
+                                                                        RPE 7-10
+                                                                        <!-- Edit RPE - Day 1 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-4')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit RPE - Day 1 -->
+                                                                    </p>
+
+                                                                    <div class="chart-col-bar p-2 shadow">
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Multi-directional WU</p>
+                                                                            <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>SSGs</p>
+                                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Strength</p>
+                                                                            <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Practice Kick-Off</p>
+                                                                            <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                    </div>
+
+                                                                    <hr class="text-dark">
+
+                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-4')">
+                                                                            <span class="material-icons material-icons-round">
+                                                                                add_circle
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+
+                                                                    <p class="text-center fs-5 fw-bold">Day 4/-3</p>
+                                                                </div>
+
+                                                                <div class="col" id="day-5-col">
+                                                                    <p class="fs-3 fw-bold">
+                                                                        Taper
+                                                                        <!-- Edit training day title - Day 1 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-5')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                                    </p>
+
+                                                                    <p>
+                                                                        RPE 1-3
+                                                                        <!-- Edit RPE - Day 1 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-5')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit RPE - Day 1 -->
+                                                                    </p>
+
+                                                                    <div class="chart-col-bar p-2 shadow">
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Multi-directional WU</p>
+                                                                            <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-5', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Tempo runs</p>
+                                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-5', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                    </div>
+
+                                                                    <hr class="text-dark">
+
+                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-5')">
+                                                                            <span class="material-icons material-icons-round">
+                                                                                add_circle
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+
+                                                                    <p class="text-center fs-5 fw-bold">Day 5/-2</p>
+                                                                </div>
+
+                                                                <div class="col" id="day-6-col">
+                                                                    <p class="fs-3 fw-bold">
+                                                                        Match prep
+                                                                        <!-- Edit training day title - Day 1 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-6')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                                    </p>
+
+                                                                    <p>
+                                                                        RPE 2-4
+                                                                        <!-- Edit RPE - Day 1 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-6')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit RPE - Day 1 -->
+                                                                    </p>
+
+                                                                    <div class="chart-col-bar p-2 shadow">
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Multi-directional WU</p>
+                                                                            <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Tactics</p>
+                                                                            <img src="../media/assets/icons/thinking.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Short SSGs</p>
+                                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                    </div>
+
+                                                                    <hr class="text-dark">
+
+                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-6')">
+                                                                            <span class="material-icons material-icons-round">
+                                                                                add_circle
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+
+                                                                    <p class="text-center fs-5 fw-bold">Day 6/-1</p>
+                                                                </div>
+
+                                                                <div class="col" id="day-7-col">
+                                                                    <p class="fs-3 fw-bold">
+                                                                        Match
+                                                                        <!-- Edit training day title - Day 7 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-7')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit training day title - Day 7 -->
+                                                                    </p>
+
+                                                                    <p>
+                                                                        RPE 7-10
+                                                                        <!-- Edit RPE - Day 7 -->
+                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-7')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit RPE - Day 7 -->
+                                                                    </p>
+
+                                                                    <div class="chart-col-bar p-2 shadow">
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Pre-match WU</p>
+                                                                            <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                        <div class="chart-col-bar-item text-center">
+                                                                            <p>Match Kick-Off - We Play to Win!</p>
+                                                                            <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
+
+                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
+                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                        delete
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                                                    </div>
+
+                                                                    <hr class="text-dark">
+
+                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-6')">
+                                                                            <span class="material-icons material-icons-round">
+                                                                                add_circle
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+
+                                                                    <p class="text-center fs-5 fw-bold">Day 7 (Match Day)</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item p-2 my-2 shadow">
+                                                <h2 class="accordion-header m-0" id="flush-headingTwo">
+                                                    <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="true" aria-controls="flush-collapseTwo">
+                                                        Daily Workout (<span id="training-date-str">Date</span>)
+                                                    </button>
+                                                </h2>
+                                                <div id="flush-collapseTwo" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushTATRegiment">
+                                                    <div class="accordion-body">
+                                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Program Title</p>
+
+                                                        SoccerXpert - Soccer Drill Template
+                                                        Source: https://www.soccerxpert.com/drills
+
+                                                        Latest Soccer Drills
+                                                        Below you will find a few of the latest soccer drills posted to SoccerXpert
+
+                                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Pre-Training</p>
+                                                        <div id="pre-training-activities">
+                                                            <div class="card mb-3 shadow" style="background-color: #343434 !important; color: #fff !important; border-radius: 25px !important;">
+                                                                <div class="row g-0 align-items-center">
+                                                                    <div class="col-md-4 p-4">
+                                                                        <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-1-Thumbnail.png" class="img-fluid rounded-startz w-100 shadow" style="border-radius: 25px;" alt="thumbnail placeholder">
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="card-body">
+                                                                            <h5 class="card-title fw-bold text-center">1v1 Speed and Reaction Game</h5>
+                                                                            <hr>
+                                                                            <ul class="list-group list-group-horizontal-md border-0 text-center">
+                                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                                    Chris Johnson
+                                                                                </li>
+                                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                                    10,871 Views
+                                                                                </li>
+                                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                                    Rating 0 (0 Reviews)
+                                                                                </li>
+                                                                            </ul>
+                                                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+                                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-1.png" class="img-fluid w-100 my-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Warm-Up</p>
+                                                        <div id="warm-up-activities">
+                                                            <div class="card mb-3 shadow" style="background-color: #343434 !important; color: #fff !important; border-radius: 25px !important;">
+                                                                <div class="row g-0 align-items-center">
+                                                                    <div class="col-md-4 p-4">
+                                                                        <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-1-Thumbnail.png" class="img-fluid rounded-startz w-100 shadow" style="border-radius: 25px;" alt="thumbnail placeholder">
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="card-body">
+                                                                            <h5 class="card-title fw-bold text-center">1v1 Speed and Reaction Game</h5>
+                                                                            <hr>
+                                                                            <ul class="list-group list-group-horizontal-md border-0 text-center">
+                                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                                    Chris Johnson
+                                                                                </li>
+                                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                                    10,871 Views
+                                                                                </li>
+                                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                                    Rating 0 (0 Reviews)
+                                                                                </li>
+                                                                            </ul>
+                                                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+                                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-1.png" class="img-fluid w-100 my-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="card mb-3 shadow" style="background-color: #343434 !important; color: #fff !important; border-radius: 25px !important;">
+                                                                <div class="row g-0 align-items-center">
+                                                                    <div class="col-md-4 p-4">
+                                                                        <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-2-Thumbnail.png" class="img-fluid rounded-startz w-100 shadow" style="border-radius: 25px;" alt="thumbnail placeholder">
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="card-body">
+                                                                            <h5 class="card-title fw-bold text-center">Soccer Tic-Tac-Toe Warm-Up</h5>
+                                                                            <hr>
+                                                                            <ul class="list-group list-group-horizontal-md border-0 text-center">
+                                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                                    Chris Johnson
+                                                                                </li>
+                                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                                    30,837 Views
+                                                                                </li>
+                                                                                <li class="list-group-item flex-fill border-0 bg-transparent text-white">
+                                                                                    Rating 0 (0 Reviews)
+                                                                                </li>
+                                                                            </ul>
+                                                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+                                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-2.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Mid-Training</p>
+                                                        <div id="mid-training-activities">
+                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-3.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-4.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-5.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-6.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-7.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-8.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-9.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                            <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-10.png" class="img-fluid w-100 mb-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
+                                                        </div>
+
+
+                                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Post-Training</p>
+                                                        <h5>Identify Painful Areas</h5>
+                                                        <p>Identification of pain on body chart - Select Areas where pain is being experienced</p>
+                                                        <p>Themographic Body Chart - Trainer will enter temperature data in a capturing form.</p>
+                                                        <p>Rate your Muscle Soreness according to the scale above</p>
+                                                        <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" style="border-radius: 15px;" class="img-fluid mb-4 shadow">
+
+                                                        <div class="row align-items-start">
+                                                            <div class="col-md no-sroller" style="overflow-x:auto;">
+                                                                <h5>(Front)</h5>
+                                                                <img src="../media/assets/body_charts/muscle-men-body-map-front.jpg" alt="" class="img-fluidz map image-map-male-front" usemap="#image-map-male-front">
+                                                                <map name="image-map-male-front">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Head')" target="" alt="Male-Front-Head " title="Male-Front-Head " coords="249,98,221,109,218,145,210,143,212,156,220,166,221,177,232,190,241,230,246,232,250,237,255,232,258,225,265,192,276,178,279,165,286,156,286,143,280,138,280,122,270,105" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Left')" target="" alt="Male-Front-Pectoralis-Major-Left" title="Male-Front-Pectoralis-Major-Left" coords="253,305,254,256,265,235,289,236,302,241,317,244,325,257,328,270,319,269,315,282,309,300,295,311,272,314" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Right')" target="" alt="Male-Front-Pectoralis-Major-Right" title="Male-Front-Pectoralis-Major-Right" coords="246,303,245,254,235,235,211,235,194,241,177,245,173,259,170,274,181,265,184,279,185,293,194,305,213,315,238,310" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Left')" target="" alt="Male-Front-Trapezius-Left" title="Male-Front-Trapezius-Left" coords="275,182,266,195,258,236,276,232,305,226,284,213,274,203" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Right')" target="" alt="Male-Front-Trapezius-Right" title="Male-Front-Trapezius-Right" coords="224,184,230,192,235,213,241,234,231,233,209,230,196,225,214,215,226,207" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Left')" target="" alt="Male-Front-Adominalis-Upper-Left" title="Male-Front-Adominalis-Upper-Left" coords="250,312,250,369,287,373,286,315,272,315,257,308" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Right')" target="" alt="Male-Front-Adominalis-Upper-Right" title="Male-Front-Adominalis-Upper-Right" coords="247,310,248,367,213,373,213,317,224,314" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Left')" target="" alt="Male-Front-Adominalis-Lower-Left" title="Male-Front-Adominalis-Lower-Left" coords="251,374,250,448,253,485,265,485,284,430,287,376,263,373" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Right')" target="" alt="Male-Front-Adominalis-Lower-Right" title="Male-Front-Adominalis-Lower-Right" coords="230,371,250,374,247,439,246,486,233,484,215,426,215,376" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Left')" target="" alt="Male-Front-External_Oblique-Left" title="Male-Front-External_Oblique-Left" coords="290,314,288,379,287,431,291,447,301,435,312,430,316,429,311,386,310,368,314,355,304,334,300,322" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Right')" target="" alt="Male-Front-External_Oblique-Right" title="Male-Front-External_Oblique-Right" coords="212,442,213,426,209,395,210,365,211,316,196,329,185,345,192,376,183,423,196,433,205,442" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Left')" target="" alt="Male-Front-Serratus_Anterior-Left" title="Male-Front-Serratus_Anterior-Left" coords="291,312,300,319,308,340,314,349,318,321,323,327,323,292,326,270,321,269,310,301" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Right')" target="" alt="Male-Front-Serratus_Anterior-Right" title="Male-Front-Serratus_Anterior-Right" coords="210,315,194,330,184,343,181,320,177,326,176,294,175,270,180,268,184,299,194,307" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Left')" target="" alt="Male-Front-Deltoid-Left" title="Male-Front-Deltoid-Left" coords="357,301,359,268,352,244,327,224,313,224,293,236,320,244,328,257,330,276" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Right')" target="" alt="Male-Front-Deltoid-Right" title="Male-Front-Deltoid-Right" coords="144,298,141,269,145,246,167,227,188,225,206,235,174,244,168,279" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Left')" target="" alt="Male-Front-Bicep_Long_Head-Left" title="Male-Front-Bicep_Long_Head-Left" coords="362,365,366,346,363,335,364,320,357,303,331,276,344,302,354,323" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Right')" target="" alt="Male-Front-Bicep_Long_Head-Right" title="Male-Front-Bicep_Long_Head-Right" coords="139,362,132,346,135,336,139,315,145,299,170,277,154,305,147,321,142,344" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Left')" target="" alt="Male-Front-Bicep_Short_Head-Left" title="Male-Front-Bicep_Short_Head-Left" coords="362,366,346,356,337,333,336,355,324,329,326,273,332,281,352,320,358,348" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Right')" target="" alt="Male-Front-Bicep_Short_Head-Right" title="Male-Front-Bicep_Short_Head-Right" coords="138,369,152,357,164,339,165,357,177,326,175,272,164,292,151,315,144,336" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Left')" target="" alt="Male-Front-Brachioradialis-Left" title="Male-Front-Brachioradialis-Left" coords="407,451,397,464,384,465,359,420,347,395,338,379,336,366,337,354,338,337,345,349,346,354,363,366,367,345,379,361,387,391,393,414,397,428" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Right')" target="" alt="Male-Front-Brachioradialis-Right" title="Male-Front-Brachioradialis-Right" coords="117,465,105,464,94,453,111,408,117,378,131,349,138,358,139,372,152,355,156,346,163,343,163,377,143,419,127,441" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Lef')" target="" alt="Male-Front-Hand-Left" title="Male-Front-Hand-Left" coords="384,468,397,467,408,454,449,494,441,529,432,543,419,544,401,535,384,491" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Right')" target="" alt="Male-Front-Hand-Right" title="Male-Front-Hand-Right" coords="94,455,103,465,116,469,101,536,82,543,67,541,58,526,52,491,82,462" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Left')" target="" alt="Male-Front-Sartorius-Left" title="Male-Front-Sartorius-Left" coords="310,432,308,454,305,471,299,495,287,536,278,563,273,603,273,622,285,658,276,642,272,628,269,610,266,590,268,571,268,557,279,515,285,487,292,477,298,453" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Right')" target="" alt="Male-Front-Sartorius-Right" title="Male-Front-Sartorius-Right" coords="189,434,190,447,191,459,197,480,205,513,212,536,223,569,226,599,225,625,220,641,215,655,224,643,227,616,230,603,231,577,231,546,220,511,215,496,211,483,206,475,202,453" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Left')" target="" alt="Male-Front-Abductor-Left" title="Male-Front-Abductor-Left" coords="257,502,266,488,275,471,304,437,291,473,281,498,276,522,267,558,267,575,265,588,257,559,256,534,253,520" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Right')" target="" alt="Male-Front-Abductor-Right" title="Male-Front-Abductor-Right" coords="245,510,246,523,245,538,242,557,232,597,231,543,213,482,205,469,200,447,191,432,208,453,216,461,227,475,235,493" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Left')" target="" alt="Male-Front-Vastus_Medialis-Left" title="Male-Front-Vastus_Medialis-Left" coords="287,538,279,562,274,603,273,620,279,629,289,634,297,624,294,595,286,569" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Right')" target="" alt="Male-Front-Vastus_Medialis-Right" title="Male-Front-Vastus_Medialis-Right" coords="226,631,215,639,205,630,204,610,212,582,215,554,214,545,221,568,225,599" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Left')" target="" alt="Male-Front-Vastus_Laterialis-Left" title="Male-Front-Vastus_Laterialis-Left" coords="317,482,326,501,329,537,328,572,324,594,320,608,319,628,311,626,307,611,311,595,319,576,323,538,321,509" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Right')" target="" alt="Male-Front-Vastus_Laterialis-Right" title="Male-Front-Vastus_Laterialis-Right" coords="184,480,174,503,171,536,172,572,174,592,179,607,180,621,184,626,190,619,193,608,187,593,179,566,178,524,182,497" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Left')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Left" title="Male-Front-Tensor_Fasciae_Latae-Left" coords="317,427,323,451,324,480,329,505,313,476,310,451,312,434" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Right')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Right" title="Male-Front-Tensor_Fasciae_Latae-Right" coords="183,426,188,434,189,454,185,472,173,506,177,462,178,445" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Left')" target="" alt="Male-Front-Tibialis_Anterior-Left" title="Male-Front-Tibialis_Anterior-Left" coords="316,655,317,677,320,713,320,735,309,773,308,827,303,827,306,749,307,702,308,673" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Right')" target="" alt="Male-Front-Tibialis_Anterior-Right" title="Male-Front-Tibialis_Anterior-Right" coords="182,657,179,717,179,733,184,750,190,773,191,824,197,825,194,732,191,698,190,678,189,664" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Left')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Left" title="Male-Front-Extensor_Digitorum_Longus-Left" coords="320,716,326,723,325,731,317,775,317,823,309,827,309,775,321,735" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Right')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Right" title="Male-Front-Extensor_Digitorum_Longus-Right" coords="179,720,175,723,173,734,181,773,182,803,183,820,190,825,189,773,178,731" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Left')" target="" alt="Male-Front-Peroneus_Longus-Left" title="Male-Front-Peroneus_Longus-Left" coords="318,656,325,667,329,698,327,722,321,713" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Right')" target="" alt="Male-Front-Peroneus_Longus-Right" title="Male-Front-Peroneus_Longus-Right" coords="180,655,174,667,171,702,173,727,178,717,179,690" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Left')" target="" alt="Male-Front-Gastrocnemius-Left" title="Male-Front-Gastrocnemius-Left" coords="282,676,295,702,295,737,287,749,285,760,277,736,278,703" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Right')" target="" alt="Male-Front-Gastrocnemius-Right" title="Male-Front-Gastrocnemius-Right" coords="217,673,205,697,203,738,210,745,215,761,221,737,221,703" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Left')" target="" alt="Male-Front-Soleus-Left" title="Male-Front-Soleus-Left" coords="294,826,295,740,288,750,285,761,292,789" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Right')" target="" alt="Male-Front-Soleus-Right" title="Male-Front-Soleus-Right" coords="205,825,203,741,209,747,215,764,207,794" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Left')" target="" alt="Male-Front-Patella-Left" title="Male-Front-Patella-Left" coords="301,646,17" shape="circle">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Right')" target="" alt="Male-Front-Patella-Right" title="Male-Front-Patella-Right" coords="195,645,17" shape="circle">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Left')" target="" alt="Male-Front-Tibia-Left" title="Male-Front-Tibia-Left" coords="301,826,296,825,297,700,283,676,279,654,292,663,302,665,311,662,306,675,306,719" shape="poly">
+                                                                    <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Right')" target="" alt="Male-Front-Tibia-Right" title="Male-Front-Tibia-Right" coords="204,826,197,827,195,730,191,665,202,662,210,655,215,660,217,669,204,694,203,712,201,739" shape="poly">
+                                                                </map>
+                                                            </div>
+                                                            <div class="col-md no-sroller" style="overflow-x:auto;">
+                                                                <h5>(Back)</h5>
+                                                                <img src="../media/assets/body_charts/muscle-men-body-map-back.jpg" alt="" class="img-fluidz" usemap="#image-map-male-back" hiddenz>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <h5>Muscles</h5>
+                                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
+                                                                    <li class="list-group-item">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4">
+                                                                                <p class="fs-5 fw-bold">Muscle Title</p>
+                                                                            </div>
+                                                                            <div class="col-lg-8">
+                                                                                <p class="fs-5 fw-bold">Pain Intensity</p>
+                                                                                <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" class="img-fluid mb-4">
+                                                                                <p>Rate your Muscle Soreness according to the scale above</p>
+                                                                                <div class="input-group">
+                                                                                    <div class="form-check form-check-inline">
+                                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity1" value="Intensity-1">
+                                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity1">1</label>
+                                                                                    </div>
+                                                                                    <div class="form-check form-check-inline">
+                                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity2" value="Intensity-2">
+                                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity2">2</label>
+                                                                                    </div>
+                                                                                    <div class="form-check form-check-inline">
+                                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity3" value="Intensity-3">
+                                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity3">3</label>
+                                                                                    </div>
+                                                                                    <div class="form-check form-check-inline">
+                                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity4" value="Intensity-4">
+                                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity4">4</label>
+                                                                                    </div>
+                                                                                    <div class="form-check form-check-inline">
+                                                                                        <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity5" value="Intensity-5">
+                                                                                        <label class="form-check-label" for="inlineRadioMuscleIntensity5">5</label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="">
+                                                                                    <p class="fs-5 fw-bold">Temp Reading (&#176;C)</p>
+                                                                                    <input type="text" name="" id="" class="onefit-inputs-style" placeholder="Temp Reading (&#176;C)">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item p-2 my-2 shadow">
+                                                <h2 class="accordion-header m-0" id="flush-headingThree">
+                                                    <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                                        Match Day Activities (<span id="match-date-str">Date</span>)
+                                                    </button>
+                                                </h2>
+                                                <div id="flush-collapseThree" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushTATRegiment">
+                                                    <div class="accordion-body">
+                                                        <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
+                                                            No Scheduled Match this week.
+                                                        </div>
+
+                                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Matchday: Carbohydrate Feuling Plan</p>
+                                                        <img src="../media/assets/body_charts/carbohydrate fueling plan.jpeg" alt="carbohydrate fueling plan template" class="img-fluid mb-4 shadow" style="border-radius: 25px;">
+
+                                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Pre-Match</p>
+                                                        <p>Pe-Match warm up jog / routine / drill</p>
+
+                                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Mid-Match</p>
+                                                        <div id="soccerfield"></div>
+                                                        <div class="row">
+                                                            <!-- <div class="col-md">
                                                 <h5>Tactical Formation</h5>
+
                                                 <img src="../media/assets/body_charts/SoccerFieldDimensions.jpg" alt="" class="img-fluid" style="border-radius: 25px;">
-                                            </div>
-                                            <div class="col-md">
-                                                <h5>Players</h5>
-                                                <p class="text-end">Main Squad</p>
-                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
-                                                    <li class="list-group-item">
-                                                        <div class="row">
-                                                            <div class="col-sm">
-                                                                Thumbnail
-                                                            </div>
-                                                            <div class="col-sm">
-                                                                Player Names
-                                                            </div>
-                                                            <div class="col-sm">
-                                                                View Profile Btn
+                                            </div> -->
+                                                            <div class="col-md">
+                                                                <h5>Players</h5>
+                                                                <button class="btn btn-darkz onefit-buttons-style-dark fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                                                    Toggle PLAYER PINS
+                                                                </button>
+                                                                <p class="text-end">Main Squad</p>
+                                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
+                                                                    <li class="list-group-item" style="min-height: 120px;">
+                                                                        <div class="row">
+                                                                            <div class="col-sm">
+                                                                                <!-- Draggable DIV -->
+                                                                                <div class="no-scroller py-0" id="drag-player-pin">
+                                                                                    <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+                                                                                    <div id="drag-player-pinheader">
+                                                                                        <img src="../media/profiles/0_default/default_profile_pic.png" alt="Player Profile Image" height="50" width="50" class="rounded-circle img-fluid border-1 border-white">
+                                                                                        <p class="text-white fs-5 fw-bold m-0 mt-2">#9</p>
+                                                                                    </div>
+                                                                                    <div class="drag-player-pin-container no-scroller p-0">
+                                                                                        <div class="collapse no-scroller" id="collapseExample">
+                                                                                            <div class="card card-body bg-transparent">
+                                                                                                <p class="text-white m-0">Details</p>
+                                                                                                <p class="text-white m-0">Details</p>
+                                                                                                <p class="text-white m-0">Details</p>
+                                                                                                <p class="text-white m-0">Details</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm">
+                                                                                Thumbnail
+                                                                            </div>
+                                                                            <div class="col-sm">
+                                                                                Player Names
+                                                                            </div>
+                                                                            <div class="col-sm">
+                                                                                View Profile Btn
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+
+                                                                <p class="text-end mt-4">Substitutes</p>
+                                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
+                                                                    <li class="list-group-item">
+                                                                        <div class="row">
+                                                                            <div class="col-sm">
+                                                                                Thumbnail
+                                                                            </div>
+                                                                            <div class="col-sm">
+                                                                                Player Names
+                                                                            </div>
+                                                                            <div class="col-sm">
+                                                                                View Profile Btn
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+
+                                                                <p class="text-end mt-4">Reserves</p>
+                                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
+                                                                    <li class="list-group-item">
+                                                                        <div class="row">
+                                                                            <div class="col-sm">
+                                                                                Thumbnail
+                                                                            </div>
+                                                                            <div class="col-sm">
+                                                                                Player Names
+                                                                            </div>
+                                                                            <div class="col-sm">
+                                                                                View Profile Btn
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
                                                         </div>
-                                                    </li>
-                                                </ul>
+                                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Post-Match</p>
+                                                        <img src="../media/assets/body_charts/training recovery plan.jpeg" class="img-fluid" alt="recovery chart Sample" hidden>
+                                                        <div class="recovery-chart">
+                                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #e88a04; color: #343434 !important;">WITHIN 30 MINUTES</h5>
+                                                            <p class="fw-bold text-center">CHOOSE AT LEAST ONE WHITE BOX OPTION</p>
+                                                            <input type="number" value="0" class="form-control" id="min30-selection-count">
+                                                            <div class="grid-container my-4">
+                                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
+                                                                    <span class="align-middle fw-bold">Carbohydrate / Protein Recovery Drink
+                                                                        <hr class="bg-white">
+                                                                    </span>
+                                                                </div>
+                                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
+                                                                    <span class="align-middle fw-bold">Carbohydrate Food
+                                                                        <hr class="bg-white">
+                                                                    </span>
+                                                                </div>
+                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('30min','option-1')">
+                                                                    <div class="form-check form-switch">
+                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                        <label class="form-check-label text-center" for="min30-option-1-check">
+                                                                            <span class="align-middle fw-bold">Light Exercise / Stretch Cool Down</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    <hr class="bg-dark">
+                                                                </div>
+                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('30min','option-2')">
+                                                                    <div class="form-check form-switch">
+                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                        <label class="form-check-label text-center" for="min30-option-2-check">
+                                                                            <span class="align-middle fw-bold">Cold Water Immersion - 10 Minutes</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    <hr class="bg-dark">
+                                                                </div>
+                                                            </div>
 
-                                                <p class="text-end mt-4">Substitutes</p>
-                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
-                                                    <li class="list-group-item">
-                                                        <div class="row">
-                                                            <div class="col-sm">
-                                                                Thumbnail
+                                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #e88a04; color: #343434 !important;">WITHIN 1 HOUR</h5>
+                                                            <p class="fw-bold text-center">CHOOSE AT LEAST ONE WHITE BOX OPTION</p>
+                                                            <input type="number" value="0" class="form-control" id="hr1-selection-count">
+                                                            <div class="grid-container my-4">
+                                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
+                                                                    <span class="align-middle fw-bold">1 X 500ML Rehydrate Drink</span>
+                                                                    <hr class="bg-white">
+                                                                </div>
+                                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
+                                                                    <span class="align-middle fw-bold">Carbohydrate Food</span>
+                                                                    <hr class="bg-white">
+                                                                </div>
+                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('1hr','option-1')">
+                                                                    <div class="form-check form-switch">
+                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                        <label class="form-check-label text-center" for="hr1-option-1-check">
+                                                                            <span class="align-middle fw-bold">Lower Limb Massage</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    <hr class="bg-dark">
+                                                                </div>
+                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('1hr','option-2')">
+                                                                    <div class="form-check form-switch">
+                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                        <label class="form-check-label text-center" for="hr1-option-2-check">
+                                                                            <span class="align-middle fw-bold">Compression Tights Until Bed</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    <hr class="bg-dark">
+                                                                </div>
                                                             </div>
-                                                            <div class="col-sm">
-                                                                Player Names
-                                                            </div>
-                                                            <div class="col-sm">
-                                                                View Profile Btn
+
+                                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #e88a04; color: #343434 !important;">WITHIN 24 HOURS</h5>
+                                                            <p class="fw-bold text-center">CHOOSE AT LEAST THREE WHITE BOX OPTION</p>
+                                                            <input type="number" value="0" class="form-control" id="hr24-selection-count">
+                                                            <div class="grid-container my-4">
+                                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
+                                                                    <span class="align-middle fw-bold">2 X 500ML Rehydrate Drink</span>
+                                                                    <hr class="bg-white">
+                                                                </div>
+                                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
+                                                                    <span class="align-middle fw-bold">Rest - Aim for 8 Hours Sleep</span>
+                                                                    <hr class="bg-white">
+                                                                </div>
+                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-1')">
+                                                                    <div class="form-check form-switch">
+                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                                            <span class="align-middle fw-bold">Light Exercise and Foam Roll</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    <hr class="bg-dark">
+                                                                </div>
+                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-2')">
+                                                                    <div class="form-check form-switch">
+                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                                            <span class="align-middle fw-bold">Contrast Bath - 2 Minutes Hot / 2 Minutes Cold X 4</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    <hr class="bg-dark">
+                                                                </div>
+                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-3')">
+                                                                    <div class="form-check form-switch">
+                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                                            <span class="align-middle fw-bold">Mobility and Stretching in Pool</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    <hr class="bg-dark">
+                                                                </div>
+                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-4')">
+                                                                    <div class="form-check form-switch">
+                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                                            <span class="align-middle fw-bold">Massage</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    <hr class="bg-dark">
+                                                                </div>
+                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-5')">
+                                                                    <div class="form-check form-switch">
+                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                                            <span class="align-middle fw-bold">Recovery Pump Trousers</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    <hr class="bg-dark">
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </li>
-                                                </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item p-2 my-2 shadow">
+                                                <h2 class="accordion-header m-0" id="flush-headingFour">
+                                                    <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                                        Team-Athletics Training Programs (Administrators)
+                                                    </button>
+                                                </h2>
+                                                <div id="flush-collapseFour" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushTATRegiment">
+                                                    <div class="accordion-body">
+                                                        <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-Filters.png" class="img-fluid w-100 my-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
 
-                                                <p class="text-end mt-4">Reserves</p>
-                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
-                                                    <li class="list-group-item">
-                                                        <div class="row">
-                                                            <div class="col-sm">
-                                                                Thumbnail
+                                                        <div class="grid-container">
+                                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                                <p class="fs-2 fw-bold comfortaa-font">Warm-Up Drills</p>
                                                             </div>
-                                                            <div class="col-sm">
-                                                                Player Names
+
+                                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                                <p class="fs-2 fw-bold comfortaa-font">Pair Drills</p>
                                                             </div>
-                                                            <div class="col-sm">
-                                                                View Profile Btn
+
+                                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                                <p class="fs-2 fw-bold comfortaa-font">Speed & Reaction Drills</p>
+                                                            </div>
+
+                                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                                <p class="fs-2 fw-bold comfortaa-font">Dribbling Drills</p>
+                                                            </div>
+
+                                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                                <p class="fs-2 fw-bold comfortaa-font">Shooting Drills</p>
+                                                            </div>
+
+                                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
+                                                                <p class="fs-2 fw-bold comfortaa-font">Shooting Drills</p>
                                                             </div>
                                                         </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Post-Match</p>
-                                        <img src="../media/assets/body_charts/training recovery plan.jpeg" class="img-fluid" alt="recovery chart Sample" hidden>
-                                        <div class="recovery-chart">
-                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #e88a04; color: #343434 !important;">WITHIN 30 MINUTES</h5>
-                                            <p class="fw-bold text-center">CHOOSE AT LEAST ONE WHITE BOX OPTION</p>
-                                            <div class="grid-container my-4">
-                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
-                                                    <span class="align-middle fw-bold">Carbohydrate / Protein Recovery Drink
-                                                        <hr class="bg-white">
-                                                    </span>
-                                                </div>
-                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
-                                                    <span class="align-middle fw-bold">Carbohydrate Food
-                                                        <hr class="bg-white">
-                                                    </span>
-                                                </div>
-                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('30min','option-1')">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                        <label class="form-check-label text-center" for="min30-option-1-check">
-                                                            <span class="align-middle fw-bold">Light Exercise / Stretch Cool Down</span>
-                                                        </label>
                                                     </div>
-                                                    <hr class="bg-dark">
-                                                </div>
-                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('30min','option-2')">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                        <label class="form-check-label text-center" for="min30-option-2-check">
-                                                            <span class="align-middle fw-bold">Cold Water Immersion - 10 Minutes</span>
-                                                        </label>
-                                                    </div>
-                                                    <hr class="bg-dark">
-                                                </div>
-                                            </div>
-
-                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #e88a04; color: #343434 !important;">WITHIN 1 HOUR</h5>
-                                            <p class="fw-bold text-center">CHOOSE AT LEAST ONE WHITE BOX OPTION</p>
-                                            <div class="grid-container my-4">
-                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
-                                                    <span class="align-middle fw-bold">1 X 500ML Rehydrate Drink</span>
-                                                    <hr class="bg-white">
-                                                </div>
-                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
-                                                    <span class="align-middle fw-bold">Carbohydrate Food</span>
-                                                    <hr class="bg-white">
-                                                </div>
-                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('1hr','option-1')">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                        <label class="form-check-label text-center" for="hr1-option-1-check">
-                                                            <span class="align-middle fw-bold">Lower Limb Massage</span>
-                                                        </label>
-                                                    </div>
-                                                    <hr class="bg-dark">
-                                                </div>
-                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('1hr','option-2')">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                        <label class="form-check-label text-center" for="hr1-option-2-check">
-                                                            <span class="align-middle fw-bold">Compression Tights Until Bed</span>
-                                                        </label>
-                                                    </div>
-                                                    <hr class="bg-dark">
-                                                </div>
-                                            </div>
-
-                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #e88a04; color: #343434 !important;">WITHIN 24 HOURS</h5>
-                                            <p class="fw-bold text-center">CHOOSE AT LEAST THREE WHITE BOX OPTION</p>
-                                            <input type="number" value="0" class="form-control" id="hr24-selection-count">
-                                            <div class="grid-container my-4">
-                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
-                                                    <span class="align-middle fw-bold">2 X 500ML Rehydrate Drink</span>
-                                                    <hr class="bg-white">
-                                                </div>
-                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
-                                                    <span class="align-middle fw-bold">Rest - Aim for 8 Hours Sleep</span>
-                                                    <hr class="bg-white">
-                                                </div>
-                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-1')">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
-                                                            <span class="align-middle fw-bold">Light Exercise and Foam Roll</span>
-                                                        </label>
-                                                    </div>
-                                                    <hr class="bg-dark">
-                                                </div>
-                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-2')">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
-                                                            <span class="align-middle fw-bold">Contrast Bath - 2 Minutes Hot / 2 Minutes Cold X 4</span>
-                                                        </label>
-                                                    </div>
-                                                    <hr class="bg-dark">
-                                                </div>
-                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-3')">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
-                                                            <span class="align-middle fw-bold">Mobility and Stretching in Pool</span>
-                                                        </label>
-                                                    </div>
-                                                    <hr class="bg-dark">
-                                                </div>
-                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-4')">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
-                                                            <span class="align-middle fw-bold">Massage</span>
-                                                        </label>
-                                                    </div>
-                                                    <hr class="bg-dark">
-                                                </div>
-                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-5')">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
-                                                            <span class="align-middle fw-bold">Recovery Pump Trousers</span>
-                                                        </label>
-                                                    </div>
-                                                    <hr class="bg-dark">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- ./ Team Athlectics Training Panel -->
+
+                                    <!-- Next Tab button -->
+                                    <hr class="text-white">
+                                    <div class="my-4 text-center" style="width: 100%">
+                                        <div class="d-flex justify-content-center" style="width: 100%">
+                                            <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabChallenges')">
+                                                <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">stars</span>
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 10px !important;">Challenges</p>
+                                                <span class="material-icons material-icons-rounded" style="font-size: 10px !important;">expand_more</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- ./Next Tab button -->
                                 </div>
-                            </div>
-                            <div class="accordion-item p-2 my-2 shadow">
-                                <h2 class="accordion-header m-0" id="flush-headingFour">
-                                    <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                                        Team-Athletics Training Programs (Administrators)
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseFour" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushTATRegiment">
-                                    <div class="accordion-body">
-                                        <img src="../media/assets/Soccer_Drills/Soccer_Expert_-_Drill-Filters.png" class="img-fluid w-100 my-4" alt="Soccer Expert Drills Reference Img" style="border-radius: 25px;">
-
-                                        <div class="grid-container">
-                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                <p class="fs-2 fw-bold comfortaa-font">Warm-Up Drills</p>
-                                            </div>
-
-                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                <p class="fs-2 fw-bold comfortaa-font">Pair Drills</p>
-                                            </div>
-
-                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                <p class="fs-2 fw-bold comfortaa-font">Speed & Reaction Drills</p>
-                                            </div>
-
-                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                <p class="fs-2 fw-bold comfortaa-font">Dribbling Drills</p>
-                                            </div>
-
-                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                <p class="fs-2 fw-bold comfortaa-font">Shooting Drills</p>
-                                            </div>
-
-                                            <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                <p class="fs-2 fw-bold comfortaa-font">Shooting Drills</p>
-                                            </div>
+                                <div class="tab-pane fade w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-challenges" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-challenges-tab">
+                                    <!-- Next Tab button -->
+                                    <div class="mb-4 text-center" style="width: 100%">
+                                        <div class="d-flex justify-content-center" style="width: 100%">
+                                            <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabCTA')">
+                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 10px !important;">expand_less</span></p>
+                                                <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">diversity_2</span>
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 10px !important;">Community/Team Athletics</p>
+                                            </button>
                                         </div>
                                     </div>
+                                    <hr class="text-white">
+                                    <!-- ./Next Tab button -->
+
+                                    <h5 class="mt-4 fs-1"><span class="material-icons material-icons-round">stars</span> Challenges</h5>
+                                    <h5>Daily Challenges</h5>
+                                    <h5>Weekly Challenges</h5>
+                                    <h5>Monthly Monthly</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- ./ Team Athlectics Training Panel -->
+                    <!-- ./ Features: Tab structured -->
 
-                    <hr class="text-white" style="height: 5px;">
-                    <h5 class="mt-4 fs-1"><span class="material-icons material-icons-round">stars</span> Challenges</h5>
-                    <h5>Daily Challenges</h5>
-                    <h5>Weekly Challenges</h5>
-                    <h5>Monthly Monthly</h5>
                 </div>
-                <div id="TabAchievements" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
+                <div id="TabAchievements" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <h1 class="text-center">Achievements</h1>
                     <hr class="text-white" />
                     <h5>Goals</h5>
@@ -5787,7 +6077,7 @@ function getAllTrainers()
                     (bookmarked resources, posts or search engine links)
                     <hr class="text-white">
                 </div>
-                <div id="TabMedia" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
+                <div id="TabMedia" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <h1 class="text-center">Media</h1>
                     <hr class="text-white" />
 
@@ -5800,7 +6090,7 @@ function getAllTrainers()
 
                     <h1 class="fs-1 fw-bold rounded-pill p-4 text-center my-4">Stream library – Live stream recording history (Community and Private)</h1>
                 </div>
-                <div id="TabCommunication" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
+                <div id="TabCommunication" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <h1 class="text-center">Communications</h1>
                     <hr class="text-white" />
                     <p>• Notifications</p>
@@ -5819,7 +6109,7 @@ function getAllTrainers()
                     </div>
                     <p>• Social AdMarket</p>
                 </div>
-                <div id="TabSettings" class="shadow w3-container w3-animate-right content-tab p-4" style="display: none">
+                <div id="TabSettings" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <h1 class="text-center">Preferences</h1>
                     <hr class="text-white" />
                     <div id="userPrefContainer">
@@ -6030,7 +6320,7 @@ function getAllTrainers()
                     <!-- Tab Navigation Buttons Container -->
                     <div class="grid-container text-center">
                         <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" data-bs-dismiss="modal" onclick="openLink(event, 'TabHome')">
+                            <button class="onefit-buttons-style-dark-modal p-4" id="app-dashboard-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabHome')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> dashboard </span>
                                     <div class="d-inline">
@@ -6040,7 +6330,7 @@ function getAllTrainers()
                             </button>
                         </div>
                         <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" data-bs-dismiss="modal" onclick="openLink(event, 'TabProfile')">
+                            <button class="onefit-buttons-style-dark-modal p-4" id="app-profile-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabProfile')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> account_circle </span>
                                     Profile
@@ -6048,7 +6338,7 @@ function getAllTrainers()
                             </button>
                         </div>
                         <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" data-bs-dismiss="modal" onclick="openLink(event, 'TabDiscovery')">
+                            <button class="onefit-buttons-style-dark-modal p-4" id="app-discovery-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabDiscovery')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> travel_explore </span>
                                     Discovery
@@ -6056,7 +6346,7 @@ function getAllTrainers()
                             </button>
                         </div>
                         <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" data-bs-dismiss="modal" onclick="openLink(event, 'TabStudio')">
+                            <button class="onefit-buttons-style-dark-modal p-4" id="app-studio-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabStudio')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> play_circle_outline </span>
                                     Onefit.Studio
@@ -6064,7 +6354,7 @@ function getAllTrainers()
                             </button>
                         </div>
                         <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" data-bs-dismiss="modal" onclick="openLink(event, 'TabStore')">
+                            <button class="onefit-buttons-style-dark-modal p-4" id="app-store-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabStore')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> storefront </span>
                                     Onefit.Store
@@ -6072,7 +6362,7 @@ function getAllTrainers()
                             </button>
                         </div>
                         <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" data-bs-dismiss="modal" onclick="openLink(event, 'TabSocial')">
+                            <button class="onefit-buttons-style-dark-modal p-4" id="app-social-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabSocial')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> hub </span>
                                     Onefit.Social
@@ -6080,7 +6370,7 @@ function getAllTrainers()
                             </button>
                         </div>
                         <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" data-bs-dismiss="modal" onclick="openLink(event, 'TabData')">
+                            <button class="onefit-buttons-style-dark-modal p-4" id="app-insights-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabData')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> insights </span>
                                     Fitness Insights
@@ -6088,7 +6378,7 @@ function getAllTrainers()
                             </button>
                         </div>
                         <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" data-bs-dismiss="modal" onclick="openLink(event, 'TabAchievements')">
+                            <button class="onefit-buttons-style-dark-modal p-4" id="app-achievements-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabAchievements')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> emoji_events </span>
                                     Achievements (Private)
@@ -6096,7 +6386,7 @@ function getAllTrainers()
                             </button>
                         </div>
                         <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" data-bs-dismiss="modal" onclick="openLink(event, 'TabMedia')">
+                            <button class="onefit-buttons-style-dark-modal p-4" id="app-media-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabMedia')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> perm_media </span>
                                     Media (Private)
@@ -6104,7 +6394,7 @@ function getAllTrainers()
                             </button>
                         </div>
                         <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" data-bs-dismiss="modal" onclick="openLink(event, 'TabCommunication')">
+                            <button class="onefit-buttons-style-dark-modal p-4" id="app-comms-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabCommunication')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> forum </span>
                                     Communications
@@ -6112,7 +6402,7 @@ function getAllTrainers()
                             </button>
                         </div>
                         <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" data-bs-dismiss="modal" onclick="openLink(event, 'TabSettings')">
+                            <button class="onefit-buttons-style-dark-modal p-4" id="app-preferences-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabSettings')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> settings_accessibility </span>
                                     Preferences
@@ -6706,6 +6996,58 @@ function getAllTrainers()
                 // loadCommunityResources();
                 // loadCommunityRewards();
             }
+
+            // check if current_app_tab is set and has a value in localStorage, else set default value: TabHome
+            const currentAppTab = localStorage.getItem('current_app_tab');
+
+            if (currentAppTab) {
+                var tabName = currentAppTab;
+                console.log('Current App Tab: ' + currentAppTab);
+                // display the current app tab app-dashboard-btn
+                if (tabName == "TabHome") {
+                    document.getElementById("app-dashboard-btn").click();
+                } else if (tabName == "TabProfile") {
+                    document.getElementById("app-profile-btn").click();
+                } else if (tabName == "TabDiscovery") {
+                    document.getElementById("app-discovery-btn").click();
+                } else if (tabName == "TabStudio") {
+                    document.getElementById("app-studio-btn").click();
+                } else if (tabName == "TabStore") {
+                    document.getElementById("app-stor-btn").click();
+                } else if (tabName == "TabSocial") {
+                    document.getElementById("app-social-btn").click();
+                } else if (tabName == "TabData") {
+                    document.getElementById("app-insights-btn").click();
+                } else if (tabName == "TabAchievements") {
+                    document.getElementById("app-achievements-btn").click();
+                } else if (tabName == "TabMedia") {
+                    document.getElementById("app-media-btn").click();
+                } else if (tabName == "TabCommunication") {
+                    document.getElementById("app-comms-btn").click();
+                } else if (tabName == "TabSettings") {
+                    document.getElementById("app-preferences-btn").click();
+                }
+
+            } else {
+                console.log('Current App Tab not set.');
+                // set default value: TabHome
+                localStorage.setItem("current_app_tab", "TabHome");
+            }
+
+            // hide the loading curtain
+            var curtain = document.getElementById("LoadCurtain");
+            curtain.style.display = "none";
+        }
+
+        function setCurrentAppTabID(currentPageID) {
+            // get the currently active app page
+            // var appTabsNode = document.querySelector(".app-tab");
+            // alert("appTabsNode.length: " + appTabsNode.length);
+            // for (let i = 0; i < appTabsNode.length; i++) {
+            //     currentPageID = appTabsNode[i].id;
+            // }
+
+            localStorage.setItem("current_app_tab", currentPageID);
         }
 
         function toggleMapSelection(selection) {
@@ -7065,50 +7407,91 @@ function getAllTrainers()
         }
 
         function openLink(evt, tabName) {
-            var i, x, tablinks;
+            var i, x, tabContainer, tablinks;
             var tabBtnIco = document.getElementById("display-current-tab-button-icon");
             var tabBtnTxt = document.getElementById("display-current-tab-button-text");
 
-            x = document.getElementsByClassName("content-tab");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            document.getElementById(tabName).style.display = "block";
 
             //Change the #display-current-tab-button icon and text
             if (tabName == "TabHome") {
                 tabBtnTxt.innerHTML = "Dashboard";
                 tabBtnIco.innerHTML = " dashboard ";
+                tabContainer = document.getElementsByClassName("content-tab");
             } else if (tabName == "TabProfile") {
                 tabBtnTxt.innerHTML = "Profile";
                 tabBtnIco.innerHTML = " account_circle ";
+                tabContainer = document.getElementsByClassName("content-tab");
             } else if (tabName == "TabDiscovery") {
                 tabBtnTxt.innerHTML = "Discovery";
                 tabBtnIco.innerHTML = " travel_explore ";
+                tabContainer = document.getElementsByClassName("content-tab");
             } else if (tabName == "TabStudio") {
                 tabBtnTxt.innerHTML = ".Studio";
                 tabBtnIco.innerHTML = " play_circle_outline ";
+                tabContainer = document.getElementsByClassName("content-tab");
             } else if (tabName == "TabStore") {
                 tabBtnTxt.innerHTML = ".Store";
                 tabBtnIco.innerHTML = " storefront ";
+                tabContainer = document.getElementsByClassName("content-tab");
             } else if (tabName == "TabSocial") {
                 tabBtnTxt.innerHTML = ".Social";
                 tabBtnIco.innerHTML = " hub ";
+                tabContainer = document.getElementsByClassName("content-tab");
             } else if (tabName == "TabData") {
                 tabBtnTxt.innerHTML = "Insights";
                 tabBtnIco.innerHTML = " insights ";
+                tabContainer = document.getElementsByClassName("content-tab");
             } else if (tabName == "TabAchievements") {
                 tabBtnTxt.innerHTML = "Achievements";
                 tabBtnIco.innerHTML = " emoji_events ";
+                tabContainer = document.getElementsByClassName("content-tab");
             } else if (tabName == "TabMedia") {
                 tabBtnTxt.innerHTML = "Media";
                 tabBtnIco.innerHTML = " perm_media ";
+                tabContainer = document.getElementsByClassName("content-tab");
             } else if (tabName == "TabCommunication") {
                 tabBtnTxt.innerHTML = "Communication";
                 tabBtnIco.innerHTML = " forum ";
+                tabContainer = document.getElementsByClassName("content-tab");
             } else if (tabName == "TabSettings") {
                 tabBtnTxt.innerHTML = "Preferences";
                 tabBtnIco.innerHTML = " settings_accessibility ";
+                tabContainer = document.getElementsByClassName("content-tab");
+            } else if (tabName == "InsightsTabGCS") {
+                /* Insigts sub features app tabs */
+                tabContainer = null;
+                document.getElementById("v-sub-tab-pills-insights-googlesurveys-tab").click();
+            } else if (tabName == "InsightsTabIAT") {
+                tabContainer = null;
+                document.getElementById("v-sub-tab-pills-insights-indiathlete-tab").click();
+            } else if (tabName == "InsightsTabCTA") {
+                tabContainer = null;
+                document.getElementById("v-sub-tab-pills-insights-teamathletics-tab").click();
+            } else if (tabName == "InsightsTabChallenges") {
+                tabContainer = null;
+                document.getElementById("v-sub-tab-pills-insights-challenges-tab").click();
+            }
+
+            // InsightsTabGCS
+            // InsightsTabIAT
+            // InsightsTabCTA
+            // InsightsTabChallenges
+            // v-sub-tab-pills-insights-googlesurveys-tab
+            // v-sub-tab-pills-insights-indiathlete-tab
+            // v-sub-tab-pills-insights-teamathletics-tab
+            // v-sub-tab-pills-insights-challenges-tab
+
+            //x = document.getElementsByClassName("content-tab");
+            x = tabContainer;
+
+            if (x) {
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                document.getElementById(tabName).style.display = "block";
+
+                // set current App Tab ID
+                setCurrentAppTabID(tabName);
             }
         }
 
@@ -7186,38 +7569,167 @@ function getAllTrainers()
 
         //freeNBAUnofficial();
 
+        // Make the DIV element draggable:
+        dragElement(document.getElementById("drag-player-pin"));
+
+        function dragElement(elmnt) {
+            var pos1 = 0,
+                pos2 = 0,
+                pos3 = 0,
+                pos4 = 0;
+            if (document.getElementById(elmnt.id + "header")) {
+                // if present, the header is where you move the DIV from:
+                document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+            } else {
+                // otherwise, move the DIV from anywhere inside the DIV:
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                // stop moving when mouse button is released:
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
         //jQuery Code Only
         //$.noConflict();
         $(document).ready(function() {
+            var data = [{
+                    name: 'KEYLOR NAVAS',
+                    position: 'C_GK',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'MARCELO',
+                    position: 'LC_B',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'SERGIO RAMOS',
+                    position: 'C_B',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'CARVAJAL',
+                    position: 'RC_B',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'CASEMIRO',
+                    position: 'C_DM',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'KROOS',
+                    position: 'L_M',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'ISCO',
+                    position: 'LC_M',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'ASENSIO',
+                    position: 'RC_M',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'MODRIC',
+                    position: 'R_M',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'RONALDO',
+                    position: 'LC_F',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'BENZEMA',
+                    position: 'RC_F',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+            ];
 
-            $("map[name=image-map-male-front]").mapoid({
-                click: function(e) {
-                    /*// stroke color
-                    strokeColor: 'black',
-                    // stroke width
-                    strokeWidth: 1,
-                    // fill color
-                    fillColor: 'black',
-                    // 0-1
-                    fillOpacity: 0.5,
-                    // in milliseconds
-                    fadeTime: 500,
-                    // an array of selected areas
-                    selectedArea: false,
-                    // select on click
-                    selectOnClick: true*/
-
-                    //alert('click');
-                    e.preventDefault();
-                    var clickedArea = $(this); // remember clicked area
-                    // foreach area
-                    $("map[name=image-map-male-front]").each(function() {
-                        hData = $(this).data('maphilight') || {}; // get
-                        hData.alwaysOn = $(this).is(clickedArea); // modify
-                        $(this).data('maphilight', hData).trigger('alwaysOn.maphilight'); // set
-                    });
+            $("#soccerfield").soccerfield(data, {
+                field: {
+                    width: "960px",
+                    height: "600px",
+                    img: '../media/assets/field_diagrams/soccer-field-dimensions-1.jpg',
+                    startHidden: false,
+                    animate: false,
+                    fadeTime: 1000,
+                    autoReveal: false,
+                    onReveal: function() {
+                        // triggered on reveal
+                    }
+                },
+                players: {
+                    font_size: 16,
+                    reveal: false,
+                    sim: true, // reveal simultaneously
+                    timeout: 1000,
+                    fadeTime: 1000,
+                    img: true,
+                    onReveal: function() {
+                        // triggered on reveal
+                    }
                 }
             });
+
+            // $("map[name=image-map-male-front]").mapoid({
+            //     click: function(e) {
+            //         /*// stroke color
+            //         strokeColor: 'black',
+            //         // stroke width
+            //         strokeWidth: 1,
+            //         // fill color
+            //         fillColor: 'black',
+            //         // 0-1
+            //         fillOpacity: 0.5,
+            //         // in milliseconds
+            //         fadeTime: 500,
+            //         // an array of selected areas
+            //         selectedArea: false,
+            //         // select on click
+            //         selectOnClick: true*/
+
+            //         //alert('click');
+            //         e.preventDefault();
+            //         var clickedArea = $(this); // remember clicked area
+            //         // foreach area
+            //         $("map[name=image-map-male-front]").each(function() {
+            //             hData = $(this).data('maphilight') || {}; // get
+            //             hData.alwaysOn = $(this).is(clickedArea); // modify
+            //             $(this).data('maphilight', hData).trigger('alwaysOn.maphilight'); // set
+            //         });
+            //     }
+            // });
             //JQuery Image Map Highlighting
             //$('.map').maphilight();
 
