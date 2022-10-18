@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,700' rel='stylesheet'
+        type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+        .timeline {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0px;
+        }
+
+        .li {
+            transition: all 200ms ease-in
+        }
+
+        .timestamp {
+            margin-bottom: 20px;
+            padding: 0px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-weight: 100
+        }
+
+        .status {
+            padding: 0px 40px;
+            display: flex;
+            justify-content: center;
+            border-top: 2px solid #D6DCE0;
+            position: relative;
+            transition: all 200ms ease-in
+        }
+
+        h4 {
+            font-weight: 600;
+            color: #66DC71;
+            text-align: center;
+        }
+
+        h4:before {
+            content: '';
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            ;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            position: absolute;
+            top: -15px;
+            left: 42%;
+            transition: all 200ms ease-in
+        }
+
+        .li.complete.status {
+            border-top: 2px solid #66DC71
+        }
+
+        .li.complete h4:before {
+            background-color: #66DC71;
+            border: none;
+            transition: all 200ms ease-in
+        }
+
+        @media (min-device-width: 320px) and (max-device-width: 700px) {
+            .timeline {
+                list-style-type: none;
+                display: block
+            }
+
+            .li {
+                transition: all 200ms ease-in;
+                display: flex;
+                width: inherit
+            }
+
+            .timestamp {
+                width: 100px
+            }
+
+            .status:before {
+                left: -8%;
+                top: 30%;
+                transition: all 200ms ease-in
+            }
+        }
+
+        /* Layout stuff */
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            font-family: 'Titillium Web', sans serif;
+            color: #758D96
+        }
+
+        button {
+            position: absolute;
+            width: 100px;
+            min-width: 100px;
+            padding: 20px;
+            margin: 20px;
+            font-family: 'Titillium Web', sans serif;
+            border: none;
+            color: white;
+            font-size: 16px;
+            text-align: center
+        }
+
+        button:hover {
+            transform: scale(2, 2);
+        }
+
+        #toggleButton {
+            position: absolute;
+            left: 50px;
+            bottom: 20px;
+            background-color: #75C7F6
+        }
+
+        div.horizontal-scroll {
+            width: 100vw;
+            height: auto;
+            overflow-x: auto;
+            border-radius: 25px;
+            white-space: nowrap;
+            padding: 20px 60px !important;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="timeline1">
+        <button id="toggleButton" onclick="toggleComplete()">Toggle</button>
+
+        <div class="horizontal-scroll">
+            <ul class="timeline" id="timeline">
+                <li class="li complete">
+                    <div class="timestamp">
+                        <span class="author">Abhi Sharma</span>
+                        <span class="date">11/15/2014<span>
+                    </div>
+                    <div class="status">
+                        <h4> Shift Created </h4>
+                    </div>
+                </li>
+                <li class="li complete">
+                    <div class="timestamp">
+                        <span class="author">PAM Admin</span>
+                        <span class="date">11/15/2014<span>
+                    </div>
+                    <div class="status">
+                        <h4> Email Sent </h4>
+                    </div>
+                </li>
+                <li class="li complete">
+                    <div class="timestamp">
+                        <span class="author">Aaron Rodgers</span>
+                        <span class="date">11/15/2014<span>
+                    </div>
+                    <div class="status">
+                        <h4> SIC Approval </h4>
+                    </div>
+                </li>
+                <li class="li complete">
+                    <div class="timestamp">
+                        <span class="author">Abhi Sharma</span>
+                        <span class="date">11/15/2014<span>
+                    </div>
+                    <div class="status">
+                        <h4> Shift Created </h4>
+                    </div>
+                </li>
+                <li class="li complete">
+                    <div class="timestamp">
+                        <span class="author">PAM Admin</span>
+                        <span class="date">11/15/2014<span>
+                    </div>
+                    <div class="status">
+                        <h4> Email Sent </h4>
+                    </div>
+                </li>
+                <li class="li complete">
+                    <div class="timestamp">
+                        <span class="author">Aaron Rodgers</span>
+                        <span class="date">11/15/2014<span>
+                    </div>
+                    <div class="status">
+                        <h4> SIC Approval </h4>
+                    </div>
+                </li>
+                <li class="li complete">
+                    <div class="timestamp">
+                        <span class="author">Abhi Sharma</span>
+                        <span class="date">11/15/2014<span>
+                    </div>
+                    <div class="status">
+                        <h4> Shift Created </h4>
+                    </div>
+                </li>
+                <li class="li complete">
+                    <div class="timestamp">
+                        <span class="author">PAM Admin</span>
+                        <span class="date">11/15/2014<span>
+                    </div>
+                    <div class="status">
+                        <h4> Email Sent </h4>
+                    </div>
+                </li>
+                <li class="li complete">
+                    <div class="timestamp">
+                        <span class="author">Aaron Rodgers</span>
+                        <span class="date">11/15/2014<span>
+                    </div>
+                    <div class="status">
+                        <h4> SIC Approval </h4>
+                    </div>
+                </li>
+                <li class="li">
+                    <div class="timestamp">
+                        <span class="author">PAM Admin</span>
+                        <span class="date">TBD<span>
+                    </div>
+                    <div class="status">
+                        <h4> Shift Completed </h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        var toggleButton = document.getElementById("toggleButton");
+
+
+        function toggleComplete() {
+            var completes = document.querySelectorAll(".complete");
+
+            var lastComplete = completes[completes.length - 1];
+            alert("Last Complete: " + lastComplete);
+            lastComplete.classList.toggle('complete');
+        }
+
+        // toggleButton.addEventListener("click", toggleComplete());
+        // toggleButton.onclick = toggleComplete;
+    </script>
+</body>
+
+</html>

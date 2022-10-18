@@ -143,35 +143,35 @@ if(isset($_SESSION["currentUserAuth"])) {
             <ol class='list-group list-group-numberedz list-group-flush'>
               <li class='list-group-item d-flex justify-content-between align-items-start bg-transparent text-white'>
                 <div class='ms-2 me-auto'>
-                  <div class='fw-bold users-name-tag' style='color: #e88a04'>$usrprof_name $usrprof_surnames</div>
+                  <div class='fw-bold users-name-tag' style='color: #ffa500'>$usrprof_name $usrprof_surnames</div>
                   <span class='username-tag'>@$currentUser_Usrnm</span><br />
                   Lvl. 1
                 </div>
                 <span class='badge bg-primary rounded-pillz p-4'
-                  style='background-color: #e88a04 !important; color: #333 !important; border-radius: 25px'>
+                  style='background-color: #ffa500 !important; color: #333 !important; border-radius: 25px'>
                   $verifIcon
                 </span>
               </li>
               <li class='list-group-item d-flex justify-content-between align-items-start bg-transparent text-white'>
                 <div class='ms-2 me-auto'>
-                  <div class='fw-bold' style='color: #e88a04'>Followers</div>
+                  <div class='fw-bold' style='color: #ffa500'>Followers</div>
                   <span>2 Mutual Friends</span><br />
                   <span>6 Messages</span>
                 </div>
                 <span class='badge bg-primary rounded-pillz p-4'
-                  style='background-color: #e88a04 !important; color: #fff !important; border-radius: 25px'>
+                  style='background-color: #ffa500 !important; color: #fff !important; border-radius: 25px'>
                   <span class='material-icons material-icons-round' style='font-size: 20px !important'> people_alt </span>
                   <span>6</span>
                 <span>
               </li>
               <li class='list-group-item d-flex justify-content-between align-items-start bg-transparent text-white'>
                 <div class='ms-2 me-auto'>
-                  <div class='fw-bold' style='color: #e88a04'>Achievements</div>
+                  <div class='fw-bold' style='color: #ffa500'>Achievements</div>
                   <span>18 Activities Remaining</span><br />
                   <span>4 Challenges Remaining</span>
                 </div>
                 <span class='badge bg-primary rounded-pillz p-4'
-                  style='background-color: #e88a04 !important; color: #fff !important; border-radius: 25px'>
+                  style='background-color: #ffa500 !important; color: #fff !important; border-radius: 25px'>
                   <span class='material-icons material-icons-round' style='font-size: 20px !important'> emoji_events </span> 
                   <span>3</span>
                 </span>
@@ -223,5 +223,3 @@ if(isset($_SESSION["currentUserAuth"])) {
 }
 
 //functions
-
-?>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Google Charts Code -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!-- Load Google Charts -->
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['timeline', 'corechart']
+        });
+        google.charts.setOnLoadCallback(drawUserTimelineChart);
+        google.charts.setOnLoadCallback(drawHeartRateMonitorChart);
+        google.charts.setOnLoadCallback(drawBodyTempMonitorChart);
+        google.charts.setOnLoadCallback(drawSpeedChart);
+        google.charts.setOnLoadCallback(drawStepCounterChart);
+        google.charts.setOnLoadCallback(drawWeightMonitorChart);
+        //body_temp_monitor_chart 
+        //speed_chart
+        //step_counter_chart 
+        //weight_monitor_chart 
+
+        function drawUserTimelineChart() {
+            var container = document.getElementById('timeline');
+            var chart = new google.visualization.Timeline(container);
+            var dataTable = new google.visualization.DataTable();
+
+            dataTable.addColumn({
+                type: 'string',
+                id: 'Term'
+            });
+            dataTable.addColumn({
+                type: 'string',
+                id: 'Name'
+            });
+            dataTable.addColumn({
+                type: 'date',
+                id: 'Start'
+            });
+            dataTable.addColumn({
+                type: 'date',
+                id: 'End'
+            });
+
+            dataTable.addRows([
+                ['1', 'Program 1: Activity 1', new Date(1789, 3, 30), new Date(1797, 2, 4)],
+                ['2', 'Program 1: Activity 2', new Date(1797, 2, 4), new Date(1801, 2, 4)],
+                ['3', 'Program 1: Activity 3', new Date(1801, 2, 4), new Date(1809, 2, 4)]
+            ]);
+
+            var options = {
+                timeline: {
+                    showRowLabels: true
+                },
+                chartArea: {
+                    width: '1000',
+                    height: '200'
+                },
+                legend: {
+                    position: 'in'
+                },
+                titlePosition: 'in',
+                axisTitlesPosition: 'in',
+                hAxis: {
+                    textPosition: 'in',
+                    slantedText: true,
+                    slantedTextAngle: -90
+                },
+                vAxis: {
+                    textPosition: 'in'
+                }
+            };
+
+            chart.draw(dataTable, options);
+        }
+
+        function drawHeartRateMonitorChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Time', 'BPM Average'],
+                ['09:05 AM', 100],
+                ['09:10 AM', 170],
+                ['09:15 AM', 660],
+                ['09:20 AM', 130]
+            ]);
+
+            var options = {
+                title: 'Heart Rate Monitor',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                trendlines: {
+                    0: {
+                        type: 'linear',
+                        color: 'green',
+                        lineWidth: 3,
+                        opacity: 0.3,
+                        showR2: true,
+                        visibleInLegend: true
+                    }
+                },
+                slantedText: true,
+                chartArea: {
+                    width: '100%',
+                    height: '100%'
+                },
+                legend: {
+                    position: 'in'
+                },
+                titlePosition: 'in',
+                axisTitlesPosition: 'in',
+                hAxis: {
+                    textPosition: 'in',
+                    slantedText: true,
+                    slantedTextAngle: -90
+                },
+                vAxis: {
+                    textPosition: 'in'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('heart_rate_monitor_chart'));
+
+            chart.draw(data, options);
+        }
+
+        function drawBodyTempMonitorChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Days', 'Temperature Readings'],
+                ['Sunday (13/03/2022)', 38.7],
+                ['Monday (14/03/2022)', 38.2],
+                ['Tuesday (15/03/2022)', 36.5],
+                ['Wednesday (16/03/2022)', 37.1],
+                ['Thursday (17/03/2022)', 36.8],
+                ['Friday (18/03/2022)', 35.9],
+                ['Saturday (19/03/2022)', 38.1]
+            ]);
+
+            var options = {
+                title: 'Body Temperature Monitor',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                trendlines: {
+                    0: {
+                        type: 'linear',
+                        color: 'green',
+                        lineWidth: 3,
+                        opacity: 0.3,
+                        showR2: true,
+                        visibleInLegend: true
+                    }
+                },
+                slantedText: true,
+                chartArea: {
+                    width: '100%',
+                    height: '100%'
+                },
+                legend: {
+                    position: 'in'
+                },
+                titlePosition: 'in',
+                axisTitlesPosition: 'in',
+                hAxis: {
+                    textPosition: 'in',
+                    slantedText: true,
+                    slantedTextAngle: -90
+                },
+                vAxis: {
+                    textPosition: 'in'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('body_temp_monitor_chart'));
+
+            chart.draw(data, options);
+        }
+
+        function drawSpeedChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Time', 'Average Speed (meters per second - m/s)'],
+                ['Sunday (13/03/2022)', 0],
+                ['Monday (14/03/2022)', 10],
+                ['Tuesday (15/03/2022)', 13],
+                ['Wednesday (16/03/2022)', 18],
+                ['Thursday (17/03/2022)', 15],
+                ['Friday (18/03/2022)', 16],
+                ['Saturday (19/03/2022)', 8]
+            ]);
+
+            var options = {
+                title: 'Average Speed Monitor',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                trendlines: {
+                    0: {
+                        type: 'linear',
+                        color: 'green',
+                        lineWidth: 3,
+                        opacity: 0.3,
+                        showR2: true,
+                        visibleInLegend: true
+                    }
+                },
+                slantedText: true,
+                chartArea: {
+                    width: '100%',
+                    height: '100%'
+                },
+                legend: {
+                    position: 'in'
+                },
+                titlePosition: 'in',
+                axisTitlesPosition: 'in',
+                hAxis: {
+                    textPosition: 'in',
+                    slantedText: true,
+                    slantedTextAngle: -90
+                },
+                vAxis: {
+                    textPosition: 'in'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('speed_chart'));
+
+            chart.draw(data, options);
+        }
+
+        function drawStepCounterChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Days', 'Steps taken'],
+                ['Sunday (13/03/2022)', 126],
+                ['Monday (14/03/2022)', 235],
+                ['Tuesday (15/03/2022)', 120],
+                ['Wednesday (16/03/2022)', 467],
+                ['Thursday (17/03/2022)', 593],
+                ['Friday (18/03/2022)', 421],
+                ['Saturday (19/03/2022)', 467]
+            ]);
+
+            var options = {
+                title: 'Daily Step Counter',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                trendlines: {
+                    0: {
+                        type: 'linear',
+                        color: 'green',
+                        lineWidth: 3,
+                        opacity: 0.3,
+                        showR2: true,
+                        visibleInLegend: true
+                    }
+                },
+                slantedText: true,
+                chartArea: {
+                    width: '100%',
+                    height: '100%'
+                },
+                legend: {
+                    position: 'in'
+                },
+                titlePosition: 'in',
+                axisTitlesPosition: 'in',
+                hAxis: {
+                    textPosition: 'in',
+                    slantedText: true,
+                    slantedTextAngle: -90
+                },
+                vAxis: {
+                    textPosition: 'in'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('step_counter_chart'));
+
+            chart.draw(data, options);
+        }
+
+        function drawWeightMonitorChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Days', 'BPM Average'],
+                ['Sunday (13/03/2022)', 126],
+                ['Monday (14/03/2022)', 235],
+                ['Tuesday (15/03/2022)', 120],
+                ['Wednesday (16/03/2022)', 467],
+                ['Thursday (17/03/2022)', 593],
+                ['Friday (18/03/2022)', 421],
+                ['Saturday (19/03/2022)', 467]
+            ]);
+
+            var options = {
+                title: 'Weight / BMI Monitor',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                trendlines: {
+                    0: {
+                        type: 'linear',
+                        color: 'green',
+                        lineWidth: 3,
+                        opacity: 0.3,
+                        showR2: true,
+                        visibleInLegend: true
+                    }
+                },
+                slantedText: true,
+                chartArea: {
+                    width: '100%',
+                    height: '100%'
+                },
+                legend: {
+                    position: 'in'
+                },
+                titlePosition: 'in',
+                axisTitlesPosition: 'in',
+                hAxis: {
+                    textPosition: 'in',
+                    slantedText: true,
+                    slantedTextAngle: -90
+                },
+                vAxis: {
+                    textPosition: 'in'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('weight_monitor_chart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+    <!-- ./ Google Charts Code -->
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -172,7 +172,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             }
         } else {
             $output_msg = "|[System Error]|:. [Profile load (Account details) - " . mysqli_error($dbconn) . "]";
-            $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+            $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
 
             $output = $app_err_msg;
         }
@@ -248,7 +248,7 @@ function getUserChatConversations()
                     <div class="col-sm-3 text-center d-grid py-2">
                         <button type="button" class="onefit-buttons-style-dark p-4 position-relative" onclick="openMessenger(' . "'" . $convo_conversationid . "'" . ', ' . "'" . $currentUser_Usrnm . "'" . ', ' . "'" . $convo_secondaryuser . "'" . ')">
                             Open
-                            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dangerz border border-light rounded-circle my-pulse-animation-tahiti" style="background-color: #e88a04 !important;">
+                            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dangerz border border-light rounded-circle my-pulse-animation-tahiti" style="background-color: #ffa500 !important;">
                                 <span class="visually-hidden">New Message</span>
                             </span>
                         </button>
@@ -260,7 +260,7 @@ function getUserChatConversations()
         }
     } else {
         $output_msg = "|[System Error]|:. [Communications load (User conversations list) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow d-block" id="application-error-msg"><h3 class=" d-block" style="color: red">An error has occured</h3><p class=" d-block">It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output d-block" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2 d-block" id="application-error-msg"><h3 class=" d-block" style="color: red">An error has occured</h3><p class=" d-block">It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output d-block" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -316,7 +316,7 @@ function getUserDetails($username)
         return $result;
     } else {
         $output_msg = "|[System Error]|:. [Profile load (Account details - 2) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
 
         $output = $app_err_msg;
     }
@@ -391,7 +391,7 @@ function getUserFriends()
         $output = $profileUserFriendsList;
     } else {
         $output_msg = "|[System Error]|:. [Profile load (Users friends) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -468,7 +468,7 @@ function getUserGroups()
         $output = $profileUserSubsGroupsList;
     } else {
         $output_msg = "|[System Error]|:. [Profile load (Users groups) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -531,7 +531,7 @@ function getUserNotifications()
         $output = $communicationUserNotifications;
     } else {
         $output_msg = "|[System Error]|:. [Communications load (User notifications) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow d-block"><h3 class=" d-block" style="color: red">An error has occured</h3><p class=" d-block">It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output d-block" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2 d-block"><h3 class=" d-block" style="color: red">An error has occured</h3><p class=" d-block">It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output d-block" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -610,7 +610,7 @@ function getUserProgSubs()
         $output = $profileUsersProgramsList;
     } else {
         $output_msg = "|[System Error]|:. [Discover load (All Groups) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -679,7 +679,7 @@ function getUserResources()
         $output = $profileUsersResourcesList;
     } else {
         $output_msg = "|[System Error]|:. [Profile load (Users posts) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -774,7 +774,7 @@ function getUserSaves()
         $output = $profileUsersFavesList;
     } else {
         $output_msg = "|[System Error]|:. [Discover load (All Groups) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
 
         $output = $app_err_msg;
     }
@@ -825,7 +825,7 @@ function getUserSocials()
         $output = $userSocialItemsList;
     } else {
         $output_msg = "|[System Error]|:. [Profile load (Social details) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         $output = $app_err_msg;
         //exit();
     }
@@ -884,7 +884,7 @@ function getUserUpdates()
 
             $profileUsersPostsList .= '
             <!-- Social Update Card -->
-            <div class="my-4 p-0 social-update-card shadow-lg" style="border-bottom: #e88a04 solid 5px;"
+            <div class="my-4 p-0 social-update-card shadow-lg" style="border-bottom: #ffa500 solid 5px;"
             id="post-' . $usrposts_postid . '-' . $usrposts_user . '">
             <div class="row align-items-center px-4 py-4 m-0 down-top-grad-darkz" style="border-radius: 25px!important;">
                 <div class="col-md-4  text-center">
@@ -961,7 +961,7 @@ function getUserUpdates()
         $output = $profileUsersPostsList;
     } else {
         $output_msg = "|[System Error]|:. [Profile load (Users posts) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -1036,7 +1036,7 @@ function getCommunityGroups()
         $output = $discoverGroupsList;
     } else {
         $output_msg = "|[System Error]|:. [Discover load (All Groups) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -1077,7 +1077,7 @@ function getCommunityNews()
         $output = $communicationNews;
     } else {
         $output_msg = "|[System Error]|:. [Communications load (User notifications) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow d-block"><h3 class=" d-block" style="color: red">An error has occured</h3><p class=" d-block">It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output d-block" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2 d-block"><h3 class=" d-block" style="color: red">An error has occured</h3><p class=" d-block">It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output d-block" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -1139,7 +1139,7 @@ function getCommunityResources()
         $output = $outputCommunityResources;
     } else {
         $output_msg = "|[System Error]|:. [Home load (Community resources) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -1208,7 +1208,7 @@ function getCommunityUpdates()
 
             $communityPosts .= '
             <!-- Community Update Card -->
-            <div class="px-2 mx-0 my-4 social-update-card" style="border-bottom: #e88a04 solid 5px;" id="post-' . $commpost_postid . '-' . $commpost_username . '">
+            <div class="px-2 mx-0 my-4 social-update-card" style="border-bottom: #ffa500 solid 5px;" id="post-' . $commpost_postid . '-' . $commpost_username . '">
                 <div class="row align-items-center px-4 py-4 m-0" style="border-radius: 25px!important;">
                     <div class="col-md-4 text-center">
                     ' . $commpostUserAccountProdImg . '
@@ -1283,7 +1283,7 @@ function getCommunityUpdates()
         $output = $communityPosts;
     } else {
         $output_msg = "|[System Error]|:. [Home load (Community posts) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -1410,7 +1410,7 @@ function getAllUsers()
         }
     } else {
         $output_msg = "|[System Error]|:. [Discover load (All People) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -1462,7 +1462,7 @@ function getFitProgramsIndi()
         $output = $discoverIndiProgramsList;
     } else {
         $output_msg = "|[System Error]|:. [Discover load (All Groups) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -1514,7 +1514,7 @@ function getFitProgramsTeams()
         $output = $discoverTeamProgramsList;
     } else {
         $output_msg = "|[System Error]|:. [Discover load (All Groups) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -1610,7 +1610,7 @@ function getAllTrainees()
         $output = $activitiesTraineesList;
     } else {
         $output_msg = "|[System Error]|:. [Discover load (All People) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -1710,7 +1710,7 @@ function getAllTrainers()
         $output = $activitiesTrainersList;
     } else {
         $output_msg = "|[System Error]|:. [Discover load (All People) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
+        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
         $output = $app_err_msg;
@@ -1752,343 +1752,6 @@ function getAllTrainers()
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/digital-clock.css" />
 
-    <!-- Google Charts Code -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    <!-- Load Google Charts -->
-    <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['timeline', 'corechart']
-        });
-        google.charts.setOnLoadCallback(drawUserTimelineChart);
-        google.charts.setOnLoadCallback(drawHeartRateMonitorChart);
-        google.charts.setOnLoadCallback(drawBodyTempMonitorChart);
-        google.charts.setOnLoadCallback(drawSpeedChart);
-        google.charts.setOnLoadCallback(drawStepCounterChart);
-        google.charts.setOnLoadCallback(drawWeightMonitorChart);
-        //body_temp_monitor_chart 
-        //speed_chart
-        //step_counter_chart 
-        //weight_monitor_chart 
-
-        function drawUserTimelineChart() {
-            var container = document.getElementById('timeline');
-            var chart = new google.visualization.Timeline(container);
-            var dataTable = new google.visualization.DataTable();
-
-            dataTable.addColumn({
-                type: 'string',
-                id: 'Term'
-            });
-            dataTable.addColumn({
-                type: 'string',
-                id: 'Name'
-            });
-            dataTable.addColumn({
-                type: 'date',
-                id: 'Start'
-            });
-            dataTable.addColumn({
-                type: 'date',
-                id: 'End'
-            });
-
-            dataTable.addRows([
-                ['1', 'Program 1: Activity 1', new Date(1789, 3, 30), new Date(1797, 2, 4)],
-                ['2', 'Program 1: Activity 2', new Date(1797, 2, 4), new Date(1801, 2, 4)],
-                ['3', 'Program 1: Activity 3', new Date(1801, 2, 4), new Date(1809, 2, 4)]
-            ]);
-
-            var options = {
-                timeline: {
-                    showRowLabels: true
-                },
-                chartArea: {
-                    width: '1000',
-                    height: '200'
-                },
-                legend: {
-                    position: 'in'
-                },
-                titlePosition: 'in',
-                axisTitlesPosition: 'in',
-                hAxis: {
-                    textPosition: 'in',
-                    slantedText: true,
-                    slantedTextAngle: -90
-                },
-                vAxis: {
-                    textPosition: 'in'
-                }
-            };
-
-            chart.draw(dataTable, options);
-        }
-
-        function drawHeartRateMonitorChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Time', 'BPM Average'],
-                ['09:05 AM', 100],
-                ['09:10 AM', 170],
-                ['09:15 AM', 660],
-                ['09:20 AM', 130]
-            ]);
-
-            var options = {
-                title: 'Heart Rate Monitor',
-                curveType: 'function',
-                legend: {
-                    position: 'bottom'
-                },
-                trendlines: {
-                    0: {
-                        type: 'linear',
-                        color: 'green',
-                        lineWidth: 3,
-                        opacity: 0.3,
-                        showR2: true,
-                        visibleInLegend: true
-                    }
-                },
-                slantedText: true,
-                chartArea: {
-                    width: '100%',
-                    height: '100%'
-                },
-                legend: {
-                    position: 'in'
-                },
-                titlePosition: 'in',
-                axisTitlesPosition: 'in',
-                hAxis: {
-                    textPosition: 'in',
-                    slantedText: true,
-                    slantedTextAngle: -90
-                },
-                vAxis: {
-                    textPosition: 'in'
-                }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('heart_rate_monitor_chart'));
-
-            chart.draw(data, options);
-        }
-
-        function drawBodyTempMonitorChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Days', 'Temperature Readings'],
-                ['Sunday (13/03/2022)', 38.7],
-                ['Monday (14/03/2022)', 38.2],
-                ['Tuesday (15/03/2022)', 36.5],
-                ['Wednesday (16/03/2022)', 37.1],
-                ['Thursday (17/03/2022)', 36.8],
-                ['Friday (18/03/2022)', 35.9],
-                ['Saturday (19/03/2022)', 38.1]
-            ]);
-
-            var options = {
-                title: 'Body Temperature Monitor',
-                curveType: 'function',
-                legend: {
-                    position: 'bottom'
-                },
-                trendlines: {
-                    0: {
-                        type: 'linear',
-                        color: 'green',
-                        lineWidth: 3,
-                        opacity: 0.3,
-                        showR2: true,
-                        visibleInLegend: true
-                    }
-                },
-                slantedText: true,
-                chartArea: {
-                    width: '100%',
-                    height: '100%'
-                },
-                legend: {
-                    position: 'in'
-                },
-                titlePosition: 'in',
-                axisTitlesPosition: 'in',
-                hAxis: {
-                    textPosition: 'in',
-                    slantedText: true,
-                    slantedTextAngle: -90
-                },
-                vAxis: {
-                    textPosition: 'in'
-                }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('body_temp_monitor_chart'));
-
-            chart.draw(data, options);
-        }
-
-        function drawSpeedChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Time', 'Average Speed (meters per second - m/s)'],
-                ['Sunday (13/03/2022)', 0],
-                ['Monday (14/03/2022)', 10],
-                ['Tuesday (15/03/2022)', 13],
-                ['Wednesday (16/03/2022)', 18],
-                ['Thursday (17/03/2022)', 15],
-                ['Friday (18/03/2022)', 16],
-                ['Saturday (19/03/2022)', 8]
-            ]);
-
-            var options = {
-                title: 'Average Speed Monitor',
-                curveType: 'function',
-                legend: {
-                    position: 'bottom'
-                },
-                trendlines: {
-                    0: {
-                        type: 'linear',
-                        color: 'green',
-                        lineWidth: 3,
-                        opacity: 0.3,
-                        showR2: true,
-                        visibleInLegend: true
-                    }
-                },
-                slantedText: true,
-                chartArea: {
-                    width: '100%',
-                    height: '100%'
-                },
-                legend: {
-                    position: 'in'
-                },
-                titlePosition: 'in',
-                axisTitlesPosition: 'in',
-                hAxis: {
-                    textPosition: 'in',
-                    slantedText: true,
-                    slantedTextAngle: -90
-                },
-                vAxis: {
-                    textPosition: 'in'
-                }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('speed_chart'));
-
-            chart.draw(data, options);
-        }
-
-        function drawStepCounterChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Days', 'Steps taken'],
-                ['Sunday (13/03/2022)', 126],
-                ['Monday (14/03/2022)', 235],
-                ['Tuesday (15/03/2022)', 120],
-                ['Wednesday (16/03/2022)', 467],
-                ['Thursday (17/03/2022)', 593],
-                ['Friday (18/03/2022)', 421],
-                ['Saturday (19/03/2022)', 467]
-            ]);
-
-            var options = {
-                title: 'Daily Step Counter',
-                curveType: 'function',
-                legend: {
-                    position: 'bottom'
-                },
-                trendlines: {
-                    0: {
-                        type: 'linear',
-                        color: 'green',
-                        lineWidth: 3,
-                        opacity: 0.3,
-                        showR2: true,
-                        visibleInLegend: true
-                    }
-                },
-                slantedText: true,
-                chartArea: {
-                    width: '100%',
-                    height: '100%'
-                },
-                legend: {
-                    position: 'in'
-                },
-                titlePosition: 'in',
-                axisTitlesPosition: 'in',
-                hAxis: {
-                    textPosition: 'in',
-                    slantedText: true,
-                    slantedTextAngle: -90
-                },
-                vAxis: {
-                    textPosition: 'in'
-                }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('step_counter_chart'));
-
-            chart.draw(data, options);
-        }
-
-        function drawWeightMonitorChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Days', 'BPM Average'],
-                ['Sunday (13/03/2022)', 126],
-                ['Monday (14/03/2022)', 235],
-                ['Tuesday (15/03/2022)', 120],
-                ['Wednesday (16/03/2022)', 467],
-                ['Thursday (17/03/2022)', 593],
-                ['Friday (18/03/2022)', 421],
-                ['Saturday (19/03/2022)', 467]
-            ]);
-
-            var options = {
-                title: 'Weight / BMI Monitor',
-                curveType: 'function',
-                legend: {
-                    position: 'bottom'
-                },
-                trendlines: {
-                    0: {
-                        type: 'linear',
-                        color: 'green',
-                        lineWidth: 3,
-                        opacity: 0.3,
-                        showR2: true,
-                        visibleInLegend: true
-                    }
-                },
-                slantedText: true,
-                chartArea: {
-                    width: '100%',
-                    height: '100%'
-                },
-                legend: {
-                    position: 'in'
-                },
-                titlePosition: 'in',
-                axisTitlesPosition: 'in',
-                hAxis: {
-                    textPosition: 'in',
-                    slantedText: true,
-                    slantedTextAngle: -90
-                },
-                vAxis: {
-                    textPosition: 'in'
-                }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('weight_monitor_chart'));
-
-            chart.draw(data, options);
-        }
-    </script>
-    <!-- ./ Google Charts Code -->
-
     <!-- Site Scripts -->
     <script src="../scripts/js/script.js"></script>
     <script src="../scripts/js/api_requests.js"></script>
@@ -2116,12 +1779,153 @@ function getAllTrainers()
     <!-- Soccer field -->
     <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.min.css" />
     <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.default.min.css" />
-
-    <!-- <script src="../vendor/components/jquery/jquery.js"></script> -->
     <script src="../scripts/js/soccer-field-players-positions/jquery.soccerfield.min.js"></script>
+
+    <!-- chartjs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+    <!-- JQuery Scripts -->
+    <script>
+        //jQuery Code Only
+        //$.noConflict();
+        $(document).ready(function() {
+            var data = [{
+                    name: 'KEYLOR NAVAS',
+                    position: 'C_GK',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'MARCELO',
+                    position: 'LC_B',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'SERGIO RAMOS',
+                    position: 'C_B',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'CARVAJAL',
+                    position: 'RC_B',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'CASEMIRO',
+                    position: 'C_DM',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'KROOS',
+                    position: 'L_M',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'ISCO',
+                    position: 'LC_M',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'ASENSIO',
+                    position: 'RC_M',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'MODRIC',
+                    position: 'R_M',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'RONALDO',
+                    position: 'LC_F',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+                {
+                    name: 'BENZEMA',
+                    position: 'RC_F',
+                    img: '../media/profiles/0_default/soccer-player.png'
+                },
+            ];
+
+            $("#soccerfield").soccerfield(data, {
+                field: {
+                    width: "960px",
+                    height: "600px",
+                    img: '../media/assets/field_diagrams/soccer-field-dimensions-1.jpg',
+                    startHidden: false,
+                    animate: false,
+                    fadeTime: 1000,
+                    autoReveal: false,
+                    onReveal: function() {
+                        // triggered on reveal
+                    }
+                },
+                players: {
+                    font_size: 16,
+                    reveal: false,
+                    sim: true, // reveal simultaneously
+                    timeout: 1000,
+                    fadeTime: 1000,
+                    img: true,
+                    onReveal: function() {
+                        // triggered on reveal
+                    }
+                }
+            });
+
+            // $("map[name=image-map-male-front]").mapoid({
+            //     click: function(e) {
+            //         /*// stroke color
+            //         strokeColor: 'black',
+            //         // stroke width
+            //         strokeWidth: 1,
+            //         // fill color
+            //         fillColor: 'black',
+            //         // 0-1
+            //         fillOpacity: 0.5,
+            //         // in milliseconds
+            //         fadeTime: 500,
+            //         // an array of selected areas
+            //         selectedArea: false,
+            //         // select on click
+            //         selectOnClick: true*/
+
+            //         //alert('click');
+            //         e.preventDefault();
+            //         var clickedArea = $(this); // remember clicked area
+            //         // foreach area
+            //         $("map[name=image-map-male-front]").each(function() {
+            //             hData = $(this).data('maphilight') || {}; // get
+            //             hData.alwaysOn = $(this).is(clickedArea); // modify
+            //             $(this).data('maphilight', hData).trigger('alwaysOn.maphilight'); // set
+            //         });
+            //     }
+            // });
+            //JQuery Image Map Highlighting
+            //$('.map').maphilight();
+
+            //$('.map').maphilight();
+
+            /*$('#musclepart').click(function(e) {
+                e.preventDefault();
+                var clickedArea = $(this); // remember clicked area
+                // foreach area
+                $('#musclepart').each(function() {
+                    hData = $(this).data('maphilight') || {}; // get
+                    hData.alwaysOn = $(this).is(clickedArea); // modify
+                    $(this).data('maphilight', hData).trigger('alwaysOn.maphilight'); // set
+                });
+            });*/
+
+            // ChartJs
+            // const config = {
+            //     type: 'line',
+            //     data: data,
+            // };
+        });
+    </script>
 </head>
 
-<body onload="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
+<body class="noselect" onload="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
     <!-- Load Curtain -->
     <div class="load-curtain" id="LoadCurtain" style="display: block;">
         <div class="d-flex align-items-center" style="width: 100%; height: 100%;">
@@ -2135,6 +1939,7 @@ function getAllTrainers()
             </div>
         </div>
         <nav class="text-center text-center p-4 fixed-bottom" alt="">
+            <p class="navbar-brand fs-1 text-white comfortaa-font" href="../index.html">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></p>
             <p class="text-center" styl="font-size: 10px !important;">Loading. Please wait.</p>
         </nav>
     </div>
@@ -2148,7 +1953,7 @@ function getAllTrainers()
     <!-- Navigation bar, Cart & Other functions -->
     <div class="container -fluid text-center pt-4">
         <a class="navbar-brand my-4 p-4 fs-1 text-white comfortaa-font" href="#">
-            One<span style="color: #e88a04">fit</span>.app<span style="font-size: 10px">&trade;</span>
+            One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span>
         </a>
 
         <!-- Cart Container  -->
@@ -2164,11 +1969,11 @@ function getAllTrainers()
                         <div class="col-sm border-start border-end border-light p-2">
                             <div class="d-grid gap-2">
                                 <span class="material-icons material-icons-round" style="font-size: 20px !important"> shopping_bag </span>
-                                <span class="d-nonez d-lg-blockz" id="" style="font-size: 10px;">Cart (<span class="fw-bold comfortaa-font" style="color: #e88a04;">4</span>)</span>
+                                <span class="d-nonez d-lg-blockz" id="" style="font-size: 10px;">Cart (<span class="fw-bold comfortaa-font" style="color: #ffa500;">4</span>)</span>
                             </div>
                         </div>
                         <div class="col-sm fw-bold comfortaa-font border-start border-end border-light p-2">
-                            <span class="align-middle" style="font-size: 10px; color: #e88a04;">ZAR</span><br> 0.00
+                            <span class="align-middle" style="font-size: 10px; color: #ffa500;">ZAR</span><br> 0.00
                         </div>
                     </div>
                 </button>
@@ -2182,7 +1987,7 @@ function getAllTrainers()
                                 <span class="material-icons material-icons-round">
                                     storefront
                                 </span>
-                                <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span style="color: #e88a04 !important;">.Store</span></span>
+                                <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span style="color: #ffa500 !important;">.Store</span></span>
                             </p>
                         </button>
                         <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4" type="button">
@@ -2197,9 +2002,9 @@ function getAllTrainers()
 
                     <div class="row">
                         <div class="col-md-6 py-4">
-                            <p class="text-start">Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #e88a04;">20220201-879ds6fsdf_id</span> ]</p>
+                            <p class="text-start">Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;">20220201-879ds6fsdf_id</span> ]</p>
                             <hr class="text-white">
-                            <h1><span style="color: #e88a04;">Total:</span> R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 10px; color: #e88a04;">ZAR</span></h1>
+                            <h1><span style="color: #ffa500;">Total:</span> R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 10px; color: #ffa500;">ZAR</span></h1>
                             <ul class="list-group list-group-flush list-group-numbered shadow py-4 no-scroller" id="" style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
                                 <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
                                 <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
@@ -2253,7 +2058,7 @@ function getAllTrainers()
                                         <span class="material-icons material-icons-round">
                                             storefront
                                         </span>
-                                        <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span style="color: #e88a04 !important;">.Store</span></span>
+                                        <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span style="color: #ffa500 !important;">.Store</span></span>
                                     </p>
                                 </button>
                                 <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4" type="button">
@@ -2268,9 +2073,9 @@ function getAllTrainers()
 
                             <div class="row">
                                 <div class="col-md-6 py-4">
-                                    <p class="text-start">Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #e88a04;">20220201-879ds6fsdf_id</span> ]</p>
+                                    <p class="text-start">Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;">20220201-879ds6fsdf_id</span> ]</p>
                                     <hr class="text-white">
-                                    <h1><span style="color: #e88a04;">Total:</span> R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 10px; color: #e88a04;">ZAR</span></h1>
+                                    <h1><span style="color: #ffa500;">Total:</span> R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 10px; color: #ffa500;">ZAR</span></h1>
                                     <ul class="list-group list-group-flush list-group-numbered shadow py-4 no-scroller" id="" style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
                                         <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
                                         <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
@@ -2318,11 +2123,11 @@ function getAllTrainers()
                             <div class="col-sm border-start border-end border-light p-2">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round" style="font-size: 40px !important"> shopping_bag </span>
-                                    <span class="d-nonez d-lg-blockz" id="" style="font-size: 10px;">Cart (<span class="fw-bold comfortaa-font" style="color: #e88a04;">4</span>)</span>
+                                    <span class="d-nonez d-lg-blockz" id="" style="font-size: 10px;">Cart (<span class="fw-bold comfortaa-font" style="color: #ffa500;">4</span>)</span>
                                 </div>
                             </div>
                             <div class="col-sm fw-bold comfortaa-font border-start border-end border-light p-2">
-                                <span class="align-middle" style="font-size: 10px; color: #e88a04;">ZAR</span><br> 0.00
+                                <span class="align-middle" style="font-size: 10px; color: #ffa500;">ZAR</span><br> 0.00
                             </div>
                         </div>
                     </button>
@@ -2347,7 +2152,7 @@ function getAllTrainers()
                         <span class="material-icons material-icons-round" style="font-size: 48px !important;">
                             brush
                         </span>
-                        <p style="font-size: 20px;">Create</p>
+                        <p class="comfortaa-font" style="font-size: 20px;">Create.</p>
                     </div>
                 </button>
             </div>
@@ -2360,7 +2165,7 @@ function getAllTrainers()
     <!-- Main Content -->
     <div class="container -fluid" style="padding-bottom: 100px">
         <!-- Main Navigation Bar -->
-        <nav class="navbar navbar-light sticky-top navbar-style w-100 mb-4" style="border-radius: 25px; max-height: 100vh !important; border-bottom: #e88a04 solid 5px;">
+        <nav class="navbar navbar-light sticky-top navbar-style w-100 mb-4" style="border-radius: 25px; max-height: 100vh !important; border-bottom: #ffa500 solid 5px;">
             <!-- App Function Buttons -->
             <div class="container">
                 <button class="onefit-buttons-style-dark p-2 shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
@@ -2383,7 +2188,7 @@ function getAllTrainers()
                     <button class="onefit-buttons-style-dark p-2 shadow d-nonez d-lg-blockz" style="overflow: hidden; font-size: 10px;" type="button" data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal">
                         <div class="d-grid gap-2 text-center">
                             <!-- Profile Picture -->
-                            <img src="../media/assets/One-Symbol-Logo-White.png" alt="Onefit Logo" class="p-1 img-fluid my-pulse-animation-tahitiz" style="height: 50px; width: 50px; border-radius: 15px; border-color: #e88a04 !important" />
+                            <img src="../media/assets/One-Symbol-Logo-White.png" alt="Onefit Logo" class="p-1 img-fluid my-pulse-animation-tahitiz" style="height: 50px; width: 50px; border-radius: 15px; border-color: #ffa500 !important" />
                             <!-- ./ Profile Picture -->
                             <span class="d-none d-lg-block">Latest</span>
                         </div>
@@ -2534,7 +2339,7 @@ function getAllTrainers()
                                                     <i class="fab fa-google" style="font-size: 30px!important"></i>
                                                 </span>
                                                 <div class="ms-2 me-auto">
-                                                    <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                                    <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                                     Frequency: Daily<br />
                                                     Mendatory: Optional
                                                 </div>
@@ -2544,29 +2349,29 @@ function getAllTrainers()
                                                     <i class="fab fa-google" style="font-size: 30px!important"></i>
                                                 </span>
                                                 <div class="ms-2 me-auto">
-                                                    <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                                    <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
                                                     Frequency: Daily<br />
                                                     Mendatory: Optional
                                                 </div>
                                             </li>
                                             <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                                         pending_actions </span>
                                                 </span>
                                                 <div class="ms-2 me-auto">
-                                                    <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                                    <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                                     Frequency: Daily<br />
                                                     Mendatory: Yes
                                                 </div>
                                             </li>
                                             <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                                         pending_actions </span>
                                                 </span>
                                                 <div class="ms-2 me-auto">
-                                                    <div class="fw-bold" style="color: #e88a04">Athlete Wellness Survey</div>
+                                                    <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
                                                     Frequency: Daily<br />
                                                     Mendatory: Yes
                                                 </div>
@@ -2616,7 +2421,7 @@ function getAllTrainers()
                         <div class="grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
                             <h4>News, Resources, Blog and Ads Feed</h4>
                             <small class="text-muted" id="">Content</small>
-                            <p style="color: #e88a04;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
+                            <p style="color: #ffa500;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
                             <div class="text-center">
                                 <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
                                     <span class="visually-hidden">Loading...</span>
@@ -2637,7 +2442,7 @@ function getAllTrainers()
                         <div class="tall-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
                             <h4>News, Resources, Blog and Ads Feed</h4>
                             <small class="text-muted" id="">Content</small>
-                            <p style="color: #e88a04;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
+                            <p style="color: #ffa500;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
                             <div class="text-center">
                                 <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
                                     <span class="visually-hidden">Loading...</span>
@@ -2654,7 +2459,7 @@ function getAllTrainers()
                         <div class="wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
                             <h4>News, Resources, Blog and Ads Feed</h4>
                             <small class="text-muted" id="">Content</small>
-                            <p style="color: #e88a04;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
+                            <p style="color: #ffa500;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
                             <div class="text-center">
                                 <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
                                     <span class="visually-hidden">Loading...</span>
@@ -2664,7 +2469,7 @@ function getAllTrainers()
                         <div class="tall-grid-tile grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
                             <h4>News, Resources, Blog and Ads Feed</h4>
                             <small class="text-muted" id="">Content</small>
-                            <p style="color: #e88a04;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
+                            <p style="color: #ffa500;">Stay tuned for helpful resources, media content and the latest news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
                             <div class="text-center">
                                 <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
                                     <span class="visually-hidden">Loading...</span>
@@ -2672,7 +2477,7 @@ function getAllTrainers()
                             </div>
                         </div>
                         <div class="full-wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
-                            <h4>One<span style="color: #e88a04">fit</span>.Muse</h4>
+                            <h4>One<span style="color: #ffa500">fit</span>.Muse</h4>
                             <p>the activities list will be able to switch through the different programs of the use</p>
 
                             <div class="row">
@@ -2796,34 +2601,34 @@ function getAllTrainers()
                             <ol class='list-group list-group-numberedz list-group-flush'>
                                 <li class='list-group-item d-flex justify-content-between align-items-start bg-transparent text-white'>
                                     <div class='ms-2 me-auto'>
-                                        <div class='fw-bold users-name-tag fs-5' style='color: #e88a04'>
+                                        <div class='fw-bold users-name-tag fs-5' style='color: #ffa500'>
                                             <?php echo $usrprof_name . " " . $usrprof_surname; ?>
                                         </div>
                                         <span class='username-tag'>@<?php echo $currentUser_Usrnm; ?></span><br />
                                         Lvl. 1
                                     </div>
-                                    <span class='badge bg-primary rounded-pillz p-4' style='background-color: #e88a04 !important; color: #333 !important; border-radius: 25px'>
+                                    <span class='badge bg-primary rounded-pillz p-4' style='background-color: #ffa500 !important; color: #333 !important; border-radius: 25px'>
                                         <?php echo $verifIcon; ?>
                                     </span>
                                 </li>
                                 <li class='list-group-item d-flex justify-content-between align-items-start bg-transparent text-white'>
                                     <div class='ms-2 me-auto'>
-                                        <div class='fw-bold' style='color: #e88a04'>Followers</div>
+                                        <div class='fw-bold' style='color: #ffa500'>Followers</div>
                                         <span>2 Mutual Friends</span><br />
                                         <span>6 Messages</span>
                                     </div>
-                                    <span class='badge bg-primary rounded-pillz p-4' style='background-color: #e88a04 !important; color: #fff !important; border-radius: 25px'>
+                                    <span class='badge bg-primary rounded-pillz p-4' style='background-color: #ffa500 !important; color: #fff !important; border-radius: 25px'>
                                         <span class='material-icons material-icons-round' style='font-size: 20px !important'> people_alt </span>
                                         <span>6</span>
                                         <span>
                                 </li>
                                 <li class='list-group-item d-flex justify-content-between align-items-start bg-transparent text-white'>
                                     <div class='ms-2 me-auto'>
-                                        <div class='fw-bold' style='color: #e88a04'>Achievements</div>
+                                        <div class='fw-bold' style='color: #ffa500'>Achievements</div>
                                         <span>18 Activities Remaining</span><br />
                                         <span>4 Challenges Remaining</span>
                                     </div>
-                                    <span class='badge bg-primary rounded-pillz p-4' style='background-color: #e88a04 !important; color: #fff !important; border-radius: 25px'>
+                                    <span class='badge bg-primary rounded-pillz p-4' style='background-color: #ffa500 !important; color: #fff !important; border-radius: 25px'>
                                         <span class='material-icons material-icons-round' style='font-size: 20px !important'> emoji_events </span>
                                         <span>3</span>
                                     </span>
@@ -2947,7 +2752,7 @@ function getAllTrainers()
                     by AdaptEngine™
 
                     <nav>
-                        <div class="nav nav-tabs" id="nav-tab-discovery" role="tablist" style="border-color: #e88a04 !important">
+                        <div class="nav nav-tabs" id="nav-tab-discovery" role="tablist" style="border-color: #ffa500 !important">
                             <button class="nav-link active" id="nav-discovery-trainers-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-trainers" type="button" role="tab" aria-controls="nav-discovery-trainers" aria-selected="true">Trainers</button>
 
                             <button class="nav-link" id="nav-discovery-trainees-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-trainees" type="button" role="tab" aria-controls="nav-discovery-trainees" aria-selected="false">Trainees</button>
@@ -3044,7 +2849,7 @@ function getAllTrainers()
                     </div>
                 </div>
                 <div id="TabStudio" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
-                    <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Studio
+                    <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Studio
                     </h1>
                     <hr class="text-white" />
                     • Onefit.Community Streams (Onefit.tv) – Live stream sessions of scheduled Community (public) & Group-based
@@ -3062,7 +2867,7 @@ function getAllTrainers()
                     <div class="grid-container studio-tab-grid">
                         <div class="grid-tile shadow p-4 down-top-grad-dark">
                             <!-- -100 max-100vh-->
-                            <h2 class="text-center"><span class="material-icons material-icons-outlined"> tv </span> <span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Community Streams (Onefit.tv)</h2>
+                            <h2 class="text-center"><span class="material-icons material-icons-outlined"> tv </span> <span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Community Streams (Onefit.tv)</h2>
                             <p>Live stream sessions of scheduled Community (public) & Group-based fitness program guidance classes.
                                 (Scheduled Program Guidance Classes and Community Events on Onefit App and Socials that are open to all
                                 visitors, casual subscribers, and premium members (Onefit.app, Zoom, Skype, Teams)</p>
@@ -3070,7 +2875,7 @@ function getAllTrainers()
                             <!--<video preload="none" id="player" class="player" settings controls crossorigin data-poster="../media/assets/YouTube Thumbnail 1280x720 px.gif"></video>-->
                             <hr class="text-white" style="height: 5px;">
 
-                            <p style="font-size: 10px">Latest Training Programs | <span class="comfortaa-font" style="color: #e88a04">OnefitNet.TV</span></p>
+                            <p style="font-size: 10px">Latest Training Programs | <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span></p>
 
                             <div class="video-card-container">
                                 <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="" class="img-fluid shadow" />
@@ -3097,7 +2902,7 @@ function getAllTrainers()
                             <hr class="text-white" />
                         </div>
                         <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
-                            <h4><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Muse<span class="material-icons material-icons-round">
+                            <h4><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Muse<span class="material-icons material-icons-round">
                                     equalizer
                                 </span>
                             </h4>
@@ -3142,7 +2947,7 @@ function getAllTrainers()
                     </div>
                 </div>
                 <div id="TabStore" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
-                    <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Store
+                    <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Store
                     </h1>
                     <hr class="text-white" />
                     • Sale of Activity Trackers and Smart Watches (wearables) • Sale of Fitness Equipment (weights, weight
@@ -3733,7 +3538,7 @@ function getAllTrainers()
                     <!-- Membership Sales Card Grid -->
                 </div>
                 <div id="TabSocial" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
-                    <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Social
+                    <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Social
                     </h1>
                     <hr class="text-white" />
                     • Community Status Update Feed • Shared Resources Feed • Social Chat Messenger • Public Achievements • Public
@@ -3803,7 +3608,7 @@ function getAllTrainers()
                         <div class="text-end w-100 align-items-center" style="margin-top: -100px">
                             <!-- toggle H-Menu Button -->
                             <button class="py-2 px-4 ms-0 me-4 shadow onefit-buttons-style-dark comfortaa-font" id="social-toggle-bottom-nav" type="button" data-bs-toggle="collapse" data-bs-target="#social-collapse-bottom-nav" aria-expanded="false" aria-controls="social-collapse-bottom-nav">
-                                <!--style="background-color: #e88a04; color: #343434; border: 0; height: 60px; width: 60px"-->
+                                <!--style="background-color: #ffa500; color: #343434; border: 0; height: 60px; width: 60px"-->
                                 <div class="d-grid">
                                     <span class="material-icons material-icons-round" style="font-size: 24px !important;">
                                         style
@@ -4094,14 +3899,14 @@ function getAllTrainers()
                     <!-- User Smart Device Activity Tracking -->
                     <hr class="text-white" style="height: 5px;">
                     <h5 class="mt-4 fs-1 text-center">Activity Tracking</h5>
-                    <div class="container p-4 shadow-lg d-inline-block border-start border-end" style="border-radius: 25px; border-color: #e88a04 !important; background-color: #343434">
+                    <div class="container p-4 shadow-lg d-inline-block border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
                         <div class="row align-items-center text-center comfortaa-font">
                             <div class="col-sm py-2 d-inline">
                                 <!--<i class="fas fa-heart"></i>-->
                                 <span class="material-icons material-icons-round"> monitor_heart </span>
                                 HeartRate
                             </div>
-                            <div class="col-sm py-2 d-inline"><span style="color: #e88a04">|</span></div>
+                            <div class="col-sm py-2 d-inline"><span style="color: #ffa500">|</span></div>
                             <div class="col-sm py-2 d-inline">
                                 <!--<i class="fas fa-thermometer-half"></i>-->
                                 <span class="material-icons material-icons-round"> device_thermostat </span>
@@ -4115,7 +3920,7 @@ function getAllTrainers()
                                 <span class="material-icons material-icons-round"> bolt </span>
                                 Speed
                             </div>
-                            <div class="col-sm py-2 d-inline"><span style="color: #e88a04">|</span></div>
+                            <div class="col-sm py-2 d-inline"><span style="color: #ffa500">|</span></div>
                             <div class="col-sm py-2 d-inline">
                                 <!--<i class="fas fa-walking"></i>-->
                                 <span class="material-icons material-icons-round"> directions_walk </span>
@@ -4125,7 +3930,7 @@ function getAllTrainers()
                         <hr class="text-white">
                         <!-- detailed metric list -->
                         <ul class="list-group list-group-flush text-white border-0">
-                            <li class="list-group-item bg-transparent text-white" style="border-color: #e88a04;">
+                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
                                 <div class="row align-items-center">
                                     <div class="col-lg-4 text-center">
                                         <h1 class="text-truncate">Heart Rate Monitor</h1>
@@ -4138,11 +3943,15 @@ function getAllTrainers()
                                         </div>
                                     </div>
                                     <div class="col-lg py-4">
-                                        <div id="heart_rate_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div>
+                                        <!-- Canvasjs chart canvas -->
+                                        <canvas class="chartjs-chart-light shadow" id="heart_rate_monitor_chart" width="400" height="200"></canvas>
+                                        <!-- ./Canvasjs chart canvas -->
+
+                                        <!-- <div id="heart_rate_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item bg-transparent text-white" style="border-color: #e88a04;">
+                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
                                 <div class="row align-items-center">
                                     <div class="col-lg-4 text-center">
                                         <h1 class="text-truncate">Body Temp Monitor</h1>
@@ -4155,11 +3964,15 @@ function getAllTrainers()
                                         </div>
                                     </div>
                                     <div class="col-lg py-4">
-                                        <div id="body_temp_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div>
+                                        <!-- Canvasjs chart canvas -->
+                                        <canvas class="chartjs-chart-light shadow" id="body_temp_monitor_chart"></canvas>
+                                        <!-- ./Canvasjs chart canvas -->
+
+                                        <!-- <div id="body_temp_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item bg-transparent text-white" style="border-color: #e88a04;">
+                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
                                 <div class="row align-items-center">
                                     <div class="col-lg-4 text-center">
                                         <h1 class="text-truncate">Avg. Speed</h1>
@@ -4172,11 +3985,15 @@ function getAllTrainers()
                                         </div>
                                     </div>
                                     <div class="col-lg py-4">
-                                        <div id="speed_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div>
+                                        <!-- Canvasjs chart canvas -->
+                                        <canvas class="chartjs-chart-light shadow" id="speed_monitor_chart"></canvas>
+                                        <!-- ./Canvasjs chart canvas -->
+
+                                        <!-- <div id="speed_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item bg-transparent text-white" style="border-color: #e88a04;">
+                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
                                 <div class="row align-items-center">
                                     <div class="col-lg-4 text-center">
                                         <h1 class="text-truncate">Step Counter</h1>
@@ -4189,11 +4006,15 @@ function getAllTrainers()
                                         </div>
                                     </div>
                                     <div class="col-lg py-4">
-                                        <div id="step_counter_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div>
+                                        <!-- Canvasjs chart canvas -->
+                                        <canvas class="chartjs-chart-light shadow" id="step_counter_monitor_chart"></canvas>
+                                        <!-- ./Canvasjs chart canvas -->
+
+                                        <!-- <div id="step_counter_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item bg-transparent text-white" style="border-color: #e88a04;">
+                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
                                 <div class="row align-items-center">
                                     <div class="col-lg-4 text-center">
                                         <h1 class="text-truncate">Avg. Weight / BMI</h1>
@@ -4206,7 +4027,11 @@ function getAllTrainers()
                                         </div>
                                     </div>
                                     <div class="col-lg py-4">
-                                        <div id="weight_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div>
+                                        <!-- Canvasjs chart canvas -->
+                                        <canvas class="chartjs-chart-light shadow" id="bmi_weight_monitor_chart"></canvas>
+                                        <!-- ./Canvasjs chart canvas -->
+
+                                        <!-- <div id="weight_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
                                     </div>
                                 </div>
                             </li>
@@ -4230,7 +4055,7 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
@@ -4240,29 +4065,29 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Athlete Wellness Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
@@ -4279,7 +4104,7 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
@@ -4289,29 +4114,29 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Athlete Wellness Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
@@ -4328,7 +4153,7 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
@@ -4338,29 +4163,29 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Athlete Wellness Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
@@ -4377,7 +4202,7 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
@@ -4387,29 +4212,29 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Athlete Wellness Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
@@ -4426,7 +4251,7 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
@@ -4436,29 +4261,29 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Athlete Wellness Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
@@ -4475,7 +4300,7 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
@@ -4485,29 +4310,29 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Athlete Wellness Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
@@ -4524,7 +4349,7 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
@@ -4534,29 +4359,29 @@ function getAllTrainers()
                                         <i class="fab fa-google" style="font-size: 30px!important"></i>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Wellness Tracking Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Optional
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Daily Load Monitoring Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             pending_actions </span>
                                     </span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Athlete Wellness Survey</div>
+                                        <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
                                         Frequency: Daily<br />
                                         Mendatory: Yes
                                     </div>
@@ -4569,7 +4394,7 @@ function getAllTrainers()
                     <!-- Features: Tab structured -->
                     <div class="row mt-4 py-4" style="background-color: #333; border-radius: 25px;">
                         <div class="col-md-3 d-lg-none d-xl-none d-xxl-none">
-                            <div class="d-grid gap-2 d-lg-none d-xl-none d-xxl-none">
+                            <div class="d-grid gap-2 justify-content-center d-lg-none d-xl-none d-xxl-none">
                                 <button class="onefit-buttons-style-dark p-4 mb-4" type="button" data-bs-toggle="collapse" data-bs-target="#insights-subfeatures-nav-menu" aria-expanded="true" aria-controls="insights-subfeatures-nav-menu">
                                     <div class="d-grid gap-2">
                                         <span class="material-icons material-icons-round"> menu </span>
@@ -4578,28 +4403,30 @@ function getAllTrainers()
                                 </button>
                             </div>
                             <div class="collapse showz w3-animate-bottom" id="insights-subfeatures-nav-menu">
-                                <div class="nav flex-column nav-pills" id="v-sub-tab-pills-insights-subfeatures-tab" role="tablist" aria-orientation="vertical">
+                                <div class="nav flex-columnz nav-pills" id="v-sub-tab-pills-insights-subfeatures-tab" role="tablist" aria-orientation="vertical">
                                     <button class="nav-link active" id="v-sub-tab-pills-insights-googlesurveys-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-googlesurveys" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-googlesurveys" aria-selected="true">
                                         <!--onclick="openLink(event, 'InsightsTabGCS')"-->
                                         <span class="material-icons material-icons-rounded">poll</span>
-                                        <p>Google Community Surveys</p>
+                                        <p class="text-break">Google Community Surveys</p>
                                     </button>
                                     <button class="nav-link" id="v-sub-tab-pills-insights-indiathlete-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-indiathlete" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-indiathlete" aria-selected="false">
                                         <!--onclick="openLink(event, 'InsightsTabIAT')"-->
                                         <span class="material-icons material-icons-rounded">sports_gymnastics</span>
-                                        <p>Indi-Athletics</p>
+                                        <p class="text-break">Indi-Athletics</p>
                                     </button>
                                     <button class="nav-link" id="v-sub-tab-pills-insights-teamathletics-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-teamathletics" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-teamathletics" aria-selected="false">
                                         <!--onclick="openLink(event, 'InsightsTabCTA')"-->
                                         <span class="material-icons material-icons-rounded">diversity_2</span>
-                                        <p>Community/Team Athletics</p>
+                                        <p class="text-break">Community/Team Athletics</p>
                                     </button>
                                     <button class="nav-link" id="v-sub-tab-pills-insights-challenges-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-challenges" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-challenges" aria-selected="false">
                                         <!--onclick="openLink(event, 'InsightsTabChallenges')"-->
                                         <span class="material-icons material-icons-rounded">stars</span>
-                                        <p>Challenges</p>
+                                        <p class="text-break">Challenges</p>
                                     </button>
                                 </div>
+
+                                <hr class="text-white" style="height: 5px;">
                             </div>
                         </div>
                         <div class="col-md -9">
@@ -4608,9 +4435,9 @@ function getAllTrainers()
                                     <!-- Community Surveys -->
                                     <div>
                                         <!-- User Wellness Tracking Log -->
-                                        <p class="text-center fw-bold">One<span style="color: #e88a04">fit.</span>Social <span class="material-icons material-icons-two-tone">hub</span></p>
+                                        <p class="text-center fw-bold">One<span style="color: #ffa500">fit.</span>Social <span class="material-icons material-icons-two-tone">hub</span></p>
 
-                                        <div class="fs-5 fw-bold text-center mb-4 rounded-pill p-4 bg-white" style="color: #e88a04">
+                                        <div class="fs-5 fw-bold text-center mb-4 rounded-pill p-4 bg-white" style="color: #ffa500">
                                             <i class="fab fa-google" style="font-size: 40px!important" aria-hidden="true"></i>
                                             <hr>
                                             <span class="align-center">Google Community Surveys</span>
@@ -4962,7 +4789,7 @@ function getAllTrainers()
                                                         <div class="training-schedule-container p-4 text-center down-top-grad-white">
                                                             <h5>Training week for those who played 45+ minutes in previous match</h5>
 
-                                                            <div class="my-4 text-center d-grid gap-2">
+                                                            <div class="my-4 text-center d-gridz gap-2">
                                                                 <button class="onefit-buttons-style-tahiti p-4 my-2" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="add-weekly-activity-btn remove-weekly-activity-btn">
                                                                     <span class="material-icons material-icons-round">
                                                                         edit_calendar
@@ -4977,7 +4804,7 @@ function getAllTrainers()
                                                                     <p class="fs-3 fw-bold">
                                                                         Regeneration
                                                                         <!-- Edit training day title - Day 1 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-1')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -4989,7 +4816,7 @@ function getAllTrainers()
                                                                     <p>
                                                                         RPE 1-3
                                                                         <!-- Edit RPE - Day 1 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-1')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -5003,7 +4830,7 @@ function getAllTrainers()
                                                                             <p>Cycling / Spinning</p>
                                                                             <img src="../media/assets/icons/cycling.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-1')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5017,7 +4844,7 @@ function getAllTrainers()
                                                                             <p>Strength & Core</p>
                                                                             <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5031,7 +4858,7 @@ function getAllTrainers()
 
                                                                     <hr class="text-dark">
 
-                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-1')">
                                                                             <span class="material-icons material-icons-round">
                                                                                 add_circle
@@ -5046,7 +4873,7 @@ function getAllTrainers()
                                                                     <p class="fs-3 fw-bold">
                                                                         Recovery
                                                                         <!-- Edit training day title - Day 1 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-2')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -5059,7 +4886,7 @@ function getAllTrainers()
                                                                     <p>
                                                                         RPE 0
                                                                         <!-- Edit RPE - Day 1 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-2')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -5074,7 +4901,7 @@ function getAllTrainers()
                                                                             <p>Ice Bath</p>
                                                                             <img src="../media/assets/icons/bath-tub.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-2', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5088,7 +4915,7 @@ function getAllTrainers()
 
                                                                     <hr class="text-dark">
 
-                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-2')">
                                                                             <span class="material-icons material-icons-round">
                                                                                 add_circle
@@ -5103,7 +4930,7 @@ function getAllTrainers()
                                                                     <p class="fs-3 fw-bold">
                                                                         Longer pitch / strides
                                                                         <!-- Edit training day title - Day 1 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-3')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -5116,7 +4943,7 @@ function getAllTrainers()
                                                                     <p>
                                                                         RPE 4-6
                                                                         <!-- Edit RPE - Day 1 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-3')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -5131,7 +4958,7 @@ function getAllTrainers()
                                                                             <p>RST</p>
                                                                             <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5145,7 +4972,7 @@ function getAllTrainers()
                                                                             <p>Tactics</p>
                                                                             <img src="../media/assets/icons/thinking.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5159,7 +4986,7 @@ function getAllTrainers()
                                                                             <p>Practice Kick-Off</p>
                                                                             <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5173,7 +5000,7 @@ function getAllTrainers()
 
                                                                     <hr class="text-dark">
 
-                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-3')">
                                                                             <span class="material-icons material-icons-round">
                                                                                 add_circle
@@ -5188,7 +5015,7 @@ function getAllTrainers()
                                                                     <p class="fs-3 fw-bold">
                                                                         Strength / change of directon
                                                                         <!-- Edit training day title - Day 1 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-4')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -5201,7 +5028,7 @@ function getAllTrainers()
                                                                     <p>
                                                                         RPE 7-10
                                                                         <!-- Edit RPE - Day 1 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-4')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -5216,7 +5043,7 @@ function getAllTrainers()
                                                                             <p>Multi-directional WU</p>
                                                                             <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5230,7 +5057,7 @@ function getAllTrainers()
                                                                             <p>SSGs</p>
                                                                             <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5244,7 +5071,7 @@ function getAllTrainers()
                                                                             <p>Strength</p>
                                                                             <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5258,7 +5085,7 @@ function getAllTrainers()
                                                                             <p>Practice Kick-Off</p>
                                                                             <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5272,7 +5099,7 @@ function getAllTrainers()
 
                                                                     <hr class="text-dark">
 
-                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-4')">
                                                                             <span class="material-icons material-icons-round">
                                                                                 add_circle
@@ -5287,7 +5114,7 @@ function getAllTrainers()
                                                                     <p class="fs-3 fw-bold">
                                                                         Taper
                                                                         <!-- Edit training day title - Day 1 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-5')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -5300,7 +5127,7 @@ function getAllTrainers()
                                                                     <p>
                                                                         RPE 1-3
                                                                         <!-- Edit RPE - Day 1 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-5')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -5315,7 +5142,7 @@ function getAllTrainers()
                                                                             <p>Multi-directional WU</p>
                                                                             <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-5', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5329,7 +5156,7 @@ function getAllTrainers()
                                                                             <p>Tempo runs</p>
                                                                             <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-5', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5343,7 +5170,7 @@ function getAllTrainers()
 
                                                                     <hr class="text-dark">
 
-                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-5')">
                                                                             <span class="material-icons material-icons-round">
                                                                                 add_circle
@@ -5358,7 +5185,7 @@ function getAllTrainers()
                                                                     <p class="fs-3 fw-bold">
                                                                         Match prep
                                                                         <!-- Edit training day title - Day 1 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-6')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -5371,7 +5198,7 @@ function getAllTrainers()
                                                                     <p>
                                                                         RPE 2-4
                                                                         <!-- Edit RPE - Day 1 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-6')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -5386,7 +5213,7 @@ function getAllTrainers()
                                                                             <p>Multi-directional WU</p>
                                                                             <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5400,7 +5227,7 @@ function getAllTrainers()
                                                                             <p>Tactics</p>
                                                                             <img src="../media/assets/icons/thinking.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5414,7 +5241,7 @@ function getAllTrainers()
                                                                             <p>Short SSGs</p>
                                                                             <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5428,7 +5255,7 @@ function getAllTrainers()
 
                                                                     <hr class="text-dark">
 
-                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-6')">
                                                                             <span class="material-icons material-icons-round">
                                                                                 add_circle
@@ -5443,7 +5270,7 @@ function getAllTrainers()
                                                                     <p class="fs-3 fw-bold">
                                                                         Match
                                                                         <!-- Edit training day title - Day 7 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-7')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -5456,7 +5283,7 @@ function getAllTrainers()
                                                                     <p>
                                                                         RPE 7-10
                                                                         <!-- Edit RPE - Day 7 -->
-                                                                    <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-7')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
@@ -5471,7 +5298,7 @@ function getAllTrainers()
                                                                             <p>Pre-match WU</p>
                                                                             <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5485,7 +5312,7 @@ function getAllTrainers()
                                                                             <p>Match Kick-Off - We Play to Win!</p>
                                                                             <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
 
-                                                                            <div class="collapse show multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
+                                                                            <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
                                                                                 <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
                                                                                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                         delete
@@ -5499,7 +5326,7 @@ function getAllTrainers()
 
                                                                     <hr class="text-dark">
 
-                                                                    <div class="collapse show multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                                                                    <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
                                                                         <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-6')">
                                                                             <span class="material-icons material-icons-round">
                                                                                 add_circle
@@ -5507,7 +5334,7 @@ function getAllTrainers()
                                                                         </button>
                                                                     </div>
 
-                                                                    <p class="text-center fs-5 fw-bold">Day 7 (Match Day)</p>
+                                                                    <p class="text-center fs-5 fw-bold">Day 7</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -5856,7 +5683,7 @@ function getAllTrainers()
                                                         <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Post-Match</p>
                                                         <img src="../media/assets/body_charts/training recovery plan.jpeg" class="img-fluid" alt="recovery chart Sample" hidden>
                                                         <div class="recovery-chart">
-                                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #e88a04; color: #343434 !important;">WITHIN 30 MINUTES</h5>
+                                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #ffa500; color: #343434 !important;">WITHIN 30 MINUTES</h5>
                                                             <p class="fw-bold text-center">CHOOSE AT LEAST ONE WHITE BOX OPTION</p>
                                                             <input type="number" value="0" class="form-control" id="min30-selection-count">
                                                             <div class="grid-container my-4">
@@ -5890,7 +5717,7 @@ function getAllTrainers()
                                                                 </div>
                                                             </div>
 
-                                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #e88a04; color: #343434 !important;">WITHIN 1 HOUR</h5>
+                                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #ffa500; color: #343434 !important;">WITHIN 1 HOUR</h5>
                                                             <p class="fw-bold text-center">CHOOSE AT LEAST ONE WHITE BOX OPTION</p>
                                                             <input type="number" value="0" class="form-control" id="hr1-selection-count">
                                                             <div class="grid-container my-4">
@@ -5922,7 +5749,7 @@ function getAllTrainers()
                                                                 </div>
                                                             </div>
 
-                                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #e88a04; color: #343434 !important;">WITHIN 24 HOURS</h5>
+                                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #ffa500; color: #343434 !important;">WITHIN 24 HOURS</h5>
                                                             <p class="fw-bold text-center">CHOOSE AT LEAST THREE WHITE BOX OPTION</p>
                                                             <input type="number" value="0" class="form-control" id="hr24-selection-count">
                                                             <div class="grid-container my-4">
@@ -6104,7 +5931,7 @@ function getAllTrainers()
                     <p>• Chat Messenger</p>
                     <div class="p-0 mb-4 d-grid gap-2 my-pulse-animation-dark rounded-pill">
                         <button class="onefit-buttons-style-dark p-4 text-center fs-1 comfortaa-font shadow rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat">
-                            One<span style="color:#e88a04;">fit.</span>Chat
+                            One<span style="color:#ffa500;">fit.</span>Chat
                         </button>
                     </div>
                     <p>• Social AdMarket</p>
@@ -6153,7 +5980,7 @@ function getAllTrainers()
                         <!-- ./ Users Profile Banner -->
 
                         <!-- Profile Picture -->
-                        <img src="../media/assets/One-Symbol-Logo-Two-Tone.png" alt="Onefit Logo" class="p-3 img-fluid my-pulse-animation-tahiti borderz" style="margin-top: -100px; max-height: 200px; border-radius: 50%; border-color: #e88a04 !important; background-color: #343434" />
+                        <img src="../media/assets/One-Symbol-Logo-Two-Tone.png" alt="Onefit Logo" class="p-3 img-fluid my-pulse-animation-tahiti borderz" style="margin-top: -100px; max-height: 200px; border-radius: 50%; border-color: #ffa500 !important; background-color: #343434" />
                         <!-- ./ Profile Picture -->
                         <p class="outfit-font mt-2">@Username</p>
                     </div>
@@ -6164,31 +5991,31 @@ function getAllTrainers()
                             <ol class="list-group list-group-flush border-0 my-4">
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Thabang Mposula</div>
+                                        <div class="fw-bold" style="color: #ffa500">Thabang Mposula</div>
                                         @username<br />
                                         Lvl. 1
                                     </div>
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                             verified_user </span>
                                     </span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #e88a04">Followers</div>
+                                        <div class="fw-bold" style="color: #ffa500">Followers</div>
                                         2 Mutual Friends<br />
                                         6 Messages
                                     </div>
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px"><span class="material-icons material-icons-round" style="font-size: 20px !important"> people_alt
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px"><span class="material-icons material-icons-round" style="font-size: 20px !important"> people_alt
                                         </span> 6</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold text-center" style="color: #e88a04">Achievements</div>
+                                        <div class="fw-bold text-center" style="color: #ffa500">Achievements</div>
                                         18 Activities Remaining<br />
                                         4 Challenges Remaining
                                     </div>
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px"><span class="material-icons material-icons-round" style="font-size: 20px !important"> emoji_events
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px"><span class="material-icons material-icons-round" style="font-size: 20px !important"> emoji_events
                                         </span> 3</span>
                                 </li>
                             </ol>
@@ -6235,14 +6062,14 @@ function getAllTrainers()
 
                 <div class="row align-items-center">
                     <div class="col-lg text-center my-4">
-                        <div class="container p-4 shadow-lg d-inline-block border-start border-end" style="border-radius: 25px; border-color: #e88a04 !important; background-color: #343434">
+                        <div class="container p-4 shadow-lg d-inline-block border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
                             <div class="row align-items-center text-center comfortaa-font">
                                 <div class="col-sm py-2 d-inline">
                                     <!--<i class="fas fa-heart"></i>-->
                                     <span class="material-icons material-icons-round"> monitor_heart </span>
                                     Heart Rate
                                 </div>
-                                <div class="col-sm py-2 d-inline"><span style="color: #e88a04">|</span></div>
+                                <div class="col-sm py-2 d-inline"><span style="color: #ffa500">|</span></div>
                                 <div class="col-sm py-2 d-inline">
                                     <!--<i class="fas fa-thermometer-half"></i>-->
                                     <span class="material-icons material-icons-round"> device_thermostat </span>
@@ -6256,7 +6083,7 @@ function getAllTrainers()
                                     <span class="material-icons material-icons-round"> bolt </span>
                                     Speed
                                 </div>
-                                <div class="col-sm py-2 d-inline"><span style="color: #e88a04">|</span></div>
+                                <div class="col-sm py-2 d-inline"><span style="color: #ffa500">|</span></div>
                                 <div class="col-sm py-2 d-inline">
                                     <!--<i class="fas fa-walking"></i>-->
                                     <span class="material-icons material-icons-round"> directions_walk </span>
@@ -6266,8 +6093,8 @@ function getAllTrainers()
                         </div>
                     </div>
                     <div class="col-lg-3 text-center">
-                        <div class="py-4 shadow border-start border-end" style="border-radius: 25px; border-color: #e88a04 !important; background-color: #343434">
-                            <h5>One<span style="color: #e88a04">fit</span>.Muse <span class="material-icons material-icons-round">
+                        <div class="py-4 shadow border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
+                            <h5>One<span style="color: #ffa500">fit</span>.Muse <span class="material-icons material-icons-round">
                                     equalizer
                                 </span></h5>
                             <hr class="text-white" />
@@ -6303,7 +6130,7 @@ function getAllTrainers()
     <!-- Modals ----------------------------------------------------------------------------------------- -->
 
     <!-- Button trigger modal>>>>>>>>>> Tab Navigation Modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tabNavModal" hidden>Launch
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tabNavModal" hidden>
         Launch #tabNavModal</button>
 
     <!-- >>>>>>>>>> Tab Navigation Modal -->
@@ -6415,7 +6242,7 @@ function getAllTrainers()
                 <div class="modal-footer border-0 d-inline-block">
                     <hr class="text-white" />
                     <div class="d-grid gap-2">
-                        <button class="onefit-buttons-style-dark fs-5 fw-bold my-4 px-4 pt-4 text-center comfortaa-font border-0" type="button" data-bs-toggle="collapse" data-bs-target="#tab-nav-social-quickpost" aria-expanded="false" aria-controls="tab-nav-social-quickpost"><i class="fas fa-paper-plane"></i> | <span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Social</button>
+                        <button class="onefit-buttons-style-dark fs-5 fw-bold my-4 px-4 pt-4 text-center comfortaa-font border-0" type="button" data-bs-toggle="collapse" data-bs-target="#tab-nav-social-quickpost" aria-expanded="false" aria-controls="tab-nav-social-quickpost"><i class="fas fa-paper-plane"></i> | <span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Social</button>
                     </div>
 
                     <div class="row align-items-center collapse" id="tab-nav-social-quickpost">
@@ -6469,7 +6296,7 @@ function getAllTrainers()
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
             <div class="modal-content feature-tab-nav-content">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title fs-1" id="tabLatestSocialModalLabel">One<span style="color: #e88a04">fit.</span>Net Updates &amp; Socials</h5>
+                    <h5 class="modal-title fs-1" id="tabLatestSocialModalLabel">One<span style="color: #ffa500">fit.</span>Net Updates &amp; Socials</h5>
                     <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
                         <span class="material-icons material-icons-round"> cancel </span>
                     </button>
@@ -6489,9 +6316,9 @@ function getAllTrainers()
                                 <!-- ./ Users Profile Banner -->
 
                                 <!-- Profile Picture -->
-                                <img src="../media/assets/One-Symbol-Logo-Two-Tone.png" alt="Onefit Logo" class="p-3 img-fluid my-pulse-animation-darkz shadow" style="margin-top: -100px; height: 200px; border-radius: 50%; border-color: #e88a04 !important; background-color: #343434" />
+                                <img src="../media/assets/One-Symbol-Logo-Two-Tone.png" alt="Onefit Logo" class="p-3 img-fluid my-pulse-animation-darkz shadow" style="margin-top: -100px; height: 200px; border-radius: 50%; border-color: #ffa500 !important; background-color: #343434" />
                                 <!-- ./ Profile Picture -->
-                                <p class="mt-2 mt-4 fs-1 fw-bold comfortaa-font">One<span style="color: #e88a04;">fit</span>.app</p>
+                                <p class="mt-2 mt-4 fs-1 fw-bold comfortaa-font">One<span style="color: #ffa500;">fit</span>.app</p>
                             </div>
                             <!-- ./ UPPL Header (with Banner and Profile Pic) -->
 
@@ -6500,12 +6327,12 @@ function getAllTrainers()
                                     <ol class="list-group list-group-flush border-0 my-4">
                                         <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                             <div class="ms-2 me-auto">
-                                                <div class="fw-bold" style="color: #e88a04">One-On-One Fitness Network&reg;</div>
+                                                <div class="fw-bold" style="color: #ffa500">One-On-One Fitness Network&reg;</div>
                                                 @OnefitNet<br />
                                                 Community Growth: <br>
                                                 1 Trainee (<i class="fas fa-solid fa-dash"></i> 0%)
                                             </div>
-                                            <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px">
+                                            <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
                                                 <span class="material-icons material-icons-round" style="font-size: 20px !important">
                                                     workspace_premium </span>
                                                 Awards Issued
@@ -6513,7 +6340,7 @@ function getAllTrainers()
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                             <div class="ms-2 me-auto">
-                                                <div class="fw-bold text-end" style="color: #e88a04">Followers</div>
+                                                <div class="fw-bold text-end" style="color: #ffa500">Followers</div>
                                                 2 Trainees<br />
                                                 6 Trainers<br />
                                                 20 Groups<br />
@@ -6522,7 +6349,7 @@ function getAllTrainers()
                                                 20 Diet Programs<br />
                                                 5 Wellness Programs
                                             </div>
-                                            <span class="badge bg-primary rounded-pillz p-4" style="background-color: #e88a04 !important; color: #343434 !important; border-radius: 25px"><span class="material-icons material-icons-round" style="font-size: 20px !important"> people_alt
+                                            <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px"><span class="material-icons material-icons-round" style="font-size: 20px !important"> people_alt
                                                 </span> 6</span>
                                         </li>
                                     </ol>
@@ -6584,7 +6411,7 @@ function getAllTrainers()
                                     </div>
                                     <!-- ./ Twitter feed -->
                                 </div>
-                                <div class="col-md text-center border-start border-end border-warning" style="border-color: #e88a04 !important;">
+                                <div class="col-md text-center border-start border-end border-warning" style="border-color: #ffa500 !important;">
                                     <h4>Facebook Feed</h4>
                                     <div class="d-flex align-items-center">
                                         <div style="display: none;">
@@ -6617,7 +6444,7 @@ function getAllTrainers()
                 <div class="modal-footer border-0 d-inline-block">
                     <hr class="text-white" />
                     <div class="d-grid gap-2">
-                        <button class="onefit-buttons-style-dark fs-5 fw-bold my-4 px-4 pt-4 text-center comfortaa-font border-0" type="button" data-bs-toggle="collapse" data-bs-target="#tab-nav-social-quickpost" aria-expanded="false" aria-controls="tab-nav-social-quickpost"><i class="fas fa-paper-plane"></i> | <span style="color: #fff !important">One</span><span style="color: #e88a04 !important">fit</span>.Social</button>
+                        <button class="onefit-buttons-style-dark fs-5 fw-bold my-4 px-4 pt-4 text-center comfortaa-font border-0" type="button" data-bs-toggle="collapse" data-bs-target="#tab-nav-social-quickpost" aria-expanded="false" aria-controls="tab-nav-social-quickpost"><i class="fas fa-paper-plane"></i> | <span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Social</button>
                     </div>
 
                     <div class="row align-items-end collapse no-scroller shadow" style="max-height: 50vh !important; overflow-y: auto; border-radius: 25px;" id="tab-nav-social-quickpost">
@@ -6632,7 +6459,7 @@ function getAllTrainers()
                             <!-- Onefit.Social Feed - Hide the feed container on screens smaller than large -->
                             <div class="onefit-social-container d-grid gap-2">
                                 <button class="onefit-buttons-style-dark p-4 mb-4 shadow comfortaa-font">
-                                    <span class="align-middle"> Open <br> <span class="fw-bold" style="color:#e88a04!important; font-size: 40px;">.Social</span></span> <span class="align-middle material-icons material-icons-outlined">hub</span>
+                                    <span class="align-middle"> Open <br> <span class="fw-bold" style="color:#ffa500!important; font-size: 40px;">.Social</span></span> <span class="align-middle material-icons material-icons-outlined">hub</span>
                                 </button>
                                 <div class="mb-4 no-scroller" hidden style="max-height: 18vh; overflow-y: auto;">
                                     <?php echo $outputCommunityUpdates; ?>
@@ -6676,7 +6503,7 @@ function getAllTrainers()
     </div>
     <!-- ./ >>>>>>>>>> Latest Socials Feed Modal -->
 
-    <!-- Chat Modal -->
+    <!-- >>>>>>>>>> Chat Modal -->
     <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat" hidden>Toggle bottom offcanvas</button>
 
     <div class="offcanvas offcanvas-bottom" style="height: 100vh !important;" tabindex="-1" id="offcanvasBottomOnefitChat" aria-labelledby="offcanvasBottomOnefitChatLabel">
@@ -6691,7 +6518,7 @@ function getAllTrainers()
                         </button>
 
                         <h3 class="offcanvas-title" id="offcanvasBottomOnefitChatLabel">
-                            <span class=" text-truncate">One<span style="color: #e88a04">fit.</span></span>Chat
+                            <span class=" text-truncate">One<span style="color: #ffa500">fit.</span></span>Chat
                         </h3>
 
                         <!--<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
@@ -6726,7 +6553,7 @@ function getAllTrainers()
                                             </div>
                                         </div>
 
-                                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dangerz border border-light rounded-circle my-pulse-animation-tahiti" style="background-color: #e88a04 !important;">
+                                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dangerz border border-light rounded-circle my-pulse-animation-tahiti" style="background-color: #ffa500 !important;">
                                             <span class="visually-hidden">New Message Alert</span>
                                         </span>
                                     </button>
@@ -6948,13 +6775,292 @@ function getAllTrainers()
             </div>
         </div>
     </div>
-    <!-- ./ Chat Modal -->
-
+    <!-- ./ >>>>>>>>>> Chat Modal -->
 
 
     <!-- ./ Modals ----------------------------------------------------------------------------------------- -->
 
     <script>
+        // Chart JS initialization
+        // const config = {
+        //     type: 'line',
+        //     data: data,
+        // };
+        // const labels = Utils.months({
+        //     count: 7
+        // });
+
+        // Declaring variables
+        // heart_rate_monitor_chart
+        // body_temp_monitor_chart
+        // speed_monitor_chart
+        // step_counter_monitor_chart
+        // bmi_weight_monitor_chart
+
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(231, 136, 4)',
+                borderColor: 'rgb(231, 136, 4)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+                borderWidth: 5
+            }]
+        };
+
+        // Note: changes to the plugin code is not reflected to the chart, because the plugin is loaded at chart construction time and editor changes only trigger an chart.update().
+        const plugin = {
+            id: 'custom_canvas_background_color',
+            beforeDraw: (chart) => {
+                const {
+                    ctx
+                } = chart;
+                ctx.save();
+                ctx.globalCompositeOperation = 'destination-over';
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, chart.width, chart.height);
+                ctx.restore();
+            }
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                layout: {
+                    padding: 40
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        color: 'rgb(255, 99, 132)'
+                    },
+                    position: 'bottom',
+                }
+            },
+            plugins: [plugin]
+        };
+
+        const heartrateChart = new Chart(
+            document.getElementById('heart_rate_monitor_chart'),
+            config
+        );
+
+        const bodytempChart = new Chart(
+            document.getElementById('body_temp_monitor_chart'),
+            config
+        );
+
+        const speedChart = new Chart(
+            document.getElementById('speed_monitor_chart'),
+            config
+        );
+
+        const stepcountChart = new Chart(
+            document.getElementById('step_counter_monitor_chart'),
+            config
+        );
+
+        const weightbmiChart = new Chart(
+            document.getElementById('bmi_weight_monitor_chart'),
+            config
+        );
+
+        // const ctxHeartRate = document.getElementById('heart_rate_monitor_chart').getContext('2d');
+        // const heartrateChart = new Chart(ctxHeartRate, {
+        //     type: 'line',
+        //     data: {
+        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        //         datasets: [{
+        //             label: '# of Votes',
+        //             data: [12, 19, 3, 5, 2, 3],
+        //             backgroundColor: [
+        //                 'rgba(255, 99, 132, 0.2)',
+        //                 'rgba(54, 162, 235, 0.2)',
+        //                 'rgba(255, 206, 86, 0.2)',
+        //                 'rgba(75, 192, 192, 0.2)',
+        //                 'rgba(153, 102, 255, 0.2)',
+        //                 'rgba(255, 159, 64, 0.2)'
+        //             ],
+        //             borderColor: [
+        //                 'rgba(255, 99, 132, 1)',
+        //                 'rgba(54, 162, 235, 1)',
+        //                 'rgba(255, 206, 86, 1)',
+        //                 'rgba(75, 192, 192, 1)',
+        //                 'rgba(153, 102, 255, 1)',
+        //                 'rgba(255, 159, 64, 1)'
+        //             ],
+        //             borderWidth: 5,
+        //             fill: true,
+        //         }]
+        //     },
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
+
+        // const ctxBodyTemp = document.getElementById('body_temp_monitor_chart').getContext('2d');
+        // const bodytempChart = new Chart(ctxBodyTemp, {
+        //     type: 'line',
+        //     data: {
+        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        //         datasets: [{
+        //             label: '# of Votes',
+        //             data: [12, 19, 3, 5, 2, 3],
+        //             backgroundColor: [
+        //                 'rgba(255, 99, 132, 0.2)',
+        //                 'rgba(54, 162, 235, 0.2)',
+        //                 'rgba(255, 206, 86, 0.2)',
+        //                 'rgba(75, 192, 192, 0.2)',
+        //                 'rgba(153, 102, 255, 0.2)',
+        //                 'rgba(255, 159, 64, 0.2)'
+        //             ],
+        //             borderColor: [
+        //                 'rgba(255, 99, 132, 1)',
+        //                 'rgba(54, 162, 235, 1)',
+        //                 'rgba(255, 206, 86, 1)',
+        //                 'rgba(75, 192, 192, 1)',
+        //                 'rgba(153, 102, 255, 1)',
+        //                 'rgba(255, 159, 64, 1)'
+        //             ],
+        //             borderWidth: 1
+        //         }]
+        //     },
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
+
+        // const ctxSpeed = document.getElementById('speed_monitor_chart').getContext('2d');
+        // const speedChart = new Chart(ctxSpeed, {
+        //     type: 'line',
+        //     data: {
+        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        //         datasets: [{
+        //             label: '# of Votes',
+        //             data: [12, 19, 3, 5, 2, 3],
+        //             backgroundColor: [
+        //                 'rgba(255, 99, 132, 0.2)',
+        //                 'rgba(54, 162, 235, 0.2)',
+        //                 'rgba(255, 206, 86, 0.2)',
+        //                 'rgba(75, 192, 192, 0.2)',
+        //                 'rgba(153, 102, 255, 0.2)',
+        //                 'rgba(255, 159, 64, 0.2)'
+        //             ],
+        //             borderColor: [
+        //                 'rgba(255, 99, 132, 1)',
+        //                 'rgba(54, 162, 235, 1)',
+        //                 'rgba(255, 206, 86, 1)',
+        //                 'rgba(75, 192, 192, 1)',
+        //                 'rgba(153, 102, 255, 1)',
+        //                 'rgba(255, 159, 64, 1)'
+        //             ],
+        //             borderWidth: 1
+        //         }]
+        //     },
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
+
+        // const ctxStepCounter = document.getElementById('step_counter_monitor_chart').getContext('2d');
+        // const stepcountChart = new Chart(ctxStepCounter, {
+        //     type: 'line',
+        //     data: {
+        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        //         datasets: [{
+        //             label: '# of Votes',
+        //             data: [12, 19, 3, 5, 2, 3],
+        //             backgroundColor: [
+        //                 'rgba(255, 99, 132, 0.2)',
+        //                 'rgba(54, 162, 235, 0.2)',
+        //                 'rgba(255, 206, 86, 0.2)',
+        //                 'rgba(75, 192, 192, 0.2)',
+        //                 'rgba(153, 102, 255, 0.2)',
+        //                 'rgba(255, 159, 64, 0.2)'
+        //             ],
+        //             borderColor: [
+        //                 'rgba(255, 99, 132, 1)',
+        //                 'rgba(54, 162, 235, 1)',
+        //                 'rgba(255, 206, 86, 1)',
+        //                 'rgba(75, 192, 192, 1)',
+        //                 'rgba(153, 102, 255, 1)',
+        //                 'rgba(255, 159, 64, 1)'
+        //             ],
+        //             borderWidth: 1
+        //         }]
+        //     },
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
+
+        // const ctxWeightBMI = document.getElementById('bmi_weight_monitor_chart').getContext('2d');
+        // const weightbmiChart = new Chart(ctxWeightBMI, {
+        //     type: 'line',
+        //     data: {
+        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        //         datasets: [{
+        //             label: '# of Votes',
+        //             data: [12, 19, 3, 5, 2, 3],
+        //             backgroundColor: [
+        //                 'rgba(255, 99, 132, 0.2)',
+        //                 'rgba(54, 162, 235, 0.2)',
+        //                 'rgba(255, 206, 86, 0.2)',
+        //                 'rgba(75, 192, 192, 0.2)',
+        //                 'rgba(153, 102, 255, 0.2)',
+        //                 'rgba(255, 159, 64, 0.2)'
+        //             ],
+        //             borderColor: [
+        //                 'rgba(255, 99, 132, 1)',
+        //                 'rgba(54, 162, 235, 1)',
+        //                 'rgba(255, 206, 86, 1)',
+        //                 'rgba(75, 192, 192, 1)',
+        //                 'rgba(153, 102, 255, 1)',
+        //                 'rgba(255, 159, 64, 1)'
+        //             ],
+        //             borderWidth: 1
+        //         }]
+        //     },
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
+
         function initializeContent(auth, usernm) {
             //Declaring variables
             // var contentContainer = document.getElementById("");
@@ -7037,6 +7143,8 @@ function getAllTrainers()
             // hide the loading curtain
             var curtain = document.getElementById("LoadCurtain");
             curtain.style.display = "none";
+
+
         }
 
         function setCurrentAppTabID(currentPageID) {
@@ -7495,13 +7603,13 @@ function getAllTrainers()
             }
         }
 
-        function loadActivityCalender() {
+        function loadActivityCalender(monthName) {
             //load the activities calender
             //?month='.$prev_month.'&year='.$prev_year."'
             //get current month
 
             var dateNow = new Date();
-            var currMonth = dateNow.getMonth();
+            var currMonth = dateNow.getMonth() + 1;
             var currYear = dateNow.getFullYear();
 
             var xhttp = new XMLHttpRequest();
@@ -7514,7 +7622,7 @@ function getAllTrainers()
                         //alert(output);
 
                         convoContainer.innerHTML = `
-                        <div class="application-error-msg shadow d-block" id="application-error-msg">
+                        <div class="application-error-msg shadow d-grid gap-2 d-block" id="application-error-msg">
                         <h3 class=" d-block" style="color: red">An error has occured</h3>
                         <p class=" d-block">It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport('` + userParam + `','` + output + `')">support</a></p>
                         <div class="application-error-msg-output d-block" style="font-size: 10px">` + output + `</div>
@@ -7534,6 +7642,37 @@ function getAllTrainers()
             };
             xhttp.open("GET", "../scripts/php/userprofile/calender.php?month=" + currMonth + "&year=" + currYear, true);
             xhttp.send();
+        }
+
+        function reloadActivityCalender(nMonth, nYear) {
+            //reload the activities calender
+            var dateNow = new Date();
+            //nMonth = dateNow.getMonth() + 1;
+            //nYear = dateNow.getFullYear();
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var output = this.responseText;
+
+                    if (output.startsWith("|[System Error]|")) {
+                        // Output error
+                        alert(output);
+                    } else {
+                        //alert(output);
+                        document.getElementById('activities-calender').innerHTML = output;
+                    }
+                }
+            };
+            xhttp.open("GET", "../scripts/php/userprofile/calender.php?month=" + nMonth + "&year=" + nYear, true);
+            xhttp.send();
+        }
+
+        function navCalender(nMonth, nYear, cmd) {
+            //executes on button next or prev btn click
+            //alert("clicked: "+cmd+" | Month: "+nMonth+" | Year: "+nYear);
+
+            reloadActivityCalender(nMonth, nYear);
         }
 
         //Plyr.io JS Code
@@ -7615,137 +7754,6 @@ function getAllTrainers()
                 document.onmousemove = null;
             }
         }
-
-        //jQuery Code Only
-        //$.noConflict();
-        $(document).ready(function() {
-            var data = [{
-                    name: 'KEYLOR NAVAS',
-                    position: 'C_GK',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'MARCELO',
-                    position: 'LC_B',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'SERGIO RAMOS',
-                    position: 'C_B',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'CARVAJAL',
-                    position: 'RC_B',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'CASEMIRO',
-                    position: 'C_DM',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'KROOS',
-                    position: 'L_M',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'ISCO',
-                    position: 'LC_M',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'ASENSIO',
-                    position: 'RC_M',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'MODRIC',
-                    position: 'R_M',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'RONALDO',
-                    position: 'LC_F',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'BENZEMA',
-                    position: 'RC_F',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-            ];
-
-            $("#soccerfield").soccerfield(data, {
-                field: {
-                    width: "960px",
-                    height: "600px",
-                    img: '../media/assets/field_diagrams/soccer-field-dimensions-1.jpg',
-                    startHidden: false,
-                    animate: false,
-                    fadeTime: 1000,
-                    autoReveal: false,
-                    onReveal: function() {
-                        // triggered on reveal
-                    }
-                },
-                players: {
-                    font_size: 16,
-                    reveal: false,
-                    sim: true, // reveal simultaneously
-                    timeout: 1000,
-                    fadeTime: 1000,
-                    img: true,
-                    onReveal: function() {
-                        // triggered on reveal
-                    }
-                }
-            });
-
-            // $("map[name=image-map-male-front]").mapoid({
-            //     click: function(e) {
-            //         /*// stroke color
-            //         strokeColor: 'black',
-            //         // stroke width
-            //         strokeWidth: 1,
-            //         // fill color
-            //         fillColor: 'black',
-            //         // 0-1
-            //         fillOpacity: 0.5,
-            //         // in milliseconds
-            //         fadeTime: 500,
-            //         // an array of selected areas
-            //         selectedArea: false,
-            //         // select on click
-            //         selectOnClick: true*/
-
-            //         //alert('click');
-            //         e.preventDefault();
-            //         var clickedArea = $(this); // remember clicked area
-            //         // foreach area
-            //         $("map[name=image-map-male-front]").each(function() {
-            //             hData = $(this).data('maphilight') || {}; // get
-            //             hData.alwaysOn = $(this).is(clickedArea); // modify
-            //             $(this).data('maphilight', hData).trigger('alwaysOn.maphilight'); // set
-            //         });
-            //     }
-            // });
-            //JQuery Image Map Highlighting
-            //$('.map').maphilight();
-
-            //$('.map').maphilight();
-
-            /*$('#musclepart').click(function(e) {
-                e.preventDefault();
-                var clickedArea = $(this); // remember clicked area
-                // foreach area
-                $('#musclepart').each(function() {
-                    hData = $(this).data('maphilight') || {}; // get
-                    hData.alwaysOn = $(this).is(clickedArea); // modify
-                    $(this).data('maphilight', hData).trigger('alwaysOn.maphilight'); // set
-                });
-            });*/
-        });
     </script>
 
     <script src="../scripts/js/digital-clock.js"></script>

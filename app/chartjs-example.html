@@ -7,47 +7,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChartJs Test</title>
 
-    <script src="../node_modules/chart.js/dist/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 </head>
 
-<body>
-    <canvas id="myChart" width="400" height="400"></canvas>
+<body style="padding:0;margin:0;">
+    <canvas id="myChart" style="padding:0;margin:0;"></canvas>
+    <!-- width="400" height="400" -->
     <script>
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(231, 136, 4)',
+                borderColor: 'rgb(231, 136, 4)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+                borderWidth: 5
+            }]
+        };
+
+        // Note: changes to the plugin code is not reflected to the chart, because the plugin is loaded at chart construction time and editor changes only trigger an chart.update().
+        const plugin = {
+            id: 'custom_canvas_background_color',
+            beforeDraw: (chart) => {
+                const { ctx } = chart;
+                ctx.save();
+                ctx.globalCompositeOperation = 'destination-over';
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, chart.width, chart.height);
+                ctx.restore();
+            }
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
             options: {
+                layout: {
+                    padding: 40
+                },
                 scales: {
                     y: {
                         beginAtZero: true
                     }
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        color: 'rgb(255, 99, 132)'
+                    },
+                    position: 'bottom',
                 }
-            }
-        });
+            },
+            plugins: [plugin]
+        };
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
+        // const ctx = document.getElementById('myChart').getContext('2d');
+        // const myChart = new Chart(ctx, {
+        //     type: 'line',
+        //     data: {
+        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        //         datasets: [{
+        //             label: '# of Votes',
+        //             data: [12, 19, 3, 5, 2, 3],
+        //             backgroundColor: [
+        //                 'rgba(255, 99, 132, 0.2)',
+        //                 'rgba(54, 162, 235, 0.2)',
+        //                 'rgba(255, 206, 86, 0.2)',
+        //                 'rgba(75, 192, 192, 0.2)',
+        //                 'rgba(153, 102, 255, 0.2)',
+        //                 'rgba(255, 159, 64, 0.2)'
+        //             ],
+        //             borderColor: [
+        //                 'rgba(255, 99, 132, 1)',
+        //                 'rgba(54, 162, 235, 1)',
+        //                 'rgba(255, 206, 86, 1)',
+        //                 'rgba(75, 192, 192, 1)',
+        //                 'rgba(153, 102, 255, 1)',
+        //                 'rgba(255, 159, 64, 1)'
+        //             ],
+        //             borderWidth: 1
+        //         }]
+        //     }, options: {
+        //         backgroundColor: 'rgba(153, 102, 255)',
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
     </script>
 </body>
 
