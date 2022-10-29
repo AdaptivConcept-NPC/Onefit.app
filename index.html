@@ -24,14 +24,13 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
-<body class="noselect">
+<body class="noselect" onload="toggleLoadCurtain()">
   <!-- Load Curtain -->
-  <div class="load-curtain" id="LoadCurtain" style="display: none;">
+  <!-- <div class="load-curtain" id="LoadCurtain" style="display: none;">
     <div class="d-flex align-items-center" style="width: 100%; height: 100%;">
       <div class="text-center w-100">
         <div class="ring d-flex align-items-center p-4">
-          <!-- <span>
-          </span> -->
+         
           <div style="width: 100%;">
             <img src="media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="max-height: 20vh;" alt="">
           </div>
@@ -42,6 +41,53 @@
       <p class="navbar-brand fs-1 text-white comfortaa-font" href="../index.html">One<span
           style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></p>
       <p class="text-center" styl="font-size: 10px !important;">Loading. Please wait.</p>
+    </nav>
+  </div> -->
+  <!-- ./Load Curtain -->
+
+  <!-- Load Curtain -->
+  <div class="load-curtain" id="LoadCurtain" style="display: block;">
+    <!-- twitter social panel -->
+    <div class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4">
+      <!--  d-none d-lg-block p-4 -->
+      <div class="d-flex gap-2 w-100">
+        <button class="p-4 m-0 shadow onefit-buttons-style-dark" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false"
+          aria-controls="collapseloadCurtainTweetFeed">
+          <div class="d-grid">
+            <span class="material-icons material-icons-round" style="font-size: 48px !important;">
+              <i class="fab fa-twitter" style="font-size: 40px; color: #fff !important;"></i>
+            </span>
+            <p class="comfortaa-font mt-1 mb-0" style="font-size: 10px;">@onefitnet</p>
+          </div>
+        </button>
+      </div>
+      <div class="collapse no-scroller pb-4 w3-animate-bottom" id="collapseloadCurtainTweetFeed"
+        style="overflow-y: auto;">
+        <div class="pb-4 no-scroller"
+          style="border-radius: 25px !important; overflow-y: auto; max-height: 90vh; min-width: 500px;">
+          <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by
+            OnefitNet</a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+      </div>
+    </div>
+    <!-- ./ twitter social panel -->
+
+    <div class="d-flex align-items-center top-down-grad-tahiti" style="width: 100%; height: 100%;">
+      <div class="text-center w-100">
+        <div class="ring d-flex align-items-center p-4 my-pulse-animation-light">
+          <!-- <span></span> -->
+          <div style="width: 100%;">
+            <img src="media/assets/One-Symbol-Logo-White.png" class="img-fluid p-4" style="max-height: 20vh;" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="text-center text-center p-4 fixed-bottom" alt="">
+      <p class="navbar-brand fs-1 text-white comfortaa-font">One<span style="color: #ffa500">fit</span>.app<span
+          style="font-size: 10px">&trade;</span></p>
+      <p class="text-center comfortaa-font" styl="font-size: 10px !important;">Loading. Please wait.</p>
     </nav>
   </div>
   <!-- ./Load Curtain -->
@@ -171,7 +217,7 @@
               <label class="form-check-label text-center pt-2" for="exampleCheck1">Keep me signed in?</label>
             </div>
             <div class="mt-4 d-grid gap-2">
-              <button type="submit" class="btn form-control-confirm-button shadow align-items-center p-4"
+              <button type="submit" class="btn onefit-buttons-style-light shadow align-items-center p-4"
                 onclick="toggleLoadCurtain()">
                 <span style="font-size: 20px !important;">
                   <span class="aligh-middle">Sign in.</span>
@@ -222,8 +268,8 @@
 
         <div class="video-card-container">
           <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="" class="img-fluid shadow" />
-          <button class="onefit-buttons-style-light shadow play-btn p-4" onclick="playVideo()">
-            <span class="material-icons material-icons-round" style="font-size: 50px !important;">
+          <button class="onefit-buttons-style-light shadow play-btn p-3" onclick="playVideo()">
+            <span class="material-icons material-icons-round" style="font-size: 40px !important;">
               play_circle_outline
             </span>
           </button>
@@ -333,7 +379,7 @@
             <p class="my-4 text-center" style=" font-size: 10px">Latest Training Programs | <span class="comfortaa-font"
                 style="color: #ffa500">OnefitNet.TV</span></p>
 
-            <div class="d-lg-none">
+            <div class="d-lg-none w3-animate-bottom">
               <!-- d-block d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none -->
               <!-- <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid"
                 > -->
@@ -365,7 +411,7 @@
             </div>
 
 
-            <div class="horizontal-scroll d-none d-lg-block">
+            <div class="horizontal-scroll d-none d-lg-block w3-animate-bottom">
               <div class="horizontal-scroll-card p-4">
                 <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4"
                   style="border-radius: 25px;">
@@ -543,10 +589,10 @@
         </div>
         <!-- ./ Onefit.TV Horizontal Content Stream -->
 
-        <div class="row mt-4 text-center align-items-start">
+        <div class="row mt-4 text-center align-items-startz">
 
           <div class="col-lg mb-4">
-            <div class="content-panel-border-style p-4"
+            <div class="content-panel-border-style p-4 h-100"
               style="padding-bottom: 40px; border-radius: 25px; background-color: #343434;">
               <span class="material-icons material-icons-outlined" style="color: #fff;">tag</span>
               <h5 class="fs-1 h4" style="color: #ffa500;">Social</h5>
@@ -634,7 +680,7 @@
             </div>
           </div>
           <div class="col-lg mb-4">
-            <div class="content-panel-border-style p-4"
+            <div class="content-panel-border-style p-4 h-100"
               style="padding-bottom: 40px; border-radius: 25px; background-color: #343434;">
               <span class="material-icons material-icons-outlined" style="color: #fff;">touch_app</span>
               <h5 class="fs-1 h4" style="color: #ffa500;">Navigation</h5>
@@ -682,7 +728,7 @@
         aria-label="Toggle navigation">
         <!--<span class="navbar-toggler-icon"></span>-->
         <div class="d-grid">
-          <span class="material-icons material-icons-round" style="font-size: 50px !important"> widgets </span>
+          <span class="material-icons material-icons-round" style="font-size: 40px !important"> widgets </span>
           <span class="material-icons material-icons-round" style="font-size: 20px !important"> more_horiz </span>
         </div>
 

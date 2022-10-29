@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $gender = sanitizeMySQL($dbconn, $_POST['reg-gender']);
   $race = sanitizeMySQL($dbconn, $_POST['reg-race']);
   $nation = sanitizeMySQL($dbconn, $_POST['reg-nationality']);
-  $usrnm = sanitizeMySQL($dbconn, $_POST['reg-username']);
+  $usrnm = "onefit_user_" . generateAlphaNumericRandomString(12); // sanitizeMySQL($dbconn, $_POST['reg-username']);
   $pwd = sanitizeMySQL($dbconn, $_POST['reg-confirmpassword']);
   $pwdhash = password_hash($pwd, PASSWORD_DEFAULT);
 

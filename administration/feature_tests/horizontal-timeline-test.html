@@ -7,10 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
     <style>
-        *,
-        *::before,
-        *::after {
+        .timeline *,
+        .timeline *::before,
+        .timeline *::after {
             box-sizing: border-box;
         }
 
@@ -32,29 +35,29 @@
             content: '';
             position: absolute;
             width: 2px;
-            background: #006E51;
+            background: #ffa500;
             top: 0;
             bottom: 0;
             left: 50%;
             margin-left: -1px;
         }
 
-        .container {
+        .timeline-container {
             padding: 15px 30px;
             position: relative;
             background: inherit;
             width: 50%;
         }
 
-        .container.left {
+        .timeline-container.left {
             left: 0;
         }
 
-        .container.right {
+        .timeline-container.right {
             left: 50%;
         }
 
-        .container::after {
+        .timeline-container::after {
             content: '';
             position: absolute;
             width: 16px;
@@ -62,99 +65,102 @@
             top: calc(50% - 8px);
             right: -8px;
             background: #ffffff;
-            border: 2px solid #006E51;
+            border: 2px solid #ffa500;
             border-radius: 16px;
             z-index: 1;
         }
 
-        .container.right::after {
+        .timeline-container.right::after {
             left: -8px;
         }
 
-        .container::before {
+        .timeline-container::before {
             content: '';
             position: absolute;
             width: 50px;
             height: 2px;
             top: calc(50% - 1px);
             right: 8px;
-            background: #006E51;
+            background: #ffa500;
             z-index: 1;
         }
 
-        .container.right::before {
+        .timeline-container.right::before {
             left: 8px;
         }
 
-        .container .date {
+        .timeline-container .date {
             position: absolute;
             display: inline-block;
             top: calc(50% - 8px);
             text-align: center;
             font-size: 14px;
             font-weight: bold;
-            color: #006E51;
+            color: #fff;
             text-transform: uppercase;
             letter-spacing: 1px;
             z-index: 1;
         }
 
-        .container.left .date {
-            right: -75px;
+        .timeline-container.left .date {
+            right: -110px;
         }
 
-        .container.right .date {
-            left: -75px;
+        .timeline-container.right .date {
+            left: -110px;
         }
 
-        .container .icon {
+        .timeline-container .icon {
             position: absolute;
             display: inline-block;
             width: 40px;
             height: 40px;
             padding: 9px 0;
             top: calc(50% - 20px);
-            background: #F6D155;
-            border: 2px solid #006E51;
-            border-radius: 40px;
+            background: #343434;
+            border: 2px solid #ffa500;
+            border-radius: 50%;
             text-align: center;
             font-size: 18px;
-            color: #006E51;
+            color: #fff;
             z-index: 1;
         }
 
-        .container.left .icon {
+        .timeline-container.left .icon {
             right: 56px;
         }
 
-        .container.right .icon {
+        .timeline-container.right .icon {
             left: 56px;
         }
 
-        .container .content {
+        .timeline-container .content {
             padding: 30px 90px 30px 30px;
-            background: #F6D155;
+            background: #343434;
             position: relative;
             border-radius: 0 500px 500px 0;
+
+            border-left: #ffa500 2px solid;
+            border-right: #ffa500 2px solid;
         }
 
-        .container.right .content {
+        .timeline-container.right .content {
             padding: 30px 30px 30px 90px;
             border-radius: 500px 0 0 500px;
         }
 
-        .container .content h2 {
+        .timeline-container .content h2 {
             margin: 0 0 10px 0;
             font-size: 18px;
             font-weight: normal;
-            color: #006E51;
+            color: #ffa500;
         }
 
-        .container .content p {
+        .timeline-container .content p {
             margin: 0;
             font-size: 16px;
             line-height: 22px;
-            color: #000000;
+            color: #fff;
         }
 
         @media (max-width: 767.98px) {
@@ -162,111 +168,138 @@
                 left: 90px;
             }
 
-            .container {
+            .timeline-container {
                 width: 100%;
                 padding-left: 120px;
                 padding-right: 30px;
             }
 
-            .container.right {
+            .timeline-container.right {
                 left: 0%;
             }
 
-            .container.left::after,
-            .container.right::after {
+            .timeline-container.left::after,
+            .timeline-container.right::after {
                 left: 82px;
             }
 
-            .container.left::before,
-            .container.right::before {
+            .timeline-container.left::before,
+            .timeline-container.right::before {
                 left: 100px;
-                border-color: transparent #006E51 transparent transparent;
+                border-color: transparent #ffa500 transparent transparent;
             }
 
-            .container.left .date,
-            .container.right .date {
+            .timeline-container.left .date,
+            .timeline-container.right .date {
                 right: auto;
                 left: 15px;
+                max-width: 60px;
             }
 
-            .container.left .icon,
-            .container.right .icon {
+            .timeline-container.left .icon,
+            .timeline-container.right .icon {
                 right: auto;
                 left: 146px;
             }
 
-            .container.left .content,
-            .container.right .content {
+            .timeline-container.left .content,
+            .timeline-container.right .content {
                 padding: 30px 30px 30px 90px;
-                border-radius: 500px 0 0 500px;
+                /* border-radius: 500px 0 0 500px; */
+                border-radius: 25px;
             }
         }
     </style>
 </head>
 
-<body>
-    <div id="horizontal-timeline">
+<body style="background-color: #343434;">
+    <div id="horizontal-timeline-varusername">
         <div class="timeline">
-            <div class="container left">
-                <div class="date">15 Dec</div>
-                <i class="icon fa fa-home"></i>
+            <div class="timeline-container left">
+                <div class="date comfortaa-font">15 Dec 2022</div>
+                <span class="icon align-middle text-center">
+                    <span class="material-icons material-icons-round align-middle" style="font-size: 18px !important;">
+                        task_alt
+                    </span>
+                </span>
+
                 <div class="content">
-                    <h2>Lorem ipsum dolor sit amet</h2>
+                    <h2 class="comfortaa-font">Lorem ipsum dolor sit amet</h2>
                     <p>
                         Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit
                         semper pretium.
                     </p>
                 </div>
             </div>
-            <div class="container right">
-                <div class="date">22 Oct</div>
-                <i class="icon fa fa-gift"></i>
+            <div class="timeline-container right">
+                <div class="date comfortaa-font">22 Oct 2022</div>
+                <span class="icon align-middle text-center">
+                    <span class="material-icons material-icons-round align-middle" style="font-size: 18px !important;">
+                        task_alt
+                    </span>
+                </span>
                 <div class="content">
-                    <h2>Lorem ipsum dolor sit amet</h2>
+                    <h2 class="comfortaa-font">Lorem ipsum dolor sit amet</h2>
                     <p>
                         Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit
                         semper pretium.
                     </p>
                 </div>
             </div>
-            <div class="container left">
-                <div class="date">10 Jul</div>
-                <i class="icon fa fa-user"></i>
+            <div class="timeline-container left">
+                <div class="date comfortaa-font">10 Jul 2022</div>
+                <span class="icon align-middle text-center">
+                    <span class="material-icons material-icons-round align-middle" style="font-size: 18px !important;">
+                        task_alt
+                    </span>
+                </span>
                 <div class="content">
-                    <h2>Lorem ipsum dolor sit amet</h2>
+                    <h2 class="comfortaa-font">Lorem ipsum dolor sit amet</h2>
                     <p>
                         Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit
                         semper pretium.
                     </p>
                 </div>
             </div>
-            <div class="container right">
-                <div class="date">18 May</div>
-                <i class="icon fa fa-running"></i>
+            <div class="timeline-container right">
+                <div class="date comfortaa-font">18 May 2022</div>
+                <span class="icon align-middle text-center">
+                    <span class="material-icons material-icons-round" style="font-size: 18px !important;">
+                        task_alt
+                    </span>
+                </span>
                 <div class="content">
-                    <h2>Lorem ipsum dolor sit amet</h2>
+                    <h2 class="comfortaa-font">Lorem ipsum dolor sit amet</h2>
                     <p>
                         Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit
                         semper pretium.
                     </p>
                 </div>
             </div>
-            <div class="container left">
-                <div class="date">10 Feb</div>
-                <i class="icon fa fa-cog"></i>
+            <div class="timeline-container left">
+                <div class="date comfortaa-font">10 Feb 2022</div>
+                <span class="icon align-middle text-center">
+                    <span class="material-icons material-icons-round align-middle" style="font-size: 18px !important;">
+                        task_alt
+                    </span>
+                </span>
                 <div class="content">
-                    <h2>Lorem ipsum dolor sit amet</h2>
+                    <h2 class="comfortaa-font">Lorem ipsum dolor sit amet</h2>
                     <p>
                         Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit
                         semper pretium.
                     </p>
                 </div>
             </div>
-            <div class="container right">
-                <div class="date">01 Jan</div>
-                <i class="icon fa fa-certificate"></i>
+            <div class="timeline-container right">
+                <div class="date comfortaa-font">01 Jan 2022</div>
+                <span class="icon align-middle text-center">
+                    <span class="material-icons material-icons-round align-middle" style="font-size: 18px !important;">
+                        task_alt
+                    </span>
+                </span>
                 <div class="content">
-                    <h2>Lorem ipsum dolor sit amet</h2>
+                    <h2 class="comfortaa-font">Lorem ipsum dolor sit amet</h2>
                     <p>
                         Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit
                         semper pretium.

@@ -114,6 +114,22 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#ffffff", GradientType=1);
 }
 
+.down-top-grad-white-dark {
+  background: rgb(52, 52, 52);
+  background: -moz-linear-gradient(180deg, rgba(52, 52, 52, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(52, 52, 52, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(180deg, rgba(52, 52, 52, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#ffffff", GradientType=1);
+}
+
+.top-down-grad-white-dark {
+  background: rgb(52, 52, 52);
+  background: -moz-linear-gradient(0deg, rgba(52, 52, 52, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(52, 52, 52, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(0deg, rgba(52, 52, 52, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#ffffff", GradientType=1);
+}
+
 .left-right-grad-tahiti-mineshaft {
   background: rgb(232, 138, 4);
   background: -moz-linear-gradient(90deg, rgba(232, 138, 4, 1) 0%, rgba(52, 52, 52, 0.5) 100%);
@@ -191,7 +207,7 @@ sup {
   width: 250px;
   height: 250px;
   background: transparent;
-  border: 0px solid #404041;
+  border: 0px solid #fff;
   border-radius: 50%;
   text-align: center;
   line-height: 150px;
@@ -200,10 +216,10 @@ sup {
   color: var(--tahitigold);
   letter-spacing: 4px;
   text-transform: uppercase;
-  text-shadow: 0 0 10px var(--tahitigold);
+  text-shadow: 0 0 10px var(--mineshaft);
   /* box-shadow: 0 0 20px rgba(0, 0, 0, .5); */
 
-  animation: animate-tahiti 4s linear infinite;
+  /* animation: animate-dark 4s linear infinite; */
 }
 
 .ring:before {
@@ -214,8 +230,10 @@ sup {
   width: 100%;
   height: 100%;
   border: 5px solid transparent;
-  border-top: 5px solid var(--tahitigold);
-  border-right: 5px solid var(--tahitigold);
+  border-top: 20px solid var(--white);
+  border-right: 5px solid var(--white);
+  border-bottom: 5px solid var(--white);
+  border-left: 5px solid var(--white);
   border-radius: 50%;
   animation: animateC 2s linear infinite;
 }
@@ -232,17 +250,17 @@ sup {
   animation: animate 2s linear infinite;
 } */
 
-.ring>span:before {
+/* .ring>span:before {
   content: '';
   position: absolute;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--tahitigold);
+  background: var(--mineshaft);
   top: -6px;
   right: -8px;
-  box-shadow: 0 0 20px var(--tahitigold);
-}
+  box-shadow: 0 0 20px var(--mineshaft);
+} */
 
 @keyframes animateC {
   0% {
@@ -425,6 +443,7 @@ h6 {
 .no-scroller::-webkit-scrollbar-thumb {
   background: var(--white) !important;
   border-radius: 50rem;
+  display: none !important;
 }
 
 /*White scroller*/
@@ -725,7 +744,7 @@ h6 {
 
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-  color: var(--white);
+  color: var(--mineshaft);
   background-color: var(--tahitigold);
   border-color: var(--tahitigold);
   border-width: 5px;
@@ -753,7 +772,7 @@ h6 {
   background: rgb(232, 138, 4);
   background: linear-gradient(180deg, rgba(232, 138, 4, 1) 0%, rgba(52, 52, 52, 1) 100%);
 
-  border-radius: 25px 25px 0 0;
+  border-radius: 15px 15px 0 0;
   border-top: var(--white) solid 5px;
   /*border-bottom: var(--tahitigold) solid 5px;*/
 }
@@ -909,11 +928,25 @@ h6 {
   background-attachment: fixed;
 }
 
+.tunnel-bg-container-static {
+  background: url("../media/assets/One-Tunnel.png");
+  background-position: center;
+  background-size: cover;
+  background-attachment: local;
+}
+
 .tunnel-bg-container-inverse {
   background: url("../media/assets/One-Tunnel-White.png");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
+}
+
+.tunnel-bg-container-inverse-static {
+  background: url("../media/assets/One-Tunnel-White.png");
+  background-position: center;
+  background-size: cover;
+  background-attachment: local;
 }
 
 .fitness-bg-container {
@@ -1439,6 +1472,17 @@ div.horizontal-scroll-card-nav {
 }
 
 /*./Create nutton*/
+
+.load-curtain-social-btn-panel {
+  z-index: 1999;
+  position: fixed;
+  top: 10vh;
+  right: 0px;
+  background-color: var(--mineshaft) !important;
+  color: var(--white) !important;
+  border-radius: 25px 0 0 25px !important;
+  max-height: 70vh !important;
+}
 
 .video-card-container {
   position: relative !important;

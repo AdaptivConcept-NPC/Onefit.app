@@ -42,9 +42,9 @@ $calenderHeading = $monthNames[$cMonth - 1] . " " . $cYear;
 
 echo <<<_END
 <div class="table-responsive pb-0" style="border-radius: 25px;">
-    <table class="table table-striped mb-0" style="background: #ffa500; color: #333">
-        <thead style="background: #fff;">
-            <tr class="comfortaa-font" align="center" style="font-size: 30px">
+    <table class="table table-stripedz mb-0" style="background: #343434;">
+        <thead style="background: #fff; color: #343434;">
+            <tr class="comfortaa-font p-4" align="center" style="font-size: 30px">
                 <td colspan="1" align="left"><button class="onefit-buttons-style-light p-3" onclick="navCalender('$prev_month','$prev_year','prev')"><i class="fas fa-chevron-left"></i> Prev</button></td>
                 <td colspan="5" style="font-size: 50px"><strong class="text-truncate"> $calenderHeading </strong></td>
                 <td colspan="1" align="right"><button class="onefit-buttons-style-light p-3" onclick="navCalender('$next_month','$next_year','next')">Next <i class="fas fa-chevron-right"></i></button></td>
@@ -59,7 +59,7 @@ echo <<<_END
                 <th class="text-center" scope="col">Saturday</th>
             </tr>
         </thead>
-        <tbody style="font-size: 30px">
+        <tbody class="text-white" style="font-size: 30px">
             $output
         </tbody>
     </table>

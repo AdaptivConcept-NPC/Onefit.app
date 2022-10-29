@@ -12,12 +12,34 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <style>
-        .timeline {
+        :root {
+            --mineshaft: #343434;
+            --mineshaft-rgba: rgba(52, 52, 52, 0.8);
+            --white: #ffffff;
+            --silver: #c5c5c5;
+            --tahitigold: #ffa500;
+            --dustygray: #949494;
+            --red: #c20000;
+            --green: #119400;
+
+            /*Social Media*/
+            --facebook: #3a549e;
+            --twitter: #00aff0;
+            --youtube: #e90101;
+        }
+
+        @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Comfortaa:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap&family=Libre+Barcode+128&display=swap");
+
+
+        .h-timeline-container {
+            width: 100%;
+        }
+
+        .h-timeline {
             list-style-type: none;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 0px;
+
         }
 
         .li {
@@ -30,50 +52,50 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            font-weight: 100
+            font-weight: 100;
+            color: var(--white);
         }
 
         .status {
             padding: 0px 40px;
             display: flex;
             justify-content: center;
-            border-top: 2px solid #D6DCE0;
+            border-top: 2px solid var(--white);
             position: relative;
             transition: all 200ms ease-in
         }
 
-        h4 {
+        .h-timeline h4 {
             font-weight: 600;
-            color: #66DC71;
+            color: var(--white);
             text-align: center;
         }
 
-        h4:before {
+        .h-timeline h4:before {
             content: '';
             width: 25px;
             height: 25px;
-            background-color: white;
-            ;
+            background-color: var(--red);
             border-radius: 25px;
-            border: 1px solid #ddd;
+            border: 2px solid var(--white);
             position: absolute;
             top: -15px;
             left: 42%;
-            transition: all 200ms ease-in
+            transition: all 200ms ease-in;
         }
 
         .li.complete.status {
-            border-top: 2px solid #66DC71
+            border-top: 2px solid var(--green);
         }
 
         .li.complete h4:before {
-            background-color: #66DC71;
-            border: none;
+            background-color: var(--green);
+            border: 2px solid var(--white);
             transition: all 200ms ease-in
         }
 
         @media (min-device-width: 320px) and (max-device-width: 700px) {
-            .timeline {
+            .h-timeline {
                 list-style-type: none;
                 display: block
             }
@@ -81,6 +103,7 @@
             .li {
                 transition: all 200ms ease-in;
                 display: flex;
+                justify-content: center;
                 width: inherit
             }
 
@@ -100,10 +123,12 @@
         body {
             width: 100%;
             height: 100%;
+            padding: 0;
             display: flex;
             justify-content: center;
             font-family: 'Titillium Web', sans serif;
-            color: #758D96
+            color: var(--mineshaft);
+            background-color: #343434;
         }
 
         button {
@@ -123,20 +148,27 @@
             transform: scale(2, 2);
         }
 
-        #toggleButton {
+        #toggleCompleteButton {
             position: absolute;
             left: 50px;
             bottom: 20px;
             background-color: #75C7F6
         }
 
+        #toggleUncompleteButton {
+            position: absolute;
+            right: 50px;
+            bottom: 20px;
+            background-color: #75C7F6
+        }
+
         div.horizontal-scroll {
-            width: 100vw;
+            width: 100%;
             height: auto;
             overflow-x: auto;
             border-radius: 25px;
             white-space: nowrap;
-            padding: 20px 60px !important;
+            /* padding: 20px 60px !important; */
 
         }
     </style>
@@ -144,14 +176,16 @@
 
 <body>
 
-    <div id="timeline1">
-        <button id="toggleButton" onclick="toggleComplete()">Toggle</button>
+    <div class="h-timeline-container" id="h-timeline1">
+        <button id="toggleCompleteButton" onclick="toggleComplete()">Toggle Complete</button>
+
+        <button id="toggleUncompleteButton" onclick="toggleUncomplete()">Toggle Uncomplete</button>
 
         <div class="horizontal-scroll">
-            <ul class="timeline" id="timeline">
+            <ul class="h-timeline" id="h-timeline" style="padding: 0px !important;">
                 <li class="li complete">
                     <div class="timestamp">
-                        <span class="author">Abhi Sharma</span>
+                        <span class="author">1. Abhi Sharma</span>
                         <span class="date">11/15/2014<span>
                     </div>
                     <div class="status">
@@ -160,7 +194,7 @@
                 </li>
                 <li class="li complete">
                     <div class="timestamp">
-                        <span class="author">PAM Admin</span>
+                        <span class="author">2. PAM Admin</span>
                         <span class="date">11/15/2014<span>
                     </div>
                     <div class="status">
@@ -169,7 +203,7 @@
                 </li>
                 <li class="li complete">
                     <div class="timestamp">
-                        <span class="author">Aaron Rodgers</span>
+                        <span class="author">3. Aaron Rodgers</span>
                         <span class="date">11/15/2014<span>
                     </div>
                     <div class="status">
@@ -245,14 +279,28 @@
     </div>
 
     <script>
-        var toggleButton = document.getElementById("toggleButton");
+        var toggleCompleteButton = document.getElementById("toggleCompleteButton");
+        var toggleUncompleteButton = document.getElementById("toggleUncompleteButton");
 
 
         function toggleComplete() {
             var completes = document.querySelectorAll(".complete");
 
             var lastComplete = completes[completes.length - 1];
-            alert("Last Complete: " + lastComplete);
+            // alert("Last Complete: " + lastComplete);
+            lastComplete.classList.toggle('complete');
+
+            lastComplete.classList.toggle('uncomplete');
+        }
+
+        function toggleUncomplete() {
+            var completes = document.querySelectorAll(".uncomplete");
+
+            var lastComplete = completes[completes.length - 1];
+            // alert("Last Complete: " + lastComplete);
+
+            lastComplete.classList.toggle('uncomplete');
+
             lastComplete.classList.toggle('complete');
         }
 

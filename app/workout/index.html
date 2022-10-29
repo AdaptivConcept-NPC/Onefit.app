@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        <?php echo $usrprof_name . " " . $usrprof_surname; ?> - Onefit.app&trade; | Onefit.Net&reg; &copy;
+        <?php echo date('Y'); ?>
+    </title>
+
+    <!--fontawesome-->
+    <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
+
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- Plyr.io Media Player -->
+    <!-- <link rel="stylesheet" href="https://cdn.plyr.io/1.8.2/plyr.css"> -->
+
+    <!-- Plry.io JS CDN -->
+    <!-- <script src="https://cdn.plyr.io/1.8.2/plyr.js"></script>
+    <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script> -->
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+    <!-- W3 CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+    <!-- My CSS styles -->
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="../../css/digital-clock.css" />
+    <link rel="stylesheet" href="../../css/timeline-styles.css" />
+
+    <!-- Site Scripts -->
+    <script src="../../scripts/js/script.js"></script>
+    <!-- <script src="../../scripts/js/api_requests.js"></script> -->
+
+    <!-- ./ Site Scripts -->
+
+    <!-- JQuery CDN -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <!-- ./ JQuery CDN -->
+
+    <!-- For Digital Clock Plugin -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script> -->
+    <!-- ./ For Digital Clock Plugin -->
+
+    <!-- Map Highlight -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js"></script>
+    <script src="../scripts/js/mapoid/mapoid.js"></script> -->
+    <!-- ./ Map Highlight -->
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap" rel="stylesheet">
+
+    <!-- Soccer field -->
+    <!-- <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.min.css" />
+    <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.default.min.css" />
+    <script src="../../scripts/js/soccer-field-players-positions/jquery.soccerfield.min.js"></script> -->
+
+    <!-- chartjs -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script> -->
+
+    <!-- JQuery Scripts -->
+    <script>
+        //jQuery Code Only
+        //$.noConflict();
+        // $(document).ready(function () {
+
+        // });
+    </script>
+</head>
+
+<body class="noselect" onload="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
+
+    <!-- Load Curtain -->
+    <div class="load-curtain" id="LoadCurtain" style="display: block;">
+        <div class="d-flex align-items-center top-down-grad-tahiti" style="width: 100%; height: 100%;">
+            <div class="text-center w-100">
+                <div class="ring d-flex align-items-center p-4 my-pulse-animation-light">
+                    <!-- <span></span> -->
+                    <div style="width: 100%;">
+                        <img src="../../media/assets/One-Symbol-Logo-White.png" class="img-fluid p-4"
+                            style="max-height: 20vh;" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="text-center text-center p-4 fixed-bottom" alt="">
+            <p class="navbar-brand fs-1 text-white comfortaa-font" href="../../index.html">One<span
+                    style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></p>
+            <p class="text-center comfortaa-font" styl="font-size: 10px !important;">Loading. Please wait.</p>
+        </nav>
+    </div>
+    <!-- ./Load Curtain -->
+
+    <!-- Facebook API -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0"
+        nonce="47FC3Uf9"></script>
+    <!-- ./ Facebook API -->
+
+    <!-- Main Content -->
+    <div class="container-fluid" style="padding-top: 150px; padding-bottom: 150px; height: 100%; overflow-y: auto;">
+        <!-- Main Navigation Bar -->
+        <nav class="navbar navbar-lightz bg-transparent fixed-top navbar-stylez top-down-grad-dark w-100 mb-4"
+            style="border-radius: 0 0 25px 25px; max-height: 100vh !important;">
+            <!--  border-bottom: #ffa500 solid 5px; -->
+            <!-- App Function Buttons -->
+            <div class="container-lg">
+                <button class="navbar-toggler shadow onefit-buttons-style-dark p-4" type="button">
+                    <div class="d-grid gap-2">
+                        <span class="material-icons material-icons-round" style="font-size: 24px !important"> arrow_back
+                        </span>
+                        <span class="d-none d-lg-block comfortaa-font" style="font-size: 10px;">Exit.</span>
+                    </div>
+                </button>
+
+                <a class="navbar-brand my-4 p-4 fs-1 text-white comfortaa-font" href="../">
+                    One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span>
+                </a>
+
+                <button class="onefit-buttons-style-dark p-4 shadow" type="button">
+                    <div class="d-grid gap-2">
+                        <span class="material-icons material-icons-round" style="font-size: 24px !important">
+                            support_agent </span>
+                        <span class="d-none d-lg-block comfortaa-font" style="font-size: 10px;">Trainer Support.</span>
+                    </div>
+                </button>
+
+            </div>
+            <!-- ./ App Function Buttons -->
+        </nav>
+        <!-- ./ Main Navigation Bar -->
+
+        <!-- start workout / activity -->
+        <div class="fixed-bottom p-4 bg-transparent navbar-stylez down-top-grad-dark">
+            <div class="d-flex justify-content-center container-lg">
+
+                <button class="btn onefit-buttons-style-tahiti p-4 shadow fs-3 comfortaa-font text-truncate mx-2">
+                    <span class="align-middle d-lg-none">
+                        <span class="material-icons material-icons-round align-middle"
+                            style="font-size: 40px !important;">bookmark_add</span> Sub.</span>
+                    <span class="align-middle d-none d-lg-block"><span
+                            class="material-icons material-icons-round align-middle"
+                            style="font-size: 40px !important;">bookmark_add</span> Subscribe.</span>
+                </button>
+
+                <button class="onefit-buttons-style-tahiti p-4 shadow fs-3 comfortaa-font text-truncate mx-2"
+                    type="button" data-bs-toggle="offcanvas" data-bs-target="#startworkoutoffcanvasBottom"
+                    aria-controls="startworkoutoffcanvasBottom">
+                    <span class="align-middle d-lg-none"><span class="material-icons material-icons-round align-middle"
+                            style="font-size: 40px !important;">flag</span> Begin.</span>
+                    <span class="align-middle d-none d-lg-block">
+                        <span class="material-icons material-icons-round align-middle"
+                            style="font-size: 40px !important;">flag</span> Begin Workout.</span>
+                </button>
+
+                <!-- <div class="row">
+                    <div class="col-4">
+                        <div class="d-grid pt-4">
+                            
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="d-grid pt-4">
+                            
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <!-- ./ start workout / activity -->
+
+
+        <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#startworkoutoffcanvasBottom" aria-controls="startworkoutoffcanvasBottom">Toggle bottom
+            offcanvas</button> -->
+
+        <!-- start workout offcanvas -->
+        <div class="offcanvas offcanvas-bottom h-100"
+            style="background-color: #343434; color: #fff; visibility: visible !important;" tabindex="-1"
+            id="startworkoutoffcanvasBottom" aria-labelledby="startworkoutoffcanvasBottomLabel">
+            <div class="offcanvas-header p-0 d-block">
+
+                <div class="d-flex justify-content-between container-fluid align-items-center">
+                    <button class="navbar-toggler shadow onefit-buttons-style-dark p-4" type="button"
+                        data-bs-dismiss="offcanvas" aria-label="Close">
+                        <div class="d-grid gap-2">
+                            <span class="material-icons material-icons-round" style="font-size: 24px !important">
+                                arrow_back
+                            </span>
+                            <span class="d-none d-lg-block comfortaa-font" style="font-size: 10px;">Back.</span>
+                        </div>
+                    </button>
+
+                    <a class="navbar-brand m-0 px-2 fs-1 text-white comfortaa-font text-truncate"
+                        id="startworkoutoffcanvasBottomLabel">
+                        One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span>
+                    </a>
+
+                    <button class="onefit-buttons-style-dark p-4 shadow" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#h-timeline-container" aria-expanded="true"
+                        aria-controls="h-timeline-container">
+                        <div class="d-grid gap-2">
+                            <span class="material-icons" style="font-size: 20px !important;"> timeline </span>
+                            <p class="m-0 comfortaa-font" style="font-size: 5px;">View activity track.</p>
+                        </div>
+                    </button>
+                </div>
+
+                <hr class="text-white">
+
+                <div id="h-timeline-container" class="p-0 collapse" style="max-height: 500px; overflow-y: auto;">
+
+                    <div class="h-timeline-container my-4" id="h-timeline1">
+                        <div class="horizontal-scroll">
+                            <ul class="h-timeline" id="h-timeline" style="padding: 0px !important;">
+                                <li class="li complete">
+                                    <div class="timestamp comfortaa-font">
+                                        <span class="author">1. Abhi Sharma</span>
+                                        <span class="date">11/15/2014<span>
+                                    </div>
+                                    <div class="status">
+                                        <h4> Shift Created </h4>
+                                    </div>
+                                </li>
+                                <li class="li complete">
+                                    <div class="timestamp comfortaa-font">
+                                        <span class="author">2. PAM Admin</span>
+                                        <span class="date">11/15/2014<span>
+                                    </div>
+                                    <div class="status">
+                                        <h4> Email Sent </h4>
+                                    </div>
+                                </li>
+                                <li class="li complete">
+                                    <div class="timestamp comfortaa-font">
+                                        <span class="author">3. Aaron Rodgers</span>
+                                        <span class="date">11/15/2014<span>
+                                    </div>
+                                    <div class="status">
+                                        <h4> SIC Approval </h4>
+                                    </div>
+                                </li>
+                                <li class="li complete">
+                                    <div class="timestamp comfortaa-font">
+                                        <span class="author">Abhi Sharma</span>
+                                        <span class="date">11/15/2014<span>
+                                    </div>
+                                    <div class="status">
+                                        <h4> Shift Created </h4>
+                                    </div>
+                                </li>
+                                <li class="li complete">
+                                    <div class="timestamp comfortaa-font">
+                                        <span class="author">PAM Admin</span>
+                                        <span class="date">11/15/2014<span>
+                                    </div>
+                                    <div class="status">
+                                        <h4> Email Sent </h4>
+                                    </div>
+                                </li>
+                                <li class="li complete">
+                                    <div class="timestamp comfortaa-font">
+                                        <span class="author">Aaron Rodgers</span>
+                                        <span class="date">11/15/2014<span>
+                                    </div>
+                                    <div class="status">
+                                        <h4> SIC Approval </h4>
+                                    </div>
+                                </li>
+                                <li class="li complete">
+                                    <div class="timestamp comfortaa-font">
+                                        <span class="author">Abhi Sharma</span>
+                                        <span class="date">11/15/2014<span>
+                                    </div>
+                                    <div class="status">
+                                        <h4> Shift Created </h4>
+                                    </div>
+                                </li>
+                                <li class="li complete">
+                                    <div class="timestamp comfortaa-font">
+                                        <span class="author">PAM Admin</span>
+                                        <span class="date">11/15/2014<span>
+                                    </div>
+                                    <div class="status">
+                                        <h4> Email Sent </h4>
+                                    </div>
+                                </li>
+                                <li class="li complete">
+                                    <div class="timestamp comfortaa-font">
+                                        <span class="author">Aaron Rodgers</span>
+                                        <span class="date">11/15/2014<span>
+                                    </div>
+                                    <div class="status">
+                                        <h4> SIC Approval </h4>
+                                    </div>
+                                </li>
+                                <li class="li">
+                                    <div class="timestamp comfortaa-font">
+                                        <span class="author">PAM Admin</span>
+                                        <span class="date">TBD<span>
+                                    </div>
+                                    <div class="status">
+                                        <h4> Shift Completed </h4>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="offcanvas-body small p-0">
+                <div class="p-4 mb-4" id="workout-content-container">
+                    <p>Video</p>
+                    <p>Instruction / Workout Content</p>
+                </div>
+            </div>
+            <div class="offcanvas-footer p-4">
+                <button class="shadow onefit-buttons-style-dark p-4" id="toggleCompleteButton"
+                    onclick="toggleComplete()">Complete</button>
+
+                <button class="shadow onefit-buttons-style-dark p-4" id="toggleUncompleteButton"
+                    onclick="toggleUncomplete()">Uncomplete</button>
+            </div>
+        </div>
+        <!-- ./ start workout offcanvas -->
+
+        <!-- Wellness: Post Training Body/Physical Assessment Modal -->
+        <div class="modal fade" id="postTrainingPhyisicalAssessmentModal" tabindex="-1"
+            aria-labelledby="postTrainingPhyisicalAssessmentModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content" style="color: #fff; background-color: #343434!important;">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="postTrainingPhyisicalAssessmentModalLabel">Post-Training
+                            Physical Assessment</h1>
+                        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                    </div>
+                    <div class="modal-body">
+                        <p>Identification of pain on body chart - Select Areas where pain is being experienced</p>
+                        <p>Themographic Body Chart - Trainer will enter temperature data in a capturing form.</p>
+                        <p>Rate your Muscle Soreness according to the scale above</p>
+                        <img src="../../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale"
+                            style="border-radius: 15px;" class="img-fluid mb-4 shadow">
+
+                        <div class="row align-items-start">
+                            <div class="col-md no-sroller" style="overflow-x:auto;">
+                                <h5>(Front)</h5>
+                                <img src="../../media/assets/body_charts/muscle-men-body-map-front.jpg"
+                                    alt="male body map - front" class="img-fluidz map image-map-male-front"
+                                    style="border-radius: 25px;" usemap="#image-map-male-front-indi">
+                                <map name="image-map-male-front-indi">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Head')" target="" alt="Male-Front-Head "
+                                        title="Male-Front-Head "
+                                        coords="249,98,221,109,218,145,210,143,212,156,220,166,221,177,232,190,241,230,246,232,250,237,255,232,258,225,265,192,276,178,279,165,286,156,286,143,280,138,280,122,270,105"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Left')" target=""
+                                        alt="Male-Front-Pectoralis-Major-Left" title="Male-Front-Pectoralis-Major-Left"
+                                        coords="253,305,254,256,265,235,289,236,302,241,317,244,325,257,328,270,319,269,315,282,309,300,295,311,272,314"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Right')" target=""
+                                        alt="Male-Front-Pectoralis-Major-Right"
+                                        title="Male-Front-Pectoralis-Major-Right"
+                                        coords="246,303,245,254,235,235,211,235,194,241,177,245,173,259,170,274,181,265,184,279,185,293,194,305,213,315,238,310"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Trapezius-Left')" target=""
+                                        alt="Male-Front-Trapezius-Left" title="Male-Front-Trapezius-Left"
+                                        coords="275,182,266,195,258,236,276,232,305,226,284,213,274,203" shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Trapezius-Right')" target=""
+                                        alt="Male-Front-Trapezius-Right" title="Male-Front-Trapezius-Right"
+                                        coords="224,184,230,192,235,213,241,234,231,233,209,230,196,225,214,215,226,207"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Left')" target=""
+                                        alt="Male-Front-Adominalis-Upper-Left" title="Male-Front-Adominalis-Upper-Left"
+                                        coords="250,312,250,369,287,373,286,315,272,315,257,308" shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Right')" target=""
+                                        alt="Male-Front-Adominalis-Upper-Right"
+                                        title="Male-Front-Adominalis-Upper-Right"
+                                        coords="247,310,248,367,213,373,213,317,224,314" shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Left')" target=""
+                                        alt="Male-Front-Adominalis-Lower-Left" title="Male-Front-Adominalis-Lower-Left"
+                                        coords="251,374,250,448,253,485,265,485,284,430,287,376,263,373" shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Right')" target=""
+                                        alt="Male-Front-Adominalis-Lower-Right"
+                                        title="Male-Front-Adominalis-Lower-Right"
+                                        coords="230,371,250,374,247,439,246,486,233,484,215,426,215,376" shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-External_Oblique-Left')" target=""
+                                        alt="Male-Front-External_Oblique-Left" title="Male-Front-External_Oblique-Left"
+                                        coords="290,314,288,379,287,431,291,447,301,435,312,430,316,429,311,386,310,368,314,355,304,334,300,322"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-External_Oblique-Right')" target=""
+                                        alt="Male-Front-External_Oblique-Right"
+                                        title="Male-Front-External_Oblique-Right"
+                                        coords="212,442,213,426,209,395,210,365,211,316,196,329,185,345,192,376,183,423,196,433,205,442"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Left')" target=""
+                                        alt="Male-Front-Serratus_Anterior-Left"
+                                        title="Male-Front-Serratus_Anterior-Left"
+                                        coords="291,312,300,319,308,340,314,349,318,321,323,327,323,292,326,270,321,269,310,301"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Right')" target=""
+                                        alt="Male-Front-Serratus_Anterior-Right"
+                                        title="Male-Front-Serratus_Anterior-Right"
+                                        coords="210,315,194,330,184,343,181,320,177,326,176,294,175,270,180,268,184,299,194,307"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Deltoid-Left')" target=""
+                                        alt="Male-Front-Deltoid-Left" title="Male-Front-Deltoid-Left"
+                                        coords="357,301,359,268,352,244,327,224,313,224,293,236,320,244,328,257,330,276"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Deltoid-Right')" target=""
+                                        alt="Male-Front-Deltoid-Right" title="Male-Front-Deltoid-Right"
+                                        coords="144,298,141,269,145,246,167,227,188,225,206,235,174,244,168,279"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Left')" target=""
+                                        alt="Male-Front-Bicep_Long_Head-Left" title="Male-Front-Bicep_Long_Head-Left"
+                                        coords="362,365,366,346,363,335,364,320,357,303,331,276,344,302,354,323"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Right')" target=""
+                                        alt="Male-Front-Bicep_Long_Head-Right" title="Male-Front-Bicep_Long_Head-Right"
+                                        coords="139,362,132,346,135,336,139,315,145,299,170,277,154,305,147,321,142,344"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Left')" target=""
+                                        alt="Male-Front-Bicep_Short_Head-Left" title="Male-Front-Bicep_Short_Head-Left"
+                                        coords="362,366,346,356,337,333,336,355,324,329,326,273,332,281,352,320,358,348"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Right')" target=""
+                                        alt="Male-Front-Bicep_Short_Head-Right"
+                                        title="Male-Front-Bicep_Short_Head-Right"
+                                        coords="138,369,152,357,164,339,165,357,177,326,175,272,164,292,151,315,144,336"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Brachioradialis-Left')" target=""
+                                        alt="Male-Front-Brachioradialis-Left" title="Male-Front-Brachioradialis-Left"
+                                        coords="407,451,397,464,384,465,359,420,347,395,338,379,336,366,337,354,338,337,345,349,346,354,363,366,367,345,379,361,387,391,393,414,397,428"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Brachioradialis-Right')" target=""
+                                        alt="Male-Front-Brachioradialis-Right" title="Male-Front-Brachioradialis-Right"
+                                        coords="117,465,105,464,94,453,111,408,117,378,131,349,138,358,139,372,152,355,156,346,163,343,163,377,143,419,127,441"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Hand-Lef')" target=""
+                                        alt="Male-Front-Hand-Left" title="Male-Front-Hand-Left"
+                                        coords="384,468,397,467,408,454,449,494,441,529,432,543,419,544,401,535,384,491"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Hand-Right')" target=""
+                                        alt="Male-Front-Hand-Right" title="Male-Front-Hand-Right"
+                                        coords="94,455,103,465,116,469,101,536,82,543,67,541,58,526,52,491,82,462"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Sartorius-Left')" target=""
+                                        alt="Male-Front-Sartorius-Left" title="Male-Front-Sartorius-Left"
+                                        coords="310,432,308,454,305,471,299,495,287,536,278,563,273,603,273,622,285,658,276,642,272,628,269,610,266,590,268,571,268,557,279,515,285,487,292,477,298,453"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Sartorius-Right')" target=""
+                                        alt="Male-Front-Sartorius-Right" title="Male-Front-Sartorius-Right"
+                                        coords="189,434,190,447,191,459,197,480,205,513,212,536,223,569,226,599,225,625,220,641,215,655,224,643,227,616,230,603,231,577,231,546,220,511,215,496,211,483,206,475,202,453"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Abductor-Left')" target=""
+                                        alt="Male-Front-Abductor-Left" title="Male-Front-Abductor-Left"
+                                        coords="257,502,266,488,275,471,304,437,291,473,281,498,276,522,267,558,267,575,265,588,257,559,256,534,253,520"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Abductor-Right')" target=""
+                                        alt="Male-Front-Abductor-Right" title="Male-Front-Abductor-Right"
+                                        coords="245,510,246,523,245,538,242,557,232,597,231,543,213,482,205,469,200,447,191,432,208,453,216,461,227,475,235,493"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Left')" target=""
+                                        alt="Male-Front-Vastus_Medialis-Left" title="Male-Front-Vastus_Medialis-Left"
+                                        coords="287,538,279,562,274,603,273,620,279,629,289,634,297,624,294,595,286,569"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Right')" target=""
+                                        alt="Male-Front-Vastus_Medialis-Right" title="Male-Front-Vastus_Medialis-Right"
+                                        coords="226,631,215,639,205,630,204,610,212,582,215,554,214,545,221,568,225,599"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Left')" target=""
+                                        alt="Male-Front-Vastus_Laterialis-Left"
+                                        title="Male-Front-Vastus_Laterialis-Left"
+                                        coords="317,482,326,501,329,537,328,572,324,594,320,608,319,628,311,626,307,611,311,595,319,576,323,538,321,509"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Right')" target=""
+                                        alt="Male-Front-Vastus_Laterialis-Right"
+                                        title="Male-Front-Vastus_Laterialis-Right"
+                                        coords="184,480,174,503,171,536,172,572,174,592,179,607,180,621,184,626,190,619,193,608,187,593,179,566,178,524,182,497"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Left')" target=""
+                                        alt="Male-Front-Tensor_Fasciae_Latae-Left"
+                                        title="Male-Front-Tensor_Fasciae_Latae-Left"
+                                        coords="317,427,323,451,324,480,329,505,313,476,310,451,312,434" shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Right')" target=""
+                                        alt="Male-Front-Tensor_Fasciae_Latae-Right"
+                                        title="Male-Front-Tensor_Fasciae_Latae-Right"
+                                        coords="183,426,188,434,189,454,185,472,173,506,177,462,178,445" shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Left')" target=""
+                                        alt="Male-Front-Tibialis_Anterior-Left"
+                                        title="Male-Front-Tibialis_Anterior-Left"
+                                        coords="316,655,317,677,320,713,320,735,309,773,308,827,303,827,306,749,307,702,308,673"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Right')" target=""
+                                        alt="Male-Front-Tibialis_Anterior-Right"
+                                        title="Male-Front-Tibialis_Anterior-Right"
+                                        coords="182,657,179,717,179,733,184,750,190,773,191,824,197,825,194,732,191,698,190,678,189,664"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Left')"
+                                        target="" alt="Male-Front-Extensor_Digitorum_Longus-Left"
+                                        title="Male-Front-Extensor_Digitorum_Longus-Left"
+                                        coords="320,716,326,723,325,731,317,775,317,823,309,827,309,775,321,735"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Right')"
+                                        target="" alt="Male-Front-Extensor_Digitorum_Longus-Right"
+                                        title="Male-Front-Extensor_Digitorum_Longus-Right"
+                                        coords="179,720,175,723,173,734,181,773,182,803,183,820,190,825,189,773,178,731"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Left')" target=""
+                                        alt="Male-Front-Peroneus_Longus-Left" title="Male-Front-Peroneus_Longus-Left"
+                                        coords="318,656,325,667,329,698,327,722,321,713" shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Right')" target=""
+                                        alt="Male-Front-Peroneus_Longus-Right" title="Male-Front-Peroneus_Longus-Right"
+                                        coords="180,655,174,667,171,702,173,727,178,717,179,690" shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Gastrocnemius-Left')" target=""
+                                        alt="Male-Front-Gastrocnemius-Left" title="Male-Front-Gastrocnemius-Left"
+                                        coords="282,676,295,702,295,737,287,749,285,760,277,736,278,703" shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Gastrocnemius-Right')" target=""
+                                        alt="Male-Front-Gastrocnemius-Right" title="Male-Front-Gastrocnemius-Right"
+                                        coords="217,673,205,697,203,738,210,745,215,761,221,737,221,703" shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Soleus-Left')" target=""
+                                        alt="Male-Front-Soleus-Left" title="Male-Front-Soleus-Left"
+                                        coords="294,826,295,740,288,750,285,761,292,789" shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Soleus-Right')" target=""
+                                        alt="Male-Front-Soleus-Right" title="Male-Front-Soleus-Right"
+                                        coords="205,825,203,741,209,747,215,764,207,794" shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Patella-Left')" target=""
+                                        alt="Male-Front-Patella-Left" title="Male-Front-Patella-Left"
+                                        coords="301,646,17" shape="circle">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Patella-Right')" target=""
+                                        alt="Male-Front-Patella-Right" title="Male-Front-Patella-Right"
+                                        coords="195,645,17" shape="circle">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Tibia-Left')" target=""
+                                        alt="Male-Front-Tibia-Left" title="Male-Front-Tibia-Left"
+                                        coords="301,826,296,825,297,700,283,676,279,654,292,663,302,665,311,662,306,675,306,719"
+                                        shape="poly">
+                                    <area
+                                        data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}'
+                                        onclick="toggleMapSelection('Male-Front-Tibia-Right')" target=""
+                                        alt="Male-Front-Tibia-Right" title="Male-Front-Tibia-Right"
+                                        coords="204,826,197,827,195,730,191,665,202,662,210,655,215,660,217,669,204,694,203,712,201,739"
+                                        shape="poly">
+                                </map>
+                            </div>
+                            <div class="col-md no-sroller" style="overflow-x:auto;">
+                                <h5>(Back)</h5>
+                                <img src="../../media/assets/body_charts/muscle-men-body-map-back.jpg"
+                                    alt="male body map - back" style="border-radius: 25px;" class="img-fluidz"
+                                    usemap="#image-map-male-back-indi">
+                            </div>
+                            <div class="col-md-4">
+                                <h5>Muscles</h5>
+                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-md">
+                                                <p class="fs-5 fw-bold">Muscle Title</p>
+                                            </div>
+                                            <div class="col-md">
+                                                <p class="fs-5 fw-bold">Pain Intensity</p>
+                                                <img src="../../media/assets/Muscle Sorness Rating Scale.png"
+                                                    alt="Muscle Soreness Rating Scale" class="img-fluid mb-4">
+                                                <p>Rate your Muscle Soreness according to the scale above</p>
+                                                <div class="input-group">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input me-4" type="radio"
+                                                            name="inlineRadioMuscleIntensity[]"
+                                                            id="inlineRadioMuscleIntensity1" value="Intensity-1">
+                                                        <label class="form-check-label fs-5"
+                                                            for="inlineRadioMuscleIntensity1">1</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input me-4" type="radio"
+                                                            name="inlineRadioMuscleIntensity[]"
+                                                            id="inlineRadioMuscleIntensity2" value="Intensity-2">
+                                                        <label class="form-check-label fs-5"
+                                                            for="inlineRadioMuscleIntensity2">2</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input me-4" type="radio"
+                                                            name="inlineRadioMuscleIntensity[]"
+                                                            id="inlineRadioMuscleIntensity3" value="Intensity-3">
+                                                        <label class="form-check-label fs-5"
+                                                            for="inlineRadioMuscleIntensity3">3</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input me-4" type="radio"
+                                                            name="inlineRadioMuscleIntensity[]"
+                                                            id="inlineRadioMuscleIntensity4" value="Intensity-4">
+                                                        <label class="form-check-label fs-5"
+                                                            for="inlineRadioMuscleIntensity4">4</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input me-4" type="radio"
+                                                            name="inlineRadioMuscleIntensity[]"
+                                                            id="inlineRadioMuscleIntensity5" value="Intensity-5">
+                                                        <label class="form-check-label fs-5"
+                                                            for="inlineRadioMuscleIntensity5">5</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="">
+                                                    <p class="fs-5 fw-bold">Temp Reading (&#176;C)</p>
+                                                    <input type="text" name="" id=""
+                                                        class="onefit-inputs-style rounded-pill shadow"
+                                                        placeholder="Temp Reading (&#176;C)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./ Wellness: Post Training Body/Physical Assessment Modal -->
+
+        <!-- main content container -->
+        <div class="container-fluid p-0 comfortaa-font" id="main-content-container"
+            style="border-radius: 25px; color: #fff;">
+            <!-- <h2 class="text-center">Hello world</h2> -->
+
+            <div id="workout-program-content">
+                <!-- workout title -->
+                <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                    style="border-radius: 25px; border-color: #ffa500 !important;">
+                    <span class="material-icons material-icons-round align-middle"
+                        style="color: #ffa500 !important">sports</span>
+                    <h5 class="mt-4 fs-1 text-center align-middle"> Shooting Drills</h5>
+
+                    <span class="material-icons material-icons-round"
+                        style="color: #ffa500 !important">keyboard_arrow_down</span>
+                </div>
+                <!-- ./ workout title -->
+
+                <!-- workout details section -->
+                <div class="text-center w-100 comfortaa-font mb-4 down-top-grad-dark shadow"
+                    style="border-radius: 25px;">
+                    <div class="p-4 text-white" style="border-radius: 0 0 25px 25px;">
+                        <img src="../../media/assets/OnefitNet Profile PicArtboard 3.jpg" class="img-fluid my-4"
+                            style="border-radius: 25px;" alt="placeholder">
+
+                        <p class="my-4 comfortaa-font fs-5 fw-bold">This is a general warm-up drill/routine for any
+                            exercise routine.
+                        </p>
+
+                        <ul class="list-group list-group-flush mb-4 text-center">
+                            <li class="list-group-item bg-transparent border-0 text-white comfortaa-font fs-5 fw-bolde">
+                                <span class="material-icons material-icons-round align-middle"
+                                    style="font-size: 20px !important;">schedule</span>
+                                <span class="align-middle">Est. time: 10 - 15 min</span>
+                            </li>
+
+                            <li class="list-group-item bg-transparent border-0 text-white comfortaa-font fs-5 fw-bold">
+                                <span class="material-icons material-icons-round align-middle"
+                                    style="font-size: 20px !important;">view_timeline</span>
+                                <span class="align-middle">Level: Beginner</span>
+                            </li>
+
+                            <li class="list-group-item bg-transparent border-0 text-white comfortaa-font fs-5 fw-bold">
+                                <span class="material-icons material-icons-round align-middle"
+                                    style="font-size: 20px !important;">accessibility</span>
+                                <span class="align-middle">Body focus: Arms, Legs, Full body</span>
+                            </li>
+                        </ul>
+
+                        <div class="d-gridz my-4 py-4">
+                            <button class="btn onefit-buttons-style-tahiti p-4 shadow fs-3">
+                                <span class="material-icons material-icons-round align-middle">bookmark_add</span>
+                                <span class="align-middle">Subscribe</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- ./ workout details section -->
+
+                <!-- training phases breakdown -->
+                <div class="text-center w-100 comfortaa-font mb-4 py-4 down-top-grad-dark text-white shadow"
+                    style="border-radius: 25px;">
+                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-dark my-4 comfortaa-font border-5 border-end border-start"
+                        style="border-radius: 25px !important; border-color: #ffa500 !important; color: #fff; padding-top: 60px !important; padding-bottom: 60px !important;">
+                        Pre-Training
+                    </p>
+                    <div class="text-center w-100 comfortaa-font mb-4">
+
+                        <div id="daily-challenges-grid" class="grid-container gap-3 mb-4"
+                            style="max-width: 100% !important;">
+                            <div class="grid-tile p-4 shadow text-center border-5 border position-relative"
+                                style="background-color: #343434; border-color: #ffa500 !important;">
+                                <img src="../../media/assets/OnefitNet Profile PicArtboard 3.jpg"
+                                    class="img-fluid shadow mb-4" style="border-radius: 25px; max-height: 300px;"
+                                    alt="placeholder">
+
+                                <p class="fs-2 comfortaa-font">Exercise Title</p>
+                                <p class="mb-4">Exercise summary</p>
+
+                                <p class="mt-4 text-muted"><span
+                                        class="material-icons material-icons-round align-middle"
+                                        style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
+                                    Exercise Duration:
+                                    *12-15 min</p>
+
+                                <span
+                                    class="rounded-pill position-absolute top-0 start-0 translate-middle align-middle badge border-3 border p-4 fs-5"
+                                    style="height: 70px; width: 60px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
+                                    1. </span>
+                            </div>
+
+                            <div class="grid-tile p-4 shadow text-center border-5 border position-relative"
+                                style="background-color: #343434; border-color: #ffa500 !important;">
+                                <img src="../../media/assets/OnefitNet Profile PicArtboard 3.jpg"
+                                    class="img-fluid shadow mb-4" style="border-radius: 25px; max-height: 300px;"
+                                    alt="placeholder">
+
+                                <p class="fs-2 comfortaa-font">Exercise Title</p>
+                                <p class="mb-4">Exercise summary</p>
+
+                                <p class="mt-4 text-muted"><span
+                                        class="material-icons material-icons-round align-middle"
+                                        style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
+                                    Exercise Duration:
+                                    *12-15 min</p>
+
+                                <span
+                                    class="rounded-pill position-absolute top-0 start-0 translate-middle align-middle badge border-3 border p-4 fs-5"
+                                    style="height: 70px; width: 60px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
+                                    2. </span>
+                            </div>
+                            <div class="grid-tile p-4 shadow text-center border-5 border position-relative"
+                                style="background-color: #343434; border-color: #ffa500 !important;">
+                                <img src="../../media/assets/OnefitNet Profile PicArtboard 3.jpg"
+                                    class="img-fluid shadow mb-4" style="border-radius: 25px; max-height: 300px;"
+                                    alt="placeholder">
+
+                                <p class="fs-2 comfortaa-font">Exercise Title</p>
+                                <p class="mb-4">Exercise summary</p>
+
+                                <p class="mt-4 text-muted"><span
+                                        class="material-icons material-icons-round align-middle"
+                                        style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
+                                    Exercise Duration:
+                                    *12-15 min</p>
+
+                                <span
+                                    class="rounded-pill position-absolute top-0 start-0 translate-middle align-middle badge border-3 border p-4 fs-5"
+                                    style="height: 70px; width: 60px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
+                                    3. </span>
+                            </div>
+                            <div class="grid-tile p-4 shadow text-center border-5 border position-relative"
+                                style="background-color: #343434; border-color: #ffa500 !important;">
+                                <img src="../../media/assets/OnefitNet Profile PicArtboard 3.jpg"
+                                    class="img-fluid shadow mb-4" style="border-radius: 25px; max-height: 300px;"
+                                    alt="placeholder">
+
+                                <p class="fs-2 comfortaa-font">Exercise Title</p>
+                                <p class="mb-4">Exercise summary</p>
+
+                                <p class="mt-4 text-muted"><span
+                                        class="material-icons material-icons-round align-middle"
+                                        style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
+                                    Exercise Duration:
+                                    *12-15 min</p>
+
+                                <span
+                                    class="rounded-pill position-absolute top-0 start-0 translate-middle align-middle badge border-3 border p-4 fs-5"
+                                    style="height: 70px; width: 60px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
+                                    4. </span>
+                            </div>
+                            <div class="grid-tile p-4 shadow text-center border-5 border position-relative"
+                                style="background-color: #343434; border-color: #ffa500 !important;">
+                                <img src="../../media/assets/OnefitNet Profile PicArtboard 3.jpg"
+                                    class="img-fluid shadow mb-4" style="border-radius: 25px; max-height: 300px;"
+                                    alt="placeholder">
+
+                                <p class="fs-2 comfortaa-font">Exercise Title</p>
+                                <p class="mb-4">Exercise summary</p>
+
+                                <p class="mt-4 text-muted"><span
+                                        class="material-icons material-icons-round align-middle"
+                                        style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
+                                    Exercise Duration:
+                                    *12-15 min</p>
+
+                                <span
+                                    class="rounded-pill position-absolute top-0 start-0 translate-middle align-middle badge border-3 border p-4 fs-5"
+                                    style="height: 70px; width: 60px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
+                                    5. </span>
+                            </div>
+                            <div class="grid-tile p-4 shadow text-center border-5 border position-relative"
+                                style="background-color: #343434; border-color: #ffa500 !important;">
+                                <img src="../../media/assets/OnefitNet Profile PicArtboard 3.jpg"
+                                    class="img-fluid shadow mb-4" style="border-radius: 25px; max-height: 300px;"
+                                    alt="placeholder">
+
+                                <p class="fs-2 comfortaa-font">Exercise Title</p>
+                                <p class="mb-4">Exercise summary</p>
+
+                                <p class="mt-4 text-muted"><span
+                                        class="material-icons material-icons-round align-middle"
+                                        style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
+                                    Exercise Duration:
+                                    *12-15 min</p>
+
+                                <span
+                                    class="rounded-pill position-absolute top-0 start-0 translate-middle align-middle badge border-3 border p-4 fs-5"
+                                    style="height: 70px; width: 60px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
+                                    6. </span>
+                            </div>
+                            <div class="grid-tile p-4 shadow text-center border-5 border position-relative"
+                                style="background-color: #343434; border-color: #ffa500 !important;">
+                                <img src="../../media/assets/OnefitNet Profile PicArtboard 3.jpg"
+                                    class="img-fluid shadow mb-4" style="border-radius: 25px; max-height: 300px;"
+                                    alt="placeholder">
+
+                                <p class="fs-2 comfortaa-font">Exercise Title</p>
+                                <p class="mb-4">Exercise summary</p>
+
+                                <p class="mt-4 text-muted"><span
+                                        class="material-icons material-icons-round align-middle"
+                                        style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
+                                    Exercise Duration:
+                                    *12-15 min</p>
+
+                                <span
+                                    class="rounded-pill position-absolute top-0 start-0 translate-middle align-middle badge border-3 border p-4 fs-5"
+                                    style="height: 70px; width: 60px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
+                                    17. </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-dark my-4 comfortaa-font border-5 border-end border-start"
+                        style="border-radius: 25px !important; border-color: #ffa500 !important; color: #fff; padding-top: 60px !important; padding-bottom: 60px !important;">
+                        Warm-Up
+                    </p>
+                    <div class="text-center w-100 comfortaa-font mb-4"
+                        style="padding-top: 100px; padding-bottom: 100px">
+                        Subscribe to an Indi Fitness Program to get started
+                    </div>
+
+                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-dark my-4 comfortaa-font border-5 border-end border-start"
+                        style="border-radius: 25px !important; border-color: #ffa500 !important; color: #fff; padding-top: 60px !important; padding-bottom: 60px !important;">
+                        Mid-Training
+                    </p>
+                    <div class="text-center w-100 comfortaa-font mb-4"
+                        style="padding-top: 100px; padding-bottom: 100px">
+                        Subscribe to an Indi Fitness Program to get started
+                    </div>
+
+                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-dark my-4 comfortaa-font border-5 border-end border-start"
+                        style="border-radius: 25px !important; border-color: #ffa500 !important; color: #fff; padding-top: 60px !important; padding-bottom: 60px !important;">
+                        Post-Training
+                    </p>
+                    <div class="text-center w-100 comfortaa-font mb-4"
+                        style="padding-top: 100px; padding-bottom: 100px">
+                        Subscribe to an Indi Fitness Program to get started
+                    </div>
+
+                    <div class="text-center">
+                        <span class="material-icons material-icons-round align-middle">
+                            horizontal_rule
+                        </span>
+                    </div>
+
+
+                    <div class="g-grid justify-content-center my-4 p-4">
+                        <button type="button" class="onefit-buttons-style-dark p-4 shadow comfortaa-font fs-3"
+                            data-bs-toggle="modal" data-bs-target="#postTrainingPhyisicalAssessmentModal">
+                            <span class="material-icons material-icons-round align-middle">
+                                personal_injury
+                            </span>
+                            <span class="align-middle">Physical Assessment.</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- training phases breakdown -->
+
+                <!-- add button to complete the training and it should transfer the user to the wellness tab to log pain and temperature and other tracking data -->
+
+            </div>
+        </div>
+        <!-- ./ main content container -->
+    </div>
+
+    <script>
+        function initializeContent(auth, usernm) {
+            // hide the loading curtain
+            var curtain = document.getElementById("LoadCurtain");
+            curtain.style.display = "none";
+        }
+    </script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

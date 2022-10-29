@@ -1727,7 +1727,7 @@ function getAllTrainers()
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> - Onefit.app&trade; | Onefit.Net&trade; &copy; <?php echo date('Y'); ?></title>
+    <title><?php echo $usrprof_name . " " . $usrprof_surname; ?> - Onefit.app&trade; | Onefit.Net&reg; &copy; <?php echo date('Y'); ?></title>
 
     <!--fontawesome-->
     <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
@@ -1751,6 +1751,7 @@ function getAllTrainers()
     <!-- My CSS styles -->
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/digital-clock.css" />
+    <link rel="stylesheet" href="../css/timeline-styles.css" />
 
     <!-- Site Scripts -->
     <script src="../scripts/js/script.js"></script>
@@ -1926,21 +1927,44 @@ function getAllTrainers()
 </head>
 
 <body class="noselect" onload="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
+    <!--  -->
     <!-- Load Curtain -->
     <div class="load-curtain" id="LoadCurtain" style="display: block;">
-        <div class="d-flex align-items-center" style="width: 100%; height: 100%;">
+        <!-- twitter social panel -->
+        <div class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4">
+            <!--  d-none d-lg-block p-4 -->
+            <div class="d-flex gap-2 w-100">
+                <button class="p-4 m-0 shadow onefit-buttons-style-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
+                    <div class="d-grid">
+                        <span class="material-icons material-icons-round" style="font-size: 48px !important;">
+                            <i class="fab fa-twitter" style="font-size: 40px; color: #fff !important;"></i>
+                        </span>
+                        <p class="comfortaa-font mt-1 mb-0" style="font-size: 10px;">@onefitnet</p>
+                    </div>
+                </button>
+            </div>
+            <div class="collapse no-scroller pb-4 w3-animate-bottom" id="collapseloadCurtainTweetFeed" style="overflow-y: auto;">
+                <div class="pb-4 no-scroller" style="border-radius: 25px !important; overflow-y: auto; max-height: 90vh; min-width: 500px;">
+                    <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by OnefitNet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
+        </div>
+        <!-- ./ twitter social panel -->
+
+        <div class="d-flex align-items-center top-down-grad-tahiti" style="width: 100%; height: 100%;">
             <div class="text-center w-100">
-                <div class="ring d-flex align-items-center p-4">
+                <div class="ring d-flex align-items-center p-4 my-pulse-animation-light">
                     <!-- <span></span> -->
                     <div style="width: 100%;">
-                        <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="max-height: 20vh;" alt="">
+                        <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid p-4" style="max-height: 20vh;" alt="">
                     </div>
                 </div>
             </div>
         </div>
         <nav class="text-center text-center p-4 fixed-bottom" alt="">
-            <p class="navbar-brand fs-1 text-white comfortaa-font" href="../index.html">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></p>
-            <p class="text-center" styl="font-size: 10px !important;">Loading. Please wait.</p>
+            <p class="navbar-brand fs-1 text-white comfortaa-font">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></p>
+            <p class="text-center comfortaa-font" styl="font-size: 10px !important;">Loading. Please wait.</p>
         </nav>
     </div>
     <!-- ./Load Curtain -->
@@ -1951,7 +1975,7 @@ function getAllTrainers()
     <!-- ./ Facebook API -->
 
     <!-- Navigation bar, Cart & Other functions -->
-    <div class="container -fluid text-center pt-4">
+    <div class="container-lg -fluid text-center pt-4">
         <a class="navbar-brand my-4 p-4 fs-1 text-white comfortaa-font" href="#">
             One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span>
         </a>
@@ -1981,7 +2005,7 @@ function getAllTrainers()
 
             <div class="collapse showz down-top-grad-dark w3-animate-top comfortaa-font text-white" style="border-radius: 25px; overflow: hidden;" id="cart-panel">
                 <div class="p-4 shadow" id="">
-                    <div class="text-end">
+                    <div class="text-center d-flex justify-content-between">
                         <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4" type="button">
                             <p>
                                 <span class="material-icons material-icons-round">
@@ -2163,7 +2187,7 @@ function getAllTrainers()
     <!-- ./ Navigation bar, Cart & Other functions -->
 
     <!-- Main Content -->
-    <div class="container -fluid" style="padding-bottom: 100px">
+    <div class="container-lg" style="padding-bottom: 100px">
         <!-- Main Navigation Bar -->
         <nav class="navbar navbar-light sticky-top navbar-style w-100 mb-4" style="border-radius: 25px; max-height: 100vh !important; border-bottom: #ffa500 solid 5px;">
             <!-- App Function Buttons -->
@@ -2213,7 +2237,7 @@ function getAllTrainers()
 
                 <!-- Navigation Menu Offcanvas -->
                 <div class="offcanvas offcanvas-end offcanvas-menu-primary-style fitness-bg-containerz" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                    <div class="h-100" id="offcanvas-menu">
+                    <div class="h-100z" id="offcanvas-menu">
                         <div class="offcanvas-header shadow fs-1" style="background-color: #343434; color: #fff">
                             <img src="../media/assets/One-Symbol-Logo-White.png" alt="" class="img-fluid logo-size-2 pulse-animation" />
 
@@ -2304,20 +2328,52 @@ function getAllTrainers()
         <!-- ./ Main Navigation Bar -->
 
         <!-- Tab Content -->
-        <div class="container">
+        <div class="container-lg">
             <div class="tab-container" id="tab-container">
                 <div id="TabHome" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: block">
-                    <h1 class="text-center">Dashboard</h1>
-                    <p>This is the Dashboard Page.</p>
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">dashboard</span> Dashboard</h5>
+
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
+
+                    <h5 class="text-center">Hi Thabang.</h5>
+                    <p class="my-4 text-center comfortaa-fontr">Welcome to the Dashboard Page. Here, you can find various feeds from the activities we will be doing in the OnefitNet Community.</p>
+
+                    <hr class="text-white">
 
                     <div class="variable-grid-container">
                         <div class="full-wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
-                            <h4>Activities list/lineup</h4>
-                            <p class="mb-4">the activities list will be able to switch through the different programs of the use</p>
 
-                            <h5>Sunday (dd/mm/yyyy)</h5>
+                            <!-- fitness progression progress bar -->
+                            <div id="fitness-progression-progress-bar">
+                                <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">data_exploration</span> <span class="align-middle">Fitness Progression</span></h5>
+                                <div class="progress mt-4" style="height: 4px;">
+                                    <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: 25%; background-color: #ffa500 !important; border-right: #343434 10px solid;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="row mt-2" style="margin-bottom: 60px;">
+                                    <div class="col text-start comfortaa-font" style="font-size: 12px;">
+                                        Current XP <strong>(112)</strong>
+                                    </div>
+                                    <div class="col text-end comfortaa-font" style="font-size: 12px;">
+                                        Target XP <strong>(150)</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./ fitness progression progress bar -->
+
+                            <hr class="text-white">
+
+                            <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important; margin-bottom: 60px !important;">
+                                <h4 class="text-center">
+                                    <span class="material-icons material-icons-round align-middle" style="color: #fff !important">timeline</span>
+                                    <span class="rounded-pill p-4 align-middle" style="background-color: #ffa500; color: #343434;">Activities lined up.</span>
+                                </h4>
+                            </div>
+
+                            <h5 class="align-middle text-center"><span class="material-icons material-icons-outlined align-middle">today</span><br> <?php echo date("l"); ?><br> <span style="color: #ffa500;">[</span> <?php echo date("d/m/Y"); ?> <span style="color: #ffa500;">]</span></h5>
                             <!-- Digital Clock -->
-                            <div id="clock" class="dark mb-4 shadow">
+                            <div id="clock" class="dark my-4 shadow">
                                 <div class="display no-scroller">
                                     <div class="weekdays"></div>
                                     <div class="ampm"></div>
@@ -2327,94 +2383,101 @@ function getAllTrainers()
                             </div>
                             <!-- ./. Digital Clock -->
 
-                            <div class="row align-items-start text-white" id="training-schedule-chart-grid">
-                                <div class="col-md-8">
-                                    <div class="horizontal-scroll-card w-100 p-4 shadow">
-                                        <h5 class="text-center">Your Assessments for the day</h5>
-                                        <hr class="text-white" style="height: 5px;">
-
-                                        <ol class="list-group list-group-flush border-0 my-4">
-                                            <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
-                                                    <i class="fab fa-google" style="font-size: 30px!important"></i>
-                                                </span>
-                                                <div class="ms-2 me-auto">
-                                                    <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
-                                                    Frequency: Daily<br />
-                                                    Mendatory: Optional
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
-                                                    <i class="fab fa-google" style="font-size: 30px!important"></i>
-                                                </span>
-                                                <div class="ms-2 me-auto">
-                                                    <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
-                                                    Frequency: Daily<br />
-                                                    Mendatory: Optional
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
-                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important">
-                                                        pending_actions </span>
-                                                </span>
-                                                <div class="ms-2 me-auto">
-                                                    <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
-                                                    Frequency: Daily<br />
-                                                    Mendatory: Yes
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
-                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important">
-                                                        pending_actions </span>
-                                                </span>
-                                                <div class="ms-2 me-auto">
-                                                    <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
-                                                    Frequency: Daily<br />
-                                                    Mendatory: Yes
-                                                </div>
-                                            </li>
-                                        </ol>
-                                    </div>
+                            <div id="dashboard-activity-lineup-container">
+                                <div class="d-flex align-items-center text-center justify-content-center" id="no-activities-banner-container" style="min-height: 100px;">
+                                    <p class="my-4 fs-5 fw-bold comfortaa-font" style="cursor: pointer;" onclick="openLink(event, 'TabStudio')">No activities lined up. Go to the <span style="color: #ffa500;">.Studio</span> to get active.</p>
                                 </div>
 
-                                <div class="col-md-4 text-white text-center" id="home-day-1-col">
+                                <div class="row align-items-start text-white" id="training-schedule-chart-grid">
+                                    <div class="col-md-8">
+                                        <div class="horizontal-scroll-card w-100 p-4 shadow">
+                                            <h5 class="text-center">Your Assessments for the day</h5>
+                                            <hr class="text-white" style="height: 5px;">
 
-                                    <div class="chart-col-bar p-2 shadow comfortaa-font">
-                                        <h5>Today's Workout Activities</h5>
-
-                                        <hr class="text-white" style="height: 5px;">
-
-                                        <div class="down-top-grad-tahiti py-4 mb-4" style="border-radius: 0 0 25px 25px;">
-                                            <p class="fs-5 fw-bold">
-                                                Regeneration
-                                            </p>
-                                            <p style="color: #343434;">
-                                                RPE 1-3
-                                            </p>
+                                            <ol class="list-group list-group-flush border-0 my-4">
+                                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                                    </span>
+                                                    <div class="ms-2 me-auto">
+                                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
+                                                        Frequency: Daily<br />
+                                                        Mendatory: Optional
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                                    </span>
+                                                    <div class="ms-2 me-auto">
+                                                        <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
+                                                        Frequency: Daily<br />
+                                                        Mendatory: Optional
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
+                                                        <span class="material-icons material-icons-round" style="font-size: 20px !important">
+                                                            pending_actions </span>
+                                                    </span>
+                                                    <div class="ms-2 me-auto">
+                                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
+                                                        Frequency: Daily<br />
+                                                        Mendatory: Yes
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
+                                                        <span class="material-icons material-icons-round" style="font-size: 20px !important">
+                                                            pending_actions </span>
+                                                    </span>
+                                                    <div class="ms-2 me-auto">
+                                                        <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
+                                                        Frequency: Daily<br />
+                                                        Mendatory: Yes
+                                                    </div>
+                                                </li>
+                                            </ol>
                                         </div>
-
-                                        <hr class="text-white" style="height: 5px;" hidden>
-
-                                        <div class="chart-col-bar-item text-center position-relative">
-                                            <p>Cycling / Spinning</p>
-                                            <img src="../media/assets/icons/cycling.png" alt="" class="img-fluid">
-                                        </div>
-                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                        <div class="chart-col-bar-item text-center">
-                                            <p>Strength & Core</p>
-                                            <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
-                                        </div>
-                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                        <p class="text-center fs-5 fw-bold">Day 1/-6 <br>(Sunday, dd/mm/yyyy)</p>
                                     </div>
 
+                                    <div class="col-md-4 text-white text-center" id="home-day-1-col">
+
+                                        <div class="chart-col-bar p-2 shadow comfortaa-font">
+                                            <h5>Today's Workout Activities</h5>
+
+                                            <hr class="text-white" style="height: 5px;">
+
+                                            <div class="down-top-grad-tahiti py-4 mb-4" style="border-radius: 0 0 25px 25px;">
+                                                <p class="fs-5 fw-bold">
+                                                    Regeneration
+                                                </p>
+                                                <p style="color: #343434;">
+                                                    RPE 1-3
+                                                </p>
+                                            </div>
+
+                                            <hr class="text-white" style="height: 5px;" hidden>
+
+                                            <div class="chart-col-bar-item text-center position-relative">
+                                                <p>Cycling / Spinning</p>
+                                                <img src="../media/assets/icons/cycling.png" alt="" class="img-fluid">
+                                            </div>
+                                            <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                            <div class="chart-col-bar-item text-center">
+                                                <p>Strength & Core</p>
+                                                <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
+                                            </div>
+                                            <hr class="text-white my-2 p-0" style="height: 5px;">
+
+                                            <p class="text-center fs-5 fw-bold">Day 1/-6 <br>(Sunday, dd/mm/yyyy)</p>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
 
                         <!-- Content Card - Dashboard -->
@@ -2452,8 +2515,11 @@ function getAllTrainers()
                         <div class="tall-grid-tile full-wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
                             <h4>Google Community Surveys</h4>
                             <p class="mb-4">the activities list will be able to switch through the different programs of the use</p>
+                            <p class="text-muted">currently fixing the dashboard</p>
 
-                            <iframe class="w-100 tunnel-bg-container shadow" style="border-radius: 25px; overflow: hidden;" height="450" src="https://datastudio.google.com/embed/reporting/2a409a10-e7c0-4375-a22d-bfab63e728db/page/guiJC" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <!-- embed (22/10/2022)  -->
+                            <!-- <iframe class="w-100 tunnel-bg-container shadow" style="border-radius: 25px; overflow: hidden;" height="450" src="https://datastudio.google.com/embed/reporting/2a409a10-e7c0-4375-a22d-bfab63e728db/page/guiJC" frameborder="0" style="border:0" allowfullscreen></iframe> -->
+                            <!-- Older embedd: <iframe class="w-100 tunnel-bg-container shadow" style="border-radius: 25px; overflow: hidden;" height="450" src="https://datastudio.google.com/embed/reporting/2a409a10-e7c0-4375-a22d-bfab63e728db/page/guiJC" frameborder="0" style="border:0" allowfullscreen></iframe> -->
                         </div>
 
                         <div class="wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
@@ -2501,22 +2567,48 @@ function getAllTrainers()
                                 <div class="col-md-8 p-0">
                                     <p>Tracks</p>
                                     <hr class="text-white">
-                                    <ul class="list-group list-group-flush list-group-numbered" style="border-radius: 25px !important; overflow: hidden; background-color: #343434 !important;">
-                                        <li class="list-group-item">
+
+                                    <!-- track information and visualizer container -->
+                                    <div class="p-0 tunnel-bg-container-static" id="track-info-visualizer-container" style="border-radius: 25px 25px 0 0 !important; overflow: hidden;">
+                                        <div class="down-top-grad-dark p-4 h-100 w-100">
                                             <div class="row align-items-center">
                                                 <div class="col-md -4 text-center">
                                                     <!--Thumbnail-->
-                                                    <img src="../media/assets/OnefitNet Profile PicArtboard 2.jpg" alt="Song Thumb" class="img-fluid shadow" style="border-radius: 15px; max-height: 10vh;">
+                                                    <div class="p-0 shadow border-bottom" style="min-height: 20vh; border-radius: 25px; color: #fff; background-color: #343434; border-color: #ffa500 !important; border-width: 5px !important; overflow: hidden;">
+                                                        <div class="card bg-dark text-white border-0">
+                                                            <!-- style="border-radius: 25px !important;" -->
+                                                            <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg" class="card-img" alt="..."> <!-- style="border-radius: 25px !important;" -->
+                                                            <div class="card-img-overlay down-top-grad-dark d-grid align-items-end">
+                                                                <!-- style="border-radius: 25px !important;" -->
+                                                                <div class="text-start">
+                                                                    <h5 class="card-title" style="color: #ffa500 !important;">Card title</h5>
+                                                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                                    <div class="d-inline card-text">
+                                                                        <span class="material-icons material-icons-outlined" style="color: #ffa500; font-size: 10px !important;">tag</span>
+                                                                        <!-- track id - bc -->
+                                                                        <span class="barcode-font text-muted" style="color: #ffa500; font-size: 10px !important;">
+                                                                            Plylstid_0000001_Trackid_0000001
+                                                                        </span>
+                                                                        <!-- ./ track id - bc -->
+                                                                    </div>
 
-                                                    <div class="d-gridz gap-2 w-100">
-                                                        <button class="onefit-buttons-style-light shadow p-2 px-4 my-4" id="museplayer-togglebtn" type="button" data-bs-toggle="collapse" data-bs-target="#song-playid-songid" aria-expanded="false" aria-controls="song-playid-songid">
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <!--./ Thumbnail-->
+
+                                                    <div class="d-grid gap-2 w-100">
+                                                        <button class="onefit-buttons-style-dark shadow p-2 px-4 my-4" style="transform: translate(0) !important;" id="museplayer-togglebtn" type="button" data-bs-toggle="collapse" data-bs-target="#song-playid-songid" aria-expanded="false" aria-controls="song-playid-songid">
                                                             <div class="row align-items-center w-100 text-center">
-                                                                <div class="col-sm rounded-pill shadow-sm bg-white">
-                                                                    <span class="material-icons material-icons-round" style="font-size: 50px !important;">
+                                                                <div class="col-sm text-start">
+                                                                    <span class="material-icons material-icons-round rounded-pill shadow -sm p-3" style="font-size: 50px !important;">
                                                                         art_track
                                                                     </span>
                                                                 </div>
-                                                                <div class="col-sm">
+                                                                <div class="col-sm py-4">
                                                                     Song Title (00:00)
                                                                 </div>
                                                             </div>
@@ -2524,52 +2616,183 @@ function getAllTrainers()
                                                     </div>
 
                                                 </div>
-                                                <div class="col-xlg-8 collapse showz w3-animate-right" id="song-playid-songid">
+                                                <div class="col-xlg-8 mb-4 collapse show showz w3-animate-right text-white" id="song-playid-songid">
+                                                    <div class="mb-4 py-2">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important; color: #ffa500 !important;">info</span> Track Information.
+                                                    </div>
 
-                                                    <div class="p-0 shadow" style="min-height: 20vh; border-radius: 25px; color: #fff; background-color: #343434; overflow: hidden;">
-                                                        <div class="card bg-dark text-white border-0">
-                                                            <!-- style="border-radius: 25px !important;" -->
-                                                            <img src="../media/assets/OnefitNet Profile PicArtboard 2.jpg" class="card-img" alt="..."> <!-- style="border-radius: 25px !important;" -->
-                                                            <div class="card-img-overlay top-down-grad-dark">
-                                                                <!-- style="border-radius: 25px !important;" -->
-                                                                <h5 class="card-title">Card title</h5>
-                                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                                <p class="card-text">Last updated 3 mins ago</p>
-                                                            </div>
-                                                        </div>
+                                                    <hr class="text-white">
+
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-center"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
+                                                        <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-center"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
+                                                        <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-center"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
+                                                        <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-center"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <!-- music player controller buttons -->
+                                            <div class="text-center">
+                                                <hr class="text-white">
+                                                <div class="row my-4">
+                                                    <div class="col -sm">
+                                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('prev')"><span class="material-icons material-icons-round">skip_previous</span></button>
+                                                    </div>
+                                                    <div class="col -sm">
+                                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('togglePlay')"><span class="material-icons material-icons-round">play_circle</span></button>
+                                                    </div>
+                                                    <div class="col -sm">
+                                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('next')"><span class="material-icons material-icons-round">skip_next</span></button>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <button class="onefit-buttons-style-dark shadow p-2 my-2">
+                                            <!-- ./ music player controller buttons -->
+                                        </div>
+
+                                    </div>
+                                    <!-- ./ track information and visualizer container -->
+
+                                    <!-- selected playlist track list -->
+                                    <ul class="list-group list-group-flush list-group-numberedz text-white" style="border-radius: 0 0 25px 25px !important; overflow: hidden; background-color: #343434 !important;">
+                                        <li class="list-group-item d-grid comfortaa-font bg-transparent d-block">
+                                            <div class="d-inline">
+                                                <span class="material-icons material-icons-outlined" style="color: #ffa500; font-size: 10px !important;">tag</span>
+                                                <!-- track id - bc -->
+                                                <span class="barcode-font text-muted" style="color: #ffa500; font-size: 10px !important;">
+                                                    Plylstid_0000001_Trackid_0000001
+                                                </span>
+                                                <!-- ./ track id - bc -->
+                                            </div>
+
+
+                                            <button class="onefit-buttons-style-light shadow p-2 my-2" style="transform: translate(0) !important;" type="button" data-bs-toggle="collapse" data-bs-target="#TrackOptions-Plylstid_0000001_Trackid_0000001" aria-expanded="false" aria-controls="TrackOptions-Plylstid_0000001_Trackid_0000001">
                                                 <div class="row align-items-center w-100">
                                                     <div class="col">
                                                         <span class="material-icons material-icons-round shadow-lg" style="font-size: 20px !important;">
                                                             play_arrow
                                                         </span>
                                                     </div>
-                                                    <div class="col">
-                                                        Song Title (00:00)
+                                                    <div class="col text-truncate">
+                                                        (00:00) Song Title
+                                                    </div>
+                                                    <div class="col text-end">
+                                                        <span class="material-icons material-icons-round">read_more</span>
                                                     </div>
                                                 </div>
                                             </button>
+
+                                            <!-- track options -->
+                                            <div class="collapse w3-animate-right" id="TrackOptions-Plylstid_0000001_Trackid_0000001">
+                                                <div class="row">
+                                                    <div class="col-md d-grid align-items-center">
+                                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('togglePlay')"><span class="material-icons material-icons-round">pause_circle</span></button>
+                                                    </div>
+                                                    <div class="col-md">
+                                                        <ul class="list-group list-group-flush">
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- ./ track options -->
                                         </li>
-                                        <li class="list-group-item">
-                                            <button class="onefit-buttons-style-dark shadow p-2 my-2">
+                                        <li class="list-group-item d-grid comfortaa-font bg-transparent d-block">
+                                            <div class="d-inline">
+                                                <span class="material-icons material-icons-outlined" style="color: #ffa500; font-size: 10px !important;">tag</span>
+                                                <!-- track id - bc -->
+                                                <span class="barcode-font text-muted" style="color: #ffa500; font-size: 10px !important;">
+                                                    Plylstid_0000001_Trackid_0000002
+                                                </span>
+                                                <!-- ./ track id - bc -->
+                                            </div>
+
+                                            <button class="onefit-buttons-style-light shadow p-2 my-2" style="transform: translate(0) !important;" type="button" data-bs-toggle="collapse" data-bs-target="#TrackOptions-Plylstid_0000001_Trackid_0000002" aria-expanded="false" aria-controls="TrackOptions-Plylstid_0000001_Trackid_0000002">
                                                 <div class="row align-items-center w-100">
                                                     <div class="col">
                                                         <span class="material-icons material-icons-round shadow-lg" style="font-size: 20px !important;">
-                                                            play_arrow
+                                                            pause
                                                         </span>
                                                     </div>
-                                                    <div class="col">
-                                                        Song Title (00:00)
+                                                    <div class="col text-truncate">
+                                                        (00:00) Song Title
+                                                    </div>
+                                                    <div class="col text-end">
+                                                        <span class="material-icons material-icons-round">read_more</span>
                                                     </div>
                                                 </div>
                                             </button>
+
+                                            <!-- track options -->
+                                            <div class="collapse w3-animate-right" id="TrackOptions-Plylstid_0000001_Trackid_0000002">
+                                                <div class="row">
+                                                    <div class="col-md d-grid align-items-center">
+                                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('togglePlay')"><span class="material-icons material-icons-round">play_circle</span></button>
+                                                    </div>
+                                                    <div class="col-md">
+                                                        <ul class="list-group list-group-flush">
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- ./ track options -->
+                                        </li>
+                                        <li class="list-group-item d-grid comfortaa-font bg-transparent d-block">
+                                            <div class="d-inline">
+                                                <span class="material-icons material-icons-outlined" style="color: #ffa500; font-size: 10px !important;">tag</span>
+                                                <!-- track id - bc -->
+                                                <span class="barcode-font text-muted" style="color: #ffa500; font-size: 10px !important;">
+                                                    Plylstid_0000001_Trackid_0000003
+                                                </span>
+                                                <!-- ./ track id - bc -->
+                                            </div>
+
+                                            <button class="onefit-buttons-style-light shadow p-2 my-2" style="transform: translate(0) !important;" type="button" data-bs-toggle="collapse" data-bs-target="#TrackOptions-Plylstid_0000001_Trackid_0000003" aria-expanded="false" aria-controls="TrackOptions-Plylstid_0000001_Trackid_0000003">
+                                                <div class="row align-items-center w-100">
+                                                    <div class="col">
+                                                        <span class="material-icons material-icons-round shadow-lg" style="font-size: 20px !important;">
+                                                            pause
+                                                        </span>
+                                                    </div>
+                                                    <div class="col text-truncate">
+                                                        (00:00) Song Title
+                                                    </div>
+                                                    <div class="col text-end">
+                                                        <span class="material-icons material-icons-round">read_more</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+
+                                            <!-- track options -->
+                                            <div class="collapse w3-animate-right" id="TrackOptions-Plylstid_0000001_Trackid_0000003">
+                                                <div class="row">
+                                                    <div class="col-md d-grid align-items-center">
+                                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('togglePlay')"><span class="material-icons material-icons-round">play_circle</span></button>
+                                                    </div>
+                                                    <div class="col-md">
+                                                        <ul class="list-group list-group-flush">
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- ./ track options -->
                                         </li>
                                     </ul>
+                                    <!-- ./ selected playlist track list -->
                                 </div>
                             </div>
                         </div>
@@ -2577,8 +2800,14 @@ function getAllTrainers()
                     </div>
                 </div>
                 <div id="TabProfile" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
-                    <h1 class="text-center">My Profile</h1>
-                    <hr class="text-white" />
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">account_circle</span> Profile</h5>
+
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
+                    <!-- <h1 class="text-center">Profile</h1>
+                    <hr class="text-white" /> -->
+
                     <div id="profile-panel-container">
                         <!-- Profile Tab: User Profile -->
                         <div class='container comfortaa-font rounded-pillz shadow pb-4 px-0 m-0z text-white w-100' style='border-radius: 25px; background-color: #343434; overflow: hidden'>
@@ -2727,14 +2956,17 @@ function getAllTrainers()
                         <!-- ./ Profile Tab: User Profile -->
                     </div>
 
-
                 </div>
                 <div id="TabDiscovery" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
-                    <h1>Discovery</h1>
-                    <p class="text-right" style="font-size: 10px">powered by AdaptEngine™</p>
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">travel_explore</span> Discovery</h5>
+                        <p class="text-center" style="font-size: 10px">powered by AdaptEngine™</p>
 
-                    <div class="row align-items-center">
-                        <div class="col-md -10">
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
+
+                    <div class="row align-items-center my-4">
+                        <div class="col-md-10">
                             <input type="search" class="onefit-inputs-style" id="discover-search-input" placeholder="Search" />
                         </div>
                         <div class="col-md-2 text-left">
@@ -2753,23 +2985,23 @@ function getAllTrainers()
 
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab-discovery" role="tablist" style="border-color: #ffa500 !important">
-                            <button class="nav-link active" id="nav-discovery-trainers-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-trainers" type="button" role="tab" aria-controls="nav-discovery-trainers" aria-selected="true">Trainers</button>
+                            <button class="nav-link p-4 active" id="nav-discovery-trainers-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-trainers" type="button" role="tab" aria-controls="nav-discovery-trainers" aria-selected="true">Trainers</button>
 
-                            <button class="nav-link" id="nav-discovery-trainees-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-trainees" type="button" role="tab" aria-controls="nav-discovery-trainees" aria-selected="false">Trainees</button>
+                            <button class="nav-link p-4" id="nav-discovery-trainees-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-trainees" type="button" role="tab" aria-controls="nav-discovery-trainees" aria-selected="false">Trainees</button>
 
-                            <button class="nav-link" id="nav-discovery-groups-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-groups" type="button" role="tab" aria-controls="nav-discovery-groups" aria-selected="false">Groups</button>
+                            <button class="nav-link p-4" id="nav-discovery-groups-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-groups" type="button" role="tab" aria-controls="nav-discovery-groups" aria-selected="false">Groups</button>
 
-                            <button class="nav-link" id="nav-discovery-posts-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-posts" type="button" role="tab" aria-controls="nav-discovery-posts" aria-selected="false">Community Updates</button>
+                            <button class="nav-link p-4" id="nav-discovery-posts-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-posts" type="button" role="tab" aria-controls="nav-discovery-posts" aria-selected="false">Community Updates</button>
 
-                            <button class="nav-link" id="nav-discovery-onefoodie-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-onefoodie" type="button" role="tab" aria-controls="nav-discovery-onefoodie" aria-selected="false">Onefoodie&trade;</button>
+                            <button class="nav-link p-4" id="nav-discovery-onefoodie-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-onefoodie" type="button" role="tab" aria-controls="nav-discovery-onefoodie" aria-selected="false">Onefoodie&trade;</button>
 
-                            <button class="nav-link" id="nav-discovery-fit-progs-indi-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-fit-progs-indi" type="button" role="tab" aria-controls="nav-discovery-fit-progs-indi" aria-selected="false">Indi-Fitness</button>
+                            <button class="nav-link p-4" id="nav-discovery-fit-progs-indi-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-fit-progs-indi" type="button" role="tab" aria-controls="nav-discovery-fit-progs-indi" aria-selected="false">Indi-Fitness</button>
 
-                            <button class="nav-link" id="nav-discovery-fit-progs-team-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-fit-progs-team" type="button" role="tab" aria-controls="nav-discovery-fit-progs-team" aria-selected="false">Team-Fitness</button>
+                            <button class="nav-link p-4" id="nav-discovery-fit-progs-team-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-fit-progs-team" type="button" role="tab" aria-controls="nav-discovery-fit-progs-team" aria-selected="false">Team-Fitness</button>
 
-                            <button class="nav-link" id="nav-discovery-well-progs-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-well-progs" type="button" role="tab" aria-controls="nav-discovery-well-progs" aria-selected="false">Wellness Programs</button>
+                            <button class="nav-link p-4" id="nav-discovery-well-progs-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-well-progs" type="button" role="tab" aria-controls="nav-discovery-well-progs" aria-selected="false">Wellness Programs</button>
 
-                            <button class="nav-link" id="nav-discovery-fitengine-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-fitengine" type="button" role="tab" aria-controls="nav-discovery-fitengine" aria-selected="false">FitEngine&trade;</button>
+                            <button class="nav-link p-4" id="nav-discovery-fitengine-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-fitengine" type="button" role="tab" aria-controls="nav-discovery-fitengine" aria-selected="false">FitEngine&trade;</button>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tab-DiscoveryContent">
@@ -2849,9 +3081,14 @@ function getAllTrainers()
                     </div>
                 </div>
                 <div id="TabStudio" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
-                    <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Studio
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">play_circle_outline</span> <span style="color: #fff !important"> <span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Studio</h5>
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
+                    <!-- <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Studio
                     </h1>
-                    <hr class="text-white" />
+                    <hr class="text-white" /> -->
+
                     • Onefit.Community Streams (Onefit.tv) – Live stream sessions of scheduled Community (public) & Group-based
                     fitness program guidance classes. (Scheduled Program Guidance Classes and Community Events on Onefit App and
                     Socials that are open to all visitors, casual subscribers, and premium members (Onefit.app, Zoom, Skype,
@@ -2889,19 +3126,19 @@ function getAllTrainers()
                     </div>
 
                     <div class="grid-container studio-tab-grid">
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile" style="overflow-y: auto;">
                             <h4>Stream library</h4>
                             <p>Live stream recording history (Community and Private)</p>
                             <hr class="text-white" />
                         </div>
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile" style="overflow-y: auto;">
                             <h4>Personal Training Centre</h4>
                             <p>Scheduling of Private/One-On-One Live Streams and/or physical interaction with Personal Trainers
                                 (Streams: Onefit.app, Zoom, Skype, Teams | Physical: Your nearest Gym Company Gym/nearest Virgin Active
                                 and House-Call)</p>
                             <hr class="text-white" />
                         </div>
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile" style="overflow-y: auto;">
                             <h4><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Muse<span class="material-icons material-icons-round">
                                     equalizer
                                 </span>
@@ -2923,23 +3160,232 @@ function getAllTrainers()
                                     </div>
                                 </div>
                             </div>
+
+                            <!--  -->
+                            <div class="row">
+                                <div class="col-md-4 p-0">
+
+                                    <p>Playlists</p>
+
+                                    <hr class="text-white">
+                                    <div class="p-4 d-grid gap-2">
+                                        <button class="onefit-buttons-style-tahiti p-4 shadow mb-4 comfortaa-font">
+                                            + Share your <br><span class="fw-bold fs-5" style="color: #fff !important;">Original Music</span>
+                                        </button>
+
+                                        <img src="../media/assets/muse_thumbnails/Gym-Playlist-Energetic-Tracks-For-Workout-Fitness-English-2018-20180602225519-500x500.jpg" class="img-fluid shadow my-2" style="border-radius: 25px;" alt="example thumbnail">
+
+                                        <img src="../media/assets/muse_thumbnails/Gym-Playlist-Energetic-Tracks-For-Workout-Fitness-English-2018-20180602225519-500x500.jpg" class="img-fluid shadow my-2" style="border-radius: 25px;" alt="example thumbnail">
+
+                                        <img src="../media/assets/muse_thumbnails/Gym-Playlist-Energetic-Tracks-For-Workout-Fitness-English-2018-20180602225519-500x500.jpg" class="img-fluid shadow my-2" style="border-radius: 25px;" alt="example thumbnail">
+                                    </div>
+                                </div>
+                                <div class="col-md-8 p-0">
+                                    <p>Tracks</p>
+                                    <hr class="text-white">
+
+                                    <!-- track information and visualizer container -->
+                                    <div class="p-0 tunnel-bg-container-static" id="track-info-visualizer-container" style="border-radius: 25px 25px 0 0 !important; overflow: hidden;">
+                                        <div class="down-top-grad-dark p-4 h-100 w-100">
+                                            <div class="row align-items-center">
+                                                <div class="col-md -4 text-center">
+                                                    <!--Thumbnail-->
+                                                    <div class="p-0 shadow" style="min-height: 20vh; border-radius: 25px; color: #fff; background-color: #343434; overflow: hidden;">
+                                                        <div class="card bg-dark text-white border-0">
+                                                            <!-- style="border-radius: 25px !important;" -->
+                                                            <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg" class="card-img" alt="..."> <!-- style="border-radius: 25px !important;" -->
+                                                            <div class="card-img-overlay down-top-grad-dark d-grid align-items-end">
+                                                                <!-- style="border-radius: 25px !important;" -->
+                                                                <div class="text-start">
+                                                                    <h5 class="card-title" style="color: #ffa500 !important;">Card title</h5>
+                                                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                                    <p class="card-text text-muted">Last updated 3 mins ago</p>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--./ Thumbnail-->
+
+                                                    <div class="d-grid gap-2 w-100">
+                                                        <button class="onefit-buttons-style-dark shadow p-2 px-4 my-4" id="museplayer-togglebtn" type="button" data-bs-toggle="collapse" data-bs-target="#song-playid-songid" aria-expanded="false" aria-controls="song-playid-songid">
+                                                            <div class="row align-items-center w-100 text-center">
+                                                                <div class="col-sm rounded-pill shadow-sm bg-whitez">
+                                                                    <span class="material-icons material-icons-round" style="font-size: 50px !important;">
+                                                                        art_track
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-sm py-4">
+                                                                    Song Title (00:00)
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-xlg-8 mb-4 collapse show showz w3-animate-right text-white" id="song-playid-songid">
+
+                                                    Song Information
+                                                </div>
+                                            </div>
+
+                                            <!-- music player controller buttons *use main controllers -->
+                                            <!-- <div class="text-center">
+                                                <hr class="text-white">
+                                                <div class="row my-4">
+                                                    <div class="col -sm">
+                                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('prev')"><span class="material-icons material-icons-round">skip_previous</span></button>
+                                                    </div>
+                                                    <div class="col -sm">
+                                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('togglePlay')"><span class="material-icons material-icons-round">play_circle</span></button>
+                                                    </div>
+                                                    <div class="col -sm">
+                                                        <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('next')"><span class="material-icons material-icons-round">skip_next</span></button>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                            <!-- ./ music player controller buttons -->
+                                        </div>
+
+                                    </div>
+                                    <!-- ./ track information and visualizer container -->
+
+                                    <!-- selected playlist track list -->
+                                    <ul class="list-group list-group-flush list-group-numberedz text-white" style="border-radius: 0 0 25px 25px !important; overflow: hidden; background-color: #343434 !important;">
+                                        <li class="list-group-item d-grid comfortaa-font bg-transparent d-block">
+                                            <div class="d-inline">
+                                                <span class="material-icons material-icons-outlined" style="color: #ffa500; font-size: 10px !important;">tag</span>
+                                                <!-- track id - bc -->
+                                                <span class="barcode-font text-muted" style="color: #ffa500; font-size: 10px !important;">
+                                                    Plylstid_0000001_Trackid_0000001
+                                                </span>
+                                                <!-- ./ track id - bc -->
+                                            </div>
+
+
+                                            <button class="onefit-buttons-style-light shadow p-2 my-2" style="transform: translate(0) !important;" type="button" data-bs-toggle="collapse" data-bs-target="#TrackOptions-Plylstid_0000001_Trackid_0000001" aria-expanded="false" aria-controls="TrackOptions-Plylstid_0000001_Trackid_0000001">
+                                                <div class="row align-items-center w-100">
+                                                    <div class="col">
+                                                        <span class="material-icons material-icons-round shadow-lg" style="font-size: 20px !important;">
+                                                            play_arrow
+                                                        </span>
+                                                    </div>
+                                                    <div class="col text-truncate">
+                                                        (00:00) Song Title
+                                                    </div>
+                                                    <div class="col text-end">
+                                                        <span class="material-icons material-icons-round">read_more</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+
+                                            <!-- track options -->
+                                            <div class="collapse w3-animate-right" id="TrackOptions-Plylstid_0000001_Trackid_0000001">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                </ul>
+                                            </div>
+                                            <!-- ./ track options -->
+                                        </li>
+                                        <li class="list-group-item d-grid comfortaa-font bg-transparent d-block">
+                                            <div class="d-inline">
+                                                <span class="material-icons material-icons-outlined" style="color: #ffa500; font-size: 10px !important;">tag</span>
+                                                <!-- track id - bc -->
+                                                <span class="barcode-font text-muted" style="color: #ffa500; font-size: 10px !important;">
+                                                    Plylstid_0000001_Trackid_0000002
+                                                </span>
+                                                <!-- ./ track id - bc -->
+                                            </div>
+
+                                            <button class="onefit-buttons-style-light shadow p-2 my-2" style="transform: translate(0) !important;" type="button" data-bs-toggle="collapse" data-bs-target="#TrackOptions-Plylstid_0000001_Trackid_0000002" aria-expanded="false" aria-controls="TrackOptions-Plylstid_0000001_Trackid_0000002">
+                                                <div class="row align-items-center w-100">
+                                                    <div class="col">
+                                                        <span class="material-icons material-icons-round shadow-lg" style="font-size: 20px !important;">
+                                                            play_arrow
+                                                        </span>
+                                                    </div>
+                                                    <div class="col text-truncate">
+                                                        (00:00) Song Title
+                                                    </div>
+                                                    <div class="col text-end">
+                                                        <span class="material-icons material-icons-round">expand_circle_down</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+
+                                            <!-- track options -->
+                                            <div class="collapse w3-animate-right" id="TrackOptions-Plylstid_0000001_Trackid_0000002">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                </ul>
+                                            </div>
+                                            <!-- ./ track options -->
+                                        </li>
+                                        <li class="list-group-item d-grid comfortaa-font bg-transparent d-block">
+                                            <div class="d-inline">
+                                                <span class="material-icons material-icons-outlined" style="color: #ffa500; font-size: 10px !important;">tag</span>
+                                                <!-- track id - bc -->
+                                                <span class="barcode-font text-muted" style="color: #ffa500; font-size: 10px !important;">
+                                                    Plylstid_0000001_Trackid_0000003
+                                                </span>
+                                                <!-- ./ track id - bc -->
+                                            </div>
+
+                                            <button class="onefit-buttons-style-light shadow p-2 my-2" style="transform: translate(0) !important;" type="button" data-bs-toggle="collapse" data-bs-target="#TrackOptions-Plylstid_0000001_Trackid_0000003" aria-expanded="false" aria-controls="TrackOptions-Plylstid_0000001_Trackid_0000003">
+                                                <div class="row align-items-center w-100">
+                                                    <div class="col">
+                                                        <span class="material-icons material-icons-round shadow-lg" style="font-size: 20px !important;">
+                                                            play_arrow
+                                                        </span>
+                                                    </div>
+                                                    <div class="col text-truncate">
+                                                        (00:00) Song Title
+                                                    </div>
+                                                    <div class="col text-end">
+                                                        <span class="material-icons material-icons-round">more</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+
+                                            <!-- track options -->
+                                            <div class="collapse w3-animate-right" id="TrackOptions-Plylstid_0000001_Trackid_0000003">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                </ul>
+                                            </div>
+                                            <!-- ./ track options -->
+                                        </li>
+                                    </ul>
+                                    <!-- ./ selected playlist track list -->
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile" style="overflow-y: auto;">
                             <h4>Indi-Home and Gym</h4>
                             <p>Home and Gym Fitness Programs &amp; Guides for Individuals</p>
                             <hr class="text-white" />
                         </div>
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile" style="overflow-y: auto;">
                             <h4>Indi-Athletics Fitness</h4>
                             <p>Advanced Athletic Fitness Programs &amp; Guides for Individuals.</p>
                             <hr class="text-white" />
                         </div>
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile" style="overflow-y: auto;">
                             <h4>Team-Based Athletics</h4>
                             <p>Athletic Fitness Programs for Teams in Sports.</p>
                             <hr class="text-white" />
                         </div>
-                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile">
+                        <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile" style="overflow-y: auto;">
                             <h4>Diet Menu</h4>
                             <p>Healthy Eating Guide</p>
                             <hr class="text-white" />
@@ -2947,9 +3393,14 @@ function getAllTrainers()
                     </div>
                 </div>
                 <div id="TabStore" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
-                    <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Store
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">storefront</span> <span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Store</h5>
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
+                    <!-- <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Store
                     </h1>
-                    <hr class="text-white" />
+                    <hr class="text-white" /> -->
+
                     • Sale of Activity Trackers and Smart Watches (wearables) • Sale of Fitness Equipment (weights, weight
                     benches,
                     treadmills, scales, etc.) • Sale of Supplements and Vitamins • Sale of Membership Subscriptions (3 Month, 6
@@ -3538,9 +3989,14 @@ function getAllTrainers()
                     <!-- Membership Sales Card Grid -->
                 </div>
                 <div id="TabSocial" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
-                    <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Social
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">hub</span> <span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Social</h5>
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
+                    <!-- <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Social
                     </h1>
-                    <hr class="text-white" />
+                    <hr class="text-white" /> -->
+
                     • Community Status Update Feed • Shared Resources Feed • Social Chat Messenger • Public Achievements • Public
                     Events Lineup (Community live stream) • Community Rewards Program
 
@@ -3559,7 +4015,7 @@ function getAllTrainers()
                     <!-- ./ User Status Bar -->
 
                     <!-- Post new update -->
-                    <div class="container" id="social-post-update-container">
+                    <div class="container-lg" id="social-post-update-container">
                         <div class="row align-items-center collapsez" id="tab-nav-social-quickpostz">
                             <div class="col-sm d-grid gap-2 py-4 px-0">
                                 <!-- Quick Post to Social -->
@@ -3881,58 +4337,243 @@ function getAllTrainers()
                     </div>
                 </div>
                 <div id="TabData" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
-                    <h1 class="text-center">Fitness Insights</h1>
-                    <p class="text-center my-4">Data Centre</p>
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h1 class="text-center comfortaa-font">
+                            <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">
+                                insights
+                            </span>
+                            Fitness Insights
+                        </h1>
+                        <p class="text-center my-4 comfortaa-font">Use the Fitness Insights page to track your fitness progression and workout activities.</p>
+                    </div>
+
                     <hr class="text-white" style="height: 5px;">
 
                     <!-- Timelines and Calender -->
-                    <h5 class="mt-4 fs-1 text-center">Fitness Timeline</h5>
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h5 class="my-4 fs-1 text-center">Fitness Calender</h5>
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
+
                     <!-- Activity Calender -->
                     <div id="activities-calender"></div>
-                    <img hidden src="../media/assets/12month-calendar.png" alt="calender placeholder" class="img-fluid mb-4">
                     <!-- ./ Activity Calender -->
-                    <!-- Timeline Chart -->
-                    <div id="timeline" class="w-100 my-4" style="min-height: 200px; overflow-x: auto;"></div>
-                    <!-- ./ Timeline Chart -->
-                    <!-- ./ Timeline and Calender -->
 
-                    <!-- User Smart Device Activity Tracking -->
-                    <hr class="text-white" style="height: 5px;">
-                    <h5 class="mt-4 fs-1 text-center">Activity Tracking</h5>
-                    <div class="container p-4 shadow-lg d-inline-block border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
-                        <div class="row align-items-center text-center comfortaa-font">
-                            <div class="col-sm py-2 d-inline">
-                                <!--<i class="fas fa-heart"></i>-->
-                                <span class="material-icons material-icons-round"> monitor_heart </span>
-                                HeartRate
-                            </div>
-                            <div class="col-sm py-2 d-inline"><span style="color: #ffa500">|</span></div>
-                            <div class="col-sm py-2 d-inline">
-                                <!--<i class="fas fa-thermometer-half"></i>-->
-                                <span class="material-icons material-icons-round"> device_thermostat </span>
-                                Temp
-                            </div>
-                            <div class="col-sm py-2 d-inline">
-                                <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid my-pulse-animation-tahiti" />
-                            </div>
-                            <div class="col-sm py-2 d-inline">
-                                <!--<i class="fas fa-bolt"></i>-->
-                                <span class="material-icons material-icons-round"> bolt </span>
-                                Speed
-                            </div>
-                            <div class="col-sm py-2 d-inline"><span style="color: #ffa500">|</span></div>
-                            <div class="col-sm py-2 d-inline">
-                                <!--<i class="fas fa-walking"></i>-->
-                                <span class="material-icons material-icons-round"> directions_walk </span>
-                                Steps
+                    <!-- Vertical Activity Timeline of user -->
+
+                    <div id="v-timeline" class="w-100 my-4 py-4 shadow border-5 border-bottom" style="background-color: #343434; border-radius: 25px; border-color: #ffa500 !important; overflow-x: auto;">
+                        <div class="d-grid text-center">
+                            <h5 class="my-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">
+                                    view_timeline
+                                </span> Activity Timeline
+                            </h5>
+                        </div>
+
+                        <hr style="color: #ffa500;">
+
+                        <div id="vertical-timeline-varusername no-scroller" style="max-height: 90vh; overflow: auto; border-radius: 25px;">
+                            <div class="timeline" style="min-width: 500px; border-radius: 25px;">
+                                <div class="timeline-container left">
+                                    <div class="date comfortaa-font">15 Dec 2022</div>
+                                    <span class="icon">
+                                        <span class="material-icons material-icons-round" style="font-size: 18px !important;">
+                                            task_alt
+                                        </span>
+                                    </span>
+
+                                    <div class="content">
+                                        <h2 class="comfortaa-font">Lorem ipsum dolor sit amet</h2>
+                                        <p class="mb-4">
+                                            Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit
+                                            semper pretium.
+                                        </p>
+                                        <p class="mt-4" style="color: #ffa500;" style="font-size: 20px !important;">
+                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
+                                                schedule
+                                            </span>
+                                            <span class="align-middle">10h00</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="timeline-container right">
+                                    <div class="date comfortaa-font">22 Oct 2022</div>
+                                    <span class="icon">
+                                        <span class="material-icons material-icons-round" style="font-size: 18px !important;">
+                                            task_alt
+                                        </span>
+                                    </span>
+                                    <div class="content">
+                                        <h2 class="comfortaa-font">Lorem ipsum dolor sit amet</h2>
+                                        <p>
+                                            Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit
+                                            semper pretium.
+                                        </p>
+                                        <p class="mt-4" style="color: #ffa500;" style="font-size: 20px !important;">
+                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
+                                                schedule
+                                            </span>
+                                            <span class="align-middle">10h00</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="timeline-container left">
+                                    <div class="date comfortaa-font">10 Jul 2022</div>
+                                    <span class="icon">
+                                        <span class="material-icons material-icons-round" style="font-size: 18px !important;">
+                                            task_alt
+                                        </span>
+                                    </span>
+                                    <div class="content">
+                                        <h2 class="comfortaa-font">Lorem ipsum dolor sit amet</h2>
+                                        <p>
+                                            Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit
+                                            semper pretium.
+                                        </p>
+                                        <p class="mt-4" style="color: #ffa500;" style="font-size: 20px !important;">
+                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
+                                                schedule
+                                            </span>
+                                            <span class="align-middle">10h00</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="timeline-container right">
+                                    <div class="date comfortaa-font">18 May 2022</div>
+                                    <span class="icon">
+                                        <span class="material-icons material-icons-round" style="font-size: 18px !important;">
+                                            task_alt
+                                        </span>
+                                    </span>
+                                    <div class="content">
+                                        <h2 class="comfortaa-font">Lorem ipsum dolor sit amet</h2>
+                                        <p>
+                                            Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit
+                                            semper pretium.
+                                        </p>
+                                        <p class="mt-4" style="color: #ffa500;" style="font-size: 20px !important;">
+                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
+                                                schedule
+                                            </span>
+                                            <span class="align-middle">10h00</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="timeline-container left">
+                                    <div class="date comfortaa-font">10 Feb 2022</div>
+                                    <span class="icon">
+                                        <span class="material-icons material-icons-round" style="font-size: 18px !important;">
+                                            task_alt
+                                        </span>
+                                    </span>
+                                    <div class="content">
+                                        <h2 class="comfortaa-font">Lorem ipsum dolor sit amet</h2>
+                                        <p>
+                                            Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit
+                                            semper pretium.
+                                        </p>
+                                        <p class="mt-4" style="color: #ffa500;" style="font-size: 20px !important;">
+                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
+                                                schedule
+                                            </span>
+                                            <span class="align-middle">10h00</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="timeline-container right">
+                                    <div class="date comfortaa-font">01 Jan 2022</div>
+                                    <span class="icon">
+                                        <span class="material-icons material-icons-round" style="font-size: 18px !important;">
+                                            task_alt
+                                        </span>
+                                    </span>
+                                    <div class="content">
+                                        <h2 class="comfortaa-font">Lorem ipsum dolor sit amet</h2>
+                                        <p>
+                                            Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit
+                                            semper pretium.
+                                        </p>
+                                        <p class="mt-4" style="color: #ffa500;" style="font-size: 20px !important;">
+                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
+                                                schedule
+                                            </span>
+                                            <span class="align-middle">10h00</span>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <!-- ./ Vertical Activity Timeline of user -->
+
+                    <!-- ./ Timeline and Calender -->
+
+                    <hr class="text-white" style="height: 5px;">
+
+                    <!-- User Smart Device Activity Tracking -->
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h5 class="mt-4 fs-1 text-center">Activity Tracking</h5>
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
+
+                    <div class="container-lg p-4 shadow-lg d-inline-block border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
+                        <div class="row align-items-center text-center comfortaa-font">
+                            <div class="col-sm py-2 text-truncate">
+                                <!--<i class="fas fa-heart"></i>-->
+                                <div class="d-inline">
+                                    <span class="material-icons material-icons-round align-middle"> monitor_heart </span>
+                                    <span class="align-middle">Heart rate</span>
+                                </div>
+
+                            </div>
+                            <div class="col-sm py-2 text-truncate">
+                                <div class="d-inline">
+                                    <span class="align-middle" style="color: #ffa500">|</span>
+                                </div>
+                            </div>
+                            <div class="col-sm py-2 text-truncate">
+                                <!--<i class="fas fa-thermometer-half"></i>-->
+                                <div class="d-inline">
+                                    <span class="material-icons material-icons-round align-middle"> device_thermostat </span>
+                                    <!-- Degree symbol html code: &#176; -->
+                                    <span class="align-middle">Temp&#176;</span>
+                                </div>
+                            </div>
+                            <div class="col-sm py-2 text-center">
+                                <div class="d-inline">
+                                    <button class="btn p-4 onefit-buttons-style-dark my-pulse-animation-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="heartrate-expand-icon heartrate-data-input-form-container">
+                                        <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid mb-2" />
+                                        <span class="material-icons material-icons-round">fitbit</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-sm py-2 text-truncate">
+                                <!--<i class="fas fa-bolt"></i>-->
+                                <div class="d-inline">
+                                    <span class="material-icons material-icons-round align-middle"> bolt </span>
+                                    <span class="align-middle">Speed</span>
+                                </div>
+                            </div>
+                            <div class="col-sm py-2 text-truncate">
+                                <div class="d-inline">
+                                    <span class="align-middle" style="color: #ffa500">|</span>
+                                </div>
+                            </div>
+                            <div class="col-sm py-2 text-truncate">
+                                <!--<i class="fas fa-walking"></i>-->
+                                <div class="d-inline">
+                                    <span class="material-icons material-icons-round align-middle"> directions_walk </span>
+                                    <span class="align-middle">Steps</span>
+                                </div>
+                            </div>
+                        </div>
+
                         <hr class="text-white">
+
                         <!-- detailed metric list -->
                         <ul class="list-group list-group-flush text-white border-0">
                             <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
                                 <div class="row align-items-center">
-                                    <div class="col-lg-4 text-center">
+                                    <div class="col-md -4 text-center">
                                         <h1 class="text-truncate">Heart Rate Monitor</h1>
                                         <div class="d-grid gap-2 mt-4">
                                             <span class="material-icons material-icons-round">
@@ -3941,11 +4582,66 @@ function getAllTrainers()
                                             <h1>65<span style="font-size: 10px;" class="align-top">BPM</span></h1>
                                             <p class="text-muted fw-bold">75 BPM, 5h ago</p>
                                         </div>
+
+                                        <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="heartrate-expand-icon heartrate-data-input-form-container">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                add_circle_outline
+                                            </span>
+                                        </button> -->
                                     </div>
-                                    <div class="col-lg py-4">
+                                    <div class="col-md -8 py-4">
                                         <!-- Canvasjs chart canvas -->
-                                        <canvas class="chartjs-chart-light shadow" id="heart_rate_monitor_chart" width="400" height="200"></canvas>
+                                        <canvas class="chartjs-chart-light shadow" id="heart_rate_monitor_chart" width="400" height="400"></canvas>
                                         <!-- ./Canvasjs chart canvas -->
+
+                                        <!-- submit heartrate data form -->
+                                        <div id="heartrate-expand-icon" class="collapse multi-collapse text-center w3-animate-bottom my-4">
+                                            <span class="material-icons material-icons-round">
+                                                add_task
+                                            </span>
+                                        </div>
+
+                                        <div id="heartrate-data-input-form-container" class="collapse  multi-collapse p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                            <div class="align-middle comfortaa-font text-center">
+                                                <span class="material-icons material-icons-round align-middle">today</span>
+
+                                                <span class="align-middle fw-bold">17 Oct 2022 | 13:04</span>
+                                            </div>
+
+                                            <hr class="text-white">
+
+                                            <form class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="" autocomplete="off">
+                                                <div class="output-container my-2" id="output-container">
+                                                    <!--<?php echo $output; ?>-->
+                                                </div>
+
+                                                <div class="form-group my-4">
+                                                    <label for="heartrate-workout" class="comfortaa-font fs-5" style="color: #ffa500;">1. Workout / Activity:</label>
+                                                    <select class="custom-select form-control-select-input p-4" name="heartrate-workout" id="heartrate-workout" placeholder="Work / Activity (Required)" required>
+                                                        <option value='no-selection'>Select a workout / activity.</option>
+                                                        <?php echo $workout_activities_list; ?>
+                                                        <option value='other'>Other</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group my-4">
+                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">2. Heart Rate Datasource:</label>
+                                                    <select class="custom-select form-control-select-input p-4" name="heartrate-datasource" id="heartrate-datasource" placeholder="Datasource (Required)" required>
+                                                        <option value='no-selection'>Select your datasource.</option>
+                                                        <option value='datasource-1'>Fitbit waerable</option>
+                                                        <option value='datasource-2'>Android wearable</option>
+                                                        <option value='datasource-3'>Apple wearable</option>
+                                                        <option value='datasource-4'>Treadmill</option>
+                                                        <option value='datasource-5'>Electric Spin bike</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group my-4">
+                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your Heart Rate:</label>
+                                                    <input class="form-control-text-input p-4" type="number" name="heartrate-value" id="heartrate-value" placeholder="BPM (Required)" required />
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                        <!-- ./ submit heartrate data form -->
 
                                         <!-- <div id="heart_rate_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
                                     </div>
@@ -3953,7 +4649,7 @@ function getAllTrainers()
                             </li>
                             <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
                                 <div class="row align-items-center">
-                                    <div class="col-lg-4 text-center">
+                                    <div class="col-md -4 text-center">
                                         <h1 class="text-truncate">Body Temp Monitor</h1>
                                         <div class="d-grid gap-2 mt-4">
                                             <span class="material-icons material-icons-round">
@@ -3962,11 +4658,65 @@ function getAllTrainers()
                                             <h1>36.9<span style="font-size: 10px;" class="align-top">&deg;C</span></h1>
                                             <p class="text-muted fw-bold">37.2&deg;C, 10m ago</p>
                                         </div>
+
+                                        <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="bodytemp-expand-icon bodytemp-data-input-form-container">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                add_circle_outline
+                                            </span>
+                                        </button> -->
                                     </div>
-                                    <div class="col-lg py-4">
+                                    <div class="col-md -8 py-4">
                                         <!-- Canvasjs chart canvas -->
-                                        <canvas class="chartjs-chart-light shadow" id="body_temp_monitor_chart"></canvas>
+                                        <canvas class="chartjs-chart-light shadow" id="body_temp_monitor_chart" width="400" height="400"></canvas>
                                         <!-- ./Canvasjs chart canvas -->
+
+                                        <!-- submit heartrate data form -->
+                                        <div id="bodytemp-expand-icon" class="collapse multi-collapse text-center w3-animate-bottom my-4">
+                                            <span class="material-icons material-icons-round">
+                                                add_task
+                                            </span>
+                                        </div>
+
+                                        <div id="bodytemp-data-input-form-container" class="collapse multi-collapse p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                            <div class="align-middle comfortaa-font text-center">
+                                                <span class="material-icons material-icons-round align-middle">today</span>
+
+                                                <span class="align-middle fw-bold">17 Oct 2022 | 13:04</span>
+                                            </div>
+
+                                            <hr class="text-white">
+
+                                            <form class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="" autocomplete="off">
+                                                <div class="output-container my-2" id="output-container">
+                                                    <!--<?php echo $output; ?>-->
+                                                </div>
+
+                                                <div class="form-group my-4">
+                                                    <label for="heartrate-workout" class="comfortaa-font fs-5" style="color: #ffa500;">1. Workout / Activity:</label>
+                                                    <select class="custom-select form-control-select-input p-4" name="heartrate-workout" id="heartrate-workout" placeholder="Work / Activity (Required)" required>
+                                                        <option value='no-selection'>Select a workout / activity.</option>
+                                                        <?php echo $workout_activities_list; ?>
+                                                        <option value='other'>Other</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group my-4">
+                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">2. Heart Rate Datasource:</label>
+                                                    <select class="custom-select form-control-select-input p-4" name="heartrate-datasource" id="heartrate-datasource" placeholder="Datasource (Required)" required>
+                                                        <option value='no-selection'>Select your datasource.</option>
+                                                        <option value='datasource-1'>Fitbit waerable</option>
+                                                        <option value='datasource-2'>Android wearable</option>
+                                                        <option value='datasource-3'>Apple wearable</option>
+                                                        <option value='datasource-4'>Treadmill</option>
+                                                        <option value='datasource-5'>Electric Spin bike</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group my-4">
+                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your current Body Temperature:</label>
+                                                    <input class="form-control-text-input p-4" type="number" name="heartrate-value" id="heartrate-value" placeholder="Temperature (Required)" required />
+                                                </div>
+
+                                            </form>
+                                        </div>
 
                                         <!-- <div id="body_temp_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
                                     </div>
@@ -3974,7 +4724,7 @@ function getAllTrainers()
                             </li>
                             <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
                                 <div class="row align-items-center">
-                                    <div class="col-lg-4 text-center">
+                                    <div class="col-md -4 text-center">
                                         <h1 class="text-truncate">Avg. Speed</h1>
                                         <div class="d-grid gap-2 mt-4">
                                             <span class="material-icons material-icons-round">
@@ -3983,11 +4733,65 @@ function getAllTrainers()
                                             <h1>10<span style="font-size: 10px;" class="align-top">m/s</span></h1>
                                             <p class="text-muted fw-bold">Highest Marked Speed: 15m/s</p>
                                         </div>
+
+                                        <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="speedmonitor-expand-icon speedmonitor-data-input-form-container">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                add_circle_outline
+                                            </span>
+                                        </button> -->
                                     </div>
-                                    <div class="col-lg py-4">
+                                    <div class="col-md -8 py-4">
                                         <!-- Canvasjs chart canvas -->
-                                        <canvas class="chartjs-chart-light shadow" id="speed_monitor_chart"></canvas>
+                                        <canvas class="chartjs-chart-light shadow" id="speed_monitor_chart" width="400" height="400"></canvas>
                                         <!-- ./Canvasjs chart canvas -->
+
+                                        <!-- submit heartrate data form -->
+                                        <div id="speedmonitor-expand-icon" class="collapse multi-collapse text-center w3-animate-bottom my-4">
+                                            <span class="material-icons material-icons-round">
+                                                add_task
+                                            </span>
+                                        </div>
+
+                                        <div id="speedmonitor-data-input-form-container" class="collapse multi-collapse p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                            <div class="align-middle comfortaa-font text-center">
+                                                <span class="material-icons material-icons-round align-middle">today</span>
+
+                                                <span class="align-middle fw-bold">17 Oct 2022 | 13:04</span>
+                                            </div>
+
+                                            <hr class="text-white">
+
+                                            <form class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="" autocomplete="off">
+                                                <div class="output-container my-2" id="output-container">
+                                                    <!--<?php echo $output; ?>-->
+                                                </div>
+
+                                                <div class="form-group my-4">
+                                                    <label for="heartrate-workout" class="comfortaa-font fs-5" style="color: #ffa500;">1. Workout / Activity:</label>
+                                                    <select class="custom-select form-control-select-input p-4" name="heartrate-workout" id="heartrate-workout" placeholder="Work / Activity (Required)" required>
+                                                        <option value='no-selection'>Select a workout / activity.</option>
+                                                        <?php echo $workout_activities_list; ?>
+                                                        <option value='other'>Other</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group my-4">
+                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">2. Heart Rate Datasource:</label>
+                                                    <select class="custom-select form-control-select-input p-4" name="heartrate-datasource" id="heartrate-datasource" placeholder="Datasource (Required)" required>
+                                                        <option value='no-selection'>Select your datasource.</option>
+                                                        <option value='datasource-1'>Fitbit waerable</option>
+                                                        <option value='datasource-2'>Android wearable</option>
+                                                        <option value='datasource-3'>Apple wearable</option>
+                                                        <option value='datasource-4'>Treadmill</option>
+                                                        <option value='datasource-5'>Electric Spin bike</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group my-4">
+                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your logged Speed:</label>
+                                                    <input class="form-control-text-input p-4" type="number" name="heartrate-value" id="heartrate-value" placeholder="Speed (ms - Required)" required />
+                                                </div>
+
+                                            </form>
+                                        </div>
 
                                         <!-- <div id="speed_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
                                     </div>
@@ -3995,19 +4799,29 @@ function getAllTrainers()
                             </li>
                             <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
                                 <div class="row align-items-center">
-                                    <div class="col-lg-4 text-center">
+                                    <div class="col-md -4 text-center">
                                         <h1 class="text-truncate">Step Counter</h1>
-                                        <div class="d-grid gap-2 mt-4">
+                                        <div class="d-grid gap-2 my-4">
                                             <span class="material-icons material-icons-round">
                                                 directions_walk
                                             </span>
                                             <h1>1896<span style="font-size: 10px;" class="align-top">Steps</span></h1>
                                             <p class="text-muted fw-bold">213 Steps remaining (Achievement)</p>
                                         </div>
+
+                                        <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" 
+                                        type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" 
+                                        aria-controls="variable-expand-icon variable-data-input-form-container">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                devices_other
+                                            </span>
+                                        </button> -->
+                                        <img src="../media/assets/smartwatches/branding/fitbit-png-logo-white.png" class="img-fluid mt-4 mb-2" style="max-width: 200px;" alt="fitbit logo">
+                                        <p class="comfortaa-font">Connect your Fitbit activity tracker / smartwatch</p>
                                     </div>
-                                    <div class="col-lg py-4">
+                                    <div class="col-md -8 py-4">
                                         <!-- Canvasjs chart canvas -->
-                                        <canvas class="chartjs-chart-light shadow" id="step_counter_monitor_chart"></canvas>
+                                        <canvas class="chartjs-chart-light shadow" id="step_counter_monitor_chart" width="400" height="400"></canvas>
                                         <!-- ./Canvasjs chart canvas -->
 
                                         <!-- <div id="step_counter_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
@@ -4016,8 +4830,8 @@ function getAllTrainers()
                             </li>
                             <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
                                 <div class="row align-items-center">
-                                    <div class="col-lg-4 text-center">
-                                        <h1 class="text-truncate">Avg. Weight / BMI</h1>
+                                    <div class="col-md -4 text-center">
+                                        <h1 class="text-truncate">Weight Monitoring (BMI)</h1>
                                         <div class="d-grid gap-2 mt-4">
                                             <span class="material-icons material-icons-round">
                                                 monitor_weight
@@ -4025,11 +4839,65 @@ function getAllTrainers()
                                             <h1>60<span style="font-size: 10px;" class="align-top">kg</span></h1>
                                             <p class="text-muted fw-bold">75kg, 1w ago</p>
                                         </div>
+
+                                        <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="bmiweight-expand-icon bmiweight-data-input-form-container">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                add_circle_outline
+                                            </span>
+                                        </button> -->
                                     </div>
-                                    <div class="col-lg py-4">
+                                    <div class="col-md -8 py-4">
                                         <!-- Canvasjs chart canvas -->
-                                        <canvas class="chartjs-chart-light shadow" id="bmi_weight_monitor_chart"></canvas>
+                                        <canvas class="chartjs-chart-light shadow" id="bmi_weight_monitor_chart" width="400" height="400"></canvas>
                                         <!-- ./Canvasjs chart canvas -->
+
+                                        <!-- submit heartrate data form -->
+                                        <div id="bmiweight-expand-icon" class="collapse multi-collapse text-center w3-animate-bottom my-4">
+                                            <span class="material-icons material-icons-round">
+                                                add_task
+                                            </span>
+                                        </div>
+
+                                        <div id="bmiweight-data-input-form-container" class="collapse multi-collapse p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                            <div class="align-middle comfortaa-font text-center">
+                                                <span class="material-icons material-icons-round align-middle">today</span>
+
+                                                <span class="align-middle fw-bold">17 Oct 2022 | 13:04</span>
+                                            </div>
+
+                                            <hr class="text-white">
+
+                                            <form class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="" autocomplete="off">
+                                                <div class="output-container my-2" id="output-container">
+                                                    <!--<?php echo $output; ?>-->
+                                                </div>
+
+                                                <div class="form-group my-4">
+                                                    <label for="heartrate-workout" class="comfortaa-font fs-5" style="color: #ffa500;">1. Workout / Activity:</label>
+                                                    <select class="custom-select form-control-select-input p-4" name="heartrate-workout" id="heartrate-workout" placeholder="Work / Activity (Required)" required>
+                                                        <option value='no-selection'>Select a workout / activity.</option>
+                                                        <?php echo $workout_activities_list; ?>
+                                                        <option value='other'>Other</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group my-4">
+                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">2. Heart Rate Datasource:</label>
+                                                    <select class="custom-select form-control-select-input p-4" name="heartrate-datasource" id="heartrate-datasource" placeholder="Datasource (Required)" required>
+                                                        <option value='no-selection'>Select your datasource.</option>
+                                                        <option value='datasource-1'>Fitbit waerable</option>
+                                                        <option value='datasource-2'>Android wearable</option>
+                                                        <option value='datasource-3'>Apple wearable</option>
+                                                        <option value='datasource-4'>Treadmill</option>
+                                                        <option value='datasource-5'>Electric Spin bike</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group my-4">
+                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your current Weight:</label>
+                                                    <input class="form-control-text-input p-4" type="number" name="heartrate-value" id="heartrate-value" placeholder="Weight (kg - Required)" required />
+                                                </div>
+
+                                            </form>
+                                        </div>
 
                                         <!-- <div id="weight_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
                                     </div>
@@ -4040,10 +4908,16 @@ function getAllTrainers()
                     </div>
                     <!-- ./ User Smart Device Activity Tracking -->
 
-                    <!-- Weekly Activities -->
                     <hr class="text-white" style="height: 5px;">
-                    <h5 class="mt-4 fs-1 text-center">Weekly Assessments</h5>
-                    <p class="fs-5 text-center"> Training Week: (<span id="weekly-survey-duration-dates">Start Date - End Date</span>)</p>
+
+                    <!-- Weekly Activities -->
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h5 class="mt-4 fs-1 text-center">Weekly Assessments</h5>
+                        <p class="fs-5 text-center comfortaa-font"> Training Week: (<span id="weekly-survey-duration-dates">Start Date - End Date</span>)</p>
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
+
+                    <!-- weekly assessment horizontal scroll container -->
                     <div class="horizontal-scroll shadow">
                         <div class="horizontal-scroll-card p-4 m-1 shadow">
                             <h5>Sunday (dd/mm/yyyy)</h5>
@@ -4389,61 +5263,483 @@ function getAllTrainers()
                             </ol>
                         </div>
                     </div>
+                    <!-- ./ weekly assessment horizontal scroll container -->
                     <!-- ./ Weekly Activities -->
+
+                    <hr class="text-white" style="height: 5px;">
+
+                    <!-- Training -->
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <span class="material-icons material-icons-outlined">sports</span>
+                        <h5 class="mt-4 fs-1 text-center align-middle">Training</h5>
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
 
                     <!-- Features: Tab structured -->
                     <div class="row mt-4 py-4" style="background-color: #333; border-radius: 25px;">
+                        <!-- more insights categories v-buttons -->
                         <div class="col-md-3 d-lg-none d-xl-none d-xxl-none">
                             <div class="d-grid gap-2 justify-content-center d-lg-none d-xl-none d-xxl-none">
-                                <button class="onefit-buttons-style-dark p-4 mb-4" type="button" data-bs-toggle="collapse" data-bs-target="#insights-subfeatures-nav-menu" aria-expanded="true" aria-controls="insights-subfeatures-nav-menu">
+                                <button class="onefit-buttons-style-dark p-4" type="button" data-bs-toggle="collapse" data-bs-target="#insights-subfeatures-nav-menu" aria-expanded="true" aria-controls="insights-subfeatures-nav-menu">
                                     <div class="d-grid gap-2">
                                         <span class="material-icons material-icons-round"> menu </span>
-                                        <p style="font-size: 10px;">More insights</p>
+                                        <p class="m-0" style="font-size: 10px;">More insights</p>
                                     </div>
                                 </button>
                             </div>
-                            <div class="collapse showz w3-animate-bottom" id="insights-subfeatures-nav-menu">
-                                <div class="nav flex-columnz nav-pills" id="v-sub-tab-pills-insights-subfeatures-tab" role="tablist" aria-orientation="vertical">
+                            <div class="collapse showz w3-animate-bottom my-4" id="insights-subfeatures-nav-menu">
+                                <hr class="text-white" style="height: 5px;">
+
+                                <!-- Fitness/Training programe categories -->
+                                <div class="nav d-grid nav-pills" id="v-sub-tab-pills-insights-subfeatures-tab" role="tablist" aria-orientation="vertical">
+                                    <button class="nav-link" id="v-sub-tab-pills-insights-challenges-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-challenges" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-challenges" aria-selected="false">
+                                        <!--onclick="openLink(event, 'InsightsTabChallenges')"-->
+                                        <span class="material-icons material-icons-rounded">stars</span>
+                                        <p class="text-break comfortaa-font">Challenges</p>
+                                    </button>
                                     <button class="nav-link active" id="v-sub-tab-pills-insights-googlesurveys-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-googlesurveys" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-googlesurveys" aria-selected="true">
                                         <!--onclick="openLink(event, 'InsightsTabGCS')"-->
                                         <span class="material-icons material-icons-rounded">poll</span>
-                                        <p class="text-break">Google Community Surveys</p>
+                                        <p class="text-break comfortaa-font">Google Community Surveys</p>
                                     </button>
                                     <button class="nav-link" id="v-sub-tab-pills-insights-indiathlete-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-indiathlete" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-indiathlete" aria-selected="false">
                                         <!--onclick="openLink(event, 'InsightsTabIAT')"-->
                                         <span class="material-icons material-icons-rounded">sports_gymnastics</span>
-                                        <p class="text-break">Indi-Athletics</p>
+                                        <p class="text-break comfortaa-font">Indi-Athletics</p>
                                     </button>
                                     <button class="nav-link" id="v-sub-tab-pills-insights-teamathletics-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-teamathletics" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-teamathletics" aria-selected="false">
                                         <!--onclick="openLink(event, 'InsightsTabCTA')"-->
                                         <span class="material-icons material-icons-rounded">diversity_2</span>
-                                        <p class="text-break">Community/Team Athletics</p>
+                                        <p class="text-break comfortaa-font">Community/Team Athletics</p>
                                     </button>
-                                    <button class="nav-link" id="v-sub-tab-pills-insights-challenges-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-challenges" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-challenges" aria-selected="false">
-                                        <!--onclick="openLink(event, 'InsightsTabChallenges')"-->
-                                        <span class="material-icons material-icons-rounded">stars</span>
-                                        <p class="text-break">Challenges</p>
+                                    <button class="nav-link" id="v-sub-tab-pills-insights-wellness-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-wellness" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-wellness" aria-selected="false">
+                                        <!--onclick="openLink(event, 'InsightsTabWellness')"-->
+                                        <span class="material-icons material-icons-rounded">self_improvement</span>
+                                        <p class="text-break comfortaa-font">Wellness</p>
+                                    </button>
+                                    <button class="nav-link" id="v-sub-tab-pills-insights-nutrition-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-nutrition" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-nutrition" aria-selected="false">
+                                        <!--onclick="openLink(event, 'InsightsTabNutrition')"-->
+                                        <span class="material-icons material-icons-rounded">restaurant</span>
+                                        <p class="text-break comfortaa-font">Nutrition</p>
                                     </button>
                                 </div>
+                                <!-- ./ Fitness/Training programe categories -->
 
                                 <hr class="text-white" style="height: 5px;">
                             </div>
                         </div>
-                        <div class="col-md -9">
+                        <!-- ./ more insight categories v-buttons -->
+
+                        <!-- insight catgories tab panels -->
+                        <div class="col-md -9 my-4">
+                            <p class="text-center m-0"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span></p>
+                            <!-- <div class="text-center">
+                                <img src="../media/assets/One-Symbol-Logo-Dark-Mix.png" class="img-fluid" style="max-height: 100px;" alt="onefit darkmx logo">
+                            </div> -->
+
+                            <!-- display User XP -->
+                            <div class="d-grid justify-content-center">
+                                <p class="comfortaa-font mb-0 text-center" style="font-size: 10px;">Fitness Progression</p>
+                                <div class="text-center px-4 py-0 d-inline comfortaa-font" id="userXPDisplay">
+                                    <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">data_exploration</span>
+                                    <span class="align-middle fs-2">112</span><sup class="align-bottom" style="color: #ffa500;">xp</sup>
+                                </div>
+                            </div>
+                            <!-- ./ display User XP -->
+
+                            <p class="text-center m-0"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span></p>
+
+                            <!-- hide on screens smaller than lg -->
+                            <nav class="d-none d-lg-block mt-4">
+                                <div class="nav nav-tabs justify-content-center" id="nav-tab-insightsSubFeatureCategories" role="tablist" style="border-color: #ffa500 !important">
+                                    <button class="nav-link p-4 comfortaa-font fw-bold active position-relative" id="nav-trainingProgramCategories-challenges-tab" onclick="clickTrainingProgramCategories('challenges')">
+                                        Challenges.
+                                        <span class="position-absolute top-50 start-0 translate-middle badge rounded-pill border-2 border p-1  my-pulse-animation-tahiti" style="height: 20px; width: 20px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
+                                        </span>
+
+                                        <br>
+                                        <span id="horizontal-rule-icon-challenges" class="material-icons material-icons-outlined align-middle" style="display: block;">stars</span>
+                                    </button>
+
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-googleSurveys-tab" onclick="clickTrainingProgramCategories('googleSurveys')">
+                                        Google Surveys.
+
+                                        <br>
+                                        <span id="horizontal-rule-icon-googlesurveys" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">poll</span>
+                                    </button>
+
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-indiAthlete-tab" onclick="clickTrainingProgramCategories('indiAthlete')">
+                                        Indi-Athletics.
+
+                                        <br>
+                                        <span id="horizontal-rule-icon-indiathlete" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">sports_gymnastics</span>
+                                    </button>
+
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-teamAthletics-tab" onclick="clickTrainingProgramCategories('teamAthletics')">
+                                        Team Athletics.
+
+                                        <br>
+                                        <span id="horizontal-rule-icon-teamathletics" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">diversity_2</span>
+                                    </button>
+
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-wellness-tab" onclick="clickTrainingProgramCategories('wellness')">
+                                        Wellness.
+
+                                        <br>
+                                        <span id="horizontal-rule-icon-wellness" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">self_improvement</span>
+                                    </button>
+
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-nutrition-tab" onclick="clickTrainingProgramCategories('nutrition')">
+                                        Nutrition.
+
+                                        <br>
+                                        <span id="horizontal-rule-icon-nutrition" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">restaurant</span>
+                                    </button>
+
+                                </div>
+                            </nav>
+                            <!-- ./ hide on screens smaller than lg -->
+
+                            <script>
+                                function clickTrainingProgramCategories(selcategory) {
+                                    // declaring variable
+                                    var challengesBtn = document.getElementById("v-sub-tab-pills-insights-challenges-tab");
+                                    var teamAthleticsBtn = document.getElementById("v-sub-tab-pills-insights-teamathletics-tab");
+                                    var indiAthleteBtn = document.getElementById("v-sub-tab-pills-insights-indiathlete-tab");
+                                    var googleSurveyBtn = document.getElementById("v-sub-tab-pills-insights-googlesurveys-tab");
+                                    var wellnessBtn = document.getElementById("v-sub-tab-pills-insights-wellness-tab");
+                                    var nutritionBtn = document.getElementById("v-sub-tab-pills-insights-nutrition-tab");
+
+                                    if (selcategory == "challenges") {
+                                        challengesBtn.click();
+
+                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "block";
+                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+
+                                    } else if (selcategory == "googleSurveys") {
+                                        googleSurveyBtn.click();
+
+                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "block";
+                                        document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+
+                                    } else if (selcategory == "indiAthlete") {
+                                        indiAthleteBtn.click();
+
+                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-indiathlete").style.display = "block";
+                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+
+                                    } else if (selcategory == "teamAthletics") {
+                                        teamAthleticsBtn.click();
+
+                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "block";
+                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+
+                                    } else if (selcategory == "wellness") {
+                                        wellnessBtn.click();
+
+                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "block";
+                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+
+                                    } else if (selcategory == "nutrition") {
+                                        nutritionBtn.click();
+
+                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "block";
+
+                                    }
+                                }
+                            </script>
+
+                            <!-- Team Athlectics Training Panel -->
                             <div class="tab-content" id="v-pills-tabInsightsSubFeatures">
-                                <div class="tab-pane fade show active w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-googlesurveys" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-googlesurveys-tab">
+                                <!-- #v-sub-tab-pills -->
+                                <div class="tab-pane fade show active w3-animate-bottom no-scroller py-4 px-2 gap-4" id="v-sub-tab-pills-insights-challenges" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-challenges-tab">
+                                    <div class="d-grid text-center mt-4 ">
+                                        <span class="material-icons material-icons-round">stars</span>
+                                        <h5 class="fs-1">Challenges</h5>
+                                    </div>
+
+                                    <hr class="text-white">
+
+                                    <!-- fitness progression progress bar -->
+                                    <div id="fitness-progression-progress-bar">
+                                        <h5 class="mt-4">Fitness Progression</h5>
+                                        <div class="progress mt-4" style="height: 4px;">
+                                            <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: 25%; background-color: #ffa500 !important; border-right: #343434 10px solid;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="row mt-2" style="margin-bottom: 60px;">
+                                            <div class="col text-start comfortaa-font" style="font-size: 12px;">
+                                                Current XP <strong>(112)</strong>
+                                            </div>
+                                            <div class="col text-end comfortaa-font" style="font-size: 12px;">
+                                                Target XP <strong>(150)</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ./ fitness progression progress bar -->
+
+                                    <hr class="text-white">
+
+                                    <h5 class="my-4">Daily Challenges</h5>
+
+                                    <div id="daily-challenges-grid" class="grid-container mb-4">
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-body-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-deadlift-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-muscle-flexing-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-exercise-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-fit-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-workout-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                    </div>
+
+                                    <hr class="text-white">
+
+                                    <h5 class="my-4">Weekly Challenges</h5>
+
+                                    <div id="weekly-challenges-grid" class="grid-container mb-4">
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-body-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-deadlift-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-muscle-flexing-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-exercise-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-fit-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-workout-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                    </div>
+
+                                    <hr class="text-white">
+
+                                    <h5 class="my-4">Monthly Monthly</h5>
+
+                                    <div id="monthly-challenges-grid" class="grid-container mb-4">
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-body-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-deadlift-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-muscle-flexing-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-exercise-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-fit-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                                            <img src="../media/assets/icons/icons8-workout-50.png" class="img-fluid rounded mb-4" alt="">
+                                            <p>Challenge Title</p>
+                                            <small>Workout / Exercise</small>
+                                            <small>Category</small>
+                                            <!-- progress bar -->
+                                            <p>15 / 25 xp</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Next Tab button - Proceed to Google Community Surveys -->
+                                    <hr class="text-white">
+                                    <div class="my-4 text-center" style="width: 100%">
+                                        <div class="d-flex justify-content-center" style="width: 100%">
+                                            <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabGCS')">
+                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 40px !important;">arrow_forward</span></p>
+                                                <!-- <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">sports_gymnastics</span> -->
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 20px !important;">Google Community Surveys</p>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- ./Next Tab button - Proceed to Google Community Surveys -->
+                                </div>
+                                <div class="tab-pane fade w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-googlesurveys" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-googlesurveys-tab">
+                                    <div class="d-grid text-center mt-4">
+                                        <span class="material-icons material-icons-round">poll</span>
+                                        <h5 class="fs-1">Google Community Surveys</h5>
+                                    </div>
+
+                                    <hr class="text-white">
+
+                                    <!-- Next Tab button - Return to Challenges -->
+                                    <div class="my-4 text-center" style="width: 100%">
+                                        <div class="d-flex justify-content-center" style="width: 100%">
+                                            <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabChallenges')">
+                                                <!-- <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">stars</span> -->
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 20px !important;">Challenges</p>
+                                                <span class="material-icons material-icons-rounded" style="font-size: 40px !important;">arrow_back</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr class="text-white">
+                                    <!-- ./Next Tab button - Return to Challenges -->
+
                                     <!-- Community Surveys -->
                                     <div>
                                         <!-- User Wellness Tracking Log -->
-                                        <p class="text-center fw-bold">One<span style="color: #ffa500">fit.</span>Social <span class="material-icons material-icons-two-tone">hub</span></p>
-
-                                        <div class="fs-5 fw-bold text-center mb-4 rounded-pill p-4 bg-white" style="color: #ffa500">
-                                            <i class="fab fa-google" style="font-size: 40px!important" aria-hidden="true"></i>
-                                            <hr>
-                                            <span class="align-center">Google Community Surveys</span>
+                                        <div class="fs-5 fw-bold text-center mb-4 rounded-pill p-4 mb-4 d-grid comfortaa-font">
+                                            <i class="fab fa-google mb-2" style="font-size: 40px!important" aria-hidden="true"></i>
+                                            <small>Community Fitness Analysis using</small>
+                                            <span class="align-center">Google Data Studio</span>
                                         </div>
 
-                                        <h5 class="mt-4 fs-1 text-center mb-4">Wellness Tracking</h5>
+                                        <hr class="text-white">
+
+                                        <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                                            <h5 class="fs-1 text-center my-4">Wellness Tracking</h5>
+                                        </div>
+
                                         <p class="fs-3 mt-4">Community Wellness Rating: 90%</p>
                                         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc0sL0-Gm6J-Hy03z_F872L5nQAdigfbZArNYBhBGbB-iOqmg/viewform?embedded=true" height="3016" frameborder="0" marginheight="0" marginwidth="0" class="w-100 no-scroller tunnel-bg-container-inverse" style="max-height: 100vh!important; border-radius: 25px;">Loading…</iframe>
                                         <div class="row my-4">
@@ -4458,7 +5754,11 @@ function getAllTrainers()
 
                                         <!-- User Load Monitoring Log -->
                                         <hr class="text-white" style="height: 5px;">
-                                        <h5 class="mt-4 fs-1 text-center mb-4">Load Monitoring</h5>
+
+                                        <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                                            <h5 class="mt-4 fs-1 text-center mb-4">Load Monitoring</h5>
+                                        </div>
+
                                         <p class="fs-3 mt-4">Community Load Rating: 90%</p>
                                         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOJqnXT2LxRK9GK6DfmYObzkbu28D-qT_XzN-vUBsUyaOX0Q/viewform?embedded=true" height="1879" frameborder="0" marginheight="0" marginwidth="0" class="w-100 no-scroller tunnel-bg-container-inverse" style="max-height: 100vh!important; border-radius: 25px;">Loading…</iframe>
                                         <div class="row my-4">
@@ -4473,255 +5773,700 @@ function getAllTrainers()
                                     </div>
                                     <!-- ./ Community Surveys -->
 
-                                    <!-- Next Tab button -->
+                                    <!-- Next Tab button - Proceed to Indi-Athlete -->
                                     <hr class="text-white">
                                     <div class="my-4 text-center" style="width: 100%">
                                         <div class="d-flex justify-content-center" style="width: 100%">
                                             <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabIAT')">
-                                                <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">sports_gymnastics</span>
-                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 10px !important;">Indi-Athletics</p>
-                                                <span class="material-icons material-icons-rounded" style="font-size: 10px !important;">expand_circle_down</span>
+                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 40px !important;">arrow_forward</span></p>
+
+                                                <!-- <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">sports_gymnastics</span> -->
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 20px !important;">Indi-Athletics</p>
                                             </button>
                                         </div>
                                     </div>
-                                    <!-- ./Next Tab button -->
+                                    <!-- ./Next Tab button - Proceed to Indi-Athlete -->
                                 </div>
                                 <div class="tab-pane fade w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-indiathlete" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-indiathlete-tab">
-                                    <!-- Next Tab button -->
+                                    <div class="d-grid text-center mt-4">
+                                        <span class="material-icons material-icons-round">sports_gymnastics</span>
+                                        <h5 class="fs-1">Indi-Athlete.</h5>
+                                    </div>
+
+                                    <hr class="text-white">
+
+                                    <!-- Next Tab button - Return to Google community Surveys -->
                                     <div class="my-4 text-center" style="width: 100%">
                                         <div class="d-flex justify-content-center" style="width: 100%">
                                             <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabGCS')">
-                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 10px !important;">expand_less</span></p>
-                                                <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">poll</span>
-                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 10px !important;">Google Community Surveys</p>
+                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 40px !important;">arrow_back</span></p>
+                                                <!-- <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">poll</span> -->
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 20px !important;">Google Community Surveys</p>
                                             </button>
                                         </div>
                                     </div>
+                                    <!-- ./Next Tab button - Return to Google community Surveys -->
+
                                     <hr class="text-white">
-                                    <!-- ./Next Tab button -->
 
                                     <!-- Indi Athletics Training Panel -->
                                     <h1 class="my-4 fs-1 text-center p-4 down-top-grad-tahiti rounded-pill">Indi-Athlete Training</h1>
                                     <div class="accordion accordion-flush" id="accordionFlushIATRegiment">
-                                        <div class="accordion-item p-2 my-2 shadow">
-                                            <h2 class="accordion-header m-0" id="flush-headingIATOne">
-                                                <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseIATOne" aria-expanded="true" aria-controls="flush-collapseIATOne">
-                                                    Indi-Training (<span id="training-date-str">Date</span>)
-                                                </button>
-                                            </h2>
-                                            <div id="flush-collapseIATOne" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingIATOne" data-bs-parent="#accordionFlushIATRegiment">
-                                                <div class="accordion-body">
-                                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Program Title</p>
-                                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
-                                                        Subscribe to an Indi Fitness Program to get started
-                                                    </div>
-
-                                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Pre-Training</p>
-                                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
-                                                        Subscribe to an Indi Fitness Program to get started
-                                                    </div>
-
-                                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Warm-Up</p>
-                                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
-                                                        Subscribe to an Indi Fitness Program to get started
-                                                    </div>
-
-                                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Mid-Training</p>
-                                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
-                                                        Subscribe to an Indi Fitness Program to get started
-                                                    </div>
-
-                                                    <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4">Post-Training</p>
-                                                    <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
-                                                        Subscribe to an Indi Fitness Program to get started
-                                                    </div>
-
-                                                    <h5>Identify Painful Areas</h5>
-                                                    <p>Identification of pain on body chart - Select Areas where pain is being experienced</p>
-                                                    <p>Themographic Body Chart - Trainer will enter temperature data in a capturing form.</p>
-                                                    <p>Rate your Muscle Soreness according to the scale above</p>
-                                                    <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" style="border-radius: 15px;" class="img-fluid mb-4 shadow">
-
-                                                    <div class="row align-items-start">
-                                                        <div class="col-md no-sroller" style="overflow-x:auto;">
-                                                            <h5>(Front)</h5>
-                                                            <img src="../media/assets/body_charts/muscle-men-body-map-front.jpg" alt="" class="img-fluidz map image-map-male-front" usemap="#image-map-male-front-indi">
-                                                            <map name="image-map-male-front-indi">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Head')" target="" alt="Male-Front-Head " title="Male-Front-Head " coords="249,98,221,109,218,145,210,143,212,156,220,166,221,177,232,190,241,230,246,232,250,237,255,232,258,225,265,192,276,178,279,165,286,156,286,143,280,138,280,122,270,105" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Left')" target="" alt="Male-Front-Pectoralis-Major-Left" title="Male-Front-Pectoralis-Major-Left" coords="253,305,254,256,265,235,289,236,302,241,317,244,325,257,328,270,319,269,315,282,309,300,295,311,272,314" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Right')" target="" alt="Male-Front-Pectoralis-Major-Right" title="Male-Front-Pectoralis-Major-Right" coords="246,303,245,254,235,235,211,235,194,241,177,245,173,259,170,274,181,265,184,279,185,293,194,305,213,315,238,310" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Left')" target="" alt="Male-Front-Trapezius-Left" title="Male-Front-Trapezius-Left" coords="275,182,266,195,258,236,276,232,305,226,284,213,274,203" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Trapezius-Right')" target="" alt="Male-Front-Trapezius-Right" title="Male-Front-Trapezius-Right" coords="224,184,230,192,235,213,241,234,231,233,209,230,196,225,214,215,226,207" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Left')" target="" alt="Male-Front-Adominalis-Upper-Left" title="Male-Front-Adominalis-Upper-Left" coords="250,312,250,369,287,373,286,315,272,315,257,308" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Upper-Right')" target="" alt="Male-Front-Adominalis-Upper-Right" title="Male-Front-Adominalis-Upper-Right" coords="247,310,248,367,213,373,213,317,224,314" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Left')" target="" alt="Male-Front-Adominalis-Lower-Left" title="Male-Front-Adominalis-Lower-Left" coords="251,374,250,448,253,485,265,485,284,430,287,376,263,373" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Adominalis-Lower-Right')" target="" alt="Male-Front-Adominalis-Lower-Right" title="Male-Front-Adominalis-Lower-Right" coords="230,371,250,374,247,439,246,486,233,484,215,426,215,376" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Left')" target="" alt="Male-Front-External_Oblique-Left" title="Male-Front-External_Oblique-Left" coords="290,314,288,379,287,431,291,447,301,435,312,430,316,429,311,386,310,368,314,355,304,334,300,322" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-External_Oblique-Right')" target="" alt="Male-Front-External_Oblique-Right" title="Male-Front-External_Oblique-Right" coords="212,442,213,426,209,395,210,365,211,316,196,329,185,345,192,376,183,423,196,433,205,442" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Left')" target="" alt="Male-Front-Serratus_Anterior-Left" title="Male-Front-Serratus_Anterior-Left" coords="291,312,300,319,308,340,314,349,318,321,323,327,323,292,326,270,321,269,310,301" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Serratus_Anterior-Right')" target="" alt="Male-Front-Serratus_Anterior-Right" title="Male-Front-Serratus_Anterior-Right" coords="210,315,194,330,184,343,181,320,177,326,176,294,175,270,180,268,184,299,194,307" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Left')" target="" alt="Male-Front-Deltoid-Left" title="Male-Front-Deltoid-Left" coords="357,301,359,268,352,244,327,224,313,224,293,236,320,244,328,257,330,276" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Deltoid-Right')" target="" alt="Male-Front-Deltoid-Right" title="Male-Front-Deltoid-Right" coords="144,298,141,269,145,246,167,227,188,225,206,235,174,244,168,279" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Left')" target="" alt="Male-Front-Bicep_Long_Head-Left" title="Male-Front-Bicep_Long_Head-Left" coords="362,365,366,346,363,335,364,320,357,303,331,276,344,302,354,323" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Long_Head-Right')" target="" alt="Male-Front-Bicep_Long_Head-Right" title="Male-Front-Bicep_Long_Head-Right" coords="139,362,132,346,135,336,139,315,145,299,170,277,154,305,147,321,142,344" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Left')" target="" alt="Male-Front-Bicep_Short_Head-Left" title="Male-Front-Bicep_Short_Head-Left" coords="362,366,346,356,337,333,336,355,324,329,326,273,332,281,352,320,358,348" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Bicep_Short_Head-Right')" target="" alt="Male-Front-Bicep_Short_Head-Right" title="Male-Front-Bicep_Short_Head-Right" coords="138,369,152,357,164,339,165,357,177,326,175,272,164,292,151,315,144,336" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Left')" target="" alt="Male-Front-Brachioradialis-Left" title="Male-Front-Brachioradialis-Left" coords="407,451,397,464,384,465,359,420,347,395,338,379,336,366,337,354,338,337,345,349,346,354,363,366,367,345,379,361,387,391,393,414,397,428" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Brachioradialis-Right')" target="" alt="Male-Front-Brachioradialis-Right" title="Male-Front-Brachioradialis-Right" coords="117,465,105,464,94,453,111,408,117,378,131,349,138,358,139,372,152,355,156,346,163,343,163,377,143,419,127,441" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Lef')" target="" alt="Male-Front-Hand-Left" title="Male-Front-Hand-Left" coords="384,468,397,467,408,454,449,494,441,529,432,543,419,544,401,535,384,491" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Hand-Right')" target="" alt="Male-Front-Hand-Right" title="Male-Front-Hand-Right" coords="94,455,103,465,116,469,101,536,82,543,67,541,58,526,52,491,82,462" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Left')" target="" alt="Male-Front-Sartorius-Left" title="Male-Front-Sartorius-Left" coords="310,432,308,454,305,471,299,495,287,536,278,563,273,603,273,622,285,658,276,642,272,628,269,610,266,590,268,571,268,557,279,515,285,487,292,477,298,453" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Sartorius-Right')" target="" alt="Male-Front-Sartorius-Right" title="Male-Front-Sartorius-Right" coords="189,434,190,447,191,459,197,480,205,513,212,536,223,569,226,599,225,625,220,641,215,655,224,643,227,616,230,603,231,577,231,546,220,511,215,496,211,483,206,475,202,453" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Left')" target="" alt="Male-Front-Abductor-Left" title="Male-Front-Abductor-Left" coords="257,502,266,488,275,471,304,437,291,473,281,498,276,522,267,558,267,575,265,588,257,559,256,534,253,520" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Abductor-Right')" target="" alt="Male-Front-Abductor-Right" title="Male-Front-Abductor-Right" coords="245,510,246,523,245,538,242,557,232,597,231,543,213,482,205,469,200,447,191,432,208,453,216,461,227,475,235,493" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Left')" target="" alt="Male-Front-Vastus_Medialis-Left" title="Male-Front-Vastus_Medialis-Left" coords="287,538,279,562,274,603,273,620,279,629,289,634,297,624,294,595,286,569" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Medialis-Right')" target="" alt="Male-Front-Vastus_Medialis-Right" title="Male-Front-Vastus_Medialis-Right" coords="226,631,215,639,205,630,204,610,212,582,215,554,214,545,221,568,225,599" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Left')" target="" alt="Male-Front-Vastus_Laterialis-Left" title="Male-Front-Vastus_Laterialis-Left" coords="317,482,326,501,329,537,328,572,324,594,320,608,319,628,311,626,307,611,311,595,319,576,323,538,321,509" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Vastus_Laterialis-Right')" target="" alt="Male-Front-Vastus_Laterialis-Right" title="Male-Front-Vastus_Laterialis-Right" coords="184,480,174,503,171,536,172,572,174,592,179,607,180,621,184,626,190,619,193,608,187,593,179,566,178,524,182,497" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Left')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Left" title="Male-Front-Tensor_Fasciae_Latae-Left" coords="317,427,323,451,324,480,329,505,313,476,310,451,312,434" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tensor_Fasciae_Latae-Right')" target="" alt="Male-Front-Tensor_Fasciae_Latae-Right" title="Male-Front-Tensor_Fasciae_Latae-Right" coords="183,426,188,434,189,454,185,472,173,506,177,462,178,445" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Left')" target="" alt="Male-Front-Tibialis_Anterior-Left" title="Male-Front-Tibialis_Anterior-Left" coords="316,655,317,677,320,713,320,735,309,773,308,827,303,827,306,749,307,702,308,673" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibialis_Anterior-Right')" target="" alt="Male-Front-Tibialis_Anterior-Right" title="Male-Front-Tibialis_Anterior-Right" coords="182,657,179,717,179,733,184,750,190,773,191,824,197,825,194,732,191,698,190,678,189,664" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Left')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Left" title="Male-Front-Extensor_Digitorum_Longus-Left" coords="320,716,326,723,325,731,317,775,317,823,309,827,309,775,321,735" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Extensor_Digitorum_Longus-Right')" target="" alt="Male-Front-Extensor_Digitorum_Longus-Right" title="Male-Front-Extensor_Digitorum_Longus-Right" coords="179,720,175,723,173,734,181,773,182,803,183,820,190,825,189,773,178,731" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Left')" target="" alt="Male-Front-Peroneus_Longus-Left" title="Male-Front-Peroneus_Longus-Left" coords="318,656,325,667,329,698,327,722,321,713" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Peroneus_Longus-Right')" target="" alt="Male-Front-Peroneus_Longus-Right" title="Male-Front-Peroneus_Longus-Right" coords="180,655,174,667,171,702,173,727,178,717,179,690" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Left')" target="" alt="Male-Front-Gastrocnemius-Left" title="Male-Front-Gastrocnemius-Left" coords="282,676,295,702,295,737,287,749,285,760,277,736,278,703" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Gastrocnemius-Right')" target="" alt="Male-Front-Gastrocnemius-Right" title="Male-Front-Gastrocnemius-Right" coords="217,673,205,697,203,738,210,745,215,761,221,737,221,703" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Left')" target="" alt="Male-Front-Soleus-Left" title="Male-Front-Soleus-Left" coords="294,826,295,740,288,750,285,761,292,789" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Soleus-Right')" target="" alt="Male-Front-Soleus-Right" title="Male-Front-Soleus-Right" coords="205,825,203,741,209,747,215,764,207,794" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Left')" target="" alt="Male-Front-Patella-Left" title="Male-Front-Patella-Left" coords="301,646,17" shape="circle">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Patella-Right')" target="" alt="Male-Front-Patella-Right" title="Male-Front-Patella-Right" coords="195,645,17" shape="circle">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Left')" target="" alt="Male-Front-Tibia-Left" title="Male-Front-Tibia-Left" coords="301,826,296,825,297,700,283,676,279,654,292,663,302,665,311,662,306,675,306,719" shape="poly">
-                                                                <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Tibia-Right')" target="" alt="Male-Front-Tibia-Right" title="Male-Front-Tibia-Right" coords="204,826,197,827,195,730,191,665,202,662,210,655,215,660,217,669,204,694,203,712,201,739" shape="poly">
-                                                            </map>
-                                                        </div>
-                                                        <div class="col-md no-sroller" style="overflow-x:auto;">
-                                                            <h5>(Back)</h5>
-                                                            <img src="../media/assets/body_charts/muscle-men-body-map-back.jpg" alt="" class="img-fluidz" usemap="#image-map-male-back-indi" hiddenz>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <h5>Muscles</h5>
-                                                            <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
-                                                                <li class="list-group-item">
-                                                                    <div class="row">
-                                                                        <div class="col-md">
-                                                                            <p class="fs-5 fw-bold">Muscle Title</p>
-                                                                        </div>
-                                                                        <div class="col-md">
-                                                                            <p class="fs-5 fw-bold">Pain Intensity</p>
-                                                                            <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" class="img-fluid mb-4">
-                                                                            <p>Rate your Muscle Soreness according to the scale above</p>
-                                                                            <div class="input-group">
-                                                                                <div class="form-check form-check-inline">
-                                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity1" value="Intensity-1">
-                                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity1">1</label>
-                                                                                </div>
-                                                                                <div class="form-check form-check-inline">
-                                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity2" value="Intensity-2">
-                                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity2">2</label>
-                                                                                </div>
-                                                                                <div class="form-check form-check-inline">
-                                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity3" value="Intensity-3">
-                                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity3">3</label>
-                                                                                </div>
-                                                                                <div class="form-check form-check-inline">
-                                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity4" value="Intensity-4">
-                                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity4">4</label>
-                                                                                </div>
-                                                                                <div class="form-check form-check-inline">
-                                                                                    <input class="form-check-input" type="radio" name="inlineRadioMuscleIntensity" id="inlineRadioMuscleIntensity5" value="Intensity-5">
-                                                                                    <label class="form-check-label" for="inlineRadioMuscleIntensity5">5</label>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="">
-                                                                                <p class="fs-5 fw-bold">Temp Reading (&#176;C)</p>
-                                                                                <input type="text" name="" id="" class="onefit-inputs-style rounded-pill shadow" placeholder="Temp Reading (&#176;C)">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!-- User Workouts - Bookmarked -->
                                         <div class="accordion-item p-2 my-2 shadow">
                                             <h2 class="accordion-header m-0" id="flush-headingIATTwo">
                                                 <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseIATTwo" aria-expanded="false" aria-controls="flush-collapseIATTwo">
-                                                    Indi-Training Programs
+                                                    <span class="material-icons material-icons-round align-middle">bookmark</span>
+                                                    <span class="align-middle">My Workouts</span>
                                                 </button>
                                             </h2>
                                             <div id="flush-collapseIATTwo" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingIATTwo" data-bs-parent="#accordionFlushIATRegiment">
                                                 <div class="accordion-body">
-                                                    <div class="grid-container">
-                                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                            <p class="fs-2 fw-bold">Warm-Up Drills</p>
+                                                    <div class="my-4">
+                                                        <div class="p-4 top-down-grad-dark" style="border-radius: 25px;">
+                                                            <!-- <div class="text-center pt-4 mb-4">
+                                                                <img src="media/assets/One-Symbol-Logo-White.png" alt="logo" class="img-fluid my-4 p-4 my-pulse-animation-light" style="max-width: 100px;border-radius: 50%;">
+                                                            </div> -->
+
+                                                            <div class="row align-items-center">
+                                                                <div class="col-md-6">
+                                                                    <!-- Onefit.TV Horizontal Content Stream -->
+                                                                    <div class="mb-4" id="onefittv-footer-h-content-stream">
+                                                                        <div class="content-panel-border-stylez p-4 shadow border-5 border-start border-end text-white" style="padding-bottom: 40px; border-radius: 25px; background-color: #343434; border-color: #ffa500 !important;">
+
+                                                                            <h5 class="fs-1 h4 aligh-middle d-grid text-center" style="color: #ffa500;">
+                                                                                <span class="material-icons material-icons-outlined" style="color: #fff;"> tv </span>
+                                                                                <span>OnefitNet.TV</span>
+                                                                            </h5>
+                                                                            <hr class="text-white" />
+
+                                                                            <p class="my-4 text-center" style=" font-size: 10px">Latest Training Programs | <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span></p>
+
+                                                                            <div class="d-lg-none w3-animate-bottom">
+                                                                                <!-- d-block d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none -->
+                                                                                <!-- <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid"> -->
+
+                                                                                <div class="video-card-container">
+                                                                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="latest video" class="img-fluid shadow mb-4" style="border-radius: 15px;" />
+                                                                                    <button class="onefit-buttons-style-light shadow-lg play-btn p-2 aligh-middle" onclick="playVideo()">
+                                                                                        <span class="material-icons material-icons-round aligh-middle" style="font-size: 20px !important;">
+                                                                                            play_circle_outline
+                                                                                        </span>
+                                                                                    </button>
+                                                                                </div>
+
+                                                                                <div class="d-grid mt-4 w-100 justify-content-center">
+                                                                                    <button class="onefit-buttons-style-dark shadow d-grid p-4 comfortaa-font text-center aligh-middle position-relative">
+                                                                                        <span>View Playlist.</span>
+                                                                                        <span class="material-icons material-icons-round aligh-middle">playlist_play</span>
+
+                                                                                        <span class="position-absolute top-0 start-100 translate-middle p-2 comfortaa-font border border-light rounded-pill align-middle shadow" style="background-color: #343434 !important; color: #ffa500 !important; border-color: #ffa500 !important;">
+                                                                                            <span class="align-middle" style="font-size: 10px !important;">+3</span>
+                                                                                            <span class="visually-hidden">Latest Video Count</span>
+                                                                                        </span>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                            <div class="horizontal-scroll d-none d-lg-block w3-animate-bottom">
+                                                                                <div class="horizontal-scroll-card p-4">
+                                                                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
+                                                                                    <hr class="text-white" style="height: 5px;">
+
+                                                                                    <div class="row my-2 align-items-center">
+                                                                                        <div class="col-sm-2 text-center">
+                                                                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                                                                        </div>
+                                                                                        <div class="col-sm">
+                                                                                            <h5>Ep.1 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
+                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
+                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
+                                                                                                Category: Resistence
+                                                                                            </p>
+
+                                                                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="horizontal-scroll-card p-4">
+                                                                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
+                                                                                    <hr class="text-white" style="height: 5px;">
+
+                                                                                    <div class="row my-2 align-items-center">
+                                                                                        <div class="col-sm-2 text-center">
+                                                                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                                                                        </div>
+                                                                                        <div class="col-sm">
+                                                                                            <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
+                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
+                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
+                                                                                                Category: Resistence
+                                                                                            </p>
+
+                                                                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="horizontal-scroll-card p-4">
+                                                                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
+                                                                                    <hr class="text-white" style="height: 5px;">
+
+                                                                                    <div class="row my-2 align-items-center">
+                                                                                        <div class="col-sm-2 text-center">
+                                                                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                                                                        </div>
+                                                                                        <div class="col-sm">
+                                                                                            <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
+                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
+                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
+                                                                                                Category: Resistence
+                                                                                            </p>
+
+                                                                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="horizontal-scroll-card p-4">
+                                                                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
+                                                                                    <hr class="text-white" style="height: 5px;">
+
+                                                                                    <div class="row my-2 align-items-center">
+                                                                                        <div class="col-sm-2 text-center">
+                                                                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                                                                        </div>
+                                                                                        <div class="col-sm">
+                                                                                            <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
+                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
+                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
+                                                                                                Category: Resistence
+                                                                                            </p>
+
+                                                                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="horizontal-scroll-card p-4">
+                                                                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
+                                                                                    <hr class="text-white" style="height: 5px;">
+
+                                                                                    <div class="row my-2 align-items-center">
+                                                                                        <div class="col-sm-2 text-center">
+                                                                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                                                                        </div>
+                                                                                        <div class="col-sm">
+                                                                                            <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
+                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
+                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
+                                                                                                Category: Resistence
+                                                                                            </p>
+
+                                                                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- ./ Onefit.TV Horizontal Content Stream -->
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="comfortaa-font">
+
+                                                                        <div class="border-5 border-top border-bottom p-4 mb-4" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                                                            <h5 class="mt-4">Workouts &amp; Wellness programs</h5>
+
+                                                                            <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span>
+
+                                                                            <ul class="list-group list-group-flush mb-4">
+                                                                                <li class="list-group-item bg-transparent text-white border-white">
+                                                                                    <div class="row">
+                                                                                        <div class="col-sm-2 text-center">
+                                                                                            <span class="material-icons material-icons-round align-middle">bookmarks</span>
+                                                                                        </div>
+                                                                                        <div class="col-sm-10">
+                                                                                            <span class="align-middle fs-5 comfortaa-font">Bookmarked Workouts</span>
+                                                                                            <p class="text-muted" style="color: #ffa500 !important;">You have 3 workouts saved.</p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </li>
+                                                                                <li class="list-group-item bg-transparent text-white border-white">
+                                                                                    <div class="row">
+                                                                                        <div class="col-sm-2 text-center">
+                                                                                            <span class="material-icons material-icons-round align-middle">sports_gymnastics</span>
+                                                                                        </div>
+                                                                                        <div class="col-sm-10">
+                                                                                            <span class="align-middle fs-5 comfortaa-font">View more workouts</span>
+                                                                                            <p class="text-muted" style="color: #ffa500 !important;">50 workouts available</p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </li>
+                                                                                <li class="list-group-item bg-transparent text-white border-white">
+                                                                                    <div class="row">
+                                                                                        <div class="col-sm-2 text-center">
+                                                                                            <span class="material-icons material-icons-round align-middle">fitness_center</span>
+                                                                                        </div>
+                                                                                        <div class="col-sm-10">
+                                                                                            <span class="align-middle fs-5 comfortaa-font">View more exercises</span>
+                                                                                            <p class="text-muted" style="color: #ffa500 !important;">438 exercises available</p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </li>
+                                                                            </ul>
+
+                                                                        </div>
+
+                                                                        <div class="border-5 border-top border-bottom p-4 mb-4" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                                                            <h5 class="align-middle mt-5"><span class="material-icons material-icons-outlined align-middle">push_pin</span> Favourites</h5>
+
+                                                                            <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span>
+
+                                                                            <p class="text-muted comfortaa-font" style="font-size: 12px;">Pin up to 5 of your favourite workouts and wellness programs.</p>
+
+                                                                            <ul class="list-group list-group-flush" style="max-height: 500px; overflow-y: auto;">
+                                                                                <li class="list-group-item bg-transparent border-white py-4" style="border-radius: 25px !important;">
+                                                                                    <div class="row p-2 pt-4">
+                                                                                        <div class="col-md-4 p-4 position-relative">
+                                                                                            <span class="rounded-pill position-absolute top-0 start-90 translate-middle align-middle badge border-3 border p-4 fs-5" style="height: 70px; width: 60px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;"> 1. </span>
+
+                                                                                            <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg" class="img-fluid" style="border-radius: 25px;" alt="placeholder">
+                                                                                        </div>
+                                                                                        <div class="col-md-6">
+                                                                                            <h5 class="fw-bold comfortaa-font" style="color: #ffa500 !important;">Workout Title.</h5>
+                                                                                            <p class="my-4 text-white" style="font-size: 20px !important; max-height: 50px;">
+                                                                                                This is a general description of the workout.
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="col-md-2">
+                                                                                            <!-- pinned workout options button -->
+                                                                                            <div class="mb-4 d-flex justify-content-end shadow">
+                                                                                                <button class="btn onefit-buttons-style-dark p-4 shadow">
+                                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">tune</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <!-- ./ pinned workout options button -->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </li>
+                                                                                <li class="list-group-item bg-transparent border-white py-4" style="border-radius: 25px !important;">
+                                                                                    <div class="row p-2 pt-4">
+                                                                                        <div class="col-md-4 p-4 position-relative">
+                                                                                            <span class="rounded-pill position-absolute top-0 start-90 translate-middle align-middle badge border-3 border p-4 fs-5" style="height: 70px; width: 60px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;"> 2. </span>
+
+                                                                                            <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg" class="img-fluid" style="border-radius: 25px;" alt="placeholder">
+                                                                                        </div>
+                                                                                        <div class="col-md-6">
+                                                                                            <h5 class="fw-bold comfortaa-font" style="color: #ffa500 !important;">Workout Title.</h5>
+                                                                                            <p class="my-4 text-white" style="font-size: 20px !important; max-height: 50px;">
+                                                                                                This is a general description of the workout.
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="col-md-2">
+                                                                                            <!-- pinned workout options button -->
+                                                                                            <div class="mb-4 d-flex justify-content-end">
+                                                                                                <button class="btn onefit-buttons-style-dark p-4 shadow">
+                                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">tune</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <!-- ./ pinned workout options button -->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </li>
+                                                                                <li class="list-group-item bg-transparent border-white py-4" style="border-radius: 25px !important;">
+                                                                                    <div class="row p-2 pt-4">
+                                                                                        <div class="col-md-4 p-4 position-relative">
+                                                                                            <span class="rounded-pill position-absolute top-0 start-90 translate-middle align-middle badge border-3 border p-4 fs-5" style="height: 70px; width: 60px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;"> 3. </span>
+
+                                                                                            <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg" class="img-fluid" style="border-radius: 25px;" alt="placeholder">
+                                                                                        </div>
+                                                                                        <div class="col-md-6">
+                                                                                            <h5 class="fw-bold comfortaa-font" style="color: #ffa500 !important;">Workout Title.</h5>
+                                                                                            <p class="my-4 text-white" style="font-size: 20px !important; max-height: 50px;">
+                                                                                                This is a general description of the workout.
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="col-md-2">
+                                                                                            <!-- pinned workout options button -->
+                                                                                            <div class="mb-4 d-flex justify-content-end">
+                                                                                                <button class="btn onefit-buttons-style-dark p-4 shadow">
+                                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">tune</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <!-- ./ pinned workout options button -->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </li>
+                                                                                <li class="list-group-item bg-transparent border-white py-4" style="border-radius: 25px !important;">
+                                                                                    <div class="row p-2 pt-4">
+                                                                                        <div class="col-md-4 p-4 position-relative">
+                                                                                            <span class="rounded-pill position-absolute top-0 start-90 translate-middle align-middle badge border-3 border p-4 fs-5" style="height: 70px; width: 60px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;"> 4. </span>
+
+                                                                                            <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg" class="img-fluid" style="border-radius: 25px;" alt="placeholder">
+                                                                                        </div>
+                                                                                        <div class="col-md-6">
+                                                                                            <h5 class="fw-bold comfortaa-font" style="color: #ffa500 !important;">Workout Title.</h5>
+                                                                                            <p class="my-4 text-white" style="font-size: 20px !important; max-height: 50px;">
+                                                                                                This is a general description of the workout.
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="col-md-2">
+                                                                                            <!-- pinned workout options button -->
+                                                                                            <div class="mb-4 d-flex justify-content-end">
+                                                                                                <button class="btn onefit-buttons-style-dark p-4 shadow">
+                                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">tune</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <!-- ./ pinned workout options button -->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </li>
+                                                                                <li class="list-group-item bg-transparent border-white py-4" style="border-radius: 25px !important;">
+                                                                                    <div class="row p-2 pt-4">
+                                                                                        <div class="col-md-4 p-4 position-relative">
+                                                                                            <span class="rounded-pill position-absolute top-0 start-90 translate-middle align-middle badge border-3 border p-4 fs-5" style="height: 70px; width: 60px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;"> 5. </span>
+
+                                                                                            <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg" class="img-fluid" style="border-radius: 25px;" alt="placeholder">
+                                                                                        </div>
+                                                                                        <div class="col-md-6">
+                                                                                            <h5 class="fw-bold comfortaa-font" style="color: #ffa500 !important;">Workout Title.</h5>
+                                                                                            <p class="my-4 text-white" style="font-size: 20px !important; max-height: 50px;">
+                                                                                                This is a general description of the workout.
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="col-md-2">
+                                                                                            <!-- pinned workout options button -->
+                                                                                            <div class="mb-4 d-flex justify-content-end">
+                                                                                                <button class="btn onefit-buttons-style-dark p-4 shadow">
+                                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">tune</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <!-- ./ pinned workout options button -->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </li>
+                                                                            </ul>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
 
-                                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                            <p class="fs-2 fw-bold">Pair Drills</p>
+                                                        <hr class="text-white">
+
+                                                        <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                                                            <h1 class="text-center comfortaa-font">
+                                                                <span class="material-icons material-icons-round align-middle">bookmarks</span>
+                                                                Workout Subscriptions (Bookmarked)
+                                                            </h1>
+
                                                         </div>
 
-                                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                            <p class="fs-2 fw-bold">Speed & Reaction Drills</p>
-                                                        </div>
+                                                        <div id="user-workout-subscriptions-grid" class="grid-container">
+                                                            <div class="grid-tile p-4 down-top-grad-white comfortaa-font shadow" style="border-radius: 0 0 25px 25px;">
+                                                                <!-- options button -->
+                                                                <div class="mb-4 d-flex justify-content-end">
+                                                                    <button class="btn onefit-buttons-style-dark p-4">
+                                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">tune</span>
+                                                                        <span style="font-size: 10px;">Options</span>
+                                                                    </button>
+                                                                </div>
+                                                                <!-- options button -->
+                                                                <div class="card bg-transparent border-0">
+                                                                    <h5 class="fs-2 fw-bold comfortaa-font text-white">Workout Title</h5>
+                                                                    <hr class="text-white">
 
-                                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                            <p class="fs-2 fw-bold">Dribbling Drills</p>
-                                                        </div>
+                                                                    <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg" class="img-fluid my-4" style="border-radius: 25px;" alt="placeholder">
 
-                                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                            <p class="fs-2 fw-bold">Shooting Drills</p>
-                                                        </div>
+                                                                    <p class="my-4 text-dark" style="font-size: 20px !important;">
+                                                                        <sup><span class="material-icons material-icons-round align-middle" style="font-size: 40px; color: #ffa500 !important;">integration_instructions</span></sup>
+                                                                        This is a general description of the workout.
+                                                                    </p>
 
-                                                        <div class="grid-tile p-4 down-top-grad-tahiti shadow" style="border-radius: 0 0 25px 25px;">
-                                                            <p class="fs-2 fw-bold">Shooting Drills</p>
+                                                                    <ul class="list-group list-group-flush mb-4">
+                                                                        <li class="list-group-item bg-transparent text-dark border-dark fs-5 text-truncate fw-bold">
+                                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">schedule</span>
+                                                                            <span class="align-middle">Duration [10 - 15 min]</span>
+                                                                        </li>
+
+                                                                        <li class="list-group-item bg-transparent text-dark border-dark fs-5 text-truncate fw-bold">
+                                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">view_timeline</span>
+                                                                            <span class="align-middle">Experience [Beginner]</span>
+                                                                        </li>
+
+                                                                        <li class="list-group-item bg-transparent text-dark border-dark fs-5 text-truncate fw-bold">
+                                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">accessibility</span>
+                                                                            <span class="align-middle">Focus [Arms, Legs, Full body]</span>
+                                                                        </li>
+                                                                    </ul>
+
+                                                                    <div class="text-center">
+                                                                        <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important;">horizontal_rule</span>
+                                                                    </div>
+
+                                                                    <div class="card-footer" style="border-radius: 25px;">
+                                                                        <div class="d-grid my-4">
+                                                                            <button class="btn onefit-buttons-style-dark p-4 fs-5 text-truncate">
+                                                                                <span class="material-icons material-icons-round align-middle" style="font-size: 40px; color: #ffa500;">flag</span>
+                                                                                <span class="align-middle fs-5">Begin Workout<span style="color: #ffa500;">.</span></span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="grid-tile p-4 down-top-grad-white comfortaa-font shadow" style="border-radius: 0 0 25px 25px;">
+                                                                <!-- options button -->
+                                                                <div class="mb-4 d-flex justify-content-end">
+                                                                    <button class="btn onefit-buttons-style-dark p-4">
+                                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">tune</span>
+                                                                        <span style="font-size: 10px;">Options</span>
+                                                                    </button>
+                                                                </div>
+                                                                <!-- options button -->
+                                                                <div class="card bg-transparent border-0">
+                                                                    <h5 class="fs-2 fw-bold comfortaa-font text-white">Workout Title</h5>
+                                                                    <hr class="text-white">
+
+                                                                    <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg" class="img-fluid my-4" style="border-radius: 25px;" alt="placeholder">
+
+                                                                    <p class="my-4 text-dark" style="font-size: 20px !important;">
+                                                                        <sup><span class="material-icons material-icons-round align-middle" style="font-size: 40px; color: #ffa500 !important;">integration_instructions</span></sup>
+                                                                        This is a general description of the workout.
+                                                                    </p>
+
+                                                                    <ul class="list-group list-group-flush mb-4">
+                                                                        <li class="list-group-item bg-transparent text-dark border-dark fs-5 text-truncate fw-bold">
+                                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">schedule</span>
+                                                                            <span class="align-middle">Duration [10 - 15 min]</span>
+                                                                        </li>
+
+                                                                        <li class="list-group-item bg-transparent text-dark border-dark fs-5 text-truncate fw-bold">
+                                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">view_timeline</span>
+                                                                            <span class="align-middle">Experience [Beginner]</span>
+                                                                        </li>
+
+                                                                        <li class="list-group-item bg-transparent text-dark border-dark fs-5 text-truncate fw-bold">
+                                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">accessibility</span>
+                                                                            <span class="align-middle">Focus [Arms, Legs, Full body]</span>
+                                                                        </li>
+                                                                    </ul>
+
+                                                                    <div class="text-center">
+                                                                        <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important;">horizontal_rule</span>
+                                                                    </div>
+
+                                                                    <div class="card-footer" style="border-radius: 25px;">
+                                                                        <div class="d-grid my-4">
+                                                                            <button class="btn onefit-buttons-style-dark p-4 fs-5 text-truncate">
+                                                                                <span class="material-icons material-icons-round align-middle" style="font-size: 40px; color: #ffa500;">flag</span>
+                                                                                <span class="align-middle fs-5">Begin Workout<span style="color: #ffa500;">.</span></span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="grid-tile p-4 down-top-grad-white comfortaa-font shadow" style="border-radius: 0 0 25px 25px;">
+                                                                <!-- options button -->
+                                                                <div class="mb-4 d-flex justify-content-end">
+                                                                    <button class="btn onefit-buttons-style-dark p-4">
+                                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">tune</span>
+                                                                        <span style="font-size: 10px;">Options</span>
+                                                                    </button>
+                                                                </div>
+                                                                <!-- options button -->
+                                                                <div class="card bg-transparent border-0">
+                                                                    <h5 class="fs-2 fw-bold comfortaa-font text-white">Workout Title</h5>
+                                                                    <hr class="text-white">
+
+                                                                    <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg" class="img-fluid my-4" style="border-radius: 25px;" alt="placeholder">
+
+                                                                    <p class="my-4 text-dark" style="font-size: 20px !important;">
+                                                                        <sup><span class="material-icons material-icons-round align-middle" style="font-size: 40px; color: #ffa500 !important;">integration_instructions</span></sup>
+                                                                        This is a general description of the workout.
+                                                                    </p>
+
+                                                                    <ul class="list-group list-group-flush mb-4">
+                                                                        <li class="list-group-item bg-transparent text-dark border-dark fs-5 text-truncate fw-bold">
+                                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">schedule</span>
+                                                                            <span class="align-middle">Duration [10 - 15 min]</span>
+                                                                        </li>
+
+                                                                        <li class="list-group-item bg-transparent text-dark border-dark fs-5 text-truncate fw-bold">
+                                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">view_timeline</span>
+                                                                            <span class="align-middle">Experience [Beginner]</span>
+                                                                        </li>
+
+                                                                        <li class="list-group-item bg-transparent text-dark border-dark fs-5 text-truncate fw-bold">
+                                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">accessibility</span>
+                                                                            <span class="align-middle">Focus [Arms, Legs, Full body]</span>
+                                                                        </li>
+                                                                    </ul>
+
+                                                                    <div class="text-center">
+                                                                        <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important;">horizontal_rule</span>
+                                                                    </div>
+
+                                                                    <div class="card-footer" style="border-radius: 25px;">
+                                                                        <div class="d-grid my-4">
+                                                                            <button class="btn onefit-buttons-style-dark p-4 fs-5 text-truncate">
+                                                                                <span class="material-icons material-icons-round align-middle" style="font-size: 40px; color: #ffa500;">flag</span>
+                                                                                <span class="align-middle fs-5">Begin Workout<span style="color: #ffa500;">.</span></span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="grid-tile p-4 down-top-grad-white comfortaa-font shadow" style="border-radius: 0 0 25px 25px;">
+                                                                <!-- options button -->
+                                                                <div class="mb-4 d-flex justify-content-end">
+                                                                    <button class="btn onefit-buttons-style-dark p-4">
+                                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">tune</span>
+                                                                        <span style="font-size: 10px;">Options</span>
+                                                                    </button>
+                                                                </div>
+                                                                <!-- options button -->
+                                                                <div class="card bg-transparent border-0">
+                                                                    <h5 class="fs-2 fw-bold comfortaa-font text-white">Workout Title</h5>
+                                                                    <hr class="text-white">
+
+                                                                    <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg" class="img-fluid my-4" style="border-radius: 25px;" alt="placeholder">
+
+                                                                    <p class="my-4 text-dark" style="font-size: 20px !important;">
+                                                                        <sup><span class="material-icons material-icons-round align-middle" style="font-size: 40px; color: #ffa500 !important;">integration_instructions</span></sup>
+                                                                        This is a general description of the workout.
+                                                                    </p>
+
+                                                                    <ul class="list-group list-group-flush mb-4">
+                                                                        <li class="list-group-item bg-transparent text-dark border-dark fs-5 text-truncate fw-bold">
+                                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">schedule</span>
+                                                                            <span class="align-middle">Duration [10 - 15 min]</span>
+                                                                        </li>
+
+                                                                        <li class="list-group-item bg-transparent text-dark border-dark fs-5 text-truncate fw-bold">
+                                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">view_timeline</span>
+                                                                            <span class="align-middle">Experience [Beginner]</span>
+                                                                        </li>
+
+                                                                        <li class="list-group-item bg-transparent text-dark border-dark fs-5 text-truncate fw-bold">
+                                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">accessibility</span>
+                                                                            <span class="align-middle">Focus [Arms, Legs, Full body]</span>
+                                                                        </li>
+                                                                    </ul>
+
+                                                                    <div class="text-center">
+                                                                        <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important;">horizontal_rule</span>
+                                                                    </div>
+
+                                                                    <div class="card-footer" style="border-radius: 25px;">
+                                                                        <div class="d-grid my-4">
+                                                                            <button class="btn onefit-buttons-style-dark p-4 fs-5 text-truncate">
+                                                                                <span class="material-icons material-icons-round align-middle" style="font-size: 40px; color: #ffa500;">flag</span>
+                                                                                <span class="align-middle fs-5">Begin Workout<span style="color: #ffa500;">.</span></span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <!-- ./ Indi Athlectics Training Panel -->
+                                            <!-- ./ User Workouts - Bookmarked -->
 
-                                    <!-- Next Tab button -->
+                                            <!-- Todays user workout activities -->
+                                            <div class="accordion-item p-2 my-2 shadow">
+                                                <h2 class="accordion-header m-0" id="flush-headingIATOne">
+                                                    <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseIATOne" aria-expanded="true" aria-controls="flush-collapseIATOne">
+                                                        <span class="material-icons material-icons-round align-middle">bookmark</span>
+                                                        <span class="align-middle"> Your Daily Workout (<span id="training-date-str">Date</span>) </span>
+                                                    </button>
+                                                </h2>
+                                                <div id="flush-collapseIATOne" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingIATOne" data-bs-parent="#accordionFlushIATRegiment">
+                                                    <div class="accordion-body">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- ./ Todays user workout activities -->
+
+                                        </div>
+                                        <!-- ./ Indi Athlectics Training Panel -->
+
+                                    </div>
+                                    <!-- ./ Indi Athletics Training Panel -->
+
+                                    <!-- Next Tab button - Proceed to Team Athletics -->
                                     <hr class="text-white">
-                                    <div class="my-4 text-center" style="width: 100%">
+                                    <div class="mb-4 text-center" style="width: 100%">
                                         <div class="d-flex justify-content-center" style="width: 100%">
                                             <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabCTA')">
-                                                <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">diversity_2</span>
-                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 10px !important;">Community/Team Athletics</p>
-                                                <span class="material-icons material-icons-rounded" style="font-size: 10px !important;">expand_more</span>
+                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 40px !important;">arrow_forward</span></p>
+                                                <!-- <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">stars</span> -->
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 20px !important;">Team Athletics</p>
                                             </button>
                                         </div>
                                     </div>
-                                    <!-- ./Next Tab button -->
+                                    <!-- ./Next Tab button - Proceed to Team Athletics -->
                                 </div>
                                 <div class="tab-pane fade w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-teamathletics" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-teamathletics-tab">
-                                    <!-- Next Tab button -->
+                                    <div class="d-grid text-center mt-4">
+                                        <span class="material-icons material-icons-round">diversity_2</span>
+                                        <h5 class="fs-1">Team Athletics</h5>
+                                    </div>
+
+                                    <hr class="text-white">
+
+                                    <!-- Next Tab button - Return to Indi-Athlete -->
                                     <div class="my-4 text-center" style="width: 100%">
                                         <div class="d-flex justify-content-center" style="width: 100%">
                                             <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabIAT')">
-                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 10px !important;">expand_less</span></p>
-                                                <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">sports_gymnastics</span>
-                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 10px !important;">Indi-Athletics</p>
+                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 40px !important;">arrow_back</span></p>
+                                                <!-- <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">sports_gymnastics</span> -->
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 20px !important;">Indi-Athletics</p>
                                             </button>
                                         </div>
                                     </div>
+                                    <!-- ./Next Tab button - Return to Indi-Athlete -->
+
                                     <hr class="text-white">
-                                    <!-- ./Next Tab button -->
 
                                     <!-- Team Athletics Training Panel -->
                                     <h1 class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti my-4">Team-Athletics Training</h1>
-                                    <div id="team-athletics-container mt-4">
+                                    <div class="mt-4" id="team-athletics-container">
                                         <div class="accordion accordion-flush" id="accordionFlushTATRegiment">
                                             <div class="accordion-item p-2 my-2 shadow">
                                                 <h2 class="accordion-header m-0" id="flush-headingOne">
                                                     <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
-                                                        Weekly Training Schedule (<span id="weekly-training-date-duration-str">Date</span>)
+                                                        <span class="material-icons material-icons-round align-middle">bookmark</span>
+                                                        <span class="align-middle">Weekly Training Schedule (<span id="weekly-training-date-duration-str">Date</span>)</span>
                                                     </button>
                                                 </h2>
                                                 <div id="flush-collapseOne" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushTATRegiment">
@@ -5344,6 +7089,8 @@ function getAllTrainers()
                                             <div class="accordion-item p-2 my-2 shadow">
                                                 <h2 class="accordion-header m-0" id="flush-headingTwo">
                                                     <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="true" aria-controls="flush-collapseTwo">
+                                                        <span class="material-icons material-icons-round align-middle">bookmark</span>
+                                                        <span class="align-middle">Weekly Training Schedule (<span id="weekly-training-date-duration-str">Date</span>)</span>
                                                         Daily Workout (<span id="training-date-str">Date</span>)
                                                     </button>
                                                 </h2>
@@ -5579,242 +7326,258 @@ function getAllTrainers()
                                             <div class="accordion-item p-2 my-2 shadow">
                                                 <h2 class="accordion-header m-0" id="flush-headingThree">
                                                     <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                                        Match Day Activities (<span id="match-date-str">Date</span>)
+                                                        <span class="material-icons material-icons-round align-middle">bookmark</span>
+                                                        <span class="align-middle">Match Day Activities (<span id="match-date-str">Date</span>)</span>
                                                     </button>
                                                 </h2>
                                                 <div id="flush-collapseThree" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushTATRegiment">
                                                     <div class="accordion-body">
+                                                        <!-- Weekly match schedule display -->
                                                         <div class="text-center w-100 comfortaa-font mb-4" style="padding-top: 100px; padding-bottom: 100px">
                                                             No Scheduled Match this week.
-                                                        </div>
 
-                                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Matchday: Carbohydrate Feuling Plan</p>
-                                                        <img src="../media/assets/body_charts/carbohydrate fueling plan.jpeg" alt="carbohydrate fueling plan template" class="img-fluid mb-4 shadow" style="border-radius: 25px;">
+                                                            <!-- Team Formation -->
+                                                            <div id="teamathletics-team-formation" class="py-4">
+                                                                <p class="fs-5 comfortaa-font">Team Formation</p>
+                                                                <div class="mb-4" id="soccerfield"></div>
 
-                                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Pre-Match</p>
-                                                        <p>Pe-Match warm up jog / routine / drill</p>
-
-                                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Mid-Match</p>
-                                                        <div id="soccerfield"></div>
-                                                        <div class="row">
-                                                            <!-- <div class="col-md">
-                                                <h5>Tactical Formation</h5>
-
-                                                <img src="../media/assets/body_charts/SoccerFieldDimensions.jpg" alt="" class="img-fluid" style="border-radius: 25px;">
-                                            </div> -->
-                                                            <div class="col-md">
-                                                                <h5>Players</h5>
-                                                                <button class="btn btn-darkz onefit-buttons-style-dark fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                                                    Toggle PLAYER PINS
-                                                                </button>
-                                                                <p class="text-end">Main Squad</p>
-                                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
-                                                                    <li class="list-group-item" style="min-height: 120px;">
-                                                                        <div class="row">
-                                                                            <div class="col-sm">
-                                                                                <!-- Draggable DIV -->
-                                                                                <div class="no-scroller py-0" id="drag-player-pin">
-                                                                                    <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
-                                                                                    <div id="drag-player-pinheader">
-                                                                                        <img src="../media/profiles/0_default/default_profile_pic.png" alt="Player Profile Image" height="50" width="50" class="rounded-circle img-fluid border-1 border-white">
-                                                                                        <p class="text-white fs-5 fw-bold m-0 mt-2">#9</p>
+                                                                <!-- starting squad team list -->
+                                                                <div class="row">
+                                                                    <div class="col-sm">
+                                                                        <div class="no-scroller py-0" id="drag-player-pin">
+                                                                            <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+                                                                            <div id="drag-player-pinheader">
+                                                                                <img src="../media/profiles/0_default/default_profile_pic.png" alt="Player Profile Image" height="50" width="50" class="rounded-circle img-fluid border-1 border-white">
+                                                                                <p class="text-white fs-5 fw-bold m-0 mt-2">#9</p>
+                                                                            </div>
+                                                                            <div class="drag-player-pin-container no-scroller p-0">
+                                                                                <div class="collapse no-scroller" id="collapseExample">
+                                                                                    <div class="card card-body bg-transparent">
+                                                                                        <p class="text-white m-0">Details</p>
+                                                                                        <p class="text-white m-0">Details</p>
+                                                                                        <p class="text-white m-0">Details</p>
+                                                                                        <p class="text-white m-0">Details</p>
                                                                                     </div>
-                                                                                    <div class="drag-player-pin-container no-scroller p-0">
-                                                                                        <div class="collapse no-scroller" id="collapseExample">
-                                                                                            <div class="card card-body bg-transparent">
-                                                                                                <p class="text-white m-0">Details</p>
-                                                                                                <p class="text-white m-0">Details</p>
-                                                                                                <p class="text-white m-0">Details</p>
-                                                                                                <p class="text-white m-0">Details</p>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-sm">
-                                                                                Thumbnail
-                                                                            </div>
-                                                                            <div class="col-sm">
-                                                                                Player Names
-                                                                            </div>
-                                                                            <div class="col-sm">
-                                                                                View Profile Btn
-                                                                            </div>
                                                                         </div>
-                                                                    </li>
-                                                                </ul>
+                                                                    </div>
+                                                                    <div class="col-sm">
+                                                                        Thumbnail
+                                                                    </div>
+                                                                    <div class="col-sm">
+                                                                        Player Names
+                                                                    </div>
+                                                                    <div class="col-sm">
+                                                                        View Profile Btn
+                                                                    </div>
+                                                                </div>
+                                                                <!-- ./ starting squad team list -->
 
-                                                                <p class="text-end mt-4">Substitutes</p>
-                                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
-                                                                    <li class="list-group-item">
-                                                                        <div class="row">
-                                                                            <div class="col-sm">
-                                                                                Thumbnail
+                                                                <!-- Substitude list -->
+                                                                <div id="teamathletics-substitutes" class="py-4">
+                                                                    <p class="text-end mt-4">Substitutes</p>
+                                                                    <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
+                                                                        <li class="list-group-item">
+                                                                            <div class="row">
+                                                                                <div class="col-sm">
+                                                                                    Thumbnail
+                                                                                </div>
+                                                                                <div class="col-sm">
+                                                                                    Player Names
+                                                                                </div>
+                                                                                <div class="col-sm">
+                                                                                    View Profile Btn
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="col-sm">
-                                                                                Player Names
-                                                                            </div>
-                                                                            <div class="col-sm">
-                                                                                View Profile Btn
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <!-- ./ Substitude list -->
 
-                                                                <p class="text-end mt-4">Reserves</p>
-                                                                <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
-                                                                    <li class="list-group-item">
-                                                                        <div class="row">
-                                                                            <div class="col-sm">
-                                                                                Thumbnail
+                                                                <!-- reserves list -->
+                                                                <div id="teamathletics-reserves" class="py-4">
+                                                                    <p class="text-end mt-4">Reserves</p>
+                                                                    <ul class="list-group list-group-flush" style="border-radius: 25px !important;">
+                                                                        <li class="list-group-item">
+                                                                            <div class="row">
+                                                                                <div class="col-sm">
+                                                                                    Thumbnail
+                                                                                </div>
+                                                                                <div class="col-sm">
+                                                                                    Player Names
+                                                                                </div>
+                                                                                <div class="col-sm">
+                                                                                    View Profile Btn
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="col-sm">
-                                                                                Player Names
-                                                                            </div>
-                                                                            <div class="col-sm">
-                                                                                View Profile Btn
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <!-- ./ reserves list -->
                                                             </div>
+                                                            <!-- ./ Team Formation -->
+
                                                         </div>
-                                                        <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Post-Match</p>
-                                                        <img src="../media/assets/body_charts/training recovery plan.jpeg" class="img-fluid" alt="recovery chart Sample" hidden>
-                                                        <div class="recovery-chart">
-                                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #ffa500; color: #343434 !important;">WITHIN 30 MINUTES</h5>
-                                                            <p class="fw-bold text-center">CHOOSE AT LEAST ONE WHITE BOX OPTION</p>
-                                                            <input type="number" value="0" class="form-control" id="min30-selection-count">
-                                                            <div class="grid-container my-4">
-                                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
-                                                                    <span class="align-middle fw-bold">Carbohydrate / Protein Recovery Drink
-                                                                        <hr class="bg-white">
-                                                                    </span>
-                                                                </div>
-                                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
-                                                                    <span class="align-middle fw-bold">Carbohydrate Food
-                                                                        <hr class="bg-white">
-                                                                    </span>
-                                                                </div>
-                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('30min','option-1')">
-                                                                    <div class="form-check form-switch">
-                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                                        <label class="form-check-label text-center" for="min30-option-1-check">
-                                                                            <span class="align-middle fw-bold">Light Exercise / Stretch Cool Down</span>
-                                                                        </label>
-                                                                    </div>
-                                                                    <hr class="bg-dark">
-                                                                </div>
-                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('30min','option-2')">
-                                                                    <div class="form-check form-switch">
-                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                                        <label class="form-check-label text-center" for="min30-option-2-check">
-                                                                            <span class="align-middle fw-bold">Cold Water Immersion - 10 Minutes</span>
-                                                                        </label>
-                                                                    </div>
-                                                                    <hr class="bg-dark">
-                                                                </div>
-                                                            </div>
+                                                        <!-- ./ Weekly match schedule display -->
 
-                                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #ffa500; color: #343434 !important;">WITHIN 1 HOUR</h5>
-                                                            <p class="fw-bold text-center">CHOOSE AT LEAST ONE WHITE BOX OPTION</p>
-                                                            <input type="number" value="0" class="form-control" id="hr1-selection-count">
-                                                            <div class="grid-container my-4">
-                                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
-                                                                    <span class="align-middle fw-bold">1 X 500ML Rehydrate Drink</span>
-                                                                    <hr class="bg-white">
-                                                                </div>
-                                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
-                                                                    <span class="align-middle fw-bold">Carbohydrate Food</span>
-                                                                    <hr class="bg-white">
-                                                                </div>
-                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('1hr','option-1')">
-                                                                    <div class="form-check form-switch">
-                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                                        <label class="form-check-label text-center" for="hr1-option-1-check">
-                                                                            <span class="align-middle fw-bold">Lower Limb Massage</span>
-                                                                        </label>
-                                                                    </div>
-                                                                    <hr class="bg-dark">
-                                                                </div>
-                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('1hr','option-2')">
-                                                                    <div class="form-check form-switch">
-                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                                        <label class="form-check-label text-center" for="hr1-option-2-check">
-                                                                            <span class="align-middle fw-bold">Compression Tights Until Bed</span>
-                                                                        </label>
-                                                                    </div>
-                                                                    <hr class="bg-dark">
-                                                                </div>
-                                                            </div>
+                                                        <!-- match-day phases breakdown container -->
+                                                        <div id="match-day-breakdown-container">
+                                                            <!-- Fueling Plan -->
+                                                            <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Matchday: Carbohydrate Feuling Plan</p>
+                                                            <img src="../media/assets/body_charts/carbohydrate fueling plan.jpeg" alt="carbohydrate fueling plan template" class="img-fluid mb-4 shadow" style="border-radius: 25px;">
+                                                            <!-- ./ Fueling Plan -->
 
-                                                            <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #ffa500; color: #343434 !important;">WITHIN 24 HOURS</h5>
-                                                            <p class="fw-bold text-center">CHOOSE AT LEAST THREE WHITE BOX OPTION</p>
-                                                            <input type="number" value="0" class="form-control" id="hr24-selection-count">
-                                                            <div class="grid-container my-4">
-                                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
-                                                                    <span class="align-middle fw-bold">2 X 500ML Rehydrate Drink</span>
-                                                                    <hr class="bg-white">
-                                                                </div>
-                                                                <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
-                                                                    <span class="align-middle fw-bold">Rest - Aim for 8 Hours Sleep</span>
-                                                                    <hr class="bg-white">
-                                                                </div>
-                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-1')">
-                                                                    <div class="form-check form-switch">
-                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
-                                                                            <span class="align-middle fw-bold">Light Exercise and Foam Roll</span>
-                                                                        </label>
+                                                            <!-- Pre-Match -->
+                                                            <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Pre-Match</p>
+                                                            <p>Pe-Match warm up jog / routine / drill</p>
+                                                            <!-- ./ Pre-Match -->
+
+                                                            <!-- Mid-Match -->
+                                                            <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Mid-Match</p>
+                                                            <!-- ./ Mid-Match -->
+
+                                                            <!-- Post-Match -->
+                                                            <p class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti text-white my-4 comfortaa-font">Post-Match</p>
+                                                            <img src="../media/assets/body_charts/training recovery plan.jpeg" class="img-fluid" alt="recovery chart Sample" hidden>
+                                                            <div class="recovery-chart">
+                                                                <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #ffa500; color: #343434 !important;">WITHIN 30 MINUTES</h5>
+                                                                <p class="fw-bold text-center">CHOOSE AT LEAST ONE WHITE BOX OPTION</p>
+                                                                <input type="number" value="0" class="form-control" id="min30-selection-count">
+                                                                <div class="grid-container my-4">
+                                                                    <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
+                                                                        <span class="align-middle fw-bold">Carbohydrate / Protein Recovery Drink
+                                                                            <hr class="bg-white">
+                                                                        </span>
                                                                     </div>
-                                                                    <hr class="bg-dark">
-                                                                </div>
-                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-2')">
-                                                                    <div class="form-check form-switch">
-                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
-                                                                            <span class="align-middle fw-bold">Contrast Bath - 2 Minutes Hot / 2 Minutes Cold X 4</span>
-                                                                        </label>
+                                                                    <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
+                                                                        <span class="align-middle fw-bold">Carbohydrate Food
+                                                                            <hr class="bg-white">
+                                                                        </span>
                                                                     </div>
-                                                                    <hr class="bg-dark">
-                                                                </div>
-                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-3')">
-                                                                    <div class="form-check form-switch">
-                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
-                                                                            <span class="align-middle fw-bold">Mobility and Stretching in Pool</span>
-                                                                        </label>
+                                                                    <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('30min','option-1')">
+                                                                        <div class="form-check form-switch">
+                                                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                            <label class="form-check-label text-center" for="min30-option-1-check">
+                                                                                <span class="align-middle fw-bold">Light Exercise / Stretch Cool Down</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <hr class="bg-dark">
                                                                     </div>
-                                                                    <hr class="bg-dark">
-                                                                </div>
-                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-4')">
-                                                                    <div class="form-check form-switch">
-                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
-                                                                            <span class="align-middle fw-bold">Massage</span>
-                                                                        </label>
+                                                                    <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('30min','option-2')">
+                                                                        <div class="form-check form-switch">
+                                                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                            <label class="form-check-label text-center" for="min30-option-2-check">
+                                                                                <span class="align-middle fw-bold">Cold Water Immersion - 10 Minutes</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <hr class="bg-dark">
                                                                     </div>
-                                                                    <hr class="bg-dark">
                                                                 </div>
-                                                                <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-5')">
-                                                                    <div class="form-check form-switch">
-                                                                        <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
-                                                                        <label class="form-check-label text-center" for="hr24-option-1-check">
-                                                                            <span class="align-middle fw-bold">Recovery Pump Trousers</span>
-                                                                        </label>
+
+                                                                <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #ffa500; color: #343434 !important;">WITHIN 1 HOUR</h5>
+                                                                <p class="fw-bold text-center">CHOOSE AT LEAST ONE WHITE BOX OPTION</p>
+                                                                <input type="number" value="0" class="form-control" id="hr1-selection-count">
+                                                                <div class="grid-container my-4">
+                                                                    <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
+                                                                        <span class="align-middle fw-bold">1 X 500ML Rehydrate Drink</span>
+                                                                        <hr class="bg-white">
                                                                     </div>
-                                                                    <hr class="bg-dark">
+                                                                    <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
+                                                                        <span class="align-middle fw-bold">Carbohydrate Food</span>
+                                                                        <hr class="bg-white">
+                                                                    </div>
+                                                                    <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('1hr','option-1')">
+                                                                        <div class="form-check form-switch">
+                                                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                            <label class="form-check-label text-center" for="hr1-option-1-check">
+                                                                                <span class="align-middle fw-bold">Lower Limb Massage</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <hr class="bg-dark">
+                                                                    </div>
+                                                                    <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('1hr','option-2')">
+                                                                        <div class="form-check form-switch">
+                                                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                            <label class="form-check-label text-center" for="hr1-option-2-check">
+                                                                                <span class="align-middle fw-bold">Compression Tights Until Bed</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <hr class="bg-dark">
+                                                                    </div>
+                                                                </div>
+
+                                                                <h5 class="my-4 text-center p-4 rounded-pill comfortaa-font" style="background-color: #ffa500; color: #343434 !important;">WITHIN 24 HOURS</h5>
+                                                                <p class="fw-bold text-center">CHOOSE AT LEAST THREE WHITE BOX OPTION</p>
+                                                                <input type="number" value="0" class="form-control" id="hr24-selection-count">
+                                                                <div class="grid-container my-4">
+                                                                    <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center d-inline" style="height: 200px; background: #343434; color: #fff;">
+                                                                        <span class="align-middle fw-bold">2 X 500ML Rehydrate Drink</span>
+                                                                        <hr class="bg-white">
+                                                                    </div>
+                                                                    <div class="grid-tile w-100 content-panel-border-style p-4 shadow text-center" style="height: 200px; background: #343434; color: #fff;">
+                                                                        <span class="align-middle fw-bold">Rest - Aim for 8 Hours Sleep</span>
+                                                                        <hr class="bg-white">
+                                                                    </div>
+                                                                    <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-1')">
+                                                                        <div class="form-check form-switch">
+                                                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                            <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                                                <span class="align-middle fw-bold">Light Exercise and Foam Roll</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <hr class="bg-dark">
+                                                                    </div>
+                                                                    <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-2')">
+                                                                        <div class="form-check form-switch">
+                                                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                            <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                                                <span class="align-middle fw-bold">Contrast Bath - 2 Minutes Hot / 2 Minutes Cold X 4</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <hr class="bg-dark">
+                                                                    </div>
+                                                                    <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-3')">
+                                                                        <div class="form-check form-switch">
+                                                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                            <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                                                <span class="align-middle fw-bold">Mobility and Stretching in Pool</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <hr class="bg-dark">
+                                                                    </div>
+                                                                    <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-4')">
+                                                                        <div class="form-check form-switch">
+                                                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                            <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                                                <span class="align-middle fw-bold">Massage</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <hr class="bg-dark">
+                                                                    </div>
+                                                                    <div class="grid-tile w-100 content-panel-border-style onefit-buttons-style-light p-4 shadow text-center" style="height: 200px;" onclick="toggleRecoverySelection('24hr','option-5')">
+                                                                        <div class="form-check form-switch">
+                                                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="hr24-option-1-check">
+                                                                            <label class="form-check-label text-center" for="hr24-option-1-check">
+                                                                                <span class="align-middle fw-bold">Recovery Pump Trousers</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <hr class="bg-dark">
+                                                                    </div>
                                                                 </div>
                                                             </div>
+                                                            <!-- ./ Post-Match -->
                                                         </div>
+                                                        <!-- ./ match-day phases breakdown container -->
+
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="accordion-item p-2 my-2 shadow">
                                                 <h2 class="accordion-header m-0" id="flush-headingFour">
                                                     <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                                                        Team-Athletics Training Programs (Administrators)
+                                                        <span class="material-icons material-icons-round align-middle">bookmark</span>
+                                                        <span class="align-middle">Team-Athletics Training Programs (Administrators)</span>
                                                     </button>
                                                 </h2>
                                                 <div id="flush-collapseFour" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushTATRegiment">
@@ -5851,53 +7614,308 @@ function getAllTrainers()
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- ./ Team Athlectics Training Panel -->
+                                    <!-- ./ Team Athletics Training Panel -->
 
-                                    <!-- Next Tab button -->
+                                    <!-- Next Tab button - Proceed to Wellness Tracking -->
                                     <hr class="text-white">
-                                    <div class="my-4 text-center" style="width: 100%">
+                                    <div class="mb-4 text-center" style="width: 100%">
                                         <div class="d-flex justify-content-center" style="width: 100%">
-                                            <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabChallenges')">
-                                                <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">stars</span>
-                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 10px !important;">Challenges</p>
-                                                <span class="material-icons material-icons-rounded" style="font-size: 10px !important;">expand_more</span>
+                                            <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabWell')">
+                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 40px !important;">arrow_forward</span></p>
+                                                <!-- <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">self_improvement</span> -->
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 20px !important;">Wellness</p>
                                             </button>
                                         </div>
                                     </div>
-                                    <!-- ./Next Tab button -->
+                                    <!-- ./Next Tab button - Proceed to Wellness Tracking -->
+
                                 </div>
-                                <div class="tab-pane fade w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-challenges" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-challenges-tab">
-                                    <!-- Next Tab button -->
+                                <div class="tab-pane fade w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-wellness" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-wellness-tab">
+                                    <div class="d-grid text-center mt-4">
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                        <h5 class="mt-4 fs-1">Wellness Tracking</h5>
+                                    </div>
+                                    <hr class="text-white">
+
+                                    <!-- Next Tab button - Return to Team Athletics -->
                                     <div class="mb-4 text-center" style="width: 100%">
                                         <div class="d-flex justify-content-center" style="width: 100%">
                                             <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabCTA')">
-                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 10px !important;">expand_less</span></p>
-                                                <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">diversity_2</span>
-                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 10px !important;">Community/Team Athletics</p>
+                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 40px !important;">arrow_back</span></p>
+                                                <!-- <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">diversity_2</span> -->
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 20px !important;">Team Athletics</p>
                                             </button>
                                         </div>
                                     </div>
                                     <hr class="text-white">
-                                    <!-- ./Next Tab button -->
+                                    <!-- ./Next Tab button - Return to Team Athletics -->
 
-                                    <h5 class="mt-4 fs-1"><span class="material-icons material-icons-round">stars</span> Challenges</h5>
-                                    <h5>Daily Challenges</h5>
-                                    <h5>Weekly Challenges</h5>
-                                    <h5>Monthly Monthly</h5>
+                                    <h1 class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti my-4">Wellness Tracking.</h1>
+
+                                    <div class="mt-4" id="wellness-tracking-container">
+                                        <img src="../media/assets/smartwatches/9aea1c56ffe237edeb69ecd3988bfd51.jpg" class="img-fluid shadow mb-4" style="border-radius: 25px;" alt="dashboard placeholder">
+                                        <img src="../media/assets/smartwatches/fitbit-web1.webp" class="img-fluid shadow mb-4" style="border-radius: 25px;" alt="dashboard placeholder">
+                                    </div>
+
+                                    <!-- Next Tab button - Proceed to Nutrition Tracking -->
+                                    <hr class="text-white">
+                                    <div class="mb-4 text-center" style="width: 100%">
+                                        <div class="d-flex justify-content-center" style="width: 100%">
+                                            <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabCTA')">
+                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 40px !important;">arrow_forward</span></p>
+                                                <!-- <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">restaurant</span> -->
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 20px !important;">Nutrition</p>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- ./Next Tab button - Proceed to Nutrition Tracking -->
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ./ Features: Tab structured -->
+                                <div class="tab-pane fade w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-nutrition" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-nutrition-tab">
+                                    <div class="d-grid text-center mt-4">
+                                        <span class="material-icons material-icons-round">restaurant</span>
+                                        <h5 class="mt-4 fs-1">Nutrition Tracking</h5>
+                                    </div>
 
+                                    <hr class="text-white">
+
+                                    <!-- Next Tab button - Return to Wellness Tracking -->
+                                    <div class="mb-4 text-center" style="width: 100%">
+                                        <div class="d-flex justify-content-center" style="width: 100%">
+                                            <button class="onefit-buttons-style-dark p-4" onclick="openLink(event, 'InsightsTabCTA')">
+                                                <p class="m-0 p-0"><span class="material-icons material-icons-rounded" style="font-size: 40px !important;">arrow_back</span></p>
+                                                <!-- <span class="material-icons material-icons-rounded" style="font-size: 20px !important;">self_improvement</span> -->
+                                                <p class="m-0 p-0 comfortaa-font" style="font-size: 20px !important;">Wellness</p>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr class="text-white">
+                                    <!-- ./Next Tab button - Return to Wellness Tracking -->
+
+                                    <h1 class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti my-4">Nutrition Tracking.</h1>
+                                    <div class="mt-4" id="wellness-tracking-container">
+                                        <img src="../media/assets/smartwatches/A8_Dashboard_Overview.png" class="img-fluid shadow mb-4" style="border-radius: 25px;" alt="dashboard placeholder">
+                                    </div>
+                                </div>
+                                <!-- ./ #v-sub-tab-pills -->
+                            </div>
+                            <!-- ./ Team Athlectics Training Panel -->
+
+                        </div>
+                        <!-- ./ insight catgories tab panels -->
+
+                    </div>
                 </div>
                 <div id="TabAchievements" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
-                    <h1 class="text-center">Achievements</h1>
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">emoji_events</span> Achievements</h5>
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
+
                     <hr class="text-white" />
                     <h5>Goals</h5>
                     <hr class="text-white">
                     <h5>Timeframes</h5>
                     <hr class="text-white">
+                    <h5>Challenges</h5>
+                    <hr class="text-white">
+                    <hr class="text-white">
+
+                    <h5 class="mt-4">Fitness Progression</h5>
+                    <div class="progress mt-4" style="height: 4px;">
+                        <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: 25%; background-color: #ffa500 !important; border-right: #343434 10px solid;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="row mt-2" style="margin-bottom: 60px;">
+                        <div class="col text-start comfortaa-font" style="font-size: 12px;">
+                            Current XP <strong>(112)</strong>
+                        </div>
+                        <div class="col text-end comfortaa-font" style="font-size: 12px;">
+                            Target XP <strong>(150)</strong>
+                        </div>
+                    </div>
+
+                    <h5 class="my-4">Daily Challenges</h5>
+
+                    <div id="daily-challenges-grid" class="grid-container mb-4">
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-body-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-deadlift-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-muscle-flexing-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-exercise-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-fit-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-workout-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                    </div>
+
+                    <h5 class="my-4">Weekly Challenges</h5>
+
+                    <div id="weekly-challenges-grid" class="grid-container mb-4">
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-body-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-deadlift-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-muscle-flexing-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-exercise-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-fit-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-workout-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                    </div>
+
+                    <h5 class="my-4">Monthly Monthly</h5>
+
+                    <div id="monthly-challenges-grid" class="grid-container mb-4">
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-body-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-deadlift-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-muscle-flexing-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-exercise-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-fit-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+                            <img src="../media/assets/icons/icons8-workout-50.png" class="img-fluid rounded mb-4" alt="">
+                            <p>Challenge Title</p>
+                            <small>Workout / Exercise</small>
+                            <small>Category</small>
+                            <!-- progress bar -->
+                            <p>15 / 25 xp</p>
+                        </div>
+                    </div>
+
                     <h5>Diary</h5>
                     <hr class="text-white">
                     <h5>Resources</h5>
@@ -5905,8 +7923,12 @@ function getAllTrainers()
                     <hr class="text-white">
                 </div>
                 <div id="TabMedia" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
-                    <h1 class="text-center">Media</h1>
-                    <hr class="text-white" />
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">perm_media</span> Media</h5>
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
+                    <!-- <h1 class="text-center">Media</h1>
+                    <hr class="text-white" /> -->
 
                     <h1 class="fs-1 fw-bold rounded-pill p-4 text-center my-4">Photos</h1>
                     <div id="Users-Images" class="grid-container">
@@ -5918,8 +7940,13 @@ function getAllTrainers()
                     <h1 class="fs-1 fw-bold rounded-pill p-4 text-center my-4">Stream library – Live stream recording history (Community and Private)</h1>
                 </div>
                 <div id="TabCommunication" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
-                    <h1 class="text-center">Communications</h1>
-                    <hr class="text-white" />
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">forum</span> Communications</h5>
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
+                    <!-- <h1 class="text-center">Communications</h1>
+                    <hr class="text-white" /> -->
+
                     <p>• Notifications</p>
                     <div id="communicationUserNotifications">
                         <?php echo $outputProfileUserNotifications; ?>
@@ -5937,28 +7964,33 @@ function getAllTrainers()
                     <p>• Social AdMarket</p>
                 </div>
                 <div id="TabSettings" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
-                    <h1 class="text-center">Preferences</h1>
-                    <hr class="text-white" />
+                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">settings_accessibility</span> Preferences</h5>
+                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    </div>
+                    <!-- <h1 class="text-center">Preferences</h1>
+                    <hr class="text-white" /> -->
+
                     <div id="userPrefContainer">
                         <?php echo $profileUserPref; ?>
                     </div>
                 </div>
             </div>
+            <!-- ./ #tab-container -->
         </div>
-
         <!-- ./ Tab Content -->
     </div>
     <!-- ./ Main Content -->
 
     <!-- Footer -->
-    <nav class="text-white w-100 m-0 p-0 fixed-bottom navbar-stylez fitness-bg-container no-scroller" style="max-height: 100vh !important; overflow-y: auto; overflow-x: hidden">
+    <nav class="text-white w-100 m-0 p-0 fixed-bottom navbar-stylez tunnel-bg-container no-scroller" style="max-height: 100vh !important; overflow-y: auto; overflow-x: hidden">
         <!--style="position: fixed; bottom: 0; left: 0; background: #333; z-index: 10002"-->
         <div class="down-top-grad-darkz mainapp-footer px-2">
 
             <!-- Widgets Container -->
             <div class="collapse m-0 p-0" id="widget-rows-container">
-                <div class="navbar">
-                    <h1 class="text-center"><span class="material-icons material-icons-round" style="font-size: 24px !important">
+                <div class="navbar p-4">
+                    <h1 class="text-center mt-4"><span class="material-icons material-icons-round" style="font-size: 40px !important">
                             widgets </span> Widgets</h1>
 
                     <button type="button" class="onefit-buttons-style-danger p-2" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
@@ -5970,7 +8002,7 @@ function getAllTrainers()
                 <hr class="text-white" />
 
                 <!-- Widget: User Profile Preview List (Widget: UPPL - It is hidden on lg screens) -->
-                <div class="container comfortaa-font rounded-pillz shadow pb-4 px-0 m-0z text-white w-100 d-lg-none" style="border-radius: 25px; background-color: #343434; overflow: hidden">
+                <div class="container-lg comfortaa-font rounded-pillz shadow pb-4 px-0 m-0z text-white w-100 d-lg-none" style="border-radius: 25px; background-color: #343434; overflow: hidden">
                     <div class="text-center">
                         <!--<span class="material-icons material-icons-round" style="font-size: 48px !important"> account_circle </span>-->
 
@@ -6060,9 +8092,9 @@ function getAllTrainers()
                 </div>
                 <!-- ./ Widget: User Profile Preview List -->
 
-                <div class="row align-items-center">
+                <div class="row align-items-center p-4">
                     <div class="col-lg text-center my-4">
-                        <div class="container p-4 shadow-lg d-inline-block border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
+                        <div class="container-lg p-4 shadow-lg d-inline-block border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
                             <div class="row align-items-center text-center comfortaa-font">
                                 <div class="col-sm py-2 d-inline">
                                     <!--<i class="fas fa-heart"></i>-->
@@ -6098,8 +8130,8 @@ function getAllTrainers()
                                     equalizer
                                 </span></h5>
                             <hr class="text-white" />
-                            <p class="outfit-font fw-bold">No media playing.</p>
-                            <div class="container">
+                            <p class="outfit-font fw-bold comfortaa-font">No media playing.</p>
+                            <div class="container-lg">
                                 <div class="row my-4">
                                     <div class="col-sm">
                                         <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('prev')"><span class="material-icons material-icons-round">skip_previous</span></button>
@@ -6138,12 +8170,13 @@ function getAllTrainers()
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
             <div class="modal-content feature-tab-nav-content">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title fs-1" id="tabNavModalLabel">Menu</h5>
+                    <h5 class="modal-title fs-1" id="tabNavModalLabel"><span style="color: #ffa500;">.apps</span> menu</h5>
                     <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
                         <span class="material-icons material-icons-round"> cancel </span>
                     </button>
                 </div>
-                <div class="modal-body bg-whitez border-0" style="overflow-x: hidden">
+                <hr class="text-white m-0" />
+                <div class="modal-body border-0" style="overflow-x: hidden">
                     <!-- Tab Navigation Buttons Container -->
                     <div class="grid-container text-center">
                         <div class="grid-tile modal-grid-tile-transform">
@@ -6239,8 +8272,9 @@ function getAllTrainers()
                     </div>
                     <!-- ./ Tab Navigation Buttons Container -->
                 </div>
+                <hr class="text-white m-0" />
                 <div class="modal-footer border-0 d-inline-block">
-                    <hr class="text-white" />
+
                     <div class="d-grid gap-2">
                         <button class="onefit-buttons-style-dark fs-5 fw-bold my-4 px-4 pt-4 text-center comfortaa-font border-0" type="button" data-bs-toggle="collapse" data-bs-target="#tab-nav-social-quickpost" aria-expanded="false" aria-controls="tab-nav-social-quickpost"><i class="fas fa-paper-plane"></i> | <span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Social</button>
                     </div>
@@ -6880,187 +8914,6 @@ function getAllTrainers()
             config
         );
 
-        // const ctxHeartRate = document.getElementById('heart_rate_monitor_chart').getContext('2d');
-        // const heartrateChart = new Chart(ctxHeartRate, {
-        //     type: 'line',
-        //     data: {
-        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        //         datasets: [{
-        //             label: '# of Votes',
-        //             data: [12, 19, 3, 5, 2, 3],
-        //             backgroundColor: [
-        //                 'rgba(255, 99, 132, 0.2)',
-        //                 'rgba(54, 162, 235, 0.2)',
-        //                 'rgba(255, 206, 86, 0.2)',
-        //                 'rgba(75, 192, 192, 0.2)',
-        //                 'rgba(153, 102, 255, 0.2)',
-        //                 'rgba(255, 159, 64, 0.2)'
-        //             ],
-        //             borderColor: [
-        //                 'rgba(255, 99, 132, 1)',
-        //                 'rgba(54, 162, 235, 1)',
-        //                 'rgba(255, 206, 86, 1)',
-        //                 'rgba(75, 192, 192, 1)',
-        //                 'rgba(153, 102, 255, 1)',
-        //                 'rgba(255, 159, 64, 1)'
-        //             ],
-        //             borderWidth: 5,
-        //             fill: true,
-        //         }]
-        //     },
-        //     options: {
-        //         scales: {
-        //             y: {
-        //                 beginAtZero: true
-        //             }
-        //         }
-        //     }
-        // });
-
-        // const ctxBodyTemp = document.getElementById('body_temp_monitor_chart').getContext('2d');
-        // const bodytempChart = new Chart(ctxBodyTemp, {
-        //     type: 'line',
-        //     data: {
-        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        //         datasets: [{
-        //             label: '# of Votes',
-        //             data: [12, 19, 3, 5, 2, 3],
-        //             backgroundColor: [
-        //                 'rgba(255, 99, 132, 0.2)',
-        //                 'rgba(54, 162, 235, 0.2)',
-        //                 'rgba(255, 206, 86, 0.2)',
-        //                 'rgba(75, 192, 192, 0.2)',
-        //                 'rgba(153, 102, 255, 0.2)',
-        //                 'rgba(255, 159, 64, 0.2)'
-        //             ],
-        //             borderColor: [
-        //                 'rgba(255, 99, 132, 1)',
-        //                 'rgba(54, 162, 235, 1)',
-        //                 'rgba(255, 206, 86, 1)',
-        //                 'rgba(75, 192, 192, 1)',
-        //                 'rgba(153, 102, 255, 1)',
-        //                 'rgba(255, 159, 64, 1)'
-        //             ],
-        //             borderWidth: 1
-        //         }]
-        //     },
-        //     options: {
-        //         scales: {
-        //             y: {
-        //                 beginAtZero: true
-        //             }
-        //         }
-        //     }
-        // });
-
-        // const ctxSpeed = document.getElementById('speed_monitor_chart').getContext('2d');
-        // const speedChart = new Chart(ctxSpeed, {
-        //     type: 'line',
-        //     data: {
-        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        //         datasets: [{
-        //             label: '# of Votes',
-        //             data: [12, 19, 3, 5, 2, 3],
-        //             backgroundColor: [
-        //                 'rgba(255, 99, 132, 0.2)',
-        //                 'rgba(54, 162, 235, 0.2)',
-        //                 'rgba(255, 206, 86, 0.2)',
-        //                 'rgba(75, 192, 192, 0.2)',
-        //                 'rgba(153, 102, 255, 0.2)',
-        //                 'rgba(255, 159, 64, 0.2)'
-        //             ],
-        //             borderColor: [
-        //                 'rgba(255, 99, 132, 1)',
-        //                 'rgba(54, 162, 235, 1)',
-        //                 'rgba(255, 206, 86, 1)',
-        //                 'rgba(75, 192, 192, 1)',
-        //                 'rgba(153, 102, 255, 1)',
-        //                 'rgba(255, 159, 64, 1)'
-        //             ],
-        //             borderWidth: 1
-        //         }]
-        //     },
-        //     options: {
-        //         scales: {
-        //             y: {
-        //                 beginAtZero: true
-        //             }
-        //         }
-        //     }
-        // });
-
-        // const ctxStepCounter = document.getElementById('step_counter_monitor_chart').getContext('2d');
-        // const stepcountChart = new Chart(ctxStepCounter, {
-        //     type: 'line',
-        //     data: {
-        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        //         datasets: [{
-        //             label: '# of Votes',
-        //             data: [12, 19, 3, 5, 2, 3],
-        //             backgroundColor: [
-        //                 'rgba(255, 99, 132, 0.2)',
-        //                 'rgba(54, 162, 235, 0.2)',
-        //                 'rgba(255, 206, 86, 0.2)',
-        //                 'rgba(75, 192, 192, 0.2)',
-        //                 'rgba(153, 102, 255, 0.2)',
-        //                 'rgba(255, 159, 64, 0.2)'
-        //             ],
-        //             borderColor: [
-        //                 'rgba(255, 99, 132, 1)',
-        //                 'rgba(54, 162, 235, 1)',
-        //                 'rgba(255, 206, 86, 1)',
-        //                 'rgba(75, 192, 192, 1)',
-        //                 'rgba(153, 102, 255, 1)',
-        //                 'rgba(255, 159, 64, 1)'
-        //             ],
-        //             borderWidth: 1
-        //         }]
-        //     },
-        //     options: {
-        //         scales: {
-        //             y: {
-        //                 beginAtZero: true
-        //             }
-        //         }
-        //     }
-        // });
-
-        // const ctxWeightBMI = document.getElementById('bmi_weight_monitor_chart').getContext('2d');
-        // const weightbmiChart = new Chart(ctxWeightBMI, {
-        //     type: 'line',
-        //     data: {
-        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        //         datasets: [{
-        //             label: '# of Votes',
-        //             data: [12, 19, 3, 5, 2, 3],
-        //             backgroundColor: [
-        //                 'rgba(255, 99, 132, 0.2)',
-        //                 'rgba(54, 162, 235, 0.2)',
-        //                 'rgba(255, 206, 86, 0.2)',
-        //                 'rgba(75, 192, 192, 0.2)',
-        //                 'rgba(153, 102, 255, 0.2)',
-        //                 'rgba(255, 159, 64, 0.2)'
-        //             ],
-        //             borderColor: [
-        //                 'rgba(255, 99, 132, 1)',
-        //                 'rgba(54, 162, 235, 1)',
-        //                 'rgba(255, 206, 86, 1)',
-        //                 'rgba(75, 192, 192, 1)',
-        //                 'rgba(153, 102, 255, 1)',
-        //                 'rgba(255, 159, 64, 1)'
-        //             ],
-        //             borderWidth: 1
-        //         }]
-        //     },
-        //     options: {
-        //         scales: {
-        //             y: {
-        //                 beginAtZero: true
-        //             }
-        //         }
-        //     }
-        // });
-
         function initializeContent(auth, usernm) {
             //Declaring variables
             // var contentContainer = document.getElementById("");
@@ -7569,15 +9422,63 @@ function getAllTrainers()
                 /* Insigts sub features app tabs */
                 tabContainer = null;
                 document.getElementById("v-sub-tab-pills-insights-googlesurveys-tab").click();
+
+                document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "block";
+                document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
             } else if (tabName == "InsightsTabIAT") {
                 tabContainer = null;
                 document.getElementById("v-sub-tab-pills-insights-indiathlete-tab").click();
+
+                document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                document.getElementById("horizontal-rule-icon-indiathlete").style.display = "block";
+                document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
             } else if (tabName == "InsightsTabCTA") {
                 tabContainer = null;
                 document.getElementById("v-sub-tab-pills-insights-teamathletics-tab").click();
+
+                document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                document.getElementById("horizontal-rule-icon-teamathletics").style.display = "block";
+                document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
             } else if (tabName == "InsightsTabChallenges") {
                 tabContainer = null;
                 document.getElementById("v-sub-tab-pills-insights-challenges-tab").click();
+
+                document.getElementById("horizontal-rule-icon-challenges").style.display = "block";
+                document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+            } else if (tabName == "InsightsTabWellness") {
+                tabContainer = null;
+                document.getElementById("v-sub-tab-pills-insights-challenges-tab").click();
+
+                document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                document.getElementById("horizontal-rule-icon-wellness").style.display = "block";
+                document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+            } else if (tabName == "InsightsTabNutrition") {
+                tabContainer = null;
+                document.getElementById("v-sub-tab-pills-insights-challenges-tab").click();
+
+                document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                document.getElementById("horizontal-rule-icon-nutrition").style.display = "block";
             }
 
             // InsightsTabGCS
