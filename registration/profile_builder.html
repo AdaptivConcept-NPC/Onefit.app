@@ -32,6 +32,12 @@
     //jQuery Code Only
     //$.noConflict();
     $(document).ready(function () {
+      // hide the load curtain
+      // hide the loading curtain
+      // $("LoadCurtain").hide();
+      // hide the loading curtain
+
+
       // ******** smooth scroll to element
       // #goalsetting-next-panel-btn => #category-goal-setting-tab-pane
       $("#goalsetting-next-panel-btn").click(function () {
@@ -67,18 +73,110 @@
         }, 2000);
       });
 
-
       // #goalsetting-next-panel-btn => #category-goal-setting-tab-pane => #category-goal-setting-tab-questions-pane
       // #aboutyou-back-panel-btn => #category-about-you-tab-pane => #category-about-you-tab-questions-pane
       // #fitprefs-next-panel-btn => #category-fitness-prefs-tab-pane => #category-fitness-prefs-tab-questions-pane
       // #eu-agreements-next-panel-btn => #category-eu-agreements-tab-pane => #category-eula-tab-questions-pane
+
+      // profile images upload ajax jquery
+      // $(document).on('submit', '#uploadProfileImgForm', function (e) {
+      $("#uploadProfileImgForm").submit(function (e) {
+        e.preventDefault();
+
+        var form_data = new FormData($('#uploadProfileImgForm')[0]);
+        setTimeout(function () {
+          $.ajax({
+            type: 'POST',
+            url: 'prof-img-upload.php',
+            processData: false,
+            contentType: false,
+            data: form_data,
+            beforeSend: function () {
+              // show spinner
+              $('#prof-img-spinner').css("display", "block")
+            },
+            success: function (response) {
+              // hide spinner
+              $('#prof-img-spinner').css("display", "none")
+              console.log("Profile Image Uploaded Process Completed.");
+              console.log("Response: " + response);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+              $('#prof-img-spinner').css("display", "none")
+              console.log("Profile Image Upload Exception: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+          });
+        }, 1000);
+      });
+
+      // async: false,
+      // cache: false,
+
+      // detect if file has been selected - Profile Image Upload
+      $(function () {
+        $("#profpicformFileLg").change(function () {
+          console.log("img selected - Profile Image Upload");
+          // get the file name
+          var fileName = $(this).val();
+          // click the submit button to start server side upload
+          $("#submit-profpicformFileLg").click();
+          $('#prof-img-spinner').css("display", "block");
+        });
+      });
 
     });
   </script>
   <!-- ./ JQuery Scripts -->
 </head>
 
-<body class="noselect">
+<body class="noselect" onload="toggleLoadCurtain()">
+  <!-- Load Curtain -->
+  <div class="load-curtain" id="LoadCurtain" style="display: block;">
+    <!-- twitter social panel -->
+    <div class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4">
+      <!--  d-none d-lg-block p-4 -->
+      <div class="d-flex gap-2 w-100">
+        <button class="p-4 m-0 shadow onefit-buttons-style-dark" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false"
+          aria-controls="collapseloadCurtainTweetFeed">
+          <div class="d-grid">
+            <span class="material-icons material-icons-round" style="font-size: 48px !important;">
+              <i class="fab fa-twitter" style="font-size: 40px; color: #fff !important;"></i>
+            </span>
+            <p class="comfortaa-font mt-1 mb-0" style="font-size: 10px;">@onefitnet</p>
+          </div>
+        </button>
+      </div>
+      <div class="collapse no-scroller pb-4 w3-animate-bottom" id="collapseloadCurtainTweetFeed"
+        style="overflow-y: auto;">
+        <div class="pb-4 no-scroller"
+          style="border-radius: 25px !important; overflow-y: auto; max-height: 90vh; min-width: 500px;">
+          <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by
+            OnefitNet</a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+      </div>
+    </div>
+    <!-- ./ twitter social panel -->
+
+    <div class="d-flex align-items-center top-down-grad-tahiti" style="width: 100%; height: 100%;">
+      <div class="text-center w-100">
+        <div class="ring d-flex align-items-center p-4 my-pulse-animation-light">
+          <!-- <span></span> -->
+          <div style="width: 100%;">
+            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid p-4" style="max-height: 20vh;" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="text-center text-center p-4 fixed-bottom" alt="">
+      <p class="navbar-brand fs-1 text-white comfortaa-font">One<span style="color: #ffa500">fit</span>.app<span
+          style="font-size: 10px">&trade;</span></p>
+      <p class="text-center comfortaa-font" styl="font-size: 10px !important;">Loading. Please wait.</p>
+    </nav>
+  </div>
+  <!-- ./Load Curtain -->
+
   <!-- Navigation bar -->
   <nav class="navbar navbar-light sticky-topz fixed-top navbar-stylez top-down-grad-dark">
     <div class="container-fluid">
@@ -2483,8 +2581,20 @@
           <!-- ./ image preview -->
 
           <div class="d-grid justify-content-center">
-            <label for="profpicformFileLg" class="form-label comfortaa-font text-center">Choose an image.</label>
-            <input class="form-control form-control-lg" id="profpicformFileLg" type="file">
+            <form method="post" id="uploadProfileImgForm" enctype="multipart/form-data">
+              <label for="profpicformFileLg" class="form-label comfortaa-font text-center">Choose an image.</label>
+              <input class="form-control form-control-lg" id="profpicformFileLg" name="profpicformFileLg" type="file">
+              <input id="submit-profpicformFileLg" type="submit" value="submit" hidden aria-hidden="true">
+            </form>
+
+            <!-- upload process spinner -->
+            <div class="d-grid justify-content-center mt-4">
+              <div id="prof-img-spinner text-warning" role="status" class="spinner-border text-center"
+                style="width: 3rem; height: 3rem; display: none;" role="status">
+                <span class="visually-hidden">uploading profile image</span>
+              </div>
+            </div>
+            <!-- upload process spinner -->
           </div>
 
           <hr class="text-white" style="margin: 40px 0;">
@@ -2501,8 +2611,21 @@
           <!-- ./ image preview -->
 
           <div class="d-grid justify-content-center" style="margin-bottom: 40px;">
-            <label for="profbannerformFileLg" class="form-label comfortaa-font text-center">Choose an image.</label>
-            <input class="form-control form-control-lg" id="profbannerformFileLg" type="file">
+            <form method="post" id="uploadBannerImgForm" enctype="multipart/form-data">
+              <label for="profbannerformFileLg" class="form-label comfortaa-font text-center">Choose an image.</label>
+              <input class="form-control form-control-lg" id="profbannerformFileLg" name="profbannerformFileLg"
+                type="file">
+              <input id="submit-profbannerformFileLg" type="submit" value="submit" hidden aria-hidden="true">
+            </form>
+
+            <!-- upload process spinner -->
+            <div class="d-grid justify-content-center mt-4">
+              <div id="banner-img-spinner text-warning" role="status" class="spinner-border text-center"
+                style="width: 3rem; height: 3rem; display: none;" role="status">
+                <span class="visually-hidden">uploading banner image</span>
+              </div>
+            </div>
+            <!-- upload process spinner -->
           </div>
 
         </div>
@@ -2525,6 +2648,11 @@
   <!-- ./ Modals -->
 
   <script>
+    function toggleLoadCurtain() {
+      var curtain = document.getElementById("LoadCurtain");
+      curtain.style.display = "none";
+    }
+
     function launchProfileImgsEditor() {
       var profileImgModalToggleBtn = document.getElementById("toggleTabProfileImgModalBtn");
 
