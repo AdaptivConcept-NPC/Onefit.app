@@ -93,13 +93,23 @@
             data: form_data,
             beforeSend: function () {
               // show spinner
-              $('#prof-img-spinner').css("display", "block")
+              // $('#prof-img-spinner').css("display", "block")
             },
             success: function (response) {
               // hide spinner
               $('#prof-img-spinner').css("display", "none")
-              console.log("Profile Image Uploaded Process Completed.");
-              console.log("Response: " + response);
+
+              if (response.startsWith("success")) {
+                console.log("Success: " + response);
+                // get the profile image name and append it to the src attribute str
+                var str = response;
+                imgSrcStr = str.split('[').pop().split(']')[0];
+
+                $("prof-pic-img-preview").attr("src", imgSrcStr);
+              } else {
+                console.log("Profile Image Uploaded Process Completed.");
+                console.log("Response: " + response);
+              }
             },
             error: function (xhr, ajaxOptions, thrownError) {
               $('#prof-img-spinner').css("display", "none")
@@ -120,9 +130,19 @@
           var fileName = $(this).val();
           // click the submit button to start server side upload
           $("#submit-profpicformFileLg").click();
-          $('#prof-img-spinner').css("display", "block");
+          // $('#prof-img-spinner').css("display", "block");
+          $('#prof-img-spinner').show();
         });
       });
+
+      // submit the profile sections data from the forms
+      // fitprefs - info - form
+
+      // $("#uploadProfileImgForm").submit(function (e) {
+      //   e.preventDefault();
+
+
+      // });
 
     });
   </script>
@@ -489,7 +509,7 @@
                 <div class="my-4" id="category-about-you-tab-questions-pane">
                   <div class="p-4 content-panel-border-style shadow" style="border-radius: 25px; background: #343434;">
                     <h1
-                      class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-1 border-start border-end"
+                      class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end"
                       style="border-radius: 25px; background-color: #343434; color: #fff; border-color: #ffa500; margin-bottom: 80px !important;">
                       About
                       yourself
@@ -508,6 +528,8 @@
                     Nationality
                     Height
                     Weight -->
+
+                    <!-- user details - output -->
                     <div class="row">
                       <div class="col-lg">
                         <div class="text-start d-grid gap-2" id="user-account-details">
@@ -601,31 +623,45 @@
                         </div>
                       </div>
                     </div>
+                    <!-- ./ user details - output -->
 
                     <hr class="text-white" style="margin: 80px 0px;">
 
-                    <p class="fs-5 comfortaa-font align-middle text-center my-4"
-                      style="margin-bottom: 40px !important;">Please provide us with your
-                      Height (in
-                      Centimeters) and Weight (in Kilograms)</p>
+                    <!-- #aboutyou-info-form -->
+                    <form id="aboutyou-info-form" action="build_profile/" method="post" autocomplete="off"
+                      target="_blank">
+                      <div class="form-group my-4">
+                        <input class="form-control-text-input p-4" type="number" name="user-id" id="user-id" value="1"
+                          placeholder="user id" required hidden aria-hidden="true" />
+                      </div>
 
-                    <p class="fs-5 comfortaa-font align-middle text-center"><span class="fs-2"
-                        style="color: #ffa500;">9)</span>
-                      Your weight (kg)</p>
+                      <p class="fs-5 comfortaa-font align-middle text-center my-4"
+                        style="margin-bottom: 40px !important;">Please provide us with your
+                        Height (in
+                        Centimeters) and Weight (in Kilograms)</p>
 
-                    <div class="form-group my-4">
-                      <input form="main-submission-form" class="form-control-text-input p-4" type="number"
-                        name="category-1-weight-field" id="user-weight" placeholder="Weight (kg)" required />
-                    </div>
+                      <p class="fs-5 comfortaa-font align-middle text-center"><span class="fs-2"
+                          style="color: #ffa500;">9)</span>
+                        Your weight (kg)</p>
 
-                    <p class="fs-5 comfortaa-font align-middle text-center"><span class="fs-2"
-                        style="color: #ffa500;">10)</span>
-                      Your height (cm)</p>
+                      <div class="form-group my-4">
+                        <input class="form-control-text-input p-4" type="number" name="category-1-weight-field"
+                          id="user-weight" placeholder="Weight (kg)" required />
+                      </div>
 
-                    <div form="main-submission-form" class="form-group my-4">
-                      <input class="form-control-text-input p-4" type="number" name="category-1-height-field"
-                        id="user-height" placeholder="Height (cm)" required />
-                    </div>
+                      <p class="fs-5 comfortaa-font align-middle text-center"><span class="fs-2"
+                          style="color: #ffa500;">10)</span>
+                        Your height (cm)</p>
+
+                      <div class="form-group my-4">
+                        <input class="form-control-text-input p-4" type="number" name="category-1-height-field"
+                          id="user-height" placeholder="Height (cm)" required />
+                      </div>
+
+                      <!-- submit btn -->
+                      <input id="submit-aboutyou-info-form" type="submit" value="submit" hidden aria-hidden="true">
+                    </form>
+                    <!-- ./ #aboutyou-info-form -->
 
                     <hr class="text-white" style="margin: 80px 0px;">
 
@@ -668,7 +704,7 @@
                 <div class="my-4" id="category-goal-setting-tab-questions-pane">
                   <div class="p-4 content-panel-border-style shadow" style="border-radius: 25px; background: #343434;">
                     <h1
-                      class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-1 border-start border-end"
+                      class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end"
                       style="border-radius: 25px; background-color: #343434; color: #fff; border-color: #ffa500; margin-bottom: 80px !important;">
                       Set your Goals.
                     </h1>
@@ -683,33 +719,37 @@
 
                     <hr class="text-white" style="margin: 80px 0px;">
 
-                    <!-- 
-                    1. What is your Goal?
-                    2. Please set your own Goal statement
-                    3. By when do you want to have realized this Goal?
-                    4. Which areas of your body do you want to work on?
-                    5. How many workouts per week do you want to do?
-                    6. How much time do you have to workout?
-                    7. How many weeks do you want to start with?
-                    8. Do you have any bad habits?
-                    9. Are you prepared to do what is necessay to let go of bed habits?
-                    10. Please select your prefarred "Cheat-Day"
-                    11. What will you do on your "Cheat-Day"?
-                    -->
+                    <!-- #goalsetting-info-form -->
+                    <form id="goalsetting-info-form" action="build_profile/" method="post" autocomplete="off"
+                      target="_blank">
+                      <!-- 
+                      1. What is your Goal?
+                      2. Please set your own Goal statement
+                      3. By when do you want to have realized this Goal?
+                      4. Which areas of your body do you want to work on?
+                      5. How many workouts per week do you want to do?
+                      6. How much time do you have to workout?
+                      7. How many weeks do you want to start with?
+                      8. Do you have any bad habits?
+                      9. Are you prepared to do what is necessay to let go of bed habits?
+                      10. Please select your prefarred "Cheat-Day"
+                      11. What will you do on your "Cheat-Day"?
+                      -->
 
-                    <!-- 1. Question: What are your Fitness Goals? -->
-                    <div class="row align-items-center">
-                      <div class="col-lg-6 p-2 text-start">
-                        <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                      <!-- 1. Question: What are your Fitness Goals? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg-6 p-2 text-start">
+                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">1)</span>
-                          What are
-                          your Fitness
-                          Goals?</p>
-                      </div>
-                      <div class="col-lg -6 p-2">
-                        <!-- 
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">1)</span>
+                            What are
+                            your Fitness
+                            Goals?</p>
+                        </div>
+                        <div class="col-lg -6 p-2">
+                          <!-- 
                         Be more active
                         Lose weight
                         Stay toned
@@ -718,570 +758,576 @@
                         Stay healthy
                         -->
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-exercise-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 align-items-center">
-                            <div class="form-check">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-1-field[]"
-                                id="category-2-be-more-active-field">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                Be more active
-                              </label>
+                            <div class="col -8 align-items-center">
+                              <div class="form-check">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-1-field[]" id="category-2-be-more-active-field">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  Be more active
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-dashboard-64.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8">
-                            <div class="form-check">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-1-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                Lose weight
-                              </label>
+                            <div class="col -8">
+                              <div class="form-check">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-1-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  Lose weight
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-fit-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8">
-                            <div class="form-check">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-1-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                Stay toned
-                              </label>
+                            <div class="col -8">
+                              <div class="form-check">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-1-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  Stay toned
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-muscle-flexing-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8">
-                            <div class="form-check">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-1-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                Build muscle
-                              </label>
+                            <div class="col -8">
+                              <div class="form-check">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-1-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  Build muscle
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-stretching-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8">
-                            <div class="form-check">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-1-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                Reduce Stress
-                              </label>
+                            <div class="col -8">
+                              <div class="form-check">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-1-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  Reduce Stress
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-for-you-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-1-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                Stay healthy
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-1-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  Stay healthy
+                                </label>
+                              </div>
                             </div>
                           </div>
+
                         </div>
-
                       </div>
-                    </div>
-                    <!-- ./ Question: What are your Fitness Goals? -->
+                      <!-- ./ Question: What are your Fitness Goals? -->
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <!-- 2. Question: Please set your own Goal statement? -->
-                    <div class="row align-items-center">
-                      <div class="col-lg-6 p-2 text-start">
-                        <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                      <!-- 2. Question: Please set your own Goal statement? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg-6 p-2 text-start">
+                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                        <p class="fs-5 comfortaa-font align-middle"><span class=" fs-2"
-                            style="color: #ffa500;">2)</span>
-                          Please set
-                          your own Goal statement</p>
-                      </div>
-                      <div class="col-lg -6 p-2 text-truncate">
-                        <div class="form-group text-truncate">
-                          <textarea class="form-control-text-input p-4" style="border-radius: 25px !important;"
-                            rows="10" type="text" name="category-2-question-2-field" id="goal-statement"
-                            placeholder="My goal statement" required></textarea>
+                          <p class="fs-5 comfortaa-font align-middle"><span class=" fs-2"
+                              style="color: #ffa500;">2)</span>
+                            Please set
+                            your own Goal statement</p>
                         </div>
+                        <div class="col-lg -6 p-2 text-truncate">
+                          <div class="form-group text-truncate">
+                            <textarea class="form-control-text-input p-4" style="border-radius: 25px !important;"
+                              rows="10" type="text" name="category-2-question-2-field" id="goal-statement"
+                              placeholder="My goal statement" required></textarea>
+                          </div>
 
+                        </div>
                       </div>
-                    </div>
-                    <!-- ./ Question: Please set your own Goal statement? -->
+                      <!-- ./ Question: Please set your own Goal statement? -->
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <!-- 3. Question: By when do you want to have realized this Goal? -->
-                    <div class="row align-items-center">
-                      <div class="col-lg-6 p-2 text-start">
-                        <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                      <!-- 3. Question: By when do you want to have realized this Goal? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg-6 p-2 text-start">
+                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">3)</span>
-                          By when do
-                          you want to have realized this Goal?</p>
-                      </div>
-                      <div class="col-lg -6 p-2 text-truncate">
-                        <div class="form-group text-truncate">
-                          <input class="form-control-text-input p-4" type="date" name="category-2-question-3-field"
-                            id="reach-goal-date" required />
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">3)</span>
+                            By when do
+                            you want to have realized this Goal?</p>
                         </div>
+                        <div class="col-lg -6 p-2 text-truncate">
+                          <div class="form-group text-truncate">
+                            <input class="form-control-text-input p-4" type="date" name="category-2-question-3-field"
+                              id="reach-goal-date" required />
+                          </div>
 
+                        </div>
                       </div>
-                    </div>
-                    <!-- ./ Question: By when do you want to have realized this Goal? -->
+                      <!-- ./ Question: By when do you want to have realized this Goal? -->
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <!-- 4. Question: Which areas of your body do you want to work on? -->
-                    <div class="row align-items-center">
-                      <div class="col-lg-6 p-2 text-start">
-                        <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                      <!-- 4. Question: Which areas of your body do you want to work on? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg-6 p-2 text-start">
+                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">4)</span>
-                          Which areas
-                          of your body do you want to work on?</p>
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">4)</span>
+                            Which areas
+                            of your body do you want to work on?</p>
+                        </div>
+                        <div class="col-lg -6 p-2">
+                          <!-- 
+                          Glutes
+                          Abs
+                          Arms
+                          Upper Body
+                          Lower Body
+                          Total Body
+                          Legs
+                          Back
+                          Butt
+                          -->
+
+                          <div class="row align-items-center mb-4">
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-4-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  Glutes
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row align-items-center mb-4">
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-4-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  Abs
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row align-items-center mb-4">
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-4-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  Arms
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row align-items-center mb-4">
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-4-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  Legs
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row align-items-center mb-4">
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-4-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  Back
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row align-items-center mb-4">
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-4-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  Butt
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row align-items-center mb-4">
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-4-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  Upper Body
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row align-items-center mb-4">
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-4-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  Lower Body
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row align-items-center mb-4">
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-4-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  Total Body
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
                       </div>
-                      <div class="col-lg -6 p-2">
-                        <!-- 
-                        Glutes
-                        Abs
-                        Arms
-                        Upper Body
-                        Lower Body
-                        Total Body
-                        Legs
-                        Back
-                        Butt
-                        -->
+                      <!-- ./ Question: Which areas of your body do you want to work on? -->
 
-                        <div class="row align-items-center mb-4">
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-4-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                Glutes
-                              </label>
-                            </div>
-                          </div>
-                        </div>
+                      <hr class="text-white">
 
-                        <div class="row align-items-center mb-4">
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-4-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                Abs
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row align-items-center mb-4">
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-4-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                Arms
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row align-items-center mb-4">
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-4-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                Legs
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row align-items-center mb-4">
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-4-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                Back
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row align-items-center mb-4">
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-4-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                Butt
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row align-items-center mb-4">
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-4-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                Upper Body
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row align-items-center mb-4">
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-4-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                Lower Body
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row align-items-center mb-4">
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-4-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                Total Body
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                    <!-- ./ Question: Which areas of your body do you want to work on? -->
-
-                    <hr class="text-white">
-
-                    <!-- 5. Question: How many workouts per week do you want to do? -->
-                    <div class="row align-items-center">
-                      <div class="col-lg-6 p-2 text-start">
-                        <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                      <!-- 5. Question: How many workouts per week do you want to do? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg-6 p-2 text-start">
+                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">5)</span>
-                          How many workouts per week do you want to do?</p>
-                      </div>
-                      <div class="col-lg -6 p-2">
-                        <!-- 
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">5)</span>
+                            How many workouts per week do you want to do?</p>
+                        </div>
+                        <div class="col-lg -6 p-2">
+                          <!-- 
                         `2-3
                         `3-4
                         `4-5
                         `5+
                         -->
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-exercise-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-5-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                2 - 3
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-5-field[]"
+                                  id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  2 - 3
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-dashboard-64.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-5-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                3 - 4
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-5-field[]"
+                                  id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  3 - 4
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-fit-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-5-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                4 - 5
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-5-field[]"
+                                  id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  4 - 5
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-muscle-flexing-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-5-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                5+
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-5-field[]"
+                                  id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  5+
+                                </label>
+                              </div>
                             </div>
                           </div>
+
                         </div>
-
                       </div>
-                    </div>
-                    <!-- ./ Question: How many workouts per week do you want to do? -->
+                      <!-- ./ Question: How many workouts per week do you want to do? -->
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <!-- 6. Question: How much time do you have to workout? -->
-                    <div class="row align-items-center">
-                      <div class="col-lg-6 p-2 text-start">
-                        <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                      <!-- 6. Question: How much time do you have to workout? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg-6 p-2 text-start">
+                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">6)</span>
-                          How much time do you have to workout?</p>
-                      </div>
-                      <div class="col-lg -6 p-2">
-                        <!-- 
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">6)</span>
+                            How much time do you have to workout?</p>
+                        </div>
+                        <div class="col-lg -6 p-2">
+                          <!-- 
                         5-10 Minutes
                         15-20 Minutes
                         25-30 Minutes
                         30+ Minutes
                         -->
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-exercise-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-6-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                5 - 10 Minutes
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-6-field[]"
+                                  id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  5 - 10 Minutes
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-dashboard-64.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-6-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                15 - 20 Minutes
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-6-field[]"
+                                  id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  15 - 20 Minutes
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-fit-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-6-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                25 - 30 Minutes
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-6-field[]"
+                                  id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  25 - 30 Minutes
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-muscle-flexing-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-6-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                30+ Minutes
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-6-field[]"
+                                  id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  30+ Minutes
+                                </label>
+                              </div>
                             </div>
                           </div>
+
                         </div>
-
                       </div>
-                    </div>
-                    <!-- ./ Question: How much time do you have to workout? -->
+                      <!-- ./ Question: How much time do you have to workout? -->
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <!-- 7. Question: How many weeks do you want to start with? -->
-                    <div class="row align-items-center">
-                      <div class="col-lg-6 p-2 text-start">
-                        <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                      <!-- 7. Question: How many weeks do you want to start with? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg-6 p-2 text-start">
+                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">7)</span>
-                          How many weeks do you want to start with?</p>
-                      </div>
-                      <div class="col-lg -6 p-2">
-                        <!-- 
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">7)</span>
+                            How many weeks do you want to start with?</p>
+                        </div>
+                        <div class="col-lg -6 p-2">
+                          <!-- 
                         4 Weeks
                         8 Weeks
                         12 Weeks
                         Specify
                         -->
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-exercise-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-7-field[]"
-                                id="flexCheckDefault" onchange="toggleCtgy2SpecifyOther('hide')">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                4 Weeks
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-7-field[]"
+                                  id="flexCheckDefault" onchange="toggleCtgy2SpecifyOther('hide')">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  4 Weeks
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-dashboard-64.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-7-field[]"
-                                id="flexCheckDefault" onchange="toggleCtgy2SpecifyOther('hide')">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                8 Weeks
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-7-field[]"
+                                  id="flexCheckDefault" onchange="toggleCtgy2SpecifyOther('hide')">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  8 Weeks
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-fit-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-7-field[]"
-                                id="flexCheckDefault" onchange="toggleCtgy2SpecifyOther('hide')">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                12 Weeks
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-7-field[]"
+                                  id="flexCheckDefault" onchange="toggleCtgy2SpecifyOther('hide')">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  12 Weeks
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-muscle-flexing-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate my-4">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-7-field[]"
-                                id="specify-weeks" onchange="toggleCtgy2SpecifyOther('show')">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                Specify
-                              </label>
-                            </div>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate my-4">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-7-field[]"
+                                  id="specify-weeks" onchange="toggleCtgy2SpecifyOther('show')">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  Specify
+                                </label>
+                              </div>
 
-                            <script>
-                              function toggleCtgy2SpecifyOther(state) {
-                                var specifyCheckInput = document.getElementById("specify-weeks").value;
-                                var specifyFieldContainer = document.getElementById("category-2-question-8-specify");
+                              <script>
+                                function toggleCtgy2SpecifyOther(state) {
+                                  var specifyCheckInput = document.getElementById("specify-weeks").value;
+                                  var specifyFieldContainer = document.getElementById("category-2-question-8-specify");
 
-                                if (state == "show") {
-                                  specifyFieldContainer.style.display = "block";
-                                } else {
-                                  specifyFieldContainer.style.display = "none";
+                                  if (state == "show") {
+                                    specifyFieldContainer.style.display = "block";
+                                  } else {
+                                    specifyFieldContainer.style.display = "none";
+                                  }
                                 }
-                              }
-                            </script>
+                              </script>
 
-                            <div class="form-group mt-4 mb-0 w3-animate-right" id="category-2-question-8-specify"
-                              style="display: none;">
-                              <input form="main-submission-form" class="form-control-text-input p-4" type="number"
-                                value="0" name="category-2-question-7-specify-weeks-field" id="specific-weeks"
-                                placeholder="Specify the number of weeks" required />
-                              <!-- style="position: relative;"  -->
-                              <p class="comfortaa-font text-start fs-5 mt-2 mb-0" style="color: #ffa500;">
-                                <!-- style="position: absolute; top: 50%; right: 20px; margin-top: -25%; transform: translate(10px, 10px) !important; -ms-transform: translate(10px, 10px) !important;" -->
-                                Weeks
-                              </p>
+                              <div class="form-group mt-4 mb-0 w3-animate-right" id="category-2-question-8-specify"
+                                style="display: none;">
+                                <input form="main-submission-form" class="form-control-text-input p-4" type="number"
+                                  value="0" name="category-2-question-7-specify-weeks-field" id="specific-weeks"
+                                  placeholder="Specify the number of weeks" required />
+                                <!-- style="position: relative;"  -->
+                                <p class="comfortaa-font text-start fs-5 mt-2 mb-0" style="color: #ffa500;">
+                                  <!-- style="position: absolute; top: 50%; right: 20px; margin-top: -25%; transform: translate(10px, 10px) !important; -ms-transform: translate(10px, 10px) !important;" -->
+                                  Weeks
+                                </p>
+                              </div>
                             </div>
                           </div>
+
                         </div>
-
                       </div>
-                    </div>
-                    <!-- ./ Question: How many weeks do you want to start with? -->
+                      <!-- ./ Question: How many weeks do you want to start with? -->
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <!-- 8. Question: Do you have any bad habits? -->
-                    <div class="row align-items-center">
-                      <div class="col-lg-6 p-2 text-start">
-                        <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                      <!-- 8. Question: Do you have any bad habits? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg-6 p-2 text-start">
+                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">8)</span>
-                          Do you have any bad habits?</p>
-                      </div>
-                      <div class="col-lg -6 p-2">
-                        <!-- 
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">8)</span>
+                            Do you have any bad habits?</p>
+                        </div>
+                        <div class="col-lg -6 p-2">
+                          <!-- 
                         I eat a lot of sweets or sugary treats
                         I drink a lot of sugary drinks
                         I do not sleep enough
@@ -1290,212 +1336,217 @@
                         None whatsoever
                         -->
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-exercise-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-8-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2 text-wrap" for="flexCheckDefault">
-                                I eat a lot of sweets or sugary treats
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-8-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2 text-wrap" for="flexCheckDefault">
+                                  I eat a lot of sweets or sugary treats
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-dashboard-64.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-8-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                I do not sleep enough
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-8-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  I do not sleep enough
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-fit-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-8-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                I eat a lot of fatty foods / fast foods
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-8-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  I eat a lot of fatty foods / fast foods
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-muscle-flexing-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-8-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                I eat late at night
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-8-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  I eat late at night
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-muscle-flexing-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-8-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                I am a smoker
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-8-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  I am a smoker
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <img src="../media/assets/icons/icons8-stretching-50.png" alt="" class="img-fluid">
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="checkbox" name="category-2-question-8-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                None whatsoever
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="checkbox"
+                                  name="category-2-question-8-field[]" id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  None whatsoever
+                                </label>
+                              </div>
                             </div>
                           </div>
+
                         </div>
-
                       </div>
-                    </div>
-                    <!-- ./ Question: Do you have any bad habits?? -->
+                      <!-- ./ Question: Do you have any bad habits?? -->
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <!-- 9. Question: Are you prepared to do what is necessay to let go of bed habits? -->
-                    <div class="row align-items-center">
-                      <div class="col-lg-6 p-2 text-start">
-                        <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                      <!-- 9. Question: Are you prepared to do what is necessay to let go of bed habits? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg-6 p-2 text-start">
+                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">9)</span>
-                          Are you prepared to do what is necessay to let go of bed habits?</p>
-                      </div>
-                      <div class="col-lg -6 p-2">
-                        <!-- 
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">9)</span>
+                            Are you prepared to do what is necessay to let go of bed habits?</p>
+                        </div>
+                        <div class="col-lg -6 p-2">
+                          <!-- 
                         Yes
                         No
                         -->
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <span class="material-icons material-icons-round">
                               thumb_up
                             </span>
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-9-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckChecked">
-                                Yes
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-9-field[]"
+                                  id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckChecked">
+                                  Yes
+                                </label>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row align-items-center mb-4">
-                          <!-- <div class="col-2">
+                          <div class="row align-items-center mb-4">
+                            <!-- <div class="col-2">
                             <span class="material-icons material-icons-round">
                               thumb_down
                             </span>
                           </div> -->
-                          <div class="col -8 text-truncate">
-                            <div class="form-check text-truncate">
-                              <input class="form-check-input me-4" type="radio" name="category-2-question-9-field[]"
-                                id="flexCheckDefault">
-                              <label class="form-check-label p-2" for="flexCheckDefault">
-                                No
-                              </label>
+                            <div class="col -8 text-truncate">
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" name="category-2-question-9-field[]"
+                                  id="flexCheckDefault">
+                                <label class="form-check-label p-2" for="flexCheckDefault">
+                                  No
+                                </label>
+                              </div>
                             </div>
                           </div>
+
                         </div>
-
                       </div>
-                    </div>
-                    <!-- ./ Question: Are you prepared to do what is necessay to let go of bed habits? -->
+                      <!-- ./ Question: Are you prepared to do what is necessay to let go of bed habits? -->
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <!-- 10. Question: Please select your prefarred "Cheat-Day" -->
-                    <div class="row align-items-center">
-                      <div class="col-lg-6 p-2 text-start">
-                        <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                      <!-- 10. Question: Please select your prefarred "Cheat-Day" -->
+                      <div class="row align-items-center">
+                        <div class="col-lg-6 p-2 text-start">
+                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
-                            style="color: #ffa500;">10)</span>
-                          Please select your prefarred "Cheat-Day".</p>
-                      </div>
-                      <div class="col-lg -6 p-2">
-                        <div class="form-groupz my-4">
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">10)</span>
+                            Please select your prefarred "Cheat-Day".</p>
+                        </div>
+                        <div class="col-lg -6 p-2">
+                          <div class="form-groupz my-4">
 
-                          <select form="main-submission-form" class="custom-select form-control-select-input p-4"
-                            name="category-2-question-10-field" id="cheatday-selection" required>
-                            <option value="monday">Monday</option>
-                            <option value="tuesday">Tuesday</option>
-                            <option value="wednesday">Wednesday</option>
-                            <option value="thursday">Thursday</option>
-                            <option value="friday">Friday</option>
-                            <option value="saturday">Saturday</option>
-                            <option value="sunday">Sunday</option>
-                          </select>
+                            <select form="main-submission-form" class="custom-select form-control-select-input p-4"
+                              name="category-2-question-10-field" id="cheatday-selection" required>
+                              <option value="monday">Monday</option>
+                              <option value="tuesday">Tuesday</option>
+                              <option value="wednesday">Wednesday</option>
+                              <option value="thursday">Thursday</option>
+                              <option value="friday">Friday</option>
+                              <option value="saturday">Saturday</option>
+                              <option value="sunday">Sunday</option>
+                            </select>
+
+                          </div>
 
                         </div>
-
                       </div>
-                    </div>
-                    <!-- ./ Question: Please select your prefarred "Cheat-Day" -->
+                      <!-- ./ Question: Please select your prefarred "Cheat-Day" -->
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <!-- 11. Question: What will you do on your "Cheat-Day"? -->
-                    <div class="row align-items-center">
-                      <div class="col-lg-6 p-2 text-start">
-                        <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                      <!-- 11. Question: What will you do on your "Cheat-Day"? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg-6 p-2 text-start">
+                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
-                            style="color: #ffa500;">11)</span>
-                          What will you do on your "Cheat-Day"?</p>
-                      </div>
-                      <div class="col-lg -6 p-2">
-                        <div class="form-group">
-                          <p class="text-start mb-4">I promise that I will only</p>
-                          <textarea class="form-control-text-input p-4" style="border-radius: 25px !important;" rows="3"
-                            type="text" name="category-2-question-11-field" id="cheat-day-promise" placeholder=" … "
-                            required></textarea>
-                          <p class="text-start mt-4">on my "cheat-day".</p>
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">11)</span>
+                            What will you do on your "Cheat-Day"?</p>
                         </div>
+                        <div class="col-lg -6 p-2">
+                          <div class="form-group">
+                            <p class="text-start mb-4">I promise that I will only</p>
+                            <textarea class="form-control-text-input p-4" style="border-radius: 25px !important;"
+                              rows="3" type="text" name="category-2-question-11-field" id="cheat-day-promise"
+                              placeholder=" … " required></textarea>
+                            <p class="text-start mt-4">on my "cheat-day".</p>
+                          </div>
 
+                        </div>
                       </div>
-                    </div>
-                    <!-- ./ Question: What will you do on your "Cheat-Day"? -->
+                      <!-- ./ Question: What will you do on your "Cheat-Day"? -->
 
+                      <!-- submit btn -->
+                      <input id="submit-goalsetting-info-form" type="submit" value="submit" hidden aria-hidden="true">
+                    </form>
+                    <!-- ./ #goalsetting-info-form -->
 
                     <hr class="text-white" style="margin: 80px 0px;">
 
@@ -1549,10 +1600,10 @@
                 <div class="my-4" id="category-fitness-prefs-tab-questions-pane">
                   <div class="p-4 content-panel-border-style shadow" style="border-radius: 25px; background: #343434;">
                     <h1
-                      class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-1 border-start border-end"
+                      class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end"
                       style="border-radius: 25px; background-color: #343434; color: #fff; border-color: #ffa500; margin-bottom: 80px !important;">
-                      Your Fitness
-                      Preferances</h1>
+                      Your Fitness Preferances
+                    </h1>
 
                     <div form="main-submission-form" id="emailHelp" class="form-text text-center fw-bold my-4"
                       style=" color: #fff">We have a responsibility
@@ -1564,415 +1615,436 @@
 
                     <hr class="text-white" style="margin: 80px 0px;">
 
-                    <!-- 
-                  How fit are you?
-                  When was the last time you were at your Ideal weight?
-                  What is your body type?
-                  Do you suffer from any joint pain?
-                  How active are you in your daily life?
-                  How are your energy levels during the day?
-                  How much do you sleep every night?
-                  What is your daily water intake?
-                  Select the type of classes you are looing to do
-                  -->
+                    <!-- #fitprefs-info-form -->
+                    <form id="fitprefs-info-form" action="build_profile/" method="post" autocomplete="off"
+                      target="_blank">
+                      <!-- 
+                      How fit are you?
+                      When was the last time you were at your Ideal weight?
+                      What is your body type?
+                      Do you suffer from any joint pain?
+                      How active are you in your daily life?
+                      How are your energy levels during the day?
+                      How much do you sleep every night?
+                      What is your daily water intake?
+                      Select the type of classes you are looing to do:
+                      -->
 
-                    <div class="row align-items-center">
-                      <div class="col-lg -4 p-2">
+                      <!-- Question 1: How fit are you? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg -4 p-2">
 
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">1)</span>
-                          How fit are you?</p>
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">1)</span>
+                            How fit are you?</p>
 
-                      </div>
-                      <div class="col-lg -8 p-2 text-truncate">
-                        <!-- 
-                        Not fit
-                        Fit
-                        Very fit
-                       -->
-
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-1-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Not fit
-                          </label>
                         </div>
+                        <div class="col-lg -8 p-2 text-truncate">
+                          <!-- 
+                          Not fit
+                          Fit
+                          Very fit
+                        -->
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-1-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Fit
-                          </label>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-1-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Not fit
+                            </label>
+                          </div>
+
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-1-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Fit
+                            </label>
+                          </div>
+
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-1-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Very fit
+                            </label>
+                          </div>
+
                         </div>
+                      </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-1-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Very fit
-                          </label>
+                      <hr class="text-white">
+
+                      <!-- Question 2: When was the last time you were at your Ideal weight? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg -4 p-2">
+
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">2)</span>
+                            When was the last time you were at your Ideal weight?</p>
+
                         </div>
-
-                      </div>
-                    </div>
-
-                    <hr class="text-white">
-
-                    <div class="row align-items-center">
-                      <div class="col-lg -4 p-2">
-
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">2)</span>
-                          When was the last time you were at your Ideal weight?</p>
-
-                      </div>
-                      <div class="col-lg -8 p-2 text-truncate">
-                        <!-- 
-                        Less than a year ago
-                        1-2 years ago
-                        More than 2 years ago
-                        never
-                       -->
-
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-2-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
+                        <div class="col-lg -8 p-2 text-truncate">
+                          <!-- 
                             Less than a year ago
-                          </label>
-                        </div>
-
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-2-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
                             1-2 years ago
-                          </label>
-                        </div>
-
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-2-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
                             More than 2 years ago
-                          </label>
+                            never
+                          -->
+
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-2-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Less than a year ago
+                            </label>
+                          </div>
+
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-2-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              1-2 years ago
+                            </label>
+                          </div>
+
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-2-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              More than 2 years ago
+                            </label>
+                          </div>
+
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-2-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Never
+                            </label>
+                          </div>
+
                         </div>
+                      </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-2-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Never
-                          </label>
+                      <hr class="text-white">
+
+                      <!-- Question 3: What is your body type? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg -4 p-2">
+
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">3)</span>
+                            What is your body type?</p>
+
                         </div>
-
-                      </div>
-                    </div>
-
-                    <hr class="text-white">
-
-                    <div class="row align-items-center">
-                      <div class="col-lg -4 p-2">
-
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">3)</span>
-                          What is your body type?</p>
-
-                      </div>
-                      <div class="col-lg -8 p-2 text-truncate">
-                        <!-- 
-                        Slim / Slender
-                        Ideal
-                        Flabby
-                        Heavy
-                        Obese
-                       -->
-
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-3-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
+                        <div class="col-lg -8 p-2 text-truncate">
+                          <!-- 
                             Slim / Slender
-                          </label>
-                        </div>
-
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-3-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
                             Ideal
-                          </label>
-                        </div>
-
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-3-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
                             Flabby
-                          </label>
-                        </div>
-
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-3-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
                             Heavy
-                          </label>
-                        </div>
-
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-3-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
                             Obese
-                          </label>
+                          -->
+
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-3-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Slim / Slender
+                            </label>
+                          </div>
+
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-3-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Ideal
+                            </label>
+                          </div>
+
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-3-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Flabby
+                            </label>
+                          </div>
+
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-3-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Heavy
+                            </label>
+                          </div>
+
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-3-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Obese
+                            </label>
+                          </div>
+
                         </div>
-
                       </div>
-                    </div>
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <div class="row align-items-center">
-                      <div class="col-lg -4 p-2">
+                      <!-- Question 4: Do you suffer from any joint pain? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg -4 p-2">
 
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">4)</span>
-                          Do you suffer from any joint pain?</p>
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">4)</span>
+                            Do you suffer from any joint pain?</p>
 
-                      </div>
-                      <div class="col-lg -8 p-2 text-truncate">
-                        <!-- 
+                        </div>
+                        <div class="col-lg -8 p-2 text-truncate">
+                          <!-- 
                         Yes / No
                        -->
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-4-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Yes
-                          </label>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-4-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Yes
+                            </label>
+                          </div>
+
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-4-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              No
+                            </label>
+                          </div>
+
                         </div>
+                      </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-4-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            No
-                          </label>
+                      <hr class="text-white">
+
+                      <!-- Question 5: How active are you in your daily life? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg -4 p-2">
+
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">5)</span>
+                            How active are you in your daily life?</p>
+
                         </div>
-
-                      </div>
-                    </div>
-
-                    <hr class="text-white">
-
-                    <div class="row align-items-center">
-                      <div class="col-lg -4 p-2">
-
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">5)</span>
-                          How active are you in your daily life?</p>
-
-                      </div>
-                      <div class="col-lg -8 p-2 text-truncate">
-                        <!-- 
+                        <div class="col-lg -8 p-2 text-truncate">
+                          <!-- 
                         Not active
                         Slightly active
                         Active
                         Very active
                        -->
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-5-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Not active
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-5-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Not active
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-5-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Slightly active
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-5-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Slightly active
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-5-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Active
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-5-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Active
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-5-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Very active
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-5-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Very active
+                            </label>
+                          </div>
 
+                        </div>
                       </div>
-                    </div>
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <div class="row align-items-center">
-                      <div class="col-lg -4 p-2">
+                      <!-- Question 6: How are your energy levels during the day? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg -4 p-2">
 
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">6)</span>
-                          How are your energy levels during the day?</p>
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">6)</span>
+                            How are your energy levels during the day?</p>
 
-                      </div>
-                      <div class="col-lg -8 p-2 text-truncate">
-                        <!-- 
+                        </div>
+                        <div class="col-lg -8 p-2 text-truncate">
+                          <!-- 
                         Stable throughout the day
                         I have energy for half the day / until around lunchtime
                         I always feel sleepy after meals
                        -->
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-6-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Stable throughout the day
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-6-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Stable throughout the day
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-6-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            I have energy for half the day / until around lunchtime
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-6-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              I have energy for half the day / until around lunchtime
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-6-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            I always feel sleepy after meals
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-6-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              I always feel sleepy after meals
+                            </label>
+                          </div>
 
+                        </div>
                       </div>
-                    </div>
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <div class="row align-items-center">
-                      <div class="col-lg -4 p-2">
+                      <!-- Question 7: How much do you sleep every night? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg -4 p-2">
 
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">7)</span>
-                          How much do you sleep every night?</p>
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">7)</span>
+                            How much do you sleep every night?</p>
 
-                      </div>
-                      <div class="col-lg -8 p-2 text-truncate">
-                        <!-- 
+                        </div>
+                        <div class="col-lg -8 p-2 text-truncate">
+                          <!-- 
                         More than 8 hours
                         7-8 hours
                         6-7 hours
                         less than 6 hours
                        -->
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-7-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            More than 8 hours
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-7-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              More than 8 hours
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-7-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            7-8 hours
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-7-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              7-8 hours
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-7-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            6-7 hours
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-7-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              6-7 hours
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-7-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            less than 6 hours
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-7-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              less than 6 hours
+                            </label>
+                          </div>
 
+                        </div>
                       </div>
-                    </div>
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <div class="row align-items-center">
-                      <div class="col-lg -4 p-2">
+                      <!-- Question 8: What is your daily water intake? -->
+                      <div class="row align-items-center">
+                        <div class="col-lg -4 p-2">
 
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">8)</span>
-                          What is your daily water intake?</p>
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">8)</span>
+                            What is your daily water intake?</p>
 
-                      </div>
-                      <div class="col-lg -8 p-2 text-truncate">
-                        <!-- 
+                        </div>
+                        <div class="col-lg -8 p-2 text-truncate">
+                          <!-- 
                         more than 6 glasses
                         3 to 6 glasses
                         2 glasses
                         I only drink soft-drinks / coffee
                        -->
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-8-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            More than 6 glasses
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-8-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              More than 6 glasses
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-8-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            3 to 6 glasses
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-8-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              3 to 6 glasses
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-8-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            2 glasses
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-8-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              2 glasses
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="radio" name="category-3-question-8-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            I only drink soft-drinks / coffee
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="radio" name="category-3-question-8-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              I only drink soft-drinks / coffee
+                            </label>
+                          </div>
 
+                        </div>
                       </div>
-                    </div>
 
-                    <hr class="text-white">
+                      <hr class="text-white">
 
-                    <div class="row align-items-center">
-                      <div class="col-lg -4 p-2">
+                      <!-- Question 9: Select the type of classes you are looing to do: -->
+                      <div class="row align-items-center">
+                        <div class="col-lg -4 p-2">
 
-                        <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">9)</span>
-                          Select the type of classes you are looing to do</p>
+                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2"
+                              style="color: #ffa500;">9)</span>
+                            Select the type of classes you are looing to do</p>
 
-                      </div>
-                      <div class="col-lg -8 p-2 text-truncate">
-                        <!-- 
+                        </div>
+                        <div class="col-lg -8 p-2 text-truncate">
+                          <!-- 
                         Cardio
                         Strength
                         HIIT
@@ -1989,112 +2061,117 @@
                         Treadmill
                        -->
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Cardio
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Cardio
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Strength
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Strength
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            HIIT
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              HIIT
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Toning
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Toning
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Dance / Aerobics
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Dance / Aerobics
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Kickboxing
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Kickboxing
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Barre
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Barre
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Pilates
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Pilates
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Meditation
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Meditation
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Stretch / Resistence
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Stretch / Resistence
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Yoga
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Yoga
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Spinning
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Spinning
+                            </label>
+                          </div>
 
-                        <div class="form-check mb-4 text-truncate">
-                          <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
-                            id="flexCheckDefault">
-                          <label class="form-check-label p-2" for="flexCheckChecked">
-                            Treadmill
-                          </label>
-                        </div>
+                          <div class="form-check mb-4 text-truncate">
+                            <input class="form-check-input me-4" type="checkbox" name="category-3-question-9-field[]"
+                              id="flexCheckDefault">
+                            <label class="form-check-label p-2" for="flexCheckChecked">
+                              Treadmill
+                            </label>
+                          </div>
 
+                        </div>
                       </div>
-                    </div>
+
+                      <!-- submit btn -->
+                      <input id="submit-fitprefs-info-form" type="submit" value="submit" hidden aria-hidden="true">
+                    </form>
+                    <!-- ./ #fitprefs-info-form -->
 
                     <hr class="text-white" style="margin: 80px 0px;">
 
@@ -2150,7 +2227,7 @@
                 <div class="my-4" id="category-eula-tab-questions-pane">
                   <div class="p-4 content-panel-border-style shadow" style="border-radius: 25px; background: #343434;">
                     <h1
-                      class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-1 border-start border-end"
+                      class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end"
                       style="border-radius: 25px; background-color: #343434; color: #fff; border-color: #ffa500; margin-bottom: 80px !important;">
                       <span class="material-icons material-icons-round" style="color: #ffa500;">
                         looks_3
@@ -2161,7 +2238,8 @@
                     </h1>
 
                     <!-- EULA -->
-                    <div class="text-white comfortaa-font px-2" style="overflow-y: auto; max-height: 100vh;">
+                    <div id="eula-container" class="text-white comfortaa-font px-2 mb-4"
+                      style="overflow-y: auto; max-height: 100vh;">
                       <h1 class="text-center">End-User License Agreement (&quot;Agreement&quot;)</h1>
                       <p class="text-center mb-4">Last updated: October 13, 2022</p>
                       <p class="mt-4">Please read this End-User License Agreement carefully before clicking the &quot;I
@@ -2390,25 +2468,38 @@
                     </div>
                     <!-- ./ EULA -->
 
+                    <!-- Terms of Use -->
+                    <div id="terms-container" class="text-white comfortaa-font px-2 mb-4"
+                      style="overflow-y: auto; max-height: 100vh;">
+                    </div>
+                    <!-- ./ Terms of Use -->
 
                     <hr class="text-white" style="margin: 80px 0px;">
 
-                    <div class="d-grid gap-4 justify-content-center">
-                      <div class="form-check align-items-center align-middle">
-                        <!-- form-check-inline form-switch -->
-                        <input class="form-check-input me-4" type="checkbox" role="switch" id="agree-eula"
-                          onchange="toggleCompletionDisabledState()">
-                        <label class="form-check-label p-2 align-middle pt-2" for="agree-eula">Do you agree to the
-                          above End-User Licence Agreement?</label>
+                    <!-- #policy-info-form -->
+                    <form id="policy-info-form" action="build_profile/" method="post" autocomplete="off"
+                      target="_blank">
+                      <div class="d-grid gap-4 justify-content-center">
+                        <div class="form-check align-items-center align-middle">
+                          <!-- form-check-inline form-switch -->
+                          <input class="form-check-input me-4" type="checkbox" role="switch" id="agree-eula"
+                            onchange="toggleCompletionDisabledState()">
+                          <label class="form-check-label p-2 align-middle pt-2" for="agree-eula">Do you agree to the
+                            above End-User Licence Agreement?</label>
+                        </div>
+                        <div class="form-check align-items-center align-middle">
+                          <!-- form-check-inline form-switch -->
+                          <input class="form-check-input me-4" type="checkbox" role="switch" id="agree-tou"
+                            onchange="toggleCompletionDisabledState()">
+                          <label class="form-check-label p-2 align-middle pt-2" for="agree-tou">Do you agree to the
+                            above Terms of Use?</label>
+                        </div>
                       </div>
-                      <div class="form-check align-items-center align-middle">
-                        <!-- form-check-inline form-switch -->
-                        <input class="form-check-input me-4" type="checkbox" role="switch" id="agree-tou"
-                          onchange="toggleCompletionDisabledState()">
-                        <label class="form-check-label p-2 align-middle pt-2" for="agree-tou">Do you agree to the
-                          above Terms of Use?</label>
-                      </div>
-                    </div>
+
+                      <!-- submit btn -->
+                      <input id="submit-policy-info-form" type="submit" value="submit" hidden aria-hidden="true">
+                    </form>
+                    <!-- ./ #policy-info-form -->
 
                     <script>
                       function toggleCompletionDisabledState() {
@@ -2562,8 +2653,9 @@
             style="max-width: none !important;">
 
             <div class="d-grid justify-content-center">
-              <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="img-fluid shadow my-4"
-                style="border-radius: 25px; border-bottom: #ffa500 solid 5px;" alt="placeholder">
+              <img src="../media/assets/OnefitNet Profile Pic Redone.png" id="prof-pic-img-preview"
+                class="img-fluid shadow my-4" style="border-radius: 25px; border-bottom: #ffa500 solid 5px;"
+                alt="placeholder">
             </div>
 
 
@@ -2581,7 +2673,8 @@
           <!-- ./ image preview -->
 
           <div class="d-grid justify-content-center">
-            <form method="post" id="uploadProfileImgForm" enctype="multipart/form-data">
+            <form class="d-grid justify-content-center" method="post" id="uploadProfileImgForm"
+              enctype="multipart/form-data" action="prof-img-upload.php">
               <label for="profpicformFileLg" class="form-label comfortaa-font text-center">Choose an image.</label>
               <input class="form-control form-control-lg" id="profpicformFileLg" name="profpicformFileLg" type="file">
               <input id="submit-profpicformFileLg" type="submit" value="submit" hidden aria-hidden="true">
@@ -2611,7 +2704,8 @@
           <!-- ./ image preview -->
 
           <div class="d-grid justify-content-center" style="margin-bottom: 40px;">
-            <form method="post" id="uploadBannerImgForm" enctype="multipart/form-data">
+            <form class="d-grid justify-content-center" method="post" id="uploadBannerImgForm"
+              enctype="multipart/form-data">
               <label for="profbannerformFileLg" class="form-label comfortaa-font text-center">Choose an image.</label>
               <input class="form-control form-control-lg" id="profbannerformFileLg" name="profbannerformFileLg"
                 type="file">
@@ -2642,7 +2736,6 @@
           </div> -->
       </div>
     </div>
-  </div>
   </div>
   <!-- ./ >>>>>>>>>> Tab Navigation Modal -->
   <!-- ./ Modals -->
