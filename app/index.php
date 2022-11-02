@@ -2365,9 +2365,9 @@ function getAllTrainers()
                             <hr class="text-white">
 
                             <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important; margin-bottom: 60px !important;">
-                                <h4 class="text-center">
-                                    <span class="material-icons material-icons-round align-middle" style="color: #fff !important">timeline</span>
-                                    <span class="rounded-pill p-4 align-middle" style="background-color: #ffa500; color: #343434;">Activities lined up.</span>
+                                <h4 class="d-grid gap-2 text-center">
+                                    <span class="material-icons material-icons-round align-middle" style="color: #ffa500 !important">timeline</span>
+                                    <span class="rounded-pill p-4 align-middle my-pulse-animation-tahiti" style="background-color: #343434; color: #fff; border-bottom: #ffa500 5px solid;">Activities lined up.</span>
                                 </h4>
                             </div>
 
@@ -2627,7 +2627,7 @@ function getAllTrainers()
                                                         <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-center"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
                                                         <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-center"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
                                                         <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-center"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
-                                                        <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-center"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                        <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-center"> <span class="align-middle">follow</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -2693,7 +2693,7 @@ function getAllTrainers()
                                                             <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
                                                             <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
                                                             <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
-                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">follow</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -2738,7 +2738,7 @@ function getAllTrainers()
                                                             <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
                                                             <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
                                                             <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
-                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">follow</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -2783,7 +2783,7 @@ function getAllTrainers()
                                                             <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
                                                             <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
                                                             <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
-                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                            <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">follow</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -3285,7 +3285,7 @@ function getAllTrainers()
                                                     <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
                                                     <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
                                                     <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
-                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">follow</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
                                                 </ul>
                                             </div>
                                             <!-- ./ track options -->
@@ -3322,7 +3322,7 @@ function getAllTrainers()
                                                     <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
                                                     <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
                                                     <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
-                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">follow</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
                                                 </ul>
                                             </div>
                                             <!-- ./ track options -->
@@ -3359,7 +3359,7 @@ function getAllTrainers()
                                                     <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Like</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">thumb_up</span></li>
                                                     <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Share</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">share</span></li>
                                                     <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Save</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">favorite</span></li>
-                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">Follow Author</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
+                                                    <li class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-end"> <span class="align-middle">follow</span> <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">follow_the_signs</span></li>
                                                 </ul>
                                             </div>
                                             <!-- ./ track options -->
@@ -7718,7 +7718,6 @@ function getAllTrainers()
                     <hr class="text-white">
                     <h5>Challenges</h5>
                     <hr class="text-white">
-                    <hr class="text-white">
 
                     <h5 class="mt-4">Fitness Progression</h5>
                     <div class="progress mt-4" style="height: 4px;">
@@ -8184,7 +8183,7 @@ function getAllTrainers()
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> dashboard </span>
                                     <div class="d-inline">
-                                        <i class="fas fa-home"></i> Dashboard
+                                        <i class="fas fa-home"></i> <span style="color: #fff !important;">Dashboard</span>
                                     </div>
                                 </div>
                             </button>
@@ -8193,7 +8192,7 @@ function getAllTrainers()
                             <button class="onefit-buttons-style-dark-modal p-4" id="app-profile-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabProfile')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> account_circle </span>
-                                    Profile
+                                    <span style="color: #fff !important;">Profile
                                 </div>
                             </button>
                         </div>
@@ -8201,7 +8200,7 @@ function getAllTrainers()
                             <button class="onefit-buttons-style-dark-modal p-4" id="app-discovery-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabDiscovery')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> travel_explore </span>
-                                    Discovery
+                                    <span style="color: #fff !important;">Discovery</span>
                                 </div>
                             </button>
                         </div>
@@ -8209,7 +8208,7 @@ function getAllTrainers()
                             <button class="onefit-buttons-style-dark-modal p-4" id="app-studio-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabStudio')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> play_circle_outline </span>
-                                    Onefit.Studio
+                                    <span style="color: #fff !important;">Onefit.Studio</span>
                                 </div>
                             </button>
                         </div>
@@ -8217,7 +8216,7 @@ function getAllTrainers()
                             <button class="onefit-buttons-style-dark-modal p-4" id="app-store-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabStore')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> storefront </span>
-                                    Onefit.Store
+                                    <span style="color: #fff !important;">Onefit.Store</span>
                                 </div>
                             </button>
                         </div>
@@ -8225,7 +8224,7 @@ function getAllTrainers()
                             <button class="onefit-buttons-style-dark-modal p-4" id="app-social-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabSocial')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> hub </span>
-                                    Onefit.Social
+                                    <span style="color: #fff !important;">Onefit.Social</span>
                                 </div>
                             </button>
                         </div>
@@ -8233,7 +8232,7 @@ function getAllTrainers()
                             <button class="onefit-buttons-style-dark-modal p-4" id="app-insights-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabData')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> insights </span>
-                                    Fitness Insights
+                                    <span style="color: #fff !important;">Fitness Insights</span>
                                 </div>
                             </button>
                         </div>
@@ -8241,7 +8240,7 @@ function getAllTrainers()
                             <button class="onefit-buttons-style-dark-modal p-4" id="app-achievements-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabAchievements')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> emoji_events </span>
-                                    Achievements (Private)
+                                    <span class="align-middle" style="color: #fff !important;">Achievements <span class="material-icons material-icons-round text-muted" style="font-size: 12px !important;"> lock </span></span>
                                 </div>
                             </button>
                         </div>
@@ -8249,7 +8248,7 @@ function getAllTrainers()
                             <button class="onefit-buttons-style-dark-modal p-4" id="app-media-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabMedia')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> perm_media </span>
-                                    Media (Private)
+                                    <span class="align-middle" style="color: #fff !important;">Media <span class="material-icons material-icons-round text-muted" style="font-size: 12px !important;"> lock </span></span>
                                 </div>
                             </button>
                         </div>
@@ -8257,7 +8256,7 @@ function getAllTrainers()
                             <button class="onefit-buttons-style-dark-modal p-4" id="app-comms-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabCommunication')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> forum </span>
-                                    Communications
+                                    <span style="color: #fff !important;">Communications</span>
                                 </div>
                             </button>
                         </div>
@@ -8265,7 +8264,7 @@ function getAllTrainers()
                             <button class="onefit-buttons-style-dark-modal p-4" id="app-preferences-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabSettings')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> settings_accessibility </span>
-                                    Preferences
+                                    <span style="color: #fff !important;">Preferences</span>
                                 </div>
                             </button>
                         </div>

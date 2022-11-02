@@ -5,10 +5,10 @@ require('../scripts/php/functions.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
-        $uploaddir = "upload/profile_img/";
-        $default_filname_str = "../media/profiles/0_default/default_profile_pic.png";
+        $uploaddir = "upload/profile_banner/";
+        $default_filname_str = "../media/profiles/0_default/default_profile_banner.png";
 
-        $target_file = basename($_FILES["profpicformFileLg"]["name"]);
+        $target_file = basename($_FILES["profbannerformFileLg"]["name"]);
 
         // Extract the file extension
         $imageFileType = strtolower(
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $datenow = date("Ymd-h-i-s");
             $rand = generateAlphaNumericRandomString(50); // rand();
             $n = $uploaddir . $rand . "_$datenow.$imageFileType";
-            move_uploaded_file($_FILES['profpicformFileLg']['tmp_name'], $n);
+            move_uploaded_file($_FILES['profbannerformFileLg']['tmp_name'], $n);
             echo "success: [$n]";
         } else {
             echo "error: File type not allowed.";
