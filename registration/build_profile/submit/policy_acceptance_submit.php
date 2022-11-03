@@ -1,23 +1,28 @@
 <?php
 
 session_start();
-require("../../scripts/php/config.php");
-require_once("../../scripts/php/functions.php");
+require("../../../scripts/php/config.php");
+require_once("../../../scripts/php/functions.php");
 
 //test connection - if fail then die
 if ($dbconn->connect_error) die("Fatal Error");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Declare Variables
-    $user_id = $height = $weight = 0;
-
-
+    $user_id = 0;
+    $EULA = $TOU = null;
 
     $user_id = sanitizeMySQL($dbconn, $_POST['user-id']);
-    $weight = sanitizeMySQL($dbconn, $_POST['category-1-weight-field']);
-    $height = sanitizeMySQL($dbconn, $_POST['category-1-height-field']);
 
-    die("PHP POST Data: user id: $user_id | weight: $weight | height: $height");
+    $EULA = sanitizeMySQL($dbconn, $_POST['agree-eula']);
+    $TOU = sanitizeMySQL($dbconn, $_POST['agree-terms']);
+
+    $separator = ",";
+
+
+    die("PHP POST Data: user id: $user_id | 
+    EULA Accepted?: $EULA | 
+    TOU Accepted?: $TOU |");
 
     // create general_user_profile recod with default values
 

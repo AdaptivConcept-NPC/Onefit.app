@@ -1,12 +1,13 @@
 <?php
 session_start();
-require("../scripts/php/config.php");
-require_once("../scripts/php/functions.php");
+require("../../scripts/php/config.php");
+require_once("../../scripts/php/functions.php");
 
 //test connection - if fail then die
 if ($dbconn->connect_error) die("Fatal Error");
 
 $get_current_user_id = sanitizeMySQL($dbconn, $_GET['uid']);
+$get_current_user_profile_id = sanitizeMySQL($dbconn, $_GET['pid']);
 
 try {
   $query = "SELECT * FROM `users` WHERE `user_id` = $get_current_user_id";
@@ -17,15 +18,18 @@ try {
 
   $rows = $result->num_rows;
   //echo $rows."<br>";
+  $current_user_profile_id = $get_current_user_profile_id;
   $current_user_id =
     $current_user_name = $current_user_surname =
     $current_user_email = $current_user_contact =
     $current_user_dob = $current_user_gender =
     $current_user_race = $current_user_nation = "Information unavailable.";
 
+  $current_user_prof_img = $current_user_prof_banner = "";
+
   if ($rows <= 0) {
-    //there is no result so notify user that the account cannot be found
-    echo '<tr><td colspan="19"><h1 class="fw-bold text-center my-4"> No System Admin User Accounts to Display. </h1></td></tr>';
+    //notify user that a record cannot be found
+    echo '<div class="alert alert-danger p-4 text-start" role="alert" aria-hidden="true">Error: No user account information found.</div>';
   } else {
     for ($j = 0; $j < $rows; ++$j) {
       $row = $result->fetch_array(MYSQLI_ASSOC);
@@ -42,6 +46,32 @@ try {
       $current_user_nation = htmlspecialchars($row['user_nationality']);
     }
   }
+
+  // dump $result data
+  $result = null;
+
+  // get users default profile details
+  $query = "SELECT `profile_image_url`,`profile_banner_url` FROM `general_user_profiles` WHERE `users_username` = '$current_user_username'";
+
+  $result = $dbconn->query($query);
+
+  if (!$result) die("A Fatal Error has occured. Please reload the page, and if the problem persists, please contact the system administrator.");
+
+  $rows = $result->num_rows;
+
+  if ($rows <= 0) {
+    //notify user that a record cannot be found
+    echo '<div class="alert alert-danger p-4 text-start" role="alert" aria-hidden="true">Error: No user profile information found.</div>';
+  } else {
+    for ($j = 0; $j < $rows; ++$j) {
+      $row = $result->fetch_array(MYSQLI_ASSOC);
+      $current_user_prof_img = htmlspecialchars($row['profile_image_url']);
+      $current_user_prof_banner = htmlspecialchars($row['profile_banner_url']);
+    }
+  }
+
+  $result = null;
+  $dbconn->close();
 } catch (\Throwable $th) {
   //throw $th;
 }
@@ -74,7 +104,7 @@ try {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../../css/styles.css" />
 
   <!-- JQuery Scripts -->
   <script>
@@ -135,7 +165,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: 'prof-img-upload.php',
+            url: '../upload/prof-img-upload.php',
             processData: false,
             contentType: false,
             async: false,
@@ -155,7 +185,7 @@ try {
                 var str = response;
                 var imgSrcStr = str.split('[').pop().split(']')[0];
 
-                $("#prof-pic-img-preview").attr("src", imgSrcStr);
+                $("#prof-pic-img-preview").attr("src", "../upload/" + imgSrcStr);
               } else {
                 console.log("Profile Image Uploaded Process Completed.");
                 console.log("Response: " + response);
@@ -177,7 +207,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: 'prof-banner-upload.php',
+            url: '../upload/prof-banner-upload.php',
             processData: false,
             contentType: false,
             async: false,
@@ -198,7 +228,7 @@ try {
                 var imgSrcStr = str.split('[').pop().split(']')[0];
 
                 // set the background image 
-                $("#prof-banner-img-preview").css("background-image", "url('" + imgSrcStr + "')") // .attr("src", imgSrcStr);
+                $("#prof-banner-img-preview").css("background-image", "url('../upload/" + imgSrcStr + "')") // .attr("src", imgSrcStr);
               } else {
                 console.log("Banner Image Uploaded Process Completed.");
                 console.log("Response: " + response);
@@ -222,7 +252,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: 'build_profile/aboutyou_submit.php',
+            url: 'submit/aboutyou_submit.php',
             processData: false,
             contentType: false,
             async: false,
@@ -252,7 +282,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: 'build_profile/goalsetting_submit.php',
+            url: 'submit/goalsetting_submit.php',
             processData: false,
             contentType: false,
             async: false,
@@ -282,7 +312,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: 'build_profile/fitprefs_submit.php',
+            url: 'submit/fitprefs_submit.php',
             processData: false,
             contentType: false,
             async: false,
@@ -312,7 +342,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: 'build_profile/policy_acceptance_submit.php',
+            url: 'submit/policy_acceptance_submit.php',
             processData: false,
             contentType: false,
             async: false,
@@ -415,7 +445,7 @@ try {
         <div class="ring d-flex align-items-center p-4 my-pulse-animation-light">
           <!-- <span></span> -->
           <div style="width: 100%;">
-            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid p-4" style="max-height: 20vh;" alt="">
+            <img src="../../media/assets/One-Symbol-Logo-White.png" class="img-fluid p-4" style="max-height: 20vh;" alt="">
           </div>
         </div>
       </div>
@@ -440,7 +470,7 @@ try {
         <div class="h-100z" id="offcanvas-menu">
           <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-              <img src="../media/assets/One-Symbol-Logo-White.png" alt="icon" class="img-fluid logo-size-2" />
+              <img src="../../media/assets/One-Symbol-Logo-White.png" alt="icon" class="img-fluid logo-size-2" />
               Navigation
             </h5>
             <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="offcanvas" aria-label="Close">
@@ -489,7 +519,7 @@ try {
             style="background-color: #ffa500; color: #343434 !important; border-radius: 25px !important;" -->
             <div class="d-grid justify-content-center text-center comfortaa-font">
               <div class="text-center">
-                <img src="../media/assets/One-Logo.png" class="img-fluid my-4 px-4 text-center" style="border-radius: 25px; width: 100%; max-width: 400px!important;" alt="logo">
+                <img src="../../media/assets/One-Logo.png" class="img-fluid my-4 px-4 text-center" style="border-radius: 25px; width: 100%; max-width: 400px!important;" alt="logo">
               </div>
 
               <hr class="my-4" style="color: #ffa500;">
@@ -517,7 +547,7 @@ try {
             <div class="in-div-button-container text-center justify-content-center">
 
               <div class="d-grid justify-content-center">
-                <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="img-fluid shadow my-4" style="border-radius: 25px; border-bottom: #ffa500 solid 5px;" alt="placeholder">
+                <img src="../../media/assets/OnefitNet Profile Pic Redone.png" class="img-fluid shadow my-4" style="border-radius: 25px; border-bottom: #ffa500 solid 5px;" alt="placeholder">
               </div>
 
 
@@ -792,10 +822,10 @@ try {
                     <hr class="text-white" style="margin: 80px 0px;">
 
                     <!-- #aboutyou-info-form -->
-                    <form id="aboutyou-info-form" action="build_profile/aboutyou_submit.php" method="post" autocomplete="off">
+                    <form id="aboutyou-info-form" action="submit/aboutyou_submit.php" method="post" autocomplete="off">
                       <!-- user id hidden -->
                       <div class="form-group my-4">
-                        <input class="form-control-text-input p-4" type="number" name="user-id" id="user-id-aboutyou" value="<?php echo $current_user_id; ?>" placeholder="user id" required hidden aria-hidden="true" />
+                        <input class="form-control-text-input p-4" type="number" name="user-profile-id" id="user-profile-id-aboutyou" value="<?php echo $current_user_profile_id; ?>" placeholder="user profile id" required hidden aria-hidden="true" />
                       </div>
                       <!-- ./ user id hidden -->
 
@@ -873,10 +903,10 @@ try {
                     <hr class="text-white" style="margin: 80px 0px;">
 
                     <!-- #goalsetting-info-form -->
-                    <form id="goalsetting-info-form" action="build_profile/goalsetting_submit.php" method="post" autocomplete="off">
+                    <form id="goalsetting-info-form" action="submit/goalsetting_submit.php" method="post" autocomplete="off">
                       <!-- user id hidden -->
                       <div class="form-group my-4">
-                        <input class="form-control-text-input p-4" type="number" name="user-id" id="user-id-goalsetting" value="<?php echo $current_user_id; ?>" placeholder="user id" required hidden aria-hidden="true" />
+                        <input class="form-control-text-input p-4" type="number" name="user-profile-id" id="user-profile-id-goalsetting" value="<?php echo $current_user_profile_id; ?>" placeholder="user profile id" required hidden aria-hidden="true" />
                       </div>
                       <!-- ./ user id hidden -->
 
@@ -1494,10 +1524,10 @@ try {
                     <hr class="text-white" style="margin: 80px 0px;">
 
                     <!-- #fitprefs-info-form -->
-                    <form id="fitprefs-info-form" action="build_profile/fitprefs_submit.php" method="post" autocomplete="off">
+                    <form id="fitprefs-info-form" action="submit/fitprefs_submit.php" method="post" autocomplete="off">
                       <!-- user id hidden -->
                       <div class="form-group my-4">
-                        <input class="form-control-text-input p-4" type="number" name="user-id" id="user-id-fitprefs" value="<?php echo $current_user_id; ?>" placeholder="user id" required hidden aria-hidden="true" />
+                        <input class="form-control-text-input p-4" type="number" name="user-profile-id" id="user-profile-id-fitprefs" value="<?php echo $current_user_profile_id; ?>" placeholder="user profile id" required hidden aria-hidden="true" />
                       </div>
                       <!-- ./ user id hidden -->
 
@@ -2300,10 +2330,10 @@ try {
 
                     <!-- #policy-info-form -->
                     <!--<?php echo $output; ?>-->
-                    <form id="policy-info-form" action="build_profile/policy_acceptance_submit.php" method="post" autocomplete="off">
+                    <form id="policy-info-form" action="submit/policy_acceptance_submit.php" method="post" autocomplete="off">
                       <!-- user id hidden -->
                       <div class="form-group my-4">
-                        <input class="form-control-text-input p-4" type="number" name="user-id" id="user-id-policy" value="<?php echo $current_user_id; ?>" placeholder="user id" required hidden aria-hidden="true" />
+                        <input class="form-control-text-input p-4" type="number" name="user-profile-id" id="user-profile-id-policy" value="<?php echo $current_user_profile_id; ?>" placeholder="user profile id" required hidden aria-hidden="true" />
                       </div>
                       <!-- ./ user id hidden -->
 
@@ -2460,7 +2490,7 @@ try {
           <div class="in-div-button-container text-center d-grid justify-content-center" style="max-width: none !important;">
 
             <div class="d-grid justify-content-center">
-              <img src="../media/assets/OnefitNet Profile Pic Redone.png" id="prof-pic-img-preview" class="img-fluid shadow my-4" style="border-radius: 25px; border-bottom: #ffa500 solid 5px;" alt="placeholder">
+              <img src="../../media/profiles/<?php echo $current_user_prof_img; ?>" id="prof-pic-img-preview" class="img-fluid shadow my-4" style="border-radius: 25px; border-bottom: #ffa500 solid 5px;" alt="placeholder">
             </div>
 
 
@@ -2477,7 +2507,7 @@ try {
           <!-- ./ image preview -->
 
           <div class="d-grid justify-content-center">
-            <form class="d-grid justify-content-center" method="post" id="uploadProfileImgForm" enctype="multipart/form-data" action="prof-img-upload.php">
+            <form class="d-grid justify-content-center" method="post" id="uploadProfileImgForm" enctype="multipart/form-data" action="../upload/prof-img-upload.php">
               <label for="profpicformFileLg" class="form-label comfortaa-font text-center">Choose an image.</label>
               <input class="form-control form-control-lg" id="profpicformFileLg" name="profpicformFileLg" type="file">
               <input id="submit-profpicformFileLg" type="submit" value="submit" hidden aria-hidden="true">
@@ -2501,12 +2531,12 @@ try {
           </h1>
 
           <!-- image preview -->
-          <div id="prof-banner-img-preview" class="shadow-lg my-4" style="border-bottom: #ffa500 solid 5px; border-radius: 25px; height: 400px; width: 100%; overflow: hidden; background-image: url('../media/assets/One-Tunnel.png'); background-position: center; background-attachment: local; background-clip: content-box; background-size: cover">
+          <div id="prof-banner-img-preview" class="shadow-lg my-4" style="border-bottom: #ffa500 solid 5px; border-radius: 25px; height: 400px; width: 100%; overflow: hidden; background-image: url('../../media/profiles/<?php echo $current_user_prof_banner; ?>'); background-position: center; background-attachment: local; background-clip: content-box; background-size: cover">
           </div>
           <!-- ./ image preview -->
 
           <div class="d-grid justify-content-center" style="margin-bottom: 40px;">
-            <form class="d-grid justify-content-center" method="post" id="uploadBannerImgForm" enctype="multipart/form-data" action="prof-banner-upload.php">
+            <form class="d-grid justify-content-center" method="post" id="uploadBannerImgForm" enctype="multipart/form-data" action="../upload/prof-banner-upload.php">
               <label for="profbannerformFileLg" class="form-label comfortaa-font text-center">Choose an image.</label>
               <input class="form-control form-control-lg" id="profbannerformFileLg" name="profbannerformFileLg" type="file">
               <input id="submit-profbannerformFileLg" type="submit" value="submit" hidden aria-hidden="true">

@@ -1,12 +1,12 @@
 <?php
 session_start();
-require("../scripts/php/config.php");
-require('../scripts/php/functions.php');
+require("../../scripts/php/config.php");
+require('../../scripts/php/functions.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
-        $uploaddir = "upload/profile_banner/";
-        $default_filname_str = "../media/profiles/0_default/default_profile_banner.png";
+        $uploaddir = "profile_banner/";
+        $default_filname_str = "../../media/profiles/0_default/default_profile_banner.png";
 
         $target_file = basename($_FILES["profbannerformFileLg"]["name"]);
 

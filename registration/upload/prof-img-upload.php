@@ -1,12 +1,12 @@
 <?php
 session_start();
-require("../scripts/php/config.php");
-require('../scripts/php/functions.php');
+require("../../scripts/php/config.php");
+require('../../scripts/php/functions.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
-        $uploaddir = "upload/profile_img/";
-        $default_filname_str = "../media/profiles/0_default/default_profile_pic.png";
+        $uploaddir = "profile_img/";
+        $default_filname_str = "../../media/profiles/0_default/default_profile_pic.png";
 
         $target_file = basename($_FILES["profpicformFileLg"]["name"]);
 
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // reference: https://www.geeksforgeeks.org/why-would-_files-be-empty-when-uploading-files-to-php/
     } catch (\Throwable $th) {
         // exception - throw $th;
-        echo "exception Error: Failed to upload Profile Image: " . $th;
+        echo "exception error: Failed to upload Profile Image: " . $th;
     }
 } else {
     echo "error: (REQUEST_METHOD) - no Post received.";
