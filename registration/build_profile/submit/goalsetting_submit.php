@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         = $ctgry_1_q9_letgoofbadhabits
         = $ctgry_1_q10_cheatday
         = $ctgry_1_q11_cheatdaypromise = null;
-    $dateNow = date('Y-md-d h:i:s');
+    $dateNow = date('Y-m-d h:i:s');
 
     $user_profile_id = sanitizeMySQL($dbconn, $_POST['user-profile-id']);
 
@@ -32,7 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // $ctgry_1_q1_questionsummary = sanitizeMySQL($dbconn, $_POST['category-2-question-1-field']); //[]
     $ctgry_1_q2_goalstatement = sanitizeMySQL($dbconn, $_POST['category-2-question-2-field']);
-    $ctgry_1_q3_realizegoaldate = date('Y-md-d', sanitizeMySQL($dbconn, $_POST['category-2-question-3-field']));
+    // die($_POST['category-2-question-3-field']);
+    $ctgry_1_q3_realizegoaldate = sanitizeMySQL($dbconn, $_POST['category-2-question-3-field']);
     foreach ($_POST['category-2-question-4-field'] as $arrayitem) {
         $ctgry_1_q4_bodyfocusareas .=  sanitizeMySQL($dbconn, $arrayitem . $separator);
     }
@@ -57,7 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // $ctgry_1_q8_questionsummary = sanitizeMySQL($dbconn, $_POST['category-2-question-8-field']); //[]
     foreach ($_POST['category-2-question-9-field'] as $arrayitem) {
-        $ctgry_1_q9_letgoofbadhabits .=  sanitizeMySQL($dbconn, $arrayitem . $separator);
+        if (sanitizeMySQL($dbconn, $arrayitem) == "Yes") $ctgry_1_q9_letgoofbadhabits = 1; //Yes
+        else $ctgry_1_q9_letgoofbadhabits = 0; //No
     }
     // $ctgry_1_q9_questionsummary = sanitizeMySQL($dbconn, $_POST['category-2-question-9-field']); //[]
     if (sanitizeMySQL($dbconn, $_POST['category-2-question-10-field']) == "Yes") $ctgry_1_q10_cheatday = 1;
@@ -81,24 +83,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // try to insert the data
     try {
-        $query = "INSERT INTO 
-        `user_profile_goalsetting`(`user_profile_goal_id`, `fitness_goals`, `goal_statement`, `realize_goal_date`, 
+        $query = "INSERT INTO `user_profile_goalsetting`
+        (`user_profile_goal_id`, `fitness_goals`, `goal_statement`, `realize_goal_date`, 
         `body_area_focus`, `workouts_to_do_week`, `time_to_workout`, `weeks_to_start`, `bad_habits`, 
         `prepared_letgoof_badhabits`, `pref_cheat_day`, `will_do_cheat_day`, `log_date`, 
         `general_user_profiles_user_profile_id`) 
         VALUES 
         (null,'$ctgry_1_q1_fitnessgoals','$ctgry_1_q2_goalstatement','$ctgry_1_q3_realizegoaldate',
-        '$ctgry_1_q4_bodyfocusareas','$ctgry_1_q5_workoutsperweek','$ctgry_1_q6_timetoworkout',$ctgry_1_q7_startingweeks,'$ctgry_1_q8_badhabits',
-        '$ctgry_1_q9_letgoofbadhabits','$ctgry_1_q10_cheatday','$ctgry_1_q11_cheatdaypromise','$dateNow',
+        '$ctgry_1_q4_bodyfocusareas','$ctgry_1_q5_workoutsperweek','$ctgry_1_q6_timetoworkout','$ctgry_1_q7_startingweeks','$ctgry_1_q8_badhabits',
+        $ctgry_1_q9_letgoofbadhabits,'$ctgry_1_q10_cheatday','$ctgry_1_q11_cheatdaypromise','$dateNow',
         $user_profile_id)";
 
-        echo $query . "<br>";
+        // echo $query . "<br>";
 
         $result = $dbconn->query($query);
 
         if (!$result) die("An error occurred while trying to save your details. [GoalSetting Submit Error_01 - " . $dbconn->error . "]");
-
-        $user_id = $dbconn->insert_id;
 
         $result = null;
         $dbconn->close();
@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "success: Goal Setting data saved successfully.";
     } catch (\Throwable $th) {
         //throw $th;
-        echo "exception error: Failed to upload Profile Image: " . $th;
+        echo "exception error:  [GoalSetting Except Err_01] " . $th;
     }
 } else {
     echo "error: (REQUEST_METHOD) - no Post received.";

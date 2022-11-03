@@ -118,7 +118,7 @@ try {
 
 
       // ******** smooth scroll to element
-      // #goalsetting-next-panel-btn => #category-goal-setting-tab-pane
+      // #goalsetting - next - panel - btn => #category - goal - setting - tab - pane
       $("#goalsetting-next-panel-btn").click(function() {
         $("#main-form-window-scroll-container").animate({ // [document.documentElement, document.body]
           scrollTop: $("#user-welcome-header").offset().top
@@ -355,6 +355,7 @@ try {
             success: function(response) {
               // do something
               console.log("Success Response: " + response);
+              // if the response is successful, take user to home screen
             },
             error: function(xhr, ajaxOptions, thrownError) {
               // do something
@@ -739,7 +740,7 @@ try {
                             <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">1)</span>
                               Your name</p>
 
-                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_name; ?>.</p>
+                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_name; ?></p>
                           </div>
 
                         </div>
@@ -749,7 +750,7 @@ try {
                             <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">2)</span>
                               Your surname</p>
 
-                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_surname; ?>.</p>
+                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_surname; ?></p>
                           </div>
 
                         </div>
@@ -759,7 +760,7 @@ try {
                             <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">3)</span>
                               Your email address</p>
 
-                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_email; ?>.</p>
+                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_email; ?></p>
                           </div>
 
                         </div>
@@ -769,7 +770,7 @@ try {
                             <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">4)</span>
                               Your contact number</p>
 
-                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_contact; ?>.</p>
+                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_contact; ?></p>
                           </div>
 
                         </div>
@@ -781,7 +782,7 @@ try {
                             <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">5)</span>
                               Your date of birth</p>
 
-                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_dob; ?>.</p>
+                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_dob; ?></p>
                           </div>
 
                         </div>
@@ -791,7 +792,7 @@ try {
                             <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">6)</span>
                               Your gender</p>
 
-                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_gender; ?>.</p>
+                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_gender; ?></p>
                           </div>
 
                         </div>
@@ -801,7 +802,7 @@ try {
                             <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">7)</span>
                               Your race</p>
 
-                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_race; ?>.</p>
+                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_race; ?></p>
                           </div>
 
                         </div>
@@ -811,7 +812,7 @@ try {
                             <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">8)</span>
                               Your Nationality</p>
 
-                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_nation; ?>.</p>
+                            <p class="fs-5" style="color: #ffa500;"><?php echo $current_user_nation; ?></p>
                           </div>
 
                         </div>
@@ -937,13 +938,13 @@ try {
                         </div>
                         <div class="col-lg -6 p-2">
                           <!-- 
-                        Be more active
-                        Lose weight
-                        Stay toned
-                        Build muscle
-                        Reduce Stress
-                        Stay healthy
-                        -->
+                          Be more active
+                          Lose weight
+                          Stay toned
+                          Build muscle
+                          Reduce Stress
+                          Stay healthy
+                          -->
                           <div class="form-check">
                             <input class="form-check-input me-4" value="Be more active" type="checkbox" name="category-2-question-1-field[]" id="category-2-be-more-active-field">
                             <label class="form-check-label p-2" for="flexCheckDefault">
@@ -952,35 +953,35 @@ try {
                           </div>
 
                           <div class="form-check">
-                            <input class="form-check-input me-4" value="Lose weight" type="checkbox" name="category-2-question-1-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Lose weight" type="checkbox" name="category-2-question-1-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Lose weight
                             </label>
                           </div>
 
                           <div class="form-check">
-                            <input class="form-check-input me-4" value="Stay toned" type="checkbox" name="category-2-question-1-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Stay toned" type="checkbox" name="category-2-question-1-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckDefault">
                               Stay toned
                             </label>
                           </div>
 
                           <div class="form-check">
-                            <input class="form-check-input me-4" value="Build muscle" type="checkbox" name="category-2-question-1-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Build muscle" type="checkbox" name="category-2-question-1-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Build muscle
                             </label>
                           </div>
 
                           <div class="form-check">
-                            <input class="form-check-input me-4" value="Reduce Stress" type="checkbox" name="category-2-question-1-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Reduce Stress" type="checkbox" name="category-2-question-1-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckDefault">
                               Reduce Stress
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Stay healthy" type="checkbox" name="category-2-question-1-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Stay healthy" type="checkbox" name="category-2-question-1-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Stay healthy
                             </label>
@@ -1058,7 +1059,7 @@ try {
                           -->
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Glutes" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Glutes" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckDefault">
                               Glutes
                             </label>
@@ -1066,56 +1067,56 @@ try {
 
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Abs" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Abs" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Abs
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Arms" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Arms" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckDefault">
                               Arms
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Legs" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Legs" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Legs
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Back" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Back" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Back
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Butt" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Butt" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Butt
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Upper Body" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Upper Body" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Upper Body
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Lower Body" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Lower Body" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckDefault">
                               Lower Body
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Total Body" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Total Body" type="checkbox" name="category-2-question-4-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Total Body
                             </label>
@@ -1145,28 +1146,28 @@ try {
                         -->
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="2 - 3 weeks" type="radio" name="category-2-question-5-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="2 - 3 weeks" type="radio" name="category-2-question-5-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckDefault">
                               2 - 3
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="3 - 4 weeks" type="radio" name="category-2-question-5-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="3 - 4 weeks" type="radio" name="category-2-question-5-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               3 - 4
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="4 - 5 weeks" type="radio" name="category-2-question-5-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="4 - 5 weeks" type="radio" name="category-2-question-5-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckDefault">
                               4 - 5
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="5+ weeks" type="radio" name="category-2-question-5-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="5+ weeks" type="radio" name="category-2-question-5-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               5+
                             </label>
@@ -1196,28 +1197,28 @@ try {
                         -->
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="5 - 10 minutes" type="radio" name="category-2-question-6-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="5 - 10 minutes" type="radio" name="category-2-question-6-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckDefault">
                               5 - 10 Minutes
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="15 - 20 minutes" type="radio" name="category-2-question-6-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="15 - 20 minutes" type="radio" name="category-2-question-6-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               15 - 20 Minutes
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="25 - 30 minutes" type="radio" name="category-2-question-6-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="25 - 30 minutes" type="radio" name="category-2-question-6-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckDefault">
                               25 - 30 Minutes
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="30+ minutes" type="radio" name="category-2-question-6-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="30+ minutes" type="radio" name="category-2-question-6-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               30+ Minutes
                             </label>
@@ -1324,42 +1325,42 @@ try {
                         -->
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="I eat a lot of sweets or sugary treats" type="checkbox" name="category-2-question-8-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="I eat a lot of sweets or sugary treats" type="checkbox" name="category-2-question-8-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2 text-wrap" for="flexCheckDefault">
                               I eat a lot of sweets or sugary treats
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="I do not sleep enough" type="checkbox" name="category-2-question-8-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="I do not sleep enough" type="checkbox" name="category-2-question-8-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               I do not sleep enough
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="I eat a lot of fatty foods / fast foods" type="checkbox" name="category-2-question-8-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="I eat a lot of fatty foods / fast foods" type="checkbox" name="category-2-question-8-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckDefault">
                               I eat a lot of fatty foods / fast foods
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="I eat late at night" type="checkbox" name="category-2-question-8-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="I eat late at night" type="checkbox" name="category-2-question-8-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               I eat late at night
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="I am a smoker" type="checkbox" name="category-2-question-8-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="I am a smoker" type="checkbox" name="category-2-question-8-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               I am a smoker
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="None" type="checkbox" name="category-2-question-8-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="None" type="checkbox" name="category-2-question-8-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckDefault">
                               None whatsoever
                             </label>
@@ -1390,14 +1391,14 @@ try {
                         -->
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Yes" type="radio" name="category-2-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Yes" type="radio" name="category-2-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Yes
                             </label>
                           </div>
 
                           <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="No" type="radio" name="category-2-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="No" type="radio" name="category-2-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckDefault">
                               No
                             </label>
@@ -1559,21 +1560,21 @@ try {
                           -->
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Not fit" type="radio" name="category-3-question-1-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Not fit" type="radio" name="category-3-question-1-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Not fit
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Fit" type="radio" name="category-3-question-1-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Fit" type="radio" name="category-3-question-1-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Fit
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Very fit" type="radio" name="category-3-question-1-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Very fit" type="radio" name="category-3-question-1-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Very fit
                             </label>
@@ -1601,28 +1602,28 @@ try {
                           -->
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Less than a year ago" type="radio" name="category-3-question-2-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Less than a year ago" type="radio" name="category-3-question-2-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Less than a year ago
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="1-2 years ago" type="radio" name="category-3-question-2-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="1-2 years ago" type="radio" name="category-3-question-2-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               1-2 years ago
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="More than 2 years ago" type="radio" name="category-3-question-2-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="More than 2 years ago" type="radio" name="category-3-question-2-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               More than 2 years ago
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Never" type="radio" name="category-3-question-2-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Never" type="radio" name="category-3-question-2-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Never
                             </label>
@@ -1651,28 +1652,28 @@ try {
                           -->
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Slim_Slender" type="radio" name="category-3-question-3-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Slim_Slender" type="radio" name="category-3-question-3-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Slim / Slender
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Ideal" type="radio" name="category-3-question-3-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Ideal" type="radio" name="category-3-question-3-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Ideal
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Flabby" type="radio" name="category-3-question-3-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Flabby" type="radio" name="category-3-question-3-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Flabby
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Heavy" type="radio" name="category-3-question-3-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Heavy" type="radio" name="category-3-question-3-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Heavy
                             </label>
@@ -1680,7 +1681,7 @@ try {
 
                           <!-- probably worth removing Obsese as an option -->
                           <!-- <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Obese" type="radio" name="category-3-question-3-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Obese" type="radio" name="category-3-question-3-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Obese
                             </label>
@@ -1705,14 +1706,14 @@ try {
                        -->
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Yes" type="radio" name="category-3-question-4-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Yes" type="radio" name="category-3-question-4-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Yes
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="No" type="radio" name="category-3-question-4-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="No" type="radio" name="category-3-question-4-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               No
                             </label>
@@ -1740,28 +1741,28 @@ try {
                        -->
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Not active" type="radio" name="category-3-question-5-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Not active" type="radio" name="category-3-question-5-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Not active
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Slightly active" type="radio" name="category-3-question-5-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Slightly active" type="radio" name="category-3-question-5-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Slightly active
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Active" type="radio" name="category-3-question-5-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Active" type="radio" name="category-3-question-5-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Active
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Very active" type="radio" name="category-3-question-5-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Very active" type="radio" name="category-3-question-5-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Very active
                             </label>
@@ -1788,21 +1789,21 @@ try {
                        -->
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Stable throughout the day" type="radio" name="category-3-question-6-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Stable throughout the day" type="radio" name="category-3-question-6-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Stable throughout the day
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="I have energy for half the day or until around lunchtime" type="radio" name="category-3-question-6-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="I have energy for half the day or until around lunchtime" type="radio" name="category-3-question-6-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               I have energy for half the day / until around lunchtime
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="I always feel sleepy after meals" type="radio" name="category-3-question-6-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="I always feel sleepy after meals" type="radio" name="category-3-question-6-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               I always feel sleepy after meals
                             </label>
@@ -1830,28 +1831,28 @@ try {
                           -->
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="More than 8 hours" type="radio" name="category-3-question-7-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="More than 8 hours" type="radio" name="category-3-question-7-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               More than 8 hours
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="7-8 hours" type="radio" name="category-3-question-7-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="7-8 hours" type="radio" name="category-3-question-7-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               7-8 hours
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="6-7 hours" type="radio" name="category-3-question-7-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="6-7 hours" type="radio" name="category-3-question-7-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               6-7 hours
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="less than 6 hours" type="radio" name="category-3-question-7-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="less than 6 hours" type="radio" name="category-3-question-7-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               less than 6 hours
                             </label>
@@ -1879,28 +1880,28 @@ try {
                        -->
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="More than 6 glasses" type="radio" name="category-3-question-8-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="More than 6 glasses" type="radio" name="category-3-question-8-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               More than 6 glasses
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="3 to 6 glasses" type="radio" name="category-3-question-8-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="3 to 6 glasses" type="radio" name="category-3-question-8-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               3 to 6 glasses
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="2 glasses" type="radio" name="category-3-question-8-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="2 glasses" type="radio" name="category-3-question-8-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               2 glasses
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="I only drink soft-drinks or coffee" type="radio" name="category-3-question-8-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="I only drink soft-drinks or coffee" type="radio" name="category-3-question-8-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               I only drink soft-drinks / coffee
                             </label>
@@ -1938,91 +1939,91 @@ try {
                           -->
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Cardio" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Cardio" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Cardio
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Strength" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Strength" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Strength
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="HIIT" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="HIIT" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               HIIT
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Toning" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Toning" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Toning
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Dance_Aerobics" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Dance_Aerobics" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Dance / Aerobics
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Kickboxing" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Kickboxing" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Kickboxing
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="default" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="default" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Barre
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Pilates" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Pilates" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Pilates
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Meditation" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Meditation" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Meditation
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Stretch_Resistence" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Stretch_Resistence" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Stretch / Resistence
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Yoga" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Yoga" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Yoga
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Spinning" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Spinning" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Spinning
                             </label>
                           </div>
 
                           <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Treadmill" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault" required>
+                            <input class="form-check-input me-4" value="Treadmill" type="checkbox" name="category-3-question-9-field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Treadmill
                             </label>
@@ -2333,7 +2334,7 @@ try {
                     <form id="policy-info-form" action="submit/policy_acceptance_submit.php" method="post" autocomplete="off">
                       <!-- user id hidden -->
                       <div class="form-group my-4">
-                        <input class="form-control-text-input p-4" type="number" name="user-profile-id" id="user-profile-id-policy" value="<?php echo $current_user_profile_id; ?>" placeholder="user profile id" required hidden aria-hidden="true" />
+                        <input class="form-control-text-input p-4" type="number" name="user-id" id="user-id-policy" value="<?php echo $current_user_id; ?>" placeholder="user id" required hidden aria-hidden="true" />
                       </div>
                       <!-- ./ user id hidden -->
 

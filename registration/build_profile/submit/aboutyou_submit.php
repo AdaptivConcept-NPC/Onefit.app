@@ -10,7 +10,7 @@ if ($dbconn->connect_error) die("Fatal Error");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Declare Variables
     $user_id = $user_profile_id = $height = $weight = 0;
-    $dateNow = date('Y-md-d h:i:s');
+    $dateNow = date('Y-m-d h:i:s');
 
     $user_profile_id = sanitizeMySQL($dbconn, $_POST['user-profile-id']);
     // floatval(); - convert text to float
@@ -30,15 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!$result) die("An error occurred while trying to save your details. [AboutYou Submit Error_01 - " . $dbconn->error . "]");
 
-        $user_id = $dbconn->insert_id;
-
         $result = null;
         $dbconn->close();
 
         echo "success: About You data saved successfully.";
     } catch (\Throwable $th) {
         //throw $th;
-        echo "exception error: Failed to upload Profile Image: " . $th;
+        echo "exception error: [AboutYou Except Err_01] " . $th;
     }
 } else {
     echo "error: (REQUEST_METHOD) - no Post received.";
