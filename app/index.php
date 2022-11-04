@@ -89,6 +89,9 @@ $usrs_userid = $usrs_username = $usrs_name = $usrs_surname = $usrs_idnumber = $u
 //getAllTrainers
 $usrs_userid = $usrs_username = $usrs_name = $usrs_surname = $usrs_idnumber = $usrs_email = $usrs_contact = $usrs_dob = $usrs_gender = $usrs_race = $usrs_nationality = $usrs_acc_active = $activitiesTrainersList = $usrs_prof_acctype = $currentUser_Usrnm = $output = $output_msg = $app_err_msg = NULL;
 
+// exercise dropdown list
+$workout_activities_list = $user_profile_id = $exercise_name = $xp_points = null;
+
 // misc
 $currentuser_img_url = $otheruser_img_url = $verifIcon = $otherUserverifIcon = $output_msg = $app_err_msg = $output = NULL;
 $uctDateTime = new DateTime(date('Y-m-d H:i:s'));
@@ -99,6 +102,10 @@ if (isset($_SESSION["currentUserAuth"])) {
     if ($_SESSION["currentUserAuth"] == true) {
         $userAuth = sanitizeString($_SESSION["currentUserAuth"]);
         $currentUser_Usrnm = sanitizeString($_SESSION["currentUserUsername"]);
+
+        // echo <<<_END
+        //     <div class="alert alert-danger p-3">userAuth: $userAuth | username: $currentUser_Usrnm</div>
+        //     _END;
 
         // Load App Content
         // Load the user profile information
@@ -171,11 +178,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                 $verifIcon = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> groups </span>';
             }
         } else {
-            $output_msg = "|[System Error]|:. [Profile load (Account details) - " . mysqli_error($dbconn) . "]";
-            $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
-
-            $output = $app_err_msg;
         }
+
+        // call to compile exercise list
+        $workout_activities_list = compileSelectInputExerciseList();
     } else {
         //destroy session,
         header("Location: ../scripts/php/destroy_session.php");
@@ -187,6 +193,44 @@ if (isset($_SESSION["currentUserAuth"])) {
 }
 
 //Functions
+function compileSelectInputExerciseList()
+{
+    global $dbconn;
+    $exercise_id = $xp_points = 0;
+    $exercise_name = $workout_name = "";
+    $compile_workout_activities_list = "";
+
+    // $sql = "SELECT ex.exercise_id, ex.exercise_name, ex.xp_points, wk.workout_name, wk.workout_category FROM exercises ex
+    // INNER JOIN workout_training wt ON wt.exercises_exercise_id = ex.exercise_id
+    // INNER JOIN workouts wk ON w.workout_id = wt.workouts_workout_id
+    // ORDER BY ex.exercise_name ASC";
+
+    $sql = "SELECT `exercise_id`, `exercise_name`, `xp_points` FROM `exercises` ORDER BY `exercise_name` ASC";
+
+    if ($result = mysqli_query($dbconn, $sql)) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $exercise_id = $row["exercise_id"];
+            $exercise_name = $row["exercise_name"];
+            $xp_points = $row["xp_points"];
+
+            // echo <<<_END
+            // <div class="alert alert-success p-3">upid: $exercise_id | exercise name: $exercise_name | xp: $xp_points</div>
+            // _END;
+
+            $compile_workout_activities_list .= <<<_END
+            <option value="$exercise_id"> $exercise_name ($xp_points<sub style="color: #ffa500;">xp</sub>)</option>
+            _END;
+        }
+    } else {
+        // echo <<<_END
+        //     <div class="alert alert-danger p-3">No exercise items found.</div>
+        //     _END;
+        $compile_workout_activities_list = '<option value="error">No exercise items found.</option>';
+    }
+
+    return $compile_workout_activities_list;
+}
+
 function dateDifference($start_date, $end_date)
 {
     // calulating the difference in timestamps 
@@ -1872,6 +1916,310 @@ function getAllTrainers()
                     }
                 }
             });
+
+            // ***** Locaion: Modal
+            // ajax jquery - submit activity tracking data [Heart Rate]
+            $("#modal-heartrate-insights-activitytracker-data-form").submit(function(e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#modal-heartrate-insights-activitytracker-data-form')[0]);
+                setTimeout(function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_heartrate.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        beforeSend: function() {
+                            console.log('beforeSend: submitting activity tracking data [Heart Rate]');
+                        },
+                        success: function(response) {
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - activity tracking data [Heart Rate]');
+                                console.log("Response: " + response);
+                                // get the profile image name and append it to the src attribute str
+                                // var str = response;
+                                // var imgSrcStr = str.split('[').pop().split(']')[0];
+                            } else {
+                                console.log("error: returning response - activity tracking data [Heart Rate]");
+                                console.log("Response: " + response);
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit activity tracking data [Heart Rate]
+
+            // ajax jquery - submit activity tracking data [Body Temp]
+            $("#modal-bodytemp-insights-activitytracker-data-form").submit(function(e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#modal-bodytemp-insights-activitytracker-data-form')[0]);
+                setTimeout(function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bodytemp.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        beforeSend: function() {
+                            console.log('beforeSend: submitting activity tracking data [Body Temp]');
+                        },
+                        success: function(response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - activity tracking data [Body Temp]');
+                                console.log("Response: " + response);
+                                // get the profile image name and append it to the src attribute str
+                                // var str = response;
+                                // var imgSrcStr = str.split('[').pop().split(']')[0];
+                            } else {
+                                console.log("error: returning response - activity tracking data [Body Temp]");
+                                console.log("Response: " + response);
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit activity tracking data [Body Temp]
+
+            // ajax jquery - submit activity tracking data [Speed]
+            $("#modal-speed-insights-activitytracker-data-form").submit(function(e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#modal-speed-insights-activitytracker-data-form')[0]);
+                setTimeout(function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_speed.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        beforeSend: function() {
+                            console.log('beforeSend: submitting activity tracking data [Speed]');
+                        },
+                        success: function(response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - activity tracking data [Speed]');
+                                console.log("Response: " + response);
+                                // get the profile image name and append it to the src attribute str
+                                // var str = response;
+                                // var imgSrcStr = str.split('[').pop().split(']')[0];
+                            } else {
+                                console.log("error: returning response - activity tracking data [Speed]");
+                                console.log("Response: " + response);
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit activity tracking data [Speed]
+
+            // ajax jquery - submit activity tracking data [BMI Weight]
+            $("#modal-weight-insights-activitytracker-data-form").submit(function(e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#modal-weight-insights-activitytracker-data-form')[0]);
+                setTimeout(function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bmiweight.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        beforeSend: function() {
+                            console.log('beforeSend: submitting activity tracking data [BMI Weight]');
+                        },
+                        success: function(response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - activity tracking data [BMI Weight]');
+                                console.log("Response: " + response);
+                                // get the profile image name and append it to the src attribute str
+                                // var str = response;
+                                // var imgSrcStr = str.split('[').pop().split(']')[0];
+                            } else {
+                                console.log("error: returning response - activity tracking data [BMI Weight]");
+                                console.log("Response: " + response);
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit activity tracking data [BMI Weight]
+
+            // ***** Locaion: Single
+            // ajax jquery - submit activity tracking data [Heart Rate]
+            $("#single-heartrate-insights-activitytracker-data-form").submit(function(e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#single-heartrate-insights-activitytracker-data-form')[0]);
+                setTimeout(function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_heartrate.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        beforeSend: function() {
+                            console.log('beforeSend: submitting activity tracking data [Heart Rate]');
+                        },
+                        success: function(response) {
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - activity tracking data [Heart Rate]');
+                                console.log("Response: " + response);
+                                // get the profile image name and append it to the src attribute str
+                                // var str = response;
+                                // var imgSrcStr = str.split('[').pop().split(']')[0];
+                            } else {
+                                console.log("error: returning response - activity tracking data [Heart Rate]");
+                                console.log("Response: " + response);
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit activity tracking data [Heart Rate]
+
+            // ajax jquery - submit activity tracking data [Body Temp]
+            $("#single-bodytemp-insights-activitytracker-data-form").submit(function(e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#single-bodytemp-insights-activitytracker-data-form')[0]);
+                setTimeout(function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bodytemp.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        beforeSend: function() {
+                            console.log('beforeSend: submitting activity tracking data [Body Temp]');
+                        },
+                        success: function(response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - activity tracking data [Body Temp]');
+                                console.log("Response: " + response);
+                                // get the profile image name and append it to the src attribute str
+                                // var str = response;
+                                // var imgSrcStr = str.split('[').pop().split(']')[0];
+                            } else {
+                                console.log("error: returning response - activity tracking data [Body Temp]");
+                                console.log("Response: " + response);
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit activity tracking data [Body Temp]
+
+            // ajax jquery - submit activity tracking data [Speed]
+            $("#single-speed-insights-activitytracker-data-form").submit(function(e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#single-speed-insights-activitytracker-data-form')[0]);
+                setTimeout(function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_speed.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        beforeSend: function() {
+                            console.log('beforeSend: submitting activity tracking data [Speed]');
+                        },
+                        success: function(response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - activity tracking data [Speed]');
+                                console.log("Response: " + response);
+                                // get the profile image name and append it to the src attribute str
+                                // var str = response;
+                                // var imgSrcStr = str.split('[').pop().split(']')[0];
+                            } else {
+                                console.log("error: returning response - activity tracking data [Speed]");
+                                console.log("Response: " + response);
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit activity tracking data [Speed]
+
+            // ajax jquery - submit activity tracking data [BMI Weight]
+            $("#single-weight-insights-activitytracker-data-form").submit(function(e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#single-weight-insights-activitytracker-data-form')[0]);
+                setTimeout(function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bmiweight.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        beforeSend: function() {
+                            console.log('beforeSend: submitting activity tracking data [BMI Weight]');
+                        },
+                        success: function(response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - activity tracking data [BMI Weight]');
+                                console.log("Response: " + response);
+                                // get the profile image name and append it to the src attribute str
+                                // var str = response;
+                                // var imgSrcStr = str.split('[').pop().split(']')[0];
+                            } else {
+                                console.log("error: returning response - activity tracking data [BMI Weight]");
+                                console.log("Response: " + response);
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit activity tracking data [BMI Weight]
 
             // $("map[name=image-map-male-front]").mapoid({
             //     click: function(e) {
@@ -4515,7 +4863,7 @@ function getAllTrainers()
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
 
-                    <div class="container-lg p-4 shadow-lg d-inline-block border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
+                    <div class="container-lg p-4 shadow-lg d-inline-block border-5 border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
                         <div class="row align-items-center text-center comfortaa-font">
                             <div class="col-sm py-2 text-truncate">
                                 <!--<i class="fas fa-heart"></i>-->
@@ -4540,7 +4888,8 @@ function getAllTrainers()
                             </div>
                             <div class="col-sm py-2 text-center">
                                 <div class="d-inline">
-                                    <button class="btn p-4 onefit-buttons-style-dark my-pulse-animation-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="heartrate-expand-icon heartrate-data-input-form-container">
+                                    <button class="btn p-4 onefit-buttons-style-dark my-pulse-animation-tahiti border-5 border" style="border-radius: 25px !important; border-color: #ffa500 !important;" type="button" data-bs-toggle="modal" data-bs-target="#tabCaptureActivityTrackerDataModal">
+                                        <!--  data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="heartrate-expand-icon heartrate-data-input-form-container" -->
                                         <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid mb-2" />
                                         <span class="material-icons material-icons-round">fitbit</span>
                                     </button>
@@ -4571,7 +4920,7 @@ function getAllTrainers()
 
                         <!-- detailed metric list -->
                         <ul class="list-group list-group-flush text-white border-0">
-                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
+                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md -4 text-center">
                                         <h1 class="text-truncate">Heart Rate Monitor</h1>
@@ -4583,25 +4932,27 @@ function getAllTrainers()
                                             <p class="text-muted fw-bold">75 BPM, 5h ago</p>
                                         </div>
 
-                                        <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="heartrate-expand-icon heartrate-data-input-form-container">
+                                        <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target="#heartrate-data-input-form-container" aria-expanded="false" aria-controls="heartrate-data-input-form-container">
                                             <span class="material-icons material-icons-round align-middle">
                                                 add_circle_outline
                                             </span>
-                                        </button> -->
+                                        </button>
                                     </div>
                                     <div class="col-md -8 py-4">
                                         <!-- Canvasjs chart canvas -->
-                                        <canvas class="chartjs-chart-light shadow" id="heart_rate_monitor_chart" width="400" height="400"></canvas>
+                                        <div class="insight-chart-container no-scroller">
+                                            <canvas class="chartjs-chart-light shadow" id="heart_rate_monitor_chart" width="400" height="400"></canvas>
+                                        </div>
                                         <!-- ./Canvasjs chart canvas -->
 
                                         <!-- submit heartrate data form -->
-                                        <div id="heartrate-expand-icon" class="collapse multi-collapse text-center w3-animate-bottom my-4">
-                                            <span class="material-icons material-icons-round">
-                                                add_task
-                                            </span>
-                                        </div>
+                                        <div id="heartrate-data-input-form-container" class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                            <div id="heartrate-expand-icon" class="text-center w3-animate-bottom my-4">
+                                                <span class="material-icons material-icons-round">
+                                                    add_task
+                                                </span>
+                                            </div>
 
-                                        <div id="heartrate-data-input-form-container" class="collapse  multi-collapse p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
                                             <div class="align-middle comfortaa-font text-center">
                                                 <span class="material-icons material-icons-round align-middle">today</span>
 
@@ -4610,7 +4961,7 @@ function getAllTrainers()
 
                                             <hr class="text-white">
 
-                                            <form class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="" autocomplete="off">
+                                            <form id="single-heartrate-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_heartrate.php" autocomplete="off">
                                                 <div class="output-container my-2" id="output-container">
                                                     <!--<?php echo $output; ?>-->
                                                 </div>
@@ -4624,7 +4975,7 @@ function getAllTrainers()
                                                     </select>
                                                 </div>
                                                 <div class="form-group my-4">
-                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">2. Heart Rate Datasource:</label>
+                                                    <label for="heartrate-datasource" class="comfortaa-font fs-5" style="color: #ffa500;">2. Heart Rate Datasource:</label>
                                                     <select class="custom-select form-control-select-input p-4" name="heartrate-datasource" id="heartrate-datasource" placeholder="Datasource (Required)" required>
                                                         <option value='no-selection'>Select your datasource.</option>
                                                         <option value='datasource-1'>Fitbit waerable</option>
@@ -4635,11 +4986,26 @@ function getAllTrainers()
                                                     </select>
                                                 </div>
                                                 <div class="form-group my-4">
-                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your Heart Rate:</label>
+                                                    <label for="heartrate-value" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your Heart Rate:</label>
                                                     <input class="form-control-text-input p-4" type="number" name="heartrate-value" id="heartrate-value" placeholder="BPM (Required)" required />
                                                 </div>
 
+                                                <!-- submit btn -->
+                                                <input id="single-submit-heartrate-insights-activitytracker-data-form" type="submit" value="submit" hidden aria-hidden="true">
+
                                             </form>
+                                            <div class="d-flex justify-content-center">
+                                                <!-- visual submit btn - heartrate form -->
+                                                <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" id="visual-submit-heartrate-btn" type="button" onclick="triggerSubmitActivityTrackerData('single','heartrate')">
+                                                    <span class="material-icons material-icons-round align-middle">
+                                                        add_circle_outline
+                                                    </span>
+                                                    <span class="align-middle">Save.</span>
+                                                </button>
+                                                <!-- ./ visual submit btn - heartrate form -->
+                                            </div>
+
+
                                         </div>
                                         <!-- ./ submit heartrate data form -->
 
@@ -4647,7 +5013,7 @@ function getAllTrainers()
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
+                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md -4 text-center">
                                         <h1 class="text-truncate">Body Temp Monitor</h1>
@@ -4659,25 +5025,27 @@ function getAllTrainers()
                                             <p class="text-muted fw-bold">37.2&deg;C, 10m ago</p>
                                         </div>
 
-                                        <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="bodytemp-expand-icon bodytemp-data-input-form-container">
+                                        <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target="#bodytemp-data-input-form-container" aria-expanded="false" aria-controls="bodytemp-data-input-form-container">
                                             <span class="material-icons material-icons-round align-middle">
                                                 add_circle_outline
                                             </span>
-                                        </button> -->
+                                        </button>
                                     </div>
                                     <div class="col-md -8 py-4">
                                         <!-- Canvasjs chart canvas -->
-                                        <canvas class="chartjs-chart-light shadow" id="body_temp_monitor_chart" width="400" height="400"></canvas>
+                                        <div class="insight-chart-container no-scroller">
+                                            <canvas class="chartjs-chart-light shadow" id="body_temp_monitor_chart" width="400" height="400"></canvas>
+                                        </div>
                                         <!-- ./Canvasjs chart canvas -->
 
                                         <!-- submit heartrate data form -->
-                                        <div id="bodytemp-expand-icon" class="collapse multi-collapse text-center w3-animate-bottom my-4">
-                                            <span class="material-icons material-icons-round">
-                                                add_task
-                                            </span>
-                                        </div>
+                                        <div id="bodytemp-data-input-form-container" class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                            <div id="bodytemp-expand-icon" class="text-center w3-animate-bottom my-4">
+                                                <span class="material-icons material-icons-round">
+                                                    add_task
+                                                </span>
+                                            </div>
 
-                                        <div id="bodytemp-data-input-form-container" class="collapse multi-collapse p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
                                             <div class="align-middle comfortaa-font text-center">
                                                 <span class="material-icons material-icons-round align-middle">today</span>
 
@@ -4686,22 +5054,22 @@ function getAllTrainers()
 
                                             <hr class="text-white">
 
-                                            <form class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="" autocomplete="off">
+                                            <form id="single-bodytemp-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bodytemp.php" autocomplete="off">
                                                 <div class="output-container my-2" id="output-container">
                                                     <!--<?php echo $output; ?>-->
                                                 </div>
 
                                                 <div class="form-group my-4">
-                                                    <label for="heartrate-workout" class="comfortaa-font fs-5" style="color: #ffa500;">1. Workout / Activity:</label>
-                                                    <select class="custom-select form-control-select-input p-4" name="heartrate-workout" id="heartrate-workout" placeholder="Work / Activity (Required)" required>
+                                                    <label for="bodytemp-workout" class="comfortaa-font fs-5" style="color: #ffa500;">1. Workout / Activity:</label>
+                                                    <select class="custom-select form-control-select-input p-4" name="bodytemp-workout" id="bodytemp-workout" placeholder="Work / Activity (Required)" required>
                                                         <option value='no-selection'>Select a workout / activity.</option>
                                                         <?php echo $workout_activities_list; ?>
                                                         <option value='other'>Other</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group my-4">
-                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">2. Heart Rate Datasource:</label>
-                                                    <select class="custom-select form-control-select-input p-4" name="heartrate-datasource" id="heartrate-datasource" placeholder="Datasource (Required)" required>
+                                                    <label for="bodytemp-datasource" class="comfortaa-font fs-5" style="color: #ffa500;">2. Heart Rate Datasource:</label>
+                                                    <select class="custom-select form-control-select-input p-4" name="bodytemp-datasource" id="bodytemp-datasource" placeholder="Datasource (Required)" required>
                                                         <option value='no-selection'>Select your datasource.</option>
                                                         <option value='datasource-1'>Fitbit waerable</option>
                                                         <option value='datasource-2'>Android wearable</option>
@@ -4711,18 +5079,32 @@ function getAllTrainers()
                                                     </select>
                                                 </div>
                                                 <div class="form-group my-4">
-                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your current Body Temperature:</label>
-                                                    <input class="form-control-text-input p-4" type="number" name="heartrate-value" id="heartrate-value" placeholder="Temperature (Required)" required />
+                                                    <label for="bodytemp-value" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your current Body Temperature:</label>
+                                                    <input class="form-control-text-input p-4" type="number" name="bodytemp-value" id="bodytemp-value" placeholder="Temperature (Required)" required />
                                                 </div>
 
+                                                <!-- submit btn -->
+                                                <input id="single-submit-bodytemp-insights-activitytracker-data-form" type="submit" value="submit" hidden aria-hidden="true">
+
                                             </form>
+                                            <div class="d-flex justify-content-center">
+                                                <!-- visual submit btn - heartrate form -->
+                                                <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" id="visual-submit-bodytemp-btn" type="button" onclick="triggerSubmitActivityTrackerData('single','bodytemp')">
+                                                    <span class="material-icons material-icons-round align-middle">
+                                                        add_circle_outline
+                                                    </span>
+                                                    <span class="align-middle">Save.</span>
+                                                </button>
+                                                <!-- ./ visual submit btn - heartrate form -->
+                                            </div>
+
                                         </div>
 
                                         <!-- <div id="body_temp_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
+                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md -4 text-center">
                                         <h1 class="text-truncate">Avg. Speed</h1>
@@ -4734,25 +5116,27 @@ function getAllTrainers()
                                             <p class="text-muted fw-bold">Highest Marked Speed: 15m/s</p>
                                         </div>
 
-                                        <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="speedmonitor-expand-icon speedmonitor-data-input-form-container">
+                                        <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target="#speedmonitor-data-input-form-container" aria-expanded="false" aria-controls="speedmonitor-data-input-form-container">
                                             <span class="material-icons material-icons-round align-middle">
                                                 add_circle_outline
                                             </span>
-                                        </button> -->
+                                        </button>
                                     </div>
                                     <div class="col-md -8 py-4">
                                         <!-- Canvasjs chart canvas -->
-                                        <canvas class="chartjs-chart-light shadow" id="speed_monitor_chart" width="400" height="400"></canvas>
+                                        <div class="insight-chart-container no-scroller">
+                                            <canvas class="chartjs-chart-light shadow" id="speed_monitor_chart" width="400" height="400"></canvas>
+                                        </div>
                                         <!-- ./Canvasjs chart canvas -->
 
                                         <!-- submit heartrate data form -->
-                                        <div id="speedmonitor-expand-icon" class="collapse multi-collapse text-center w3-animate-bottom my-4">
-                                            <span class="material-icons material-icons-round">
-                                                add_task
-                                            </span>
-                                        </div>
+                                        <div id="speedmonitor-data-input-form-container" class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                            <div id="speedmonitor-expand-icon" class="text-center w3-animate-bottom my-4">
+                                                <span class="material-icons material-icons-round">
+                                                    add_task
+                                                </span>
+                                            </div>
 
-                                        <div id="speedmonitor-data-input-form-container" class="collapse multi-collapse p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
                                             <div class="align-middle comfortaa-font text-center">
                                                 <span class="material-icons material-icons-round align-middle">today</span>
 
@@ -4761,22 +5145,22 @@ function getAllTrainers()
 
                                             <hr class="text-white">
 
-                                            <form class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="" autocomplete="off">
+                                            <form id="single-speed-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_speed.php" autocomplete="off">
                                                 <div class="output-container my-2" id="output-container">
                                                     <!--<?php echo $output; ?>-->
                                                 </div>
 
                                                 <div class="form-group my-4">
-                                                    <label for="heartrate-workout" class="comfortaa-font fs-5" style="color: #ffa500;">1. Workout / Activity:</label>
-                                                    <select class="custom-select form-control-select-input p-4" name="heartrate-workout" id="heartrate-workout" placeholder="Work / Activity (Required)" required>
+                                                    <label for="speed-workout" class="comfortaa-font fs-5" style="color: #ffa500;">1. Workout / Activity:</label>
+                                                    <select class="custom-select form-control-select-input p-4" name="speed-workout" id="speed-workout" placeholder="Work / Activity (Required)" required>
                                                         <option value='no-selection'>Select a workout / activity.</option>
                                                         <?php echo $workout_activities_list; ?>
                                                         <option value='other'>Other</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group my-4">
-                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">2. Heart Rate Datasource:</label>
-                                                    <select class="custom-select form-control-select-input p-4" name="heartrate-datasource" id="heartrate-datasource" placeholder="Datasource (Required)" required>
+                                                    <label for="speed-datasource" class="comfortaa-font fs-5" style="color: #ffa500;">2. Speed Datasource:</label>
+                                                    <select class="custom-select form-control-select-input p-4" name="speed-datasource" id="speed-datasource" placeholder="Datasource (Required)" required>
                                                         <option value='no-selection'>Select your datasource.</option>
                                                         <option value='datasource-1'>Fitbit waerable</option>
                                                         <option value='datasource-2'>Android wearable</option>
@@ -4786,18 +5170,32 @@ function getAllTrainers()
                                                     </select>
                                                 </div>
                                                 <div class="form-group my-4">
-                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your logged Speed:</label>
-                                                    <input class="form-control-text-input p-4" type="number" name="heartrate-value" id="heartrate-value" placeholder="Speed (ms - Required)" required />
+                                                    <label for="speed-value" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your max Speed:</label>
+                                                    <input class="form-control-text-input p-4" type="number" name="speed-value" id="speed-value" placeholder="Speed (ms - Required)" required />
                                                 </div>
 
+                                                <!-- submit btn -->
+                                                <input id="single-submit-speed-insights-activitytracker-data-form" type="submit" value="submit" hidden aria-hidden="true">
+
                                             </form>
+                                            <div class="d-flex justify-content-center">
+                                                <!-- visual submit btn - heartrate form -->
+                                                <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" id="visual-submit-speed-btn" type="button" onclick="triggerSubmitActivityTrackerData('single','speed')">
+                                                    <span class="material-icons material-icons-round align-middle">
+                                                        add_circle_outline
+                                                    </span>
+                                                    <span class="align-middle">Save.</span>
+                                                </button>
+                                                <!-- ./ visual submit btn - heartrate form -->
+                                            </div>
+
                                         </div>
 
                                         <!-- <div id="speed_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
+                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md -4 text-center">
                                         <h1 class="text-truncate">Step Counter</h1>
@@ -4809,13 +5207,6 @@ function getAllTrainers()
                                             <p class="text-muted fw-bold">213 Steps remaining (Achievement)</p>
                                         </div>
 
-                                        <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" 
-                                        type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" 
-                                        aria-controls="variable-expand-icon variable-data-input-form-container">
-                                            <span class="material-icons material-icons-round align-middle">
-                                                devices_other
-                                            </span>
-                                        </button> -->
                                         <img src="../media/assets/smartwatches/branding/fitbit-png-logo-white.png" class="img-fluid mt-4 mb-2" style="max-width: 200px;" alt="fitbit logo">
                                         <p class="comfortaa-font">Connect your Fitbit activity tracker / smartwatch</p>
                                     </div>
@@ -4828,7 +5219,7 @@ function getAllTrainers()
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;">
+                            <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md -4 text-center">
                                         <h1 class="text-truncate">Weight Monitoring (BMI)</h1>
@@ -4840,25 +5231,29 @@ function getAllTrainers()
                                             <p class="text-muted fw-bold">75kg, 1w ago</p>
                                         </div>
 
-                                        <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="bmiweight-expand-icon bmiweight-data-input-form-container">
+                                        <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target="#bmiweight-data-input-form-container" aria-expanded="false" aria-controls="">
                                             <span class="material-icons material-icons-round align-middle">
                                                 add_circle_outline
                                             </span>
-                                        </button> -->
+                                        </button>
                                     </div>
                                     <div class="col-md -8 py-4">
                                         <!-- Canvasjs chart canvas -->
-                                        <canvas class="chartjs-chart-light shadow" id="bmi_weight_monitor_chart" width="400" height="400"></canvas>
+                                        <div class="insight-chart-container no-scroller">
+                                            <canvas class="chartjs-chart-light shadow" id="bmi_weight_monitor_chart" width="400" height="400"></canvas>
+                                        </div>
+
                                         <!-- ./Canvasjs chart canvas -->
 
                                         <!-- submit heartrate data form -->
-                                        <div id="bmiweight-expand-icon" class="collapse multi-collapse text-center w3-animate-bottom my-4">
-                                            <span class="material-icons material-icons-round">
-                                                add_task
-                                            </span>
-                                        </div>
+                                        <div id="bmiweight-data-input-form-container" class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
 
-                                        <div id="bmiweight-data-input-form-container" class="collapse multi-collapse p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                            <div id="bmiweight-expand-icon" class="text-center w3-animate-bottom my-4">
+                                                <span class="material-icons material-icons-round">
+                                                    add_task
+                                                </span>
+                                            </div>
+
                                             <div class="align-middle comfortaa-font text-center">
                                                 <span class="material-icons material-icons-round align-middle">today</span>
 
@@ -4867,7 +5262,7 @@ function getAllTrainers()
 
                                             <hr class="text-white">
 
-                                            <form class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="" autocomplete="off">
+                                            <form id="single-weight-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bmiweight.php" autocomplete="off">
                                                 <div class="output-container my-2" id="output-container">
                                                     <!--<?php echo $output; ?>-->
                                                 </div>
@@ -4881,7 +5276,7 @@ function getAllTrainers()
                                                     </select>
                                                 </div>
                                                 <div class="form-group my-4">
-                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">2. Heart Rate Datasource:</label>
+                                                    <label for="heartrate-datasource" class="comfortaa-font fs-5" style="color: #ffa500;">2. Weight Monitoring Datasource:</label>
                                                     <select class="custom-select form-control-select-input p-4" name="heartrate-datasource" id="heartrate-datasource" placeholder="Datasource (Required)" required>
                                                         <option value='no-selection'>Select your datasource.</option>
                                                         <option value='datasource-1'>Fitbit waerable</option>
@@ -4892,11 +5287,25 @@ function getAllTrainers()
                                                     </select>
                                                 </div>
                                                 <div class="form-group my-4">
-                                                    <label for="reg-name" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your current Weight:</label>
-                                                    <input class="form-control-text-input p-4" type="number" name="heartrate-value" id="heartrate-value" placeholder="Weight (kg - Required)" required />
+                                                    <label for="weight-value" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your current Weight:</label>
+                                                    <input class="form-control-text-input p-4" type="number" name="weight-value" id="weight-value" placeholder="Weight (kg - Required)" required />
                                                 </div>
 
+                                                <!-- submit btn -->
+                                                <input id="single-submit-weight-insights-activitytracker-data-form" type="submit" value="submit" hidden aria-hidden="true">
+
                                             </form>
+                                            <div class="d-flex justify-content-center">
+                                                <!-- visual submit btn - heartrate form -->
+                                                <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" id="visual-submit-weight-btn" type="button" onclick="triggerSubmitActivityTrackerData('single','weight')">
+                                                    <span class="material-icons material-icons-round align-middle">
+                                                        add_circle_outline
+                                                    </span>
+                                                    <span class="align-middle">Save.</span>
+                                                </button>
+                                                <!-- ./ visual submit btn - heartrate form -->
+                                            </div>
+
                                         </div>
 
                                         <!-- <div id="weight_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
@@ -8809,6 +9218,500 @@ function getAllTrainers()
         </div>
     </div>
     <!-- ./ >>>>>>>>>> Chat Modal -->
+
+    <!-- Button trigger modal>>>>>>>>>> Tab Activity Tracker Capture Modal -->
+    <button id="toggleTabCaptureActivityTrackerDataModalBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tabCaptureActivityTrackerDataModal" hidden aria-hidden="true">
+        Launch #captureactivitytracker</button>
+
+    <!-- >>>>>>>>>> Tab Activity Tracker Capture Modal -->
+    <div class="modal fade" id="tabCaptureActivityTrackerDataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tabCaptureActivityTrackerDataModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
+            <div class="modal-content feature-tab-nav-content content-panel-border-stylez">
+                <!-- style="border-bottom: #ffa500 5px solid;" -->
+                <div class="modal-header border-0">
+                    <h5 class="modal-title align-middle" id="tabCaptureActivityTrackerDataModalLabel">
+                        <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
+                            analytics
+                        </span>
+                        <span class=" align-middle">Capture Activity Tracking Data</span>
+                    </h5>
+                    <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="material-icons material-icons-round"> cancel </span>
+                    </button>
+                </div>
+                <hr class="text-white m-0z">
+                <div class="modal-body border-0" style="overflow-x: hidden">
+                    <div class="row align-items-center text-center comfortaa-font">
+                        <div class="col-sm py-2 text-truncate">
+                            <!--<i class="fas fa-heart"></i>-->
+                            <div class="d-inline">
+                                <span class="material-icons material-icons-round align-middle"> monitor_heart </span>
+                                <span class="align-middle">Heart rate</span>
+                            </div>
+
+                        </div>
+                        <div class="col-sm py-2 text-truncate">
+                            <div class="d-inline">
+                                <span class="align-middle" style="color: #ffa500">|</span>
+                            </div>
+                        </div>
+                        <div class="col-sm py-2 text-truncate">
+                            <!--<i class="fas fa-thermometer-half"></i>-->
+                            <div class="d-inline">
+                                <span class="material-icons material-icons-round align-middle"> device_thermostat </span>
+                                <!-- Degree symbol html code: &#176; -->
+                                <span class="align-middle">Temp&#176;</span>
+                            </div>
+                        </div>
+                        <div class="col-sm py-2 text-center">
+                            <div class="d-inline">
+                                <button class="btn p-4 onefit-buttons-style-dark" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="heartrate-expand-icon heartrate-data-input-form-container">
+                                    <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid mb-2" />
+                                    <span class="material-icons material-icons-round my-pulse-animation-tahiti p-2">fitbit</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm py-2 text-truncate">
+                            <!--<i class="fas fa-bolt"></i>-->
+                            <div class="d-inline">
+                                <span class="material-icons material-icons-round align-middle"> bolt </span>
+                                <span class="align-middle">Speed</span>
+                            </div>
+                        </div>
+                        <div class="col-sm py-2 text-truncate">
+                            <div class="d-inline">
+                                <span class="align-middle" style="color: #ffa500">|</span>
+                            </div>
+                        </div>
+                        <div class="col-sm py-2 text-truncate">
+                            <!--<i class="fas fa-walking"></i>-->
+                            <div class="d-inline">
+                                <span class="material-icons material-icons-round align-middle"> directions_walk </span>
+                                <span class="align-middle">Steps</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="text-white">
+
+                    <!-- detailed metric list -->
+                    <ul class="list-group list-group-flush text-white border-0">
+                        <!-- js submitting activity tracker data foms -->
+                        <script>
+                            function triggerSubmitActivityTrackerData(formLocation, forForm) {
+                                if (forForm == "heartrate" && formLocation == "modal") {
+                                    // submit heartrate activity tracker form via jquery ajax trigger
+                                    document.getElementById("modal-submit-heartrate-insights-activitytracker-data-form").click();
+                                } else if (forForm == "bodytemp" && formLocation == "modal") {
+                                    // submit bodytemp activity tracker form via jquery ajax trigger
+                                    document.getElementById("modal-submit-bodytemp-insights-activitytracker-data-form").click();
+                                } else if (forForm == "speed" && formLocation == "modal") {
+                                    // submit speed activity tracker form via jquery ajax trigger
+                                    document.getElementById("modal-submit-speed-insights-activitytracker-data-form").click();
+                                } else if (forForm == "weight" && formLocation == "modal") {
+                                    // submit weight activity tracker form via jquery ajax trigger
+                                    document.getElementById("modal-submit-weight-insights-activitytracker-data-form").click();
+                                } else {
+                                    alert("Alert: Activity Tracker form submitted - formLocation: " + formLocation + " | forForm: " + forForm);
+                                }
+
+                                if (forForm == "heartrate" && formLocation == "single") {
+                                    // submit heartrate activity tracker form via jquery ajax trigger
+                                    document.getElementById("single-submit-heartrate-insights-activitytracker-data-form").click();
+                                } else if (forForm == "bodytemp" && formLocation == "single") {
+                                    // submit bodytemp activity tracker form via jquery ajax trigger
+                                    document.getElementById("single-submit-bodytemp-insights-activitytracker-data-form").click();
+                                } else if (forForm == "speed" && formLocation == "single") {
+                                    // submit speed activity tracker form via jquery ajax trigger
+                                    document.getElementById("single-submit-speed-insights-activitytracker-data-form").click();
+                                } else if (forForm == "weight" && formLocation == "single") {
+                                    // submit weight activity tracker form via jquery ajax trigger
+                                    document.getElementById("single-submit-weight-insights-activitytracker-data-form").click();
+                                } else {
+                                    alert("Alert: Activity Tracker form submitted - formLocation: " + formLocation + " | forForm: " + forForm);
+                                }
+                            }
+                        </script>
+                        <!-- ./ js submitting activity tracker data foms -->
+
+                        <li class="list-group-item bg-transparent text-white pt-4" style="border-color: #ffa500;border-radius: 25px;">
+                            <div class="row align-items-center mt-4">
+                                <div class="col-xlg -4 text-center">
+                                    <h1 class="text-truncate">Heart Rate Monitor</h1>
+                                    <div class="d-grid gap-2 mt-4">
+                                        <span class="material-icons material-icons-round">
+                                            favorite
+                                        </span>
+                                        <h1>65<span style="font-size: 10px;" class="align-top">BPM</span></h1>
+                                        <p class="text-muted fw-bold">75 BPM, 5h ago</p>
+                                    </div>
+
+                                    <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="heartrate-expand-icon heartrate-data-input-form-container">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                add_circle_outline
+                                            </span>
+                                        </button> -->
+                                </div>
+                                <div class="col-xlg -8 py-4">
+                                    <!-- Canvasjs chart canvas -->
+                                    <!-- <canvas class="chartjs-chart-light shadow" id="heart_rate_monitor_chart" width="400" height="400"></canvas> -->
+                                    <!-- ./Canvasjs chart canvas -->
+
+                                    <!-- submit heartrate data form -->
+                                    <div id="heartrate-expand-icon" class="collapsez showz multi-collapsez text-center w3-animate-bottom my-4">
+                                        <span class="material-icons material-icons-round">
+                                            add_task
+                                        </span>
+                                    </div>
+
+                                    <div id="heartrate-data-input-form-container" class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                        <div class="align-middle comfortaa-font text-center">
+                                            <span class="material-icons material-icons-round align-middle">today</span>
+
+                                            <span class="align-middle fw-bold">17 Oct 2022 | 13:04</span>
+                                        </div>
+
+                                        <hr class="text-white">
+
+                                        <form id="modal-heartrate-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_heartrate.php" autocomplete="off">
+                                            <div class="output-container my-2" id="output-container">
+                                                <!--<?php echo $output; ?>-->
+                                            </div>
+
+                                            <div class="form-group my-4">
+                                                <label for="heartrate-workout" class="comfortaa-font fs-5" style="color: #ffa500;">1. Workout / Activity:</label>
+                                                <select class="custom-select form-control-select-input p-4" name="heartrate-workout" id="heartrate-workout" placeholder="Work / Activity (Required)" required>
+                                                    <option value='no-selection'>Select a workout / activity.</option>
+                                                    <?php echo $workout_activities_list; ?>
+                                                    <option value='other'>Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group my-4">
+                                                <label for="heartrate-datasource" class="comfortaa-font fs-5" style="color: #ffa500;">2. Heart Rate Datasource:</label>
+                                                <select class="custom-select form-control-select-input p-4" name="heartrate-datasource" id="heartrate-datasource" placeholder="Datasource (Required)" required>
+                                                    <option value='no-selection'>Select your datasource.</option>
+                                                    <option value='datasource-1'>Fitbit waerable</option>
+                                                    <option value='datasource-2'>Android wearable</option>
+                                                    <option value='datasource-3'>Apple wearable</option>
+                                                    <option value='datasource-4'>Treadmill</option>
+                                                    <option value='datasource-5'>Electric Spin bike</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group my-4">
+                                                <label for="heartrate-value" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your Heart Rate:</label>
+                                                <input class="form-control-text-input p-4" type="number" name="heartrate-value" id="heartrate-value" placeholder="BPM" required />
+                                            </div>
+
+                                            <!-- submit btn -->
+                                            <input id="modal-submit-heartrate-insights-activitytracker-data-form" type="submit" value="submit" hidden aria-hidden="true">
+
+                                        </form>
+                                        <!-- visual submit btn - heartrate form -->
+                                        <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" id="visual-submit-heartrate-btn" type="button" onclick="triggerSubmitActivityTrackerData('modal','heartrate')">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                add_circle_outline
+                                            </span>
+                                            <span class="align-middle">Save.</span>
+                                        </button>
+                                        <!-- ./ visual submit btn - heartrate form -->
+                                    </div>
+                                    <!-- ./ submit heartrate data form -->
+
+                                    <!-- <div id="heart_rate_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item bg-transparent text-white pt-4" style="border-color: #ffa500;border-radius: 25px;">
+                            <div class="row align-items-center mt-4">
+                                <div class="col-xlg -4 text-center">
+                                    <h1 class="text-truncate">Body Temp Monitor</h1>
+                                    <div class="d-grid gap-2 mt-4">
+                                        <span class="material-icons material-icons-round">
+                                            device_thermostat
+                                        </span>
+                                        <h1>36.9<span style="font-size: 10px;" class="align-top">&deg;C</span></h1>
+                                        <p class="text-muted fw-bold">37.2&deg;C, 10m ago</p>
+                                    </div>
+
+                                    <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target="#bodytemp-data-input-form-container" aria-expanded="false" aria-controls="bodytemp-data-input-form-container">
+                                        <span class="material-icons material-icons-round align-middle">
+                                            add_circle_outline
+                                        </span>
+                                    </button> -->
+                                </div>
+                                <div class="col-xlg -8 py-4">
+                                    <!-- Canvasjs chart canvas -->
+                                    <!-- <canvas class="chartjs-chart-light shadow" id="body_temp_monitor_chart" width="400" height="400"></canvas> -->
+                                    <!-- ./Canvasjs chart canvas -->
+
+                                    <!-- submit heartrate data form -->
+                                    <div id="bodytemp-expand-icon" class="collapsez showz multi-collapsez text-center w3-animate-bottom my-4">
+                                        <span class="material-icons material-icons-round">
+                                            add_task
+                                        </span>
+                                    </div>
+
+                                    <div id="bodytemp-data-input-form-container" class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                        <div class="align-middle comfortaa-font text-center">
+                                            <span class="material-icons material-icons-round align-middle">today</span>
+
+                                            <span class="align-middle fw-bold">17 Oct 2022 | 13:04</span>
+                                        </div>
+
+                                        <hr class="text-white">
+
+                                        <form id="modal-bodytemp-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bodytemp.php" autocomplete="off">
+                                            <div class="output-container my-2" id="output-container">
+                                                <!--<?php echo $output; ?>-->
+                                            </div>
+
+                                            <div class="form-group my-4">
+                                                <label for="bodytemp-workout" class="comfortaa-font fs-5" style="color: #ffa500;">1. Workout / Activity:</label>
+                                                <select class="custom-select form-control-select-input p-4" name="bodytemp-workout" id="bodytemp-workout" placeholder="Work / Activity (Required)" required>
+                                                    <option value='no-selection'>Select a workout / activity.</option>
+                                                    <?php echo $workout_activities_list; ?>
+                                                    <option value='other'>Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group my-4">
+                                                <label for="bodytemp-datasource" class="comfortaa-font fs-5" style="color: #ffa500;">2. Body Temp Monitoring Datasource:</label>
+                                                <select class="custom-select form-control-select-input p-4" name="bodytemp-datasource" id="bodytemp-datasource" placeholder="Datasource (Required)" required>
+                                                    <option value='no-selection'>Select your datasource.</option>
+                                                    <option value='datasource-1'>Fitbit waerable</option>
+                                                    <option value='datasource-2'>Android wearable</option>
+                                                    <option value='datasource-3'>Apple wearable</option>
+                                                    <option value='datasource-4'>Treadmill</option>
+                                                    <option value='datasource-5'>Electric Spin bike</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group my-4">
+                                                <label for="bodytemp-value" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your Body Temp:</label>
+                                                <input class="form-control-text-input p-4" type="number" name="bodytemp-value" id="bodytemp-value" placeholder="Temperature (&deg;C)" required />
+                                            </div>
+
+                                            <!-- submit btn -->
+                                            <input id="modal-submit-bodytemp-insights-activitytracker-data-form" type="submit" value="submit" hidden aria-hidden="true">
+
+                                        </form>
+                                        <!-- visual submit btn - bodytemp form -->
+                                        <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" id="visual-submit-bodytemp-btn" type="button" onclick="triggerSubmitActivityTrackerData('modal','bodytemp')">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                add_circle_outline
+                                            </span>
+                                            <span class="align-middle">Save.</span>
+                                        </button>
+                                        <!-- ./ visual submit btn - bodytemp form -->
+                                    </div>
+
+                                    <!-- <div id="body_temp_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item bg-transparent text-white pt-4" style="border-color: #ffa500;border-radius: 25px;">
+                            <div class="row align-items-center mt-4">
+                                <div class="col-xlg -4 text-center">
+                                    <h1 class="text-truncate">Avg. Speed</h1>
+                                    <div class="d-grid gap-2 mt-4">
+                                        <span class="material-icons material-icons-round">
+                                            bolt
+                                        </span>
+                                        <h1>10<span style="font-size: 10px;" class="align-top">m/s</span></h1>
+                                        <p class="text-muted fw-bold">Highest Marked Speed: 15m/s</p>
+                                    </div>
+
+                                    <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target="#speedmonitor-data-input-form-container" aria-expanded="false" aria-controls="">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                add_circle_outline
+                                            </span>
+                                        </button> -->
+                                </div>
+                                <div class="col-xlg -8 py-4">
+                                    <!-- Canvasjs chart canvas -->
+                                    <!-- <canvas class="chartjs-chart-light shadow" id="speed_monitor_chart" width="400" height="400"></canvas> -->
+                                    <!-- ./Canvasjs chart canvas -->
+
+                                    <!-- submit heartrate data form -->
+                                    <div id="speedmonitor-expand-icon" class="collapsez showz multi-collapsez text-center w3-animate-bottom my-4">
+                                        <span class="material-icons material-icons-round">
+                                            add_task
+                                        </span>
+                                    </div>
+
+                                    <div id="speedmonitor-data-input-form-container" class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                        <div class="align-middle comfortaa-font text-center">
+                                            <span class="material-icons material-icons-round align-middle">today</span>
+
+                                            <span class="align-middle fw-bold">17 Oct 2022 | 13:04</span>
+                                        </div>
+
+                                        <hr class="text-white">
+
+                                        <form id="modal-speed-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_speed.php" autocomplete="off">
+                                            <div class="output-container my-2" id="output-container">
+                                                <!--<?php echo $output; ?>-->
+                                            </div>
+
+                                            <div class="form-group my-4">
+                                                <label for="speed-workout" class="comfortaa-font fs-5" style="color: #ffa500;">1. Workout / Activity:</label>
+                                                <select class="custom-select form-control-select-input p-4" name="speed-workout" id="speed-workout" placeholder="Work / Activity (Required)" required>
+                                                    <option value='no-selection'>Select a workout / activity.</option>
+                                                    <?php echo $workout_activities_list; ?>
+                                                    <option value='other'>Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group my-4">
+                                                <label for="speed-datasource" class="comfortaa-font fs-5" style="color: #ffa500;">2. Speed Mearsuring Datasource:</label>
+                                                <select class="custom-select form-control-select-input p-4" name="speed-datasource" id="speed-datasource" placeholder="Datasource (Required)" required>
+                                                    <option value='no-selection'>Select your datasource.</option>
+                                                    <option value='datasource-1'>Fitbit waerable</option>
+                                                    <option value='datasource-2'>Android wearable</option>
+                                                    <option value='datasource-3'>Apple wearable</option>
+                                                    <option value='datasource-4'>Treadmill</option>
+                                                    <option value='datasource-5'>Electric Spin bike</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group my-4">
+                                                <label for="speed-value" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your max Speed:</label>
+                                                <input class="form-control-text-input p-4" type="number" name="speed-value" id="speed-value" placeholder="Speed (ms)" required />
+                                            </div>
+
+                                            <!-- submit btn -->
+                                            <input id="modal-submit-speed-insights-activitytracker-data-form" type="submit" value="submit" hidden aria-hidden="true">
+
+                                        </form>
+                                        <!-- visual submit btn - speed form -->
+                                        <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" id="visual-submit-speed-btn" type="button" onclick="triggerSubmitActivityTrackerData('modal','speed')">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                add_circle_outline
+                                            </span>
+                                            <span class="align-middle">Save.</span>
+                                        </button>
+                                        <!-- ./ visual submit btn - speed form -->
+                                    </div>
+
+                                    <!-- <div id="speed_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item bg-transparent text-white pt-4" style="border-color: #ffa500;border-radius: 25px;">
+                            <div class="row align-items-center mt-4">
+                                <div class="col-md -4 text-center">
+                                    <h1 class="text-truncate">Step Counter</h1>
+                                    <div class="d-grid gap-2 my-4">
+                                        <span class="material-icons material-icons-round">
+                                            directions_walk
+                                        </span>
+                                        <h1>1896<span style="font-size: 10px;" class="align-top">Steps</span></h1>
+                                        <p class="text-muted fw-bold">213 Steps remaining (Achievement)</p>
+                                    </div>
+
+                                </div>
+                                <div class="col-md -8 py-4 text-center">
+                                    <!-- Canvasjs chart canvas -->
+                                    <!-- <canvas class="chartjs-chart-light shadow" id="step_counter_monitor_chart" width="400" height="400"></canvas> -->
+                                    <!-- ./Canvasjs chart canvas -->
+
+                                    <img src="../media/assets/smartwatches/branding/fitbit-png-logo-white.png" class="img-fluid mt-4 mb-2" style="max-width: 200px;" alt="fitbit logo">
+                                    <p class="comfortaa-font">Connect your Fitbit activity tracker / smartwatch</p>
+
+                                    <!-- <div id="step_counter_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item bg-transparent text-white pt-4" style="border-color: #ffa500;border-radius: 25px;">
+                            <div class="row align-items-center mt-4">
+                                <div class="col-xlg -4 text-center">
+                                    <h1 class="text-truncate">Weight Monitoring (BMI)</h1>
+                                    <div class="d-grid gap-2 mt-4">
+                                        <span class="material-icons material-icons-round">
+                                            monitor_weight
+                                        </span>
+                                        <h1>60<span style="font-size: 10px;" class="align-top">kg</span></h1>
+                                        <p class="text-muted fw-bold">75kg, 1w ago</p>
+                                    </div>
+
+                                    <!-- <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="bmiweight-expand-icon bmiweight-data-input-form-container">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                add_circle_outline
+                                            </span>
+                                        </button> -->
+                                </div>
+                                <div class="col-xlg -8 py-4">
+                                    <!-- Canvasjs chart canvas -->
+                                    <!-- <canvas class="chartjs-chart-light shadow" id="bmi_weight_monitor_chart" width="400" height="400"></canvas> -->
+                                    <!-- ./Canvasjs chart canvas -->
+
+                                    <!-- submit heartrate data form -->
+                                    <div id="bmiweight-expand-icon" class="collapsez showz multi-collapsez text-center w3-animate-bottom my-4">
+                                        <span class="material-icons material-icons-round">
+                                            add_task
+                                        </span>
+                                    </div>
+
+                                    <div id="bmiweight-data-input-form-container" class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                        <div class="align-middle comfortaa-font text-center">
+                                            <span class="material-icons material-icons-round align-middle">today</span>
+
+                                            <span class="align-middle fw-bold">17 Oct 2022 | 13:04</span>
+                                        </div>
+
+                                        <hr class="text-white">
+
+                                        <form id="modal-weight-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bmiweight.php" autocomplete="off">
+                                            <div class="output-container my-2" id="output-container">
+                                                <!--<?php echo $output; ?>-->
+                                            </div>
+
+                                            <div class="form-group my-4">
+                                                <label for="weight-workout" class="comfortaa-font fs-5" style="color: #ffa500;">1. Workout / Activity:</label>
+                                                <select class="custom-select form-control-select-input p-4" name="weight-workout" id="weight-workout" placeholder="Work / Activity (Required)" required>
+                                                    <option value='no-selection'>Select a workout / activity.</option>
+                                                    <?php echo $workout_activities_list; ?>
+                                                    <option value='other'>Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group my-4">
+                                                <label for="weight-datasource" class="comfortaa-font fs-5" style="color: #ffa500;">2. Weight Monitoring Datasource:</label>
+                                                <select class="custom-select form-control-select-input p-4" name="weight-datasource" id="weight-datasource" placeholder="Datasource (Required)" required>
+                                                    <option value='no-selection'>Select your datasource.</option>
+                                                    <option value='datasource-1'>Fitbit waerable</option>
+                                                    <option value='datasource-2'>Android wearable</option>
+                                                    <option value='datasource-3'>Apple wearable</option>
+                                                    <option value='datasource-4'>Treadmill</option>
+                                                    <option value='datasource-5'>Electric Spin bike</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group my-4">
+                                                <label for="weight-value" class="comfortaa-font fs-5" style="color: #ffa500;">3. Please provide your current Weight:</label>
+                                                <input class="form-control-text-input p-4" type="number" name="weight-value" id="weight-value" placeholder="Weight (kg)" required />
+                                            </div>
+
+                                            <!-- submit btn -->
+                                            <input id="modal-submit-weight-insights-activitytracker-data-form" type="submit" value="submit" hidden aria-hidden="true">
+
+                                        </form>
+                                        <!-- visual submit btn - bmiweight form -->
+                                        <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" id="visual-submit-weight-btn" type="button" onclick="triggerSubmitActivityTrackerData('modal','weight')">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                add_circle_outline
+                                            </span>
+                                            <span class="align-middle">Save.</span>
+                                        </button>
+                                        <!-- ./ visual submit btn - bmiweight form -->
+                                    </div>
+
+                                    <!-- <div id="weight_monitor_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- ./ detailed metric list -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./ >>>>>>>>>> Tab Activity Tracker Capture Modal -->
 
 
     <!-- ./ Modals ----------------------------------------------------------------------------------------- -->

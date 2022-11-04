@@ -356,6 +356,9 @@ try {
               // do something
               console.log("Success Response: " + response);
               // if the response is successful, take user to home screen
+              if (response.startsWith("success")) {
+                window.location.href = "";
+              }
             },
             error: function(xhr, ajaxOptions, thrownError) {
               // do something
@@ -515,7 +518,7 @@ try {
     <div id="main-body-row-container" class="row w-100Z align-items-center m-0 no-scroller" style="height: 100vh !important; overflow-y: auto;">
       <div class="col-md -4 text-white h-100z p-0 no-scroller" style="max-height: 100vh; padding-top: 80px !important; overflow-y: auto;">
         <div class="container top-down-grad-dark p-4" style="border-radius: 25px 25px 0 0 !important;">
-          <h3 class="text-center p-4 bg-transparent fw-bold comfortaa-font text-truncate border-1 border-start border-end down-top-grad-tahitiz" style="color: #fff !important; border-color: #ffa500 !important; cursor: pointer; border-radius: 25px;">
+          <h3 class="text-center p-4 bg-transparent fw-bold comfortaa-font text-truncate border-5 border-start border-end down-top-grad-tahitiz" style="color: #fff !important; border-color: #ffa500 !important; cursor: pointer; border-radius: 25px;">
             <!-- class="text-center rounded-pillz p-4 mb-4 text-truncate shadow"
             style="background-color: #ffa500; color: #343434 !important; border-radius: 25px !important;" -->
             <div class="d-grid justify-content-center text-center comfortaa-font">
@@ -537,7 +540,7 @@ try {
 
           <hr class="text-white" style="margin-top: 80px; margin-bottom: 80px;">
 
-          <div class="p-4 d-grid justify-content-center text-center border-1 border-start border-end down-top-grad-dark" style="border-radius: 25px; border-color: #ffa500 !important;">
+          <div class="p-4 d-grid justify-content-center text-center border-5 border-start border-end down-top-grad-dark" style="border-radius: 25px; border-color: #ffa500 !important;">
             <div class="d-flex align-items-center justify-content-center align-middle">
               <span class="material-icons material-icons-round" style="color: #ffa500;">
                 looks_one
@@ -566,7 +569,7 @@ try {
 
           <hr class="text-white" style="margin-top: 80px; margin-bottom: 80px;">
 
-          <ul class="pb-4z text-center list-group list-group-flush down-top-grad-dark border-white border-1 border-start border-end" style="border-radius: 25px !important; border-color: #ffa500 !important;">
+          <ul class="pb-4z text-center list-group list-group-flush down-top-grad-dark border-white border-5 border-start border-end" style="border-radius: 25px !important; border-color: #ffa500 !important;">
             <li id="toggle-main-form-window-list-btn" class="pt-4 list-group-item bg-transparent fw-bold comfortaa-font text-truncate down-top-grad-dark" style="color: #fff !important; border-color: #ffa500 !important; cursor: pointer;" onclick="switchTab('mainfrmwindow')">
               <div class="d-grid gap-2 text-center justify-content-center">
                 <div class="d-flex align-items-center justify-content-center align-middle text-wrap">
@@ -2440,7 +2443,7 @@ try {
   <!-- ./ Main Body -->
 
   <!-- Modals -->
-  <!-- Button trigger modal>>>>>>>>>> Tab Navigation Modal -->
+  <!-- Button trigger modal>>>>>>>>>> Tab Upload Modal -->
   <button id="toggleTabProfileImgModalBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tabProfileImgModal" hidden>
     Launch #tabNavModal</button>
 
