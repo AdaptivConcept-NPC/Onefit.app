@@ -2221,6 +2221,121 @@ function getAllTrainers()
             });
             // ./ ajax jquery - submit activity tracking data [BMI Weight]
 
+            // load Teams Activity Capturing Form
+            $.loadTeamsActivityCaptureForm = function(day, grpRefcode) {
+                // alert("../scripts/php/main_app/data_management/system_admin/team_athletics_data/compile_teams_add_new_activity_day_form.php?day=" + day + "&gref=" + grpRefcode);
+
+                $.get("../scripts/php/main_app/data_management/system_admin/team_athletics_data/compile_teams_add_new_activity_day_form.php?day=" + day + "&gref=" + grpRefcode, function(data, status) {
+                    console.log("loadTeamsActivityCaptureForm returned: \n[Status]: " + status + "\n[Data]: " + data);
+
+                    if (status == "success") {
+                        // populate the modal body
+                        $('#tabEditWeeklyTeamsTrainingScheduleModal_body').html(data);
+                    } else {
+                        // provide an error message
+                        console.log("Error loading edit add new form");
+                    }
+                });
+            }
+
+            $.populateWeeklyActivityBarChart = function() {
+                // inner bar activity containers
+                // $('#teams-weekly-activity-barchart-bar-day1').html(data);
+                // $('#teams-weekly-activity-barchart-bar-day2').html(data);
+                // $('#teams-weekly-activity-barchart-bar-day3').html(data);
+                // $('#teams-weekly-activity-barchart-bar-day4').html(data);
+                // $('#teams-weekly-activity-barchart-bar-day5').html(data);
+                // $('#teams-weekly-activity-barchart-bar-day6').html(data);
+                // $('#teams-weekly-activity-barchart-bar-day7').html(data);
+
+                // bar cols
+                // $('#day-1-col').html(data);
+                // $('#day-2-col').html(data);
+                // $('#day-3-col').html(data);
+                // $('#day-4-col').html(data);
+                // $('#day-5-col').html(data);
+                // $('#day-6-col').html(data);
+                // $('#day-7-col').html(data);
+
+                var weekDaysArray = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+
+                // alert("JQuery AJAX populateWeeklyActivityBarChart");
+                var $grpRefCode = "tst_grp_0001";
+
+                weekDaysArray.forEach(day => {
+                    $.get("../scripts/php/main_app/data_management/system_admin/team_athletics_data/compile_teams_daily_activities.php?day=" + day + "&gref=" + $grpRefCode, function(data, status) {
+                        console.log("compile_teams_daily_activities returned: \n[Status]: " + status + "\n[Data]: " + data);
+
+                        switch (day) {
+                            case "monday":
+                                $('#day-1-col').html(data);
+                                break;
+                            case "tuesday":
+                                $('#day-2-col').html(data);
+                                break;
+                            case "wednesday":
+                                $('#day-3-col').html(data);
+                                break;
+                            case "thursday":
+                                $('#day-4-col').html(data);
+                                break;
+                            case "friday":
+                                $('#day-5-col').html(data);
+                                break;
+                            case "saturday":
+                                $('#day-6-col').html(data);
+                                break;
+                            case "sunday":
+                                $('#day-7-col').html(data);
+                                break;
+
+                            default:
+                                console.log("Error [populateWeeklyActivityBarChart]: Day: " + day + " | grpRefCode" + $grpRefCode);
+                                break;
+                        }
+                    });
+                });
+
+            }
+
+            // ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
+            $("#teams-add-new-day-activity-data-form").submit(function(e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#teams-add-new-day-activity-data-form')[0]);
+                setTimeout(function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: '../scripts/php/main_app/data_management/system_admin/team_athletics_data/submit/teams_add_new_activity_day_form_submit.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        beforeSend: function() {
+                            console.log('beforeSend: submit edited weekly teams activity data [Teams Submit Edited Activities Form]');
+                        },
+                        success: function(response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - submit edited weekly teams activity data [Teams Submit Edited Activities Form]');
+                                console.log("Response: " + response);
+                                // get the profile image name and append it to the src attribute str
+                                // var str = response;
+                                // var imgSrcStr = str.split('[').pop().split(']')[0];
+                            } else {
+                                console.log("error: returning response - submit edited weekly teams activity data [Teams Submit Edited Activities Form]");
+                                console.log("Response: " + response);
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
+
             // $("map[name=image-map-male-front]").mapoid({
             //     click: function(e) {
             //         /*// stroke color
@@ -5684,63 +5799,117 @@ function getAllTrainers()
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
 
-                    <!-- Features: Tab structured -->
-                    <div class="row mt-4 py-4" style="background-color: #333; border-radius: 25px;">
-                        <!-- more insights categories v-buttons -->
-                        <div class="col-md-3 d-lg-none d-xl-none d-xxl-none">
-                            <div class="d-grid gap-2 justify-content-center d-lg-none d-xl-none d-xxl-none">
-                                <button class="onefit-buttons-style-dark p-4" type="button" data-bs-toggle="collapse" data-bs-target="#insights-subfeatures-nav-menu" aria-expanded="true" aria-controls="insights-subfeatures-nav-menu">
-                                    <div class="d-grid gap-2">
-                                        <span class="material-icons material-icons-round"> menu </span>
-                                        <p class="m-0" style="font-size: 10px;">More insights</p>
-                                    </div>
+                    <!-- more insights categories v-buttons -->
+                    <style>
+                        .force-inline-nav {
+                            flex-wrap: nowrap !important;
+                        }
+                    </style>
+
+                    <!-- inline/flex more insights tab controller btns -->
+                    <div id="inline-more-insights-tab-btns" class="d-flex d-lg-none d-xl-none d-xxl-none w3-animate-bottom p-2" style="background: #343434; border-radius: 25px; overflow: hidden;">
+                        <div class="d-grid gap-2 justify-content-center d-lg-nonez d-xl-nonez d-xxl-nonez">
+                            <button class="onefit-buttons-style-dark p-4" type="button" data-bs-toggle="collapse" data-bs-target="#insights-subfeatures-nav-menu" aria-expanded="true" aria-controls="insights-subfeatures-nav-menu">
+                                <div class="d-grid gap-2">
+                                    <span class="material-icons material-icons-round"> menu </span>
+                                    <p class="m-0" style="font-size: 8px;">More insights</p>
+                                </div>
+                            </button>
+                        </div>
+
+                        <div class="collapse w3-animate-bottom my-4 horizontal-scroll no-scroller px-4" style="overflow-y: hidden;" id="insights-subfeatures-nav-menu">
+                            <nav class="mt-4">
+                                <div class="nav force-inline-nav nav-tabs border-0" id="nav-tab-insightsSubFeatureCategories" role="tablist" style="border-color: #ffa500 !important">
+                                    <button class="nav-link p-4 comfortaa-font fw-bold active position-relative" id="nav-trainingProgramCategories-challenges-tab" onclick="clickTrainingProgramCategories('challenges')">
+                                        Challenges.
+                                        <span class="position-absolute top-50 start-0 translate-middle badge rounded-pill border-2 border p-1  my-pulse-animation-tahiti" style="height: 20px; width: 20px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
+                                        </span>
+
+                                        <br>
+                                        <span id="horizontal-rule-icon-challenges" class="material-icons material-icons-outlined align-middle" style="display: block;">stars</span>
+                                    </button>
+
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-googleSurveys-tab" onclick="clickTrainingProgramCategories('googleSurveys')">
+                                        Google Surveys.
+
+                                        <br>
+                                        <span id="horizontal-rule-icon-googlesurveys" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">poll</span>
+                                    </button>
+
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-indiAthlete-tab" onclick="clickTrainingProgramCategories('indiAthlete')">
+                                        Indi-Athletics.
+
+                                        <br>
+                                        <span id="horizontal-rule-icon-indiathlete" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">sports_gymnastics</span>
+                                    </button>
+
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-teamAthletics-tab" onclick="clickTrainingProgramCategories('teamAthletics')">
+                                        Team Athletics.
+
+                                        <br>
+                                        <span id="horizontal-rule-icon-teamathletics" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">diversity_2</span>
+                                    </button>
+
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-wellness-tab" onclick="clickTrainingProgramCategories('wellness')">
+                                        Wellness.
+
+                                        <br>
+                                        <span id="horizontal-rule-icon-wellness" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">self_improvement</span>
+                                    </button>
+
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-nutrition-tab" onclick="clickTrainingProgramCategories('nutrition')">
+                                        Nutrition.
+
+                                        <br>
+                                        <span id="horizontal-rule-icon-nutrition" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">restaurant</span>
+                                    </button>
+
+                                </div>
+                            </nav>
+
+                            <!-- Fitness/Training programe categories - hidden display: none -->
+                            <div class="nav d-grid nav-pills d-none" id="v-sub-tab-pills-insights-subfeatures-tab" role="tablist" aria-orientation="vertical" aria-hidden="true">
+                                <button class="nav-link" id="v-sub-tab-pills-insights-challenges-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-challenges" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-challenges" aria-selected="false">
+                                    <!--onclick="openLink(event, 'InsightsTabChallenges')"-->
+                                    <span class="material-icons material-icons-rounded">stars</span>
+                                    <p class="text-break comfortaa-font">Challenges</p>
+                                </button>
+                                <button class="nav-link active" id="v-sub-tab-pills-insights-googlesurveys-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-googlesurveys" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-googlesurveys" aria-selected="true">
+                                    <!--onclick="openLink(event, 'InsightsTabGCS')"-->
+                                    <span class="material-icons material-icons-rounded">poll</span>
+                                    <p class="text-break comfortaa-font">Google Community Surveys</p>
+                                </button>
+                                <button class="nav-link" id="v-sub-tab-pills-insights-indiathlete-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-indiathlete" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-indiathlete" aria-selected="false">
+                                    <!--onclick="openLink(event, 'InsightsTabIAT')"-->
+                                    <span class="material-icons material-icons-rounded">sports_gymnastics</span>
+                                    <p class="text-break comfortaa-font">Indi-Athletics</p>
+                                </button>
+                                <button class="nav-link" id="v-sub-tab-pills-insights-teamathletics-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-teamathletics" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-teamathletics" aria-selected="false">
+                                    <!--onclick="openLink(event, 'InsightsTabCTA')"-->
+                                    <span class="material-icons material-icons-rounded">diversity_2</span>
+                                    <p class="text-break comfortaa-font">Community/Team Athletics</p>
+                                </button>
+                                <button class="nav-link" id="v-sub-tab-pills-insights-wellness-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-wellness" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-wellness" aria-selected="false">
+                                    <!--onclick="openLink(event, 'InsightsTabWellness')"-->
+                                    <span class="material-icons material-icons-rounded">self_improvement</span>
+                                    <p class="text-break comfortaa-font">Wellness</p>
+                                </button>
+                                <button class="nav-link" id="v-sub-tab-pills-insights-nutrition-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-nutrition" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-nutrition" aria-selected="false">
+                                    <!--onclick="openLink(event, 'InsightsTabNutrition')"-->
+                                    <span class="material-icons material-icons-rounded">restaurant</span>
+                                    <p class="text-break comfortaa-font">Nutrition</p>
                                 </button>
                             </div>
-                            <div class="collapse showz w3-animate-bottom my-4" id="insights-subfeatures-nav-menu">
-                                <hr class="text-white" style="height: 5px;">
-
-                                <!-- Fitness/Training programe categories -->
-                                <div class="nav d-grid nav-pills" id="v-sub-tab-pills-insights-subfeatures-tab" role="tablist" aria-orientation="vertical">
-                                    <button class="nav-link" id="v-sub-tab-pills-insights-challenges-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-challenges" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-challenges" aria-selected="false">
-                                        <!--onclick="openLink(event, 'InsightsTabChallenges')"-->
-                                        <span class="material-icons material-icons-rounded">stars</span>
-                                        <p class="text-break comfortaa-font">Challenges</p>
-                                    </button>
-                                    <button class="nav-link active" id="v-sub-tab-pills-insights-googlesurveys-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-googlesurveys" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-googlesurveys" aria-selected="true">
-                                        <!--onclick="openLink(event, 'InsightsTabGCS')"-->
-                                        <span class="material-icons material-icons-rounded">poll</span>
-                                        <p class="text-break comfortaa-font">Google Community Surveys</p>
-                                    </button>
-                                    <button class="nav-link" id="v-sub-tab-pills-insights-indiathlete-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-indiathlete" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-indiathlete" aria-selected="false">
-                                        <!--onclick="openLink(event, 'InsightsTabIAT')"-->
-                                        <span class="material-icons material-icons-rounded">sports_gymnastics</span>
-                                        <p class="text-break comfortaa-font">Indi-Athletics</p>
-                                    </button>
-                                    <button class="nav-link" id="v-sub-tab-pills-insights-teamathletics-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-teamathletics" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-teamathletics" aria-selected="false">
-                                        <!--onclick="openLink(event, 'InsightsTabCTA')"-->
-                                        <span class="material-icons material-icons-rounded">diversity_2</span>
-                                        <p class="text-break comfortaa-font">Community/Team Athletics</p>
-                                    </button>
-                                    <button class="nav-link" id="v-sub-tab-pills-insights-wellness-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-wellness" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-wellness" aria-selected="false">
-                                        <!--onclick="openLink(event, 'InsightsTabWellness')"-->
-                                        <span class="material-icons material-icons-rounded">self_improvement</span>
-                                        <p class="text-break comfortaa-font">Wellness</p>
-                                    </button>
-                                    <button class="nav-link" id="v-sub-tab-pills-insights-nutrition-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-nutrition" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-nutrition" aria-selected="false">
-                                        <!--onclick="openLink(event, 'InsightsTabNutrition')"-->
-                                        <span class="material-icons material-icons-rounded">restaurant</span>
-                                        <p class="text-break comfortaa-font">Nutrition</p>
-                                    </button>
-                                </div>
-                                <!-- ./ Fitness/Training programe categories -->
-
-                                <hr class="text-white" style="height: 5px;">
-                            </div>
+                            <!-- ./ Fitness/Training programe categories - hidden display: none -->
                         </div>
-                        <!-- ./ more insight categories v-buttons -->
+                    </div>
+                    <!-- ./ inline/flex more insights tab controller btns -->
+                    <!-- ./ more insight categories v-buttons -->
 
+                    <!-- Features: Tab structured -->
+                    <div class="row mt-4 py-4" style="background-color: #333; border-radius: 25px;">
                         <!-- insight catgories tab panels -->
-                        <div class="col-md -9 my-4">
+                        <div class="col -md-9 my-4">
                             <p class="text-center m-0"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span></p>
                             <!-- <div class="text-center">
                                 <img src="../media/assets/One-Symbol-Logo-Dark-Mix.png" class="img-fluid" style="max-height: 100px;" alt="onefit darkmx logo">
@@ -6940,8 +7109,31 @@ function getAllTrainers()
 
                                                         <p class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">Weekly Training Schedule</p>
                                                         <img src="../media/assets/example.png" alt="training week for ..." class="img-fluid mb-4" hidden>
-                                                        <div class="training-schedule-container p-4 text-center down-top-grad-white">
+                                                        <div class="training-schedule-container p-4 text-center down-top-grad-white comfortaa-font">
                                                             <h5>Training week for those who played 45+ minutes in previous match</h5>
+
+                                                            <script>
+                                                                function editAddNewActivityModal(day, grpRefcode) {
+                                                                    // open the modal
+                                                                    document.getElementById("toggleTabeditWeeklyTeamsTrainingScheduleModalBtn").click();
+
+                                                                    // call the function/code to populate the modal body - use jquery ajax
+                                                                    $.loadTeamsActivityCaptureForm(day, grpRefcode);
+                                                                }
+
+                                                                function toggleEditDayBar(day, groupRefCode) {
+                                                                    // open the modal
+                                                                    document.getElementById("toggleTabeditWeeklyTeamsTrainingScheduleModalBtn").click();
+
+                                                                    // call the function/code to populate the modal body - use jquery ajax - "editbar" value (grpRefcode) will load a form for updating the title and rpe
+                                                                    var initVal = "editbar";
+                                                                    $.loadTeamsActivityCaptureForm(day, initVal);
+                                                                }
+
+                                                                function removeWeeklyTrainingActivity(day, groupRefCode, exerciseID) {
+
+                                                                }
+                                                            </script>
 
                                                             <div class="my-4 text-center d-gridz gap-2">
                                                                 <button class="onefit-buttons-style-tahiti p-4 my-2" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="add-weekly-activity-btn remove-weekly-activity-btn">
@@ -6953,40 +7145,37 @@ function getAllTrainers()
                                                             </div>
                                                             <hr class="text-white" style="height: 5px;">
 
+                                                            <!-- script to load weekly schedule -->
+                                                            <script>
+
+                                                            </script>
+
                                                             <div class="row align-items-end text-dark" id="training-schedule-chart-grid">
                                                                 <div class="col" id="day-1-col">
-                                                                    <p class="fs-3 fw-bold">
+                                                                    <!-- Edit training day bar - Day 1 -->
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn-bar1">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditDayBar('monday','group_ref_code_here')">
+                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                edit
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- ./ Edit training day bar - Day 1 -->
+                                                                    <p id="bar-title-day1" class="fs-3 fw-bold">
                                                                         Regeneration
-                                                                        <!-- Edit training day title - Day 1 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-1')">
-                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                                edit
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <!-- ./ Edit training day title - Day 1 -->
                                                                     </p>
-                                                                    <p>
+
+                                                                    <p id="bar-rpe-day1">
                                                                         RPE 1-3
-                                                                        <!-- Edit RPE - Day 1 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-1')">
-                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                                edit
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <!-- ./ Edit RPE - Day 1 -->
                                                                     </p>
-                                                                    <div class="chart-col-bar p-2 shadow progress-bar progress-bar-stripedz bg-warningz">
+                                                                    <div id="teams-weekly-activity-barchart-bar-day1" class="chart-col-bar p-2 shadow progress-bar progress-bar-stripedz bg-warningz">
                                                                         <div class="chart-col-bar-item text-center position-relative">
                                                                             <p>Cycling / Spinning</p>
                                                                             <img src="../media/assets/icons/cycling.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-1')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -6999,8 +7188,8 @@ function getAllTrainers()
                                                                             <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7013,51 +7202,42 @@ function getAllTrainers()
                                                                     <hr class="text-dark">
 
                                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-1')">
-                                                                            <span class="material-icons material-icons-round">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('monday','group_ref_code_here')">
+                                                                            <span class="material-icons material-icons-round align-middle">
                                                                                 add_circle
                                                                             </span>
                                                                         </button>
                                                                     </div>
 
-                                                                    <p class="text-center fs-5 fw-bold">Day 1/-6</p>
+                                                                    <p class="text-center fs-5 fw-bold">Monday</p>
                                                                 </div>
 
                                                                 <div class="col" id="day-2-col">
-                                                                    <p class="fs-3 fw-bold">
-                                                                        Recovery
-                                                                        <!-- Edit training day title - Day 1 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-2')">
+                                                                    <!-- Edit training day bar - Day 2 -->
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn-bar2">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditDayBar('monday','group_ref_code_here')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
                                                                             </span>
                                                                         </button>
                                                                     </div>
-                                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                                    <!-- ./ Edit training day bar - Day 2 -->
+                                                                    <p class="fs-3 fw-bold">
+                                                                        Recovery
                                                                     </p>
 
                                                                     <p>
                                                                         RPE 0
-                                                                        <!-- Edit RPE - Day 1 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-2')">
-                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                                edit
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <!-- ./ Edit RPE - Day 1 -->
                                                                     </p>
 
-                                                                    <div class="chart-col-bar p-2 shadow">
+                                                                    <div id="teams-weekly-activity-barchart-bar-day2" class="chart-col-bar p-2 shadow">
                                                                         <div class="chart-col-bar-item text-center">
                                                                             <p>Ice Bath</p>
                                                                             <img src="../media/assets/icons/bath-tub.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-2', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7070,51 +7250,42 @@ function getAllTrainers()
                                                                     <hr class="text-dark">
 
                                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-2')">
-                                                                            <span class="material-icons material-icons-round">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('tuesday','group_ref_code_here')">
+                                                                            <span class="material-icons material-icons-round align-middle">
                                                                                 add_circle
                                                                             </span>
                                                                         </button>
                                                                     </div>
 
-                                                                    <p class="text-center fs-5 fw-bold">Day 2/-5</p>
+                                                                    <p class="text-center fs-5 fw-bold">Tuesday</p>
                                                                 </div>
 
                                                                 <div class="col" id="day-3-col">
-                                                                    <p class="fs-3 fw-bold">
-                                                                        Longer pitch / strides
-                                                                        <!-- Edit training day title - Day 1 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-3')">
+                                                                    <!-- Edit training day bar - Day 3 -->
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn-bar3">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditDayBar('monday','group_ref_code_here')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
                                                                             </span>
                                                                         </button>
                                                                     </div>
-                                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                                    <!-- ./ Edit training day bar - Day 3 -->
+                                                                    <p class="fs-3 fw-bold">
+                                                                        Longer pitch / strides
                                                                     </p>
 
                                                                     <p>
                                                                         RPE 4-6
-                                                                        <!-- Edit RPE - Day 1 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-3')">
-                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                                edit
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <!-- ./ Edit RPE - Day 1 -->
                                                                     </p>
 
-                                                                    <div class="chart-col-bar p-2 shadow">
+                                                                    <div id="teams-weekly-activity-barchart-bar-day3" class="chart-col-bar p-2 shadow">
                                                                         <div class="chart-col-bar-item text-center">
                                                                             <p>RST</p>
                                                                             <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7127,8 +7298,8 @@ function getAllTrainers()
                                                                             <img src="../media/assets/icons/thinking.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7141,8 +7312,8 @@ function getAllTrainers()
                                                                             <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-3', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7155,51 +7326,42 @@ function getAllTrainers()
                                                                     <hr class="text-dark">
 
                                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-3')">
-                                                                            <span class="material-icons material-icons-round">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('wednesday','group_ref_code_here')">
+                                                                            <span class="material-icons material-icons-round align-middle">
                                                                                 add_circle
                                                                             </span>
                                                                         </button>
                                                                     </div>
 
-                                                                    <p class="text-center fs-5 fw-bold">Day 3/-4</p>
+                                                                    <p class="text-center fs-5 fw-bold">Wednesday</p>
                                                                 </div>
 
                                                                 <div class="col" id="day-4-col">
-                                                                    <p class="fs-3 fw-bold">
-                                                                        Strength / change of directon
-                                                                        <!-- Edit training day title - Day 1 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-4')">
+                                                                    <!-- Edit training day bar - Day 4 -->
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn-bar4">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditDayBar('monday','group_ref_code_here')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
                                                                             </span>
                                                                         </button>
                                                                     </div>
-                                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                                    <!-- ./ Edit training day bar - Day 4 -->
+                                                                    <p class="fs-3 fw-bold">
+                                                                        Strength / change of directon
                                                                     </p>
 
                                                                     <p>
                                                                         RPE 7-10
-                                                                        <!-- Edit RPE - Day 1 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-4')">
-                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                                edit
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <!-- ./ Edit RPE - Day 1 -->
                                                                     </p>
 
-                                                                    <div class="chart-col-bar p-2 shadow">
+                                                                    <div id="teams-weekly-activity-barchart-bar-day4" class="chart-col-bar p-2 shadow">
                                                                         <div class="chart-col-bar-item text-center">
                                                                             <p>Multi-directional WU</p>
                                                                             <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7212,8 +7374,8 @@ function getAllTrainers()
                                                                             <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7226,8 +7388,8 @@ function getAllTrainers()
                                                                             <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7240,8 +7402,8 @@ function getAllTrainers()
                                                                             <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-4', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7254,51 +7416,42 @@ function getAllTrainers()
                                                                     <hr class="text-dark">
 
                                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-4')">
-                                                                            <span class="material-icons material-icons-round">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('thursday','group_ref_code_here')">
+                                                                            <span class="material-icons material-icons-round align-middle">
                                                                                 add_circle
                                                                             </span>
                                                                         </button>
                                                                     </div>
 
-                                                                    <p class="text-center fs-5 fw-bold">Day 4/-3</p>
+                                                                    <p class="text-center fs-5 fw-bold">Thursday</p>
                                                                 </div>
 
                                                                 <div class="col" id="day-5-col">
-                                                                    <p class="fs-3 fw-bold">
-                                                                        Taper
-                                                                        <!-- Edit training day title - Day 1 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-5')">
+                                                                    <!-- Edit training day bar - Day 5 -->
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn-bar5">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditDayBar('monday','group_ref_code_here')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
                                                                             </span>
                                                                         </button>
                                                                     </div>
-                                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                                    <!-- ./ Edit training day bar - Day 5 -->
+                                                                    <p class="fs-3 fw-bold">
+                                                                        Taper
                                                                     </p>
 
                                                                     <p>
                                                                         RPE 1-3
-                                                                        <!-- Edit RPE - Day 1 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-5')">
-                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                                edit
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <!-- ./ Edit RPE - Day 1 -->
                                                                     </p>
 
-                                                                    <div class="chart-col-bar p-2 shadow">
+                                                                    <div id="teams-weekly-activity-barchart-bar-day5" class="chart-col-bar p-2 shadow">
                                                                         <div class="chart-col-bar-item text-center">
                                                                             <p>Multi-directional WU</p>
                                                                             <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-5', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7311,8 +7464,8 @@ function getAllTrainers()
                                                                             <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-5', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7325,51 +7478,42 @@ function getAllTrainers()
                                                                     <hr class="text-dark">
 
                                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-5')">
-                                                                            <span class="material-icons material-icons-round">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('friday','group_ref_code_here')">
+                                                                            <span class="material-icons material-icons-round align-middle">
                                                                                 add_circle
                                                                             </span>
                                                                         </button>
                                                                     </div>
 
-                                                                    <p class="text-center fs-5 fw-bold">Day 5/-2</p>
+                                                                    <p class="text-center fs-5 fw-bold">Friday</p>
                                                                 </div>
 
                                                                 <div class="col" id="day-6-col">
-                                                                    <p class="fs-3 fw-bold">
-                                                                        Match prep
-                                                                        <!-- Edit training day title - Day 1 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-6')">
+                                                                    <!-- Edit training day bar - Day 6 -->
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn-bar6">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditDayBar('monday','group_ref_code_here')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
                                                                             </span>
                                                                         </button>
                                                                     </div>
-                                                                    <!-- ./ Edit training day title - Day 1 -->
+                                                                    <!-- ./ Edit training day bar - Day 6 -->
+                                                                    <p class="fs-3 fw-bold">
+                                                                        Match prep
                                                                     </p>
 
                                                                     <p>
                                                                         RPE 2-4
-                                                                        <!-- Edit RPE - Day 1 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-6')">
-                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                                edit
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <!-- ./ Edit RPE - Day 1 -->
                                                                     </p>
 
-                                                                    <div class="chart-col-bar p-2 shadow">
+                                                                    <div id="teams-weekly-activity-barchart-bar-day6" class="chart-col-bar p-2 shadow">
                                                                         <div class="chart-col-bar-item text-center">
                                                                             <p>Multi-directional WU</p>
                                                                             <img src="../media/assets/icons/directions.png" alt="" class="img-fluid" style="filter: grayscale(100%);">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7382,8 +7526,8 @@ function getAllTrainers()
                                                                             <img src="../media/assets/icons/thinking.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7396,8 +7540,8 @@ function getAllTrainers()
                                                                             <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-6', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7410,51 +7554,42 @@ function getAllTrainers()
                                                                     <hr class="text-dark">
 
                                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-6')">
-                                                                            <span class="material-icons material-icons-round">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('saturday','group_ref_code_here')">
+                                                                            <span class="material-icons material-icons-round align-middle">
                                                                                 add_circle
                                                                             </span>
                                                                         </button>
                                                                     </div>
 
-                                                                    <p class="text-center fs-5 fw-bold">Day 6/-1</p>
+                                                                    <p class="text-center fs-5 fw-bold">Saturday</p>
                                                                 </div>
 
                                                                 <div class="col" id="day-7-col">
-                                                                    <p class="fs-3 fw-bold">
-                                                                        Match
-                                                                        <!-- Edit training day title - Day 7 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditTitle('day-7')">
+                                                                    <!-- Edit training day bar - Day 7 -->
+                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn-bar7">
+                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditDayBar('monday','group_ref_code_here')">
                                                                             <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                                                                                 edit
                                                                             </span>
                                                                         </button>
                                                                     </div>
-                                                                    <!-- ./ Edit training day title - Day 7 -->
+                                                                    <!-- ./ Edit training day bar - Day 7 -->
+                                                                    <p class="fs-3 fw-bold">
+                                                                        Match
                                                                     </p>
 
                                                                     <p>
                                                                         RPE 7-10
-                                                                        <!-- Edit RPE - Day 7 -->
-                                                                    <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditRPE('day-7')">
-                                                                            <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                                                                                edit
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <!-- ./ Edit RPE - Day 7 -->
                                                                     </p>
 
-                                                                    <div class="chart-col-bar p-2 shadow">
+                                                                    <div id="teams-weekly-activity-barchart-bar-day7" class="chart-col-bar p-2 shadow">
                                                                         <div class="chart-col-bar-item text-center">
                                                                             <p>Pre-match WU</p>
                                                                             <img src="../media/assets/icons/running.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7467,8 +7602,8 @@ function getAllTrainers()
                                                                             <img src="../media/assets/icons/soccer-ball.png" alt="" class="img-fluid">
 
                                                                             <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn">
-                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('day-1', 'item-2')">
-                                                                                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                                                                                <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('monday','group_ref_code_here','activity_exercise_id')">
+                                                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                                                                         delete
                                                                                     </span>
                                                                                 </button>
@@ -7481,14 +7616,14 @@ function getAllTrainers()
                                                                     <hr class="text-dark">
 
                                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="showWeeklyActivityModal('day-6')">
-                                                                            <span class="material-icons material-icons-round">
+                                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('sunday','group_ref_code_here')">
+                                                                            <span class="material-icons material-icons-round align-middle">
                                                                                 add_circle
                                                                             </span>
                                                                         </button>
                                                                     </div>
 
-                                                                    <p class="text-center fs-5 fw-bold">Day 7</p>
+                                                                    <p class="text-center fs-5 fw-bold">Sunday</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -7748,7 +7883,7 @@ function getAllTrainers()
                                                             <!-- Team Formation -->
                                                             <div id="teamathletics-team-formation" class="py-4">
                                                                 <p class="fs-5 comfortaa-font">Team Formation</p>
-                                                                <div class="mb-4" id="soccerfield"></div>
+                                                                <div class="mb-4" id="soccerfield" style=" overflow-x: auto; border-radius: 25px; padding-bottom: 20px;"></div>
 
                                                                 <!-- starting squad team list -->
                                                                 <div class="row">
@@ -8111,8 +8246,20 @@ function getAllTrainers()
 
                         </div>
                         <!-- ./ insight catgories tab panels -->
-
                     </div>
+                    <!-- ./ Features: Tab structured -->
+
+                    <!-- ads strip -->
+                    <div class="text-center d-grid justify-content-center align-items-center" style="max-height: 80vh; overflow-y: auto; min-height: 200px">
+                        <h5>Ads<span style="color: #ffa500;">.</span></h5>
+                        <div class="d-flex justify-content-center">
+                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./ ads strip -->
+
                 </div>
                 <div id="TabAchievements" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
@@ -9364,7 +9511,7 @@ function getAllTrainers()
                                         </span>
                                     </div>
 
-                                    <div id="heartrate-data-input-form-container" class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                    <div id="heartrate-data-input-form-container" class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-start border-end" style="border-color: #ffa500 !important; border-radius: 25px;">
                                         <div class="align-middle comfortaa-font text-center">
                                             <span class="material-icons material-icons-round align-middle">today</span>
 
@@ -9451,7 +9598,7 @@ function getAllTrainers()
                                         </span>
                                     </div>
 
-                                    <div id="bodytemp-data-input-form-container" class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                    <div id="bodytemp-data-input-form-container" class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-start border-end" style="border-color: #ffa500 !important; border-radius: 25px;">
                                         <div class="align-middle comfortaa-font text-center">
                                             <span class="material-icons material-icons-round align-middle">today</span>
 
@@ -9537,7 +9684,7 @@ function getAllTrainers()
                                         </span>
                                     </div>
 
-                                    <div id="speedmonitor-data-input-form-container" class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                    <div id="speedmonitor-data-input-form-container" class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-start border-end" style="border-color: #ffa500 !important; border-radius: 25px;">
                                         <div class="align-middle comfortaa-font text-center">
                                             <span class="material-icons material-icons-round align-middle">today</span>
 
@@ -9648,7 +9795,7 @@ function getAllTrainers()
                                         </span>
                                     </div>
 
-                                    <div id="bmiweight-data-input-form-container" class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                    <div id="bmiweight-data-input-form-container" class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-start border-end" style="border-color: #ffa500 !important; border-radius: 25px;">
                                         <div class="align-middle comfortaa-font text-center">
                                             <span class="material-icons material-icons-round align-middle">today</span>
 
@@ -9713,6 +9860,36 @@ function getAllTrainers()
     </div>
     <!-- ./ >>>>>>>>>> Tab Activity Tracker Capture Modal -->
 
+    <!-- Button trigger modal>>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
+    <button id="toggleTabeditWeeklyTeamsTrainingScheduleModalBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal" hidden aria-hidden="true">
+        Launch #editWeeklyTeamsTrainingSchedule</button>
+
+    <!-- >>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
+    <div class="modal fade" id="tabeditWeeklyTeamsTrainingScheduleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tabeditWeeklyTeamsTrainingScheduleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
+            <div class="modal-content feature-tab-nav-content content-panel-border-stylez">
+                <!-- style="border-bottom: #ffa500 5px solid;" -->
+                <div class="modal-header border-0">
+                    <h5 class="modal-title align-middle" id="tabeditWeeklyTeamsTrainingScheduleModalLabel">
+                        <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
+                            edit_calendar
+                        </span>
+                        <span id="tabeditWeeklyTeamsTrainingScheduleModalLabelText" class="align-middle">Edit weekly training schedule</span>
+                    </h5>
+                    <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="material-icons material-icons-round"> cancel </span>
+                    </button>
+                </div>
+                <hr class="text-white m-0z">
+                <div id="tabEditWeeklyTeamsTrainingScheduleModal_body" class="modal-body border-0" style="overflow-x: hidden">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./ >>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
+
 
     <!-- ./ Modals ----------------------------------------------------------------------------------------- -->
 
@@ -9733,7 +9910,8 @@ function getAllTrainers()
         // step_counter_monitor_chart
         // bmi_weight_monitor_chart
 
-        const labels = [
+        // initially, const was used to declare variables but we want to be able to update these variables for the different charts but no redeclaire these variables. Using let
+        let labels = [
             'January',
             'February',
             'March',
@@ -9742,7 +9920,7 @@ function getAllTrainers()
             'June',
         ];
 
-        const data = {
+        let data = {
             labels: labels,
             datasets: [{
                 label: 'My First dataset',
@@ -9791,27 +9969,32 @@ function getAllTrainers()
             plugins: [plugin]
         };
 
-        const heartrateChart = new Chart(
+        // we want to be able to update the chart dynamically so we will not be declaring as const
+        let heartrateChart = new Chart(
             document.getElementById('heart_rate_monitor_chart'),
             config
         );
 
-        const bodytempChart = new Chart(
+        // we want to be able to update the chart dynamically so we will not be declaring as const
+        let bodytempChart = new Chart(
             document.getElementById('body_temp_monitor_chart'),
             config
         );
 
-        const speedChart = new Chart(
+        // we want to be able to update the chart dynamically so we will not be declaring as const
+        let speedChart = new Chart(
             document.getElementById('speed_monitor_chart'),
             config
         );
 
-        const stepcountChart = new Chart(
+        // we want to be able to update the chart dynamically so we will not be declaring as const
+        let stepcountChart = new Chart(
             document.getElementById('step_counter_monitor_chart'),
             config
         );
 
-        const weightbmiChart = new Chart(
+        // we want to be able to update the chart dynamically so we will not be declaring as const
+        let weightbmiChart = new Chart(
             document.getElementById('bmi_weight_monitor_chart'),
             config
         );
@@ -9899,6 +10082,112 @@ function getAllTrainers()
             var curtain = document.getElementById("LoadCurtain");
             curtain.style.display = "none";
 
+            // load the weekly activiies bar chart under Teams athletics training (insights tab)
+            $.populateWeeklyActivityBarChart();
+
+            // call the function to update the users activity tracker charts from the db - use vanillajs ajax to compile the data
+            compileUserActivityTrackerCharts(usernm);
+
+
+
+        }
+
+        function compileUserActivityTrackerCharts(usernm) {
+
+            var forChartNameArray = ['heart_rate_monitor_chart', 'body_temp_monitor_chart', 'speed_monitor_chart', 'step_counter_monitor_chart', 'bmi_weight_monitor_chart'];
+
+            forChartNameArray.forEach(chartName => {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var output = this.responseText;
+                        // 
+                        contentContainerProfile.innerHTML = output;
+                        if (output.startsWith("error")) {
+                            // provide user with error message
+                            // alert(output);
+                            console.log("An error has occured: \n"+output);
+                        } else {
+                            // output the returned data
+                            switch (chartName) {
+                                case "heart_rate_monitor_chart":
+                                
+                                    break;
+                                case "body_temp_monitor_chart":
+
+                                    break;
+                                case "speed_monitor_chart":
+
+                                    break;
+                                case "step_counter_monitor_chart":
+
+                                    break;
+                                case "bmi_weight_monitor_chart":
+
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        }
+
+                    }
+                };
+                xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/compile_user_stats_heartrate.php.php?forchart=" + chartName + "&u=" + usernm, true);
+                xhttp.send();
+            });
+
+
+
+            let labels = [
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+            ];
+
+            let data = {
+                labels: labels,
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: 'rgb(231, 136, 4)',
+                    borderColor: 'rgb(231, 136, 4)',
+                    data: [0, 10, 5, 2, 20, 30, 45],
+                    borderWidth: 5
+                }]
+            };
+
+            // we want to be able to update the chart dynamically so we will not be declaring as const
+            let heartrateChart = new Chart(
+                document.getElementById('heart_rate_monitor_chart'),
+                config
+            );
+
+            // we want to be able to update the chart dynamically so we will not be declaring as const
+            let bodytempChart = new Chart(
+                document.getElementById('body_temp_monitor_chart'),
+                config
+            );
+
+            // we want to be able to update the chart dynamically so we will not be declaring as const
+            let speedChart = new Chart(
+                document.getElementById('speed_monitor_chart'),
+                config
+            );
+
+            // we want to be able to update the chart dynamically so we will not be declaring as const
+            let stepcountChart = new Chart(
+                document.getElementById('step_counter_monitor_chart'),
+                config
+            );
+
+            // we want to be able to update the chart dynamically so we will not be declaring as const
+            let weightbmiChart = new Chart(
+                document.getElementById('bmi_weight_monitor_chart'),
+                config
+            );
 
         }
 

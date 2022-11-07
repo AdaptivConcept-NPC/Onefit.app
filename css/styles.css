@@ -130,6 +130,22 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#ffffff", GradientType=1);
 }
 
+.down-top-intensity-bar-bg-grad {
+  background: rgb(52, 52, 52);
+  background: -moz-linear-gradient(180deg, rgba(52, 52, 52, 1) 0%, rgba(99, 35, 35, 1) 50%, rgba(194, 0, 0, 1) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(52, 52, 52, 1) 0%, rgba(99, 35, 35, 1) 50%, rgba(194, 0, 0, 1) 100%);
+  background: linear-gradient(180deg, rgba(52, 52, 52, 1) 0%, rgba(99, 35, 35, 1) 50%, rgba(194, 0, 0, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#343434", endColorstr="#c20000", GradientType=1);
+}
+
+.top-down-intensity-bar-bg-grad {
+  background: rgb(52, 52, 52);
+  background: -moz-linear-gradient(0deg, rgba(52, 52, 52, 1) 0%, rgba(99, 35, 35, 1) 50%, rgba(194, 0, 0, 1) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(52, 52, 52, 1) 0%, rgba(99, 35, 35, 1) 50%, rgba(194, 0, 0, 1) 100%);
+  background: linear-gradient(0deg, rgba(52, 52, 52, 1) 0%, rgba(99, 35, 35, 1) 50%, rgba(194, 0, 0, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#343434", endColorstr="#c20000", GradientType=1);
+}
+
 .left-right-grad-tahiti-mineshaft {
   background: rgb(232, 138, 4);
   background: -moz-linear-gradient(90deg, rgba(232, 138, 4, 1) 0%, rgba(52, 52, 52, 0.5) 100%);
