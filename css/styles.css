@@ -1496,7 +1496,7 @@ div.horizontal-scroll-card-nav {
 .load-curtain-social-btn-panel {
   z-index: 1999;
   position: fixed;
-  top: 10vh;
+  top: 15vh;
   left: 0px;
   background-color: var(--mineshaft) !important;
   color: var(--white) !important;

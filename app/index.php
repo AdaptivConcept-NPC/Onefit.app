@@ -1834,6 +1834,11 @@ function getAllTrainers()
         //jQuery Code Only
         //$.noConflict();
         $(document).ready(function() {
+            // call the initializeContent function
+            // $(window).on('load', function() {
+            //     initializeContent('<?php echo $userAuth; ?>', '<?php echo $currentUser_Usrnm; ?>');
+            // });
+
             var data = [{
                     name: 'KEYLOR NAVAS',
                     position: 'C_GK',
@@ -2264,7 +2269,7 @@ function getAllTrainers()
 
                 weekDaysArray.forEach(day => {
                     $.get("../scripts/php/main_app/data_management/system_admin/team_athletics_data/compile_teams_daily_activities.php?day=" + day + "&gref=" + $grpRefCode, function(data, status) {
-                        console.log("compile_teams_daily_activities returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // console.log("compile_teams_daily_activities returned: \n[Status]: " + status + "\n[Data]: " + data);
 
                         switch (day) {
                             case "monday":
@@ -5054,6 +5059,15 @@ function getAllTrainers()
                                         </button>
                                     </div>
                                     <div class="col-md -8 py-4">
+                                        <!-- refresh button -->
+                                        <div class="d-flex justify-content-end">
+                                            <button class="onefit-buttons-style-dark p-4 d-grid text-center" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','heart_rate_monitor_chart')">
+                                                <span class="material-icons material-icons-round align-middle">update</span>
+                                                <span class="align-middle" style="font-size: 10px;;">Update</span>
+                                            </button>
+                                        </div>
+                                        <!-- ./ refresh button -->
+
                                         <!-- Canvasjs chart canvas -->
                                         <div class="insight-chart-container no-scroller">
                                             <canvas class="chartjs-chart-light shadow" id="heart_rate_monitor_chart" width="400" height="400"></canvas>
@@ -5147,6 +5161,15 @@ function getAllTrainers()
                                         </button>
                                     </div>
                                     <div class="col-md -8 py-4">
+                                        <!-- refresh button -->
+                                        <div class="d-flex justify-content-end">
+                                            <button class="onefit-buttons-style-dark p-4 d-grid text-center" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','body_temp_monitor_chart')">
+                                                <span class="material-icons material-icons-round align-middle">update</span>
+                                                <span class="align-middle" style="font-size: 10px;;">Update</span>
+                                            </button>
+                                        </div>
+                                        <!-- ./ refresh button -->
+
                                         <!-- Canvasjs chart canvas -->
                                         <div class="insight-chart-container no-scroller">
                                             <canvas class="chartjs-chart-light shadow" id="body_temp_monitor_chart" width="400" height="400"></canvas>
@@ -5238,6 +5261,15 @@ function getAllTrainers()
                                         </button>
                                     </div>
                                     <div class="col-md -8 py-4">
+                                        <!-- refresh button -->
+                                        <div class="d-flex justify-content-end">
+                                            <button class="onefit-buttons-style-dark p-4 d-grid text-center" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','speed_monitor_chart')">
+                                                <span class="material-icons material-icons-round align-middle">update</span>
+                                                <span class="align-middle" style="font-size: 10px;;">Update</span>
+                                            </button>
+                                        </div>
+                                        <!-- ./ refresh button -->
+
                                         <!-- Canvasjs chart canvas -->
                                         <div class="insight-chart-container no-scroller">
                                             <canvas class="chartjs-chart-light shadow" id="speed_monitor_chart" width="400" height="400"></canvas>
@@ -5326,6 +5358,15 @@ function getAllTrainers()
                                         <p class="comfortaa-font">Connect your Fitbit activity tracker / smartwatch</p>
                                     </div>
                                     <div class="col-md -8 py-4">
+                                        <!-- refresh button -->
+                                        <div class="d-flex justify-content-end">
+                                            <button class="onefit-buttons-style-dark p-4 d-grid text-center" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','step_counter_monitor_chart')">
+                                                <span class="material-icons material-icons-round align-middle">update</span>
+                                                <span class="align-middle" style="font-size: 10px;;">Update</span>
+                                            </button>
+                                        </div>
+                                        <!-- ./ refresh button -->
+
                                         <!-- Canvasjs chart canvas -->
                                         <canvas class="chartjs-chart-light shadow" id="step_counter_monitor_chart" width="400" height="400"></canvas>
                                         <!-- ./Canvasjs chart canvas -->
@@ -5353,6 +5394,15 @@ function getAllTrainers()
                                         </button>
                                     </div>
                                     <div class="col-md -8 py-4">
+                                        <!-- refresh button -->
+                                        <div class="d-flex justify-content-end">
+                                            <button class="onefit-buttons-style-dark p-4 d-grid text-center" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','bmi_weight_monitor_chart')">
+                                                <span class="material-icons material-icons-round align-middle">update</span>
+                                                <span class="align-middle" style="font-size: 10px;;">Update</span>
+                                            </button>
+                                        </div>
+                                        <!-- ./ refresh button -->
+
                                         <!-- Canvasjs chart canvas -->
                                         <div class="insight-chart-container no-scroller">
                                             <canvas class="chartjs-chart-light shadow" id="bmi_weight_monitor_chart" width="400" height="400"></canvas>
@@ -9894,43 +9944,8 @@ function getAllTrainers()
     <!-- ./ Modals ----------------------------------------------------------------------------------------- -->
 
     <script>
-        // Chart JS initialization
-        // const config = {
-        //     type: 'line',
-        //     data: data,
-        // };
-        // const labels = Utils.months({
-        //     count: 7
-        // });
-
-        // Declaring variables
-        // heart_rate_monitor_chart
-        // body_temp_monitor_chart
-        // speed_monitor_chart
-        // step_counter_monitor_chart
-        // bmi_weight_monitor_chart
-
-        // initially, const was used to declare variables but we want to be able to update these variables for the different charts but no redeclaire these variables. Using let
-        let labels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-        ];
-
-        let data = {
-            labels: labels,
-            datasets: [{
-                label: 'My First dataset',
-                backgroundColor: 'rgb(231, 136, 4)',
-                borderColor: 'rgb(231, 136, 4)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-                borderWidth: 5
-            }]
-        };
-
+        // initialize global activity tracker chart objects
+        // initialize activity tracking charts
         // Note: changes to the plugin code is not reflected to the chart, because the plugin is loaded at chart construction time and editor changes only trigger an chart.update().
         const plugin = {
             id: 'custom_canvas_background_color',
@@ -9946,9 +9961,32 @@ function getAllTrainers()
             }
         };
 
-        const config = {
+
+        // draw chart
+        // assign default chart data - Heart Rate
+        const heartrateChartLabels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+
+        const heartrateChartData = {
+            labels: heartrateChartLabels,
+            datasets: [{
+                label: 'Initial Data',
+                backgroundColor: 'rgb(231, 136, 4)',
+                borderColor: 'rgb(231, 136, 4)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+                borderWidth: 5
+            }]
+        };
+
+        const heartrateChartConfig = {
             type: 'line',
-            data: data,
+            data: heartrateChartData,
             options: {
                 layout: {
                     padding: 40
@@ -9969,40 +10007,212 @@ function getAllTrainers()
             plugins: [plugin]
         };
 
-        // we want to be able to update the chart dynamically so we will not be declaring as const
-        let heartrateChart = new Chart(
+        const heartrateChart = new Chart(
             document.getElementById('heart_rate_monitor_chart'),
-            config
+            heartrateChartConfig
         );
 
-        // we want to be able to update the chart dynamically so we will not be declaring as const
-        let bodytempChart = new Chart(
+        // draw chart
+        // assign default chart data - Body Temp
+        const bodyTempChartLabels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+
+        const bodyTempChartData = {
+            labels: bodyTempChartLabels,
+            datasets: [{
+                label: 'Initial Data',
+                backgroundColor: 'rgb(231, 136, 4)',
+                borderColor: 'rgb(231, 136, 4)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+                borderWidth: 5
+            }]
+        };
+
+        const bodyTempChartConfig = {
+            type: 'line',
+            data: bodyTempChartData,
+            options: {
+                layout: {
+                    padding: 40
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        color: 'rgb(255, 99, 132)'
+                    },
+                    position: 'bottom',
+                }
+            },
+            plugins: [plugin]
+        };
+
+        const bodytempChart = new Chart(
             document.getElementById('body_temp_monitor_chart'),
-            config
+            bodyTempChartConfig
         );
 
-        // we want to be able to update the chart dynamically so we will not be declaring as const
-        let speedChart = new Chart(
+        // draw chart
+        // assign default chart data - Speed
+        const speedChartLabels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+
+        const speedChartData = {
+            labels: speedChartLabels,
+            datasets: [{
+                label: 'Initial Data',
+                backgroundColor: 'rgb(231, 136, 4)',
+                borderColor: 'rgb(231, 136, 4)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+                borderWidth: 5
+            }]
+        };
+
+        const speedChartConfig = {
+            type: 'line',
+            data: speedChartData,
+            options: {
+                layout: {
+                    padding: 40
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        color: 'rgb(255, 99, 132)'
+                    },
+                    position: 'bottom',
+                }
+            },
+            plugins: [plugin]
+        };
+
+        const speedChart = new Chart(
             document.getElementById('speed_monitor_chart'),
-            config
+            speedChartConfig
         );
 
-        // we want to be able to update the chart dynamically so we will not be declaring as const
-        let stepcountChart = new Chart(
+        // step count
+        // assign default chart data - Step Count
+        const stepCountChartLabels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+
+        const stepCountChartData = {
+            labels: stepCountChartLabels,
+            datasets: [{
+                label: 'Initial Data',
+                backgroundColor: 'rgb(231, 136, 4)',
+                borderColor: 'rgb(231, 136, 4)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+                borderWidth: 5
+            }]
+        };
+
+        const stepCountChartConfig = {
+            type: 'line',
+            data: stepCountChartData,
+            options: {
+                layout: {
+                    padding: 40
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        color: 'rgb(255, 99, 132)'
+                    },
+                    position: 'bottom',
+                }
+            },
+            plugins: [plugin]
+        };
+
+        const stepcountChart = new Chart(
             document.getElementById('step_counter_monitor_chart'),
-            config
+            stepCountChartConfig
         );
 
-        // we want to be able to update the chart dynamically so we will not be declaring as const
-        let weightbmiChart = new Chart(
+        // draw chart
+        // assign default chart data - BMI Weight
+        const bmiWeightChartLabels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+
+        const bmiWeightChartData = {
+            labels: bmiWeightChartLabels,
+            datasets: [{
+                label: 'Initial Data',
+                backgroundColor: 'rgb(231, 136, 4)',
+                borderColor: 'rgb(231, 136, 4)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+                borderWidth: 5
+            }]
+        };
+
+        const bmiWeightChartConfig = {
+            type: 'line',
+            data: bmiWeightChartData,
+            options: {
+                layout: {
+                    padding: 40
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        color: 'rgb(255, 99, 132)'
+                    },
+                    position: 'bottom',
+                }
+            },
+            plugins: [plugin]
+        };
+
+        const weightbmiChart = new Chart(
             document.getElementById('bmi_weight_monitor_chart'),
-            config
+            bmiWeightChartConfig
         );
 
         function initializeContent(auth, usernm) {
-            //Declaring variables
-            // var contentContainer = document.getElementById("");
-
             if (auth = true) {
                 //call all client functions
                 //alert("auth = true | User: " + usernm);
@@ -10088,8 +10298,6 @@ function getAllTrainers()
             // call the function to update the users activity tracker charts from the db - use vanillajs ajax to compile the data
             compileUserActivityTrackerCharts(usernm);
 
-
-
         }
 
         function compileUserActivityTrackerCharts(usernm) {
@@ -10101,94 +10309,178 @@ function getAllTrainers()
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         var output = this.responseText;
+                        let chartData = JSON.parse(output);
+
+                        console.log(chartData); //"compileUserActivityTrackerCharts output: \n" + 
+
+                        // const bpm = chartData.map(
+                        //     function(index) {
+                        //         return index.bpm;
+                        //     }
+                        // )
+
+                        // console.log(bpm);
+
                         // 
-                        contentContainerProfile.innerHTML = output;
-                        if (output.startsWith("error")) {
-                            // provide user with error message
-                            // alert(output);
-                            console.log("An error has occured: \n"+output);
-                        } else {
-                            // output the returned data
-                            switch (chartName) {
-                                case "heart_rate_monitor_chart":
-                                
-                                    break;
-                                case "body_temp_monitor_chart":
+                        // contentContainerProfile.innerHTML = output;
+                        // if (output.startsWith("error")) {
+                        //     // provide user with error message
+                        //     // alert(output);
+                        //     console.log("An error has occured: \n"+output);
+                        // } else {
+                        //     // output the returned data
+                        //     switch (chartName) {
+                        //         case "heart_rate_monitor_chart":
 
-                                    break;
-                                case "speed_monitor_chart":
+                        //             break;
+                        //         case "body_temp_monitor_chart":
 
-                                    break;
-                                case "step_counter_monitor_chart":
+                        //             break;
+                        //         case "speed_monitor_chart":
 
-                                    break;
-                                case "bmi_weight_monitor_chart":
+                        //             break;
+                        //         case "step_counter_monitor_chart":
 
-                                    break;
+                        //             break;
+                        //         case "bmi_weight_monitor_chart":
 
-                                default:
-                                    break;
-                            }
-                        }
+                        //             break;
+
+                        //         default:
+                        //             break;
+                        //     }
+                        // }
 
                     }
                 };
-                xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/compile_user_stats_heartrate.php.php?forchart=" + chartName + "&u=" + usernm, true);
+                xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/compile_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
                 xhttp.send();
             });
 
+        }
 
+        function refreshUserActivityTrackerChart(usernm, chartName) {
 
-            let labels = [
-                'January',
-                'February',
-                'March',
-                'April',
-                'May',
-                'June',
-            ];
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var output = this.responseText;
 
-            let data = {
-                labels: labels,
-                datasets: [{
-                    label: 'My First dataset',
-                    backgroundColor: 'rgb(231, 136, 4)',
-                    borderColor: 'rgb(231, 136, 4)',
-                    data: [0, 10, 5, 2, 20, 30, 45],
-                    borderWidth: 5
-                }]
+                    if (output.startsWith("error")) {
+                        // provide user with error message
+                        // alert(output);
+                        console.log("An error has occured: \n" + output);
+                    } else {
+                        let chartData = JSON.parse(output);
+                        console.log(chartData);
+
+                        let date = chartData.map(
+                            function(index) {
+                                return index.date;
+                            }
+                        )
+
+                        console.log(date);
+
+                        let time = chartData.map(
+                            function(index) {
+                                return index.time;
+                            }
+                        )
+
+                        console.log(time);
+
+                        // output the returned data
+                        switch (chartName) {
+                            case "heart_rate_monitor_chart":
+                                // let chartData = JSON.parse(output);
+
+                                let bpm = chartData.map(
+                                    function(index) {
+                                        return index.bpm;
+                                    }
+                                )
+
+                                console.log(bpm);
+
+                                // Uncaught TypeError: Cannot read properties of undefined (reading 'data') at xhttp.onreadystatechange (?userauth=true:8609:69)
+                                heartrateChart.heartrateChartConfig.data.heartrateChartLabels = time;
+                                heartrateChart.heartrateChartConfig.data.datasets[0].label = "Heart rate - BPM";
+                                heartrateChart.heartrateChartConfig.data.datasets[0].data = bpm;
+                                heartrateChart.update();
+                                break;
+                            case "body_temp_monitor_chart":
+
+                                let temperature = chartData.map(
+                                    function(index) {
+                                        return index.temperature;
+                                    }
+                                )
+
+                                console.log(temperature);
+
+                                // Uncaught ReferenceError: bodyTempChart is not defined at xhttp.onreadystatechange (?userauth=true:8624:33)
+                                bodyTempChart.bodyTempChartConfig.bodyTempChartData.bodyTempChartLabels = time;
+                                bodyTempChart.bodyTempChartConfig.bodyTempChartData.datasets[0].label = "Body Temperature - &deg; C";
+                                bodyTempChart.bodyTempChartConfig.bodyTempChartData.datasets[0].data = temperature;
+                                bodyTempChart.update();
+                                break;
+                            case "speed_monitor_chart":
+
+                                let speed = chartData.map(
+                                    function(index) {
+                                        return index.speed;
+                                    }
+                                )
+
+                                console.log(speed);
+
+                                speedChart.speedChartConfig.speedChartData.speedChartLabels = time;
+                                speedChart.speedChartConfig.speedChartData.datasets[0].label = "Speed - ms";
+                                speedChart.speedChartConfig.speedChartData.datasets[0].data = speed;
+                                speedChart.update();
+                                break;
+                            case "step_counter_monitor_chart":
+
+                                let steps = chartData.map(
+                                    function(index) {
+                                        return index.steps;
+                                    }
+                                )
+
+                                console.log(steps);
+
+                                stepCountChart.stepCountChartConfig.stepCountChartData.stepCountChartLabels = time;
+                                stepCountChart.stepCountChartConfig.stepCountChartData.datasets[0].label = "Step counter";
+                                stepCountChart.stepCountChartConfig.stepCountChartData.datasets[0].data = steps;
+                                stepCountChart.update();
+                                break;
+                            case "bmi_weight_monitor_chart":
+
+                                let bmi = chartData.map(
+                                    function(index) {
+                                        return index.bmi;
+                                    }
+                                )
+
+                                console.log(bmi);
+
+                                bmiWeightChart.bmiWeightChartConfig.bmiWeightChartData.bmiWeightChartLabels = time;
+                                bmiWeightChart.bmiWeightChartConfig.bmiWeightChartData.datasets[0].label = "Weight - BMI";
+                                bmiWeightChart.bmiWeightChartConfig.bmiWeightChartData.datasets[0].data = bmi;
+                                bmiWeightChart.update();
+                                break;
+
+                            default:
+                                alert("Activity Tracker Chart Update Error \nNo chart passed to function.");
+                                break;
+                        }
+                    }
+
+                }
             };
-
-            // we want to be able to update the chart dynamically so we will not be declaring as const
-            let heartrateChart = new Chart(
-                document.getElementById('heart_rate_monitor_chart'),
-                config
-            );
-
-            // we want to be able to update the chart dynamically so we will not be declaring as const
-            let bodytempChart = new Chart(
-                document.getElementById('body_temp_monitor_chart'),
-                config
-            );
-
-            // we want to be able to update the chart dynamically so we will not be declaring as const
-            let speedChart = new Chart(
-                document.getElementById('speed_monitor_chart'),
-                config
-            );
-
-            // we want to be able to update the chart dynamically so we will not be declaring as const
-            let stepcountChart = new Chart(
-                document.getElementById('step_counter_monitor_chart'),
-                config
-            );
-
-            // we want to be able to update the chart dynamically so we will not be declaring as const
-            let weightbmiChart = new Chart(
-                document.getElementById('bmi_weight_monitor_chart'),
-                config
-            );
-
+            xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/compile_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
+            xhttp.send();
         }
 
         function setCurrentAppTabID(currentPageID) {
@@ -10231,332 +10523,7 @@ function getAllTrainers()
             return [StartDate, EndDate];
         }
 
-        function getCurrentWeekStartEndDates() {
-            // test code
-            var elemDatesOutput1 = document.getElementById("weekly-survey-duration-dates");
-            var elemDatesOutput2 = document.getElementById("weekly-training-date-duration-str");
 
-            var Dates = new Date().getWeek();
-            //alert(Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString());
-
-            elemDatesOutput1.innerHTML = Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString();
-            elemDatesOutput2.innerHTML = Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString();
-        }
-
-        function loadUserProfile() {
-            //Declaring variables
-            var contentContainerProfile = document.getElementById("profile-panel-container");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                    contentContainerProfile.innerHTML = output;
-                }
-            };
-            xhttp.open("GET", "../scripts/php/userprofile/user_profile.php", true);
-            xhttp.send();
-        }
-
-        function loadUserSocials() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/userprofile/", true);
-            xhttp.send();
-        }
-
-        function loadUserChallenges() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/userprofile/user_socials.php", true);
-            xhttp.send();
-        }
-
-        function loadUserChat() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/userprofile/user_chat.php", true);
-            xhttp.send();
-        }
-
-        function loadUserFriends() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/userprofile/user_friends.php", true);
-            xhttp.send();
-        }
-
-        function loadUserGroups() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/userprofile/user_groups.php", true);
-            xhttp.send();
-        }
-
-        function loadUserMedia() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/userprofile/user_media.php", true);
-            xhttp.send();
-        }
-
-        function loadUserNotifications() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/userprofile/user_notifications.php", true);
-            xhttp.send();
-        }
-
-        function loadUserPref() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/userprofile/user_pref.php", true);
-            xhttp.send();
-        }
-
-        function loadUserSaves() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/userprofile/user_saves.php", true);
-            xhttp.send();
-        }
-
-        function loadUserGroups() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/userprofile/user_groups.php", true);
-            xhttp.send();
-        }
-
-        function loadCommunityGroups() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/main_app/community_sharing/community_groups.php", true);
-            xhttp.send();
-        }
-
-        function loadCommunityNews() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/main_app/community_sharing/community_news.php", true);
-            xhttp.send();
-        }
-
-        function loadCommunityAchievements() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/main_app/community_sharing/community_achievements.php", true);
-            xhttp.send();
-        }
-
-        function loadCommunityEvents() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/main_app/community_sharing/community_events.php", true);
-            xhttp.send();
-        }
-
-        function loadCommunityMedia() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/main_app/community_sharing/community_media.php", true);
-            xhttp.send();
-        }
-
-        function loadCommunityResources() {
-            //Declaring variables
-            var contentContainerResourceFeed = document.getElementById("v-pills-social-resfeed-content");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-
-                    contentContainerResourceFeed.innerHTML = output;
-                }
-            };
-            xhttp.open("GET", "../scripts/php/main_app/community_sharing/community_news.php", true);
-            xhttp.send();
-        }
-
-        function loadCommunityRewards() {
-            //Declaring variables
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    alert(output);
-                }
-            };
-            xhttp.open("GET", "../scripts/php/main_app/community_sharing/community_rewards.php", true);
-            xhttp.send();
-        }
-
-        function loadCommunityUpdates() {
-            //Declaring variables
-            var contentContainerCommUpdatesA = document.getElementById("homeCommunityPosts");
-            var contentContainerCommUpdatesB = document.getElementById("comm-updates-search-container");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-            //// var contentContainer = document.getElementById("");
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
-                    //alert(output);
-
-                    contentContainerCommUpdatesA.innerHTML = output;
-                    contentContainerCommUpdatesB.innerHTML = output;
-                }
-            };
-            xhttp.open("GET", "../scripts/php/main_app/community_sharing/community_updates.php", true);
-            xhttp.send();
-        }
 
         function openLink(evt, tabName) {
             var i, x, tabContainer, tablinks;
@@ -10766,39 +10733,6 @@ function getAllTrainers()
 
             reloadActivityCalender(nMonth, nYear);
         }
-
-        //Plyr.io JS Code
-        (function() {
-            var video = document.querySelector('#player');
-
-            if (Hls.isSupported()) {
-                var hls = new Hls();
-                hls.loadSource('https://content.jwplatform.com/manifests/vM7nH0Kl.m3u8');
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    video.play();
-                });
-            }
-
-            plyr.setup(video);
-        })();
-
-        //get twitter trends
-        /*var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-          if (this.readyState == 4 && this.status == 200) {
-            var output = this.responseText;
-            alert(output);
-          }
-        };
-        xhttp.open("GET", "https://api.twitter.com/1.1/trends/place.json?id=1", true);
-        xhttp.send();*/
-
-        function socialFunctions(action, origin) {
-            alert("Action: " + action + " | Origin: " + origin);
-        }
-
-        //freeNBAUnofficial();
 
         // Make the DIV element draggable:
         dragElement(document.getElementById("drag-player-pin"));
