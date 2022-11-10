@@ -2655,7 +2655,7 @@ function getAllTrainers()
     <!-- ./ Navigation bar, Cart & Other functions -->
 
     <!-- Main Content -->
-    <div class="container-lg" style="padding-bottom: 100px">
+    <div class="container-lg" style="padding-bottom: 50px">
         <!-- Main Navigation Bar -->
         <nav class="navbar navbar-light sticky-top navbar-style w-100 mb-4" style="border-radius: 25px; max-height: 100vh !important; border-bottom: #ffa500 solid 5px;">
             <!-- App Function Buttons -->
@@ -5059,20 +5059,21 @@ function getAllTrainers()
                                         </button>
                                     </div>
                                     <div class="col-md -8 py-4">
-                                        <!-- refresh button -->
-                                        <div class="d-flex justify-content-end">
-                                            <button class="onefit-buttons-style-dark p-4 d-grid text-center" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','heart_rate_monitor_chart')">
-                                                <span class="material-icons material-icons-round align-middle">update</span>
-                                                <span class="align-middle" style="font-size: 10px;;">Update</span>
-                                            </button>
-                                        </div>
-                                        <!-- ./ refresh button -->
 
-                                        <!-- Canvasjs chart canvas -->
-                                        <div class="insight-chart-container no-scroller">
-                                            <canvas class="chartjs-chart-light shadow" id="heart_rate_monitor_chart" width="400" height="400"></canvas>
+                                        <div class="in-div-button-container">
+                                            <!-- refresh button -->
+                                            <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','heart_rate_monitor_chart')">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
+                                                <span class="align-middle" style="font-size: 10px;">Update.</span>
+                                            </button>
+                                            <!-- ./ refresh button -->
+
+                                            <!-- Canvasjs chart canvas -->
+                                            <div class="insight-chart-container no-scroller">
+                                                <canvas class="chartjs-chart-light shadow" id="heart_rate_monitor_chart" width="400" height="400"></canvas>
+                                            </div>
+                                            <!-- ./Canvasjs chart canvas -->
                                         </div>
-                                        <!-- ./Canvasjs chart canvas -->
 
                                         <!-- submit heartrate data form -->
                                         <div id="heartrate-data-input-form-container" class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
@@ -5161,20 +5162,23 @@ function getAllTrainers()
                                         </button>
                                     </div>
                                     <div class="col-md -8 py-4">
-                                        <!-- refresh button -->
-                                        <div class="d-flex justify-content-end">
-                                            <button class="onefit-buttons-style-dark p-4 d-grid text-center" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','body_temp_monitor_chart')">
-                                                <span class="material-icons material-icons-round align-middle">update</span>
-                                                <span class="align-middle" style="font-size: 10px;;">Update</span>
-                                            </button>
-                                        </div>
-                                        <!-- ./ refresh button -->
 
-                                        <!-- Canvasjs chart canvas -->
-                                        <div class="insight-chart-container no-scroller">
-                                            <canvas class="chartjs-chart-light shadow" id="body_temp_monitor_chart" width="400" height="400"></canvas>
+                                        <div class="in-div-button-container">
+                                            <!-- refresh button -->
+                                            <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','body_temp_monitor_chart')">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
+                                                <span class="align-middle" style="font-size: 10px;">Update.</span>
+                                            </button>
+                                            <!-- ./ refresh button -->
+
+                                            <!-- Canvasjs chart canvas -->
+                                            <div class="insight-chart-container no-scroller">
+                                                <canvas class="chartjs-chart-light shadow" id="body_temp_monitor_chart" width="400" height="400"></canvas>
+                                            </div>
+                                            <!-- ./Canvasjs chart canvas -->
                                         </div>
-                                        <!-- ./Canvasjs chart canvas -->
+
+
 
                                         <!-- submit heartrate data form -->
                                         <div id="bodytemp-data-input-form-container" class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
@@ -5261,20 +5265,21 @@ function getAllTrainers()
                                         </button>
                                     </div>
                                     <div class="col-md -8 py-4">
-                                        <!-- refresh button -->
-                                        <div class="d-flex justify-content-end">
-                                            <button class="onefit-buttons-style-dark p-4 d-grid text-center" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','speed_monitor_chart')">
-                                                <span class="material-icons material-icons-round align-middle">update</span>
-                                                <span class="align-middle" style="font-size: 10px;;">Update</span>
-                                            </button>
-                                        </div>
-                                        <!-- ./ refresh button -->
 
-                                        <!-- Canvasjs chart canvas -->
-                                        <div class="insight-chart-container no-scroller">
-                                            <canvas class="chartjs-chart-light shadow" id="speed_monitor_chart" width="400" height="400"></canvas>
+                                        <div class="in-div-button-container">
+                                            <!-- refresh button -->
+                                            <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','speed_monitor_chart')">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
+                                                <span class="align-middle" style="font-size: 10px;">Update.</span>
+                                            </button>
+                                            <!-- ./ refresh button -->
+
+                                            <!-- Canvasjs chart canvas -->
+                                            <div class="insight-chart-container no-scroller">
+                                                <canvas class="chartjs-chart-light shadow" id="speed_monitor_chart" width="400" height="400"></canvas>
+                                            </div>
+                                            <!-- ./Canvasjs chart canvas -->
                                         </div>
-                                        <!-- ./Canvasjs chart canvas -->
 
                                         <!-- submit heartrate data form -->
                                         <div id="speedmonitor-data-input-form-container" class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
@@ -5358,20 +5363,21 @@ function getAllTrainers()
                                         <p class="comfortaa-font">Connect your Fitbit activity tracker / smartwatch</p>
                                     </div>
                                     <div class="col-md -8 py-4">
-                                        <!-- refresh button -->
-                                        <div class="d-flex justify-content-end">
-                                            <button class="onefit-buttons-style-dark p-4 d-grid text-center" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','step_counter_monitor_chart')">
-                                                <span class="material-icons material-icons-round align-middle">update</span>
-                                                <span class="align-middle" style="font-size: 10px;;">Update</span>
+
+                                        <div class="in-div-button-container">
+                                            <!-- refresh button -->
+                                            <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','step_counter_monitor_chart')">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
+                                                <span class="align-middle" style="font-size: 10px;">Update.</span>
                                             </button>
+                                            <!-- ./ refresh button -->
+
+                                            <!-- Canvasjs chart canvas -->
+                                            <canvas class="chartjs-chart-light shadow" id="step_counter_monitor_chart" width="400" height="400"></canvas>
+                                            <!-- ./Canvasjs chart canvas -->
                                         </div>
-                                        <!-- ./ refresh button -->
 
-                                        <!-- Canvasjs chart canvas -->
-                                        <canvas class="chartjs-chart-light shadow" id="step_counter_monitor_chart" width="400" height="400"></canvas>
-                                        <!-- ./Canvasjs chart canvas -->
-
-                                        <!-- <div id="step_counter_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
+                                        <!-- no input form for capturing data. Can only be captured through the fitbit web api -->
                                     </div>
                                 </div>
                             </li>
@@ -5394,21 +5400,23 @@ function getAllTrainers()
                                         </button>
                                     </div>
                                     <div class="col-md -8 py-4">
-                                        <!-- refresh button -->
-                                        <div class="d-flex justify-content-end">
-                                            <button class="onefit-buttons-style-dark p-4 d-grid text-center" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','bmi_weight_monitor_chart')">
-                                                <span class="material-icons material-icons-round align-middle">update</span>
-                                                <span class="align-middle" style="font-size: 10px;;">Update</span>
+
+                                        <div class="in-div-button-container">
+                                            <!-- refresh button -->
+                                            <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','bmi_weight_monitor_chart')">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
+                                                <span class="align-middle" style="font-size: 10px;">Update.</span>
                                             </button>
-                                        </div>
-                                        <!-- ./ refresh button -->
+                                            <!-- ./ refresh button -->
 
-                                        <!-- Canvasjs chart canvas -->
-                                        <div class="insight-chart-container no-scroller">
-                                            <canvas class="chartjs-chart-light shadow" id="bmi_weight_monitor_chart" width="400" height="400"></canvas>
+                                            <!-- Canvasjs chart canvas -->
+                                            <div class="insight-chart-container no-scroller">
+                                                <canvas class="chartjs-chart-light shadow" id="bmi_weight_monitor_chart" width="400" height="400"></canvas>
+                                            </div>
+                                            <!-- ./Canvasjs chart canvas -->
                                         </div>
 
-                                        <!-- ./Canvasjs chart canvas -->
+
 
                                         <!-- submit heartrate data form -->
                                         <div id="bmiweight-data-input-form-container" class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
@@ -5847,114 +5855,7 @@ function getAllTrainers()
                         <span class="material-icons material-icons-outlined">sports</span>
                         <h5 class="mt-4 fs-1 text-center align-middle">Training</h5>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
-                    </div>
-
-                    <!-- more insights categories v-buttons -->
-                    <style>
-                        .force-inline-nav {
-                            flex-wrap: nowrap !important;
-                        }
-                    </style>
-
-                    <!-- inline/flex more insights tab controller btns -->
-                    <div id="inline-more-insights-tab-btns" class="d-flex d-lg-none d-xl-none d-xxl-none w3-animate-bottom p-2" style="background: #343434; border-radius: 25px; overflow: hidden;">
-                        <div class="d-grid gap-2 justify-content-center d-lg-nonez d-xl-nonez d-xxl-nonez">
-                            <button class="onefit-buttons-style-dark p-4" type="button" data-bs-toggle="collapse" data-bs-target="#insights-subfeatures-nav-menu" aria-expanded="true" aria-controls="insights-subfeatures-nav-menu">
-                                <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> menu </span>
-                                    <p class="m-0" style="font-size: 8px;">More insights</p>
-                                </div>
-                            </button>
-                        </div>
-
-                        <div class="collapse w3-animate-bottom my-4 horizontal-scroll no-scroller px-4" style="overflow-y: hidden;" id="insights-subfeatures-nav-menu">
-                            <nav class="mt-4">
-                                <div class="nav force-inline-nav nav-tabs border-0" id="nav-tab-insightsSubFeatureCategories" role="tablist" style="border-color: #ffa500 !important">
-                                    <button class="nav-link p-4 comfortaa-font fw-bold active position-relative" id="nav-trainingProgramCategories-challenges-tab" onclick="clickTrainingProgramCategories('challenges')">
-                                        Challenges.
-                                        <span class="position-absolute top-50 start-0 translate-middle badge rounded-pill border-2 border p-1  my-pulse-animation-tahiti" style="height: 20px; width: 20px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
-                                        </span>
-
-                                        <br>
-                                        <span id="horizontal-rule-icon-challenges" class="material-icons material-icons-outlined align-middle" style="display: block;">stars</span>
-                                    </button>
-
-                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-googleSurveys-tab" onclick="clickTrainingProgramCategories('googleSurveys')">
-                                        Google Surveys.
-
-                                        <br>
-                                        <span id="horizontal-rule-icon-googlesurveys" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">poll</span>
-                                    </button>
-
-                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-indiAthlete-tab" onclick="clickTrainingProgramCategories('indiAthlete')">
-                                        Indi-Athletics.
-
-                                        <br>
-                                        <span id="horizontal-rule-icon-indiathlete" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">sports_gymnastics</span>
-                                    </button>
-
-                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-teamAthletics-tab" onclick="clickTrainingProgramCategories('teamAthletics')">
-                                        Team Athletics.
-
-                                        <br>
-                                        <span id="horizontal-rule-icon-teamathletics" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">diversity_2</span>
-                                    </button>
-
-                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-wellness-tab" onclick="clickTrainingProgramCategories('wellness')">
-                                        Wellness.
-
-                                        <br>
-                                        <span id="horizontal-rule-icon-wellness" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">self_improvement</span>
-                                    </button>
-
-                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-nutrition-tab" onclick="clickTrainingProgramCategories('nutrition')">
-                                        Nutrition.
-
-                                        <br>
-                                        <span id="horizontal-rule-icon-nutrition" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">restaurant</span>
-                                    </button>
-
-                                </div>
-                            </nav>
-
-                            <!-- Fitness/Training programe categories - hidden display: none -->
-                            <div class="nav d-grid nav-pills d-none" id="v-sub-tab-pills-insights-subfeatures-tab" role="tablist" aria-orientation="vertical" aria-hidden="true">
-                                <button class="nav-link" id="v-sub-tab-pills-insights-challenges-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-challenges" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-challenges" aria-selected="false">
-                                    <!--onclick="openLink(event, 'InsightsTabChallenges')"-->
-                                    <span class="material-icons material-icons-rounded">stars</span>
-                                    <p class="text-break comfortaa-font">Challenges</p>
-                                </button>
-                                <button class="nav-link active" id="v-sub-tab-pills-insights-googlesurveys-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-googlesurveys" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-googlesurveys" aria-selected="true">
-                                    <!--onclick="openLink(event, 'InsightsTabGCS')"-->
-                                    <span class="material-icons material-icons-rounded">poll</span>
-                                    <p class="text-break comfortaa-font">Google Community Surveys</p>
-                                </button>
-                                <button class="nav-link" id="v-sub-tab-pills-insights-indiathlete-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-indiathlete" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-indiathlete" aria-selected="false">
-                                    <!--onclick="openLink(event, 'InsightsTabIAT')"-->
-                                    <span class="material-icons material-icons-rounded">sports_gymnastics</span>
-                                    <p class="text-break comfortaa-font">Indi-Athletics</p>
-                                </button>
-                                <button class="nav-link" id="v-sub-tab-pills-insights-teamathletics-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-teamathletics" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-teamathletics" aria-selected="false">
-                                    <!--onclick="openLink(event, 'InsightsTabCTA')"-->
-                                    <span class="material-icons material-icons-rounded">diversity_2</span>
-                                    <p class="text-break comfortaa-font">Community/Team Athletics</p>
-                                </button>
-                                <button class="nav-link" id="v-sub-tab-pills-insights-wellness-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-wellness" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-wellness" aria-selected="false">
-                                    <!--onclick="openLink(event, 'InsightsTabWellness')"-->
-                                    <span class="material-icons material-icons-rounded">self_improvement</span>
-                                    <p class="text-break comfortaa-font">Wellness</p>
-                                </button>
-                                <button class="nav-link" id="v-sub-tab-pills-insights-nutrition-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-nutrition" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-nutrition" aria-selected="false">
-                                    <!--onclick="openLink(event, 'InsightsTabNutrition')"-->
-                                    <span class="material-icons material-icons-rounded">restaurant</span>
-                                    <p class="text-break comfortaa-font">Nutrition</p>
-                                </button>
-                            </div>
-                            <!-- ./ Fitness/Training programe categories - hidden display: none -->
-                        </div>
-                    </div>
-                    <!-- ./ inline/flex more insights tab controller btns -->
-                    <!-- ./ more insight categories v-buttons -->
+                    </div>2
 
                     <!-- Features: Tab structured -->
                     <div class="row mt-4 py-4" style="background-color: #333; border-radius: 25px;">
@@ -5976,6 +5877,113 @@ function getAllTrainers()
                             <!-- ./ display User XP -->
 
                             <p class="text-center m-0"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span></p>
+
+                            <!-- more insights categories v-buttons -->
+                            <style>
+                                .force-inline-nav {
+                                    flex-wrap: nowrap !important;
+                                }
+                            </style>
+
+                            <!-- inline/flex more insights tab controller btns -->
+                            <div id="inline-more-insights-tab-btns" class="d-grid align-items-centerz d-lg-none d-xl-none d-xxl-none w3-animate-bottom p-2" style="background: #333; border-radius: 25px; overflow: hidden;">
+                                <div class="d-grid gap-2 p-4">
+                                    <button class="onefit-buttons-style-dark p-4" type="button" data-bs-toggle="collapse" data-bs-target="#insights-subfeatures-nav-menu" aria-expanded="true" aria-controls="insights-subfeatures-nav-menu">
+                                        <div class="d-grid gap-2">
+                                            <span class="material-icons material-icons-round"> menu </span>
+                                            <p class="m-0" style="font-size: 8px;">More insights</p>
+                                        </div>
+                                    </button>
+                                </div>
+
+                                <div class="w3-animate-bottom my-4 horizontal-scroll no-scroller p-4 collapse" style="overflow-y: hidden;" id="insights-subfeatures-nav-menu">
+                                    <nav class="m-0">
+                                        <div class="nav force-inline-nav nav-tabs border-0" id="nav-tab-insightsSubFeatureCategories" role="tablist" style="border-color: #ffa500 !important">
+                                            <button class="nav-link p-4 comfortaa-font fw-bold active position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-challenges-tab" onclick="clickTrainingProgramCategories('challenges')">
+                                                Challenges.
+                                                <span class="position-absolute top-50 start-0 translate-middle badge rounded-pill border-2 border p-1  my-pulse-animation-tahiti" style="height: 20px; width: 20px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
+                                                </span>
+
+                                                <br>
+                                                <span id="horizontal-rule-icon-challenges" class="material-icons material-icons-outlined align-middle" style="display: block;">stars</span>
+                                            </button>
+
+                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-googleSurveys-tab" onclick="clickTrainingProgramCategories('googleSurveys')">
+                                                Google Surveys.
+
+                                                <br>
+                                                <span id="horizontal-rule-icon-googlesurveys" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">poll</span>
+                                            </button>
+
+                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-indiAthlete-tab" onclick="clickTrainingProgramCategories('indiAthlete')">
+                                                Indi-Athletics.
+
+                                                <br>
+                                                <span id="horizontal-rule-icon-indiathlete" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">sports_gymnastics</span>
+                                            </button>
+
+                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-teamAthletics-tab" onclick="clickTrainingProgramCategories('teamAthletics')">
+                                                Team Athletics.
+
+                                                <br>
+                                                <span id="horizontal-rule-icon-teamathletics" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">diversity_2</span>
+                                            </button>
+
+                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-wellness-tab" onclick="clickTrainingProgramCategories('wellness')">
+                                                Wellness.
+
+                                                <br>
+                                                <span id="horizontal-rule-icon-wellness" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">self_improvement</span>
+                                            </button>
+
+                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-nutrition-tab" onclick="clickTrainingProgramCategories('nutrition')">
+                                                Nutrition.
+
+                                                <br>
+                                                <span id="horizontal-rule-icon-nutrition" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">restaurant</span>
+                                            </button>
+
+                                        </div>
+                                    </nav>
+
+                                    <!-- Fitness/Training programe categories - hidden display: none -->
+                                    <div class="nav d-grid nav-pills d-none" id="v-sub-tab-pills-insights-subfeatures-tab" role="tablist" aria-orientation="vertical" aria-hidden="true">
+                                        <button class="nav-link" id="v-sub-tab-pills-insights-challenges-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-challenges" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-challenges" aria-selected="false">
+                                            <!--onclick="openLink(event, 'InsightsTabChallenges')"-->
+                                            <span class="material-icons material-icons-rounded">stars</span>
+                                            <p class="text-break comfortaa-font">Challenges</p>
+                                        </button>
+                                        <button class="nav-link active" id="v-sub-tab-pills-insights-googlesurveys-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-googlesurveys" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-googlesurveys" aria-selected="true">
+                                            <!--onclick="openLink(event, 'InsightsTabGCS')"-->
+                                            <span class="material-icons material-icons-rounded">poll</span>
+                                            <p class="text-break comfortaa-font">Google Community Surveys</p>
+                                        </button>
+                                        <button class="nav-link" id="v-sub-tab-pills-insights-indiathlete-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-indiathlete" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-indiathlete" aria-selected="false">
+                                            <!--onclick="openLink(event, 'InsightsTabIAT')"-->
+                                            <span class="material-icons material-icons-rounded">sports_gymnastics</span>
+                                            <p class="text-break comfortaa-font">Indi-Athletics</p>
+                                        </button>
+                                        <button class="nav-link" id="v-sub-tab-pills-insights-teamathletics-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-teamathletics" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-teamathletics" aria-selected="false">
+                                            <!--onclick="openLink(event, 'InsightsTabCTA')"-->
+                                            <span class="material-icons material-icons-rounded">diversity_2</span>
+                                            <p class="text-break comfortaa-font">Community/Team Athletics</p>
+                                        </button>
+                                        <button class="nav-link" id="v-sub-tab-pills-insights-wellness-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-wellness" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-wellness" aria-selected="false">
+                                            <!--onclick="openLink(event, 'InsightsTabWellness')"-->
+                                            <span class="material-icons material-icons-rounded">self_improvement</span>
+                                            <p class="text-break comfortaa-font">Wellness</p>
+                                        </button>
+                                        <button class="nav-link" id="v-sub-tab-pills-insights-nutrition-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-nutrition" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-nutrition" aria-selected="false">
+                                            <!--onclick="openLink(event, 'InsightsTabNutrition')"-->
+                                            <span class="material-icons material-icons-rounded">restaurant</span>
+                                            <p class="text-break comfortaa-font">Nutrition</p>
+                                        </button>
+                                    </div>
+                                    <!-- ./ Fitness/Training programe categories - hidden display: none -->
+                                </div>
+                            </div>
+                            <!-- ./ inline/flex more insights tab controller btns -->
+                            <!-- ./ more insight categories v-buttons -->
 
                             <!-- hide on screens smaller than lg -->
                             <nav class="d-none d-lg-block mt-4">
@@ -10309,47 +10317,41 @@ function getAllTrainers()
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         var output = this.responseText;
-                        let chartData = JSON.parse(output);
 
-                        console.log(chartData); //"compileUserActivityTrackerCharts output: \n" + 
+                        if (output.startsWith("error")) {
+                            // provide user with error message
+                            alert("An error has occured: \n" + output);
+                            console.log("An error has occured: \n" + output);
+                        } else {
+                            // parse outpyt to js json format
+                            let chartData = JSON.parse(output);
 
-                        // const bpm = chartData.map(
-                        //     function(index) {
-                        //         return index.bpm;
-                        //     }
-                        // )
-
-                        // console.log(bpm);
-
-                        // 
-                        // contentContainerProfile.innerHTML = output;
-                        // if (output.startsWith("error")) {
-                        //     // provide user with error message
-                        //     // alert(output);
-                        //     console.log("An error has occured: \n"+output);
-                        // } else {
-                        //     // output the returned data
-                        //     switch (chartName) {
-                        //         case "heart_rate_monitor_chart":
-
-                        //             break;
-                        //         case "body_temp_monitor_chart":
-
-                        //             break;
-                        //         case "speed_monitor_chart":
-
-                        //             break;
-                        //         case "step_counter_monitor_chart":
-
-                        //             break;
-                        //         case "bmi_weight_monitor_chart":
-
-                        //             break;
-
-                        //         default:
-                        //             break;
-                        //     }
-                        // }
+                            // output the returned data
+                            switch (chartName) {
+                                case "heart_rate_monitor_chart":
+                                    console.log(chartData);
+                                    localStorage.setItem('heart_rate_monitor_chart_data', JSON.stringify(chartData));
+                                    break;
+                                case "body_temp_monitor_chart":
+                                    console.log(chartData);
+                                    localStorage.setItem('body_temp_monitor_chart_data', JSON.stringify(chartData));
+                                    break;
+                                case "speed_monitor_chart":
+                                    console.log(chartData);
+                                    localStorage.setItem('speed_monitor_chart_data', JSON.stringify(chartData));
+                                    break;
+                                case "step_counter_monitor_chart":
+                                    console.log(chartData);
+                                    localStorage.setItem('step_counter_monitor_chart_data', JSON.stringify(chartData));
+                                    break;
+                                case "bmi_weight_monitor_chart":
+                                    console.log(chartData);
+                                    localStorage.setItem('bmi_weight_monitor_chart_data', JSON.stringify(chartData));
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
 
                     }
                 };
@@ -10404,9 +10406,9 @@ function getAllTrainers()
                                 console.log(bpm);
 
                                 // Uncaught TypeError: Cannot read properties of undefined (reading 'data') at xhttp.onreadystatechange (?userauth=true:8609:69)
-                                heartrateChart.heartrateChartConfig.data.heartrateChartLabels = time;
-                                heartrateChart.heartrateChartConfig.data.datasets[0].label = "Heart rate - BPM";
-                                heartrateChart.heartrateChartConfig.data.datasets[0].data = bpm;
+                                heartrateChart.heartrateChartConfig.heartrateChartdata.heartrateChartLabels = time;
+                                heartrateChart.heartrateChartConfig.heartrateChartdata.datasets[0].label = "Heart rate - BPM";
+                                heartrateChart.heartrateChartConfig.heartrateChartdata.datasets[0].data = bpm;
                                 heartrateChart.update();
                                 break;
                             case "body_temp_monitor_chart":
@@ -10465,6 +10467,14 @@ function getAllTrainers()
 
                                 console.log(bmi);
 
+                                let weight = chartData.map(
+                                    function(index) {
+                                        return index.weight;
+                                    }
+                                )
+
+                                console.log(weight);
+
                                 bmiWeightChart.bmiWeightChartConfig.bmiWeightChartData.bmiWeightChartLabels = time;
                                 bmiWeightChart.bmiWeightChartConfig.bmiWeightChartData.datasets[0].label = "Weight - BMI";
                                 bmiWeightChart.bmiWeightChartConfig.bmiWeightChartData.datasets[0].data = bmi;
@@ -10473,6 +10483,7 @@ function getAllTrainers()
 
                             default:
                                 alert("Activity Tracker Chart Update Error \nNo chart passed to function.");
+                                console.log("Activity Tracker Chart Update Error \nNo chart passed to function.");
                                 break;
                         }
                     }

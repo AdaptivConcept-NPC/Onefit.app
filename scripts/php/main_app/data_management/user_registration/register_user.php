@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $gender = sanitizeMySQL($dbconn, $_POST['reg-gender']);
   $race = sanitizeMySQL($dbconn, $_POST['reg-race']);
   $nation = sanitizeMySQL($dbconn, $_POST['reg-nationality']);
-  $usrnm = "onefit_ZA" . generateAlphaNumericRandomString(8); // sanitizeMySQL($dbconn, $_POST['reg-username']);
+  $usrnm = "onefitza_" . strtolower(generateAlphaNumericRandomString(8)) . strtolower(generateNumericRandomString(2)); // sanitizeMySQL($dbconn, $_POST['reg-username']);
   $pwd = sanitizeMySQL($dbconn, $_POST['reg-confirmpassword']);
   $pwdhash = password_hash($pwd, PASSWORD_DEFAULT);
 
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $dbconn->close();
 
   // create a media folder for the user 
-  $dir_path = '../../../../../media/' . $usrnm;
+  $dir_path = '../../../../../media/profiles/' . $usrnm;
 
   // Checking whether the directory exists or not
   if (!is_dir($dir_path)) {

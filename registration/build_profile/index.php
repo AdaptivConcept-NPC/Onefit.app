@@ -252,7 +252,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: 'submit/aboutyou_submit.php',
+            url: '../../scripts/php/main_app/data_management/user_registration/submit/aboutyou_submit.php',
             processData: false,
             contentType: false,
             async: false,
@@ -260,7 +260,7 @@ try {
             data: form_data,
             beforeSend: function() {
               // do something
-              alert("BeforeSend: submitting aboutyou form");
+              console.log("BeforeSend: submitting aboutyou form");
             },
             success: function(response) {
               // do something
@@ -282,7 +282,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: 'submit/goalsetting_submit.php',
+            url: '../../scripts/php/main_app/data_management/user_registration/submit/goalsetting_submit.php',
             processData: false,
             contentType: false,
             async: false,
@@ -290,7 +290,7 @@ try {
             data: form_data,
             beforeSend: function() {
               // do something
-              alert("BeforeSend: submitting goalsetting form");
+              console.log("BeforeSend: submitting goalsetting form");
             },
             success: function(response) {
               // do something
@@ -312,7 +312,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: 'submit/fitprefs_submit.php',
+            url: '../../scripts/php/main_app/data_management/user_registration/submit/fitprefs_submit.php',
             processData: false,
             contentType: false,
             async: false,
@@ -320,7 +320,7 @@ try {
             data: form_data,
             beforeSend: function() {
               // do something
-              alert("BeforeSend: submitting fitprefs form");
+              console.log("BeforeSend: submitting fitprefs form");
             },
             success: function(response) {
               // do something
@@ -342,7 +342,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: 'submit/policy_acceptance_submit.php',
+            url: '../../scripts/php/main_app/data_management/user_registration/submit/policy_acceptance_submit.php',
             processData: false,
             contentType: false,
             async: false,
@@ -350,14 +350,14 @@ try {
             data: form_data,
             beforeSend: function() {
               // do something
-              alert("BeforeSend: submitting Policy acceptance form");
+              console.log("BeforeSend: submitting Policy acceptance form");
             },
             success: function(response) {
               // do something
               console.log("Success Response: " + response);
               // if the response is successful, take user to home screen
               if (response.startsWith("success")) {
-                window.location.href = "";
+                window.location.href = "complete/";
               }
             },
             error: function(xhr, ajaxOptions, thrownError) {
@@ -403,15 +403,6 @@ try {
           $("#submit-policy-info-form").click();
         });
       });
-
-      // submit the profile sections data from the forms
-      // fitprefs - info - form
-
-      // $("#uploadProfileImgForm").submit(function (e) {
-      //   e.preventDefault();
-
-
-      // });
 
     });
   </script>
@@ -2445,7 +2436,7 @@ try {
   <!-- Modals -->
   <!-- Button trigger modal>>>>>>>>>> Tab Upload Modal -->
   <button id="toggleTabProfileImgModalBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tabProfileImgModal" hidden>
-    Launch #tabNavModal</button>
+    Launch #tabProfileImgModal</button>
 
   <!-- >>>>>>>>>> Tab Navigation Modal -->
   <div class="modal fade" id="tabProfileImgModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tabProfileImgModalLabel" aria-hidden="true">

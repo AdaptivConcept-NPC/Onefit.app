@@ -26,7 +26,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
 
         // try to compile the modal body html
         try {
-            //code...
+            //get existing/current activities 
             $currentActivityItems = <<<_END
             <div class="chart-col-bar-item text-center position-relative">
                 <p>Cycling / Spinning</p>
