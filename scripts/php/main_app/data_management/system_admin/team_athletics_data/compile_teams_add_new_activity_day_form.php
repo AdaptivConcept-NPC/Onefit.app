@@ -52,7 +52,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                     $schedule_title = $row["schedule_title"];
                     $schedule_rpe = $row["schedule_rpe"];
                     $schedule_day = ucfirst($row["schedule_day"]);
-                    $schedule_date = date("d M Y", strtotime($row["schedule_date"]));
+                    $schedule_date = date("d/m/Y", strtotime($row["schedule_date"]));
                     $groups_group_ref_code = $row["groups_group_ref_code"];
 
                     // twa
@@ -106,8 +106,6 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                         </span>
                     </button>
                 </div>
-                <p class="text-center fs-5 fw-bold comfortaa-font">$schedule_day</p>
-                <p class="text-center fs-5 fw-bold comfortaa-font">$schedule_date</p>
                 _END;
 
                 // echo $activities_bar_content;
@@ -147,39 +145,32 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
             $formHTML = <<<_END
             <div class="row px-4 align-items-end">
                 <div class="col-md-4 p-4 text-center">
-                    <p id="bar-title-day$dayNum" class="fs-3 fw-bold">
-                        Regeneration
+                    <p id="form-bar-title-day$dayNum" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
+                        $schedule_title
                     </p>
-                    <p>
-                        RPE 1-3
+                    <p id="form-bar-rpe-day$dayNum" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
+                        RPE $schedule_rpe
                     </p>
-                    <div id="indi-weekly-activity-barchart-bar-day$dayNum" class="chart-col-bar p-2 shadow progress-bar progress-bar-stripedz bg-warningz">
+                    <div id="form-indi-weekly-activity-barchart-bar-day$dayNum" class="chart-col-bar p-2 shadow progress-bar mb-4">
                         $currentActivityItems
                         <hr class="text-white my-2 p-0" style="height: 5px;">
                     </div>
                     <hr class="text-dark">
-                    <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                        <button class="onefit-buttons-style-tahiti rounded-circle p-2 my-2" onclick="editAddNewActivityModal('$getDay','$getGrpRef')">
-                            <span class="material-icons material-icons-round">
-                                add_circle
-                            </span>
-                        </button>
-                    </div>
-                    <p class="text-center fs-5 fw-bold">$getDay</p>
-                    <p class="text-center fs-5 fw-bold">$dayDateThisWeek</p>
+                    <p class="text-center fs-5 fw-bold comfortaa-font">$schedule_day</p>
+                    <p class="text-center fs-5 fw-bold comfortaa-font">$schedule_date</p>
                 </div>
                 <div class="col-md-8">
                     <form id="teams-add-new-day-activity-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/system_admin/team_athletics_data/submit/teams_add_new_activity_day_form_submit.php" autocomplete="off">
                         <div class="form-group my-4">
-                            <label for="activity-title" class="comfortaa-font fs-5" style="color: #ffa500;">Activity title:</label>
+                            <label for="activity-title" class="comfortaa-font fs-5 text-start" style="color: #ffa500;">Activity title:</label>
                             <input class="form-control-text-input p-4" type="number" name="activity-title" id="activity-title" placeholder="Activity Title (Required)" required />
                         </div>
                         <div class="form-group my-4">
-                            <label for="rpe" class="comfortaa-font fs-5" style="color: #ffa500;">RPE:</label>
+                            <label for="rpe" class="comfortaa-font fs-5 text-start" style="color: #ffa500;">RPE:</label>
                             <input class="form-control-text-input p-4" type="number" name="rpe" id="rpe" placeholder="RPE (Required)" required />
                         </div>
                         <div class="form-group my-4">
-                            <h5 style="color: #ffa500;">Assign an icon:</h5>
+                            <h5 class="text-start" style="color: #ffa500;">Assign an icon:</h5>
                             <div class="input-group gap-2 chart-col-bar-item" style="transform: scale(1,1) !important;">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input me-2" type="radio" name="activity-icon" id="activity-icon-cycling" value="../media/assets/icons/cycling.png">
@@ -226,7 +217,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                             </div>
                         </div>
                         <div class="form-group my-4">
-                            <label for="activity-select" class="comfortaa-font fs-5" style="color: #ffa500;">1. Workout / Activity:</label>
+                            <label for="activity-select" class="comfortaa-font fs-5 text-start" style="color: #ffa500;">1. Workout / Activity:</label>
                             <select class="custom-select form-control-select-input p-4" name="activity-selectt" id="activity-select" required>
                                 <option value='no-selection'>Select a workout / activity.</option>
                                 $workout_activities_list
@@ -236,7 +227,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                         <!-- submit btn -->
                         <button id="submit-teams-add-new-day-activity-data-form" class="btn onefit-buttons-style-tahiti p-4" type="submit" value="submit">
                             <span class="material-icons material-icons-round align-middle"> add_circle </span>
-                            <span class="align-middle">Save.</span>
+                            <span class="align-middle">Add.</span>
                         </button>
                     </form>
                 </div>

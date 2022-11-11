@@ -59,7 +59,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                 $schedule_title = $row["schedule_title"];
                 $schedule_rpe = $row["schedule_rpe"];
                 $schedule_day = ucfirst($row["schedule_day"]);
-                $schedule_date = date("d M Y", strtotime($row["schedule_date"]));
+                $schedule_date = date("d/m/Y", strtotime($row["schedule_date"]));
                 $groups_group_ref_code = $row["groups_group_ref_code"];
 
                 // twa
@@ -96,10 +96,10 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                     </button>
                 </div>
                 <!-- ./ Edit training day bar - Day $dayNum -->
-                <p id="bar-title-day$dayNum" class="fs-3 fw-bold comfortaa-font">
+                <p id="bar-title-day$dayNum" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                     $schedule_title
                 </p>
-                <p id="bar-rpe-day$dayNum" class="comfortaa-font">
+                <p id="bar-rpe-day$dayNum" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                     RPE $schedule_rpe
                 </p>
                 <div id="teams-weekly-activity-barchart-bar-day$dayNum" class="chart-col-bar p-2 shadow down-top-intensity-bar-bg-grad">
