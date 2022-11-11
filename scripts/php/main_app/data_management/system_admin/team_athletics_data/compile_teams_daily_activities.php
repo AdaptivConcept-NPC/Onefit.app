@@ -33,7 +33,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
         $exercises_exercise_id = null;
 
     try {
-        //code...
+        //code to compile the teams daily activities in the daily activities chart bars
         $query = "SELECT tws.teams_weekly_schedule_id, tws.schedule_title, tws.schedule_rpe, tws.schedule_day, tws.schedule_date, tws.groups_group_ref_code, 
         twa.teams_activity_id, twa.activity_title, twa.activity_description, twa.activity_icon, twa.teams_weekly_schedules_teams_weekly_schedule_id, twa.exercises_exercise_id 
         FROM teams_weekly_schedules tws 

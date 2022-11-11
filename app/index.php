@@ -2473,64 +2473,228 @@ function getAllTrainers()
 
             <div class="collapse showz down-top-grad-dark w3-animate-top comfortaa-font text-white" style="border-radius: 25px; overflow: hidden;" id="cart-panel">
                 <div class="p-4 shadow" id="">
-                    <div class="text-center d-flex justify-content-between">
-                        <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4" type="button">
-                            <p>
-                                <span class="material-icons material-icons-round">
-                                    storefront
-                                </span>
-                                <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span style="color: #ffa500 !important;">.Store</span></span>
-                            </p>
+                    <div class="text-center d-flex justify-content-between align-items-center">
+                        <button class="navbar-toggler shadow onefit-buttons-style-dark p-4 mb-4 w3-animate-right d-grid gap-1" type="button" onclick="openLink(event, 'TabStore')">
+                            <span class="material-icons material-icons-round align-middle">
+                                storefront
+                            </span>
+                            <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span style="color: #ffa500 !important;">.Store</span></span>
                         </button>
-                        <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4" type="button">
-                            <p>
-                                <span class="material-icons material-icons-round">
-                                    point_of_sale
-                                </span>
-                                <span class="align-middle"><span class="d-none d-lg-block">Proceed to </span>Checkout</span>
-                            </p>
+
+                        <div class="w3-animate-top text-center">
+                            <!-- <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="max-height: 50px;" alt="logo"> -->
+                            <div class="d-grid text-center">
+                                <p class="m-0 fs-5 comfortaa-font text-muted">Shopping</p>
+                                <p class="m-0 fs-1 comfortaa-font text-muted">Cart.</p>
+                            </div>
+
+                        </div>
+
+                        <button class="navbar-toggler shadow onefit-buttons-style-dark p-4 mb-4 w3-animate-left d-grid gap-1" type="button">
+                            <span class="material-icons material-icons-round align-middle">
+                                point_of_sale
+                            </span>
+                            <span class="align-middle">
+                                <span class="d-none d-lg-block">Proceed to </span><span class="d-none d-lg-block" style="color: #ffa500 !important;">>Payment.</span>
+                            </span><span class="d-lg-none" style="color: #ffa500 !important;">Pay.</span>
                         </button>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 py-4">
-                            <p class="text-start">Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;">20220201-879ds6fsdf_id</span> ]</p>
+                            <p class="text-start w3-animate-left comfortaa-font" style="min-height: 30px;">Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;">20220201-879ds6fsdf_id</span> ]</p>
                             <hr class="text-white">
                             <h1><span style="color: #ffa500;">Total:</span> R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 10px; color: #ffa500;">ZAR</span></h1>
-                            <ul class="list-group list-group-flush list-group-numbered shadow py-4 no-scroller" id="" style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
-                                <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
-                                <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
-                                <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
-                                <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
+                            <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numbered shadow py-4 no-scroller px-4" style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
+                                <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <div class="d-grid gap-2 text-start px-4 pb-2">
+                                            <div class="comfortaa-font">
+                                                <span id="main-cart-items-list-item-name" class="align-middle">Aiwa Smart Band ASB-40</span>
+                                            </div>
+                                            <div class="comfortaa-font">
+                                                <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                                <span class="fs-5" id="main-cart-items-list-item-price" style="color: #ffa500;">R149.00</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-grid justify-content-end">
+                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                                    highlight_off
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </li>
+                                <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <div class="d-grid gap-2 text-start px-4 pb-2">
+                                            <div class="comfortaa-font">
+                                                <span id="main-cart-items-list-item-name" class="align-middle">Aiwa Smart Band ASB-40</span>
+                                            </div>
+                                            <div class="comfortaa-font">
+                                                <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                                <span class="fs-5" id="main-cart-items-list-item-price" style="color: #ffa500;">R149.00</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-grid justify-content-end">
+                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                                    highlight_off
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </li>
+                                <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <div class="d-grid gap-2 text-start px-4 pb-2">
+                                            <div class="comfortaa-font">
+                                                <span id="main-cart-items-list-item-name" class="align-middle">Aiwa Smart Band ASB-40</span>
+                                            </div>
+                                            <div class="comfortaa-font">
+                                                <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                                <span class="fs-5" id="main-cart-items-list-item-price" style="color: #ffa500;">R149.00</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-grid justify-content-end">
+                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                                    highlight_off
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </li>
+                                <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <div class="d-grid gap-2 text-start px-4 pb-2">
+                                            <div class="comfortaa-font">
+                                                <span id="main-cart-items-list-item-name" class="align-middle">Aiwa Smart Band ASB-40</span>
+                                            </div>
+                                            <div class="comfortaa-font">
+                                                <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                                <span class="fs-5" id="main-cart-items-list-item-price" style="color: #ffa500;">R149.00</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-grid justify-content-end">
+                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                                    highlight_off
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </li>
                             </ul>
                         </div>
                         <div class="col-md-6 py-4">
-                            <p class="text-start">Cart Items (4)</p>
+                            <p class="text-end w3-animate-right comfortaa-font" style="min-height: 30px;">Cart Items (<span id="mini-cart-item-count" style="color: #ffa500;">4</span>)</p>
                             <hr class="text-white">
-                            <div class="horizontal-scroll">
-                                <div class="horizontal-scroll-card p-4 shadow">
-                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
-                                    <p class="fw-bold text-truncate text-center py-4">
-                                        R149.00 | Aiwa Smart Band ASB-40
-                                    </p>
+                            <div class="horizontal-scroll p-5">
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-end me-4 position-relative" style="border-color: #ffa500 !important;">
+                                    <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
+                                        1
+                                    </div>
+                                    <div class="d-grid gap-2 justify-content-center">
+                                        <span class="material-icons material-icons-round text-muted" style="font-size: 8px !important;">shopping_basket</span>
+                                        <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                        <div class="text-center">
+                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
+                                        </div>
+
+                                        <p class="fw-bold text-truncate text-center py-4 comfortaa-font">
+                                            <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                            <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
+                                        </p>
+                                        <div class="d-grid">
+                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                                    highlight_off
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <div class="horizontal-scroll-card p-4 shadow">
-                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
-                                    <p class="fw-bold text-truncate text-center py-4">
-                                        R149.00 | Aiwa Smart Band ASB-40
-                                    </p>
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-end me-4 position-relative" style="border-color: #ffa500 !important;">
+                                    <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
+                                        2
+                                    </div>
+                                    <div class="d-grid gap-2 justify-content-center">
+                                        <span class="material-icons material-icons-round text-muted" style="font-size: 8px !important;">shopping_basket</span>
+                                        <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                        <div class="text-center">
+                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
+                                        </div>
+
+                                        <p class="fw-bold text-truncate text-center py-4 comfortaa-font">
+                                            <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                            <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
+                                        </p>
+                                        <div class="d-grid">
+                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                                    highlight_off
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <div class="horizontal-scroll-card p-4 shadow">
-                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
-                                    <p class="fw-bold text-truncate text-center py-4">
-                                        R149.00 | Aiwa Smart Band ASB-40
-                                    </p>
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-end me-4 position-relative" style="border-color: #ffa500 !important;">
+                                    <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
+                                        3
+                                    </div>
+                                    <div class="d-grid gap-2 justify-content-center">
+                                        <span class="material-icons material-icons-round text-muted" style="font-size: 8px !important;">shopping_basket</span>
+                                        <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                        <div class="text-center">
+                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
+                                        </div>
+
+                                        <p class="fw-bold text-truncate text-center py-4 comfortaa-font">
+                                            <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                            <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
+                                        </p>
+                                        <div class="d-grid">
+                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                                    highlight_off
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <div class="horizontal-scroll-card p-4 shadow">
-                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
-                                    <p class="fw-bold text-truncate text-center py-4">
-                                        R149.00 | Aiwa Smart Band ASB-40
-                                    </p>
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-end me-4 position-relative" style="border-color: #ffa500 !important;">
+                                    <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
+                                        4
+                                    </div>
+                                    <div class="d-grid gap-2 justify-content-center">
+                                        <span class="material-icons material-icons-round text-muted" style="font-size: 8px !important;">shopping_basket</span>
+                                        <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                        <div class="text-center">
+                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
+                                        </div>
+
+                                        <p class="fw-bold text-truncate text-center py-4 comfortaa-font">
+                                            <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                            <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
+                                        </p>
+                                        <div class="d-grid">
+                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                                    highlight_off
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -5058,7 +5222,7 @@ function getAllTrainers()
                                             </span>
                                         </button>
                                     </div>
-                                    <div class="col-md -8 py-4">
+                                    <div class="col-md -8 py-4 d-flex justify-content-center">
 
                                         <div class="in-div-button-container">
                                             <!-- refresh button -->
@@ -5161,7 +5325,7 @@ function getAllTrainers()
                                             </span>
                                         </button>
                                     </div>
-                                    <div class="col-md -8 py-4">
+                                    <div class="col-md -8 py-4 d-flex justify-content-center">
 
                                         <div class="in-div-button-container">
                                             <!-- refresh button -->
@@ -5264,7 +5428,7 @@ function getAllTrainers()
                                             </span>
                                         </button>
                                     </div>
-                                    <div class="col-md -8 py-4">
+                                    <div class="col-md -8 py-4 d-flex justify-content-center">
 
                                         <div class="in-div-button-container">
                                             <!-- refresh button -->
@@ -5362,7 +5526,7 @@ function getAllTrainers()
                                         <img src="../media/assets/smartwatches/branding/fitbit-png-logo-white.png" class="img-fluid mt-4 mb-2" style="max-width: 200px;" alt="fitbit logo">
                                         <p class="comfortaa-font">Connect your Fitbit activity tracker / smartwatch</p>
                                     </div>
-                                    <div class="col-md -8 py-4">
+                                    <div class="col-md -8 py-4 d-flex justify-content-center">
 
                                         <div class="in-div-button-container">
                                             <!-- refresh button -->
@@ -5399,7 +5563,7 @@ function getAllTrainers()
                                             </span>
                                         </button>
                                     </div>
-                                    <div class="col-md -8 py-4">
+                                    <div class="col-md -8 py-4 d-flex justify-content-center">
 
                                         <div class="in-div-button-container">
                                             <!-- refresh button -->
@@ -5494,13 +5658,14 @@ function getAllTrainers()
 
                     <!-- Weekly Activities -->
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <span class="material-icons material-icons-outlined"> pending_actions </span>
                         <h5 class="mt-4 fs-1 text-center">Weekly Assessments</h5>
                         <p class="fs-5 text-center comfortaa-font"> Training Week: (<span id="weekly-survey-duration-dates">Start Date - End Date</span>)</p>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
 
                     <!-- weekly assessment horizontal scroll container -->
-                    <div class="horizontal-scroll shadow">
+                    <div id="weekly-assessment-horizontal-scroll-container" class="horizontal-scroll shadow">
                         <div class="horizontal-scroll-card p-4 m-1 shadow">
                             <h5>Sunday (dd/mm/yyyy)</h5>
                             <hr class="text-white" style="height: 5px;">
@@ -7219,11 +7384,11 @@ function getAllTrainers()
                                                                         </button>
                                                                     </div>
                                                                     <!-- ./ Edit training day bar - Day 1 -->
-                                                                    <p id="bar-title-day1" class="fs-3 fw-bold">
+                                                                    <p id="bar-title-day1" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         Regeneration
                                                                     </p>
 
-                                                                    <p id="bar-rpe-day1">
+                                                                    <p id="bar-rpe-day1" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         RPE 1-3
                                                                     </p>
                                                                     <div id="teams-weekly-activity-barchart-bar-day1" class="chart-col-bar p-2 shadow progress-bar progress-bar-stripedz bg-warningz">
@@ -7280,11 +7445,11 @@ function getAllTrainers()
                                                                         </button>
                                                                     </div>
                                                                     <!-- ./ Edit training day bar - Day 2 -->
-                                                                    <p class="fs-3 fw-bold">
+                                                                    <p id="bar-title-day2" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         Recovery
                                                                     </p>
 
-                                                                    <p>
+                                                                    <p id="bar-rpe-day2" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         RPE 0
                                                                     </p>
 
@@ -7328,11 +7493,11 @@ function getAllTrainers()
                                                                         </button>
                                                                     </div>
                                                                     <!-- ./ Edit training day bar - Day 3 -->
-                                                                    <p class="fs-3 fw-bold">
+                                                                    <p id="bar-title-day3" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         Longer pitch / strides
                                                                     </p>
 
-                                                                    <p>
+                                                                    <p id="bar-rpe-day3" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         RPE 4-6
                                                                     </p>
 
@@ -7404,11 +7569,11 @@ function getAllTrainers()
                                                                         </button>
                                                                     </div>
                                                                     <!-- ./ Edit training day bar - Day 4 -->
-                                                                    <p class="fs-3 fw-bold">
+                                                                    <p id="bar-title-day4" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         Strength / change of directon
                                                                     </p>
 
-                                                                    <p>
+                                                                    <p id="bar-rpe-day4" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         RPE 7-10
                                                                     </p>
 
@@ -7494,11 +7659,11 @@ function getAllTrainers()
                                                                         </button>
                                                                     </div>
                                                                     <!-- ./ Edit training day bar - Day 5 -->
-                                                                    <p class="fs-3 fw-bold">
+                                                                    <p id="bar-title-day5" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         Taper
                                                                     </p>
 
-                                                                    <p>
+                                                                    <p id="bar-rpe-day5" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         RPE 1-3
                                                                     </p>
 
@@ -7556,11 +7721,11 @@ function getAllTrainers()
                                                                         </button>
                                                                     </div>
                                                                     <!-- ./ Edit training day bar - Day 6 -->
-                                                                    <p class="fs-3 fw-bold">
+                                                                    <p id="bar-title-day6" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         Match prep
                                                                     </p>
 
-                                                                    <p>
+                                                                    <p id="bar-rpe-day6" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         RPE 2-4
                                                                     </p>
 
@@ -7632,11 +7797,11 @@ function getAllTrainers()
                                                                         </button>
                                                                     </div>
                                                                     <!-- ./ Edit training day bar - Day 7 -->
-                                                                    <p class="fs-3 fw-bold">
+                                                                    <p id="bar-title-day7" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         Match
                                                                     </p>
 
-                                                                    <p>
+                                                                    <p id="bar-rpe-day7" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                                                                         RPE 7-10
                                                                     </p>
 
@@ -9557,7 +9722,7 @@ function getAllTrainers()
                                             </span>
                                         </button> -->
                                 </div>
-                                <div class="col-xlg -8 py-4">
+                                <div class="col-xlg -8 py-4 d-flex justify-content-center">
                                     <!-- Canvasjs chart canvas -->
                                     <!-- <canvas class="chartjs-chart-light shadow" id="heart_rate_monitor_chart" width="400" height="400"></canvas> -->
                                     <!-- ./Canvasjs chart canvas -->
@@ -9644,7 +9809,7 @@ function getAllTrainers()
                                         </span>
                                     </button> -->
                                 </div>
-                                <div class="col-xlg -8 py-4">
+                                <div class="col-xlg -8 py-4 d-flex justify-content-center">
                                     <!-- Canvasjs chart canvas -->
                                     <!-- <canvas class="chartjs-chart-light shadow" id="body_temp_monitor_chart" width="400" height="400"></canvas> -->
                                     <!-- ./Canvasjs chart canvas -->
@@ -9730,7 +9895,7 @@ function getAllTrainers()
                                             </span>
                                         </button> -->
                                 </div>
-                                <div class="col-xlg -8 py-4">
+                                <div class="col-xlg -8 py-4 d-flex justify-content-center">
                                     <!-- Canvasjs chart canvas -->
                                     <!-- <canvas class="chartjs-chart-light shadow" id="speed_monitor_chart" width="400" height="400"></canvas> -->
                                     <!-- ./Canvasjs chart canvas -->
@@ -9811,7 +9976,7 @@ function getAllTrainers()
                                     </div>
 
                                 </div>
-                                <div class="col-md -8 py-4 text-center">
+                                <div class="col-md -8 py-4 text-center d-flex justify-content-center">
                                     <!-- Canvasjs chart canvas -->
                                     <!-- <canvas class="chartjs-chart-light shadow" id="step_counter_monitor_chart" width="400" height="400"></canvas> -->
                                     <!-- ./Canvasjs chart canvas -->
@@ -9841,7 +10006,7 @@ function getAllTrainers()
                                             </span>
                                         </button> -->
                                 </div>
-                                <div class="col-xlg -8 py-4">
+                                <div class="col-xlg -8 py-4 d-flex justify-content-center">
                                     <!-- Canvasjs chart canvas -->
                                     <!-- <canvas class="chartjs-chart-light shadow" id="bmi_weight_monitor_chart" width="400" height="400"></canvas> -->
                                     <!-- ./Canvasjs chart canvas -->
