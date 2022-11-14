@@ -109,11 +109,15 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // Load App Content
         // Load the user profile information
-        $sql = "SELECT * FROM users u INNER JOIN user_profiles up ON u.username = up.username WHERE u.username = '$currentUser_Usrnm';";
+        $sql = "SELECT * FROM users u INNER JOIN general_user_profiles gup ON u.username = gup.username WHERE u.username = '$currentUser_Usrnm';";
 
         if ($result = mysqli_query($dbconn, $sql)) {
 
+            $usr_profilebannerurl = $usr_profileurl = "";
+
             while ($row = mysqli_fetch_assoc($result)) {
+                // gup: `user_profile_id`, `about`, `profile_type`, `verification`, `profile_url`, `profile_image_url`, `profile_banner_url`, `users_username`
+                // u: `user_id`, `username`, `password_hash`, `user_name`, `user_surname`, `id_number`, `user_email`, `contact_number`, `date_of_birth`, `user_gender`, `user_race`, `user_nationality`, `account_active`
                 $usr_userid = $row["user_id"];
 
                 $usrprof_username = $row["username"];
@@ -131,7 +135,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                 $usr_profileid = $row["user_profile_id"];
                 $usr_about = $row["about"];
                 $usr_profiletype = $row["profile_type"];
-                $usr_profilepicurl = $row["profile_url"];
+                $usr_profileurl = $row["profile_url"];
+                $usr_profilepicurl = $row["profile_image_url"];
+                $usr_profilebannerurl = $row["profile_banner_url"];
                 $usr_verification = $row["verification"];
             }
 
@@ -139,9 +145,10 @@ if (isset($_SESSION["currentUserAuth"])) {
             //$currentUserAccountProdImg = '<img src="../media/profiles/'.$usrprof_username.'/'.$usr_profilepicurl.'" alt="'.$usrprof_name.' '.$usrprof_surname.' - Profile Picture" class="img-fluid">';
             if ($usr_profilepicurl == "default" || $usr_profilepicurl == null || $usr_profilepicurl == "") {
                 $currentuser_img_url = "../media/profiles/0_default/default_profile_pic.png";
-            } else {
-                $currentuser_img_url = "../media/profiles/$currentUser_Usrnm/$usr_profilepicurl";
             }
+            //  else {
+            //     $currentuser_img_url = "../media/profiles/$currentUser_Usrnm/$usr_profilepicurl";
+            // }
 
             $currentUserAccountProdImg = '<div class="social-update-profile-pic shadow" style="background-position: center !important; background-size: contain !important; background-repeat: no-repeat !important; background-attachment: local !important; height: 150px !important; width:  150px !important; background: url(' . "'$currentuser_img_url'" . ') !important"></div>';
 
@@ -2451,13 +2458,13 @@ function getAllTrainers()
     <!-- Load Curtain -->
     <div class="load-curtain" id="LoadCurtain" style="display: block;">
         <!-- twitter social panel -->
-        <div class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4">
+        <div class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4 tunnel-bg-container-static shadow-lg">
             <!--  d-none d-lg-block p-4 -->
             <div class="d-flex gap-2 w-100">
-                <button class="p-4 m-0 shadow onefit-buttons-style-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
+                <button class="p-4 m-0 shadow onefit-buttons-style-dark-twitter" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
                     <div class="d-grid">
                         <span class="material-icons material-icons-round" style="font-size: 48px !important;">
-                            <i class="fab fa-twitter" style="font-size: 40px; color: #fff !important;"></i>
+                            <i class="fab fa-twitter" style="font-size: 40px;"></i>
                         </span>
                         <p class="comfortaa-font mt-1 mb-0" style="font-size: 10px;">@onefitnet</p>
                     </div>
@@ -2557,7 +2564,7 @@ function getAllTrainers()
                             <p class="text-start w3-animate-left comfortaa-font" style="min-height: 30px;">Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;">20220201-879ds6fsdf_id</span> ]</p>
                             <hr class="text-white">
                             <h1><span style="color: #ffa500;">Total:</span> R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 10px; color: #ffa500;">ZAR</span></h1>
-                            <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numbered shadow py-4 no-scroller px-4" style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
+                            <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numbered shadow py-4 no-scroller px-4 w3-animate-left" style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
                                 <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
                                         <div class="d-grid gap-2 text-start px-4 pb-2">
@@ -2647,7 +2654,7 @@ function getAllTrainers()
                         <div class="col-md-6 py-4">
                             <p class="text-end w3-animate-right comfortaa-font" style="min-height: 30px;">Cart Items (<span id="mini-cart-item-count" style="color: #ffa500;">4</span>)</p>
                             <hr class="text-white">
-                            <div class="horizontal-scroll p-5">
+                            <div class="horizontal-scroll p-5 w3-animate-right">
                                 <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-end me-4 position-relative" style="border-color: #ffa500 !important;">
                                     <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
                                         1
@@ -2876,24 +2883,24 @@ function getAllTrainers()
         <nav class="navbar navbar-light sticky-top navbar-style w-100 mb-4" style="border-radius: 25px; max-height: 100vh !important; border-bottom: #ffa500 solid 5px;">
             <!-- App Function Buttons -->
             <div class="container">
-                <button class="onefit-buttons-style-dark p-2 shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
+                <button class="onefit-buttons-style-dark p-4 shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> notifications </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Notifications</span>
                     </div>
                 </button>
 
-                <button type="button" id="display-current-tab-button" class="onefit-buttons-style-dark p-2 my-4 shadow comfortaa-font" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#tabNavModal">
+                <button type="button" id="display-current-tab-button" class="onefit-buttons-style-dark p-4 my-4 shadow comfortaa-font" style="max-width:87px;" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#tabNavModal">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important;" id="display-current-tab-button-icon">
                             dashboard </span>
-                        <span class="d-none d-lg-block" id="display-current-tab-button-text" style="font-size: 10px;">Dashboard</span>
+                        <span class="d-none d-lg-block text-truncate" id="display-current-tab-button-text" style="font-size: 10px;">Dashboard</span>
                     </div>
                 </button>
 
                 <!-- Main UPPL Toggle button -->
                 <div class="d-inline gap-2">
-                    <button class="onefit-buttons-style-dark p-2 shadow d-nonez d-lg-blockz" style="overflow: hidden; font-size: 10px;" type="button" data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal">
+                    <button class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz" style="overflow: hidden; font-size: 10px;" type="button" data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal">
                         <div class="d-grid gap-2 text-center">
                             <!-- Profile Picture -->
                             <img src="../media/assets/One-Symbol-Logo-White.png" alt="Onefit Logo" class="p-1 img-fluid my-pulse-animation-tahitiz" style="height: 50px; width: 50px; border-radius: 15px; border-color: #ffa500 !important" />
@@ -2904,7 +2911,7 @@ function getAllTrainers()
                 </div>
                 <!-- ./ Main UPPL Toggle button -->
 
-                <button type="button" class="onefit-buttons-style-dark p-2 my-4 shadow comfortaa-font" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
+                <button type="button" class="onefit-buttons-style-dark p-4 my-4 shadow comfortaa-font" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> widgets </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Widgets</span>
@@ -2912,7 +2919,7 @@ function getAllTrainers()
                     <!--<span class="material-icons material-icons-round" style="font-size: 24px !important"> linear_scale </span>-->
                 </button>
 
-                <button class="navbar-toggler shadow onefit-buttons-style-dark p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <button class="navbar-toggler shadow onefit-buttons-style-dark p-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> menu_open </span>
                         <span class="d-none d-lg-block" id="" style="font-size: 10px;">Navigation</span>
@@ -2981,7 +2988,7 @@ function getAllTrainers()
                 </button>
 
                 <div class="offcanvas offcanvas-start offcanvas-menu-primary-style fitness-bg-containerz" tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
-                    <div class="offcanvas-header align-center shadow" style="background-color: #fff;">
+                    <div class="offcanvas-header align-center shadow" style="background-color: #343434;">
                         <span class="material-icons material-icons-round" style="font-size: 48px !important"> notifications </span>
 
                         <h5 id="offcanvasTopLabel" style="overflow-x: hidden;">
@@ -2991,7 +2998,8 @@ function getAllTrainers()
                             <span class="material-icons material-icons-round"> cancel </span>
                         </button>
                     </div>
-                    <div class="offcanvas-body" style="background-color: rgba(255, 255, 255, 0.8);">
+                    <div class="offcanvas-body top-down-grad-white">
+                        <!-- style="background-color: rgba(255, 255, 255, 0.8);" -->
                         <ul class="list-group list-group-flush shadow p-4z" id="notif-list" style="border-radius: 25px; max-height: 60vh;" hidden>
                             <li class="list-group-item border-dark">An item</li>
                             <li class="list-group-item border-dark">A second item</li>
@@ -3021,7 +3029,7 @@ function getAllTrainers()
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
 
-                    <h5 class="text-center">Hi Thabang.</h5>
+                    <h5 class="text-center">Hi <?php echo $usrs_name; ?>.</h5>
                     <p class="my-4 text-center comfortaa-fontr">Welcome to the Dashboard Page. Here, you can find various feeds from the activities we will be doing in the OnefitNet Community.</p>
 
                     <hr class="text-white">
@@ -7752,7 +7760,7 @@ function getAllTrainers()
                                             <h5 class="mb-4" id="teams-weekly-training-schedule-title">Training week for those who played 45+ minutes in previous match</h5>
 
                                             <div class="row mb-4">
-                                                <div class="col-md g-grid">
+                                                <div class="col-md d-grid">
                                                     <button class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" onclick="$.populateWeeklyActivityBarChart()">
                                                         <span class="material-icons material-icons-round">
                                                             refresh
@@ -7760,7 +7768,7 @@ function getAllTrainers()
                                                         <p class="d-nonez d-lg-blockz comfortaa-font" style="font-size: 10px;">Refresh.</p>
                                                     </button>
                                                 </div>
-                                                <div class="col-md g-grid">
+                                                <div class="col-md d-grid">
                                                     <button class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="add-weekly-activity-btn remove-weekly-activity-btn">
                                                         <span class="material-icons material-icons-round">
                                                             edit_calendar
@@ -7768,7 +7776,7 @@ function getAllTrainers()
                                                         <p class="d-nonez d-lg-blockz comfortaa-font" style="font-size: 10px;">Edit Weekly Schedule</p>
                                                     </button>
                                                 </div>
-                                                <div class="col-md g-grid">
+                                                <div class="col-md d-grid">
                                                     <button class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button">
                                                         <span class="material-icons material-icons-round">
                                                             support_agent </span>
@@ -8400,13 +8408,14 @@ function getAllTrainers()
 
                     <!-- Twitter social buttons / section -->
                     <!-- twitter social panel -->
-                    <div class="load-curtain-social-btn-panel tunnel-bg-container-inverse comfortaa-font d-grid gap-2 p-4 shadow" style="position: fixed;top: auto;bottom: 5vh;right: 0px; left: auto; border-radius: 25px 0 0 25px !important;z-index:auto;">
+                    <div class="load-curtain-social-btn-panel tunnel-bg-container-static comfortaa-font d-grid gap-2 p-4 shadow-lg" style="position: fixed;top: auto;bottom: 5vh;right: 0px; left: auto; border-radius: 25px 0 0 25px !important;">
+                        <!-- z-index:auto; -->
                         <!--  d-none d-lg-block p-4 -->
                         <div class="d-flex gap-2 w-100">
-                            <button class="p-4 m-0 shadow onefit-buttons-style-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
+                            <button class="p-4 m-0 shadow onefit-buttons-style-light-twitter" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
                                 <div class="d-grid">
                                     <span class="material-icons material-icons-round" style="font-size: 48px !important;">
-                                        <i class="fab fa-twitter" style="font-size: 40px; color: #fff !important;"></i>
+                                        <i class="fab fa-twitter" style="font-size: 40px;"></i>
                                     </span>
                                     <p class="comfortaa-font mt-1 mb-0" style="font-size: 10px;">@onefitnet</p>
                                 </div>
@@ -8422,21 +8431,67 @@ function getAllTrainers()
                     <!-- ./ twitter social panel -->
                     <!-- ./ Twitter social buttons / section -->
 
-                    <h5><span class="material-icons material-icons-round align-middle">notifications</span> <span class="align-middle">Notifications</span></h5>
-                    <div id="communicationUserNotifications">
+                    <h2><span class="material-icons material-icons-round align-middle" style="color: #ffa500;">notifications</span> <span class="align-middle">Notifications</span></h2>
+                    <div class="mb-4" id="communicationUserNotifications">
                         <?php echo $outputProfileUserNotifications; ?>
                     </div>
-                    <h5><span class="material-icons material-icons-round align-middle">newspaper</span> <span class="align-middle">Updates / News</span></h5>
-                    <div id="communicationNews">
+
+                    <hr class="text-white">
+
+                    <h2><span class="material-icons material-icons-round align-middle" style="color: #ffa500;">newspaper</span> <span class="align-middle">Updates / News</span></h2>
+                    <div class="mb-4" id="communicationNews">
                         <?php echo $outputCommunityNews; ?>
                     </div>
-                    <h5><span class="material-icons material-icons-round align-middle">question_answer</span> <span class="align-middle">Messenger</span></h5>
-                    <div class="p-0 mb-4 d-grid gap-2 my-pulse-animation-dark rounded-pill">
+                    <div class="mb-4 py-4" id="communicationRSSImagebrd">
+                        <!-- #FitnessandDiet -->
+                        <h5><span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;">rss_feed</span> <span class="align-middle" style="color: #ffa500;"><span class="text-muted">RSS.</span> #FitnessandDiet</span></h5>
+                        <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                            <rssapp-magazine id="tRprB0QxQKySE340"></rssapp-magazine>
+                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
+                        </div>
+
+                        <!-- #Wellness -->
+                        <h5><span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;">rss_feed</span> <span class="align-middle" style="color: #ffa500;"><span class="text-muted">RSS.</span> #Wellness</span></h5>
+                        <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                            <rssapp-magazine id="tdSnePzUjMvFu4nu"></rssapp-magazine>
+                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
+                        </div>
+
+                        <!-- #worldofsport feed -->
+                        <h5><span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;">rss_feed</span> <span class="align-middle" style="color: #ffa500;"><span class="text-muted">RSS.</span> #WorldofSports</span></h5>
+                        <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                            <rssapp-magazine id="tqX4YEeGEu1eOKAT"></rssapp-magazine>
+                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
+                        </div>
+
+                        <!-- #footballfocus feed -->
+                        <h5><span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;">rss_feed</span> <span class="align-middle" style="color: #ffa500;"><span class="text-muted">RSS.</span> #FootballFocus</span></h5>
+                        <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                            <rssapp-magazine id="omltJunAYvJxQiZc"></rssapp-magazine>
+                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
+                        </div>
+
+                        <!-- #HealthandLifestyle -->
+                        <h5><span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;">rss_feed</span> <span class="align-middle" style="color: #ffa500;"><span class="text-muted">RSS.</span> #HealthandLifestyle</span></h5>
+                        <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                            <rssapp-magazine id="tUyOEDFpWEUsTIO4"></rssapp-magazine>
+                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
+                        </div>
+
+                    </div>
+
+                    <hr class="text-white">
+
+                    <h2 class="mb-4"><span class="material-icons material-icons-round align-middle" style="color: #ffa500;">question_answer</span> <span class="align-middle">Messenger</span></h2>
+                    <div class="p-0 mb-4 d-grid gap-2 my-pulse-animation-dark rounded-pill mb-4">
                         <button class="onefit-buttons-style-dark p-4 text-center fs-1 comfortaa-font shadow rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat">
                             One<span style="color:#ffa500;">fit.</span>Chat
                         </button>
                     </div>
-                    <h5><span class="material-icons material-icons-round align-middle">campaign</span> <span class="align-middle">AdMarket</span></h5>
+
+                    <hr class="text-white">
+
+                    <h2 class="mb-4"><span class="material-icons material-icons-round align-middle" style="color: #ffa500;">campaign</span> <span class="align-middle">AdMarket</span></h2>
                 </div>
                 <div id="TabSettings" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
@@ -8567,7 +8622,7 @@ function getAllTrainers()
                 </div>
                 <!-- ./ Widget: User Profile Preview List -->
 
-                <div class="row align-items-center p-4">
+                <div class="row align-items-center p-4 mb-4">
                     <div class="col-lg text-center my-4">
                         <div class="container-lg p-4 shadow-lg d-inline-block border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
                             <div class="row align-items-center text-center comfortaa-font">
@@ -8583,7 +8638,7 @@ function getAllTrainers()
                                     Temp
                                 </div>
                                 <div class="col-sm py-2 d-inline">
-                                    <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid my-pulse-animation-tahiti" />
+                                    <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid p-4 my-pulse-animation-tahiti" />
                                 </div>
                                 <div class="col-sm py-2 d-inline">
                                     <!--<i class="fas fa-bolt"></i>-->
@@ -8622,6 +8677,20 @@ function getAllTrainers()
                         </div>
                     </div>
                 </div>
+
+                <hr class="text-white">
+
+                <!-- RSS Feed embed -->
+                <!-- <div style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                </div> -->
+                <h2 class="mt-4"><span class="material-icons material-icons-round align-middle" style="color: #ffa500;">newspaper</span> <span class="align-middle">Updates / News</span></h2>
+
+                <h5><span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;">rss_feed</span> <span class="align-middle" style="color: #ffa500;"><span class="text-muted">RSS.</span> #WorldofSports</span></h5>
+                <rssapp-imageboard class="mt-4" id="tqX4YEeGEu1eOKAT"></rssapp-imageboard>
+                <script src="https://widget.rss.app/v1/imageboard.js" type="text/javascript" async></script>
+
+                <!-- ./ RSS Feed embed -->
+
                 <div class="text-center py-2">
                     <hr class="text-white" />
                     | Privacy |

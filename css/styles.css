@@ -337,6 +337,38 @@ sup {
   border-radius: 25px !important;
 }
 
+.onefit-buttons-style-light-twitter {
+  background: var(--white);
+  color: #333 !important;
+
+  border: 0;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+
+.onefit-buttons-style-light-twitter:hover {
+  color: var(--twitter) !important;
+  border-bottom: solid var(--twitter) 5px;
+
+  transform: scale(1.05, 1.05);
+}
+
+.onefit-buttons-style-dark-twitter {
+  background: var(--mineshaft);
+  color: #fff !important;
+
+  border: 0;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+
+.onefit-buttons-style-dark-twitter:hover {
+  color: var(--twitter) !important;
+  border-bottom: solid var(--twitter) 5px;
+
+  transform: scale(1.05, 1.05);
+}
+
 .social-link-icon-fb {
   color: var(--white) !important;
   background-color: var(--mineshaft);
