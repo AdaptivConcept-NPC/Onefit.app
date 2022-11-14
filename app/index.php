@@ -2265,42 +2265,94 @@ function getAllTrainers()
                 var weekDaysArray = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
                 // alert("JQuery AJAX populateWeeklyActivityBarChart");
-                var $grpRefCode = "tst_grp_0001";
+                var grpRefCode = "tst_grp_0001";
 
-                weekDaysArray.forEach(day => {
-                    $.get("../scripts/php/main_app/data_management/system_admin/team_athletics_data/compile_teams_daily_activities.php?day=" + day + "&gref=" + $grpRefCode, function(data, status) {
-                        // console.log("compile_teams_daily_activities returned: \n[Status]: " + status + "\n[Data]: " + data);
+                weekDaysArray.forEach(weekday => {
+                    $.get("../scripts/php/main_app/data_management/system_admin/team_athletics_data/compile_teams_daily_activities.php?day=" + weekday + "&gref=" + grpRefCode, function(data, status) {
 
-                        switch (day) {
+
+                        if (status != "success") {
+                            console.log("Get Req Failed -> $.populateWeeklyActivityBarChart returned: \n[Status]: " + status + "\n[Data]: " + data);
+                            alert("Get Req Failed -> $.populateWeeklyActivityBarChart returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        } else {
+                            switch (weekday) {
+                                case "monday":
+                                    $('#day-1-col').html(data);
+                                    break;
+                                case "tuesday":
+                                    $('#day-2-col').html(data);
+                                    break;
+                                case "wednesday":
+                                    $('#day-3-col').html(data);
+                                    break;
+                                case "thursday":
+                                    $('#day-4-col').html(data);
+                                    break;
+                                case "friday":
+                                    $('#day-5-col').html(data);
+                                    break;
+                                case "saturday":
+                                    $('#day-6-col').html(data);
+                                    break;
+                                case "sunday":
+                                    $('#day-7-col').html(data);
+                                    break;
+
+                                default:
+                                    console.log("Error [$.populateWeeklyActivityBarChart]: Day: " + weekday + " | grpRefCode" + grpRefCode);
+                                    break;
+                            }
+                        }
+                    });
+
+                });
+
+                // populate the weekly assessments list cards as well
+                weekDaysArray.forEach(weekday => {
+                    // populate the weekly assessments list cards as well
+                    $.populateWeeklyAssessmentsHorizCardContainer(weekday, grpRefCode);
+                });
+
+            }
+
+            $.populateWeeklyAssessmentsHorizCardContainer = function(weekday, grpRefCode) {
+                // var grpRefCode = "tst_grp_0001";
+                $.get("../scripts/php/main_app/data_management/system_admin/compile_users_daily_assessments_activities_list.php?day=" + weekday + "&gref=" + grpRefCode, function(data, status) {
+
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.populateWeeklyAssessmentsHorizCardContainer returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.populateWeeklyAssessmentsHorizCardContainer returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        switch (weekday) {
+                            case "sunday":
+                                $('#weekly-assessment-h-scroll-weekday-card-varsunday').html(data);
+                                break;
                             case "monday":
-                                $('#day-1-col').html(data);
+                                $('#weekly-assessment-h-scroll-weekday-card-varmonday').html(data);
                                 break;
                             case "tuesday":
-                                $('#day-2-col').html(data);
+                                $('#weekly-assessment-h-scroll-weekday-card-vartuesday').html(data);
                                 break;
                             case "wednesday":
-                                $('#day-3-col').html(data);
+                                $('#weekly-assessment-h-scroll-weekday-card-varwednesday').html(data);
                                 break;
                             case "thursday":
-                                $('#day-4-col').html(data);
+                                $('#weekly-assessment-h-scroll-weekday-card-varthursday').html(data);
                                 break;
                             case "friday":
-                                $('#day-5-col').html(data);
+                                $('#weekly-assessment-h-scroll-weekday-card-varfriday').html(data);
                                 break;
                             case "saturday":
-                                $('#day-6-col').html(data);
-                                break;
-                            case "sunday":
-                                $('#day-7-col').html(data);
+                                $('#weekly-assessment-h-scroll-weekday-card-varsaturday').html(data);
                                 break;
 
                             default:
-                                console.log("Error [populateWeeklyActivityBarChart]: Day: " + day + " | grpRefCode" + $grpRefCode);
+                                console.log("Error: no weekday output to pass to card. [$.populateWeeklyAssessmentsHorizCardContainer]: Day: " + weekday + " | grpRefCode" + grpRefCode);
+                                alert("Error: no weekday output to pass to card. [$.populateWeeklyAssessmentsHorizCardContainer]: Day: " + weekday + " | grpRefCode" + grpRefCode);
                                 break;
                         }
-                    });
+                    }
                 });
-
             }
 
             // ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
@@ -2964,7 +3016,7 @@ function getAllTrainers()
             <div class="tab-container" id="tab-container">
                 <div id="TabHome" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: block">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">dashboard</span> Dashboard</h5>
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">dashboard</span> <span class="align-middle">Dashboard</span></h5>
 
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
@@ -3433,7 +3485,7 @@ function getAllTrainers()
                 </div>
                 <div id="TabProfile" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">account_circle</span> Profile</h5>
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">account_circle</span> <span class="align-middle">Profile</span></h5>
 
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
@@ -3591,7 +3643,7 @@ function getAllTrainers()
                 </div>
                 <div id="TabDiscovery" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">travel_explore</span> Discovery</h5>
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">travel_explore</span> <span class="align-middle">Discovery</span></h5>
                         <p class="text-center" style="font-size: 10px">powered by AdaptEngine™</p>
 
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
@@ -3714,7 +3766,7 @@ function getAllTrainers()
                 </div>
                 <div id="TabStudio" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">play_circle_outline</span> <span style="color: #fff !important"> <span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Studio</h5>
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">play_circle_outline</span> <span style="color: #fff !important"> <span class="align-middle"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Studio</span></h5>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
                     <!-- <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Studio
@@ -4026,7 +4078,7 @@ function getAllTrainers()
                 </div>
                 <div id="TabStore" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">storefront</span> <span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Store</h5>
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">storefront</span> <span class="align-middle"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Store</span></h5>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
                     <!-- <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Store
@@ -4622,7 +4674,7 @@ function getAllTrainers()
                 </div>
                 <div id="TabSocial" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">hub</span> <span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Social</h5>
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">hub</span> <span class="align-middle"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Social</span></h5>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
                     <!-- <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Social
@@ -4974,7 +5026,7 @@ function getAllTrainers()
                             <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">
                                 insights
                             </span>
-                            Fitness Insights
+                            <span class="align-middle">Fitness Insights</span>
                         </h1>
                         <p class="text-center my-4 comfortaa-font">Use the Fitness Insights page to track your fitness progression and workout activities.</p>
                     </div>
@@ -5209,7 +5261,7 @@ function getAllTrainers()
                             <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md -4 text-center">
-                                        <h1 class="text-truncate">Heart Rate Monitor</h1>
+                                        <h1 class="text-truncate">Heart Rate</h1>
                                         <div class="d-grid gap-2 mt-4">
                                             <span class="material-icons material-icons-round">
                                                 favorite
@@ -5224,21 +5276,22 @@ function getAllTrainers()
                                             </span>
                                         </button>
                                     </div>
-                                    <div class="col-md -8 py-4 d-flex justify-content-center">
+                                    <div class="col-md -8 py-4 no-scroller" style="overflow-x: auto;">
+                                        <div class=" d-flex justify-content-center">
+                                            <div class="in-div-button-container">
+                                                <!-- refresh button -->
+                                                <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="syncUserActivityTrackerChart(heartRateChart, '<?php echo $currentUser_Usrnm; ?>','heart_rate_monitor_chart')">
+                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
+                                                    <span class="align-middle" style="font-size: 10px;">Update.</span>
+                                                </button>
+                                                <!-- ./ refresh button -->
 
-                                        <div class="in-div-button-container">
-                                            <!-- refresh button -->
-                                            <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','heart_rate_monitor_chart')">
-                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
-                                                <span class="align-middle" style="font-size: 10px;">Update.</span>
-                                            </button>
-                                            <!-- ./ refresh button -->
-
-                                            <!-- Canvasjs chart canvas -->
-                                            <div class="insight-chart-container no-scroller">
-                                                <canvas class="chartjs-chart-light shadow" id="heart_rate_monitor_chart" width="400" height="400"></canvas>
+                                                <!-- Canvasjs chart canvas -->
+                                                <div class="insight-chart-container no-scroller">
+                                                    <canvas class="chartjs-chart-light shadow" id="heart_rate_monitor_chart" width="400" height="400"></canvas>
+                                                </div>
+                                                <!-- ./Canvasjs chart canvas -->
                                             </div>
-                                            <!-- ./Canvasjs chart canvas -->
                                         </div>
 
                                         <!-- submit heartrate data form -->
@@ -5312,7 +5365,7 @@ function getAllTrainers()
                             <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md -4 text-center">
-                                        <h1 class="text-truncate">Body Temp Monitor</h1>
+                                        <h1 class="text-truncate">Body Temp</h1>
                                         <div class="d-grid gap-2 mt-4">
                                             <span class="material-icons material-icons-round">
                                                 device_thermostat
@@ -5327,24 +5380,24 @@ function getAllTrainers()
                                             </span>
                                         </button>
                                     </div>
-                                    <div class="col-md -8 py-4 d-flex justify-content-center">
+                                    <div class="col-md -8 py-4 no-scroller" style="overflow-x: auto;">
 
-                                        <div class="in-div-button-container">
-                                            <!-- refresh button -->
-                                            <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','body_temp_monitor_chart')">
-                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
-                                                <span class="align-middle" style="font-size: 10px;">Update.</span>
-                                            </button>
-                                            <!-- ./ refresh button -->
+                                        <div class=" d-flex justify-content-center">
+                                            <div class="in-div-button-container">
+                                                <!-- refresh button -->
+                                                <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="syncUserActivityTrackerChart(bodyTempChart, '<?php echo $currentUser_Usrnm; ?>','body_temp_monitor_chart')">
+                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
+                                                    <span class="align-middle" style="font-size: 10px;">Update.</span>
+                                                </button>
+                                                <!-- ./ refresh button -->
 
-                                            <!-- Canvasjs chart canvas -->
-                                            <div class="insight-chart-container no-scroller">
-                                                <canvas class="chartjs-chart-light shadow" id="body_temp_monitor_chart" width="400" height="400"></canvas>
+                                                <!-- Canvasjs chart canvas -->
+                                                <div class="insight-chart-container no-scroller">
+                                                    <canvas class="chartjs-chart-light shadow" id="body_temp_monitor_chart" width="400" height="400"></canvas>
+                                                </div>
+                                                <!-- ./Canvasjs chart canvas -->
                                             </div>
-                                            <!-- ./Canvasjs chart canvas -->
                                         </div>
-
-
 
                                         <!-- submit heartrate data form -->
                                         <div id="bodytemp-data-input-form-container" class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
@@ -5430,21 +5483,23 @@ function getAllTrainers()
                                             </span>
                                         </button>
                                     </div>
-                                    <div class="col-md -8 py-4 d-flex justify-content-center">
+                                    <div class="col-md -8 py-4 no-scroller" style="overflow-x: auto;">
 
-                                        <div class="in-div-button-container">
-                                            <!-- refresh button -->
-                                            <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','speed_monitor_chart')">
-                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
-                                                <span class="align-middle" style="font-size: 10px;">Update.</span>
-                                            </button>
-                                            <!-- ./ refresh button -->
+                                        <div class=" d-flex justify-content-center">
+                                            <div class="in-div-button-container">
+                                                <!-- refresh button -->
+                                                <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="syncUserActivityTrackerChart(speedChart, '<?php echo $currentUser_Usrnm; ?>','speed_monitor_chart')">
+                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
+                                                    <span class="align-middle" style="font-size: 10px;">Update.</span>
+                                                </button>
+                                                <!-- ./ refresh button -->
 
-                                            <!-- Canvasjs chart canvas -->
-                                            <div class="insight-chart-container no-scroller">
-                                                <canvas class="chartjs-chart-light shadow" id="speed_monitor_chart" width="400" height="400"></canvas>
+                                                <!-- Canvasjs chart canvas -->
+                                                <div class="insight-chart-container no-scroller">
+                                                    <canvas class="chartjs-chart-light shadow" id="speed_monitor_chart" width="400" height="400"></canvas>
+                                                </div>
+                                                <!-- ./Canvasjs chart canvas -->
                                             </div>
-                                            <!-- ./Canvasjs chart canvas -->
                                         </div>
 
                                         <!-- submit heartrate data form -->
@@ -5516,7 +5571,7 @@ function getAllTrainers()
                             <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md -4 text-center">
-                                        <h1 class="text-truncate">Step Counter</h1>
+                                        <h1 class="text-truncate">Step Count</h1>
                                         <div class="d-grid gap-2 my-4">
                                             <span class="material-icons material-icons-round">
                                                 directions_walk
@@ -5528,11 +5583,10 @@ function getAllTrainers()
                                         <img src="../media/assets/smartwatches/branding/fitbit-png-logo-white.png" class="img-fluid mt-4 mb-2" style="max-width: 200px;" alt="fitbit logo">
                                         <p class="comfortaa-font">Connect your Fitbit activity tracker / smartwatch</p>
                                     </div>
-                                    <div class="col-md -8 py-4 d-flex justify-content-center">
-
+                                    <div class="col-md -8 py-4 d-flex justify-content-center no-scroller" style="overflow-x: auto;">
                                         <div class="in-div-button-container">
                                             <!-- refresh button -->
-                                            <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','step_counter_monitor_chart')">
+                                            <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="syncUserActivityTrackerChart(stepCountChart, '<?php echo $currentUser_Usrnm; ?>','step_counter_monitor_chart')">
                                                 <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
                                                 <span class="align-middle" style="font-size: 10px;">Update.</span>
                                             </button>
@@ -5550,7 +5604,7 @@ function getAllTrainers()
                             <li class="list-group-item bg-transparent text-white" style="border-color: #ffa500;border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md -4 text-center">
-                                        <h1 class="text-truncate">Weight Monitoring (BMI)</h1>
+                                        <h1 class="text-truncate">Weight &amp; BMI</h1>
                                         <div class="d-grid gap-2 mt-4">
                                             <span class="material-icons material-icons-round">
                                                 monitor_weight
@@ -5565,24 +5619,24 @@ function getAllTrainers()
                                             </span>
                                         </button>
                                     </div>
-                                    <div class="col-md -8 py-4 d-flex justify-content-center">
+                                    <div class="col-md -8 py-4 no-scroller" style="overflow-x: auto;">
 
-                                        <div class="in-div-button-container">
-                                            <!-- refresh button -->
-                                            <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="refreshUserActivityTrackerChart('<?php echo $currentUser_Usrnm; ?>','bmi_weight_monitor_chart')">
-                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
-                                                <span class="align-middle" style="font-size: 10px;">Update.</span>
-                                            </button>
-                                            <!-- ./ refresh button -->
+                                        <div class="d-flex justify-content-center">
+                                            <div class="in-div-button-container">
+                                                <!-- refresh button -->
+                                                <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="syncUserActivityTrackerChart(bmiWeightChart, '<?php echo $currentUser_Usrnm; ?>','bmi_weight_monitor_chart')">
+                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
+                                                    <span class="align-middle" style="font-size: 10px;">Update.</span>
+                                                </button>
+                                                <!-- ./ refresh button -->
 
-                                            <!-- Canvasjs chart canvas -->
-                                            <div class="insight-chart-container no-scroller">
-                                                <canvas class="chartjs-chart-light shadow" id="bmi_weight_monitor_chart" width="400" height="400"></canvas>
+                                                <!-- Canvasjs chart canvas -->
+                                                <div class="insight-chart-container no-scroller">
+                                                    <canvas class="chartjs-chart-light shadow" id="bmi_weight_monitor_chart" width="400" height="400"></canvas>
+                                                </div>
+                                                <!-- ./Canvasjs chart canvas -->
                                             </div>
-                                            <!-- ./Canvasjs chart canvas -->
                                         </div>
-
-
 
                                         <!-- submit heartrate data form -->
                                         <div id="bmiweight-data-input-form-container" class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom" style="border-color: #ffa500 !important; border-radius: 25px;">
@@ -5659,19 +5713,32 @@ function getAllTrainers()
                     <hr class="text-white" style="height: 5px;">
 
                     <!-- Weekly Activities -->
-                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <span class="material-icons material-icons-outlined"> pending_actions </span>
-                        <h5 class="mt-4 fs-1 text-center">Weekly Assessments</h5>
-                        <p class="fs-5 text-center comfortaa-font"> Training Week: (<span id="weekly-survey-duration-dates">Start Date - End Date</span>)</p>
-                        <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                    <div class="p-4 my-4 d-flex align-items-middle justify-content-between text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <button id="prev-week-btn-weekly-assessments" class="btn p-2 onefit-buttons-style-transp-leftdir comfortaa-font">
+                            <span class="material-icons material-icons-round align-middle" style="color: #ffa500 !important">keyboard_arrow_left</span>
+                            <span class="align-middle" style="font-size: 10px;">Last Week</span>
+                        </button>
+                        <div class="d-grid text-center">
+                            <span class="material-icons material-icons-outlined"> pending_actions </span>
+                            <h5 class="mt-4 fs-1 text-center">Weekly Assessments</h5>
+                            <p class="fs-5 text-center comfortaa-font"> Training Week: (<span id="weekly-survey-duration-dates">Start Date - End Date</span>)</p>
+                            <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                        </div>
+                        <button id="prev-week-btn-weekly-assessments" class="btn p-2 onefit-buttons-style-transp-rightdir comfortaa-font">
+                            <span class="align-middle" style="font-size: 10px;">Next Week</span>
+                            <span class="material-icons material-icons-round align-middle" style="color: #ffa500 !important">keyboard_arrow_right</span>
+                        </button>
                     </div>
 
                     <!-- weekly assessment horizontal scroll container -->
-                    <div id="weekly-assessment-horizontal-scroll-container" class="horizontal-scroll shadow">
-                        <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Sunday (dd/mm/yyyy)</h5>
-                            <hr class="text-white" style="height: 5px;">
+                    <div id="weekly-assessment-horizontal-scroll-container" class="horizontal-scroll shadow align-items-start">
+                        <div id="weekly-assessment-h-scroll-weekday-card-varsunday" class="horizontal-scroll-card p-4 m-1 shadow text-center">
+                            <h3 class="my-4">Sunday (dd/mm/yyyy)</h3>
 
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Assessments</h5>
+
+                            <!-- assessments list -->
                             <ol class="list-group list-group-flush border-0 my-4">
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
@@ -5716,11 +5783,53 @@ function getAllTrainers()
                                     </div>
                                 </li>
                             </ol>
+                            <!-- ./ assessments list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Indi-fitness activities</h5>
+
+                            <!-- indi-athletics activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ indi-athletics activities list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Group activities (Teams)</h5>
+
+                            <!-- team-athletics / group activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ team-athletics / group activities list -->
+
+                            <span class="material-icons material-icons-round mb-4">horizontal_rule</span>
                         </div>
-                        <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Monday (dd/mm/yyyy)</h5>
-                            <hr class="text-white" style="height: 5px;">
+                        <div id="weekly-assessment-h-scroll-weekday-card-varmonday" class="horizontal-scroll-card p-4 m-1 shadow text-center">
+                            <h3 class="my-4">Monday (dd/mm/yyyy)</h3>
 
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Assessments</h5>
+
+                            <!-- assessments list -->
                             <ol class="list-group list-group-flush border-0 my-4">
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
@@ -5765,10 +5874,51 @@ function getAllTrainers()
                                     </div>
                                 </li>
                             </ol>
+                            <!-- ./ assessments list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Indi-fitness activities</h5>
+
+                            <!-- indi-athletics activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ indi-athletics activities list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Group activities (Teams)</h5>
+
+                            <!-- team-athletics / group activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ team-athletics / group activities list -->
+
+                            <span class="material-icons material-icons-round mb-4">horizontal_rule</span>
                         </div>
-                        <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Tuesday (dd/mm/yyyy)</h5>
+                        <div id="weekly-assessment-h-scroll-weekday-card-vartuesday" class="horizontal-scroll-card p-4 m-1 shadow text-center">
+                            <h3 class="my-4">Tuesday (dd/mm/yyyy)</h3>
+
                             <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Assessments</h5>
 
                             <ol class="list-group list-group-flush border-0 my-4">
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
@@ -5814,11 +5964,51 @@ function getAllTrainers()
                                     </div>
                                 </li>
                             </ol>
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Indi-fitness activities</h5>
+
+                            <!-- indi-athletics activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ indi-athletics activities list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Group activities (Teams)</h5>
+
+                            <!-- team-athletics / group activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ team-athletics / group activities list -->
+
+                            <span class="material-icons material-icons-round mb-4">horizontal_rule</span>
                         </div>
-                        <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Wednesday (dd/mm/yyyy)</h5>
+                        <div id="weekly-assessment-h-scroll-weekday-card-varwednesday" class="horizontal-scroll-card p-4 m-1 shadow text-center">
+                            <h3 class="my-4">Wednesday (dd/mm/yyyy)</h3>
                             <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Assessments</h5>
 
+                            <!-- assessments list -->
                             <ol class="list-group list-group-flush border-0 my-4">
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
@@ -5863,11 +6053,53 @@ function getAllTrainers()
                                     </div>
                                 </li>
                             </ol>
+                            <!-- ./ assessments list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Indi-fitness activities</h5>
+
+                            <!-- indi-athletics activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ indi-athletics activities list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Group activities (Teams)</h5>
+
+                            <!-- team-athletics / group activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ team-athletics / group activities list -->
+
+                            <span class="material-icons material-icons-round mb-4">horizontal_rule</span>
                         </div>
-                        <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Thursday (dd/mm/yyyy)</h5>
-                            <hr class="text-white" style="height: 5px;">
+                        <div id="weekly-assessment-h-scroll-weekday-card-varthursday" class="horizontal-scroll-card p-4 m-1 shadow text-center">
+                            <h3 class="my-4">Thursday (dd/mm/yyyy)</h3>
 
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Assessments</h5>
+
+                            <!-- assessments list -->
                             <ol class="list-group list-group-flush border-0 my-4">
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
@@ -5912,11 +6144,53 @@ function getAllTrainers()
                                     </div>
                                 </li>
                             </ol>
+                            <!-- ./ assessments list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Indi-fitness activities</h5>
+
+                            <!-- indi-athletics activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ indi-athletics activities list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Group activities (Teams)</h5>
+
+                            <!-- team-athletics / group activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ team-athletics / group activities list -->
+
+                            <span class="material-icons material-icons-round mb-4">horizontal_rule</span>
                         </div>
-                        <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Friday (dd/mm/yyyy)</h5>
-                            <hr class="text-white" style="height: 5px;">
+                        <div id="weekly-assessment-h-scroll-weekday-card-varfriday" class="horizontal-scroll-card p-4 m-1 shadow text-center">
+                            <h3 class="my-4">Friday (dd/mm/yyyy)</h3>
 
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Assessments</h5>
+
+                            <!-- assessments list -->
                             <ol class="list-group list-group-flush border-0 my-4">
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
@@ -5961,11 +6235,53 @@ function getAllTrainers()
                                     </div>
                                 </li>
                             </ol>
+                            <!-- ./ assessments list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Indi-fitness activities</h5>
+
+                            <!-- indi-athletics activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ indi-athletics activities list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Group activities (Teams)</h5>
+
+                            <!-- team-athletics / group activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ team-athletics / group activities list -->
+
+                            <span class="material-icons material-icons-round mb-4">horizontal_rule</span>
                         </div>
-                        <div class="horizontal-scroll-card p-4 m-1 shadow">
-                            <h5>Saturday (dd/mm/yyyy)</h5>
-                            <hr class="text-white" style="height: 5px;">
+                        <div id="weekly-assessment-h-scroll-weekday-card-varsaturday" class="horizontal-scroll-card p-4 m-1 shadow text-center">
+                            <h3 class="my-4">Saturday (dd/mm/yyyy)</h3>
 
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Assessments</h5>
+
+                            <!-- assessments list -->
                             <ol class="list-group list-group-flush border-0 my-4">
                                 <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
                                     <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
@@ -6010,6 +6326,45 @@ function getAllTrainers()
                                     </div>
                                 </li>
                             </ol>
+                            <!-- ./ assessments list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Indi-fitness activities</h5>
+
+                            <!-- indi-athletics activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ indi-athletics activities list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Group activities (Teams)</h5>
+
+                            <!-- team-athletics / group activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ team-athletics / group activities list -->
+
+                            <span class="material-icons material-icons-round mb-4">horizontal_rule</span>
                         </div>
                     </div>
                     <!-- ./ weekly assessment horizontal scroll container -->
@@ -6022,7 +6377,7 @@ function getAllTrainers()
                         <span class="material-icons material-icons-outlined">sports</span>
                         <h5 class="mt-4 fs-1 text-center align-middle">Training</h5>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
-                    </div>2
+                    </div>
 
                     <!-- Features: Tab structured -->
                     <div class="row mt-4 py-4" style="background-color: #333; border-radius: 25px;">
@@ -6072,42 +6427,42 @@ function getAllTrainers()
                                                 </span>
 
                                                 <br>
-                                                <span id="horizontal-rule-icon-challenges" class="material-icons material-icons-outlined align-middle" style="display: block;">stars</span>
+                                                <span id="md-horizontal-rule-icon-challenges" class="material-icons material-icons-outlined align-middle" style="display: block;">stars</span>
                                             </button>
 
                                             <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-googleSurveys-tab" onclick="clickTrainingProgramCategories('googleSurveys')">
                                                 Google Surveys.
 
                                                 <br>
-                                                <span id="horizontal-rule-icon-googlesurveys" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">poll</span>
+                                                <span id="md-horizontal-rule-icon-googlesurveys" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">poll</span>
                                             </button>
 
                                             <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-indiAthlete-tab" onclick="clickTrainingProgramCategories('indiAthlete')">
                                                 Indi-Athletics.
 
                                                 <br>
-                                                <span id="horizontal-rule-icon-indiathlete" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">sports_gymnastics</span>
+                                                <span id="md-horizontal-rule-icon-indiathlete" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">sports_gymnastics</span>
                                             </button>
 
                                             <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-teamAthletics-tab" onclick="clickTrainingProgramCategories('teamAthletics')">
                                                 Team Athletics.
 
                                                 <br>
-                                                <span id="horizontal-rule-icon-teamathletics" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">diversity_2</span>
+                                                <span id="md-horizontal-rule-icon-teamathletics" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">diversity_2</span>
                                             </button>
 
                                             <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-wellness-tab" onclick="clickTrainingProgramCategories('wellness')">
                                                 Wellness.
 
                                                 <br>
-                                                <span id="horizontal-rule-icon-wellness" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">self_improvement</span>
+                                                <span id="md-horizontal-rule-icon-wellness" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">self_improvement</span>
                                             </button>
 
                                             <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-nutrition-tab" onclick="clickTrainingProgramCategories('nutrition')">
                                                 Nutrition.
 
                                                 <br>
-                                                <span id="horizontal-rule-icon-nutrition" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">restaurant</span>
+                                                <span id="md-horizontal-rule-icon-nutrition" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">restaurant</span>
                                             </button>
 
                                         </div>
@@ -6223,6 +6578,13 @@ function getAllTrainers()
                                         document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
                                         document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
 
+                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "block";
+                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
+
                                     } else if (selcategory == "googleSurveys") {
                                         googleSurveyBtn.click();
 
@@ -6232,6 +6594,13 @@ function getAllTrainers()
                                         document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
                                         document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
                                         document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+
+                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "block";
+                                        document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
 
                                     } else if (selcategory == "indiAthlete") {
                                         indiAthleteBtn.click();
@@ -6243,6 +6612,13 @@ function getAllTrainers()
                                         document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
                                         document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
 
+                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "block";
+                                        document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
+
                                     } else if (selcategory == "teamAthletics") {
                                         teamAthleticsBtn.click();
 
@@ -6252,6 +6628,13 @@ function getAllTrainers()
                                         document.getElementById("horizontal-rule-icon-teamathletics").style.display = "block";
                                         document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
                                         document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+
+                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "block";
+                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
 
                                     } else if (selcategory == "wellness") {
                                         wellnessBtn.click();
@@ -6263,6 +6646,13 @@ function getAllTrainers()
                                         document.getElementById("horizontal-rule-icon-wellness").style.display = "block";
                                         document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
 
+                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "block";
+                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
+
                                     } else if (selcategory == "nutrition") {
                                         nutritionBtn.click();
 
@@ -6272,6 +6662,13 @@ function getAllTrainers()
                                         document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
                                         document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
                                         document.getElementById("horizontal-rule-icon-nutrition").style.display = "block";
+
+                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "block";
 
                                     }
                                 }
@@ -7352,9 +7749,35 @@ function getAllTrainers()
                                         <p class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">Weekly Training Schedule</p>
                                         <img src="../media/assets/example.png" alt="training week for ..." class="img-fluid mb-4" hidden>
                                         <div class="training-schedule-container p-4 text-center down-top-grad-white comfortaa-font">
-                                            <h5 id="teams-weekly-training-schedule-title">Training week for those who played 45+ minutes in previous match</h5>
+                                            <h5 class="mb-4" id="teams-weekly-training-schedule-title">Training week for those who played 45+ minutes in previous match</h5>
 
-                                            <div class="my-4 d-flex justify-content-between align-items-center">
+                                            <div class="row mb-4">
+                                                <div class="col-md g-grid">
+                                                    <button class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" onclick="$.populateWeeklyActivityBarChart()">
+                                                        <span class="material-icons material-icons-round">
+                                                            refresh
+                                                        </span>
+                                                        <p class="d-nonez d-lg-blockz comfortaa-font" style="font-size: 10px;">Refresh.</p>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md g-grid">
+                                                    <button class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="add-weekly-activity-btn remove-weekly-activity-btn">
+                                                        <span class="material-icons material-icons-round">
+                                                            edit_calendar
+                                                        </span>
+                                                        <p class="d-nonez d-lg-blockz comfortaa-font" style="font-size: 10px;">Edit Weekly Schedule</p>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md g-grid">
+                                                    <button class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button">
+                                                        <span class="material-icons material-icons-round">
+                                                            support_agent </span>
+                                                        <p class="d-nonez d-lg-blockz comfortaa-font" style="font-size: 10px;">Trainer.</p>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="my-4 d-flex justify-content-between align-items-center">
                                                 <button class="onefit-buttons-style-light p-4 my-2 text-center" type="button" onclick="$.populateWeeklyActivityBarChart()">
                                                     <span class="material-icons material-icons-round">
                                                         refresh
@@ -7372,9 +7795,9 @@ function getAllTrainers()
                                                 <button class="onefit-buttons-style-light p-4 shadow" type="button">
                                                     <span class="material-icons material-icons-round">
                                                         support_agent </span>
-                                                    <p class="d-none d-lg-block comfortaa-font" style="font-size: 10px;">Trainer Support.</p>
+                                                    <p class="d-none d-lg-block comfortaa-font" style="font-size: 10px;">Trainer.</p>
                                                 </button>
-                                            </div>
+                                            </div> -->
 
                                             <hr class="text-white" style="height: 5px;">
 
@@ -7738,7 +8161,7 @@ function getAllTrainers()
                 </div>
                 <div id="TabAchievements" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">emoji_events</span> Achievements</h5>
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">emoji_events</span> <span class="align-middle">Achievements</span></h5>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
 
@@ -7954,7 +8377,7 @@ function getAllTrainers()
                 </div>
                 <div id="TabMedia" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">perm_media</span> Media</h5>
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">perm_media</span> <span class="align-middle">Media</span></h5>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
                     <!-- <h1 class="text-center">Media</h1>
@@ -7971,31 +8394,53 @@ function getAllTrainers()
                 </div>
                 <div id="TabCommunication" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">forum</span> Communications</h5>
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">forum</span> <span class="align-middle">Communications</span></h5>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
-                    <!-- <h1 class="text-center">Communications</h1>
-                    <hr class="text-white" /> -->
 
-                    <p>• Notifications</p>
+                    <!-- Twitter social buttons / section -->
+                    <!-- twitter social panel -->
+                    <div class="load-curtain-social-btn-panel tunnel-bg-container-inverse comfortaa-font d-grid gap-2 p-4 shadow" style="position: fixed;top: auto;bottom: 5vh;right: 0px; left: auto; border-radius: 25px 0 0 25px !important;z-index:auto;">
+                        <!--  d-none d-lg-block p-4 -->
+                        <div class="d-flex gap-2 w-100">
+                            <button class="p-4 m-0 shadow onefit-buttons-style-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
+                                <div class="d-grid">
+                                    <span class="material-icons material-icons-round" style="font-size: 48px !important;">
+                                        <i class="fab fa-twitter" style="font-size: 40px; color: #fff !important;"></i>
+                                    </span>
+                                    <p class="comfortaa-font mt-1 mb-0" style="font-size: 10px;">@onefitnet</p>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="collapse no-scroller pb-4 w3-animate-bottom" id="collapseloadCurtainTweetFeed" style="overflow-y: auto;">
+                            <div class="pb-4 no-scroller" style="border-radius: 25px !important; overflow-y: auto; max-height: 90vh; min-width: 500px;">
+                                <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by OnefitNet</a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./ twitter social panel -->
+                    <!-- ./ Twitter social buttons / section -->
+
+                    <h5><span class="material-icons material-icons-round align-middle">notifications</span> <span class="align-middle">Notifications</span></h5>
                     <div id="communicationUserNotifications">
                         <?php echo $outputProfileUserNotifications; ?>
                     </div>
-                    <p>• Latest Updates / News</p>
+                    <h5><span class="material-icons material-icons-round align-middle">newspaper</span> <span class="align-middle">Updates / News</span></h5>
                     <div id="communicationNews">
                         <?php echo $outputCommunityNews; ?>
                     </div>
-                    <p>• Chat Messenger</p>
+                    <h5><span class="material-icons material-icons-round align-middle">question_answer</span> <span class="align-middle">Messenger</span></h5>
                     <div class="p-0 mb-4 d-grid gap-2 my-pulse-animation-dark rounded-pill">
                         <button class="onefit-buttons-style-dark p-4 text-center fs-1 comfortaa-font shadow rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat">
                             One<span style="color:#ffa500;">fit.</span>Chat
                         </button>
                     </div>
-                    <p>• Social AdMarket</p>
+                    <h5><span class="material-icons material-icons-round align-middle">campaign</span> <span class="align-middle">AdMarket</span></h5>
                 </div>
                 <div id="TabSettings" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-midde" style="color: #ffa500 !important; font-size: 40px;">settings_accessibility</span> Preferences</h5>
+                        <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">settings_accessibility</span> <span class="align-middle">Preferences</span></h5>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
                     <!-- <h1 class="text-center">Preferences</h1>
@@ -8568,7 +9013,7 @@ function getAllTrainers()
     <!-- ./ >>>>>>>>>> Latest Socials Feed Modal -->
 
     <!-- >>>>>>>>>> Chat Modal -->
-    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat" hidden>Toggle bottom offcanvas</button>
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat" hidden aria-hidden="true">Toggle Chat Messenger offcanvas</button>
 
     <div class="offcanvas offcanvas-bottom" style="height: 100vh !important;" tabindex="-1" id="offcanvasBottomOnefitChat" aria-labelledby="offcanvasBottomOnefitChatLabel">
         <div class="offcanvas-body small p-0 no-scroller" style="overflow-x: hidden;">
@@ -8592,7 +9037,7 @@ function getAllTrainers()
                         </button>
                     </div>
                 </div>
-                <div class="card-body p-0">
+                <div class="card-body p-0 tunnel-bg-container">
                     <div class="row h-100 px-4 no-scroller" style="max-height: 70vh; overflow-y: auto !important;">
                         <div class="col-sm-4 collapse w3-animate-top" id="collapseMyUserChats">
                             <!--Users Chats List-->
@@ -8602,7 +9047,7 @@ function getAllTrainers()
                             <!-- ./ Users Chats List-->
                         </div>
                         <div class="col-sm shadow no-scroller my-4 p-2 text-white down-top-grad-dark" style="border-radius: 25px; overflow-y: auto; overflow-x: hidden; max-height: 65vh !important;margin-bottom: 200px !important;">
-                            <div class="row align-items-center">
+                            <div class="row align-items-center d-none" style="border-radius: 25px; background-color: #343434;">
                                 <div class="col-4 d-grid gap-2">
                                     <!-- Selected Users Friend Chat Profile Strip -->
                                     <button type="button" class="onefit-buttons-style-dark p-2 my-4 position-relative">
@@ -8628,8 +9073,7 @@ function getAllTrainers()
                                 </div>
                             </div>
 
-
-                            <div class="tunnel-bg-container content-panel-border-style no-scroller p-4 shadow" style="width: 100%; height: 100%; background-color: rgba(52, 52, 52, 0.8) !important; overflow-y: auto !important; overflow-x: hidden !important;">
+                            <div class="content-panel-border-style no-scroller p-4 shadow" style="width: 100%; height: 100%; background-color: rgba(52, 52, 52, 0.8) !important; overflow-y: auto !important; overflow-x: hidden !important;">
                                 <!-- User Chat Bubble - Left (Users Friend) -->
                                 <div class="row align-items-center">
                                     <div class="col-sm text-start">
@@ -8638,7 +9082,7 @@ function getAllTrainers()
                                                 <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                             </div>
 
-                                            <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
+                                            <div class="talk-bubble shadow tri-right shadow btm-leftz left-top border-5 border-end border-bottom" style="border-radius: 0 25px 25px 25px !important;">
                                                 <div class="talktext">
                                                     <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
                                                 </div>
@@ -8658,7 +9102,7 @@ function getAllTrainers()
                                                 <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                             </div>
 
-                                            <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
+                                            <div class="talk-bubble shadow tri-right shadow btm-rightz right-top border-5 border-start border-bottom" style="border-radius: 25px 0 25px 25px !important;">
                                                 <div class="talktext">
                                                     <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
                                                 </div>
@@ -8959,7 +9403,7 @@ function getAllTrainers()
                         <li class="list-group-item bg-transparent text-white pt-4" style="border-color: #ffa500;border-radius: 25px;">
                             <div class="row align-items-center mt-4">
                                 <div class="col-xlg -4 text-center">
-                                    <h1 class="text-truncate">Heart Rate Monitor</h1>
+                                    <h1 class="text-truncate">Heart Rate</h1>
                                     <div class="d-grid gap-2 mt-4">
                                         <span class="material-icons material-icons-round">
                                             favorite
@@ -8981,7 +9425,7 @@ function getAllTrainers()
 
                                     <!-- submit heartrate data form -->
                                     <div id="heartrate-expand-icon" class="collapsez showz multi-collapsez text-center w3-animate-bottom my-4">
-                                        <span class="material-icons material-icons-round">
+                                        <span class="material-icons material-icons-round p-4" style="background-color:#ffa500;color: #343434;border-radius: 25px 0 0 25px;">
                                             add_task
                                         </span>
                                     </div>
@@ -9046,7 +9490,7 @@ function getAllTrainers()
                         <li class="list-group-item bg-transparent text-white pt-4" style="border-color: #ffa500;border-radius: 25px;">
                             <div class="row align-items-center mt-4">
                                 <div class="col-xlg -4 text-center">
-                                    <h1 class="text-truncate">Body Temp Monitor</h1>
+                                    <h1 class="text-truncate">Body Temp</h1>
                                     <div class="d-grid gap-2 mt-4">
                                         <span class="material-icons material-icons-round">
                                             device_thermostat
@@ -9068,7 +9512,7 @@ function getAllTrainers()
 
                                     <!-- submit heartrate data form -->
                                     <div id="bodytemp-expand-icon" class="collapsez showz multi-collapsez text-center w3-animate-bottom my-4">
-                                        <span class="material-icons material-icons-round">
+                                        <span class="material-icons material-icons-round p-4" style="background-color:#ffa500;color: #343434;border-radius: 25px 0 0 25px;">
                                             add_task
                                         </span>
                                     </div>
@@ -9154,7 +9598,7 @@ function getAllTrainers()
 
                                     <!-- submit heartrate data form -->
                                     <div id="speedmonitor-expand-icon" class="collapsez showz multi-collapsez text-center w3-animate-bottom my-4">
-                                        <span class="material-icons material-icons-round">
+                                        <span class="material-icons material-icons-round p-4" style="background-color:#ffa500;color: #343434;border-radius: 25px 0 0 25px;">
                                             add_task
                                         </span>
                                     </div>
@@ -9218,7 +9662,7 @@ function getAllTrainers()
                         <li class="list-group-item bg-transparent text-white pt-4" style="border-color: #ffa500;border-radius: 25px;">
                             <div class="row align-items-center mt-4">
                                 <div class="col-md -4 text-center">
-                                    <h1 class="text-truncate">Step Counter</h1>
+                                    <h1 class="text-truncate">Step Count</h1>
                                     <div class="d-grid gap-2 my-4">
                                         <span class="material-icons material-icons-round">
                                             directions_walk
@@ -9228,12 +9672,12 @@ function getAllTrainers()
                                     </div>
 
                                 </div>
-                                <div class="col-md -8 py-4 text-center d-flex justify-content-center">
+                                <div class="col-md -8 py-4 text-center d-grid justify-content-center">
                                     <!-- Canvasjs chart canvas -->
                                     <!-- <canvas class="chartjs-chart-light shadow" id="step_counter_monitor_chart" width="400" height="400"></canvas> -->
                                     <!-- ./Canvasjs chart canvas -->
 
-                                    <img src="../media/assets/smartwatches/branding/fitbit-png-logo-white.png" class="img-fluid mt-4 mb-2" style="max-width: 200px;" alt="fitbit logo">
+                                    <img src="../media/assets/smartwatches/branding/fitbit-png-logo-white.png" class="img-fluid mt-4 mb-2" style="max-height: 100px;" alt="fitbit logo">
                                     <p class="comfortaa-font">Connect your Fitbit activity tracker / smartwatch</p>
 
                                     <!-- <div id="step_counter_chart" class="shadow no-scroller bg-white p-4z" style="border-radius: 25px !important; overflow: hidden; overflow-x: auto !important;"></div> -->
@@ -9243,7 +9687,7 @@ function getAllTrainers()
                         <li class="list-group-item bg-transparent text-white pt-4" style="border-color: #ffa500;border-radius: 25px;">
                             <div class="row align-items-center mt-4">
                                 <div class="col-xlg -4 text-center">
-                                    <h1 class="text-truncate">Weight Monitoring (BMI)</h1>
+                                    <h1 class="text-truncate">Weight & (BMI)</h1>
                                     <div class="d-grid gap-2 mt-4">
                                         <span class="material-icons material-icons-round">
                                             monitor_weight
@@ -9265,7 +9709,7 @@ function getAllTrainers()
 
                                     <!-- submit heartrate data form -->
                                     <div id="bmiweight-expand-icon" class="collapsez showz multi-collapsez text-center w3-animate-bottom my-4">
-                                        <span class="material-icons material-icons-round">
+                                        <span class="material-icons material-icons-round p-4" style="background-color:#ffa500;color: #343434;border-radius: 25px 0 0 25px;">
                                             add_task
                                         </span>
                                     </div>
@@ -9387,39 +9831,58 @@ function getAllTrainers()
         };
 
 
-        // draw chart
-        // assign default chart data - Heart Rate
-        const heartrateChartLabels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-        ];
+        // retrying Chartjs shenanigans
+        var heartrateCTX = document.getElementById("heart_rate_monitor_chart").getContext("2d");
+        var bodytempCTX = document.getElementById("body_temp_monitor_chart").getContext("2d");
+        var speedCTX = document.getElementById("speed_monitor_chart").getContext("2d");
+        var stepsCTX = document.getElementById("step_counter_monitor_chart").getContext("2d");
+        var bmiweightCTX = document.getElementById("bmi_weight_monitor_chart").getContext("2d");
 
-        const heartrateChartData = {
-            labels: heartrateChartLabels,
-            datasets: [{
-                label: 'Initial Data',
-                backgroundColor: 'rgb(231, 136, 4)',
-                borderColor: 'rgb(231, 136, 4)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-                borderWidth: 5
-            }]
-        };
-
-        const heartrateChartConfig = {
+        // initialize the charts
+        var heartRateChart = new Chart(heartrateCTX, {
             type: 'line',
-            data: heartrateChartData,
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "My First dataset",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [],
+                    spanGaps: false,
+                }]
+            },
             options: {
-                layout: {
-                    padding: 40
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
                 },
                 scales: {
+                    // yAxes: [{
+                    //     ticks: {
+                    //         beginAtZero: true
+                    //     }
+                    // }]
                     y: {
                         beginAtZero: true
                     }
+                },
+                layout: {
+                    padding: 40
                 },
                 legend: {
                     display: true,
@@ -9430,46 +9893,52 @@ function getAllTrainers()
                 }
             },
             plugins: [plugin]
-        };
+        });
 
-        const heartrateChart = new Chart(
-            document.getElementById('heart_rate_monitor_chart'),
-            heartrateChartConfig
-        );
-
-        // draw chart
-        // assign default chart data - Body Temp
-        const bodyTempChartLabels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-        ];
-
-        const bodyTempChartData = {
-            labels: bodyTempChartLabels,
-            datasets: [{
-                label: 'Initial Data',
-                backgroundColor: 'rgb(231, 136, 4)',
-                borderColor: 'rgb(231, 136, 4)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-                borderWidth: 5
-            }]
-        };
-
-        const bodyTempChartConfig = {
+        var bodyTempChart = new Chart(bodytempCTX, {
             type: 'line',
-            data: bodyTempChartData,
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "My First dataset",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [],
+                    spanGaps: false,
+                }]
+            },
             options: {
-                layout: {
-                    padding: 40
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
                 },
                 scales: {
+                    // yAxes: [{
+                    //     ticks: {
+                    //         beginAtZero: true
+                    //     }
+                    // }]
                     y: {
                         beginAtZero: true
                     }
+                },
+                layout: {
+                    padding: 40
                 },
                 legend: {
                     display: true,
@@ -9480,46 +9949,52 @@ function getAllTrainers()
                 }
             },
             plugins: [plugin]
-        };
+        });
 
-        const bodytempChart = new Chart(
-            document.getElementById('body_temp_monitor_chart'),
-            bodyTempChartConfig
-        );
-
-        // draw chart
-        // assign default chart data - Speed
-        const speedChartLabels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-        ];
-
-        const speedChartData = {
-            labels: speedChartLabels,
-            datasets: [{
-                label: 'Initial Data',
-                backgroundColor: 'rgb(231, 136, 4)',
-                borderColor: 'rgb(231, 136, 4)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-                borderWidth: 5
-            }]
-        };
-
-        const speedChartConfig = {
+        var speedChart = new Chart(speedCTX, {
             type: 'line',
-            data: speedChartData,
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "My First dataset",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [],
+                    spanGaps: false,
+                }]
+            },
             options: {
-                layout: {
-                    padding: 40
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
                 },
                 scales: {
+                    // yAxes: [{
+                    //     ticks: {
+                    //         beginAtZero: true
+                    //     }
+                    // }]
                     y: {
                         beginAtZero: true
                     }
+                },
+                layout: {
+                    padding: 40
                 },
                 legend: {
                     display: true,
@@ -9530,46 +10005,52 @@ function getAllTrainers()
                 }
             },
             plugins: [plugin]
-        };
+        });
 
-        const speedChart = new Chart(
-            document.getElementById('speed_monitor_chart'),
-            speedChartConfig
-        );
-
-        // step count
-        // assign default chart data - Step Count
-        const stepCountChartLabels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-        ];
-
-        const stepCountChartData = {
-            labels: stepCountChartLabels,
-            datasets: [{
-                label: 'Initial Data',
-                backgroundColor: 'rgb(231, 136, 4)',
-                borderColor: 'rgb(231, 136, 4)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-                borderWidth: 5
-            }]
-        };
-
-        const stepCountChartConfig = {
+        var stepCountChart = new Chart(stepsCTX, {
             type: 'line',
-            data: stepCountChartData,
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "My First dataset",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [],
+                    spanGaps: false,
+                }]
+            },
             options: {
-                layout: {
-                    padding: 40
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
                 },
                 scales: {
+                    // yAxes: [{
+                    //     ticks: {
+                    //         beginAtZero: true
+                    //     }
+                    // }]
                     y: {
                         beginAtZero: true
                     }
+                },
+                layout: {
+                    padding: 40
                 },
                 legend: {
                     display: true,
@@ -9580,46 +10061,52 @@ function getAllTrainers()
                 }
             },
             plugins: [plugin]
-        };
+        });
 
-        const stepcountChart = new Chart(
-            document.getElementById('step_counter_monitor_chart'),
-            stepCountChartConfig
-        );
-
-        // draw chart
-        // assign default chart data - BMI Weight
-        const bmiWeightChartLabels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-        ];
-
-        const bmiWeightChartData = {
-            labels: bmiWeightChartLabels,
-            datasets: [{
-                label: 'Initial Data',
-                backgroundColor: 'rgb(231, 136, 4)',
-                borderColor: 'rgb(231, 136, 4)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-                borderWidth: 5
-            }]
-        };
-
-        const bmiWeightChartConfig = {
+        var bmiWeightChart = new Chart(bmiweightCTX, {
             type: 'line',
-            data: bmiWeightChartData,
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "My First dataset",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [],
+                    spanGaps: false,
+                }]
+            },
             options: {
-                layout: {
-                    padding: 40
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
                 },
                 scales: {
+                    // yAxes: [{
+                    //     ticks: {
+                    //         beginAtZero: true
+                    //     }
+                    // }]
                     y: {
                         beginAtZero: true
                     }
+                },
+                layout: {
+                    padding: 40
                 },
                 legend: {
                     display: true,
@@ -9630,12 +10117,144 @@ function getAllTrainers()
                 }
             },
             plugins: [plugin]
-        };
+        });
 
-        const weightbmiChart = new Chart(
-            document.getElementById('bmi_weight_monitor_chart'),
-            bmiWeightChartConfig
-        );
+        function syncUserActivityTrackerChart(chartObj, usernm, chartName, data) {
+            var data = data || {}; // in-case nothing is passwed to the data parameter, it will be evaluated to {}
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var output = this.responseText;
+
+                    if (output.startsWith("error")) {
+                        // provide user with error message
+                        // alert(output);
+                        console.log("An error has occured: \n" + output);
+                    } else {
+                        let chartData = JSON.parse(output);
+                        console.log(chartData);
+
+                        let date = chartData.map(
+                            function(index) {
+                                return index.date;
+                            }
+                        )
+
+                        console.log(date);
+
+                        let time = chartData.map(
+                            function(index) {
+                                return index.time;
+                            }
+                        )
+
+                        console.log(time);
+
+                        // output the returned data
+                        switch (chartName) {
+                            case "heart_rate_monitor_chart":
+                                // let chartData = JSON.parse(output);
+
+                                let bpm = chartData.map(
+                                    function(index) {
+                                        return index.bpm;
+                                    }
+                                )
+
+                                console.log(bpm);
+
+                                chartObj.data.labels = time;
+                                chartObj.data.datasets[0].label = "Heart rate - BPM";
+                                chartObj.data.datasets[0].data = bpm;
+                                chartObj.update();
+                                break;
+                            case "body_temp_monitor_chart":
+
+                                let temperature = chartData.map(
+                                    function(index) {
+                                        return index.temperature;
+                                    }
+                                )
+
+                                console.log(temperature);
+
+                                // Uncaught ReferenceError: bodyTempChart is not defined at xhttp.onreadystatechange (?userauth=true:8624:33)
+                                chartObj.data.labels = time;
+                                chartObj.data.datasets[0].label = "Body Temperature - &deg; C";
+                                chartObj.data.datasets[0].data = temperature;
+                                chartObj.update();
+                                break;
+                            case "speed_monitor_chart":
+
+                                let speed = chartData.map(
+                                    function(index) {
+                                        return index.speed;
+                                    }
+                                )
+
+                                console.log(speed);
+
+
+                                chartObj.data.labels = time;
+                                chartObj.data.datasets[0].label = "Speed - ms";
+                                chartObj.data.datasets[0].data = speed;
+                                chartObj.update();
+                                break;
+                            case "step_counter_monitor_chart":
+
+                                let steps = chartData.map(
+                                    function(index) {
+                                        return index.steps;
+                                    }
+                                )
+
+                                console.log(steps);
+
+
+                                chartObj.data.labels = time;
+                                chartObj.data.datasets[0].label = "Step counter";
+                                chartObj.data.datasets[0].data = steps;
+                                chartObj.update();
+                                break;
+                            case "bmi_weight_monitor_chart":
+
+                                let bmi = chartData.map(
+                                    function(index) {
+                                        return index.bmi;
+                                    }
+                                )
+
+                                console.log(bmi);
+
+                                let weight = chartData.map(
+                                    function(index) {
+                                        return index.weight;
+                                    }
+                                )
+
+                                console.log(weight);
+
+
+                                chartObj.data.labels = time;
+                                chartObj.data.datasets[0].label = "Weight - BMI";
+                                chartObj.data.datasets[0].data = bmi;
+                                chartObj.update();
+                                break;
+
+                            default:
+                                alert("Activity Tracker Chart Update Error \nNo chart passed to function.");
+                                console.log("Activity Tracker Chart Update Error \nNo chart passed to function.");
+                                break;
+                        }
+                    }
+
+                }
+            };
+            xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/compile_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
+            xhttp.send();
+        }
+
 
         function initializeContent(auth, usernm) {
             if (auth = true) {
@@ -9748,22 +10367,29 @@ function getAllTrainers()
                                 case "heart_rate_monitor_chart":
                                     console.log(chartData);
                                     localStorage.setItem('heart_rate_monitor_chart_data', JSON.stringify(chartData));
+                                    syncUserActivityTrackerChart(heartRateChart, usernm, chartName);
+
                                     break;
                                 case "body_temp_monitor_chart":
                                     console.log(chartData);
                                     localStorage.setItem('body_temp_monitor_chart_data', JSON.stringify(chartData));
+                                    syncUserActivityTrackerChart(bodyTempChart, usernm, chartName);
                                     break;
                                 case "speed_monitor_chart":
                                     console.log(chartData);
                                     localStorage.setItem('speed_monitor_chart_data', JSON.stringify(chartData));
+                                    syncUserActivityTrackerChart(speedChart, usernm, chartName);
                                     break;
                                 case "step_counter_monitor_chart":
                                     console.log(chartData);
                                     localStorage.setItem('step_counter_monitor_chart_data', JSON.stringify(chartData));
+                                    syncUserActivityTrackerChart(stepCountChart, usernm, chartName);
                                     break;
                                 case "bmi_weight_monitor_chart":
                                     console.log(chartData);
                                     localStorage.setItem('bmi_weight_monitor_chart_data', JSON.stringify(chartData));
+                                    syncUserActivityTrackerChart(bmiWeightChart, usernm, chartName);
+
                                     break;
                                 default:
                                     break;
@@ -9778,138 +10404,395 @@ function getAllTrainers()
 
         }
 
-        function refreshUserActivityTrackerChart(usernm, chartName) {
+        // function syncCycleUserActivityTrackerChart(usernm, chartName) {
 
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var output = this.responseText;
+        //     var xhttp = new XMLHttpRequest();
+        //     xhttp.onreadystatechange = function() {
+        //         if (this.readyState == 4 && this.status == 200) {
+        //             var output = this.responseText;
 
-                    if (output.startsWith("error")) {
-                        // provide user with error message
-                        // alert(output);
-                        console.log("An error has occured: \n" + output);
-                    } else {
-                        let chartData = JSON.parse(output);
-                        console.log(chartData);
+        //             if (output.startsWith("error")) {
+        //                 // provide user with error message
+        //                 // alert(output);
+        //                 console.log("An error has occured: \n" + output);
+        //             } else {
+        //                 let chartData = JSON.parse(output);
+        //                 console.log(chartData);
 
-                        let date = chartData.map(
-                            function(index) {
-                                return index.date;
-                            }
-                        )
+        //                 let date = chartData.map(
+        //                     function(index) {
+        //                         return index.date;
+        //                     }
+        //                 )
 
-                        console.log(date);
+        //                 console.log(date);
 
-                        let time = chartData.map(
-                            function(index) {
-                                return index.time;
-                            }
-                        )
+        //                 let time = chartData.map(
+        //                     function(index) {
+        //                         return index.time;
+        //                     }
+        //                 )
 
-                        console.log(time);
+        //                 console.log(time);
 
-                        // output the returned data
-                        switch (chartName) {
-                            case "heart_rate_monitor_chart":
-                                // let chartData = JSON.parse(output);
+        //                 // output the returned data
+        //                 switch (chartName) {
+        //                     case "heart_rate_monitor_chart":
+        //                         // let chartData = JSON.parse(output);
 
-                                let bpm = chartData.map(
-                                    function(index) {
-                                        return index.bpm;
-                                    }
-                                )
+        //                         let bpm = chartData.map(
+        //                             function(index) {
+        //                                 return index.bpm;
+        //                             }
+        //                         )
 
-                                console.log(bpm);
+        //                         console.log(bpm);
 
-                                // Uncaught TypeError: Cannot read properties of undefined (reading 'data') at xhttp.onreadystatechange (?userauth=true:8609:69)
-                                heartrateChart.heartrateChartConfig.heartrateChartdata.heartrateChartLabels = time;
-                                heartrateChart.heartrateChartConfig.heartrateChartdata.datasets[0].label = "Heart rate - BPM";
-                                heartrateChart.heartrateChartConfig.heartrateChartdata.datasets[0].data = bpm;
-                                heartrateChart.update();
-                                break;
-                            case "body_temp_monitor_chart":
+        //                         // draw chart
+        //                         // assign
+        //                         // default chart data - Heart Rate
+        //                         let heartRateChartLabels = [
+        //                             'January',
+        //                             'February',
+        //                             'March',
+        //                             'April',
+        //                             'May',
+        //                             'June',
+        //                         ];
 
-                                let temperature = chartData.map(
-                                    function(index) {
-                                        return index.temperature;
-                                    }
-                                )
+        //                         let heartRateChartData = {
+        //                             labels: heartRateChartLabels,
+        //                             datasets: [{
+        //                                 label: 'Initial Data',
+        //                                 backgroundColor: 'rgb(231, 136, 4)',
+        //                                 borderColor: 'rgb(231, 136, 4)',
+        //                                 data: [0, 10, 5, 2, 20, 30, 45],
+        //                                 borderWidth: 5
+        //                             }]
+        //                         };
 
-                                console.log(temperature);
+        //                         let heartRateChartConfig = {
+        //                             type: 'line',
+        //                             data: heartRateChartData,
+        //                             options: {
+        //                                 layout: {
+        //                                     padding: 40
+        //                                 },
+        //                                 scales: {
+        //                                     y: {
+        //                                         beginAtZero: true
+        //                                     }
+        //                                 },
+        //                                 legend: {
+        //                                     display: true,
+        //                                     labels: {
+        //                                         color: 'rgb(255, 99, 132)'
+        //                                     },
+        //                                     position: 'bottom',
+        //                                 }
+        //                             },
+        //                             plugins: [plugin]
+        //                         };
 
-                                // Uncaught ReferenceError: bodyTempChart is not defined at xhttp.onreadystatechange (?userauth=true:8624:33)
-                                bodyTempChart.bodyTempChartConfig.bodyTempChartData.bodyTempChartLabels = time;
-                                bodyTempChart.bodyTempChartConfig.bodyTempChartData.datasets[0].label = "Body Temperature - &deg; C";
-                                bodyTempChart.bodyTempChartConfig.bodyTempChartData.datasets[0].data = temperature;
-                                bodyTempChart.update();
-                                break;
-                            case "speed_monitor_chart":
+        //                         let heartRateChart = new Chart(
+        //                             document.getElementById('heart_rate_monitor_chart'),
+        //                             heartRateChartConfig
+        //                         );
 
-                                let speed = chartData.map(
-                                    function(index) {
-                                        return index.speed;
-                                    }
-                                )
+        //                         heartRateChart.heartRateChartConfig.data.labels = time;
+        //                         heartRateChart.heartRateChartConfig.data.datasets[0].label = "Heart rate - BPM";
+        //                         heartRateChart.heartRateChartConfig.data.datasets[0].data = bpm;
 
-                                console.log(speed);
+        //                         heartRateChart.update();
+        //                         break;
+        //                     case "body_temp_monitor_chart":
 
-                                speedChart.speedChartConfig.speedChartData.speedChartLabels = time;
-                                speedChart.speedChartConfig.speedChartData.datasets[0].label = "Speed - ms";
-                                speedChart.speedChartConfig.speedChartData.datasets[0].data = speed;
-                                speedChart.update();
-                                break;
-                            case "step_counter_monitor_chart":
+        //                         let temperature = chartData.map(
+        //                             function(index) {
+        //                                 return index.temperature;
+        //                             }
+        //                         )
 
-                                let steps = chartData.map(
-                                    function(index) {
-                                        return index.steps;
-                                    }
-                                )
+        //                         console.log(temperature);
 
-                                console.log(steps);
+        //                         // draw chart
+        //                         // assign default chart data - Body Temp
+        //                         let bodyTempChartLabels = [
+        //                             'January',
+        //                             'February',
+        //                             'March',
+        //                             'April',
+        //                             'May',
+        //                             'June',
+        //                         ];
 
-                                stepCountChart.stepCountChartConfig.stepCountChartData.stepCountChartLabels = time;
-                                stepCountChart.stepCountChartConfig.stepCountChartData.datasets[0].label = "Step counter";
-                                stepCountChart.stepCountChartConfig.stepCountChartData.datasets[0].data = steps;
-                                stepCountChart.update();
-                                break;
-                            case "bmi_weight_monitor_chart":
+        //                         let bodyTempChartData = {
+        //                             labels: bodyTempChartLabels,
+        //                             datasets: [{
+        //                                 label: 'Initial Data',
+        //                                 backgroundColor: 'rgb(231, 136, 4)',
+        //                                 borderColor: 'rgb(231, 136, 4)',
+        //                                 data: [0, 10, 5, 2, 20, 30, 45],
+        //                                 borderWidth: 5
+        //                             }]
+        //                         };
 
-                                let bmi = chartData.map(
-                                    function(index) {
-                                        return index.bmi;
-                                    }
-                                )
+        //                         let bodyTempChartConfig = {
+        //                             type: 'line',
+        //                             data: bodyTempChartData,
+        //                             options: {
+        //                                 layout: {
+        //                                     padding: 40
+        //                                 },
+        //                                 scales: {
+        //                                     y: {
+        //                                         beginAtZero: true
+        //                                     }
+        //                                 },
+        //                                 legend: {
+        //                                     display: true,
+        //                                     labels: {
+        //                                         color: 'rgb(255, 99, 132)'
+        //                                     },
+        //                                     position: 'bottom',
+        //                                 }
+        //                             },
+        //                             plugins: [plugin]
+        //                         };
 
-                                console.log(bmi);
+        //                         let bodyTempChart = new Chart(
+        //                             document.getElementById('body_temp_monitor_chart'),
+        //                             bodyTempChartConfig
+        //                         );
 
-                                let weight = chartData.map(
-                                    function(index) {
-                                        return index.weight;
-                                    }
-                                )
+        //                         // Uncaught ReferenceError: bodyTempChart is not defined at xhttp.onreadystatechange (?userauth=true:8624:33)
+        //                         bodyTempChart.bodyTempChartConfig.labels = time;
+        //                         bodyTempChart.bodyTempChartConfig.data.datasets[0].label = "Body Temperature - &deg; C";
+        //                         bodyTempChart.bodyTempChartConfig.data.datasets[0].data = temperature;
 
-                                console.log(weight);
+        //                         bodyTempChart.update();
+        //                         break;
+        //                     case "speed_monitor_chart":
 
-                                bmiWeightChart.bmiWeightChartConfig.bmiWeightChartData.bmiWeightChartLabels = time;
-                                bmiWeightChart.bmiWeightChartConfig.bmiWeightChartData.datasets[0].label = "Weight - BMI";
-                                bmiWeightChart.bmiWeightChartConfig.bmiWeightChartData.datasets[0].data = bmi;
-                                bmiWeightChart.update();
-                                break;
+        //                         let speed = chartData.map(
+        //                             function(index) {
+        //                                 return index.speed;
+        //                             }
+        //                         )
 
-                            default:
-                                alert("Activity Tracker Chart Update Error \nNo chart passed to function.");
-                                console.log("Activity Tracker Chart Update Error \nNo chart passed to function.");
-                                break;
-                        }
-                    }
+        //                         console.log(speed);
 
-                }
-            };
-            xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/compile_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
-            xhttp.send();
-        }
+        //                         // draw chart
+        //                         // assign default chart data - Speed
+        //                         let speedChartLabels = [
+        //                             'January',
+        //                             'February',
+        //                             'March',
+        //                             'April',
+        //                             'May',
+        //                             'June',
+        //                         ];
+
+        //                         let speedChartData = {
+        //                             labels: speedChartLabels,
+        //                             datasets: [{
+        //                                 label: 'Initial Data',
+        //                                 backgroundColor: 'rgb(231, 136, 4)',
+        //                                 borderColor: 'rgb(231, 136, 4)',
+        //                                 data: [0, 10, 5, 2, 20, 30, 45],
+        //                                 borderWidth: 5
+        //                             }]
+        //                         };
+
+        //                         let speedChartConfig = {
+        //                             type: 'line',
+        //                             data: speedChartData,
+        //                             options: {
+        //                                 layout: {
+        //                                     padding: 40
+        //                                 },
+        //                                 scales: {
+        //                                     y: {
+        //                                         beginAtZero: true
+        //                                     }
+        //                                 },
+        //                                 legend: {
+        //                                     display: true,
+        //                                     labels: {
+        //                                         color: 'rgb(255, 99, 132)'
+        //                                     },
+        //                                     position: 'bottom',
+        //                                 }
+        //                             },
+        //                             plugins: [plugin]
+        //                         };
+
+        //                         let speedChart = new Chart(
+        //                             document.getElementById('speed_monitor_chart'),
+        //                             speedChartConfig
+        //                         );
+
+        //                         speedChart.speedChartConfig.data.labels = time;
+        //                         speedChart.speedChartConfig.data.datasets[0].label = "Speed - ms";
+        //                         speedChart.speedChartConfig.data.datasets[0].data = speed;
+
+        //                         speedChart.update();
+        //                         break;
+        //                     case "step_counter_monitor_chart":
+
+        //                         let steps = chartData.map(
+        //                             function(index) {
+        //                                 return index.steps;
+        //                             }
+        //                         )
+
+        //                         console.log(steps);
+
+        //                         // step count
+        //                         // assign default chart data - Step Count
+        //                         let stepCountChartLabels = [
+        //                             'January',
+        //                             'February',
+        //                             'March',
+        //                             'April',
+        //                             'May',
+        //                             'June',
+        //                         ];
+
+        //                         let stepCountChartData = {
+        //                             labels: stepCountChartLabels,
+        //                             datasets: [{
+        //                                 label: 'Initial Data',
+        //                                 backgroundColor: 'rgb(231, 136, 4)',
+        //                                 borderColor: 'rgb(231, 136, 4)',
+        //                                 data: [0, 10, 5, 2, 20, 30, 45],
+        //                                 borderWidth: 5
+        //                             }]
+        //                         };
+
+        //                         let stepCountChartConfig = {
+        //                             type: 'line',
+        //                             data: stepCountChartData,
+        //                             options: {
+        //                                 layout: {
+        //                                     padding: 40
+        //                                 },
+        //                                 scales: {
+        //                                     y: {
+        //                                         beginAtZero: true
+        //                                     }
+        //                                 },
+        //                                 legend: {
+        //                                     display: true,
+        //                                     labels: {
+        //                                         color: 'rgb(255, 99, 132)'
+        //                                     },
+        //                                     position: 'bottom',
+        //                                 }
+        //                             },
+        //                             plugins: [plugin]
+        //                         };
+
+        //                         let stepCountChart = new Chart(
+        //                             document.getElementById('step_counter_monitor_chart'),
+        //                             stepCountChartConfig
+        //                         );
+
+        //                         stepCountChart.stepCountChartConfig.data.labels = time;
+        //                         stepCountChart.stepCountChartConfig.data.datasets[0].label = "Step counter";
+        //                         stepCountChart.stepCountChartConfig.data.datasets[0].data = steps;
+
+        //                         stepCountChart.update();
+        //                         break;
+        //                     case "bmi_weight_monitor_chart":
+
+        //                         let bmi = chartData.map(
+        //                             function(index) {
+        //                                 return index.bmi;
+        //                             }
+        //                         )
+
+        //                         console.log(bmi);
+
+        //                         let weight = chartData.map(
+        //                             function(index) {
+        //                                 return index.weight;
+        //                             }
+        //                         )
+
+        //                         console.log(weight);
+
+        //                         // draw chart
+        //                         // assign default chart data - BMI Weight
+        //                         let bmiWeightChartLabels = [
+        //                             'January',
+        //                             'February',
+        //                             'March',
+        //                             'April',
+        //                             'May',
+        //                             'June',
+        //                         ];
+
+        //                         let bmiWeightChartData = {
+        //                             labels: bmiWeightChartLabels,
+        //                             datasets: [{
+        //                                 label: 'Initial Data',
+        //                                 backgroundColor: 'rgb(231, 136, 4)',
+        //                                 borderColor: 'rgb(231, 136, 4)',
+        //                                 data: [0, 10, 5, 2, 20, 30, 45],
+        //                                 borderWidth: 5
+        //                             }]
+        //                         };
+
+        //                         let bmiWeightChartConfig = {
+        //                             type: 'line',
+        //                             data: bmiWeightChartData,
+        //                             options: {
+        //                                 layout: {
+        //                                     padding: 40
+        //                                 },
+        //                                 scales: {
+        //                                     y: {
+        //                                         beginAtZero: true
+        //                                     }
+        //                                 },
+        //                                 legend: {
+        //                                     display: true,
+        //                                     labels: {
+        //                                         color: 'rgb(255, 99, 132)'
+        //                                     },
+        //                                     position: 'bottom',
+        //                                 }
+        //                             },
+        //                             plugins: [plugin]
+        //                         };
+
+        //                         let bmiWeightChart = new Chart(
+        //                             document.getElementById('bmi_weight_monitor_chart'),
+        //                             bmiWeightChartConfig
+        //                         );
+
+        //                         bmiWeightChart.data
+
+        //                         bmiWeightChart.bmiWeightChartConfig.data.labels = time;
+        //                         bmiWeightChart.bmiWeightChartConfig.data.datasets[0].label = "Weight - BMI";
+        //                         bmiWeightChart.bmiWeightChartConfig.data.datasets[0].data = bmi;
+
+        //                         bmiWeightChart.update();
+        //                         break;
+
+        //                     default:
+        //                         alert("Activity Tracker Chart Update Error \nNo chart passed to function.");
+        //                         console.log("Activity Tracker Chart Update Error \nNo chart passed to function.");
+        //                         break;
+        //                 }
+        //             }
+
+        //         }
+        //     };
+        //     xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/compile_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
+        //     xhttp.send();
+        // }
 
         function setCurrentAppTabID(currentPageID) {
             // get the currently active app page
@@ -9951,7 +10834,19 @@ function getAllTrainers()
             return [StartDate, EndDate];
         }
 
+        function getCurrentWeekStartEndDates() {
+            // test code
+            var elemDatesOutput1 = document.getElementById("weekly-survey-duration-dates");
+            // var elemDatesOutput2 = document.getElementById("weekly-training-date-duration-str");
 
+            var Dates = new Date().getWeek();
+            //alert(Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString());
+
+            elemDatesOutput1.innerHTML = 'weekly-survey-duration-dates', Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString();
+            localStorage.setItem('weekly-survey-duration-dates', Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString());
+            // elemDatesOutput2.innerHTML = 
+            localStorage.setItem('weekly-training-date-duration', Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString());
+        }
 
         function openLink(evt, tabName) {
             var i, x, tabContainer, tablinks;
@@ -10163,7 +11058,7 @@ function getAllTrainers()
         }
 
         // Make the DIV element draggable:
-        dragElement(document.getElementById("drag-player-pin"));
+        // dragElement(document.getElementById("drag-player-pin"));  // hide this for now
 
         function dragElement(elmnt) {
             var pos1 = 0,

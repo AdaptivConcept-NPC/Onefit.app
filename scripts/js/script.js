@@ -1,14 +1,4 @@
-function getCurrentWeekStartEndDates() {
-    // test code
-    var elemDatesOutput1 = document.getElementById("weekly-survey-duration-dates");
-    var elemDatesOutput2 = document.getElementById("weekly-training-date-duration-str");
 
-    var Dates = new Date().getWeek();
-    //alert(Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString());
-
-    elemDatesOutput1.innerHTML = Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString();
-    elemDatesOutput2.innerHTML = Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString();
-}
 
 function loadUserProfile() {
     //Declaring variables

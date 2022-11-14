@@ -11,12 +11,12 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
     $getDay = $getGrpRef = $activities_bar_content = $inner_activities_bar_content = "";
 
     // execute query
-    $getDay = sanitizeMySQL($dbconn, $_GET['day']);
+    $getDay = ucfirst(strtolower(sanitizeMySQL($dbconn, $_GET['day'])));
     $getGrpRef = sanitizeMySQL($dbconn, $_GET['gref']);
 
     $dayNum = date("N", strtotime("$getDay this week"));
 
-    $dayDateThisWeek = date('Y-m-d', strtotime("$getDay this week"));
+    $dayDateThisWeek = date('d/m/Y', strtotime("$getDay this week"));
 
     // tws
     $teams_weekly_schedule_id =
@@ -48,9 +48,31 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
 
         if ($rows == 0) {
             //there is no result so notify user that the account cannot be found
-            echo "possible error: No schedule and activities found.";
+            // echo "possible error: No schedule and activities found.";
+            $activities_bar_content = <<<_END
+            <p id="bar-title-day$dayNum" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
+                No activities
+            </p>
+            <!--<p id="bar-rpe-day$dayNum" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
+                RPE $schedule_rpe
+            </p>-->
+            <div id="teams-weekly-activity-barchart-bar-day$dayNum" class="chart-col-bar p-2 shadow down-top-grad-tahiti d-grid text-center pt-4">
+                <span class="material-icons material-icons-round align-middle"> bed </span>
+                <p>Rest.</p>
+            </div>
+            <hr class="text-dark">
+            <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('$getDay','$getGrpRef')">
+                    <span class="material-icons material-icons-round align-middle">
+                        add_circle
+                    </span>
+                </button>
+            </div>
+            <p class="text-center fs-5 fw-bold comfortaa-font">$getDay</p>
+            <p class="text-center fs-5 fw-bold comfortaa-font">$dayDateThisWeek</p>
+            _END;
+            echo $activities_bar_content;
         } else {
-
             for ($j = 0; $j < $rows; ++$j) {
                 $row = $result->fetch_array(MYSQLI_ASSOC);
 
@@ -87,45 +109,45 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
             }
 
             $activities_bar_content = <<<_END
-                <!-- Edit training day bar - Day $dayNum -->
-                <div class="collapse multi-collapse w3-animate-bottom" id="edit-bar-weekly-activity-btn-day$dayNum">
-                    <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditDayBar('$schedule_day','$getGrpRef')">
-                        <span class="material-icons material-icons-round" style="font-size: 20px !important;">
-                            edit
-                        </span>
-                    </button>
-                </div>
-                <!-- ./ Edit training day bar - Day $dayNum -->
-                <p id="bar-title-day$dayNum" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
-                    $schedule_title
-                </p>
-                <p id="bar-rpe-day$dayNum" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
-                    RPE $schedule_rpe
-                </p>
-                <div id="teams-weekly-activity-barchart-bar-day$dayNum" class="chart-col-bar p-2 shadow down-top-intensity-bar-bg-grad">
-                    $inner_activities_bar_content
-                </div>
-                <hr class="text-dark">
-                <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                    <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('$schedule_day','$getGrpRef')">
-                        <span class="material-icons material-icons-round align-middle">
-                            add_circle
-                        </span>
-                    </button>
-                </div>
-                <p class="text-center fs-5 fw-bold comfortaa-font">$schedule_day</p>
-                <p class="text-center fs-5 fw-bold comfortaa-font">$schedule_date</p>
-                _END;
+            <!-- Edit training day bar - Day $dayNum -->
+            <div class="collapse multi-collapse w3-animate-bottom" id="edit-bar-weekly-activity-btn-day$dayNum">
+                <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditDayBar('$schedule_day','$getGrpRef')">
+                    <span class="material-icons material-icons-round" style="font-size: 20px !important;">
+                        edit
+                    </span>
+                </button>
+            </div>
+            <!-- ./ Edit training day bar - Day $dayNum -->
+            <!--<p id="bar-title-day$dayNum" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
+                $schedule_title
+            </p>
+            <p id="bar-rpe-day$dayNum" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
+                RPE $schedule_rpe
+            </p>
+            <div id="teams-weekly-activity-barchart-bar-day$dayNum" class="chart-col-bar p-2 shadow down-top-intensity-bar-bg-grad">
+                $inner_activities_bar_content
+            </div>-->
+            <hr class="text-dark">
+            <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
+                <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('$schedule_day','$getGrpRef')">
+                    <span class="material-icons material-icons-round align-middle">
+                        add_circle
+                    </span>
+                </button>
+            </div>
+            <p class="text-center fs-5 fw-bold comfortaa-font">$schedule_day</p>
+            <p class="text-center fs-5 fw-bold comfortaa-font">$schedule_date</p>
+            _END;
 
             echo $activities_bar_content;
         }
 
-        $result = null;
+        $result->close();
         $dbconn->close();
 
         // echo "success: About You data saved successfully.";
     } catch (\Throwable $th) {
         //throw $th;
-        echo "Error: " . $th->getMessage;
+        echo "error: " . $th->getMessage;
     }
 }

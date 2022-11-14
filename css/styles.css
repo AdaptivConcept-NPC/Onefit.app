@@ -131,18 +131,28 @@ body {
 }
 
 .down-top-intensity-bar-bg-grad {
-  background: rgb(52, 52, 52);
+  /* background: rgb(52, 52, 52);
   background: -moz-linear-gradient(180deg, rgba(52, 52, 52, 1) 0%, rgba(99, 35, 35, 1) 50%, rgba(194, 0, 0, 1) 100%);
   background: -webkit-linear-gradient(180deg, rgba(52, 52, 52, 1) 0%, rgba(99, 35, 35, 1) 50%, rgba(194, 0, 0, 1) 100%);
   background: linear-gradient(180deg, rgba(52, 52, 52, 1) 0%, rgba(99, 35, 35, 1) 50%, rgba(194, 0, 0, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#343434", endColorstr="#c20000", GradientType=1); */
+  background: rgb(52, 52, 52);
+  background: -moz-linear-gradient(180deg, rgba(52, 52, 52, 1) 0%, rgba(78, 0, 0, 1) 60%, rgba(194, 0, 0, 1) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(52, 52, 52, 1) 0%, rgba(78, 0, 0, 1) 60%, rgba(194, 0, 0, 1) 100%);
+  background: linear-gradient(180deg, rgba(52, 52, 52, 1) 0%, rgba(78, 0, 0, 1) 60%, rgba(194, 0, 0, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#343434", endColorstr="#c20000", GradientType=1);
 }
 
 .top-down-intensity-bar-bg-grad {
-  background: rgb(52, 52, 52);
+  /* background: rgb(52, 52, 52);
   background: -moz-linear-gradient(0deg, rgba(52, 52, 52, 1) 0%, rgba(99, 35, 35, 1) 50%, rgba(194, 0, 0, 1) 100%);
   background: -webkit-linear-gradient(0deg, rgba(52, 52, 52, 1) 0%, rgba(99, 35, 35, 1) 50%, rgba(194, 0, 0, 1) 100%);
   background: linear-gradient(0deg, rgba(52, 52, 52, 1) 0%, rgba(99, 35, 35, 1) 50%, rgba(194, 0, 0, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#343434", endColorstr="#c20000", GradientType=1); */
+  background: rgb(52, 52, 52);
+  background: -moz-linear-gradient(0deg, rgba(52, 52, 52, 1) 0%, rgba(78, 0, 0, 1) 60%, rgba(194, 0, 0, 1) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(52, 52, 52, 1) 0%, rgba(78, 0, 0, 1) 60%, rgba(194, 0, 0, 1) 100%);
+  background: linear-gradient(0deg, rgba(52, 52, 52, 1) 0%, rgba(78, 0, 0, 1) 60%, rgba(194, 0, 0, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#343434", endColorstr="#c20000", GradientType=1);
 }
 
@@ -631,6 +641,36 @@ h6 {
   color: var(--tahitigold) !important;
   border: solid var(--tahitigold) 7px;
   transform: scale(0.5, 0.5);
+}
+
+.onefit-buttons-style-transp-leftdir {
+  background: transparent;
+  color: var(--white) !important;
+
+  border: 0;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+
+.onefit-buttons-style-transp-leftdir:hover {
+  color: var(--tahitigold) !important;
+  border-left: solid var(--tahitigold) 5px;
+  transform: scale(0.9, 0.9);
+}
+
+.onefit-buttons-style-transp-rightdir {
+  background: transparent;
+  color: var(--white) !important;
+
+  border: 0;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+
+.onefit-buttons-style-transp-rightdir:hover {
+  color: var(--tahitigold) !important;
+  border-right: solid var(--tahitigold) 5px;
+  transform: scale(0.9, 0.9);
 }
 
 .onefit-buttons-style-tahiti {
@@ -1225,8 +1265,8 @@ div.horizontal-scroll-card-nav {
   /*min-width: 200px;*/
   max-width: 100%;
   height: auto;
-  background-color: var(--white);
-  color: var(--mineshaft);
+  background-color: var(--mineshaft);
+  color: var(--white);
   font-size: 20px;
 }
 
@@ -1265,7 +1305,7 @@ div.horizontal-scroll-card-nav {
   top: 0px;
   bottom: auto;
   border: 22px solid;
-  border-color: var(--white) transparent transparent transparent;
+  border-color: var(--mineshaft) transparent transparent transparent;
 }
 
 /* Right triangle, left side slightly down */
@@ -1292,7 +1332,7 @@ div.horizontal-scroll-card-nav {
   top: 38px;
   bottom: auto;
   border: 12px solid;
-  border-color: var(--white) var(--white) transparent transparent;
+  border-color: var(--mineshaft) var(--mineshaft) transparent transparent;
 }
 
 /*Right triangle, placed bottom left side slightly in*/
@@ -1319,7 +1359,7 @@ div.horizontal-scroll-card-nav {
   top: auto;
   bottom: -20px;
   border: 22px solid;
-  border-color: transparent transparent transparent var(--white);
+  border-color: transparent transparent transparent var(--mineshaft);
 }
 
 /*Right triangle, placed bottom left side slightly in*/
@@ -1410,7 +1450,7 @@ div.horizontal-scroll-card-nav {
   right: 0px;
   bottom: -20px;
   border: 12px solid;
-  border-color: var(--white) var(--white) transparent transparent;
+  border-color: var(--mineshaft) var(--mineshaft) transparent transparent;
 }
 
 /* Right triangle, right side slightly down*/
@@ -1437,7 +1477,7 @@ div.horizontal-scroll-card-nav {
   top: 38px;
   bottom: auto;
   border: 12px solid;
-  border-color: var(--white) transparent transparent var(--white);
+  border-color: var(--mineshaft) transparent transparent var(--mineshaft);
 }
 
 /* Right triangle placed top right flush. */
@@ -1464,7 +1504,7 @@ div.horizontal-scroll-card-nav {
   top: 0px;
   bottom: auto;
   border: 20px solid;
-  border-color: var(--white) transparent transparent transparent;
+  border-color: var(--mineshaft) transparent transparent transparent;
 }
 
 /* talk bubble contents */

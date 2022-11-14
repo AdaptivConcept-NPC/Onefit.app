@@ -89,12 +89,12 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                     </button>
                 </div>
                 <!-- ./ Edit training day bar - Day $dayNum -->
-                <p id="bar-title-day$dayNum" class="fs-3 fw-bold comfortaa-font">
+                <!--<p id="bar-title-day$dayNum" class="fs-3 fw-bold comfortaa-font">
                     $schedule_title
                 </p>
                 <p id="bar-rpe-day$dayNum" class="comfortaa-font">
                     RPE $schedule_rpe
-                </p>
+                </p>-->
                 <div id="teams-weekly-activity-barchart-bar-day$dayNum" class="chart-col-bar p-2 shadow down-top-intensity-bar-bg-grad">
                     $inner_activities_bar_content
                 </div>
@@ -145,10 +145,10 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
             $formHTML = <<<_END
             <div class="row px-4 align-items-end">
                 <div class="col-md-4 p-4 text-center">
-                    <p id="form-bar-title-day$dayNum" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
+                    <p id="form-bar-title-day$dayNum" class="fw-bold fs-3 fw-bold text-dark comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                         $schedule_title
                     </p>
-                    <p id="form-bar-rpe-day$dayNum" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
+                    <p id="form-bar-rpe-day$dayNum" class="fw-bold text-dark comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                         RPE $schedule_rpe
                     </p>
                     <div id="form-indi-weekly-activity-barchart-bar-day$dayNum" class="chart-col-bar p-2 shadow progress-bar mb-4">
@@ -234,9 +234,14 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
             </div>
             _END;
 
+            $result->close();
+            $dbconn->close();
+
             echo $formHTML;
         } catch (\Throwable $th) {
             //throw $th;
+            $result->close();
+            $dbconn->close();
             echo "exception error: [indi edit-add new activity] " . $th->getMessage;
         }
     }
