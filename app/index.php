@@ -99,7 +99,7 @@ $uctDateTime->setTimezone(new DateTimeZone("UTC"));
 
 
 if (isset($_SESSION["currentUserAuth"])) {
-    if ($_SESSION["currentUserAuth"] == true) {
+    if ($_SESSION["currentUserAuth"] === true) {
         $userAuth = sanitizeString($_SESSION["currentUserAuth"]);
         $currentUser_Usrnm = sanitizeString($_SESSION["currentUserUsername"]);
 
@@ -109,7 +109,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // Load App Content
         // Load the user profile information
-        $sql = "SELECT * FROM users u INNER JOIN general_user_profiles gup ON u.username = gup.username WHERE u.username = '$currentUser_Usrnm';";
+        $sql = "SELECT * FROM users u INNER JOIN general_user_profiles gup ON u.username = gup.users_username WHERE u.username = '$currentUser_Usrnm';";
 
         if ($result = mysqli_query($dbconn, $sql)) {
 
@@ -326,7 +326,7 @@ function getUserDetails($username)
     $otherUserverifIcon = $usrdetails_userid = $usrdetails_username = $usrdetails_name = $usrdetails_surname = $usrdetails_idnumber = $usrdetails_email = $usrdetails_contact = $usrdetails_dob = $usrdetails_race = $usrdetails_nationality = $usrdetails_acc_active = $usrdetails_profileid = $usrdetails_about = $usrdetails_profiletype = $usrdetails_profilepicurl = $usrdetails_verification = $currentUserAccountProdImg = "";
 
     // Load the user profile information
-    $sql = "SELECT * FROM users u INNER JOIN user_profiles up ON u.username = up.username WHERE u.username = '$username';";
+    $sql = "SELECT * FROM users u INNER JOIN general_user_profiles gup ON u.username = gup.users_username WHERE u.username = '$username';";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 
@@ -381,9 +381,9 @@ function getUserFriends()
     $usr_verification = false;
 
     //users friends list
-    $sql = "SELECT f.friend_id, f.friend_username, u.user_name, u.user_surname, up.profile_url, up.verification FROM friends f 
+    $sql = "SELECT f.friend_id, f.friend_username, u.user_name, u.user_surname, gup.profile_url, gup.verification FROM friends f 
     INNER JOIN users u ON f.friend_username = u.username 
-    INNER JOIN user_profiles up ON f.friend_username = up.username
+    INNER JOIN general_user_profiles gup ON f.friend_username = gup.users_username
     WHERE f.username = '$currentUser_Usrnm' AND f.friendship_status = 1";
 
     if ($result = mysqli_query($dbconn, $sql)) {
@@ -889,7 +889,7 @@ function getUserUpdates()
 
     $sql = "SELECT * FROM community_posts cp 
     INNER JOIN users u ON cp.username = u.username 
-    INNER JOIN user_profiles up ON u.username = up.username
+    INNER JOIN general_user_profiles gup ON u.username = gup.users_username
     WHERE cp.username = '$currentUser_Usrnm';";
 
     if ($result = mysqli_query($dbconn, $sql)) {
@@ -1032,7 +1032,7 @@ function getCommunityGroups()
     if ($result = mysqli_query($dbconn, $sql)) {
 
         while ($row = mysqli_fetch_assoc($result)) {
-            //`group_id`, `group_ref_code`, `group_name`, `group_description`, `group_category`, `group_privacy`, `created_by`, `creation_date`
+            //`group_id`, `group_ref_code`, `group_name`, `group_description`, `group_category`, `group_privacy`, `creation_date`, `administrators_username`
 
             $grps_groupid = $row["group_id"];
             $grps_refcode = $row["group_ref_code"];
@@ -1040,7 +1040,7 @@ function getCommunityGroups()
             $grps_description = $row["group_description"];
             $grps_category = $row["group_category"];
             $grps_privacy = $row["group_privacy"];
-            $grps_createdby = $row["created_by"];
+            $grps_createdby = $row["administrators_username"];
             $grps_createdate = $row["creation_date"];
 
             $discoverGroupsList .= '
@@ -1100,25 +1100,28 @@ function getCommunityNews()
     global $dbconn, $news_id, $news_title, $news_content, $news_createdby, $news_date, $news_poster_name, $news_poster_surname, $communicationNews, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
 
     //news
-    $sql = "SELECT * FROM news n INNER JOIN users u ON n.created_by = u.username ORDER BY n.creation_date DESC";
+    // $sql = "SELECT * FROM news n INNER JOIN users u ON n.created_by = u.username ORDER BY n.creation_date DESC";
+    $sql = "SELECT * FROM news ORDER BY article_id DESC";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 
         while ($row = mysqli_fetch_assoc($result)) {
-            //`article_id`, `article_title`, `content`, `created_by`, `creation_date`
+            //`article_id`, `article_title`, `content`, `creation_date`
 
             $news_id = $row["article_id"];
             $news_title = $row["article_title"];
             $news_content = $row["content"];
-            $news_createdby = $row["created_by"];
+            // $news_createdby = $row["created_by"];
             $news_date = $row["creation_date"];
 
-            $news_poster_name = $row["user_name"];
-            $news_poster_surname = $row["user_surname"];
+            // $news_poster_name = $row["user_name"];
+            // $news_poster_surname = $row["user_surname"];
+            $news_poster_name = "One-On-One Fitness";
+            $news_poster_surname = "Network (" . date('Y') . ")";
 
             $communicationNews .= '
             <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="news-' . $news_id . '">
-                <h3>' . $news_title . ' <span style="font-size: 10px">By ' . $news_poster_name . ' ' . $news_poster_surname . ' (@' . $news_createdby . ')</span></h3>
+                <h3>' . $news_title . ' <span style="font-size: 10px">By ' . $news_poster_name . ' ' . $news_poster_surname . '</span></h3>
                 <p><span style="color: #ffa500">' . $news_content . '</span></p>
                 <p class="text-right" style="font-size: 8px">' . $news_date . '</p>
             </div>
@@ -1211,12 +1214,14 @@ function getCommunityUpdates()
     //community posts (latest 50 posts)
     $sql = "SELECT * FROM community_posts cp 
     INNER JOIN users u ON cp.username = u.username
-    INNER JOIN user_profiles up ON u.username = up.username;";
+    INNER JOIN general_user_profiles gup ON u.username = gup.users_username;";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 
         while ($row = mysqli_fetch_assoc($result)) {
-            //`post_id`, `post_date`, `post_message`, `username`, `modified_date`, `favourite_ref`FROM `community_posts` WHERE 
+            // cp: `post_id`, `users_username`, `post_date`, `post_message`, `modified_date`, `favourite_ref`
+            // gup: `user_profile_id`, `about`, `profile_type`, `verification`, `profile_url`, `profile_image_url`, `profile_banner_url`, `users_username`
+            // u: `user_id`, `username`, `password_hash`, `user_name`, `user_surname`, `id_number`, `user_email`, `contact_number`, `date_of_birth`, `user_gender`, `user_race`, `user_nationality`, `account_active`
             $commpost_postid = $row["post_id"];
             $commpost_postdate = $row["post_date"];
             $commpost_message = $row["post_message"];
@@ -1225,7 +1230,7 @@ function getCommunityUpdates()
             $commpost_usr_name = $row["user_name"];
             $commpost_usr_surname = $row["user_surname"];
 
-            $commpostusr_profilepicurl = $row["profile_url"];
+            $commpostusr_profilepicurl = $row["profile_image_url"];
             $commpostusr_verification = $row["verification"];
 
             // start date 
@@ -1250,9 +1255,10 @@ function getCommunityUpdates()
             //profile picture
             if ($commpostusr_profilepicurl == "default" || $commpostusr_profilepicurl == null || $commpostusr_profilepicurl == "") {
                 $commpost_img_url = "'../media/profiles/0_default/default_profile_pic.png'";
-            } else {
-                $commpost_img_url = "'../media/profiles/$commpost_username/$commpostusr_profilepicurl'";
             }
+            // else {
+            //     $commpost_img_url = "'../media/profiles/$commpost_username/$commpostusr_profilepicurl'";
+            // }
 
             $commpostUserAccountProdImg = '<div class="social-update-profile-pic shadow" style="background-position: center !important; background-size: cover !important; background-repeat: no-repeat !important; background-attachment: local !important; height: 150px !important; width:  150px !important; background: url(' . $commpost_img_url . ') !important;"></div>';
 
@@ -1353,17 +1359,20 @@ function getAllUsers()
     $allusrs_acc_active = false;
     $allusrs_prof_acctype = "Community";
     $allusrs_profileid = null;
-    $allusrs_about = $allusrs_profilepicurl =  $allusrs_verification =  $allusrs_verification_output = $allusers_account_prod_img = $allusers_img_url = "";
+    $allusrs_about = $allusrs_profileurl = $allusrs_profilepicurl = $allusrs_profilebannerurl = $allusrs_verification =  $allusrs_verification_output = $allusers_account_prod_img = $allusers_img_url = "";
 
     $users_exist = false;
 
     //loading: Discover (load max of 50 records)
     //People
-    $sql = "SELECT * FROM users u INNER JOIN user_profiles up ON u.username = up.username;";
+    $sql = "SELECT * FROM users u INNER JOIN general_user_profiles gup ON u.username = gup.users_username;";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 
         while ($row = mysqli_fetch_assoc($result)) {
+            // gup: `user_profile_id`, `about`, `profile_type`, `verification`, `profile_url`, `profile_image_url`, `profile_banner_url`, `users_username`
+            // u: `user_id`, `username`, `password_hash`, `user_name`, `user_surname`, `id_number`, `user_email`, `contact_number`, `date_of_birth`, `user_gender`, `user_race`, `user_nationality`, `account_active`
+
             $users_exist = true;
             $allusrs_userid = $row["user_id"];
             $allusrs_username = $row["username"];
@@ -1381,7 +1390,9 @@ function getAllUsers()
             $allusrs_profileid = $row["user_profile_id"];
             $allusrs_about = $row["about"];
             $allusrs_prof_acctype = $row["profile_type"];
-            $allusrs_profilepicurl = $row["profile_url"];
+            $allusrs_profileurl = $row["profile_url"];
+            $allusrs_profilepicurl = $row["profile_image_url"];
+            $allusrs_profilebannerurl = $row["profile_banner_url"];
             $allusrs_verification = $row["verification"];
 
             // verification icon
@@ -1394,9 +1405,10 @@ function getAllUsers()
             //profile picture
             if ($allusrs_profilepicurl == "default" || $allusrs_profilepicurl == null || $allusrs_profilepicurl == "") {
                 $allusers_img_url = "../media/profiles/0_default/default_profile_pic.png";
-            } else {
-                $allusers_img_url = "../media/profiles/$allusrs_username/$allusrs_profilepicurl";
             }
+            // else {
+            //     $allusers_img_url = "../media/profiles/$allusrs_username/$allusrs_profilepicurl";
+            // }
 
             $allusers_account_prod_img = '<div class="social-update-profile-pic shadow" style="background-position: center !important; background-size: cover !important; background-repeat: no-repeat !important; background-attachment: local !important; height: 150px !important; width:  150px !important; background: url(' . $allusers_img_url . ') !important;"></div>';
 
@@ -1585,7 +1597,7 @@ function getAllTrainees()
 
     //loading: Discover (load max of 50 records)
     //People
-    $sql = "SELECT * FROM users u INNER JOIN user_profiles up ON u.username = up.username;";
+    $sql = "SELECT * FROM users u INNER JOIN general_user_profiles gup ON u.username = gup.users_username;";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 
@@ -1606,7 +1618,7 @@ function getAllTrainees()
             $trainee_profileid = $row["user_profile_id"];
             $trainee_about = $row["about"];
             $trainee_prof_acctype = $row["profile_type"];
-            $trainee_profilepicurl = $row["profile_url"];
+            $trainee_profilepicurl = $row["profile_image_url"];
             $trainee_verification = $row["verification"];
 
             // verification icon
@@ -1681,7 +1693,7 @@ function getAllTrainers()
 
     //loading: Discover (load max of 50 records)
     //People
-    $sql = "SELECT * FROM users u INNER JOIN user_profiles up ON u.username = up.username;";
+    $sql = "SELECT * FROM users u INNER JOIN general_user_profiles gup ON u.username = gup.users_username;";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 
@@ -2324,7 +2336,7 @@ function getAllTrainers()
 
             $.populateWeeklyAssessmentsHorizCardContainer = function(weekday, grpRefCode) {
                 // var grpRefCode = "tst_grp_0001";
-                $.get("../scripts/php/main_app/data_management/system_admin/compile_users_daily_assessments_activities_list.php?day=" + weekday + "&gref=" + grpRefCode, function(data, status) {
+                $.get("../scripts/php/main_app/compile_content/profile_tab/get_users_daily_assessments_and_activities_list.php?day=" + weekday + "&gref=" + grpRefCode, function(data, status) {
 
                     if (status != "success") {
                         console.log("Get Req Failed -> $.populateWeeklyAssessmentsHorizCardContainer returned: \n[Status]: " + status + "\n[Data]: " + data);
@@ -2760,94 +2772,6 @@ function getAllTrainers()
                     </div>
                 </div>
             </div>
-
-
-            <!--<div class="row align-items-start">
-                <div class="col-md-9 text-white">
-                    <p class="text-end" hidden>Your Cart (0 items)</p>
-                    <div class="collapse showz down-top-grad-dark w3-animate-left comfortaa-font" style="border-radius: 25px; overflow: hidden;" id="cart-panel">
-                        <div class="p-4 shadow" id="">
-                            <div class="text-end">
-                                <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4" type="button">
-                                    <p>
-                                        <span class="material-icons material-icons-round">
-                                            storefront
-                                        </span>
-                                        <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span style="color: #ffa500 !important;">.Store</span></span>
-                                    </p>
-                                </button>
-                                <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4" type="button">
-                                    <p>
-                                        <span class="material-icons material-icons-round">
-                                            point_of_sale
-                                        </span>
-                                        <span class="align-middle"><span class="d-none d-lg-block">Proceed to </span>Checkout</span>
-                                    </p>
-                                </button>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6 py-4">
-                                    <p class="text-start">Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;">20220201-879ds6fsdf_id</span> ]</p>
-                                    <hr class="text-white">
-                                    <h1><span style="color: #ffa500;">Total:</span> R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 10px; color: #ffa500;">ZAR</span></h1>
-                                    <ul class="list-group list-group-flush list-group-numbered shadow py-4 no-scroller" id="" style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
-                                        <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
-                                        <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
-                                        <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
-                                        <li class="list-group-item border-light bg-transparent text-white">R149.00 | Aiwa Smart Band ASB-40</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6 py-4">
-                                    <p class="text-start">Cart Items (4)</p>
-                                    <hr class="text-white">
-                                    <div class="horizontal-scroll">
-                                        <div class="horizontal-scroll-card p-4 shadow">
-                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
-                                            <p class="fw-bold text-truncate text-center py-4">
-                                                R149.00 | Aiwa Smart Band ASB-40
-                                            </p>
-                                        </div>
-                                        <div class="horizontal-scroll-card p-4 shadow">
-                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
-                                            <p class="fw-bold text-truncate text-center py-4">
-                                                R149.00 | Aiwa Smart Band ASB-40
-                                            </p>
-                                        </div>
-                                        <div class="horizontal-scroll-card p-4 shadow">
-                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
-                                            <p class="fw-bold text-truncate text-center py-4">
-                                                R149.00 | Aiwa Smart Band ASB-40
-                                            </p>
-                                        </div>
-                                        <div class="horizontal-scroll-card p-4 shadow">
-                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px;" alt="placeholder">
-                                            <p class="fw-bold text-truncate text-center py-4">
-                                                R149.00 | Aiwa Smart Band ASB-40
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 text-end d-grid gap-2 py-4">
-                    <button class="navbar-toggler shadowz onefit-buttons-style-dark p-2" type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel">
-                        <div class="row px-4 py-2">
-                            <div class="col-sm border-start border-end border-light p-2">
-                                <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round" style="font-size: 40px !important"> shopping_bag </span>
-                                    <span class="d-nonez d-lg-blockz" id="" style="font-size: 10px;">Cart (<span class="fw-bold comfortaa-font" style="color: #ffa500;">4</span>)</span>
-                                </div>
-                            </div>
-                            <div class="col-sm fw-bold comfortaa-font border-start border-end border-light p-2">
-                                <span class="align-middle" style="font-size: 10px; color: #ffa500;">ZAR</span><br> 0.00
-                            </div>
-                        </div>
-                    </button>
-                </div>
-            </div>-->
         </div>
         <!-- ./ Cart Container  -->
 
@@ -3078,95 +3002,6 @@ function getAllTrainers()
                             <div id="dashboard-activity-lineup-container">
                                 <div class="d-flex align-items-center text-center justify-content-center" id="no-activities-banner-container" style="min-height: 100px;">
                                     <p class="my-4 fs-5 fw-bold comfortaa-font" style="cursor: pointer;" onclick="openLink(event, 'TabStudio')">No activities lined up. Go to the <span style="color: #ffa500;">.Studio</span> to get active.</p>
-                                </div>
-
-                                <div class="row align-items-start text-white" id="tabdahsboard-training-schedule-chart-grid">
-                                    <div class="col-md-8">
-                                        <div class="horizontal-scroll-card w-100 p-4 shadow">
-                                            <h5 class="text-center">Your Assessments for the day</h5>
-                                            <hr class="text-white" style="height: 5px;">
-
-                                            <ol class="list-group list-group-flush border-0 my-4">
-                                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
-                                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
-                                                    </span>
-                                                    <div class="ms-2 me-auto">
-                                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
-                                                        Frequency: Daily<br />
-                                                        Mendatory: Optional
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
-                                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
-                                                    </span>
-                                                    <div class="ms-2 me-auto">
-                                                        <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
-                                                        Frequency: Daily<br />
-                                                        Mendatory: Optional
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
-                                                        <span class="material-icons material-icons-round" style="font-size: 20px !important">
-                                                            pending_actions </span>
-                                                    </span>
-                                                    <div class="ms-2 me-auto">
-                                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
-                                                        Frequency: Daily<br />
-                                                        Mendatory: Yes
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
-                                                        <span class="material-icons material-icons-round" style="font-size: 20px !important">
-                                                            pending_actions </span>
-                                                    </span>
-                                                    <div class="ms-2 me-auto">
-                                                        <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
-                                                        Frequency: Daily<br />
-                                                        Mendatory: Yes
-                                                    </div>
-                                                </li>
-                                            </ol>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4 text-white text-center" id="home-day-1-col">
-
-                                        <div class="chart-col-bar p-2 shadow comfortaa-font">
-                                            <h5>Today's Workout Activities</h5>
-
-                                            <hr class="text-white" style="height: 5px;">
-
-                                            <div class="down-top-grad-tahiti py-4 mb-4" style="border-radius: 0 0 25px 25px;">
-                                                <p class="fs-5 fw-bold">
-                                                    Regeneration
-                                                </p>
-                                                <p style="color: #343434;">
-                                                    RPE 1-3
-                                                </p>
-                                            </div>
-
-                                            <hr class="text-white" style="height: 5px;" hidden>
-
-                                            <div class="chart-col-bar-item text-center position-relative">
-                                                <p>Cycling / Spinning</p>
-                                                <img src="../media/assets/icons/cycling.png" alt="" class="img-fluid">
-                                            </div>
-                                            <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                            <div class="chart-col-bar-item text-center">
-                                                <p>Strength & Core</p>
-                                                <img src="../media/assets/icons/bodybuilder.png" alt="" class="img-fluid">
-                                            </div>
-                                            <hr class="text-white my-2 p-0" style="height: 5px;">
-
-                                            <p class="text-center fs-5 fw-bold">Day 1/-6 <br>(Sunday, dd/mm/yyyy)</p>
-                                        </div>
-
-                                    </div>
                                 </div>
                             </div>
 
@@ -10320,7 +10155,7 @@ function getAllTrainers()
 
                 }
             };
-            xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/compile_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
+            xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/get_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
             xhttp.send();
         }
 
@@ -10467,7 +10302,7 @@ function getAllTrainers()
 
                     }
                 };
-                xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/compile_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
+                xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/get_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
                 xhttp.send();
             });
 
@@ -10859,7 +10694,7 @@ function getAllTrainers()
 
         //         }
         //     };
-        //     xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/compile_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
+        //     xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/get_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
         //     xhttp.send();
         // }
 

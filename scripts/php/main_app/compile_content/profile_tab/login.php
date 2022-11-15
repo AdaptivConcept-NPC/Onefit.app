@@ -33,11 +33,11 @@ if ($rows == 0) {
   for ($j = 0; $j < $rows; ++$j) {
     $row = $result->fetch_array(MYSQLI_ASSOC);
 
-    $_SESSION["currentUserAuth"] = true;
-    $_SESSION["currentUserForename"] = $row["user_name"];
-    $_SESSION["currentUserSurname"] = $row["user_surname"];
-    $_SESSION["currentUserEmail"] = $row["user_email"];
-    $_SESSION["currentUserUsername"] = $row["username"];
+    $_SESSION['currentUserAuth'] = true;
+    $_SESSION['currentUserForename'] = $row["user_name"];
+    $_SESSION['currentUserSurname'] = $row["user_surname"];
+    $_SESSION['currentUserEmail'] = $row["user_email"];
+    $_SESSION['currentUserUsername'] = $row["username"];
     $pwdHash = $row["password_hash"];
   }
 
