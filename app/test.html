@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head class="bg-transparent">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <title>Onefit.app&trade; | Onefit.Net&reg; &copy;
+        <?php echo date('Y'); ?>
+    </title>
+
+    <!--fontawesome-->
+    <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
+
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- Plyr.io Media Player -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/1.8.2/plyr.css">
+
+    <!-- Plry.io JS CDN -->
+    <script src="https://cdn.plyr.io/1.8.2/plyr.js"></script>
+    <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+    <!-- W3 CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+    <!-- My CSS styles -->
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/digital-clock.css" />
+    <link rel="stylesheet" href="../css/timeline-styles.css" />
+
+    <!-- Site Scripts -->
+    <!-- <script src="../scripts/js/script.js"></script>
+    <script src="../scripts/js/api_requests.js"></script> -->
+
+    <!-- ./ Site Scripts -->
+
+    <!-- JQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body class="bg-transparent p-0">
+    <div class="container-fluid">
+
+        <!-- inline/flex profile tab subtabs controller btns -->
+        <div id="inline-profile-content-tab-btns" class="d-grid justify-content-center w3-animate-bottom p-2 sticky-top"
+            style="background: #333; border-radius: 25px; overflow: hidden;">
+            <style>
+                .force-inline-nav {
+                    flex-wrap: nowrap !important;
+                }
+            </style>
+
+            <div class="w3-animate-bottom my-4 horizontal-scroll no-scroller p-4" style="overflow-y: hidden;"
+                id="insights-subfeatures-nav-menu">
+                <nav class="m-0">
+                    <div class="nav force-inline-nav nav-tabs border-0"
+                        id="nav-tab-profiletab-subtabs-controller-container" role="tablist"
+                        style="border-color: #ffa500 !important">
+                        <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative active"
+                            style="border-radius: 25px !important;min-width: 130px;"
+                            id="nav-profiletab-main-communityfeed-subtab"
+                            onclick="clickProfileTabMainSubTabs('community_feed')" data-bs-toggle="pill"
+                            data-bs-target="#v-sub-tab-pills-profile-subtab-communityfeed" type="button" role="tab"
+                            aria-controls="v-sub-tab-pills-profile-subtab-communityfeed" aria-selected="true">
+                            Community
+
+                            <br>
+                            <span id="profiletab-main-navs-horizontal-rule-icon-communityfeed"
+                                class="material-icons material-icons-outlined align-middle"
+                                style="display: block; font-size: 40px !important;">horizontal_rule</span>
+                        </button>
+
+                        <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                            style="border-radius: 25px !important;min-width: 130px;"
+                            id="nav-profiletab-main-posts-subtab" onclick="clickProfileTabMainSubTabs('posts')"
+                            data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-profile-subtab-posts" type="button"
+                            role="tab" aria-controls="v-sub-tab-pills-profile-subtab-posts" aria-selected="false">
+                            Posts
+
+                            <br>
+                            <span id="profiletab-main-navs-horizontal-rule-icon-posts"
+                                class="material-icons material-icons-outlined align-middle"
+                                style=" display: none; font-size: 40px !important;">horizontal_rule</span>
+                        </button>
+
+                        <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                            style="border-radius: 25px !important;min-width: 130px;"
+                            id="nav-profiletab-main-media-subtab" onclick="clickProfileTabMainSubTabs('media')"
+                            data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-profile-subtab-media" type="button"
+                            role="tab" aria-controls="v-sub-tab-pills-profile-subtab-media" aria-selected="false">
+                            Media
+
+                            <br>
+                            <span id="profiletab-main-navs-horizontal-rule-icon-media"
+                                class="material-icons material-icons-outlined align-middle"
+                                style="display: none; font-size: 40px !important;">horizontal_rule</span>
+                        </button>
+
+                        <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                            style="border-radius: 25px !important;min-width: 130px;"
+                            id="nav-profiletab-main-resources-subtab" onclick="clickProfileTabMainSubTabs('resources')"
+                            data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-profile-subtab-resources"
+                            type="button" role="tab" aria-controls="v-sub-tab-pills-profile-subtab-resources"
+                            aria-selected="false">
+                            Resources
+
+                            <br>
+                            <span id="profiletab-main-navs-horizontal-rule-icon-resources"
+                                class="material-icons material-icons-outlined align-middle"
+                                style="display: none; font-size: 40px !important;">horizontal_rule</span>
+                        </button>
+
+                        <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                            style="border-radius: 25px !important;min-width: 130px;"
+                            id="nav-profiletab-main-favourites-subtab" onclick="clickProfileTabMainSubTabs('saved')"
+                            data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-profile-subtab-favourites"
+                            type="button" role="tab" aria-controls="v-sub-tab-pills-profile-subtab-favourites"
+                            aria-selected="false">
+                            Saved
+
+                            <br>
+                            <span id="profiletab-main-navs-horizontal-rule-icon-favourites"
+                                class="material-icons material-icons-outlined align-middle"
+                                style="display: none; font-size: 40px !important;">horizontal_rule</span>
+                        </button>
+
+                        <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                            style="border-radius: 25px !important;min-width: 130px;"
+                            id="nav-profiletab-main-groups-subtab" onclick="clickProfileTabMainSubTabs('groups')"
+                            data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-profile-subtab-groups" type="button"
+                            role="tab" aria-controls="v-sub-tab-pills-profile-subtab-groups" aria-selected="false">
+                            Groups
+
+                            <br>
+                            <span id="profiletab-main-navs-horizontal-rule-icon-groups"
+                                class="material-icons material-icons-outlined align-middle"
+                                style="display: none; font-size: 40px !important;">horizontal_rule</span>
+                        </button>
+
+                        <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                            style="border-radius: 25px !important;min-width: 130px;"
+                            id="nav-profiletab-main-interactions-subtab"
+                            onclick="clickProfileTabMainSubTabs('interactions')" data-bs-toggle="pill"
+                            data-bs-target="#v-sub-tab-pills-profile-subtab-interactions" type="button" role="tab"
+                            aria-controls="v-sub-tab-pills-profile-subtab-interactions" aria-selected="false">
+                            Interactions
+
+                            <br>
+                            <span id="profiletab-main-navs-horizontal-rule-icon-interactions"
+                                class="material-icons material-icons-outlined align-middle"
+                                style="display: none; font-size: 40px !important;">horizontal_rule</span>
+                        </button>
+
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+        <!-- ./ inline/flex profile tab subtabs controller btns -->
+
+        <div class="row">
+            <!-- user post sharing form and users posts below it -->
+            <div class="col-lg-8">
+                <!-- profile tab sub-tabs container -->
+                <div class="tab-content" id="v-pills-tab-profiletab-main-subtabs">
+                    <!-- #v-sub-tab-pills-profile-subtab-communityfeed -->
+                    <div class="tab-pane fade showz activez content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
+                        style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-communityfeed"
+                        style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel"
+                        aria-labelledby="v-sub-tab-pills-profile-subtab-communityfeed">
+                        <div class="row">
+                            <div class="col-md-4 p-4">
+                                <h5><span class="material-icons material-icons-outlined align-middle">
+                                        diversity_3</span><span class="align-middle"> Groups.</span></h5>
+                                <p>User will b able to see a list of their group subscriptions and open the feeds
+                                    specific to the selected group.</p>
+
+                                <h5><span class="material-icons material-icons-outlined align-middle">
+                                        diversity_2</span><span class="align-middle"> Teams.</span></h5>
+                                <p>User will b able to see a list of their group subscriptions and open the feeds
+                                    specific to the selected group.</p>
+                            </div>
+                            <div class="col-md-8">
+                                <!-- community posts feed -->
+                                <div id="profile-community-post-feed-container" class="container shadow mb-4 py-4"
+                                    style="border-radius: 25px;">
+                                    <h5 class="mb-4">
+                                        <span class="material-icons material-icons-round align-middle">
+                                            hub
+                                        </span>
+                                        <span class="align-middle"> Community Social Feed.</span>
+                                    </h5>
+
+                                    <div id="profile-community-post-social-feed" class="p-0 no-scroller"
+                                        style="height: 90vh;overflow-y: auto">
+                                        <!-- Social Update Card -->
+                                        <div class="my-4 p-0 social-update-card shadow-lg"
+                                            style="border-bottom: #ffa500 solid 5px;"
+                                            id="post-' . $usrposts_postid . '-' . $usrposts_user . '">
+                                            <div class="row align-items-top p-0 m-0 display-profile-banner-container border-5 border-top"
+                                                style="border-radius: 25px!important; max-height: 200px !important; border-color: #ffa500 !important;">
+                                                <div class="col-md -4 d-grid justify-content-center text-center p-4">
+                                                    <!-- Profile Picture -->
+                                                    <div class="display-profile-img-container shadow-lg w3-animate-left"
+                                                        style="margin-top: -0px !important; ">
+                                                        <!-- $output_user_account_profile_img -->
+                                                    </div>
+                                                    <!-- ./ Profile Picture -->
+                                                </div>
+                                                <div
+                                                    class="col-md-8 text-center p-4 d-none d-lg-block d-flex justify-content-end">
+                                                    <div class="d-grid p-4 w3-animate-bottom"
+                                                        style="border-radius: 15px!important; background-color: rgba(52, 52, 52, 0.8) !important;">
+                                                        <h3 class="text-truncate">
+                                                            Thabang Mposula
+                                                            <span class="material-icons material-icons-round"
+                                                                style="font-size: 20px !important"> verified_user
+                                                            </span>
+                                                        </h3>
+                                                        <span class="mb-2" style="font-size: 10px">@<span
+                                                                style="color: #ffa500">KING_001</span>
+                                                        </span>
+
+                                                        <!-- main buttons for interacting with user post (hide on <lg) -->
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <!--  -->
+                                                            <button type="button"
+                                                                class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 20px !important">follow_the_signs</span>
+                                                                <span class="align-middle d-none d-lg-block"
+                                                                    style="font-size: 10px;">
+                                                                    <!-- <span style="color: #ffa500 !important;">+</span> -->
+                                                                    Follow Me
+                                                                </span>
+                                                            </button>
+
+                                                            <!-- visual divide -->
+                                                            <div>
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
+                                                                    horizontal_rule
+                                                                </span>
+                                                            </div>
+                                                            <!-- ./ visual divide -->
+
+                                                            <!--  -->
+                                                            <button type="button"
+                                                                class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 20px !important"> handshake
+                                                                </span>
+                                                                <span class="align-middle d-none d-lg-block"
+                                                                    style="font-size: 10px;">
+                                                                    <!-- <span style="color: #ffa500 !important;">+</span> -->
+                                                                    Help
+                                                                </span>
+                                                            </button>
+
+                                                            <!-- visual divide -->
+                                                            <div>
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
+                                                                    horizontal_rule
+                                                                </span>
+                                                            </div>
+                                                            <!-- ./ visual divide -->
+
+
+                                                            <!--  -->
+                                                            <button type="button"
+                                                                class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 20px !important"> 3p </span>
+                                                                <span class="align-middle d-none d-lg-block"
+                                                                    style="font-size: 10px;">
+                                                                    <!-- <span style="color: #ffa500 !important;">+</span> -->
+                                                                    Message
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <!-- ./ main buttons for interacting with user post (hide on <lg) -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="post-content p-4 fs-3 text-break down-top-grad-dark"
+                                                style="border-radius: 25px!important;">
+                                                <!-- <hr class="bg-white"> -->
+
+                                                <!-- secondary buttons for interacting with user post (hide on >lg) -->
+                                                <div
+                                                    class="d-md-flex d-lg-none d-flex justify-content-between align-items-center w3-animate-left mb-4">
+                                                    <!--  -->
+                                                    <button type="button"
+                                                        class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 20px !important">follow_the_signs</span>
+                                                        <span class="align-middle d-none d-lg-block"
+                                                            style="font-size: 10px;">
+                                                            <!-- <span style="color: #ffa500 !important;">+</span> -->
+                                                            Follow Me
+                                                        </span>
+                                                    </button>
+
+                                                    <!-- visual divide -->
+                                                    <div>
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
+                                                            horizontal_rule
+                                                        </span>
+                                                    </div>
+                                                    <!-- ./ visual divide -->
+
+                                                    <!--  -->
+                                                    <button type="button"
+                                                        class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 20px !important"> handshake </span>
+                                                        <span class="align-middle d-none d-lg-block"
+                                                            style="font-size: 10px;">
+                                                            <!-- <span style="color: #ffa500 !important;">+</span> -->
+                                                            Help
+                                                        </span>
+                                                    </button>
+
+                                                    <!-- visual divide -->
+                                                    <div>
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
+                                                            horizontal_rule
+                                                        </span>
+                                                    </div>
+                                                    <!-- ./ visual divide -->
+
+
+                                                    <!--  -->
+                                                    <button type="button"
+                                                        class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 20px !important"> 3p </span>
+                                                        <span class="align-middle d-none d-lg-block"
+                                                            style="font-size: 10px;">
+                                                            <!-- <span style="color: #ffa500 !important;">+</span> -->
+                                                            Message
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <!-- ./ secondary buttons for interacting with user post (hide on >lg) -->
+
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-4 text-center">
+                                                        <p class="fs-6 m-0 comfortaa-font fw-light text-center">
+                                                            <small class="text-decoration-underlinez">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 20px !important;color: #ffa500;">post_add</span>
+                                                                <span class="align-middle">
+                                                                    Thabang shared a post.
+                                                                </span>
+                                                            </small>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md text-center">
+                                                        <hr class="bg-white">
+                                                    </div>
+                                                </div>
+
+                                                <!-- post message outer container -->
+                                                <div id="post-card-message-outer-container" class="fs-3">
+                                                    <p class="my-2 text-break">This is the message area. When the user
+                                                        types, it is supposed to auto update this element.</p>
+                                                </div>
+                                                <div class="row align-items-center">
+                                                    <div class="col-md text-center">
+                                                        <hr class="bg-white">
+                                                    </div>
+                                                    <div class="col-md-3 text-center">
+                                                        <p class="text-right p-3 rounded-pill m-0"
+                                                            style="font-size: 10px; background-color: #ffa500; color: #343434;">
+                                                            1 day ago
+                                                            <!--(' . $usrposts_postdate . ')-->
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                <!--function buttons-->
+                                                <ul class="list-group list-group-horizontal -sm my-0 no-scroller"
+                                                    style="overflow-x: auto;">
+                                                    <!-- like post function btn -->
+                                                    <li
+                                                        class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                                                        <button
+                                                            class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font">
+                                                            <span class="material-icons material-icons-round"
+                                                                style="font-size: 30px !important;">
+                                                                favorite
+                                                            </span>
+                                                            <span class="d-none d-lg-block"
+                                                                style="font-size: 10px !important;">Like</span>
+                                                        </button>
+
+                                                    </li>
+                                                    <!-- comment on post function btn -->
+                                                    <li
+                                                        class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                                                        <button
+                                                            class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font">
+                                                            <span class="material-icons material-icons-round"
+                                                                style="font-size: 30px !important;">
+                                                                insert_comment
+                                                            </span>
+                                                            <span class="d-none d-lg-block"
+                                                                style="font-size: 10px !important;">
+                                                                Comment
+                                                            </span>
+                                                        </button>
+                                                    </li>
+                                                    <!-- share post function btn -->
+                                                    <li
+                                                        class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                                                        <button
+                                                            class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font">
+                                                            <span class="material-icons material-icons-round"
+                                                                style="font-size: 30px !important;">
+                                                                share
+                                                            </span>
+                                                            <span class="d-none d-lg-block"
+                                                                style="font-size: 10px !important;">Share</span>
+                                                        </button>
+                                                    </li>
+                                                    <!-- save post function btn -->
+                                                    <li
+                                                        class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                                                        <button
+                                                            class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font">
+                                                            <span class="material-icons material-icons-round"
+                                                                style="font-size: 30px !important;">
+                                                                bookmarks
+                                                            </span>
+                                                            <span class="d-none d-lg-block"
+                                                                style="font-size: 10px !important;">Save</span>
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- ./ Social Update Card -->
+
+                                    </div>
+                                </div>
+                                <!-- ./ community posts feed -->
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <!-- #v-sub-tab-pills-profile-subtab-posts -->
+                    <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
+                        style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-posts"
+                        style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel"
+                        aria-labelledby="v-sub-tab-pills-profile-subtab-posts">
+
+                        <!-- user post sharing form and users posts below it -->
+                        <!-- share a community post/update -->
+                        <div id="profile-social-post-update-container" class="container shadow mb-4 py-4 px-0"
+                            style="border-radius: 25px;overflow-x: auto;">
+                            <h5 class="px-4"><span class="material-icons material-icons-round align-middle">
+                                    post_add
+                                </span>
+                                <span class="align-middle"> Share an Update.</span>
+                            </h5>
+                            <div class="rowz d-grid align-items-center" id="tab-nav-social-quickpostz">
+                                <!-- lvl1 Quick Post to Social -->
+                                <div class="col-lgz d-grid gap-2 p-4">
+                                    <!-- Quick Post to Social -->
+                                    <div class="social-quick-post d-grid comfortaa-font">
+                                        <textarea name="" class="w-100 quick-post-input" id="post-message-community"
+                                            cols="30" rows="5"
+                                            placeholder="Share an update with the Community."></textarea>
+                                        <div id="post-message-options"
+                                            class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex justify-content-start">
+                                                <!--  -->
+                                                <button type="button"
+                                                    class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important">add_reaction</span>
+                                                    <span class="align-middle d-none d-lg-block"
+                                                        style="font-size: 10px;">
+                                                        <span style="color: #ffa500 !important;">+</span>
+                                                        feeling</span>
+                                                </button>
+                                                <!--  -->
+                                                <button type="button"
+                                                    class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important">attach_file </span>
+                                                    <span class="align-middle d-none d-lg-block"
+                                                        style="font-size: 10px;">
+                                                        <span style="color: #ffa500 !important;">+</span>
+                                                        resource</span>
+                                                </button>
+                                                <!--  -->
+                                                <button type="button"
+                                                    class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important">perm_media </span>
+                                                    <span class="align-middle d-none d-lg-block"
+                                                        style="font-size: 10px;">
+                                                        <span style="color: #ffa500 !important;">+</span>
+                                                        media</span>
+                                                </button>
+                                                <!--  -->
+                                                <button type="button"
+                                                    class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important">link</span>
+                                                    <span class="align-middle d-none d-lg-block"
+                                                        style="font-size: 10px;">
+                                                        <span style="color: #ffa500 !important;">+</span>
+                                                        web</span>
+                                                </button>
+                                                <!--  -->
+                                                <button type="button"
+                                                    class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important">history_edu</span>
+                                                    <span class="align-middle d-none d-lg-block"
+                                                        style="font-size: 10px;">
+                                                        <span style="color: #ffa500 !important;">+</span>
+                                                        quote</span>
+                                                </button>
+                                            </div>
+                                            <!--  -->
+                                            <button type="button" class="onefit-buttons-style-dark p-3 m-1 border-1">
+                                                <!-- <i class="fas fa-paper-plane" style="font-size: 38px !important"></i> -->
+                                                <span class="material-icons material-icons-round align-middle"
+                                                    style="font-size: 40px !important;color: #ffa500;"> post_add
+                                                </span>
+                                                <span class="align-middle">Send.</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- ./ Quick Post to Social -->
+                                </div>
+                                <!-- lvl1 Quick Post to Social -->
+                                <!-- lvl 1 post preview -->
+                                <div class="col-lg-4z d-grid gap-2 p-4">
+                                    <!-- post preview -->
+                                    <h5>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            preview
+                                        </span>
+                                        <span class="align-middle"> Preview.</span>
+                                    </h5>
+                                    <!-- Social Update Card -->
+                                    <div class="my-4 p-0 social-update-card shadow-lg"
+                                        style="border-bottom: #ffa500 solid 5px;"
+                                        id="post-' . $usrposts_postid . '-' . $usrposts_user . '">
+                                        <div class="row align-items-top p-0 m-0 display-profile-banner-container border-5 border-top"
+                                            style="border-radius: 25px!important; max-height: 200px !important; border-color: #ffa500 !important;">
+                                            <div class="col-md -4 d-grid justify-content-center text-center p-4">
+                                                <!-- Profile Picture -->
+                                                <div class="display-profile-img-container shadow-lg w3-animate-left"
+                                                    style="margin-top: -0px !important; ">
+                                                    <!-- $output_user_account_profile_img -->
+                                                </div>
+                                                <!-- ./ Profile Picture -->
+                                            </div>
+                                            <div
+                                                class="col-md-8 text-center p-4 d-none d-lg-block d-flex justify-content-end">
+                                                <div class="d-grid p-4 w3-animate-bottom"
+                                                    style="border-radius: 15px!important; background-color: rgba(52, 52, 52, 0.8) !important;">
+                                                    <h3 class="text-truncate">
+                                                        Thabang Mposula
+                                                        <span class="material-icons material-icons-round"
+                                                            style="font-size: 20px !important"> verified_user
+                                                        </span>
+                                                    </h3>
+                                                    <span class="mb-2" style="font-size: 10px">@<span
+                                                            style="color: #ffa500">KING_001</span>
+                                                    </span>
+
+                                                    <!-- main buttons for interacting with user post (hide on <lg) -->
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <!--  -->
+                                                        <button type="button"
+                                                            class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 20px !important">follow_the_signs</span>
+                                                            <span class="align-middle d-none d-lg-block"
+                                                                style="font-size: 10px;">
+                                                                <!-- <span style="color: #ffa500 !important;">+</span> -->
+                                                                Follow Me
+                                                            </span>
+                                                        </button>
+
+                                                        <!-- visual divide -->
+                                                        <div>
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
+                                                                horizontal_rule
+                                                            </span>
+                                                        </div>
+                                                        <!-- ./ visual divide -->
+
+                                                        <!--  -->
+                                                        <button type="button"
+                                                            class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 20px !important"> handshake
+                                                            </span>
+                                                            <span class="align-middle d-none d-lg-block"
+                                                                style="font-size: 10px;">
+                                                                <!-- <span style="color: #ffa500 !important;">+</span> -->
+                                                                Help
+                                                            </span>
+                                                        </button>
+
+                                                        <!-- visual divide -->
+                                                        <div>
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
+                                                                horizontal_rule
+                                                            </span>
+                                                        </div>
+                                                        <!-- ./ visual divide -->
+
+
+                                                        <!--  -->
+                                                        <button type="button"
+                                                            class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 20px !important"> 3p </span>
+                                                            <span class="align-middle d-none d-lg-block"
+                                                                style="font-size: 10px;">
+                                                                <!-- <span style="color: #ffa500 !important;">+</span> -->
+                                                                Message
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ main buttons for interacting with user post (hide on <lg) -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="post-content p-4 fs-3 text-break down-top-grad-dark"
+                                            style="border-radius: 25px!important;">
+                                            <!-- <hr class="bg-white"> -->
+
+                                            <!-- secondary buttons for interacting with user post (hide on >lg) -->
+                                            <div
+                                                class="d-md-flex d-lg-none d-flex justify-content-between align-items-center w3-animate-left mb-4">
+                                                <!--  -->
+                                                <button type="button"
+                                                    class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important">follow_the_signs</span>
+                                                    <span class="align-middle d-none d-lg-block"
+                                                        style="font-size: 10px;">
+                                                        <!-- <span style="color: #ffa500 !important;">+</span> -->
+                                                        Follow Me
+                                                    </span>
+                                                </button>
+
+                                                <!-- visual divide -->
+                                                <div>
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
+                                                        horizontal_rule
+                                                    </span>
+                                                </div>
+                                                <!-- ./ visual divide -->
+
+                                                <!--  -->
+                                                <button type="button"
+                                                    class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important"> handshake </span>
+                                                    <span class="align-middle d-none d-lg-block"
+                                                        style="font-size: 10px;">
+                                                        <!-- <span style="color: #ffa500 !important;">+</span> -->
+                                                        Help
+                                                    </span>
+                                                </button>
+
+                                                <!-- visual divide -->
+                                                <div>
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
+                                                        horizontal_rule
+                                                    </span>
+                                                </div>
+                                                <!-- ./ visual divide -->
+
+
+                                                <!--  -->
+                                                <button type="button"
+                                                    class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important"> 3p </span>
+                                                    <span class="align-middle d-none d-lg-block"
+                                                        style="font-size: 10px;">
+                                                        <!-- <span style="color: #ffa500 !important;">+</span> -->
+                                                        Message
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            <!-- ./ secondary buttons for interacting with user post (hide on >lg) -->
+
+                                            <div class="row align-items-center">
+                                                <div class="col-md-4 text-center">
+                                                    <p class="fs-6 m-0 comfortaa-font fw-light text-center">
+                                                        <small class="text-decoration-underlinez">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 20px !important;color: #ffa500;">post_add</span>
+                                                            <span class="align-middle">
+                                                                Thabang shared a post.
+                                                            </span>
+                                                        </small>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md text-center">
+                                                    <hr class="bg-white">
+                                                </div>
+                                            </div>
+
+                                            <!-- post message outer container -->
+                                            <div id="post-card-message-outer-container" class="fs-3">
+                                                <p class="my-2 text-break">This is the message area. When the user
+                                                    types, it is supposed to auto update this element.</p>
+                                            </div>
+                                            <div class="row align-items-center">
+                                                <div class="col-md text-center">
+                                                    <hr class="bg-white">
+                                                </div>
+                                                <div class="col-md-3 text-center">
+                                                    <p class="text-right p-3 rounded-pill m-0"
+                                                        style="font-size: 10px; background-color: #ffa500; color: #343434;">
+                                                        1 day ago
+                                                        <!--(' . $usrposts_postdate . ')-->
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <!--function buttons-->
+                                            <ul class="list-group list-group-horizontal -sm my-0 no-scroller"
+                                                style="overflow-x: auto;">
+                                                <!-- like post function btn -->
+                                                <li
+                                                    class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                                                    <button
+                                                        class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font">
+                                                        <span class="material-icons material-icons-round"
+                                                            style="font-size: 30px !important;">
+                                                            favorite
+                                                        </span>
+                                                        <span class="d-none d-lg-block"
+                                                            style="font-size: 10px !important;">Like</span>
+                                                    </button>
+
+                                                </li>
+                                                <!-- comment on post function btn -->
+                                                <li
+                                                    class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                                                    <button
+                                                        class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font">
+                                                        <span class="material-icons material-icons-round"
+                                                            style="font-size: 30px !important;">
+                                                            insert_comment
+                                                        </span>
+                                                        <span class="d-none d-lg-block"
+                                                            style="font-size: 10px !important;">
+                                                            Comment
+                                                        </span>
+                                                    </button>
+                                                </li>
+                                                <!-- share post function btn -->
+                                                <li
+                                                    class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                                                    <button
+                                                        class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font">
+                                                        <span class="material-icons material-icons-round"
+                                                            style="font-size: 30px !important;">
+                                                            share
+                                                        </span>
+                                                        <span class="d-none d-lg-block"
+                                                            style="font-size: 10px !important;">Share</span>
+                                                    </button>
+                                                </li>
+                                                <!-- save post function btn -->
+                                                <li
+                                                    class="list-group-item text-center flex-fill bg-transparent border-0 py-2 px-0">
+                                                    <button
+                                                        class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font">
+                                                        <span class="material-icons material-icons-round"
+                                                            style="font-size: 30px !important;">
+                                                            bookmarks
+                                                        </span>
+                                                        <span class="d-none d-lg-block"
+                                                            style="font-size: 10px !important;">Save</span>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- ./ Social Update Card -->
+
+                                </div>
+                                <!-- ./ lvl 1 post preview -->
+                            </div>
+                        </div>
+                        <!-- ./ share a community post/update -->
+
+                        <hr class="text-white">
+
+                        <!-- users posts history -->
+                        <div id="profile-user-post-history-container" class="container shadow mb-4 py-4"
+                            style="border-radius: 25px;">
+                            <h5 class="mb-4">
+                                <span class="material-icons material-icons-round align-middle">
+                                    timelapse
+                                </span>
+                                <span class="align-middle"> My Posts.</span>
+                            </h5>
+
+                            <div id="profile-user-post-history-feed" class="p-0 no-scroller"
+                                style="min-height: 18vh;overflow-y: auto">
+
+                            </div>
+                        </div>
+
+                        <!-- ./ users posts history -->
+                    </div>
+                    <!-- #v-sub-tab-pills-profile-subtab-media -->
+                    <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
+                        style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-media"
+                        style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel"
+                        aria-labelledby="v-sub-tab-pills-profile-subtab-media">
+                        hello world 3
+                    </div>
+                    <!-- #v-sub-tab-pills-profile-subtab-resources -->
+                    <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
+                        style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-resources"
+                        style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel"
+                        aria-labelledby="v-sub-tab-pills-profile-subtab-resources">
+                        hello world 4
+                    </div>
+                    <!-- #v-sub-tab-pills-profile-subtab-favourites -->
+                    <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
+                        style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-favourites"
+                        style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel"
+                        aria-labelledby="v-sub-tab-pills-profile-subtab-favourites">
+                        hello world 5
+                    </div>
+                    <!-- #v-sub-tab-pills-profile-subtab-groups -->
+                    <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
+                        style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-groups"
+                        style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel"
+                        aria-labelledby="v-sub-tab-pills-profile-subtab-groups">
+                        hello world 6
+                    </div>
+                    <!-- #v-sub-tab-pills-profile-subtab-interactions -->
+                    <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4 active show"
+                        style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-interactions" role="tabpanel"
+                        aria-labelledby="v-sub-tab-pills-profile-subtab-interactions">
+                        <!-- interactions must show the users friends, followers, users/groups 
+                                that the users follows and a panel for seeing the help requests that 
+                                the user has received and/or has been sent to other users.  -->
+
+                        <div class="row align-items-center">
+                            <!-- help. focus column -->
+                            <div class="col-lg border-5 border-start border-end py-4 no-scroller"
+                                style="max-height: 90vh;border-radius: 25px;border-color: #ffa500 !important;">
+                                <!-- Help section also has sub-sections: ( Help Requests, Trainer Support, Trainee Support, Enquiries ) -->
+                                <!-- friends list grid section -->
+                                <h5 class="text-center d-grid gap-2"><span
+                                        class="material-icons material-icons-outlined align-middle">
+                                        handshake</span><span class="align-middle"> Help the Community.</span>
+                                </h5>
+                                <hr class="text-white">
+                                <div id="help-sub-sections-accord">
+                                    <!-- help. sub-sections -->
+                                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                                        <!-- community help requests support accord segment -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="flush-headingOne">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                                    aria-expanded="false" aria-controls="flush-collapseOne">
+                                                    Community help requests.
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                                aria-labelledby="flush-headingOne"
+                                                data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">Placeholder content for this accordion,
+                                                    which is intended to demonstrate the <code>.accordion-flush</code>
+                                                    class. This is the first item's accordion body.</div>
+                                            </div>
+                                        </div>
+                                        <!-- trainer support accord segment -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="flush-headingTwo">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                                    aria-expanded="false" aria-controls="flush-collapseTwo">
+                                                    Trainer support.
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                                aria-labelledby="flush-headingTwo"
+                                                data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">Placeholder content for this accordion,
+                                                    which is intended to demonstrate the <code>.accordion-flush</code>
+                                                    class. This is the second item's accordion body. Let's imagine this
+                                                    being filled with some actual content.</div>
+                                            </div>
+                                        </div>
+                                        <!-- trainee support accord segment -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="flush-headingThree">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                                    aria-expanded="false" aria-controls="flush-collapseThree">
+                                                    Trainee support.
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                                aria-labelledby="flush-headingThree"
+                                                data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">Placeholder content for this accordion,
+                                                    which is intended to demonstrate the <code>.accordion-flush</code>
+                                                    class. This is the third item's accordion body. Nothing more
+                                                    exciting happening here in terms of content, but just filling up the
+                                                    space to make it look, at least at first glance, a bit more
+                                                    representative of how this would look in a real-world application.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- enquiries support accord segment -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="flush-headingThree">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseFour"
+                                                    aria-expanded="false" aria-controls="flush-collapseFour">
+                                                    Enquiries.
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseFour" class="accordion-collapse collapse"
+                                                aria-labelledby="flush-headingThree"
+                                                data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">Placeholder content for this accordion,
+                                                    which is intended to demonstrate the <code>.accordion-flush</code>
+                                                    class. This is the third item's accordion body. Nothing more
+                                                    exciting happening here in terms of content, but just filling up the
+                                                    space to make it look, at least at first glance, a bit more
+                                                    representative of how this would look in a real-world application.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ./ help. sub-sections -->
+                                </div>
+
+                                <!-- Help. leaderboard -->
+                                <h5 class="text-center d-grid gap-2 mt-4"><span
+                                        class="material-icons material-icons-outlined align-middle">
+                                        scoreboard</span><span class="align-middle"> Help Leaderboard.</span>
+                                </h5>
+
+                                <hr class="text-white">
+                                <!-- ./ Help. leaderboard -->
+
+                                <h5 class="mt-4 text-center">Ads<span style="color: #ffa500;">.</span></h5>
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./ help. focus column -->
+                            <!-- friends, following, followers column -->
+                            <div class="col-lg no-scroller" style="max-height: 90vh;">
+
+                                <div id="friends-list-grid-section"
+                                    class="content-panel-border-style-dark-bg mb-4 p-4 w3-animate-bottom"
+                                    style="min-height: 20vh;">
+                                    <!-- friends list grid section -->
+                                    <h5>
+                                        <span class="material-icons material-icons-outlined align-middle"
+                                            style="font-size: 40px!important;">
+                                            diversity_1</span><span class="align-middle"> Friends.</span>
+                                    </h5>
+
+                                    <div class="grid-container">
+                                        <!-- example -->
+                                        <div class="grid-tile p-2">
+                                            <div class="card text-bg-dark border-5 w3-animate-left"
+                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png"
+                                                    class="card-img" alt="placeholder profile img">
+                                                <div class="card-img-overlay top-down-grad-dark"
+                                                    style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
+                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <p class="card-text p-1 text-start">
+                                                        <a style="text-decoration: none;color: #ffa500 !important;"
+                                                            data-bs-toggle="collapse" href="#friend-card-info-userid"
+                                                            role="button" aria-expanded="false"
+                                                            aria-controls="friend-card-info-userid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 8px !important;">
+                                                                info
+                                                            </span>
+                                                            <span class="align-middle">About me.</span>
+                                                        </a>
+                                                        <span id="friend-card-info-userid" class="collapse">
+                                                            Users
+                                                            biography here.Users biography here.Users
+                                                            biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                        </span>
+
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                            <!-- user socials -->
+                                            <p class="card-text align-middle w3-animate-bottom">
+                                                <small class="align-middle" style="color: #ffa500 !important;">Socials:
+                                                </small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-twitter"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-facebook"></i>
+                                                    /username |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-instagram"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-whatsapp"></i>
+                                                    +27-whatsappnum </small>
+                                            </p>
+                                        </div>
+                                        <!-- ./ example -->
+
+                                        <!-- example -->
+                                        <div class="grid-tile p-2">
+                                            <div class="card text-bg-dark border-5 w3-animate-left"
+                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png"
+                                                    class="card-img" alt="placeholder profile img">
+                                                <div class="card-img-overlay top-down-grad-dark"
+                                                    style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
+                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <p class="card-text p-1 text-start">
+                                                        <a style="text-decoration: none;color: #ffa500 !important;"
+                                                            data-bs-toggle="collapse" href="#friend-card-info-userid"
+                                                            role="button" aria-expanded="false"
+                                                            aria-controls="friend-card-info-userid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 8px !important;">
+                                                                info
+                                                            </span>
+                                                            <span class="align-middle">About me.</span>
+                                                        </a>
+                                                        <span id="friend-card-info-userid" class="collapse">
+                                                            Users
+                                                            biography here.Users biography here.Users
+                                                            biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                        </span>
+
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                            <!-- user socials -->
+                                            <p class="card-text align-middle w3-animate-bottom">
+                                                <small class="align-middle" style="color: #ffa500 !important;">Socials:
+                                                </small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-twitter"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-facebook"></i>
+                                                    /username |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-instagram"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-whatsapp"></i>
+                                                    +27-whatsappnum </small>
+                                            </p>
+                                        </div>
+                                        <!-- ./ example -->
+
+                                        <!-- example -->
+                                        <div class="grid-tile p-2">
+                                            <div class="card text-bg-dark border-5 w3-animate-left"
+                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png"
+                                                    class="card-img" alt="placeholder profile img">
+                                                <div class="card-img-overlay top-down-grad-dark"
+                                                    style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
+                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <p class="card-text p-1 text-start">
+                                                        <a style="text-decoration: none;color: #ffa500 !important;"
+                                                            data-bs-toggle="collapse" href="#friend-card-info-userid"
+                                                            role="button" aria-expanded="false"
+                                                            aria-controls="friend-card-info-userid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 8px !important;">
+                                                                info
+                                                            </span>
+                                                            <span class="align-middle">About me.</span>
+                                                        </a>
+                                                        <span id="friend-card-info-userid" class="collapse">
+                                                            Users
+                                                            biography here.Users biography here.Users
+                                                            biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                        </span>
+
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                            <!-- user socials -->
+                                            <p class="card-text align-middle w3-animate-bottom">
+                                                <small class="align-middle" style="color: #ffa500 !important;">Socials:
+                                                </small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-twitter"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-facebook"></i>
+                                                    /username |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-instagram"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-whatsapp"></i>
+                                                    +27-whatsappnum </small>
+                                            </p>
+                                        </div>
+                                        <!-- ./ example -->
+
+                                        <!-- dynamic ajax list -->
+                                    </div>
+                                </div>
+
+
+                                <div id="following-list-grid-section"
+                                    class="content-panel-border-style-dark-bg mb-4 p-4 w3-animate-bottom"
+                                    style="min-height: 20vh;">
+                                    <!-- Following list grid section -->
+                                    <h5>
+                                        <span class="material-icons material-icons-outlined align-middle"
+                                            style="font-size: 40px!important;">
+                                            follow_the_signs</span><span class="align-middle"> Following.</span>
+                                    </h5>
+
+                                    <div class="grid-container">
+                                        <!-- example -->
+                                        <div class="grid-tile p-2">
+                                            <div class="card text-bg-dark border-5 w3-animate-left"
+                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png"
+                                                    class="card-img" alt="placeholder profile img">
+                                                <div class="card-img-overlay top-down-grad-dark"
+                                                    style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
+                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <p class="card-text p-1 text-start">
+                                                        <a style="text-decoration: none;color: #ffa500 !important;"
+                                                            data-bs-toggle="collapse" href="#friend-card-info-userid"
+                                                            role="button" aria-expanded="false"
+                                                            aria-controls="friend-card-info-userid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 8px !important;">
+                                                                info
+                                                            </span>
+                                                            <span class="align-middle">About me.</span>
+                                                        </a>
+                                                        <span id="friend-card-info-userid" class="collapse">
+                                                            Users
+                                                            biography here.Users biography here.Users
+                                                            biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                        </span>
+
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                            <!-- user socials -->
+                                            <p class="card-text align-middle w3-animate-bottom">
+                                                <small class="align-middle" style="color: #ffa500 !important;">Socials:
+                                                </small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-twitter"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-facebook"></i>
+                                                    /username |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-instagram"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-whatsapp"></i>
+                                                    +27-whatsappnum </small>
+                                            </p>
+                                        </div>
+                                        <!-- ./ example -->
+
+                                        <!-- example -->
+                                        <div class="grid-tile p-2">
+                                            <div class="card text-bg-dark border-5 w3-animate-left"
+                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png"
+                                                    class="card-img" alt="placeholder profile img">
+                                                <div class="card-img-overlay top-down-grad-dark"
+                                                    style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
+                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <p class="card-text p-1 text-start">
+                                                        <a style="text-decoration: none;color: #ffa500 !important;"
+                                                            data-bs-toggle="collapse" href="#friend-card-info-userid"
+                                                            role="button" aria-expanded="false"
+                                                            aria-controls="friend-card-info-userid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 8px !important;">
+                                                                info
+                                                            </span>
+                                                            <span class="align-middle">About me.</span>
+                                                        </a>
+                                                        <span id="friend-card-info-userid" class="collapse">
+                                                            Users
+                                                            biography here.Users biography here.Users
+                                                            biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                        </span>
+
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                            <!-- user socials -->
+                                            <p class="card-text align-middle w3-animate-bottom">
+                                                <small class="align-middle" style="color: #ffa500 !important;">Socials:
+                                                </small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-twitter"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-facebook"></i>
+                                                    /username |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-instagram"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-whatsapp"></i>
+                                                    +27-whatsappnum </small>
+                                            </p>
+                                        </div>
+                                        <!-- ./ example -->
+
+                                        <!-- example -->
+                                        <div class="grid-tile p-2">
+                                            <div class="card text-bg-dark border-5 w3-animate-left"
+                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png"
+                                                    class="card-img" alt="placeholder profile img">
+                                                <div class="card-img-overlay top-down-grad-dark"
+                                                    style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
+                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <p class="card-text p-1 text-start">
+                                                        <a style="text-decoration: none;color: #ffa500 !important;"
+                                                            data-bs-toggle="collapse" href="#friend-card-info-userid"
+                                                            role="button" aria-expanded="false"
+                                                            aria-controls="friend-card-info-userid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 8px !important;">
+                                                                info
+                                                            </span>
+                                                            <span class="align-middle">About me.</span>
+                                                        </a>
+                                                        <span id="friend-card-info-userid" class="collapse">
+                                                            Users
+                                                            biography here.Users biography here.Users
+                                                            biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                        </span>
+
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                            <!-- user socials -->
+                                            <p class="card-text align-middle w3-animate-bottom">
+                                                <small class="align-middle" style="color: #ffa500 !important;">Socials:
+                                                </small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-twitter"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-facebook"></i>
+                                                    /username |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-instagram"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-whatsapp"></i>
+                                                    +27-whatsappnum </small>
+                                            </p>
+                                        </div>
+                                        <!-- ./ example -->
+
+                                        <!-- dynamic ajax list -->
+                                    </div>
+                                </div>
+
+
+                                <div id="followers-list-grid-section"
+                                    class="content-panel-border-style-dark-bg mb-4 p-4 w3-animate-bottom"
+                                    style="min-height: 20vh;">
+                                    <!-- Followers list grid section -->
+                                    <h5>
+                                        <span class="material-icons material-icons-outlined align-middle"
+                                            style="font-size: 40px!important;">
+                                            follow_the_signs</span><span class="align-middle"> Followers.</span>
+                                    </h5>
+
+                                    <div class="grid-container">
+                                        <!-- example -->
+                                        <div class="grid-tile p-2">
+                                            <div class="card text-bg-dark border-5 w3-animate-left"
+                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png"
+                                                    class="card-img" alt="placeholder profile img">
+                                                <div class="card-img-overlay top-down-grad-dark"
+                                                    style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
+                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <p class="card-text p-1 text-start">
+                                                        <a style="text-decoration: none;color: #ffa500 !important;"
+                                                            data-bs-toggle="collapse" href="#friend-card-info-userid"
+                                                            role="button" aria-expanded="false"
+                                                            aria-controls="friend-card-info-userid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 8px !important;">
+                                                                info
+                                                            </span>
+                                                            <span class="align-middle">About me.</span>
+                                                        </a>
+                                                        <span id="friend-card-info-userid" class="collapse">
+                                                            Users
+                                                            biography here.Users biography here.Users
+                                                            biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                        </span>
+
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                            <!-- user socials -->
+                                            <p class="card-text align-middle w3-animate-bottom">
+                                                <small class="align-middle" style="color: #ffa500 !important;">Socials:
+                                                </small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-twitter"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-facebook"></i>
+                                                    /username |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-instagram"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-whatsapp"></i>
+                                                    +27-whatsappnum </small>
+                                            </p>
+                                        </div>
+                                        <!-- ./ example -->
+
+                                        <!-- example -->
+                                        <div class="grid-tile p-2">
+                                            <div class="card text-bg-dark border-5 w3-animate-left"
+                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png"
+                                                    class="card-img" alt="placeholder profile img">
+                                                <div class="card-img-overlay top-down-grad-dark"
+                                                    style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
+                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <p class="card-text p-1 text-start">
+                                                        <a style="text-decoration: none;color: #ffa500 !important;"
+                                                            data-bs-toggle="collapse" href="#friend-card-info-userid"
+                                                            role="button" aria-expanded="false"
+                                                            aria-controls="friend-card-info-userid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 8px !important;">
+                                                                info
+                                                            </span>
+                                                            <span class="align-middle">About me.</span>
+                                                        </a>
+                                                        <span id="friend-card-info-userid" class="collapse">
+                                                            Users
+                                                            biography here.Users biography here.Users
+                                                            biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                        </span>
+
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                            <!-- user socials -->
+                                            <p class="card-text align-middle w3-animate-bottom">
+                                                <small class="align-middle" style="color: #ffa500 !important;">Socials:
+                                                </small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-twitter"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-facebook"></i>
+                                                    /username |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-instagram"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-whatsapp"></i>
+                                                    +27-whatsappnum </small>
+                                            </p>
+                                        </div>
+                                        <!-- ./ example -->
+
+                                        <!-- example -->
+                                        <div class="grid-tile p-2">
+                                            <div class="card text-bg-dark border-5 w3-animate-left"
+                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                <img src="../media/profiles/0_default/default_profile_pic.png"
+                                                    class="card-img" alt="placeholder profile img">
+                                                <div class="card-img-overlay top-down-grad-dark"
+                                                    style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
+                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <p class="card-text p-1 text-start">
+                                                        <a style="text-decoration: none;color: #ffa500 !important;"
+                                                            data-bs-toggle="collapse" href="#friend-card-info-userid"
+                                                            role="button" aria-expanded="false"
+                                                            aria-controls="friend-card-info-userid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 8px !important;">
+                                                                info
+                                                            </span>
+                                                            <span class="align-middle">About me.</span>
+                                                        </a>
+                                                        <span id="friend-card-info-userid" class="collapse">
+                                                            Users
+                                                            biography here.Users biography here.Users
+                                                            biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                            Users biography here.Users biography here.Users
+                                                            biography
+                                                            here.Users biography here.Users biography here.
+                                                        </span>
+
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                            <!-- user socials -->
+                                            <p class="card-text align-middle w3-animate-bottom">
+                                                <small class="align-middle" style="color: #ffa500 !important;">Socials:
+                                                </small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-twitter"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-facebook"></i>
+                                                    /username |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-instagram"></i>
+                                                    @handle |</small>
+                                                <small class="align-middle" style="font-size: 8px !important"><i
+                                                        class="fab fa-whatsapp"></i>
+                                                    +27-whatsappnum </small>
+                                            </p>
+                                        </div>
+                                        <!-- ./ example -->
+
+                                        <!-- dynamic ajax list -->
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- ./ friends, following, followers column -->
+                        </div>
+
+                    </div>
+                </div>
+                <!-- ./ profile tab sub-tabs container -->
+            </div>
+            <!-- more stuff column -->
+            <div class="col-lg-4 p-4">
+                <div class="nav sticky-top">
+                    <!-- more stuff -->
+                    <div id="profile-social-post-update-container"
+                        class="container shadow mb-4 py-4 content-panel-border-style-dark-bg w3-animate-top"
+                        style="border-radius: 25px;">
+                        <h5 class="text-center"><span class="material-icons material-icons-outlined align-middle">
+                                read_more
+                            </span><span class="align-middle"> More Stuff.</span></h5>
+                        <hr class="text-white">
+                        <div id="more-stuff-container" style="min-height: 30vh;"></div>
+                    </div>
+
+                    <!-- rss feeds -->
+                    <div id="profile-social-post-update-container"
+                        class="container shadow mb-4 py-4 content-panel-border-style-dark-bg w3-animate-bottom"
+                        style="border-radius: 25px;">
+                        <h5 class="text-center"><span class="material-icons material-icons-outlined align-middle">
+                                rss_feed
+                            </span><span class="align-middle"> RSS.</span></h5>
+                        <hr class="text-white">
+                        <div id="more-stuff-rss-feed-container" style="min-height: 30vh;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function clickProfileTabMainSubTabs(name) {
+            console.log(name);
+        }
+    </script>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

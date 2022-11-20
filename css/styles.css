@@ -23,7 +23,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f58529",endCo
   --plyr-color-main: var(--tahitigold) !important;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Comfortaa:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap&family=Libre+Barcode+128&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Comfortaa:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap&family=Libre+Barcode+128&display=swap&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 
 .player {
@@ -51,6 +51,7 @@ body {
   background: -webkit-linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 70%);
   background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 70%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#343434", GradientType=1);
+  font-family: 'Poppins', sans-serif;
 }
 
 #error-output {
@@ -181,7 +182,7 @@ body {
 }
 
 p {
-  font-family: "Outfit", sans-serif !important;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* .load-curtain {
@@ -561,6 +562,10 @@ h6 {
 
 .outfit-font {
   font-family: "Outfit", sans-serif !important;
+}
+
+.poppins-font {
+  font-family: 'Poppins', sans-serif;
 }
 
 .barcode-font {
@@ -1108,6 +1113,15 @@ h6 {
   overflow: hidden;
 }
 
+.content-panel-border-style-dark-bg {
+  border-left: var(--tahitigold) solid 5px;
+  border-bottom: var(--tahitigold) solid 5px;
+  border-radius: 25px;
+  color: var(--white);
+  background-color: var(--mineshaft);
+  overflow: hidden;
+}
+
 .social-link {
   cursor: pointer;
 }
@@ -1148,7 +1162,7 @@ h6 {
   overflow: hidden;
   margin: auto !important;
 
-  border-radius: 50%;
+  border-radius: 50% !important;
   border-color: var(--tahitigold) !important;
   background-color: var(--mineshaft);
 }
@@ -1578,6 +1592,9 @@ div.horizontal-scroll-card-nav {
 
 .video-card-container {
   position: relative !important;
+  border-bottom: #ffa500 5px solid;
+  border-left: #ffa500 5px solid;
+  border-radius: 25px;
 }
 
 .video-card-container img {
@@ -1625,6 +1642,31 @@ div.horizontal-scroll-card-nav {
   color: #fff !important;
   border: #ffa500 solid 1px !important;
   animation: animate-tahiti 4s linear infinite;
+}
+
+.display-profile-img-container {
+  background: url(../media/profiles/0_default/default_profile_pic.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: local;
+  background-position: center;
+  background-clip: content-box;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+}
+
+.display-profile-banner-container {
+  background: url(../media/profiles/0_default/default_profile_banner.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: local;
+  background-clip: content-box;
+  background-size: cover;
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
 }
 
 /*Animations Only!*/

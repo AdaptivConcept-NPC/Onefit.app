@@ -35,12 +35,12 @@ require("../config.php");
 // require_once("../main_app/discovery/trainers.php");
 
 //Connection Test==============================================>
-  // Check connection
-  /*if ($dbconn->connect_error) {
+// Check connection
+/*if ($dbconn->connect_error) {
       die("Connection failed: " . $dbconn->connect_error);
   }
   echo "Connected successfully";*/
-  if($dbconn->connect_error) die("Fatal Error");
+if ($dbconn->connect_error) die("Fatal Error");
 //end of Connection Test============================================>
 
 //Declaring variables
@@ -70,17 +70,17 @@ $communicationNews = "";
 $communicationUserMessages = "";
 $output = "";
 
-if(isset($_SESSION["currentUserAuth"])) {
-  if($_SESSION["currentUserAuth"]==true) {
-    $currentUser_Usrnm = mysqli_real_escape_string($dbconn,$_SESSION["currentUserAuth"]);
+if (isset($_SESSION["currentUserAuth"])) {
+  if ($_SESSION["currentUserAuth"] == true) {
+    $currentUser_Usrnm = mysqli_real_escape_string($dbconn, $_SESSION["currentUserAuth"]);
 
     //Load the user profile information
     $sql = "SELECT * FROM users u INNER JOIN user_profiles up ON u.username = up.username WHERE u.username = '$currentUser_Usrnm';";
     //SELECT `social_network`, `link` FROM `user_socials` WHERE `username` = ''
 
-    if($result = mysqli_query($dbconn,$sql)){
-      
-      while($row = mysqli_fetch_assoc($result)){
+    if ($result = mysqli_query($dbconn, $sql)) {
+
+      while ($row = mysqli_fetch_assoc($result)) {
         //u.user_id, u.username, u.user_name, u.user_surname, u.id_number, u.user_email, u.contact_number, u.date_of_birth, u.user_gender, u.user_race, u.user_nationality, u.account_active
         $usr_userid = $row["user_id"];
 
@@ -116,12 +116,12 @@ if(isset($_SESSION["currentUserAuth"])) {
       //echo $discoverPeopleList;
       //die();
 
-      if($usr_verification == true) {
+      if ($usr_verification == true) {
         $verifIcon = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> verified_user</span>';
       } else {
         $verifIcon = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> groups</span>';
       }
-//<<<_END 
+      //<<<_END 
       $output =  "<!-- Profile Tab: User Profile -->
           <div class='container comfortaa-font rounded-pillz shadow pb-4 px-0 m-0z text-white w-100'
             style='border-radius: 25px; background-color: #343434; overflow: hidden'>
@@ -137,7 +137,7 @@ if(isset($_SESSION["currentUserAuth"])) {
               <!-- Profile Picture -->
                 $accountProdImg
               <!-- ./ Profile Picture -->
-              <p class='outfit-font mt-2 username-tag'>@$currentUser_Usrnm</p>
+              <p class='poppins-font mt-2 username-tag'>@$currentUser_Usrnm</p>
             </div>
             <!--<hr class='text-white' />-->
             <ol class='list-group list-group-numberedz list-group-flush'>
@@ -214,10 +214,10 @@ if(isset($_SESSION["currentUserAuth"])) {
           <!-- ./ Profile Tab: User Profile -->";
       //_END;
       echo $output;
-    }else{
-    $output = "|[System Error]|:. [Profile load (Account details) - ".mysqli_error($dbconn)."]";
-    $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport('."'".$currentUser_Usrnm."'".','."'".$output."'".')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">'.$output.'</div></div>';
-    //exit();
+    } else {
+      $output = "|[System Error]|:. [Profile load (Account details) - " . mysqli_error($dbconn) . "]";
+      $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output . '</div></div>';
+      //exit();
     }
   }
 }

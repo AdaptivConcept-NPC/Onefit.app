@@ -1,7 +1,7 @@
 <?php
 session_start();
-require("../config.php");
-require_once("../functions.php");
+require("../../../config.php");
+require_once("../../../functions.php");
 
 //Connection Test==============================================>
 // Check connection
@@ -28,7 +28,7 @@ $rows = $result->num_rows;
 
 if ($rows == 0) {
   //there is no result so notify user that the account cannot be found
-  header("Location: ../../../index.html?return=unf&usrn=$username");
+  header("Location: ../../../../../index.html?return=unf&usrn=$username");
 } else {
   for ($j = 0; $j < $rows; ++$j) {
     $row = $result->fetch_array(MYSQLI_ASSOC);
@@ -47,8 +47,8 @@ if ($rows == 0) {
   //HASH Bypass - Remove after fixing current password hashes in the db
   //$hashBypass = password_hash($password, PASSWORD_DEFAULT);
 
-  if (password_verify($password, $pwdHash)) header("Location: ../../../app/?userauth=true");
-  else header("Location: ../../../index.html?return=mismatch&usrn=$username");
+  if (password_verify($password, $pwdHash)) header("Location: ../../../../../app/?userauth=true");
+  else header("Location: ../../../../../index.html?return=mismatch&usrn=$username");
 }
 
 //Sanitization

@@ -162,7 +162,7 @@
   <!-- Onefit.app Logo 
     <hr class="text-white" />-->
 
-  <div class="text-center" style="padding-top: 150px;">
+  <div class="text-center pb-4" style="padding-top: 150px;">
     <div class="d-grid mb-2 w3-animate-top">
       <p class="text-white comfortaa-font fs-4 mb-0 fw-bold"> Presented by </p>
       <p class="text-white audiowide-font mt-1 mb-4 fw-bold" style="font-size: 8px !important;"> <span
@@ -176,27 +176,31 @@
       </span>
     </div>
 
-    <img src="media/assets/One-Logo-Vertical.png" class="w3-animate-bottom" alt="Onefit&trade;.app Logo"
-      class="img-fluid shadow"
-      style="max-height: 50vh; width: auto !important; border-radius: 25px; background-color: #343434;" />
+    <img src="media/assets/One-Logo-Vertical.png" class="border-5 border-start border-end p-4" alt="Onefit™.app Logo"
+      style="max-height: 50vh; width: auto !important; border-radius: 25px; background-color: #343434;">
   </div>
 
   <hr class="text-white" style="height: 50px" />
   <!-- Onefit.app Logo -->
 
+  <div class="text-center p-4" style="background-color: rgba(52, 52, 52, 0.8); margin: 40px 0;">
+    <span class="material-icons material-icons-round" style="font-size: 100px!important;color: #fff!important;">
+      fingerprint </span>
+
+    <h1 class="down-top-grad-dark py-0 px-4"
+      style="color: #fff; font-size: 40px; border-radius: 00 25px 25px !important;">Sign into your Account<span
+        style="color: #ffa500;">.</span></h1>
+  </div>
+
   <!-- User Sign in Section -->
   <div class="container-fluid m-0 down-top-grad-dark">
     <div class="container text-center text-white mt-4" style="min-height: 100vh; padding-bottom: 10vh">
-      <!--<i class="fas fa-id-badge"></i>-->
-      <span class="material-icons material-icons-outlined"> fingerprint </span>
 
-      <h1 class="mb-4 down-top-grad-dark p-4"
-        style="color: #ffa500; font-size: 40px; border-radius: 00 25px 25px !important;">Sign into your Account.</h1>
-
-      <div class="row align-items-center my-4" style="border-radius: 25px; background-color: rgba(52, 52, 52, 0.8)">
+      <div class="row align-items-center my-4 px-4"
+        style="border-radius: 25px; background-color: rgba(52, 52, 52, 0.8)">
         <div class="col-sm py-4">
           <form class="text-center text-white comfortaa-font align-middle" method="post"
-            action="scripts/php/userprofile/login.php" autocomplete="off">
+            action="scripts/php/main_app/compile_content/profile_tab/login.php" autocomplete="off">
             <!--target="_blank"-->
             <div class="mb-4 p-4 text-white" id="error-output"></div>
             <div class="mb-3">
@@ -214,8 +218,8 @@
               </div>
             </div>
             <div class="my-4 form-check d-flex gap-2 text-center justify-content-center">
-              <input type="checkbox" class="form-check-input me-1" id="exampleCheck1" />
-              <label class="form-check-label text-center pt-2" for="exampleCheck1">Keep me signed in?</label>
+              <input type="checkbox" class="form-check-input me-1" id="keep-me-signed-in" />
+              <label class="form-check-label text-center pt-2" for="keep-me-signed-in">Keep me signed in?</label>
             </div>
             <div class="mt-4 d-grid gap-2">
               <button type="submit" class="btn onefit-buttons-style-light shadow align-items-center p-4"
@@ -262,7 +266,7 @@
       </div>
 
       <!-- Carousal -->
-      <div class="container-fluid m-0">
+      <div class="container-fluid m-0 p-4">
         <span class="material-icons material-icons-outlined"> tv </span>
         <p style="font-size: 10px">Latest Training Programs | <span class="comfortaa-font"
             style="color: #ffa500">OnefitNet.TV</span></p>
