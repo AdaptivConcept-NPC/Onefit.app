@@ -625,7 +625,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 var grpRefCode = "tst_grp_0001";
 
                 weekDaysArray.forEach(weekday => {
-                    $.get("../scripts/php/main_app/data_management/system_admin/team_athletics_data/compile_teams_daily_activities.php?day=" + weekday + "&gref=" + grpRefCode, function(data, status) {
+                    $.get("../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/compile/compile_teams_daily_activities.php?day=" + weekday + "&gref=" + grpRefCode, function(data, status) {
 
 
                         if (status != "success") {
@@ -834,7 +834,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div class="ring d-flex align-items-center p-4 my-pulse-animation-light">
                     <!-- <span></span> -->
                     <div style="width: 100%;">
-                        <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid p-4" style="max-height: 20vh;" alt="">
+                        <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid p-4" style="max-height: 20vh;" alt="">
                     </div>
                 </div>
             </div>
@@ -891,7 +891,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </button>
 
                         <div class="w3-animate-top text-center">
-                            <!-- <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="max-height: 50px;" alt="logo"> -->
+                            <!-- <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="max-height: 50px;" alt="logo"> -->
                             <div class="d-grid text-center">
                                 <p class="m-0 fs-5 comfortaa-font text-muted">Shopping</p>
                                 <p class="m-0 fs-1 comfortaa-font text-muted">Cart.</p>
@@ -917,84 +917,151 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numbered shadow py-4 no-scroller px-4 w3-animate-left" style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
                                 <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <div class="d-grid gap-2 text-start px-4 pb-2">
-                                            <div class="comfortaa-font">
-                                                <span id="main-cart-items-list-item-name" class="align-middle">Aiwa Smart Band ASB-40</span>
+
+                                        <div class="row align-items-center">
+                                            <div class="col-md">
+                                                <div class="d-grid gap-2 text-start px-4 pb-2">
+                                                    <div class="comfortaa-font">
+                                                        <span id="main-cart-items-list-item-name" class="align-middle">Aiwa Smart Band ASB-40</span>
+                                                    </div>
+                                                    <div class="comfortaa-font">
+                                                        <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                                        <span class="fs-5" id="main-cart-items-list-item-price" style="color: #ffa500;">R149.00</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="comfortaa-font">
-                                                <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
-                                                <span class="fs-5" id="main-cart-items-list-item-price" style="color: #ffa500;">R149.00</span>
+                                            <div class="col-md">
+                                                <div class="d-grid justify-content-end">
+                                                    <!-- quantity -->
+                                                    <div class="input-group m-0">
+                                                        <span class="input-group-text" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
+                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:60px;">
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="d-grid justify-content-end">
-                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
-                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
-                                                    highlight_off
-                                                </span>
-                                            </button>
+                                            <div class="col-md">
+                                                <div class="d-grid justify-content-end">
+                                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
+                                                            highlight_off
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
                                 </li>
                                 <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <div class="d-grid gap-2 text-start px-4 pb-2">
-                                            <div class="comfortaa-font">
-                                                <span id="main-cart-items-list-item-name" class="align-middle">Aiwa Smart Band ASB-40</span>
+
+                                        <div class="row align-items-center">
+                                            <div class="col-md">
+                                                <div class="d-grid gap-2 text-start px-4 pb-2">
+                                                    <div class="comfortaa-font">
+                                                        <span id="main-cart-items-list-item-name" class="align-middle">Aiwa Smart Band ASB-40</span>
+                                                    </div>
+                                                    <div class="comfortaa-font">
+                                                        <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                                        <span class="fs-5" id="main-cart-items-list-item-price" style="color: #ffa500;">R149.00</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="comfortaa-font">
-                                                <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
-                                                <span class="fs-5" id="main-cart-items-list-item-price" style="color: #ffa500;">R149.00</span>
+                                            <div class="col-md">
+                                                <div class="d-grid justify-content-end">
+                                                    <!-- quantity -->
+                                                    <div class="input-group m-0">
+                                                        <span class="input-group-text" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
+                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:60px;">
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="d-grid justify-content-end">
-                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
-                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
-                                                    highlight_off
-                                                </span>
-                                            </button>
+                                            <div class="col-md">
+                                                <div class="d-grid justify-content-end">
+                                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
+                                                            highlight_off
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
                                 </li>
                                 <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <div class="d-grid gap-2 text-start px-4 pb-2">
-                                            <div class="comfortaa-font">
-                                                <span id="main-cart-items-list-item-name" class="align-middle">Aiwa Smart Band ASB-40</span>
+
+                                        <div class="row align-items-center">
+                                            <div class="col-md">
+                                                <div class="d-grid gap-2 text-start px-4 pb-2">
+                                                    <div class="comfortaa-font">
+                                                        <span id="main-cart-items-list-item-name" class="align-middle">Aiwa Smart Band ASB-40</span>
+                                                    </div>
+                                                    <div class="comfortaa-font">
+                                                        <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                                        <span class="fs-5" id="main-cart-items-list-item-price" style="color: #ffa500;">R149.00</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="comfortaa-font">
-                                                <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
-                                                <span class="fs-5" id="main-cart-items-list-item-price" style="color: #ffa500;">R149.00</span>
+                                            <div class="col-md">
+                                                <div class="d-grid justify-content-end">
+                                                    <!-- quantity -->
+                                                    <div class="input-group m-0">
+                                                        <span class="input-group-text" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
+                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:60px;">
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="d-grid justify-content-end">
-                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
-                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
-                                                    highlight_off
-                                                </span>
-                                            </button>
+                                            <div class="col-md">
+                                                <div class="d-grid justify-content-end">
+                                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
+                                                            highlight_off
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-
+                                    <!-- ***delete ../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/get_user_stats_activity_tracker.php -->
                                 </li>
                                 <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <div class="d-grid gap-2 text-start px-4 pb-2">
-                                            <div class="comfortaa-font">
-                                                <span id="main-cart-items-list-item-name" class="align-middle">Aiwa Smart Band ASB-40</span>
+
+
+
+
+                                        <div class="row align-items-center">
+                                            <div class="col-md">
+                                                <div class="d-grid gap-2 text-start px-4 pb-2">
+                                                    <div class="comfortaa-font">
+                                                        <span id="main-cart-items-list-item-name" class="align-middle">Aiwa Smart Band ASB-40</span>
+                                                    </div>
+                                                    <div class="comfortaa-font">
+                                                        <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                                        <span class="fs-5" id="main-cart-items-list-item-price" style="color: #ffa500;">R149.00</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="comfortaa-font">
-                                                <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
-                                                <span class="fs-5" id="main-cart-items-list-item-price" style="color: #ffa500;">R149.00</span>
+                                            <div class="col-md">
+                                                <div class="d-grid justify-content-end">
+                                                    <!-- quantity -->
+                                                    <div class="input-group m-0">
+                                                        <span class="input-group-text" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
+                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:60px;">
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="d-grid justify-content-end">
-                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
-                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
-                                                    highlight_off
-                                                </span>
-                                            </button>
+                                            <div class="col-md">
+                                                <div class="d-grid justify-content-end">
+                                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
+                                                            highlight_off
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -1005,7 +1072,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <p class="text-end w3-animate-right comfortaa-font" style="min-height: 30px;">Cart Items (<span id="mini-cart-item-count" style="color: #ffa500;">4</span>)</p>
                             <hr class="text-white">
                             <div class="horizontal-scroll p-5 w3-animate-right">
-                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-end me-4 position-relative" style="border-color: #ffa500 !important;">
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative" style="border-color: #ffa500 !important;">
                                     <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
                                         1
                                     </div>
@@ -1030,7 +1097,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </div>
 
                                 </div>
-                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-end me-4 position-relative" style="border-color: #ffa500 !important;">
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative" style="border-color: #ffa500 !important;">
                                     <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
                                         2
                                     </div>
@@ -1055,7 +1122,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </div>
 
                                 </div>
-                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-end me-4 position-relative" style="border-color: #ffa500 !important;">
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative" style="border-color: #ffa500 !important;">
                                     <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
                                         3
                                     </div>
@@ -1080,7 +1147,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </div>
 
                                 </div>
-                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-end me-4 position-relative" style="border-color: #ffa500 !important;">
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative" style="border-color: #ffa500 !important;">
                                     <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
                                         4
                                     </div>
@@ -1165,7 +1232,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <button class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz" style="overflow: hidden; font-size: 10px;" type="button" data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal">
                         <div class="d-grid gap-2 text-center">
                             <!-- Profile Picture -->
-                            <img src="../media/assets/One-Symbol-Logo-White.png" alt="Onefit Logo" class="p-1 img-fluid my-pulse-animation-tahitiz" style="height: 50px; width: 50px; border-radius: 15px; border-color: #ffa500 !important" />
+                            <img src="../media/assets/One-Symbol-Logo-White.svg" alt="Onefit Logo" class="p-1 img-fluid my-pulse-animation-tahitiz" style="height: 50px; width: 50px; border-radius: 15px; border-color: #ffa500 !important" />
                             <!-- ./ Profile Picture -->
                             <span class="d-none d-lg-block">Latest</span>
                         </div>
@@ -1192,7 +1259,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div class="offcanvas offcanvas-end offcanvas-menu-primary-style fitness-bg-containerz" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div class="h-100z" id="offcanvas-menu">
                         <div class="offcanvas-header shadow fs-1" style="background-color: #343434; color: #fff">
-                            <img src="../media/assets/One-Symbol-Logo-White.png" alt="" class="img-fluid logo-size-2 pulse-animation" />
+                            <img src="../media/assets/One-Symbol-Logo-White.svg" alt="" class="img-fluid logo-size-2 pulse-animation" />
 
                             <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="overflow-x: hidden;">
                                 Navigation
@@ -1466,7 +1533,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <!--./ Thumbnail-->
 
                                                     <div class="d-grid gap-2 w-100">
-                                                        <button class="onefit-buttons-style-dark shadow p-2 px-4 my-4" style="transform: translate(0) !important;" id="museplayer-togglebtn" type="button" data-bs-toggle="collapse" data-bs-target="#song-playid-songid" aria-expanded="false" aria-controls="song-playid-songid">
+                                                        <button class="onefit-buttons-style-dark shadow p-2 px-4 my-4" style="transform: translate(0) !important;" id="museplayer-togglebtn" type="button" data-bs-toggle="collapse" data-bs-target="#track-playid-songid" aria-expanded="false" aria-controls="track-playid-songid">
                                                             <div class="row align-items-center w-100 text-center">
                                                                 <div class="col-sm text-start">
                                                                     <span class="material-icons material-icons-round rounded-pill shadow -sm p-3" style="font-size: 50px !important;">
@@ -1474,14 +1541,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                     </span>
                                                                 </div>
                                                                 <div class="col-sm py-4">
-                                                                    Song Title (00:00)
+                                                                    track Title (00:00)
                                                                 </div>
                                                             </div>
                                                         </button>
                                                     </div>
 
                                                 </div>
-                                                <div class="col-xlg-8 mb-4 collapse show showz w3-animate-right text-white" id="song-playid-songid">
+                                                <div class="col-xlg-8 mb-4 collapse w3-animate-right text-white" id="track-playid-songid">
                                                     <div class="mb-4 py-2">
                                                         <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important; color: #ffa500 !important;">info</span> Track Information.
                                                     </div>
@@ -1539,7 +1606,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         </span>
                                                     </div>
                                                     <div class="col text-truncate">
-                                                        (00:00) Song Title
+                                                        (00:00) track Title
                                                     </div>
                                                     <div class="col text-end">
                                                         <span class="material-icons material-icons-round">read_more</span>
@@ -1584,7 +1651,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         </span>
                                                     </div>
                                                     <div class="col text-truncate">
-                                                        (00:00) Song Title
+                                                        (00:00) track Title
                                                     </div>
                                                     <div class="col text-end">
                                                         <span class="material-icons material-icons-round">read_more</span>
@@ -1629,7 +1696,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         </span>
                                                     </div>
                                                     <div class="col text-truncate">
-                                                        (00:00) Song Title
+                                                        (00:00) track Title
                                                     </div>
                                                     <div class="col text-end">
                                                         <span class="material-icons material-icons-round">read_more</span>
@@ -1683,6 +1750,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <!-- iframe to load user profile header script ui output -->
                             <!-- user profile header -->
 
+                            <!-- use php include for profile header section -->
+                            <!-- include("../scripts/php/main_app/compile_content/profile_tab/user_profile_header.php?usnm=$currentUser_Usrnm"); -->
+
 
                             <!--Users Social Media Links-->
                             <div id='userSocialItems'><?php echo $userSocialItemsList; ?></div>
@@ -1692,6 +1762,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <iframe id="iframe-load-profile-header-section" class="w-100" src="test.html" frameborder="0" style="min-height: 160vh;"></iframe>
                             <!-- iframe to load user profile header script ui output -->
                             <!-- ./ main profle content -->
+
+                            <!-- use php require for profile header section -->
+                            <!-- require("../scripts/php/main_app/compile_content/profile_tab/user_profile_header.php?usnm=$currentUser_Usrnm"); -->
 
                         </div>
                         <!-- ./ Profile Tab: User Profile -->
@@ -1939,7 +2012,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 <!-- style="border-radius: 25px !important;" -->
                                                                 <div class="text-start">
                                                                     <h5 class="card-title" style="color: #ffa500 !important;">Card title</h5>
-                                                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                                    <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
                                                                     <p class="card-text text-muted">Last updated 3 mins ago</p>
                                                                 </div>
 
@@ -1949,7 +2022,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <!--./ Thumbnail-->
 
                                                     <div class="d-grid gap-2 w-100">
-                                                        <button class="onefit-buttons-style-dark shadow p-2 px-4 my-4" id="museplayer-togglebtn" type="button" data-bs-toggle="collapse" data-bs-target="#song-playid-songid" aria-expanded="false" aria-controls="song-playid-songid">
+                                                        <button class="onefit-buttons-style-dark shadow p-2 px-4 my-4" id="museplayer-togglebtn" type="button" data-bs-toggle="collapse" data-bs-target="#track-playid-songid" aria-expanded="false" aria-controls="track-playid-songid">
                                                             <div class="row align-items-center w-100 text-center">
                                                                 <div class="col-sm rounded-pill shadow-sm bg-whitez">
                                                                     <span class="material-icons material-icons-round" style="font-size: 50px !important;">
@@ -1957,16 +2030,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                     </span>
                                                                 </div>
                                                                 <div class="col-sm py-4">
-                                                                    Song Title (00:00)
+                                                                    track Title (00:00)
                                                                 </div>
                                                             </div>
                                                         </button>
                                                     </div>
 
                                                 </div>
-                                                <div class="col-xlg-8 mb-4 collapse show showz w3-animate-right text-white" id="song-playid-songid">
-
-                                                    Song Information
+                                                <div class="col-xlg-8 mb-4 collapse show showz w3-animate-right text-white" id="track-playid-songid">
+                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important; color: #ffa500 !important;">info</span> Track Information
                                                 </div>
                                             </div>
 
@@ -2012,7 +2084,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         </span>
                                                     </div>
                                                     <div class="col text-truncate">
-                                                        (00:00) Song Title
+                                                        (00:00) track Title
                                                     </div>
                                                     <div class="col text-end">
                                                         <span class="material-icons material-icons-round">read_more</span>
@@ -2049,7 +2121,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         </span>
                                                     </div>
                                                     <div class="col text-truncate">
-                                                        (00:00) Song Title
+                                                        (00:00) track Title
                                                     </div>
                                                     <div class="col text-end">
                                                         <span class="material-icons material-icons-round">expand_circle_down</span>
@@ -2086,7 +2158,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         </span>
                                                     </div>
                                                     <div class="col text-truncate">
-                                                        (00:00) Song Title
+                                                        (00:00) track Title
                                                     </div>
                                                     <div class="col text-end">
                                                         <span class="material-icons material-icons-round">more</span>
@@ -4432,12 +4504,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- Training -->
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
                         <span class="material-icons material-icons-outlined">sports</span>
-                        <h5 class="mt-4 fs-1 text-center align-middle">Training</h5>
+                        <h5 class="mt-4 fs-1 text-center align-middle">Training.</h5>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
 
                     <!-- Features: Tab structured -->
-                    <div class="row mt-4 py-4" style="background-color: #333; border-radius: 25px;">
+                    <div class="row mt-4 py-4 content-panel-border-style" style="background-color: #333; border-radius: 25px;">
                         <!-- insight catgories tab panels -->
                         <div class="col -md-9 my-4">
                             <p class="text-center m-0"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span></p>
@@ -5072,230 +5144,76 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- User Workouts - Bookmarked -->
                                         <div class="accordion-item p-2 my-2 shadow">
                                             <h2 class="accordion-header m-0" id="flush-headingIATTwo">
-                                                <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseIATTwo" aria-expanded="false" aria-controls="flush-collapseIATTwo">
+                                                <button class="accordion-button collapsed fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseIATTwo" aria-expanded="true" aria-controls="flush-collapseIATTwo">
                                                     <span class="material-icons material-icons-round align-middle">bookmark</span>
                                                     <span class="align-middle">My Workouts</span>
                                                 </button>
                                             </h2>
-                                            <div id="flush-collapseIATTwo" class="accordion-collapse collapse w3-animate-bottom" aria-labelledby="flush-headingIATTwo" data-bs-parent="#accordionFlushIATRegiment">
+                                            <div id="flush-collapseIATTwo" class="accordion-collapse collapse show active w3-animate-bottom" aria-labelledby="flush-headingIATTwo" data-bs-parent="#accordionFlushIATRegiment">
                                                 <div class="accordion-body">
                                                     <div class="my-4">
                                                         <div class="p-4 top-down-grad-dark" style="border-radius: 25px;">
                                                             <!-- <div class="text-center pt-4 mb-4">
-                                                                <img src="media/assets/One-Symbol-Logo-White.png" alt="logo" class="img-fluid my-4 p-4 my-pulse-animation-light" style="max-width: 100px;border-radius: 50%;">
+                                                                <img src="media/assets/One-Symbol-Logo-White.svg" alt="logo" class="img-fluid my-4 p-4 my-pulse-animation-light" style="max-width: 100px;border-radius: 50%;">
                                                             </div> -->
 
                                                             <div class="row align-items-center">
                                                                 <div class="col-md-6">
-                                                                    <!-- Onefit.TV Horizontal Content Stream -->
-                                                                    <div class="mb-4" id="onefittv-footer-h-content-stream">
-                                                                        <div class="content-panel-border-stylez p-4 shadow border-5 border-start border-end text-white" style="padding-bottom: 40px; border-radius: 25px; background-color: #343434; border-color: #ffa500 !important;">
+                                                                    <div class="border-5 border-start border-end p-4 mb-4" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                                                        <h5 class="mt-4">Workouts &amp; Wellness programs</h5>
 
-                                                                            <h5 class="fs-1 h4 aligh-middle d-grid text-center" style="color: #ffa500;">
-                                                                                <span class="material-icons material-icons-outlined" style="color: #fff;"> tv </span>
-                                                                                <span>OnefitNet.TV</span>
-                                                                            </h5>
-                                                                            <hr class="text-white" />
+                                                                        <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span>
 
-                                                                            <p class="my-4 text-center" style=" font-size: 10px">Latest Training Programs | <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span></p>
-
-                                                                            <div class="d-lg-none w3-animate-bottom">
-                                                                                <!-- d-block d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none -->
-                                                                                <!-- <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid"> -->
-
-                                                                                <div class="video-card-container">
-                                                                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="latest video" class="img-fluid shadow mb-4" style="border-radius: 15px;" />
-                                                                                    <button class="onefit-buttons-style-light shadow-lg play-btn p-2 aligh-middle" onclick="playVideo()">
-                                                                                        <span class="material-icons material-icons-round aligh-middle" style="font-size: 20px !important;">
-                                                                                            play_circle_outline
-                                                                                        </span>
-                                                                                    </button>
-                                                                                </div>
-
-                                                                                <div class="d-grid mt-4 w-100 justify-content-center">
-                                                                                    <button class="onefit-buttons-style-dark shadow d-grid p-4 comfortaa-font text-center aligh-middle position-relative">
-                                                                                        <span>View Playlist.</span>
-                                                                                        <span class="material-icons material-icons-round aligh-middle">playlist_play</span>
-
-                                                                                        <span class="position-absolute top-0 start-100 translate-middle p-2 comfortaa-font border border-light rounded-pill align-middle shadow" style="background-color: #343434 !important; color: #ffa500 !important; border-color: #ffa500 !important;">
-                                                                                            <span class="align-middle" style="font-size: 10px !important;">+3</span>
-                                                                                            <span class="visually-hidden">Latest Video Count</span>
-                                                                                        </span>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-
-
-                                                                            <div class="horizontal-scroll d-none d-lg-block w3-animate-bottom">
-                                                                                <div class="horizontal-scroll-card p-4">
-                                                                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
-                                                                                    <hr class="text-white" style="height: 5px;">
-
-                                                                                    <div class="row my-2 align-items-center">
-                                                                                        <div class="col-sm-2 text-center">
-                                                                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
-                                                                                        </div>
-                                                                                        <div class="col-sm">
-                                                                                            <h5>Ep.1 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
-                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
-                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
-                                                                                                Category: Resistence
-                                                                                            </p>
-
-                                                                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                                                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
-                                                                                            </button>
-                                                                                        </div>
+                                                                        <ul class="list-group list-group-flush mb-4">
+                                                                            <li class="list-group-item bg-transparent text-white border-white">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-2 text-center">
+                                                                                        <span class="material-icons material-icons-round align-middle">bookmarks</span>
+                                                                                    </div>
+                                                                                    <div class="col-sm-10">
+                                                                                        <span class="align-middle fs-5 comfortaa-font">Bookmarked Workouts</span>
+                                                                                        <p class="text-muted" style="color: #ffa500 !important;">You have 3 workouts saved.</p>
                                                                                     </div>
                                                                                 </div>
-
-                                                                                <div class="horizontal-scroll-card p-4">
-                                                                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
-                                                                                    <hr class="text-white" style="height: 5px;">
-
-                                                                                    <div class="row my-2 align-items-center">
-                                                                                        <div class="col-sm-2 text-center">
-                                                                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
-                                                                                        </div>
-                                                                                        <div class="col-sm">
-                                                                                            <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
-                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
-                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
-                                                                                                Category: Resistence
-                                                                                            </p>
-
-                                                                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                                                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
-                                                                                            </button>
-                                                                                        </div>
+                                                                            </li>
+                                                                            <li class="list-group-item bg-transparent text-white border-white">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-2 text-center">
+                                                                                        <span class="material-icons material-icons-round align-middle">sports_gymnastics</span>
+                                                                                    </div>
+                                                                                    <div class="col-sm-10">
+                                                                                        <span class="align-middle fs-5 comfortaa-font">View more workouts</span>
+                                                                                        <p class="text-muted" style="color: #ffa500 !important;">50 workouts available</p>
                                                                                     </div>
                                                                                 </div>
-
-                                                                                <div class="horizontal-scroll-card p-4">
-                                                                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
-                                                                                    <hr class="text-white" style="height: 5px;">
-
-                                                                                    <div class="row my-2 align-items-center">
-                                                                                        <div class="col-sm-2 text-center">
-                                                                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
-                                                                                        </div>
-                                                                                        <div class="col-sm">
-                                                                                            <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
-                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
-                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
-                                                                                                Category: Resistence
-                                                                                            </p>
-
-                                                                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                                                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
-                                                                                            </button>
-                                                                                        </div>
+                                                                            </li>
+                                                                            <li class="list-group-item bg-transparent text-white border-white">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-2 text-center">
+                                                                                        <span class="material-icons material-icons-round align-middle">fitness_center</span>
+                                                                                    </div>
+                                                                                    <div class="col-sm-10">
+                                                                                        <span class="align-middle fs-5 comfortaa-font">View more exercises</span>
+                                                                                        <p class="text-muted" style="color: #ffa500 !important;">438 exercises available</p>
                                                                                     </div>
                                                                                 </div>
+                                                                            </li>
+                                                                        </ul>
 
-                                                                                <div class="horizontal-scroll-card p-4">
-                                                                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
-                                                                                    <hr class="text-white" style="height: 5px;">
-
-                                                                                    <div class="row my-2 align-items-center">
-                                                                                        <div class="col-sm-2 text-center">
-                                                                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
-                                                                                        </div>
-                                                                                        <div class="col-sm">
-                                                                                            <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
-                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
-                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
-                                                                                                Category: Resistence
-                                                                                            </p>
-
-                                                                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                                                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="horizontal-scroll-card p-4">
-                                                                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
-                                                                                    <hr class="text-white" style="height: 5px;">
-
-                                                                                    <div class="row my-2 align-items-center">
-                                                                                        <div class="col-sm-2 text-center">
-                                                                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
-                                                                                        </div>
-                                                                                        <div class="col-sm">
-                                                                                            <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
-                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
-                                                                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
-                                                                                                Category: Resistence
-                                                                                            </p>
-
-                                                                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                                                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
                                                                     </div>
-                                                                    <!-- ./ Onefit.TV Horizontal Content Stream -->
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="comfortaa-font">
+                                                                        <div class="border-5 border-start border-end p-0 mb-4" style="border-color: #ffa500 !important; border-radius: 25px;">
+                                                                            <div class="p-4">
+                                                                                <h5 class="align-middle mt-5"><span class="material-icons material-icons-outlined align-middle">push_pin</span> Favourites</h5>
 
-                                                                        <div class="border-5 border-top border-bottom p-4 mb-4" style="border-color: #ffa500 !important; border-radius: 25px;">
-                                                                            <h5 class="mt-4">Workouts &amp; Wellness programs</h5>
+                                                                                <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span>
 
-                                                                            <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span>
+                                                                                <p class="text-muted comfortaa-font" style="font-size: 12px;">Pin up to 5 of your favourite workouts and wellness programs.</p>
+                                                                            </div>
 
-                                                                            <ul class="list-group list-group-flush mb-4">
-                                                                                <li class="list-group-item bg-transparent text-white border-white">
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-2 text-center">
-                                                                                            <span class="material-icons material-icons-round align-middle">bookmarks</span>
-                                                                                        </div>
-                                                                                        <div class="col-sm-10">
-                                                                                            <span class="align-middle fs-5 comfortaa-font">Bookmarked Workouts</span>
-                                                                                            <p class="text-muted" style="color: #ffa500 !important;">You have 3 workouts saved.</p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </li>
-                                                                                <li class="list-group-item bg-transparent text-white border-white">
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-2 text-center">
-                                                                                            <span class="material-icons material-icons-round align-middle">sports_gymnastics</span>
-                                                                                        </div>
-                                                                                        <div class="col-sm-10">
-                                                                                            <span class="align-middle fs-5 comfortaa-font">View more workouts</span>
-                                                                                            <p class="text-muted" style="color: #ffa500 !important;">50 workouts available</p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </li>
-                                                                                <li class="list-group-item bg-transparent text-white border-white">
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-2 text-center">
-                                                                                            <span class="material-icons material-icons-round align-middle">fitness_center</span>
-                                                                                        </div>
-                                                                                        <div class="col-sm-10">
-                                                                                            <span class="align-middle fs-5 comfortaa-font">View more exercises</span>
-                                                                                            <p class="text-muted" style="color: #ffa500 !important;">438 exercises available</p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </li>
-                                                                            </ul>
-
-                                                                        </div>
-
-                                                                        <div class="border-5 border-top border-bottom p-4 mb-4" style="border-color: #ffa500 !important; border-radius: 25px;">
-                                                                            <h5 class="align-middle mt-5"><span class="material-icons material-icons-outlined align-middle">push_pin</span> Favourites</h5>
-
-                                                                            <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span>
-
-                                                                            <p class="text-muted comfortaa-font" style="font-size: 12px;">Pin up to 5 of your favourite workouts and wellness programs.</p>
-
-                                                                            <ul class="list-group list-group-flush" style="max-height: 500px; overflow-y: auto;">
+                                                                            <ul class="list-group list-group-flush px-4 pb-4" style="max-height: 500px; overflow-y: auto;">
                                                                                 <li class="list-group-item bg-transparent border-white py-4" style="border-radius: 25px !important;">
                                                                                     <div class="row p-2 pt-4">
                                                                                         <div class="col-md-4 p-4 position-relative">
@@ -6204,6 +6122,161 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
                     <!-- ./ Features: Tab structured -->
 
+                    <!-- Onefit.TV Horizontal Content Stream -->
+                    <div class="my-4" id="onefittv-footer-h-content-stream">
+                        <div class="content-panel-border-stylez p-4 shadow border-5 border-start border-end text-white" style="padding-bottom: 40px; border-radius: 25px; background-color: #343434; border-color: #ffa500 !important;">
+
+                            <h5 class="fs-1 h4 aligh-middle d-grid text-center" style="color: #ffa500;">
+                                <span class="material-icons material-icons-outlined" style="color: #fff;"> tv </span>
+                                <span>OnefitNet.TV</span>
+                            </h5>
+                            <hr class="text-white" />
+
+                            <p class="my-4 text-center" style=" font-size: 10px">Latest Training Programs | <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span></p>
+
+                            <div class="d-lg-none w3-animate-bottom">
+                                <!-- d-block d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none -->
+                                <!-- <img src="media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid"> -->
+
+                                <div class="video-card-container">
+                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="latest video" class="img-fluid shadow mb-4" style="border-radius: 15px;" />
+                                    <button class="onefit-buttons-style-light shadow-lg play-btn p-2 aligh-middle" onclick="playVideo()">
+                                        <span class="material-icons material-icons-round aligh-middle" style="font-size: 20px !important;">
+                                            play_circle_outline
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="d-grid mt-4 w-100 justify-content-center">
+                                    <button class="onefit-buttons-style-dark shadow d-grid p-4 comfortaa-font text-center aligh-middle position-relative">
+                                        <span>View Playlist.</span>
+                                        <span class="material-icons material-icons-round aligh-middle">playlist_play</span>
+
+                                        <span class="position-absolute top-0 start-100 translate-middle p-2 comfortaa-font border border-light rounded-pill align-middle shadow" style="background-color: #343434 !important; color: #ffa500 !important; border-color: #ffa500 !important;">
+                                            <span class="align-middle" style="font-size: 10px !important;">+3</span>
+                                            <span class="visually-hidden">Latest Video Count</span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            <div class="horizontal-scroll d-none d-lg-block w3-animate-bottom">
+                                <div class="horizontal-scroll-card p-4">
+                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
+                                    <hr class="text-white" style="height: 5px;">
+
+                                    <div class="row my-2 align-items-center">
+                                        <div class="col-sm-2 text-center">
+                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                        </div>
+                                        <div class="col-sm">
+                                            <h5>Ep.1 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
+                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
+                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
+                                                Category: Resistence
+                                            </p>
+
+                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="horizontal-scroll-card p-4">
+                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
+                                    <hr class="text-white" style="height: 5px;">
+
+                                    <div class="row my-2 align-items-center">
+                                        <div class="col-sm-2 text-center">
+                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                        </div>
+                                        <div class="col-sm">
+                                            <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
+                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
+                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
+                                                Category: Resistence
+                                            </p>
+
+                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="horizontal-scroll-card p-4">
+                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
+                                    <hr class="text-white" style="height: 5px;">
+
+                                    <div class="row my-2 align-items-center">
+                                        <div class="col-sm-2 text-center">
+                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                        </div>
+                                        <div class="col-sm">
+                                            <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
+                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
+                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
+                                                Category: Resistence
+                                            </p>
+
+                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="horizontal-scroll-card p-4">
+                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
+                                    <hr class="text-white" style="height: 5px;">
+
+                                    <div class="row my-2 align-items-center">
+                                        <div class="col-sm-2 text-center">
+                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                        </div>
+                                        <div class="col-sm">
+                                            <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
+                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
+                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
+                                                Category: Resistence
+                                            </p>
+
+                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="horizontal-scroll-card p-4">
+                                    <img src="../media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4" style="border-radius: 25px;">
+                                    <hr class="text-white" style="height: 5px;">
+
+                                    <div class="row my-2 align-items-center">
+                                        <div class="col-sm-2 text-center">
+                                            <img src="../media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                        </div>
+                                        <div class="col-sm">
+                                            <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
+                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
+                                            <p class="align-middle comfortaa-font"><span class="material-icons material-icons-round" style="font-size: 20px !important;">category</span>
+                                                Category: Resistence
+                                            </p>
+
+                                            <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- ./ Onefit.TV Horizontal Content Stream -->
+
                     <!-- ads strip -->
                     <div class="text-center d-grid justify-content-center align-items-center" style="max-height: 80vh; overflow-y: auto; min-height: 200px">
                         <h5>Ads<span style="color: #ffa500;">.</span></h5>
@@ -6497,6 +6570,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
                             <rssapp-magazine id="tRprB0QxQKySE340"></rssapp-magazine>
                             <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
+                            <span class="text-muted">RSS is down.</span>
                         </div>
 
                         <!-- #Wellness -->
@@ -6504,6 +6578,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
                             <rssapp-magazine id="tdSnePzUjMvFu4nu"></rssapp-magazine>
                             <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
+                            <span class="text-muted">RSS is down.</span>
                         </div>
 
                         <!-- #worldofsport feed -->
@@ -6511,6 +6586,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
                             <rssapp-magazine id="tqX4YEeGEu1eOKAT"></rssapp-magazine>
                             <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
+                            <span class="text-muted">RSS is down.</span>
                         </div>
 
                         <!-- #footballfocus feed -->
@@ -6518,6 +6594,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
                             <rssapp-magazine id="omltJunAYvJxQiZc"></rssapp-magazine>
                             <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
+                            <span class="text-muted">RSS is down.</span>
                         </div>
 
                         <!-- #HealthandLifestyle -->
@@ -6525,6 +6602,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
                             <rssapp-magazine id="tUyOEDFpWEUsTIO4"></rssapp-magazine>
                             <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
+                            <span class="text-muted">RSS is down.</span>
                         </div>
 
                     </div>
@@ -6591,7 +6669,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <!-- ./ Users Profile Banner -->
 
                         <!-- Profile Picture -->
-                        <img src="../media/assets/One-Symbol-Logo-Two-Tone.png" alt="Onefit Logo" class="p-3 img-fluid my-pulse-animation-tahiti borderz" style="margin-top: -100px; max-height: 200px; border-radius: 50%; border-color: #ffa500 !important; background-color: #343434" />
+                        <img src="../media/assets/One-Symbol-Logo-Two-Tone.svg" alt="Onefit Logo" class="p-3 img-fluid my-pulse-animation-tahiti borderz" style="margin-top: -100px; max-height: 200px; border-radius: 50%; border-color: #ffa500 !important; background-color: #343434" />
                         <!-- ./ Profile Picture -->
                         <p class="poppins-font mt-2">@Username</p>
                     </div>
@@ -6737,6 +6815,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <h5><span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;">rss_feed</span> <span class="align-middle" style="color: #ffa500;"><span class="text-muted">RSS.</span> #WorldofSports</span></h5>
                 <rssapp-imageboard class="mt-4" id="tqX4YEeGEu1eOKAT"></rssapp-imageboard>
                 <script src="https://widget.rss.app/v1/imageboard.js" type="text/javascript" async></script>
+                <span class="text-muted">RSS is down.</span>
 
                 <!-- ./ RSS Feed embed -->
 
@@ -6943,7 +7022,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <!-- ./ Users Profile Banner -->
 
                                 <!-- Profile Picture -->
-                                <img src="../media/assets/One-Symbol-Logo-Two-Tone.png" alt="Onefit Logo" class="p-3 img-fluid my-pulse-animation-darkz shadow" style="margin-top: -100px; height: 200px; border-radius: 50%; border-color: #ffa500 !important; background-color: #343434" />
+                                <img src="../media/assets/One-Symbol-Logo-Two-Tone.svg" alt="Onefit Logo" class="p-3 img-fluid my-pulse-animation-darkz shadow" style="margin-top: -100px; height: 200px; border-radius: 50%; border-color: #ffa500 !important; background-color: #343434" />
                                 <!-- ./ Profile Picture -->
                                 <p class="mt-2 mt-4 fs-1 fw-bold comfortaa-font">One<span style="color: #ffa500;">fit</span>.app</p>
                             </div>
@@ -8369,7 +8448,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                 }
             };
-            xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/get_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
+            xhttp.open("GET", "../scripts/php/main_app/compile_content/fitness_insights_tab/activity_tracking/get_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
             xhttp.send();
         }
 
@@ -8516,7 +8595,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     }
                 };
-                xhttp.open("GET", "../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/get_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
+                xhttp.open("GET", "../scripts/php/main_app/compile_content/fitness_insights_tab/activity_tracking/get_user_stats_activity_tracker.php?forchart=" + chartName + "&u=" + usernm, true);
                 xhttp.send();
             });
 
@@ -9140,7 +9219,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     }
                 }
             };
-            xhttp.open("GET", "../scripts/php/userprofile/calender.php?month=" + currMonth + "&year=" + currYear, true);
+            xhttp.open("GET", "../scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/calender.php?month=" + currMonth + "&year=" + currYear, true);
             xhttp.send();
         }
 
@@ -9164,7 +9243,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     }
                 }
             };
-            xhttp.open("GET", "../scripts/php/userprofile/calender.php?month=" + nMonth + "&year=" + nYear, true);
+            xhttp.open("GET", "../scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/calender.php?month=" + nMonth + "&year=" + nYear, true);
             xhttp.send();
         }
 

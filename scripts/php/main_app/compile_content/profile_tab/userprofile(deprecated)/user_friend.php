@@ -41,7 +41,7 @@ function getUserFriends() {
       <div class="grid-tile px-2 mx-0 container-fluid content-panel-border-style my-4" id="friend-'.$friendid.'-'.$friendUsername.'">
         <div class="row align-items-center">
           <div class="col-lg-2 text-center">
-            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
+            <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
           </div>
           <div class="col-lg-6 text-center">
             <h3>'.$friendName.' '.$friendSurname.' <span style="font-size: 10px">@'.$friendUsername.'</span></h3>
@@ -64,4 +64,3 @@ function getUserFriends() {
 
   return $output;
 }
-?>

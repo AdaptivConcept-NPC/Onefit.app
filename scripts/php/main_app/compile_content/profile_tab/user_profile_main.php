@@ -69,7 +69,7 @@ try {
 
     // assign default profile banner if unavailable
     if ($usrdetails_profile_banner_url == "default" || $usrdetails_profile_banner_url == null || $usrdetails_profile_banner_url == "") {
-        $usrdetails_profile_banner_url = "../../../../../media/profiles/0_default/default_profile_banner.png";
+        $usrdetails_profile_banner_url = "../../../../../media/profiles/0_default/default_profile_banner.jpg";
     }
 
     // verification icon

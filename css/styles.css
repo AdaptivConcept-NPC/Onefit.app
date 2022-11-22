@@ -1658,7 +1658,7 @@ div.horizontal-scroll-card-nav {
 }
 
 .display-profile-banner-container {
-  background: url(../media/profiles/0_default/default_profile_banner.png);
+  background: url(../media/profiles/0_default/default_profile_banner.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: local;
@@ -1771,7 +1771,7 @@ div.horizontal-scroll-card-nav {
 .screen:before {
   /* background-image: linear-gradient(90deg, #073e59 0, #073e59 17%, #ffffff 17%, #ffffff 34%, #3c017d 34%, #3c017d 51%, #131313 51%, #131313 70%, #000000 70%, #000000 75%, #131313 75%, #131313 79%, #262626 79%, #262626 84%, #131313 84%, #131313 100%), linear-gradient(90deg, #0000ff 0, #0000ff 14%, #131313 14%, #131313 28%, #ff00fe 28%, #ff00fe 42%, #131313 42%, #131313 56%, #01ffff 56%, #01ffff 70%, #131313 70%, #131313 84%, #cccccc 84%, #cccccc 100%), linear-gradient(90deg, #cccccc 0, #cccccc 14%, #ffff00 14%, #ffff00 28%, #01ffff 28%, #01ffff 42%, #00ff01 42%, #00ff01 56%, #ff00fe 56%, #ff00fe 70%, #fe0000 70%, #fe0000 84%, #0000ff 84%, #0000ff 100%); */
   /* background-position: 50% 43px, 50% 34px, 50% 0; */
-  /* background-image: url("../media/assets/One-Logo-Vertical.png");
+  /* background-image: url("../media/assets/One-Logo-Vertical.svg");
   background-repeat: repeat-x;
   background-size: 100px 50px; */
   animation: flicker 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;

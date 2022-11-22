@@ -711,7 +711,7 @@ function getUserSaves()
             <div class="grid-tile px-2 mx-0 content-panel-border-style my-4 down-top-grad-tahiti" id="fave-' . $fave_id . '">
                 <div class="row align-items-center p-2">
                     <div class="col-md-4 text-center">
-                        <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
+                        <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
                     </div>
                     <div class="col-md-8">
                         <h3>' . $poster_name . ' ' . $poster_surname . ' <span style="font-size: 10px">@<span style="color: #ffa500">' . $poster_username . '</span></span></h3>
@@ -972,71 +972,63 @@ function getUserUpdates()
 //Content Load Functions - Community Content
 function getCommunityGroups()
 {
-    global $dbconn, $grps_groupid, $grps_refcode, $grps_name, $grps_description, $grps_category, $grps_privacy, $grps_createdby, $grps_createdate, $discoverGroupsList, $currentUser_Usrnm, $output, $output_msg, $app_err_msg, $usr_profilepicurl;
+    // declaring variables
+    global $dbconn;
+    global $currentUser_Usrnm, $communityGroupsList, $app_err_msg, $output;
 
-    //groups
-    $sql = "SELECT * FROM groups";
+    try {
+        //groups
+        $sql = "SELECT * FROM groups WHERE group_category = 'indi' ORDER BY group_id DESC";
 
-    if ($result = mysqli_query($dbconn, $sql)) {
+        $result = $dbconn->query($sql);
+        if (!$result) die("A Fatal Error has occured. Please try again and if the problem persists, please contact the system administrator.");
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            //`group_id`, `group_ref_code`, `group_name`, `group_description`, `group_category`, `group_privacy`, `creation_date`, `administrators_username`
+        $rows = $result->num_rows;
 
-            $grps_groupid = $row["group_id"];
-            $grps_refcode = $row["group_ref_code"];
-            $grps_name = $row["group_name"];
-            $grps_description = $row["group_description"];
-            $grps_category = $row["group_category"];
-            $grps_privacy = $row["group_privacy"];
-            $grps_createdby = $row["administrators_username"];
-            $grps_createdate = $row["creation_date"];
+        if ($rows == 0) {
+            //there is no result 
+            $output = <<<_END
+      <div class="p-4 text-center">
+        <span class="text-muted fs-5">No groups available.</span>
+      </div>
+      _END;
+        } else {
+            for ($j = 0; $j < $rows; ++$j) {
+                $row = $result->fetch_array(MYSQLI_ASSOC);
+                //`group_id`, `group_ref_code`, `group_name`, `group_description`, `group_category`, `group_privacy`, `administrators_username`, `creation_date`
 
-            $discoverGroupsList .= '
-            <!-- Group Card -->
-            <div class="grid-tile">
-                <div class="px-2 mx-0 content-panel-border-style my-4 tunnel-bg-container"
-                style="overflow: hidden; border-radius: 25px;" id="group-' . $grps_groupid . '-' . $grps_refcode . '">
-                <div class="row align-items-center top-down-grad-dark">
-                    <div class="col-lg-4 text-center p-4 w-100">
-                    <img src="../media/profiles/' . $currentUser_Usrnm . '/' . $usr_profilepicurl . '" class="img-fluid"
-                        style="border-radius: 25px;" alt="prof thumbnail">
+                $grps_groupid = $row["group_id"];
+                $grps_refcode = $row["group_ref_code"];
+                $grps_name = $row["group_name"];
+                $grps_description = $row["group_description"];
+                $grps_category = $row["group_category"];
+                $grps_privacy = $row["group_privacy"];
+                $grps_createdby = $row["administrators_username"];
+                $grps_createdate = $row["creation_date"];
 
-                    <!--<img src="../media/assets/OnefitNet Profile Pic Redone.png" class="img-fluid" style="border-radius: 25px;"
-                        alt="preview palceholder - delete">
-
-                    <div class="group-card-profile-pic shadow" hidden>
-                    </div>-->
+                $communityGroupsList .= <<<_END
+                <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="group-card-$grps_groupid-$grps_refcode">
+                    <div class="row align-items-center">
+                    <div class="col-md -4 text-center">
+                        <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
                     </div>
-                    <div class="col-lg -8 p-4 left-right-grad-tahiti-mineshaft" style="border-radius: 25px; color: #343434;">
-                    <div class="row">
-                        <div class="col-md text-dark">
-                        <h3>' . $grps_name . ' <span style="font-size: 10px; color: #fff;">' . $grps_privacy . '</span></h3>
-                        <p>' . $grps_category . '</p>
-
-                        </div>
-                        <div class="col-md text-white">
-                        <p class="text-dark">' . $grps_description . '</p>
-                        <p class="text-right mt-4" style="font-size: 8px;">' . $grps_createdate . '</p>
-                        </div>
+                    <div class="col-md -8">
+                        <h3>$grps_name<span style="font-size: 10px">$grps_privacy</span></h3>
+                        <p><span style="color: #ffa500">$grps_description</span></p>
+                        <p>$grps_category</p>
+                        <button class="null-btn shadow mt-4" onclick="openGroup('$grps_refcode')"><i class="fas fa-chevron-circle-right"></i> Open group</button>
+                        <p class="text-right" style="font-size: 8px">$grps_createdby</p>
+                        <p class="text-right" style="font-size: 8px">$grps_createdate</p>
                     </div>
-                    <button class="onefit-buttons-style-dark p-4 fw-bold fs-5 comfortaa-font shadow my-4"
-                        onclick="openGroup(' . "'" . $grps_refcode . "'" . ')">
-                        Open group <i class="fas fa-chevron-circle-right"></i>
-                    </button>
                     </div>
                 </div>
-                </div>
-            </div>
-            <!-- ./ Group Card -->';
+                _END;
+            }
         }
-        //echo $discoverPeopleList;
-        //die();
-
-        $output = $discoverGroupsList;
-    } else {
-        $output_msg = "|[System Error]|:. [Discover load (All Groups) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
-        //exit();
+    } catch (\Throwable $th) {
+        //throw $th;
+        $output_msg = "|[System Error]|:. [get_user_community_subs (user group subs) - " . $th->getMessage() . "]"; //mysqli_error($dbconn)
+        $app_err_msg = '<div class="application-error-msg shadow"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
 
         $output = $app_err_msg;
     }
@@ -1122,7 +1114,7 @@ function getCommunityResources()
             <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="resource-' . $resourceid . '-' . $sharedbyUsername . '">
                 <div class="row align-items-center">
                 <div class="col-md-4 text-center">
-                    <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
+                    <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
                 </div>
                 <div class="col-md-8">
                     <h3>' . $resource_title . ' <span style="font-size: 10px">' . $resource_type . '</span></h3>
@@ -1400,7 +1392,7 @@ function getAllUsers()
         /* <div class="grid-tile px-2 mx-0 container content-panel-border-style my-4" id="discover_people-' . $allusrs_userid . '-' . $allusrs_username . '">
                 <div class="card bg-transparent align-items-center">
                 <div class="text-center">
-                    <!--<img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">-->
+                    <!--<img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">-->
                     ' . $allusers_account_prod_img . '
                 </div>
                 <div class="card-body">
@@ -1822,7 +1814,7 @@ function getAllTrainers()
 //       <div class="grid-tile px-2 mx-0 container-fluid content-panel-border-style my-4" id="friend-'.$friendid.'-'.$friendUsername.'">
 //         <div class="row align-items-center">
 //           <div class="col-lg-2 text-center">
-//             <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
+//             <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
 //           </div>
 //           <div class="col-lg-6 text-center">
 //             <h3>'.$friendName.' '.$friendSurname.' <span style="font-size: 10px">@'.$friendUsername.'</span></h3>
@@ -1871,7 +1863,7 @@ function getAllTrainers()
 //       <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="group-'.$grps_groupid.'-'.$grps_refcode.'">
 //         <div class="row align-items-center">
 //           <div class="col-md -4 text-center">
-//             <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
+//             <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
 //           </div>
 //           <div class="col-md -8">
 //             <h3>'.$grps_name.' <span style="font-size: 10px">'.$grps_privacy.'</span></h3>
@@ -2095,7 +2087,7 @@ function getAllTrainers()
 //       <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="fave-'.$fave_id.'">
 //         <div class="row align-items-center p-2">
 //           <div class="col-md-4 text-center">
-//             <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
+//             <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
 //           </div>
 //           <div class="col-md-8">
 //             <h3>'.$poster_name.' '.$poster_surname.' <span style="font-size: 10px">@<span style="color: #ffa500">'.$poster_username.'</span></span></h3>
@@ -2269,7 +2261,7 @@ function getAllTrainers()
 //         <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="discover_groups-'.$grps_groupid.'-'.$grps_refcode.'">
 //           <div class="row align-items-center">
 //             <div class="col-md -4 text-center">
-//               <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
+//               <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
 //             </div>
 //             <div class="col-md -8">
 //               <h3>'.$grps_name.' <span style="font-size: 10px">'.$grps_privacy.'</span></h3>
@@ -2365,7 +2357,7 @@ function getAllTrainers()
 //       <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="resource-'.$resourceid.'-'.$sharedbyUsername.'">
 //         <div class="row align-items-center">
 //           <div class="col-md-4 text-center">
-//             <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
+//             <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
 //           </div>
 //           <div class="col-md-8">
 //             <h3>'.$resource_title.' <span style="font-size: 10px">'.$resource_type.'</span></h3>

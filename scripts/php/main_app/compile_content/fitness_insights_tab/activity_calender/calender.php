@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("../config.php");
+include("../../../../config.php");
+include("../../../../functions.php");
 
 $monthNames = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 $output = "";

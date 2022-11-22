@@ -185,7 +185,9 @@ try {
                 var str = response;
                 var imgSrcStr = str.split('[').pop().split(']')[0];
 
-                $("#prof-pic-img-preview").attr("src", "../upload/" + imgSrcStr);
+                var user_media_folder = "../media/profile/<?php echo $current_user_username; ?>/profile_img/";
+                // "../upload/"
+                $("#prof-pic-img-preview").attr("src", user_media_folder + imgSrcStr);
               } else {
                 console.log("Profile Image Uploaded Process Completed.");
                 console.log("Response: " + response);
@@ -227,8 +229,10 @@ try {
                 var str = response;
                 var imgSrcStr = str.split('[').pop().split(']')[0];
 
+                var user_media_folder = "../media/profile/<?php echo $current_user_username; ?>/profile_banner/";
+
                 // set the background image 
-                $("#prof-banner-img-preview").css("background-image", "url('../upload/" + imgSrcStr + "')") // .attr("src", imgSrcStr);
+                $("#prof-banner-img-preview").css("background-image", "url('" + user_media_folder + imgSrcStr + "')") // .attr("src", imgSrcStr);
               } else {
                 console.log("Banner Image Uploaded Process Completed.");
                 console.log("Response: " + response);
@@ -440,7 +444,7 @@ try {
         <div class="ring d-flex align-items-center p-4 my-pulse-animation-light">
           <!-- <span></span> -->
           <div style="width: 100%;">
-            <img src="../../media/assets/One-Symbol-Logo-White.png" class="img-fluid p-4" style="max-height: 20vh;" alt="">
+            <img src="../../media/assets/One-Symbol-Logo-White.svg" class="img-fluid p-4" style="max-height: 20vh;" alt="">
           </div>
         </div>
       </div>
@@ -458,14 +462,14 @@ try {
       <a class="navbar-brand fs-1 text-white comfortaa-font" href="../index.html">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></a>
       <button class="navbar-toggler shadow onefit-buttons-style-dark p-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <!--<span class="navbar-toggler-icon"></span>-->
-        <!--<img src="media/assets/One-Symbol-Logo-Two-Tone.png" alt="" class="img-fluid logo-size-1" />-->
+        <!--<img src="media/assets/One-Symbol-Logo-Two-Tone.svg" alt="" class="img-fluid logo-size-1" />-->
         <span class="material-icons material-icons-outlined" style="font-size: 48px"> menu_open </span>
       </button>
       <div class="offcanvas offcanvas-end offcanvas-menu-primary-style" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="h-100z" id="offcanvas-menu">
           <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-              <img src="../../media/assets/One-Symbol-Logo-White.png" alt="icon" class="img-fluid logo-size-2" />
+              <img src="../../media/assets/One-Symbol-Logo-White.svg" alt="icon" class="img-fluid logo-size-2" />
               Navigation
             </h5>
             <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="offcanvas" aria-label="Close">
@@ -514,7 +518,7 @@ try {
             style="background-color: #ffa500; color: #343434 !important; border-radius: 25px !important;" -->
             <div class="d-grid justify-content-center text-center comfortaa-font">
               <div class="text-center">
-                <img src="../../media/assets/One-Logo.png" class="img-fluid my-4 px-4 text-center" style="border-radius: 25px; width: 100%; max-width: 400px!important;" alt="logo">
+                <img src="../../media/assets/One-Logo.svg" class="img-fluid my-4 px-4 text-center" style="border-radius: 25px; width: 100%; max-width: 400px!important;" alt="logo">
               </div>
 
               <hr class="my-4" style="color: #ffa500;">
@@ -832,14 +836,14 @@ try {
                         Your weight (kg)</p>
 
                       <div class="form-group my-4">
-                        <input class="form-control-text-input p-4" type="number" name="category-1-weight-field" id="user-weight" placeholder="Weight (kg)" required />
+                        <input class="form-control-text-input p-4" type="number" step="2" name="category-1-weight-field" id="user-weight" placeholder="Weight (kg)" required />
                       </div>
 
                       <p class="fs-5 comfortaa-font align-middle text-center"><span class="fs-2" style="color: #ffa500;">10)</span>
                         Your height (cm)</p>
 
                       <div class="form-group my-4">
-                        <input class="form-control-text-input p-4" type="number" name="category-1-height-field" id="user-height" placeholder="Height (cm)" required />
+                        <input class="form-control-text-input p-4" type="number" step="2" name="category-1-height-field" id="user-height" placeholder="Height (cm)" required />
                       </div>
 
                       <!-- submit btn -->
@@ -2639,7 +2643,7 @@ try {
 
         if (direction == "fwd") {
           // submit aboutyou form via jquery ajax trigger
-          document.getElementById("submit-aboutyou-info-form").click();
+          // document.getElementById("submit-aboutyou-info-form").click();
 
           //switch to
           switchToTab = "goalsetting";
@@ -2660,7 +2664,7 @@ try {
 
         if (direction == "fwd") {
           // submit goalsetting form via jquery ajax trigger
-          document.getElementById("submit-goalsetting-info-form").click();
+          // document.getElementById("submit-goalsetting-info-form").click();
 
           //switch to
           switchToTab = "fitprefs";
@@ -2675,7 +2679,7 @@ try {
       } else if (tabpanel == "finish") {
         if (direction == "fwd") {
           // submit fitprefs form via jquery ajax trigger
-          document.getElementById("submit-fitprefs-info-form").click();
+          // document.getElementById("submit-fitprefs-info-form").click();
 
           //switch to
           switchToTab = "eu-agreements";

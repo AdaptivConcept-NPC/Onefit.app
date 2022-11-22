@@ -49,7 +49,7 @@ function getUserSaves() {
       <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="fave-'.$fave_id.'">
         <div class="row align-items-center p-2">
           <div class="col-md-4 text-center">
-            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
+            <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
           </div>
           <div class="col-md-8">
             <h3>'.$poster_name.' '.$poster_surname.' <span style="font-size: 10px">@<span style="color: #ffa500">'.$poster_username.'</span></span></h3>
@@ -90,4 +90,3 @@ function getUserSaves() {
 
   return $output;
 }
-?>

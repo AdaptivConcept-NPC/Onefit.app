@@ -92,7 +92,7 @@ try {
 
     // assign default profile banner if unavailable
     if ($usrdetails_profile_banner_url == "default" || $usrdetails_profile_banner_url == null || $usrdetails_profile_banner_url == "") {
-        $usrdetails_profile_banner_url = "../../../../../media/profiles/0_default/default_profile_banner.png";
+        $usrdetails_profile_banner_url = "../../../../../media/profiles/0_default/default_profile_banner.jpg";
     }
 
     // verification icon
@@ -201,157 +201,163 @@ try {
             width: 150px;
             overflow: hidden; 
         }
-
         .display-profile-banner-container {
             background-image: url('../../../../../media/profiles/$usrdetails_profile_banner_url');
         }
     </style>
-    <div class='text-center'>
-        <!-- Users Profile Banner -->
-        <div class="shadow-lg display-profile-banner-container">
-            <div class="h-100 down-top-grad-dark"><!-- gradient overlay --></div>
+    <div style="background-color: rgba(52, 52, 52, 0.8);">
+        <div class='text-center'>
+            <!-- Users Profile Banner -->
+            <div class="shadow-lg display-profile-banner-container">
+                <div class="h-100 down-top-grad-dark"><!-- gradient overlay --></div>
+            </div>
+            <!-- ./ Users Profile Banner -->
+            <!-- Profile Picture -->
+            <div class="d-grid justify-content-center down-top-grad-dark" style="margin-top: -200px !important">
+                $output_user_account_profile_img
+            </div>
+            <!-- ./ Profile Picture -->
+            <p class='poppins-font mt-2 username-tag' hidden>@$user_loggedin_username</p>
         </div>
-        <!-- ./ Users Profile Banner -->
-        <!-- Profile Picture -->
-        <div class="d-grid justify-content-center down-top-grad-dark" style="margin-top: -100px !important">
-            $output_user_account_profile_img
+        <!--<hr class='text-white' />-->
+        <!-- main buttons for interacting with user profile -->
+        <div class="d-flex justify-content-around align-items-center p-4" style="background-color: #343434;border-radius:0 0 25px 25px;">
+            <!--  -->
+            <button type="button"
+                class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
+                <span
+                    class="material-icons material-icons-round align-middle"
+                    style="font-size: 20px !important">follow_the_signs</span>
+                <span class="align-middle d-none d-lg-block"
+                    style="font-size: 10px;">
+                    <!-- <span style="color: #ffa500 !important;">+</span> -->
+                    Follow Me
+                </span>
+            </button>
+            <!-- visual divide -->
+            <div>
+                <span
+                    class="material-icons material-icons-round align-middle"
+                    style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
+                    horizontal_rule
+                </span>
+            </div>
+            <!-- ./ visual divide -->
+            <!--  -->
+            <button type="button"
+                class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
+                <span
+                    class="material-icons material-icons-round align-middle"
+                    style="font-size: 20px !important"> handshake
+                </span>
+                <span class="align-middle d-none d-lg-block"
+                    style="font-size: 10px;">
+                    <!-- <span style="color: #ffa500 !important;">+</span> -->
+                    Help
+                </span>
+            </button>
+            <!-- visual divide -->
+            <div>
+                <span
+                    class="material-icons material-icons-round align-middle"
+                    style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
+                    horizontal_rule
+                </span>
+            </div>
+            <!-- ./ visual divide -->
+            <!--  -->
+            <button type="button"
+                class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
+                <span
+                    class="material-icons material-icons-round align-middle"
+                    style="font-size: 20px !important"> 3p </span>
+                <span class="align-middle d-none d-lg-block"
+                    style="font-size: 10px;">
+                    <!-- <span style="color: #ffa500 !important;">+</span> -->
+                    Message
+                </span>
+            </button>
         </div>
-        <!-- ./ Profile Picture -->
-        <p class='poppins-font mt-2 username-tag' hidden>@$user_loggedin_username</p>
-    </div>
-    <!--<hr class='text-white' />-->
-    <!-- main buttons for interacting with user profile -->
-    <div class="d-flex justify-content-around align-items-center p-4" style="background-color: #343434;">
-        <!--  -->
-        <button type="button"
-            class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
-            <span
-                class="material-icons material-icons-round align-middle"
-                style="font-size: 20px !important">follow_the_signs</span>
-            <span class="align-middle d-none d-lg-block"
-                style="font-size: 10px;">
-                <!-- <span style="color: #ffa500 !important;">+</span> -->
-                Follow Me
-            </span>
-        </button>
-        <!-- visual divide -->
-        <div>
-            <span
-                class="material-icons material-icons-round align-middle"
-                style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
-                horizontal_rule
-            </span>
-        </div>
-        <!-- ./ visual divide -->
-        <!--  -->
-        <button type="button"
-            class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
-            <span
-                class="material-icons material-icons-round align-middle"
-                style="font-size: 20px !important"> handshake
-            </span>
-            <span class="align-middle d-none d-lg-block"
-                style="font-size: 10px;">
-                <!-- <span style="color: #ffa500 !important;">+</span> -->
-                Help
-            </span>
-        </button>
-        <!-- visual divide -->
-        <div>
-            <span
-                class="material-icons material-icons-round align-middle"
-                style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
-                horizontal_rule
-            </span>
-        </div>
-        <!-- ./ visual divide -->
-        <!--  -->
-        <button type="button"
-            class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
-            <span
-                class="material-icons material-icons-round align-middle"
-                style="font-size: 20px !important"> 3p </span>
-            <span class="align-middle d-none d-lg-block"
-                style="font-size: 10px;">
-                <!-- <span style="color: #ffa500 !important;">+</span> -->
-                Message
-            </span>
-        </button>
-    </div>
-    <!-- ./ main buttons for interacting with user post -->
-    <!-- ./ $usrdetails_name's fitness progression progress bar -->
-    <ol class='list-group list-group-numberedz list-group-flush p-4' style="background-color: #343434;">
-        <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
-            <div class='ms-2 me-auto'>
-                <div class='fw-bold users-name-tag fs-5 mb-2' style='color: #ffa500'>
-                    $usrdetails_name $usrdetails_surname
+        <!-- ./ main buttons for interacting with user post -->
+        <hr class="text-white"/>
+        <!-- user detailed progression list -->
+        <ol class='list-group list-group-numberedz list-group-flush p-4' style="background-color: rgba(52, 52, 52, 0.8);border-radius:25px;">
+            <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
+                <div class='ms-2 me-auto'>
+                    <div class='fw-bold users-name-tag fs-5 mb-2' style='color: #ffa500'>
+                        $usrdetails_name $usrdetails_surname
+                    </div>
+                    <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500; font-size: 20px !important;">alternate_email</span>
+                    <span class='username-tag mb-4 barcode-fontz'>$user_loggedin_username</span><br />
+                    <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500; font-size: 20px !important;">data_exploration</span> 
+                    <span class="align-middle">Level 1 [$user_current_fp_xp xp]</span>
                 </div>
-                <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500; font-size: 20px !important;">alternate_email</span>
-                <span class='username-tag mb-4 barcode-fontz'>$user_loggedin_username</span><br />
-                <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500; font-size: 20px !important;">data_exploration</span> 
-                <span class="align-middle">Level 1 [$user_current_fp_xp xp]</span>
-            </div>
-            <span class='badge bg-primary p-4' style='background-color: #ffa500 !important; color: #333 !important; border-radius: 25px'>
-                $verif_icon
-            </span>
-        </li>
-        <!-- Friends section -->
-        <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
-            <div class='ms-2 me-auto'>
-                <div class='fw-bold mb-2' style='color: #ffa500'>Followers</div>
-                <span>$user_friend_count Friends</span><br />
-                <span>0 Followers</span><br />
-                <span>0 Following</span>
-            </div>
-            <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
-                <span class='material-icons material-icons-round' style='font-size: 40px !important'> people_alt </span>
-                <span>$user_friend_count</span>
-            <span>
-        </li>
-        <!-- Achievements section -->
-        <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
-            <div class='ms-2 me-auto'>
-                <div class='fw-bold mb-2' style='color: #ffa500'>Achievements</div>
-                <span>$user_workout_achievements_count Achievements</span><br />
-                <span>0 Awards</span><br />
-            </div>
-            <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
-                <span class='material-icons material-icons-round' style='font-size: 40px !important'> emoji_events </span>
-                <span>$user_workout_achievements_count</span>
-            </span>
-        </li>
-        <!-- Challengess section -->
-        <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
-            <div class='ms-2 me-auto'>
-                <div class='fw-bold mb-2' style='color: #ffa500'>Challenges</div>
-                <span>$user_challenge_cmplt_count Challenges Completed</span>
-            </div>
-            <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
-                <span class='material-icons material-icons-round' style='font-size: 40px !important'> stars </span>
-                <span>$user_challenge_cmplt_count</span>
-            </span>
-        </li>
-    </ol>
-    <!-- user fitness progression -->
-    <div class="p-4 my-0 d-grid align-items-center" id="user-fp-xp-bar" style="background-color: rgb(255 165 0 / 80%);">
-        <!-- rgba(52, 52, 52, 0.8) -->
+                <span class='badge bg-primary p-4' style='background-color: #ffa500 !important; color: #333 !important; border-radius: 25px'>
+                    $verif_icon
+                </span>
+            </li>
+            <!-- Friends section -->
+            <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
+                <div class='ms-2 me-auto'>
+                    <div class='fw-bold mb-2' style='color: #ffa500'>Followers</div>
+                    <span>$user_friend_count Friends</span><br />
+                    <span>0 Followers</span><br />
+                    <span>0 Following</span>
+                </div>
+                <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
+                    <span class='material-icons material-icons-round' style='font-size: 40px !important'> people_alt </span>
+                    <span>$user_friend_count</span>
+                <span>
+            </li>
+            <!-- Achievements section -->
+            <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
+                <div class='ms-2 me-auto'>
+                    <div class='fw-bold mb-2' style='color: #ffa500'>Achievements</div>
+                    <span>$user_workout_achievements_count Achievements</span><br />
+                    <span>0 Awards</span><br />
+                </div>
+                <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
+                    <span class='material-icons material-icons-round' style='font-size: 40px !important'> emoji_events </span>
+                    <span>$user_workout_achievements_count</span>
+                </span>
+            </li>
+            <!-- Challengess section -->
+            <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
+                <div class='ms-2 me-auto'>
+                    <div class='fw-bold mb-2' style='color: #ffa500'>Challenges</div>
+                    <span>$user_challenge_cmplt_count Challenges Completed</span>
+                </div>
+                <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
+                    <span class='material-icons material-icons-round' style='font-size: 40px !important'> stars </span>
+                    <span>$user_challenge_cmplt_count</span>
+                </span>
+            </li>
+        </ol>
+        <hr class="text-white"/>
         <!-- $usrdetails_name's fitness progression progress bar -->
-        <div id="fitness-progression-progress-bar">
-            <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle" style="color: #fff;">data_exploration</span> <span class="align-middle">Fitness Progression</span></h5>
-            <div class="progress mt-4 bg-white" style="height: 20px;">
-                <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: $fp_xp_progression_rate%; background-color: #343434 !important; border-right: #ffa500 10px solid;" aria-valuenow="$fp_xp_progression_rate" aria-valuemin="$user_current_fp_xp" aria-valuemax="$goal_fp_xp"></div>
-            </div>
-            <div class="row mt-2" style="margin-bottom: 60px;">
-                <div class="col text-start comfortaa-font" style="font-size: 12px;">
-                    Current XP <strong>($user_current_fp_xp)</strong>
+        <div class="p-4 my-0 d-grid align-items-center" id="user-fp-xp-bar" style="background-color: rgb(255 165 0 / 80%);border-radius:25px 25px 0 0;">
+            <!-- rgba(52, 52, 52, 0.8) -->
+            <!-- $usrdetails_name's fitness progression progress bar -->
+            <div id="fitness-progression-progress-bar">
+                <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle" style="color: #fff;">data_exploration</span> <span class="align-middle">Fitness Progression</span></h5>
+                <div class="progress mt-4 bg-white" style="height: 20px;">
+                    <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: $fp_xp_progression_rate%; background-color: #343434 !important; border-right: #ffa500 10px solid;" aria-valuenow="$fp_xp_progression_rate" aria-valuemin="$user_current_fp_xp" aria-valuemax="$goal_fp_xp"></div>
                 </div>
-                <div class="col text-end comfortaa-font" style="font-size: 12px;">
-                    Target XP <strong>($goal_fp_xp)</strong>
+                <div class="row mt-2" style="margin-bottom: 60px;">
+                    <div class="col text-start comfortaa-font" style="font-size: 12px;">
+                        Current XP <strong>($user_current_fp_xp)</strong>
+                    </div>
+                    <div class="col text-end comfortaa-font" style="font-size: 12px;">
+                        Target XP <strong>($goal_fp_xp)</strong>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- ./ $usrdetails_name's fitness progression progress bar -->
+        <div class="text-center p-4" style="background-color: rgba(52, 52, 52, 0.8);">
+            <img src="../../../../../media/assets/One-Symbol-Logo-Orange.svg" class="img-fluid" style="height: 50px;"/>
+        </div>
     </div>
-    <!-- ./user fitness progression -->
     _END;
 
     // echo $final_output;

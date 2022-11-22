@@ -56,7 +56,7 @@ function getCommunityResources() {
       <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="resource-'.$resourceid.'-'.$sharedbyUsername.'">
         <div class="row align-items-center">
           <div class="col-md-4 text-center">
-            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
+            <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
           </div>
           <div class="col-md-8">
             <h3>'.$resource_title.' <span style="font-size: 10px">'.$resource_type.'</span></h3>
@@ -83,4 +83,3 @@ function getCommunityResources() {
 
   return $output;
 }
-?>

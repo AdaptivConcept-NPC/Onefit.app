@@ -74,7 +74,7 @@ function getAllUsers() {
       <div class="grid-tile px-2 mx-0 container content-panel-border-style my-4" id="discover_people-'.$usrs_userid.'-'.$usrs_username.'">
         <div class="card bg-transparent align-items-center">
           <div class="text-center">
-            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
+            <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;" alt="prof thumbnail">
           </div>
           <div class="card-body">
             <h3>'.$usrs_name.' '.$usrs_surname.'</h3>
@@ -100,4 +100,3 @@ function getAllUsers() {
 
   return $output;
 }
-?>

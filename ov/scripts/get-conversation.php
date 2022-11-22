@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="col-2 px-1 text-center">
-                            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" alt="profile thumbnail">
+                            <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" alt="profile thumbnail">
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="container bubble-left my-4 py-4 shadow" id="message-'.$conversationid.'-'.$msgid.'">
                     <div class="row align-items-end">
                         <div class="col-2 px-1 text-center">
-                            <img src="../media/assets/One-Symbol-Logo-White.png" class="img-fluid" alt="profile thumbnail">
+                            <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" alt="profile thumbnail">
                         </div>
                         <div class="col-10 border-left border-white">
                             <p class="d-block text-wrap">'.$msg_message.'</p>
@@ -84,5 +84,3 @@
         $output .= "|[System Error]|:. [Messenger (load conversation) - ".mysqli_error($db)."]";
         echo $output;
     }
-
-?>

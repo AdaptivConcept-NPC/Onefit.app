@@ -14,8 +14,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   <!-- CSS -->
   <link rel="stylesheet" href="../css/styles.css" />
@@ -26,22 +25,17 @@
     <!-- Navigation bar -->
     <nav class="navbar navbar-light sticky-top navbar-style">
       <div class="container-fluid">
-        <a class="navbar-brand fs-1 text-white comfortaa-font" href="../index.html">One<span
-            style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></a>
-        <button class="navbar-toggler shadow onefit-buttons-style-dark p-3" type="button" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <a class="navbar-brand fs-1 text-white comfortaa-font" href="../index.html">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></a>
+        <button class="navbar-toggler shadow onefit-buttons-style-dark p-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <!--<span class="navbar-toggler-icon"></span>-->
-          <!--<img src="media/assets/One-Symbol-Logo-Two-Tone.png" alt="" class="img-fluid logo-size-1" />-->
+          <!--<img src="media/assets/One-Symbol-Logo-Two-Tone.svg" alt="" class="img-fluid logo-size-1" />-->
           <span class="material-icons material-icons-outlined" style="font-size: 48px"> menu_open </span>
         </button>
-        <div class="offcanvas offcanvas-end offcanvas-menu-primary-style" tabindex="-1" id="offcanvasNavbar"
-          aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas offcanvas-end offcanvas-menu-primary-style" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="h-100" id="offcanvas-menu">
             <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
-              <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="../media/assets/One-Symbol-Logo-White.png"
-                  alt="" class="img-fluid logo-size-2" /> Navigation</h5>
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                aria-label="Close"></button>
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="../media/assets/One-Symbol-Logo-White.svg" alt="" class="img-fluid logo-size-2" /> Navigation</h5>
+              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
               <hr class="text-dark" />
@@ -78,8 +72,7 @@
     <div class="row align-items-center">
       <div class="col-xl py-4">
         <div class="content-panel-border-style p-4 tunnel-bg-container text-center shadow" style="border-radius: 25px">
-          <img src="../media/assets/One-Logo-Vertical.png" class="img-fluid my-4 screenz" alt="one fitness"
-            style="max-height: 50vh" />
+          <img src="../media/assets/One-Logo-Vertical.svg" class="img-fluid my-4 screenz" alt="one fitness" style="max-height: 50vh" />
 
           <p class="my-4 text-center comfortaa-font" style="color: #fff; font-size: 10px">Crafted by Adaptiv Concept
             (Media) &copy;
@@ -87,21 +80,18 @@
         </div>
       </div>
       <div class="col-xl py-4 text-center" style="max-height: 90vh; overflow-y: auto; overflow-x: hidden">
-        <div class="content-panel-border-style registration-form tunnel-bg mb-4 shadow p-4"
-          style="width: 100%; border-radius: 25px; background-color: #343434;">
+        <div class="content-panel-border-style registration-form tunnel-bg mb-4 shadow p-4" style="width: 100%; border-radius: 25px; background-color: #343434;">
           <h2 class="text-center fs-1 pt-4" style="color: #ffa500"><i class="fas fa-file-signature"></i> Sign up for a
             Community
             account, it's free.</h2>
           <p>Get free access to tons of Fitness, Health and Lifestyle related Resources, News, Blogs and Shopping
             Content
-            with the Community Account. We also offer Community Members checkout discounts on selected One<span
-              style="color: #ffa500;">fit</span>.Store Products
+            with the Community Account. We also offer Community Members checkout discounts on selected One<span style="color: #ffa500;">fit</span>.Store Products
             and Services. Sign up today to start the meaningful and insightful fitness journey that you have always been
             looking for.</p>
           <hr class="mx-4 bg-white" />
 
-          <form class="text-center comfortaa-font fs-5" method="post"
-            action="../scripts/php/main_app/data_management/user_registration/register_user.php" autocomplete="off">
+          <form class="text-center comfortaa-font fs-5" method="post" action="../scripts/php/main_app/data_management/user_registration/register_user.php" autocomplete="off">
             <div class="output-container my-2" id="output-container">
               <!--<?php echo $output; ?>-->
             </div>
@@ -114,43 +104,35 @@
             </div>
 
             <div class="form-group my-4">
-              <input class="form-control-text-input p-4" type="text" name="reg-name" id="reg-name"
-                placeholder="Name (Required)" required />
+              <input class="form-control-text-input p-4" type="text" name="reg-name" id="reg-name" placeholder="Name (Required)" required />
             </div>
 
             <div class="form-group">
-              <input class="form-control-text-input p-4" type="text" name="reg-surname" id="reg-surname"
-                placeholder="Surname (Required)" required />
+              <input class="form-control-text-input p-4" type="text" name="reg-surname" id="reg-surname" placeholder="Surname (Required)" required />
             </div>
             <div class="form-group my-4">
-              <input class="form-control-text-input p-4" type="email" name="reg-email" id="reg-email"
-                placeholder="Email address (Required)" required />
+              <input class="form-control-text-input p-4" type="email" name="reg-email" id="reg-email" placeholder="Email address (Required)" required />
             </div>
 
             <div class="form-group">
-              <input class="form-control-text-input p-4" type="phone" name="reg-contact" id="reg-contact"
-                placeholder="Phone number (Required)" required />
+              <input class="form-control-text-input p-4" type="phone" name="reg-contact" id="reg-contact" placeholder="Phone number (Required)" required />
             </div>
             <div class="form-group my-4">
-              <input class="form-control-text-input p-4" type="text" name="reg-idnum" id="reg-idnum"
-                placeholder="ID/Passport number (Optional)" />
+              <input class="form-control-text-input p-4" type="text" name="reg-idnum" id="reg-idnum" placeholder="ID/Passport number (Optional)" />
             </div>
 
             <div class="form-group">
-              <input class="form-control-text-input p-4" type="date" name="reg-dob" id="reg-dob"
-                placeholder="Date of birth (Required)" required />
+              <input class="form-control-text-input p-4" type="date" name="reg-dob" id="reg-dob" placeholder="Date of birth (Required)" required />
             </div>
             <div class="form-group my-4">
-              <select class="custom-select form-control-select-input p-4" name="reg-gender" id="reg-gender"
-                placeholder="Gender (Required)" required>
+              <select class="custom-select form-control-select-input p-4" name="reg-gender" id="reg-gender" placeholder="Gender (Required)" required>
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
               </select>
             </div>
 
             <div class="form-group">
-              <select class="custom-select form-control-select-input p-4" name="reg-race" id="reg-race"
-                placeholder="Race (Required)" required>
+              <select class="custom-select form-control-select-input p-4" name="reg-race" id="reg-race" placeholder="Race (Required)" required>
                 <option value="black">Black</option>
                 <option value="white">White</option>
                 <option value="coloured">Coloured</option>
@@ -158,8 +140,7 @@
               </select>
             </div>
             <div class="form-group my-4">
-              <select class="custom-select form-control-select-input p-4" name="reg-nationality" id="reg-nationality"
-                placeholder="Nationality (Required)" required>
+              <select class="custom-select form-control-select-input p-4" name="reg-nationality" id="reg-nationality" placeholder="Nationality (Required)" required>
                 <option value='South Africa'>South Africa</option>
                 <option value='Afghanistan'>Afghanistan</option>
                 <option value='Akrotiri'>Akrotiri</option>
@@ -426,17 +407,14 @@
                 placeholder="Username (Required)" required />
             </div> -->
             <div class="form-group my-4">
-              <input class="form-control-text-input p-4" type="password" name="reg-password" id="reg-password"
-                placeholder="Password (Required)" required />
+              <input class="form-control-text-input p-4" type="password" name="reg-password" id="reg-password" placeholder="Password (Required)" required />
             </div>
 
             <div class="form-group">
-              <input class="form-control-text-input p-4" type="password" name="reg-confirmpassword"
-                id="reg-confirmpassword" placeholder="Confirm password (Required)" required />
+              <input class="form-control-text-input p-4" type="password" name="reg-confirmpassword" id="reg-confirmpassword" placeholder="Confirm password (Required)" required />
             </div>
             <div class="text-center d-gridz gap-2 py-2">
-              <button type="submit" class="my-4 p-4 onefit-buttons-style-dark btn-lg" id="signup-btn"><i
-                  class="fas fa-sign-in-alt" style="color: #ffa500"></i>
+              <button type="submit" class="my-4 p-4 onefit-buttons-style-dark btn-lg" id="signup-btn"><i class="fas fa-sign-in-alt" style="color: #ffa500"></i>
                 Sign Up</button>
             </div>
           </form>
@@ -497,8 +475,7 @@
                   </button>
                 </div>
               </div>
-              <div class="card wide-grid-tile grid-tile shadow"
-                style="background-color: #343434 !important; overflow: hidden;">
+              <div class="card wide-grid-tile grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
                 <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Team.Pro Training (Pro) - Contact Sales</h5>
@@ -538,14 +515,12 @@
     var signinbtn = document.getElementById("signup-btn");
     //signupbtn.addEventListener("click", signin);
 
-    document.getElementById("output-container").addEventListener("click", function () {
+    document.getElementById("output-container").addEventListener("click", function() {
       document.getElementById("output-container").style.display = "none";
     });
   </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>

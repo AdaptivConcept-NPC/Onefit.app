@@ -2,7 +2,7 @@
 function showNotification() {
   const notification = new Notification("New message from Thabang!", {
     body: "Welcome to the onefit web app. Powered by One-On-One Fitness Network® and AdaptivConcept®(Media) © 2021",
-    icon: "../media/assets/One-Symbol-Logo-Two-Tone.png",
+    icon: "../media/assets/One-Symbol-Logo-Two-Tone.svg",
   });
 
   notification.onclick = (e) => {

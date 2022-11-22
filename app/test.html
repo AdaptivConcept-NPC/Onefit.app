@@ -44,9 +44,95 @@
 
     <!-- JQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- jquery scripts -->
+    <script>
+        $(document).ready(function () {
+            // user group subscriptions
+            $.compileUserCommunityGroupSubs = function () {
+                $.get("../scripts/php/main_app/compile_content/profile_tab/get_user_community_group_subs.php?entry=init", function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.compileUserCommunityGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.compileUserCommunityGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        $('#user-community-groups-subs-list').html(data);
+                    }
+
+
+                });
+            }
+            $.compileUserTeamsGroupSubs = function () {
+                $.get("../scripts/php/main_app/compile_content/profile_tab/get_user_teams_group_subs.php?entry=init", function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.compileUserTeamsGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.compileUserTeamsGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        $('#user-teams-groups-subs-list').html(data);
+                    }
+
+
+                });
+            }
+            $.compileUserProGroupSubs = function () {
+                $.get("../scripts/php/main_app/compile_content/profile_tab/get_user_pro_group_subs.php?entry=init", function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.compileUserProGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.compileUserProGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        $('#user-pro-groups-subs-list').html(data);
+                    }
+
+
+                });
+            }
+
+            // complete group lists
+            $.compileCommunityGroups = function () {
+                $.get("../scripts/php/main_app/compile_content/community_content/community_groups.php?entry=init", function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        $('#community-groups-full-list').html(data);
+                    }
+
+
+                });
+            }
+
+            $.compileTeamsGroups = function () {
+                $.get("../scripts/php/main_app/compile_content/teams_content/teams_groups.php?entry=init", function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.compileTeamsGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.compileTeamsGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        $('#teams-groups-full-list').html(data);
+                    }
+
+
+                });
+            }
+
+            $.compileProGroups = function () {
+                $.get("../scripts/php/main_app/compile_content/premium_content/pro_groups.php?entry=init", function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.compileProGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.compileProGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        $('#pro-groups-full-list').html(data);
+                    }
+
+
+                });
+            }
+
+
+
+        });
+    </script>
 </head>
 
-<body class="bg-transparent p-0">
+<body class="bg-transparent p-0" onload="initialize()">
     <div class="container-fluid">
 
         <!-- inline/flex profile tab subtabs controller btns -->
@@ -172,32 +258,53 @@
                 <!-- profile tab sub-tabs container -->
                 <div class="tab-content" id="v-pills-tab-profiletab-main-subtabs">
                     <!-- #v-sub-tab-pills-profile-subtab-communityfeed -->
-                    <div class="tab-pane fade showz activez content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
+                    <div class="tab-pane fade show active content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
                         style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-communityfeed"
                         style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel"
                         aria-labelledby="v-sub-tab-pills-profile-subtab-communityfeed">
                         <div class="row">
-                            <div class="col-md-4 p-4">
-                                <h5><span class="material-icons material-icons-outlined align-middle">
+                            <div class="col-md-4 p-4" style="max-height: 90vh;overflow-y: auto">
+                                <h5><span class="material-icons material-icons-outlined align-middle"
+                                        style="color: #ffa500;">
                                         diversity_3</span><span class="align-middle"> Groups.</span></h5>
-                                <p>User will b able to see a list of their group subscriptions and open the feeds
-                                    specific to the selected group.</p>
+                                <hr class="text-white">
+                                <div id="user-community-groups-subs-list">
+                                    <p>User will b able to see a list of their group subscriptions and open the feeds
+                                        specific to the selected group.</p>
+                                </div>
 
-                                <h5><span class="material-icons material-icons-outlined align-middle">
+                                <h5><span class="material-icons material-icons-outlined align-middle"
+                                        style="color: #ffa500;">
                                         diversity_2</span><span class="align-middle"> Teams.</span></h5>
-                                <p>User will b able to see a list of their group subscriptions and open the feeds
-                                    specific to the selected group.</p>
+                                <hr class="text-white">
+                                <div id="user-teams-groups-subs-list">
+                                    <p>User will b able to see a list of their group subscriptions and open the feeds
+                                        specific to the selected group.</p>
+                                </div>
+
+                                <h5><span class="material-icons material-icons-outlined align-middle"
+                                        style="color: #ffa500;">
+                                        verified_user</span><span class="align-middle"> Pro.</span></h5>
+                                <hr class="text-white">
+                                <div id="user-pro-groups-subs-list">
+                                    <p>User will b able to see a list of their group subscriptions and open the feeds
+                                        specific to the selected group.</p>
+                                </div>
+
                             </div>
                             <div class="col-md-8">
                                 <!-- community posts feed -->
                                 <div id="profile-community-post-feed-container" class="container shadow mb-4 py-4"
                                     style="border-radius: 25px;">
-                                    <h5 class="mb-4">
-                                        <span class="material-icons material-icons-round align-middle">
+                                    <h5 class="mb-4 text-center">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: #ffa500;">
                                             hub
                                         </span>
                                         <span class="align-middle"> Community Social Feed.</span>
                                     </h5>
+
+                                    <hr class="text-white">
 
                                     <div id="profile-community-post-social-feed" class="p-0 no-scroller"
                                         style="height: 90vh;overflow-y: auto">
@@ -207,7 +314,8 @@
                                             id="post-' . $usrposts_postid . '-' . $usrposts_user . '">
                                             <div class="row align-items-top p-0 m-0 display-profile-banner-container border-5 border-top"
                                                 style="border-radius: 25px!important; max-height: 200px !important; border-color: #ffa500 !important;">
-                                                <div class="col-md -4 d-grid justify-content-center text-center p-4">
+                                                <div
+                                                    class="col-md -4 d-grid justify-content-center text-center p-4 down-top-grad-dark">
                                                     <!-- Profile Picture -->
                                                     <div class="display-profile-img-container shadow-lg w3-animate-left"
                                                         style="margin-top: -0px !important; ">
@@ -361,8 +469,12 @@
                                                 <!-- ./ secondary buttons for interacting with user post (hide on >lg) -->
 
                                                 <div class="row align-items-center">
+                                                    <div class="col-md text-center">
+                                                        <hr class="bg-white">
+                                                    </div>
                                                     <div class="col-md-4 text-center">
-                                                        <p class="fs-6 m-0 comfortaa-font fw-light text-center">
+                                                        <p
+                                                            class="fs-6 m-0 comfortaa-font fw-light text-center text-truncate">
                                                             <small class="text-decoration-underlinez">
                                                                 <span
                                                                     class="material-icons material-icons-round align-middle"
@@ -373,9 +485,6 @@
                                                             </small>
                                                         </p>
                                                     </div>
-                                                    <div class="col-md text-center">
-                                                        <hr class="bg-white">
-                                                    </div>
                                                 </div>
 
                                                 <!-- post message outer container -->
@@ -384,15 +493,15 @@
                                                         types, it is supposed to auto update this element.</p>
                                                 </div>
                                                 <div class="row align-items-center">
-                                                    <div class="col-md text-center">
-                                                        <hr class="bg-white">
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
+                                                    <div class="col-md-4 text-center">
                                                         <p class="text-right p-3 rounded-pill m-0"
                                                             style="font-size: 10px; background-color: #ffa500; color: #343434;">
                                                             1 day ago
                                                             <!--(' . $usrposts_postdate . ')-->
                                                         </p>
+                                                    </div>
+                                                    <div class="col-md text-center">
+                                                        <hr class="bg-white">
                                                     </div>
                                                 </div>
 
@@ -408,7 +517,7 @@
                                                                 style="font-size: 30px !important;">
                                                                 favorite
                                                             </span>
-                                                            <span class="d-none d-lg-block"
+                                                            <span class="d-none d-lg-block text-truncate"
                                                                 style="font-size: 10px !important;">Like</span>
                                                         </button>
 
@@ -422,7 +531,7 @@
                                                                 style="font-size: 30px !important;">
                                                                 insert_comment
                                                             </span>
-                                                            <span class="d-none d-lg-block"
+                                                            <span class="d-none d-lg-block text-truncate"
                                                                 style="font-size: 10px !important;">
                                                                 Comment
                                                             </span>
@@ -437,7 +546,7 @@
                                                                 style="font-size: 30px !important;">
                                                                 share
                                                             </span>
-                                                            <span class="d-none d-lg-block"
+                                                            <span class="d-none d-lg-block text-truncate"
                                                                 style="font-size: 10px !important;">Share</span>
                                                         </button>
                                                     </li>
@@ -450,7 +559,7 @@
                                                                 style="font-size: 30px !important;">
                                                                 bookmarks
                                                             </span>
-                                                            <span class="d-none d-lg-block"
+                                                            <span class="d-none d-lg-block text-truncate"
                                                                 style="font-size: 10px !important;">Save</span>
                                                         </button>
                                                     </li>
@@ -478,7 +587,8 @@
                         <!-- share a community post/update -->
                         <div id="profile-social-post-update-container" class="container shadow mb-4 py-4 px-0"
                             style="border-radius: 25px;overflow-x: auto;">
-                            <h5 class="px-4"><span class="material-icons material-icons-round align-middle">
+                            <h5 class="px-4">
+                                <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
                                     post_add
                                 </span>
                                 <span class="align-middle"> Share an Update.</span>
@@ -561,8 +671,9 @@
                                 <!-- lvl 1 post preview -->
                                 <div class="col-lg-4z d-grid gap-2 p-4">
                                     <!-- post preview -->
-                                    <h5>
-                                        <span class="material-icons material-icons-round align-middle">
+                                    <h5 class="text-center">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="font-size: 20px !important;">
                                             preview
                                         </span>
                                         <span class="align-middle"> Preview.</span>
@@ -573,7 +684,8 @@
                                         id="post-' . $usrposts_postid . '-' . $usrposts_user . '">
                                         <div class="row align-items-top p-0 m-0 display-profile-banner-container border-5 border-top"
                                             style="border-radius: 25px!important; max-height: 200px !important; border-color: #ffa500 !important;">
-                                            <div class="col-md -4 d-grid justify-content-center text-center p-4">
+                                            <div
+                                                class="col-md -4 d-grid justify-content-center text-center p-4 down-top-grad-dark">
                                                 <!-- Profile Picture -->
                                                 <div class="display-profile-img-container shadow-lg w3-animate-left"
                                                     style="margin-top: -0px !important; ">
@@ -727,8 +839,12 @@
                                             <!-- ./ secondary buttons for interacting with user post (hide on >lg) -->
 
                                             <div class="row align-items-center">
+                                                <div class="col-md text-center">
+                                                    <hr class="bg-white">
+                                                </div>
                                                 <div class="col-md-4 text-center">
-                                                    <p class="fs-6 m-0 comfortaa-font fw-light text-center">
+                                                    <p
+                                                        class="fs-6 m-0 comfortaa-font fw-light text-center text-truncate">
                                                         <small class="text-decoration-underlinez">
                                                             <span
                                                                 class="material-icons material-icons-round align-middle"
@@ -739,9 +855,6 @@
                                                         </small>
                                                     </p>
                                                 </div>
-                                                <div class="col-md text-center">
-                                                    <hr class="bg-white">
-                                                </div>
                                             </div>
 
                                             <!-- post message outer container -->
@@ -750,15 +863,15 @@
                                                     types, it is supposed to auto update this element.</p>
                                             </div>
                                             <div class="row align-items-center">
-                                                <div class="col-md text-center">
-                                                    <hr class="bg-white">
-                                                </div>
-                                                <div class="col-md-3 text-center">
+                                                <div class="col-md-4 text-center">
                                                     <p class="text-right p-3 rounded-pill m-0"
                                                         style="font-size: 10px; background-color: #ffa500; color: #343434;">
                                                         1 day ago
                                                         <!--(' . $usrposts_postdate . ')-->
                                                     </p>
+                                                </div>
+                                                <div class="col-md text-center">
+                                                    <hr class="bg-white">
                                                 </div>
                                             </div>
 
@@ -774,7 +887,7 @@
                                                             style="font-size: 30px !important;">
                                                             favorite
                                                         </span>
-                                                        <span class="d-none d-lg-block"
+                                                        <span class="d-none d-lg-block text-truncate"
                                                             style="font-size: 10px !important;">Like</span>
                                                     </button>
 
@@ -788,7 +901,7 @@
                                                             style="font-size: 30px !important;">
                                                             insert_comment
                                                         </span>
-                                                        <span class="d-none d-lg-block"
+                                                        <span class="d-none d-lg-block text-truncate"
                                                             style="font-size: 10px !important;">
                                                             Comment
                                                         </span>
@@ -803,7 +916,7 @@
                                                             style="font-size: 30px !important;">
                                                             share
                                                         </span>
-                                                        <span class="d-none d-lg-block"
+                                                        <span class="d-none d-lg-block text-truncate"
                                                             style="font-size: 10px !important;">Share</span>
                                                     </button>
                                                 </li>
@@ -816,7 +929,7 @@
                                                             style="font-size: 30px !important;">
                                                             bookmarks
                                                         </span>
-                                                        <span class="d-none d-lg-block"
+                                                        <span class="d-none d-lg-block text-truncate"
                                                             style="font-size: 10px !important;">Save</span>
                                                     </button>
                                                 </li>
@@ -824,6 +937,7 @@
                                         </div>
                                     </div>
                                     <!-- ./ Social Update Card -->
+                                    <!-- ./ post preview -->
 
                                 </div>
                                 <!-- ./ lvl 1 post preview -->
@@ -837,7 +951,7 @@
                         <div id="profile-user-post-history-container" class="container shadow mb-4 py-4"
                             style="border-radius: 25px;">
                             <h5 class="mb-4">
-                                <span class="material-icons material-icons-round align-middle">
+                                <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
                                     timelapse
                                 </span>
                                 <span class="align-middle"> My Posts.</span>
@@ -877,24 +991,59 @@
                         style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-groups"
                         style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel"
                         aria-labelledby="v-sub-tab-pills-profile-subtab-groups">
-                        hello world 6
+                        <h1 class="text-center">
+                            <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">
+                                groups_2
+                            </span>
+                            <span class="align-middle"> My Groups.</span>
+                        </h1>
+                        <hr class="text-white">
+                        <h5>
+                            <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">
+                                diversity_3</span><span class="align-middle"> Community.</span>
+                        </h5>
+                        <hr class="text-white">
+                        <div id="community-groups-full-list">
+                            <p>User will b able to see a list of their group subscriptions and open the feeds
+                                specific to the selected group.</p>
+                        </div>
+
+                        <h5>
+                            <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">
+                                diversity_2</span><span class="align-middle"> Teams.</span>
+                        </h5>
+                        <hr class="text-white">
+                        <div id="teams-groups-full-list">
+                            <p>User will be able to see a list of all teams groups and subscribe or open the groups.</p>
+                        </div>
+
+                        <h5>
+                            <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">
+                                verified_user</span><span class="align-middle"> Pro.</span>
+                        </h5>
+                        <hr class="text-white">
+                        <div id="pro-groups-full-list">
+                            <p>User will be able to see a list of all pro groups and subscribe or open the groups.</p>
+                        </div>
+
                     </div>
                     <!-- #v-sub-tab-pills-profile-subtab-interactions -->
-                    <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4 active show"
+                    <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
                         style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-interactions" role="tabpanel"
                         aria-labelledby="v-sub-tab-pills-profile-subtab-interactions">
                         <!-- interactions must show the users friends, followers, users/groups 
                                 that the users follows and a panel for seeing the help requests that 
                                 the user has received and/or has been sent to other users.  -->
 
-                        <div class="row align-items-center">
+                        <div class="row align-items-start">
                             <!-- help. focus column -->
                             <div class="col-lg border-5 border-start border-end py-4 no-scroller"
                                 style="max-height: 90vh;border-radius: 25px;border-color: #ffa500 !important;">
                                 <!-- Help section also has sub-sections: ( Help Requests, Trainer Support, Trainee Support, Enquiries ) -->
                                 <!-- friends list grid section -->
                                 <h5 class="text-center d-grid gap-2"><span
-                                        class="material-icons material-icons-outlined align-middle">
+                                        class="material-icons material-icons-outlined align-middle"
+                                        style="color: #ffa500;">
                                         handshake</span><span class="align-middle"> Help the Community.</span>
                                 </h5>
                                 <hr class="text-white">
@@ -997,6 +1146,12 @@
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
                                 </div>
+
+                                <div class="text-center w-100" style="max-height: 50vh;">
+                                    <img src="../media/assets/advertisment-ph.png" class="img-fluid shadow my-4"
+                                        alt="placeholder" style="border-radius: 25px;">
+                                </div>
+
                             </div>
                             <!-- ./ help. focus column -->
                             <!-- friends, following, followers column -->
@@ -1008,15 +1163,17 @@
                                     <!-- friends list grid section -->
                                     <h5>
                                         <span class="material-icons material-icons-outlined align-middle"
-                                            style="font-size: 40px!important;">
+                                            style="color: #ffa500;font-size: 40px!important;">
                                             diversity_1</span><span class="align-middle"> Friends.</span>
                                     </h5>
+
+                                    <hr class="text-white">
 
                                     <div class="grid-container">
                                         <!-- example -->
                                         <div class="grid-tile p-2">
                                             <div class="card text-bg-dark border-5 w3-animate-left"
-                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                style="max-height: 20vw;border-radius: 25px;overflow: hidden;">
                                                 <img src="../media/profiles/0_default/default_profile_pic.png"
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
@@ -1076,7 +1233,7 @@
                                         <!-- example -->
                                         <div class="grid-tile p-2">
                                             <div class="card text-bg-dark border-5 w3-animate-left"
-                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                style="max-height: 20vw;border-radius: 25px;overflow: hidden;">
                                                 <img src="../media/profiles/0_default/default_profile_pic.png"
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
@@ -1136,7 +1293,7 @@
                                         <!-- example -->
                                         <div class="grid-tile p-2">
                                             <div class="card text-bg-dark border-5 w3-animate-left"
-                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                style="max-height: 20vw;border-radius: 25px;overflow: hidden;">
                                                 <img src="../media/profiles/0_default/default_profile_pic.png"
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
@@ -1201,18 +1358,26 @@
                                 <div id="following-list-grid-section"
                                     class="content-panel-border-style-dark-bg mb-4 p-4 w3-animate-bottom"
                                     style="min-height: 20vh;">
-                                    <!-- Following list grid section -->
-                                    <h5>
+                                    <h5 class="mb-4">
                                         <span class="material-icons material-icons-outlined align-middle"
-                                            style="font-size: 40px!important;">
-                                            follow_the_signs</span><span class="align-middle"> Following.</span>
+                                            style="color: #ffa500;font-size: 40px!important;">
+                                            follow_the_signs</span><span class="align-middle"> Your Audience.</span>
                                     </h5>
 
+                                    <hr class="text-white">
+
+                                    <!-- Following list grid section -->
+                                    <h5 class="text-start">
+                                        <!-- <span class="material-icons material-icons-outlined align-middle"
+                                            style="font-size: 40px!important;">
+                                            follow_the_signs</span>  --><span class="align-middle">Following.</span>
+                                    </h5>
+                                    <hr class="text-white">
                                     <div class="grid-container">
                                         <!-- example -->
                                         <div class="grid-tile p-2">
                                             <div class="card text-bg-dark border-5 w3-animate-left"
-                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                style="max-height: 20vw;border-radius: 25px;overflow: hidden;">
                                                 <img src="../media/profiles/0_default/default_profile_pic.png"
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
@@ -1268,11 +1433,10 @@
                                             </p>
                                         </div>
                                         <!-- ./ example -->
-
                                         <!-- example -->
                                         <div class="grid-tile p-2">
                                             <div class="card text-bg-dark border-5 w3-animate-left"
-                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                style="max-height: 20vw;border-radius: 25px;overflow: hidden;">
                                                 <img src="../media/profiles/0_default/default_profile_pic.png"
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
@@ -1328,11 +1492,10 @@
                                             </p>
                                         </div>
                                         <!-- ./ example -->
-
                                         <!-- example -->
                                         <div class="grid-tile p-2">
                                             <div class="card text-bg-dark border-5 w3-animate-left"
-                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                style="max-height: 20vw;border-radius: 25px;overflow: hidden;">
                                                 <img src="../media/profiles/0_default/default_profile_pic.png"
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
@@ -1391,24 +1554,19 @@
 
                                         <!-- dynamic ajax list -->
                                     </div>
-                                </div>
-
-
-                                <div id="followers-list-grid-section"
-                                    class="content-panel-border-style-dark-bg mb-4 p-4 w3-animate-bottom"
-                                    style="min-height: 20vh;">
+                                    <hr class="text-white">
                                     <!-- Followers list grid section -->
-                                    <h5>
-                                        <span class="material-icons material-icons-outlined align-middle"
+                                    <h5 class="text-start">
+                                        <!-- <span class="material-icons material-icons-outlined align-middle"
                                             style="font-size: 40px!important;">
-                                            follow_the_signs</span><span class="align-middle"> Followers.</span>
+                                            follow_the_signs</span>  --><span class="align-middle">Followers.</span>
                                     </h5>
-
+                                    <hr class="text-white">
                                     <div class="grid-container">
                                         <!-- example -->
                                         <div class="grid-tile p-2">
                                             <div class="card text-bg-dark border-5 w3-animate-left"
-                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                style="max-height: 20vw;border-radius: 25px;overflow: hidden;">
                                                 <img src="../media/profiles/0_default/default_profile_pic.png"
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
@@ -1468,7 +1626,7 @@
                                         <!-- example -->
                                         <div class="grid-tile p-2">
                                             <div class="card text-bg-dark border-5 w3-animate-left"
-                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                style="max-height: 20vw;border-radius: 25px;overflow: hidden;">
                                                 <img src="../media/profiles/0_default/default_profile_pic.png"
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
@@ -1528,7 +1686,7 @@
                                         <!-- example -->
                                         <div class="grid-tile p-2">
                                             <div class="card text-bg-dark border-5 w3-animate-left"
-                                                style="max-height: 10vw;border-radius: 25px;overflow: hidden;">
+                                                style="max-height: 20vw;border-radius: 25px;overflow: hidden;">
                                                 <img src="../media/profiles/0_default/default_profile_pic.png"
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
@@ -1604,7 +1762,8 @@
                     <div id="profile-social-post-update-container"
                         class="container shadow mb-4 py-4 content-panel-border-style-dark-bg w3-animate-top"
                         style="border-radius: 25px;">
-                        <h5 class="text-center"><span class="material-icons material-icons-outlined align-middle">
+                        <h5 class="text-center"><span class="material-icons material-icons-outlined align-middle"
+                                style="color: #ffa500;">
                                 read_more
                             </span><span class="align-middle"> More Stuff.</span></h5>
                         <hr class="text-white">
@@ -1615,11 +1774,16 @@
                     <div id="profile-social-post-update-container"
                         class="container shadow mb-4 py-4 content-panel-border-style-dark-bg w3-animate-bottom"
                         style="border-radius: 25px;">
-                        <h5 class="text-center"><span class="material-icons material-icons-outlined align-middle">
+                        <h5 class="text-center"><span class="material-icons material-icons-outlined align-middle"
+                                style="color: #ffa500;">
                                 rss_feed
                             </span><span class="align-middle"> RSS.</span></h5>
                         <hr class="text-white">
-                        <div id="more-stuff-rss-feed-container" style="min-height: 30vh;"></div>
+                        <div id="more-stuff-rss-feed-container" style="min-height: 30vh;">
+                            <iframe style="width: 100%;height:50vh;"
+                                src="https://rss.app/embed/v1/imageboard/tqX4YEeGEu1eOKAT" frameborder="0"></iframe>
+                            <!-- width="100%" height="50vh" -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1627,6 +1791,16 @@
     </div>
 
     <script>
+        function initialize() {
+            // get full groups list
+            $.compileCommunityGroups();
+            $.compileTeamsGroups();
+            $.compileProGroups();
+            // get user group subs
+            $.compileUserCommunityGroupSubs();
+            $.compileUserTeamsGroupSubs();
+            $.compileUserProGroupSubs();
+        }
         function clickProfileTabMainSubTabs(name) {
             console.log(name);
         }
