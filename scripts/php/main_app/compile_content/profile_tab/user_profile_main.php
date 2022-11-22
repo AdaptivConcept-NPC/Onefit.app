@@ -61,7 +61,7 @@ try {
 
     // assign default profile picture if unavailable
     if ($usrdetails_profile_img_url == "default" || $usrdetails_profile_img_url == null || $usrdetails_profile_img_url == "") {
-        $usrdetails_profile_img_url = "../../../../../media/profiles/0_default/default_profile_pic.png";
+        $usrdetails_profile_img_url = "../../../../../media/profiles/0_default/default_profile_pic.svg";
     }
 
     // assign profile image htm;

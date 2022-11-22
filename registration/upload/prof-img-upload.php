@@ -6,7 +6,7 @@ require('../../scripts/php/functions.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $uploaddir = "profile_img/";
-        $default_filname_str = "../../media/profiles/0_default/default_profile_pic.png";
+        $default_filname_str = "../../media/profiles/0_default/default_profile_pic.svg";
 
         $target_file = basename($_FILES["profpicformFileLg"]["name"]);
 

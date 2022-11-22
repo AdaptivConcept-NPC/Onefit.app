@@ -1151,7 +1151,7 @@ h6 {
 }
 
 .social-update-profile-pic {
-  background-image: url("../media/profiles/0_default/default_profile_pic.png");
+  background-image: url("../media/profiles/0_default/default_profile_pic.svg");
   background-position: center !important;
   background-size: contain !important;
   background-repeat: no-repeat !important;
@@ -1645,7 +1645,7 @@ div.horizontal-scroll-card-nav {
 }
 
 .display-profile-img-container {
-  background: url(../media/profiles/0_default/default_profile_pic.png);
+  background: url(../media/profiles/0_default/default_profile_pic.svg);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;

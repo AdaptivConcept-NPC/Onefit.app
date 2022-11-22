@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $query = "INSERT INTO `general_user_profiles`
   (`user_profile_id`, `about`, `profile_type`, `verification`, `profile_url`, `profile_image_url`, `profile_banner_url`, `users_username`) 
   VALUES 
-  (null,'Tell the community about who you are.','community','unverified','$user_url_reference','0_default/default_profile_pic.png','0_default/default_profile_banner.jpg','$usrnm')";
+  (null,'Tell the community about who you are.','community','unverified','$user_url_reference','0_default/default_profile_pic.svg','0_default/default_profile_banner.jpg','$usrnm')";
 
   $result = $dbconn->query($query);
 

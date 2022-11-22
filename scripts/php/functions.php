@@ -233,7 +233,7 @@ function getUserChatConversations()
             <li class="list-group-item bg-transparent text-white" id="conversation-' . $convo_conversationid . '">
                 <div class="row align-items-center" style="min-height: 100px;">
                     <div class="col-sm-3 text-center">
-                        <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                        <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                     </div>
                     <div class="col-sm text-center">
                         <p class="fs-5 my-0 text-truncate">' . $secondaryuser_name . ' ' . $secondaryuser_surname . ' </p>
@@ -343,7 +343,7 @@ function getUserFriends()
             $frnd_profilepicurl = $row["profile_url"];
 
             if ($frnd_profilepicurl == "default" || $frnd_profilepicurl == null || $frnd_profilepicurl == "") {
-                $currentuser_img_url = "../media/profiles/0_default/default_profile_pic.png";
+                $currentuser_img_url = "../media/profiles/0_default/default_profile_pic.svg";
             } else {
                 $currentuser_img_url = "../media/profiles/$friendUsername/$frnd_profilepicurl";
             }
@@ -1194,7 +1194,7 @@ function getCommunityUpdates()
 
             //profile picture
             if ($commpostusr_profilepicurl == "default" || $commpostusr_profilepicurl == null || $commpostusr_profilepicurl == "") {
-                $commpost_img_url = "'../media/profiles/0_default/default_profile_pic.png'";
+                $commpost_img_url = "'../media/profiles/0_default/default_profile_pic.svg'";
             }
             // else {
             //     $commpost_img_url = "'../media/profiles/$commpost_username/$commpostusr_profilepicurl'";
@@ -1347,7 +1347,7 @@ function getAllUsers()
 
             //profile picture
             if ($allusrs_profilepicurl == "default" || $allusrs_profilepicurl == null || $allusrs_profilepicurl == "") {
-                $allusers_img_url = "../media/profiles/0_default/default_profile_pic.png";
+                $allusers_img_url = "../media/profiles/0_default/default_profile_pic.svg";
             }
             // else {
             //     $allusers_img_url = "../media/profiles/$allusrs_username/$allusrs_profilepicurl";
@@ -1573,7 +1573,7 @@ function getAllTrainees()
 
             //profile picture
             if ($trainee_profilepicurl == "default" || $trainee_profilepicurl == null || $trainee_profilepicurl == "") {
-                $trainee_img_url = "../media/profiles/0_default/default_profile_pic.png";
+                $trainee_img_url = "../media/profiles/0_default/default_profile_pic.svg";
             } else {
                 $trainee_img_url = "../media/profiles/$trainee_username/$trainee_profilepicurl";
             }
@@ -1670,7 +1670,7 @@ function getAllTrainers()
 
             //profile picture
             if ($trainer_profilepicurl == "default" || $trainer_profilepicurl == null || $trainer_profilepicurl == "") {
-                $trainer_img_url = "../media/profiles/0_default/default_profile_pic.png";
+                $trainer_img_url = "../media/profiles/0_default/default_profile_pic.svg";
             } else {
                 $trainer_img_url = "../media/profiles/$trainer_username/$trainer_profilepicurl";
             }

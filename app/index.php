@@ -66,7 +66,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         }
 
         if ($usr_profilepicurl == "default" || $usr_profilepicurl == null || $usr_profilepicurl == "") {
-            $usr_profilepicurl = "../media/profiles/0_default/default_profile_pic.png";
+            $usr_profilepicurl = "../media/profiles/0_default/default_profile_pic.svg";
         }
 
         $currentUserAccountProdImg = '<div class="social-update-profile-pic shadow" style="background-position: center !important; background-size: contain !important; background-repeat: no-repeat !important; background-attachment: local !important; height: 150px !important; width:  150px !important; background: url(' . "'$usr_profilepicurl'" . ') !important"></div>';
@@ -7251,7 +7251,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div class="container">
                                             <div class="row align-items-center" style="min-height: 100px;">
                                                 <div class="col -3 text-center">
-                                                    <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                                    <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                                 </div>
                                                 <div class="col text-center">
                                                     <p class="fs-5 my-0 text-truncate">Visit Profile</p>
@@ -7276,7 +7276,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-sm text-start">
                                         <div class="d-grid gap-2">
                                             <div class="text-start" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                             </div>
 
                                             <div class="talk-bubble shadow tri-right shadow btm-leftz left-top border-5 border-end border-bottom" style="border-radius: 0 25px 25px 25px !important;">
@@ -7296,7 +7296,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-sm text-end">
                                         <div class="d-grid gap-2">
                                             <div class="text-end" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                             </div>
 
                                             <div class="talk-bubble shadow tri-right shadow btm-rightz right-top border-5 border-start border-bottom" style="border-radius: 25px 0 25px 25px !important;">
@@ -7313,7 +7313,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-sm text-start">
                                         <div class="d-grid gap-2">
                                             <div class="text-start" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                             </div>
 
                                             <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
@@ -7333,7 +7333,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-sm text-end">
                                         <div class="d-grid gap-2">
                                             <div class="text-end" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                             </div>
 
                                             <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
@@ -7350,7 +7350,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-sm text-start">
                                         <div class="d-grid gap-2">
                                             <div class="text-start" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                             </div>
 
                                             <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
@@ -7370,7 +7370,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-sm text-end">
                                         <div class="d-grid gap-2">
                                             <div class="text-end" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                             </div>
 
                                             <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
@@ -7387,7 +7387,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-sm text-start">
                                         <div class="d-grid gap-2">
                                             <div class="text-start" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                             </div>
 
                                             <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
@@ -7407,7 +7407,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-sm text-end">
                                         <div class="d-grid gap-2">
                                             <div class="text-end" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                             </div>
 
                                             <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
@@ -7424,7 +7424,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-sm text-start">
                                         <div class="d-grid gap-2">
                                             <div class="text-start" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                             </div>
 
                                             <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
@@ -7444,7 +7444,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-sm text-end">
                                         <div class="d-grid gap-2">
                                             <div class="text-end" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.png" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                             </div>
 
                                             <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
