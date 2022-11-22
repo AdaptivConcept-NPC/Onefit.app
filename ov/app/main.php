@@ -906,7 +906,7 @@ if ($result = mysqli_query($db, $sql)) {
     .conversation-container {
       height: 60vh;
       width: 100%;
-      overflow-y: ;
+      ;
       overflow-x: hidden;
 
     }
@@ -1057,7 +1057,7 @@ if ($result = mysqli_query($db, $sql)) {
   <div class="new-item-button  py-3 pl-3 shadow-lg">
     <div class="row align-items-center">
       <div class="col text-center p-0">
-        <i class="fas fa-fingerprint" style="font-sizez: 10px;transform: rotate(-90deg);"></i>
+        <i class="fas fa-fingerprint" style="transform: rotate(-90deg);"></i>
         <i class="fas fa-bars"></i>
       </div>
       <div class="col text-center p-0">
@@ -1191,7 +1191,7 @@ if ($result = mysqli_query($db, $sql)) {
     </div>
 
     <div class="extras-function-container px-0">
-      <ul class="list-group list-group-horizontal -lg align-items-centerz justify-content-endz bg-transparent" id="extras-buttons" style="position: absolute; bottom: 0px; width: 100%; displayz: none">
+      <ul class="list-group list-group-horizontal -lg align-items-centerz justify-content-endz bg-transparent" id="extras-buttons" style="position: absolute; bottom: 0px; width: 100%;">
         <li class="list-group-item h-100 border-0 py-2 mx-0" style="background: #333!important; border-top-left-radius: 0px!important; border-bottom-left-radius: 0px!important"><i class="fas fa-ellipsis-h"></i></li>
         <li class="list-group-item h-100 border-0 py-2 mx-0" style="background: #333!important;"><i class="fas fa-paperclip"></i></li>
         <li class="list-group-item h-100 border-0 py-2 mx-0" style="background: #333!important; border-top-right-radius: 25px!important; border-bottom-right-radius: 0px!important"><i class="fas fa-share-square"></i></li>
@@ -1208,10 +1208,10 @@ if ($result = mysqli_query($db, $sql)) {
         <div class="fitblog-designer-preview-window tunnel-bgz no-scroller shadow">
           <div class="text-center mt-4 p-2" id="main-item-heading-1-content-card">
             <!--<div class="center-container mb-2"></div>-->
-            <div class="container-fluid" style="background: rgba(255,165,0,0.9);rgba(255,255,255,0.9);rgba(51,51,51, 0.7); border-radius: 25px; border-bottom: #333 solid 10px; border-left: #333 solid 10px;">
+            <div class="container-fluid" style="background: rgba(255,165,0,0.9),rgba(255,255,255,0.9),rgba(51,51,51, 0.7); border-radius: 25px; border-bottom: #333 solid 10px; border-left: #333 solid 10px;">
               <div class="row align-items-center">
                 <div class="col-md">
-                  <h1 class="p-4 text-dark" style="">Physical Heat Sync Training (A brand new concept for heat treatment)</h1>
+                  <h1 class="p-4 text-dark">Physical Heat Sync Training (A brand new concept for heat treatment)</h1>
                 </div>
                 <div class="col-md" style="border-radius: 25px">
                   <img src="../media/images/fitness/8.jpg" class="img-fluid shadow-lg" style="border-radius: 15px" alt="placeholder">
@@ -1270,7 +1270,7 @@ if ($result = mysqli_query($db, $sql)) {
       </div>
       <div class="col-md mx-2 fitblog-designer-post-items-container no-scroller" style="overflow-y: auto; border-radius: 0 0 25px 25px;height: 100%;">
         <!--height: 50%; -->
-        <div class="sticky-topz container border-bottom border-left border-white shadow py-4" style="widthz:100%; z-index: 1101; background:#333; border-radius: 25px 0 25px 25px;">
+        <div class="sticky-topz container border-bottom border-left border-white shadow py-4" style="z-index: 1101; background:#333; border-radius: 25px 0 25px 25px;">
           <div class="row align-items-center">
             <div class="col-2 p-0 h-100 text-center" style="width: 20%; overflow-y: visible; max-height: 60px">
               <button class="onefit-buttons-style p-3" onclick="closeFitblogDesigner()" type="button" data-toggle="collapse" data-target="#item-heading-1-input-container" aria-expanded="false" aria-controls="item-heading-1-input-container">
@@ -1293,7 +1293,7 @@ if ($result = mysqli_query($db, $sql)) {
           </div>
         </div>
 
-        <div class="h-100 no-scroller mt-4" style="padding-topz: 220px;">
+        <div class="h-100 no-scroller mt-4">
           <div class="row align-items-endz" style="border-radius: 25px; overflow: hidden">
             <div class="col-md-3 fitness-bg sticky-top" style="border-radius: 0 25px 25px 0;">
               <div class="fitblog-designer-tools-panel shadow-lg text-center px-1 py-2 my-3">
@@ -1326,7 +1326,7 @@ if ($result = mysqli_query($db, $sql)) {
 
                   <div id="collapseOne" class="collapse show bg-transparent" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
-                      <ul class="list-group list-group-flush" id="" style="padding-leftz: 20px">
+                      <ul class="list-group list-group-flush" id="">
                         <li class="list-group-item bg-transparent border-bottom border-right border-white mb-4" style="border-radius: 25px">
                           <div class="item-heading" type="button" data-toggle="collapse" data-target="#item-heading-1-input-container" aria-expanded="false" aria-controls="item-heading-1-input-container">
                             <h3>
@@ -1586,7 +1586,7 @@ if ($result = mysqli_query($db, $sql)) {
 
                 <div class="profile-img-container center-container shadow-lg">
                   <img src="../media/images/fitness/photo-1574680096145-d05b474e2155.jpg" class="" id="" alt="" />
-                  <button class="onefit-buttons-style p-3" style="position: absolute; bottom: 0; margin-bottom: -28px; text-align: center; z-indexz: 2;" type="button" id="edit-prof-pic-btn"><i class="fas fa-camera"></i></button>
+                  <button class="onefit-buttons-style p-3" style="position: absolute; bottom: 0; margin-bottom: -28px; text-align: center;" type="button" id="edit-prof-pic-btn"><i class="fas fa-camera"></i></button>
                 </div>
 
               </div>

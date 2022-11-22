@@ -808,10 +808,10 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- Load Curtain -->
     <div class="load-curtain" id="LoadCurtain" style="display: block;">
         <!-- twitter social panel -->
-        <div class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4 tunnel-bg-container-static shadow-lg">
+        <div class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4 tunnel-bg-container-staticz top-down-grad-tahiti shadow-lg">
             <!--  d-none d-lg-block p-4 -->
-            <div class="d-flex gap-2 w-100">
-                <button class="p-4 m-0 shadow onefit-buttons-style-dark-twitter" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
+            <div class="d-flex gap-2 w-100 justify-content-center">
+                <button class="p-4 m-0 shadow onefit-buttons-style-dark-twitter onefit-buttons-style-light-twitterz" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
                     <div class="d-grid">
                         <span class="material-icons material-icons-round" style="font-size: 48px !important;">
                             <i class="fab fa-twitter" style="font-size: 40px;"></i>
@@ -834,7 +834,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div class="ring d-flex align-items-center p-4 my-pulse-animation-light">
                     <!-- <span></span> -->
                     <div style="width: 100%;">
-                        <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid p-4" style="max-height: 20vh;" alt="">
+                        <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid p-4" style="max-height: 15vh;" alt="">
                     </div>
                 </div>
             </div>
@@ -852,7 +852,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ Facebook API -->
 
     <!-- Navigation bar, Cart & Other functions -->
-    <div class="container-lg -fluid text-center pt-4">
+    <div class="container-xlg -fluid text-center pt-4">
         <a class="navbar-brand my-4 p-4 fs-1 text-white comfortaa-font" href="#">
             One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span>
         </a>
@@ -910,13 +910,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 py-4">
-                            <p class="text-start w3-animate-left comfortaa-font" style="min-height: 30px;">Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;">20220201-879ds6fsdf_id</span> ]</p>
+                        <div class="col-xlg-6 py-4">
+                            <p class="text-center w3-animate-left comfortaa-font" style="min-height: 30px;">Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;">20220201-879ds6fsdf_id</span> ]</p>
                             <hr class="text-white">
                             <h1><span style="color: #ffa500;">Total:</span> R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 10px; color: #ffa500;">ZAR</span></h1>
-                            <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numbered shadow py-4 no-scroller px-4 w3-animate-left" style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
+                            <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numbered shadow py-4 px-4 w3-animate-left" style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
                                 <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <div class="w-100 align-items-center justify-content-between">
 
                                         <div class="row align-items-center">
                                             <div class="col-md">
@@ -931,16 +931,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </div>
                                             </div>
                                             <div class="col-md">
-                                                <div class="d-grid justify-content-end">
+                                                <div class="d-grid justify-content-center my-4">
                                                     <!-- quantity -->
                                                     <div class="input-group m-0">
                                                         <span class="input-group-text" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
-                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:60px;">
+                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md">
-                                                <div class="d-grid justify-content-end">
+                                            <div class="col-md-2">
+                                                <div class="d-grid justify-content-endz">
                                                     <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
                                                         <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
                                                             highlight_off
@@ -953,7 +953,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                 </li>
                                 <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <div class="w-100 align-items-center justify-content-between">
 
                                         <div class="row align-items-center">
                                             <div class="col-md">
@@ -968,16 +968,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </div>
                                             </div>
                                             <div class="col-md">
-                                                <div class="d-grid justify-content-end">
+                                                <div class="d-grid justify-content-center my-4">
                                                     <!-- quantity -->
                                                     <div class="input-group m-0">
                                                         <span class="input-group-text" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
-                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:60px;">
+                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md">
-                                                <div class="d-grid justify-content-end">
+                                            <div class="col-md-2">
+                                                <div class="d-grid justify-content-endz">
                                                     <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
                                                         <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
                                                             highlight_off
@@ -990,7 +990,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                 </li>
                                 <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <div class="w-100 align-items-center justify-content-between">
 
                                         <div class="row align-items-center">
                                             <div class="col-md">
@@ -1005,16 +1005,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </div>
                                             </div>
                                             <div class="col-md">
-                                                <div class="d-grid justify-content-end">
+                                                <div class="d-grid justify-content-center my-4">
                                                     <!-- quantity -->
                                                     <div class="input-group m-0">
                                                         <span class="input-group-text" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
-                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:60px;">
+                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md">
-                                                <div class="d-grid justify-content-end">
+                                            <div class="col-md-2">
+                                                <div class="d-grid justify-content-endz">
                                                     <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
                                                         <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
                                                             highlight_off
@@ -1027,11 +1027,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <!-- ***delete ../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/get_user_stats_activity_tracker.php -->
                                 </li>
                                 <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-
-
-
-
+                                    <div class="w-100 align-items-center justify-content-between">
                                         <div class="row align-items-center">
                                             <div class="col-md">
                                                 <div class="d-grid gap-2 text-start px-4 pb-2">
@@ -1045,16 +1041,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </div>
                                             </div>
                                             <div class="col-md">
-                                                <div class="d-grid justify-content-end">
+                                                <div class="d-grid justify-content-center my-4">
                                                     <!-- quantity -->
                                                     <div class="input-group m-0">
                                                         <span class="input-group-text" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
-                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:60px;">
+                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md">
-                                                <div class="d-grid justify-content-end">
+                                            <div class="col-md-2">
+                                                <div class="d-grid justify-content-endz">
                                                     <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
                                                         <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
                                                             highlight_off
@@ -1068,8 +1064,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-md-6 py-4">
-                            <p class="text-end w3-animate-right comfortaa-font" style="min-height: 30px;">Cart Items (<span id="mini-cart-item-count" style="color: #ffa500;">4</span>)</p>
+                        <div class="col-xlg-6 py-4">
+                            <p class="text-center w3-animate-right comfortaa-font" style="min-height: 30px;">Cart Items (<span id="mini-cart-item-count" style="color: #ffa500;">4</span>)</p>
                             <hr class="text-white">
                             <div class="horizontal-scroll p-5 w3-animate-right">
                                 <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative" style="border-color: #ffa500 !important;">
@@ -1206,20 +1202,22 @@ if (isset($_SESSION["currentUserAuth"])) {
     </div>
     <!-- ./ Navigation bar, Cart & Other functions -->
 
+
+
     <!-- Main Content -->
-    <div class="container-lg" style="padding-bottom: 50px">
+    <div class="container-xlg" style="padding-bottom: 50px">
         <!-- Main Navigation Bar -->
         <nav class="navbar navbar-light sticky-top navbar-style w-100 mb-4" style="border-radius: 25px; max-height: 100vh !important; border-bottom: #ffa500 solid 5px;">
             <!-- App Function Buttons -->
             <div class="container">
-                <button class="onefit-buttons-style-dark p-4 shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
+                <button class="onefit-buttons-style-dark p-3 shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> notifications </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Notifications</span>
                     </div>
                 </button>
 
-                <button type="button" id="display-current-tab-button" class="onefit-buttons-style-dark p-4 my-4 shadow comfortaa-font" style="max-width:87px;" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#tabNavModal">
+                <button type="button" id="display-current-tab-button" class="onefit-buttons-style-dark p-3 my-4 shadow comfortaa-font" style="max-width:87px;" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#tabNavModal">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important;" id="display-current-tab-button-icon">
                             dashboard </span>
@@ -1240,7 +1238,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <!-- ./ Main UPPL Toggle button -->
 
-                <button type="button" class="onefit-buttons-style-dark p-4 my-4 shadow comfortaa-font" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
+                <button type="button" class="onefit-buttons-style-dark p-3 my-4 shadow comfortaa-font" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> widgets </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Widgets</span>
@@ -1248,7 +1246,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!--<span class="material-icons material-icons-round" style="font-size: 24px !important"> linear_scale </span>-->
                 </button>
 
-                <button class="navbar-toggler shadow onefit-buttons-style-dark p-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <button class="navbar-toggler shadow onefit-buttons-style-dark p-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> menu_open </span>
                         <span class="d-none d-lg-block" id="" style="font-size: 10px;">Navigation</span>
@@ -1293,10 +1291,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </li>
                                 <hr class="text-dark" style="height: 5px;" />
                                 <li class="nav-item d-grid gap-2">
-                                    <button class="onefit-buttons-style-danger p-4 text-center my-4" onclick="launchLink('../scripts/php/destroy_session.php')" style="border-radius: 25px !important;">
+                                    <button class="onefit-buttons-style-danger p-4 text-center my-4" style="transform: translate(0) !important;" onclick="launchLink('../scripts/php/destroy_session.php')" style="border-radius: 25px !important;">
                                         <div class="row align-items-center">
                                             <div class="col-md-4">
-                                                <img src="<?php echo $currentuser_img_url; ?>" class="img-fluid rounded-circle" height="50" width="50" alt="user profile picture">
+                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="img-fluid rounded-circle" height="50" width="50" alt="user profile picture">
                                             </div>
                                             <div class="col-md-8">
                                                 Sign Out
@@ -1349,7 +1347,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         <!-- ./ Main Navigation Bar -->
 
         <!-- Tab Content -->
-        <div class="container-lg">
+        <div class="container-xlg">
             <div class="tab-container" id="tab-container">
                 <div id="TabHome" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: block">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
@@ -1358,7 +1356,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
 
-                    <h5 class="text-center">Hi <?php echo $usrs_name; ?>.</h5>
+                    <h5 class="text-center">Hi <?php echo $usrprof_name; ?>.</h5>
                     <p class="my-4 text-center comfortaa-fontr">Welcome to the Dashboard Page. Here, you can find various feeds from the activities we will be doing in the OnefitNet Community.</p>
 
                     <hr class="text-white">
@@ -1385,13 +1383,6 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                             <hr class="text-white">
 
-                            <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important; margin-bottom: 60px !important;">
-                                <h4 class="d-grid gap-2 text-center">
-                                    <span class="material-icons material-icons-round align-middle" style="color: #ffa500 !important">timeline</span>
-                                    <span class="rounded-pill p-4 align-middle my-pulse-animation-tahiti" style="background-color: #343434; color: #fff; border-bottom: #ffa500 5px solid;">Activities lined up.</span>
-                                </h4>
-                            </div>
-
                             <h5 class="align-middle text-center"><span class="material-icons material-icons-outlined align-middle">today</span><br> <?php echo date("l"); ?><br> <span style="color: #ffa500;">[</span> <?php echo date("d/m/Y"); ?> <span style="color: #ffa500;">]</span></h5>
                             <!-- Digital Clock -->
                             <div id="clock" class="dark my-4 shadow">
@@ -1404,9 +1395,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </div>
                             <!-- ./. Digital Clock -->
 
-                            <div id="dashboard-activity-lineup-container">
-                                <div class="d-flex align-items-center text-center justify-content-center" id="no-activities-banner-container" style="min-height: 100px;">
-                                    <p class="my-4 fs-5 fw-bold comfortaa-font" style="cursor: pointer;" onclick="openLink(event, 'TabStudio')">No activities lined up. Go to the <span style="color: #ffa500;">.Studio</span> to get active.</p>
+                            <div class="mt-4" id="dashboard-activity-lineup-container">
+                                <div class="p-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important; margin-top: 60px !important;">
+                                    <h4 class="d-grid p-4 text-center border-5 border-top border-bottom" style="background-color: #343434; color: #fff; border-color: #ffa500 !important;border-radius: 15px;">
+                                        <span class="material-icons material-icons-round align-middle" style="color: #ffa500 !important">timeline</span>
+                                        <span class="p-4 align-middle">Activities lined up.</span>
+                                    </h4>
+
+                                    <div class="d-flex align-items-center text-center justify-content-center" id="no-activities-banner-container" style="min-height: 100px;">
+                                        <p class="my-4 fs-5 fw-bold comfortaa-font" style="cursor: pointer;" onclick="openLink(event, 'TabStudio')">No activities lined up. Go to the <span style="color: #ffa500;">.Studio</span> to get active.</p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -1742,11 +1740,11 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <div id="profile-panel-container">
                         <!-- Profile Tab: User Profile -->
-                        <div class='container comfortaa-font rounded-pillz shadow pb-4 px-0 m-0z text-white w-100' style='border-radius: 25px; background-color: #343434; overflow: hidden'>
+                        <div class='container-fluid comfortaa-font rounded-pillz shadow pb-4 px-0 m-0z text-white w-100' style='border-radius: 25px; background-color: #343434; overflow: hidden'>
 
                             <!-- user profile header -->
                             <!-- iframe to load user profile header script ui output -->
-                            <iframe id="iframe-load-profile-header-section" class="w-100" src="../scripts/php/main_app/compile_content/profile_tab/user_profile_header.php?usnm=<?php echo $currentUser_Usrnm; ?>" frameborder="0" style="min-height: 50vh;"></iframe>
+                            <iframe id="iframe-load-profile-header-section" class="w-100" src="../scripts/php/main_app/compile_content/profile_tab/user_profile_header.php?usnm=<?php echo $currentUser_Usrnm; ?>" frameborder="0" style="height: 50vh;"></iframe>
                             <!-- iframe to load user profile header script ui output -->
                             <!-- user profile header -->
 
@@ -1757,9 +1755,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <!--Users Social Media Links-->
                             <div id='userSocialItems'><?php echo $userSocialItemsList; ?></div>
 
+                            <!-- section seperator to allow user to touch for scrolling -->
+                            <div class="text-center  p-4 d-flex justify-content-between align-items-center" style="background-color: #343434; color:#ffa500;">
+                                <!-- left touch for scroll indicator -->
+                                <span class="material-icons material-icons-round align-middle text-muted p-4 rounded-circle shadow" style="font-size: 20px !important;color: #ffa500 !important;">fingerprint</span>
+                                <img src="../media/assets/onefit-full-logo-standard-darkbg.svg" alt="onefit graphic logo" class="img-fluid shadow" style="max-height: 100px;">
+                                <!-- right touch for scroll indicator -->
+                                <span class="material-icons material-icons-round align-middle text-muted p-4 rounded-circle shadow" style="font-size: 20px !important;color: #ffa500 !important;">fingerprint</span>
+                            </div>
+
                             <!-- main profle content -->
                             <!-- iframe to load user profile header script ui output -->
-                            <iframe id="iframe-load-profile-header-section" class="w-100" src="test.html" frameborder="0" style="min-height: 160vh;"></iframe>
+                            <iframe id="iframe-load-profile-header-section" class="w-100" src="test.html" frameborder="0" style="height: 90vh;"></iframe>
                             <!-- iframe to load user profile header script ui output -->
                             <!-- ./ main profle content -->
 
@@ -2828,7 +2835,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- ./ User Status Bar -->
 
                     <!-- Post new update -->
-                    <div class="container-lg" id="social-post-update-container">
+                    <div class="container-xlg" id="social-post-update-container">
                         <div class="row align-items-center collapsez" id="tab-nav-social-quickpostz">
                             <div class="col-sm d-grid gap-2 py-4 px-0">
                                 <!-- Quick Post to Social -->
@@ -3330,7 +3337,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
 
-                    <div class="container-lg p-4 shadow-lg d-inline-block border-5 border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
+                    <div class="container-fluid p-4 shadow-lg d-inline-block border-5 border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
                         <div class="row align-items-center text-center comfortaa-font">
                             <div class="col-sm py-2 text-truncate">
                                 <!--<i class="fas fa-heart"></i>-->
@@ -6530,10 +6537,10 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <!-- Twitter social buttons / section -->
                     <!-- twitter social panel -->
-                    <div class="load-curtain-social-btn-panel tunnel-bg-container-static comfortaa-font d-grid gap-2 p-4 shadow-lg" style="position: fixed;top: auto;bottom: 5vh;right: 0px; left: auto; border-radius: 25px 0 0 25px !important;">
+                    <div class="load-curtain-social-btn-panel tunnel-bg-container-staticz down-top-grad-tahiti comfortaa-font d-grid gap-2 p-4 shadow-lg" style="position: fixed;top: auto;bottom: 5vh;right: 0px; left: auto; border-radius: 25px 0 0 25px !important;">
                         <!-- z-index:auto; -->
                         <!--  d-none d-lg-block p-4 -->
-                        <div class="d-flex gap-2 w-100">
+                        <div class="d-flex gap-2 w-100 justify-content-start">
                             <button class="p-4 m-0 shadow onefit-buttons-style-light-twitter" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
                                 <div class="d-grid">
                                     <span class="material-icons material-icons-round" style="font-size: 48px !important;">
@@ -6567,7 +6574,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <div class="mb-4 py-4" id="communicationRSSImagebrd">
                         <!-- #FitnessandDiet -->
                         <h5><span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;">rss_feed</span> <span class="align-middle" style="color: #ffa500;"><span class="text-muted">RSS.</span> #FitnessandDiet</span></h5>
-                        <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                        <div class="mb-4 p-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
                             <rssapp-magazine id="tRprB0QxQKySE340"></rssapp-magazine>
                             <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
                             <span class="text-muted">RSS is down.</span>
@@ -6575,7 +6582,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                         <!-- #Wellness -->
                         <h5><span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;">rss_feed</span> <span class="align-middle" style="color: #ffa500;"><span class="text-muted">RSS.</span> #Wellness</span></h5>
-                        <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                        <div class="mb-4 p-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
                             <rssapp-magazine id="tdSnePzUjMvFu4nu"></rssapp-magazine>
                             <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
                             <span class="text-muted">RSS is down.</span>
@@ -6583,7 +6590,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                         <!-- #worldofsport feed -->
                         <h5><span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;">rss_feed</span> <span class="align-middle" style="color: #ffa500;"><span class="text-muted">RSS.</span> #WorldofSports</span></h5>
-                        <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                        <div class="mb-4 p-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
                             <rssapp-magazine id="tqX4YEeGEu1eOKAT"></rssapp-magazine>
                             <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
                             <span class="text-muted">RSS is down.</span>
@@ -6591,7 +6598,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                         <!-- #footballfocus feed -->
                         <h5><span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;">rss_feed</span> <span class="align-middle" style="color: #ffa500;"><span class="text-muted">RSS.</span> #FootballFocus</span></h5>
-                        <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                        <div class="mb-4 p-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
                             <rssapp-magazine id="omltJunAYvJxQiZc"></rssapp-magazine>
                             <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
                             <span class="text-muted">RSS is down.</span>
@@ -6599,7 +6606,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                         <!-- #HealthandLifestyle -->
                         <h5><span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;">rss_feed</span> <span class="align-middle" style="color: #ffa500;"><span class="text-muted">RSS.</span> #HealthandLifestyle</span></h5>
-                        <div class="mb-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                        <div class="mb-4 p-4" style="overflow: hidden; background-color: #333333; border-radius: 25px;">
                             <rssapp-magazine id="tUyOEDFpWEUsTIO4"></rssapp-magazine>
                             <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script>
                             <span class="text-muted">RSS is down.</span>
@@ -6609,14 +6616,15 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <hr class="text-white">
 
-                    <h2 class="mb-4"><span class="material-icons material-icons-round align-middle" style="color: #ffa500;">question_answer</span> <span class="align-middle">Messenger</span></h2>
+                    <!-- Onefit.Chat is now Messages. There is a dedicated icon in the .apps menu -->
+                    <!-- <h2 class="mb-4"><span class="material-icons material-icons-round align-middle" style="color: #ffa500;">question_answer</span> <span class="align-middle">Messenger</span></h2>
                     <div class="p-0 mb-4 d-grid gap-2 my-pulse-animation-dark rounded-pill mb-4">
                         <button class="onefit-buttons-style-dark p-4 text-center fs-1 comfortaa-font shadow rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat">
                             One<span style="color:#ffa500;">fit.</span>Chat
                         </button>
                     </div>
 
-                    <hr class="text-white">
+                    <hr class="text-white"> -->
 
                     <h2 class="mb-4"><span class="material-icons material-icons-round align-middle" style="color: #ffa500;">campaign</span> <span class="align-middle">AdMarket</span></h2>
                 </div>
@@ -6659,7 +6667,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <hr class="text-white" />
 
                 <!-- Widget: User Profile Preview List (Widget: UPPL - It is hidden on lg screens) -->
-                <div class="container-lg comfortaa-font rounded-pillz shadow pb-4 px-0 m-0z text-white w-100 d-lg-none" style="border-radius: 25px; background-color: #343434; overflow: hidden">
+                <div class="container-xlg comfortaa-font rounded-pillz shadow pb-4 px-0 m-0z text-white w-100 d-lg-none" style="border-radius: 25px; background-color: #343434; overflow: hidden">
                     <div class="text-center">
                         <!--<span class="material-icons material-icons-round" style="font-size: 48px !important"> account_circle </span>-->
 
@@ -6751,7 +6759,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                 <div class="row align-items-center p-4 mb-4">
                     <div class="col-lg text-center my-4">
-                        <div class="container-lg p-4 shadow-lg d-inline-block border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
+                        <div class="container-xlg p-4 shadow-lg d-inline-block border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
                             <div class="row align-items-center text-center comfortaa-font">
                                 <div class="col-sm py-2 d-inline">
                                     <!--<i class="fas fa-heart"></i>-->
@@ -6788,7 +6796,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </span></h5>
                             <hr class="text-white" />
                             <p class="poppins-font fw-bold comfortaa-font">No media playing.</p>
-                            <div class="container-lg">
+                            <div class="container-xlg">
                                 <div class="row my-4">
                                     <div class="col-sm">
                                         <button class="onefit-buttons-style-dark p-4" onclick="musePlayerController('prev')"><span class="material-icons material-icons-round">skip_previous</span></button>
@@ -6928,8 +6936,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="grid-tile modal-grid-tile-transform">
                             <button class="onefit-buttons-style-dark-modal p-4" id="app-comms-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabCommunication')">
                                 <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> forum </span>
+                                    <span class="material-icons material-icons-round"> newspaper </span>
                                     <span style="color: #fff !important;">Communications</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="grid-tile modal-grid-tile-transform">
+                            <!-- open chat modal -->
+                            <button class="onefit-buttons-style-dark-modal p-4" id="app-msgs-btn" onclick="openLink(event, 'OffcanvasMessages')">
+                                <!-- type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat" -->
+                                <div class="d-grid gap-2">
+                                    <span class="material-icons material-icons-round"> forum </span>
+                                    <span style="color: #fff !important;">Messages</span>
                                 </div>
                             </button>
                         </div>
@@ -7210,22 +7228,25 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ >>>>>>>>>> Latest Socials Feed Modal -->
 
     <!-- >>>>>>>>>> Chat Modal -->
-    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat" hidden aria-hidden="true">Toggle Chat Messenger offcanvas</button>
+    <button id="toggle-messages-offcanvas" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat" hidden aria-hidden="true">Toggle Chat Messenger offcanvas</button>
 
-    <div class="offcanvas offcanvas-bottom" style="height: 100vh !important;" tabindex="-1" id="offcanvasBottomOnefitChat" aria-labelledby="offcanvasBottomOnefitChatLabel">
+    <div class="offcanvas offcanvas-bottom" style="height: 100vh !important; visibility: visible;" tabindex="-1" id="offcanvasBottomOnefitChat" aria-labelledby="offcanvasBottomOnefitChatLabel" aria-modal="true" role="dialog">
         <div class="offcanvas-body small p-0 no-scroller" style="overflow-x: hidden;">
-            <div class="card text-center m-0 border-0" style="height:100%">
-                <div class="card-header bg-transparentz border-0 shadow sticky-top" style="background-color: #343434 !important; color: #fff !important;">
+            <div class="card text-center m-0 border-0" style="height:100vh">
+                <div class="card-header bg-transparentz border-0 shadow sticky-top" style="background-color: rgb(52, 52, 52) !important; color: rgb(255, 255, 255) !important; padding-right: 25px; margin-right: -10px;">
                     <div class="offcanvas-header">
-                        <button class="onefit-buttons-style-dark p-4 shadow" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMyUserChats" aria-expanded="false" aria-controls="collapseMyUserChats">
+                        <button class="onefit-buttons-style-dark p-4 shadow d-grid text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMyUserChats" aria-expanded="true" aria-controls="collapseMyUserChats">
                             <span class="material-icons material-icons-round">
                                 3p
                             </span>
+                            <span class="align-middle text-truncate d-none d-lg-block" style="font-size: 10px;">Conversations.</span>
                         </button>
 
-                        <h3 class="offcanvas-title" id="offcanvasBottomOnefitChatLabel">
-                            <span class=" text-truncate">One<span style="color: #ffa500">fit.</span></span>Chat
-                        </h3>
+                        <div class="text-center">
+                            <h1 class="offcanvas-title" id="offcanvasBottomOnefitChatLabel">
+                                Messages
+                            </h1>
+                        </div>
 
                         <!--<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
 
@@ -7234,16 +7255,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </button>
                     </div>
                 </div>
-                <div class="card-body p-0 tunnel-bg-container">
-                    <div class="row h-100 px-4 no-scroller" style="max-height: 70vh; overflow-y: auto !important;">
-                        <div class="col-sm-4 collapse w3-animate-top" id="collapseMyUserChats">
+                <div class="card-body py-0 px-4 tunnel-bg-container h-100">
+                    <div class="row h-100 px-0 no-scroller" style="max-height: 70vh; overflow-y: auto !important;">
+                        <div class="col-md-4 w3-animate-top collapse show" id="collapseMyUserChats">
                             <!--Users Chats List-->
                             <ul class="list-group list-group-flush text-start top-down-grad-dark" style="padding-bottom: 100px !important;">
                                 <?php echo $outputProfileUserChats; ?>
                             </ul>
                             <!-- ./ Users Chats List-->
                         </div>
-                        <div class="col-sm shadow no-scroller my-4 p-2 text-white down-top-grad-dark" style="border-radius: 25px; overflow-y: auto; overflow-x: hidden; max-height: 65vh !important;margin-bottom: 200px !important;">
+                        <div class="col-md shadow no-scroller my-0 p-2 text-white down-top-grad-dark" style="border-radius: 25px; overflow-y: auto; overflow-x: hidden; max-height: 70vh !important;margin-bottom: 0px !important;">
                             <div class="row align-items-center d-none" style="border-radius: 25px; background-color: #343434;">
                                 <div class="col-4 d-grid gap-2">
                                     <!-- Selected Users Friend Chat Profile Strip -->
@@ -7270,12 +7291,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </div>
                             </div>
 
-                            <div class="content-panel-border-style no-scroller p-4 shadow" style="width: 100%; height: 100%; background-color: rgba(52, 52, 52, 0.8) !important; overflow-y: auto !important; overflow-x: hidden !important;">
+                            <div class="no-scrollerz p-4 shadow" style="border-radius: 25px;width: 100%; height: 100%; background-color: rgba(52, 52, 52, 0.8) !important; overflow-y: auto !important; overflow-x: hidden !important;">
                                 <!-- User Chat Bubble - Left (Users Friend) -->
                                 <div class="row align-items-center">
                                     <div class="col-sm text-start">
-                                        <div class="d-grid gap-2">
-                                            <div class="text-start" style="width: 100%;">
+                                        <div class="d-flex gap-2">
+                                            <div class="text-start">
                                                 <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
                                             </div>
 
@@ -7294,163 +7315,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <div class="row align-items-start">
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm text-end">
-                                        <div class="d-grid gap-2">
-                                            <div class="text-end" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
-                                            </div>
-
+                                        <div class="d-flex gap-2">
                                             <div class="talk-bubble shadow tri-right shadow btm-rightz right-top border-5 border-start border-bottom" style="border-radius: 25px 0 25px 25px !important;">
                                                 <div class="talktext">
                                                     <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- ./ User Chat Bubble - Right (User) -->
-                                <!-- User Chat Bubble - Left (Users Friend) -->
-                                <div class="row align-items-center">
-                                    <div class="col-sm text-start">
-                                        <div class="d-grid gap-2">
-                                            <div class="text-start" style="width: 100%;">
+
+                                            <div class="text-end">
                                                 <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
-                                            </div>
-
-                                            <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
-                                                <div class="talktext">
-                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3 text-start"></div>
-                                </div>
-                                <!-- ./ User Chat Bubble - Left (Users Friend) -->
-
-                                <!-- User Chat Bubble - Right (User) -->
-                                <div class="row align-items-start">
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm text-end">
-                                        <div class="d-grid gap-2">
-                                            <div class="text-end" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
-                                            </div>
-
-                                            <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
-                                                <div class="talktext">
-                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- ./ User Chat Bubble - Right (User) -->
-                                <!-- User Chat Bubble - Left (Users Friend) -->
-                                <div class="row align-items-center">
-                                    <div class="col-sm text-start">
-                                        <div class="d-grid gap-2">
-                                            <div class="text-start" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
-                                            </div>
-
-                                            <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
-                                                <div class="talktext">
-                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3 text-start"></div>
-                                </div>
-                                <!-- ./ User Chat Bubble - Left (Users Friend) -->
-
-                                <!-- User Chat Bubble - Right (User) -->
-                                <div class="row align-items-start">
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm text-end">
-                                        <div class="d-grid gap-2">
-                                            <div class="text-end" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
-                                            </div>
-
-                                            <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
-                                                <div class="talktext">
-                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- ./ User Chat Bubble - Right (User) -->
-                                <!-- User Chat Bubble - Left (Users Friend) -->
-                                <div class="row align-items-center">
-                                    <div class="col-sm text-start">
-                                        <div class="d-grid gap-2">
-                                            <div class="text-start" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
-                                            </div>
-
-                                            <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
-                                                <div class="talktext">
-                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3 text-start"></div>
-                                </div>
-                                <!-- ./ User Chat Bubble - Left (Users Friend) -->
-
-                                <!-- User Chat Bubble - Right (User) -->
-                                <div class="row align-items-start">
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm text-end">
-                                        <div class="d-grid gap-2">
-                                            <div class="text-end" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
-                                            </div>
-
-                                            <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
-                                                <div class="talktext">
-                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- ./ User Chat Bubble - Right (User) -->
-                                <!-- User Chat Bubble - Left (Users Friend) -->
-                                <div class="row align-items-center">
-                                    <div class="col-sm text-start">
-                                        <div class="d-grid gap-2">
-                                            <div class="text-start" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
-                                            </div>
-
-                                            <div class="talk-bubble shadow tri-right shadow btm-leftz left-top" style="border-radius: 0 25px 25px 25px !important;">
-                                                <div class="talktext">
-                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3 text-start"></div>
-                                </div>
-                                <!-- ./ User Chat Bubble - Left (Users Friend) -->
-
-                                <!-- User Chat Bubble - Right (User) -->
-                                <div class="row align-items-start">
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm text-end">
-                                        <div class="d-grid gap-2">
-                                            <div class="text-end" style="width: 100%;">
-                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
-                                            </div>
-
-                                            <div class="talk-bubble shadow tri-right shadow btm-rightz right-top" style="border-radius: 25px 0 25px 25px !important;">
-                                                <div class="talktext">
-                                                    <p>And now using .round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -7463,7 +7336,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                     </div>
                 </div>
-                <div class="card-footer bg-transparent border-0 fixed-bottom down-top-grad-dark">
+                <div class="card-footer bg-transparent border-0 fixed-bottom down-top-grad-dark" style="padding-right: 25px;">
                     <div class="row py-4 align-items-end">
                         <div class="col-sm">
                             <textarea class="onefit-inputs-style p-4 shadow" style="border-radius: 25px !important;" name="" id="" cols="30" rows="3">Wassup, Dude?</textarea>
@@ -9157,6 +9030,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                 document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
                 document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
                 document.getElementById("horizontal-rule-icon-nutrition").style.display = "block";
+            } else if (tabName == "OffcanvasMessages") {
+                document.getElementById("toggle-messages-offcanvas").click();
             }
 
             // InsightsTabGCS

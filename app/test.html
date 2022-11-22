@@ -132,7 +132,7 @@
     </script>
 </head>
 
-<body class="bg-transparent p-0" onload="initialize()">
+<body class="bg-transparent p-0 noselect" onload="initialize()">
     <div class="container-fluid">
 
         <!-- inline/flex profile tab subtabs controller btns -->
@@ -254,7 +254,7 @@
 
         <div class="row">
             <!-- user post sharing form and users posts below it -->
-            <div class="col-lg-8">
+            <div class="col-xlg-8">
                 <!-- profile tab sub-tabs container -->
                 <div class="tab-content" id="v-pills-tab-profiletab-main-subtabs">
                     <!-- #v-sub-tab-pills-profile-subtab-communityfeed -->
@@ -262,7 +262,7 @@
                         style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-communityfeed"
                         style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel"
                         aria-labelledby="v-sub-tab-pills-profile-subtab-communityfeed">
-                        <div class="row">
+                        <div class="row align-items-start">
                             <div class="col-md-4 p-4" style="max-height: 90vh;overflow-y: auto">
                                 <h5><span class="material-icons material-icons-outlined align-middle"
                                         style="color: #ffa500;">
@@ -307,7 +307,7 @@
                                     <hr class="text-white">
 
                                     <div id="profile-community-post-social-feed" class="p-0 no-scroller"
-                                        style="height: 90vh;overflow-y: auto">
+                                        style="max-height: 90vh;overflow-y: auto">
                                         <!-- Social Update Card -->
                                         <div class="my-4 p-0 social-update-card shadow-lg"
                                             style="border-bottom: #ffa500 solid 5px;"
@@ -472,7 +472,7 @@
                                                     <div class="col-md text-center">
                                                         <hr class="bg-white">
                                                     </div>
-                                                    <div class="col-md-4 text-center">
+                                                    <div class="col-md-4 text-start">
                                                         <p
                                                             class="fs-6 m-0 comfortaa-font fw-light text-center text-truncate">
                                                             <small class="text-decoration-underlinez">
@@ -573,8 +573,6 @@
                                 <!-- ./ community posts feed -->
                             </div>
                         </div>
-
-
 
                     </div>
                     <!-- #v-sub-tab-pills-profile-subtab-posts -->
@@ -844,7 +842,7 @@
                                                 </div>
                                                 <div class="col-md-4 text-start">
                                                     <p
-                                                        class="fs-6 m-0 comfortaa-font fw-light text-start text-truncate">
+                                                        class="fs-6 m-0 comfortaa-font fw-light text-center text-truncate">
                                                         <small class="text-decoration-underlinez">
                                                             <span
                                                                 class="material-icons material-icons-round align-middle"
@@ -1037,7 +1035,7 @@
 
                         <div class="row align-items-start">
                             <!-- help. focus column -->
-                            <div class="col-lg border-5 border-start border-end py-4 no-scroller"
+                            <div class="col-xlg my-4 border-5 border-start border-end py-4 no-scroller"
                                 style="max-height: 90vh;border-radius: 25px;border-color: #ffa500 !important;">
                                 <!-- Help section also has sub-sections: ( Help Requests, Trainer Support, Trainee Support, Enquiries ) -->
                                 <!-- friends list grid section -->
@@ -1155,7 +1153,7 @@
                             </div>
                             <!-- ./ help. focus column -->
                             <!-- friends, following, followers column -->
-                            <div class="col-lg no-scroller" style="max-height: 90vh;">
+                            <div class="col-xlg my-4 no-scroller p-0" style="max-height: 90vh;">
 
                                 <div id="friends-list-grid-section"
                                     class="content-panel-border-style-dark-bg mb-4 p-4 w3-animate-bottom"
@@ -1178,7 +1176,12 @@
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
                                                     style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
-                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <h5 class="card-title">
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 30px !important;">verified_user</span>
+                                                        Name Surname
+                                                    </h5>
+                                                    <p class="text-muted" style="color: #ffa500;">Trainee</p>
                                                     <p class="card-text p-1 text-start">
                                                         <a style="text-decoration: none;color: #ffa500 !important;"
                                                             data-bs-toggle="collapse" href="#friend-card-info-userid"
@@ -1238,7 +1241,12 @@
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
                                                     style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
-                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <h5 class="card-title">
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 30px !important;">verified_user</span>
+                                                        Name Surname
+                                                    </h5>
+                                                    <p class="text-muted" style="color: #ffa500;">Trainee</p>
                                                     <p class="card-text p-1 text-start">
                                                         <a style="text-decoration: none;color: #ffa500 !important;"
                                                             data-bs-toggle="collapse" href="#friend-card-info-userid"
@@ -1298,7 +1306,12 @@
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
                                                     style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
-                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <h5 class="card-title">
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 30px !important;">verified_user</span>
+                                                        Name Surname
+                                                    </h5>
+                                                    <p class="text-muted" style="color: #ffa500;">Trainee</p>
                                                     <p class="card-text p-1 text-start">
                                                         <a style="text-decoration: none;color: #ffa500 !important;"
                                                             data-bs-toggle="collapse" href="#friend-card-info-userid"
@@ -1382,7 +1395,12 @@
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
                                                     style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
-                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <h5 class="card-title">
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 30px !important;">verified_user</span>
+                                                        Name Surname
+                                                    </h5>
+                                                    <p class="text-muted" style="color: #ffa500;">Trainee</p>
                                                     <p class="card-text p-1 text-start">
                                                         <a style="text-decoration: none;color: #ffa500 !important;"
                                                             data-bs-toggle="collapse" href="#friend-card-info-userid"
@@ -1441,7 +1459,12 @@
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
                                                     style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
-                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <h5 class="card-title">
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 30px !important;">verified_user</span>
+                                                        Name Surname
+                                                    </h5>
+                                                    <p class="text-muted" style="color: #ffa500;">Trainee</p>
                                                     <p class="card-text p-1 text-start">
                                                         <a style="text-decoration: none;color: #ffa500 !important;"
                                                             data-bs-toggle="collapse" href="#friend-card-info-userid"
@@ -1500,7 +1523,12 @@
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
                                                     style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
-                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <h5 class="card-title">
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 30px !important;">verified_user</span>
+                                                        Name Surname
+                                                    </h5>
+                                                    <p class="text-muted" style="color: #ffa500;">Trainee</p>
                                                     <p class="card-text p-1 text-start">
                                                         <a style="text-decoration: none;color: #ffa500 !important;"
                                                             data-bs-toggle="collapse" href="#friend-card-info-userid"
@@ -1571,7 +1599,12 @@
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
                                                     style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
-                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <h5 class="card-title">
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 30px !important;">verified_user</span>
+                                                        Name Surname
+                                                    </h5>
+                                                    <p class="text-muted" style="color: #ffa500;">Trainee</p>
                                                     <p class="card-text p-1 text-start">
                                                         <a style="text-decoration: none;color: #ffa500 !important;"
                                                             data-bs-toggle="collapse" href="#friend-card-info-userid"
@@ -1631,7 +1664,12 @@
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
                                                     style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
-                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <h5 class="card-title">
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 30px !important;">verified_user</span>
+                                                        Name Surname
+                                                    </h5>
+                                                    <p class="text-muted" style="color: #ffa500;">Trainee</p>
                                                     <p class="card-text p-1 text-start">
                                                         <a style="text-decoration: none;color: #ffa500 !important;"
                                                             data-bs-toggle="collapse" href="#friend-card-info-userid"
@@ -1691,7 +1729,12 @@
                                                     class="card-img" alt="placeholder profile img">
                                                 <div class="card-img-overlay top-down-grad-dark"
                                                     style="font-size: 10px!important;background-color: rgba(51, 51, 51, 0.5);border-radius: 15px;">
-                                                    <h5 class="card-title">Name Surname</h5>
+                                                    <h5 class="card-title">
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="font-size: 30px !important;">verified_user</span>
+                                                        Name Surname
+                                                    </h5>
+                                                    <p class="text-muted" style="color: #ffa500;">Trainee</p>
                                                     <p class="card-text p-1 text-start">
                                                         <a style="text-decoration: none;color: #ffa500 !important;"
                                                             data-bs-toggle="collapse" href="#friend-card-info-userid"
@@ -1756,11 +1799,11 @@
                 <!-- ./ profile tab sub-tabs container -->
             </div>
             <!-- more stuff column -->
-            <div class="col-lg-4 p-4">
+            <div class="col-xlg-4">
                 <div class="nav sticky-top">
                     <!-- more stuff -->
                     <div id="profile-social-post-update-container"
-                        class="container shadow mb-4 py-4 content-panel-border-style-dark-bg w3-animate-top"
+                        class="container-fluid shadow my-4 py-4 content-panel-border-style-dark-bg w3-animate-top"
                         style="border-radius: 25px;">
                         <h5 class="text-center"><span class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500;">
@@ -1772,7 +1815,7 @@
 
                     <!-- rss feeds -->
                     <div id="profile-social-post-update-container"
-                        class="container shadow mb-4 py-4 content-panel-border-style-dark-bg w3-animate-bottom"
+                        class="container-fluid shadow my-4 py-4 content-panel-border-style-dark-bg w3-animate-bottom"
                         style="border-radius: 25px;">
                         <h5 class="text-center"><span class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500;">

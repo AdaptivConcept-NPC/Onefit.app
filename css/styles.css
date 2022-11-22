@@ -787,7 +787,7 @@ h6 {
   font-family: "Outfit", sans-serif !important;
   border-radius: 25px;
 
-  border-left: var(--tahitigold) solid 5px;
+  border-top: var(--tahitigold) solid 5px;
   border-bottom: var(--tahitigold) solid 5px;
 }
 
@@ -1304,7 +1304,7 @@ div.horizontal-scroll-card-nav {
 
 /* CSS talk bubble */
 .talk-bubble {
-  margin: 40px;
+  margin: 20px;
   display: inline-block;
   position: relative;
   width: auto !important;

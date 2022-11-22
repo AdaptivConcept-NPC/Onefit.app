@@ -354,7 +354,7 @@ try {
             </div>
         </div>
         <!-- ./ $usrdetails_name's fitness progression progress bar -->
-        <div class="text-center p-4" style="background-color: rgba(52, 52, 52, 0.8);">
+        <div class="text-center p-4" style="background-color: rgba(52, 52, 52, 0.8);" hidden aria-hidden="tru">
             <img src="../../../../../media/assets/One-Symbol-Logo-Orange.svg" class="img-fluid" style="height: 50px;"/>
         </div>
     </div>
@@ -411,7 +411,7 @@ try {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
-<body class="bg-transparent p-0 no-scroller">
+<body class="bg-transparent p-0 no-scroller noselect">
     <div class="container-fluid p-0">
         <?php echo $final_output; ?>
     </div>

@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- Modal -->
   <div class="modal fade" id="navigationModal" tabindex="-1" aria-labelledby="navigationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content content-panel-border-style fitness-bg" style="border-radius: 25px !important; backgroundz: #333">
+      <div class="modal-content content-panel-border-style fitness-bg" style="border-radius: 25px !important;">
         <div class="modal-header border-0">
           <h5 class="modal-title text-center" id="navigationModalLabel" style="color: #ffa500">Navigation</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
