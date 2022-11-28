@@ -5,11 +5,311 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Administration Portal</title>
+
+    <!-- Bootstrap CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <!-- JQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- ./ JQuery CDN -->
+
+    <style>
+        .custom-file-input.selected:lang(en)::after {
+            content: "" !important;
+        }
+
+        .custom-file {
+            overflow: hidden;
+        }
+
+        .custom-file-input {
+            white-space: nowrap;
+        }
+    </style>
+
+    <!-- JQuery Scripts -->
+    <script>
+        //jQuery Code Only
+        //$.noConflict();
+        $(document).ready(function () {
+            // ajax jquery - submit CSV bulk file
+            $("#csv-bulk-upload-form").submit(function (e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#csv-bulk-upload-form')[0]);
+                setTimeout(function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'scripts/php/upload_csv_data.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+                        beforeSend: function () {
+                            console.log('beforeSend: submitting bulk CSV file');
+                        },
+                        success: function (response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - submitting bulk CSV file successfully');
+                                console.log("Response: \n" + response);
+                            } else {
+                                console.log("error: returning response - an error occurred");
+                                console.log("Response: \n" + response);
+                            }
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit CSV bulk file
+        });
+    </script>
+    <!-- ./ JQuery Scripts -->
 </head>
 
 <body>
-    Admin
+    <h1>Admin Portal</h1>
+
+    <div class="container">
+        <!-- main tab container -->
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-usermgmt-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-usermgmt" type="button" role="tab" aria-controls="pills-usermgmt"
+                    aria-selected="true">User Management</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-workoutmgmt-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-workoutmgmt" type="button" role="tab" aria-controls="pills-workoutmgmt"
+                    aria-selected="false">Workout Management</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
+                    type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Unknown</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled"
+                    type="button" role="tab" aria-controls="pills-disabled" aria-selected="false"
+                    disabled>Disabled</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-usermgmt" role="tabpanel"
+                aria-labelledby="pills-usermgmt-tab" tabindex="0">
+
+            </div>
+            <div class="tab-pane fade" id="pills-workoutmgmt" role="tabpanel" aria-labelledby="pills-workoutmgmt-tab"
+                tabindex="0">
+                <!-- upload bulk csv file -->
+                <form id="csv-bulk-upload-form" name="csv-bulk-upload-form" class="my-4"
+                    action="scripts/php/upload_csv_data.php" method="post" enctype="multipart/form-data">
+                    <!-- Form Name -->
+                    <legend>Bulk CSV Upload - Categories / Classes</legend>
+
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFileInput"
+                                aria-describedby="customFileInput" name="csvfile" type="file">
+                            <label class="custom-file-label" for="customFileInput"></label>
+                        </div>
+                        <div class="input-group-append">
+                            <input type="submit" name="submit" value="Upload CSV file" class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
+                <!-- ./ upload bulk csv file -->
+
+                <!-- capture workout -->
+                <form id="capture-workout-form" name="capture-workout-form" class="form-horizontal">
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>Capture Workouts</legend>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="singlebutton">Category Class</label>
+
+                        </div>
+
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="selectbasic">Select a Category Class</label>
+                            <div class="col-md-4">
+                                <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="noselection">Select</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="singlebutton">Workout Info</label>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Workout Name</label>
+                            <div class="col-md-4">
+                                <input id="textinput" name="textinput" type="text" placeholder="Workout Name"
+                                    class="form-control input-md" required="">
+
+                            </div>
+                        </div>
+
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textarea">Workout Description</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control" id="textarea" name="textarea"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textarea">Goal Definition</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control" id="textarea" name="textarea"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Total XP Point (Int)</label>
+                            <div class="col-md-4">
+                                <input id="textinput" name="textinput" type="text" placeholder="Total XP"
+                                    class="form-control input-md" required="">
+                                <span class="help-block">Please allocate the total/max xp points obtainable from
+                                    this
+                                    workout.</span>
+                            </div>
+                        </div>
+
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="selectbasic">Premium Workout?</label>
+                            <div class="col-md-4">
+                                <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="singlebutton">Workout Summary</label>
+
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Main Goal</label>
+                            <div class="col-md-4">
+                                <input id="textinput" name="textinput" type="text" placeholder="Main Goal"
+                                    class="form-control input-md" required="">
+                                <span class="help-block">Please describe the main goal you are trying to help
+                                    trainees
+                                    achieve with this workout.</span>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Workout Type</label>
+                            <div class="col-md-4">
+                                <input id="textinput" name="textinput" type="text" placeholder="Workout Type"
+                                    class="form-control input-md" required="">
+                                <span class="help-block">Please describe the type of workout this is.</span>
+                            </div>
+                        </div>
+
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="selectbasic">Recommeded Training
+                                Level</label>
+                            <div class="col-md-4">
+                                <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="L1_Beginner">Beginner</option>
+                                    <option value="L2_Semi-Advanced">Semi-Advanced</option>
+                                    <option value="L3_Advanced Athlete">Advanced Athlete</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Workout Program Duration</label>
+                            <div class="col-md-4">
+                                <input id="textinput" name="textinput" type="text"
+                                    placeholder="Program Duration / Length (in weeks)" class="form-control input-md">
+                                <span class="help-block">Please define the Program duration / Length of this workout
+                                    in
+                                    weeks.</span>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Exercise Days Per Week</label>
+                            <div class="col-md-4">
+                                <input id="textinput" name="textinput" type="text" placeholder="Exercise Days Per Week"
+                                    class="form-control input-md" required="">
+
+                            </div>
+                        </div>
+
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="selectbasic">Target Gender</label>
+                            <div class="col-md-4">
+                                <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Select Multiple -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="selectmultiple">Recommeded
+                                Supplements</label>
+                            <div class="col-md-4">
+                                <select id="selectmultiple" name="selectmultiple" class="form-control"
+                                    multiple="multiple">
+                                    <option value="noselect">None</option>
+                                    <option value="Supplement Sci-Name 1">Supplement Sci-Name 1</option>
+                                    <option value="Supplement Sci-Name 2">Supplement Sci-Name 2</option>
+                                    <option value="Supplement Sci-Name 3">Supplement Sci-Name 3</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+
+
+            </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
+                tabindex="0">...</div>
+            <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab"
+                tabindex="0">...</div>
+        </div>
+        <!-- ./main tab container -->
+    </div>
+
+    <!-- Bootstrap JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

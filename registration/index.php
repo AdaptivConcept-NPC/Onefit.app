@@ -71,7 +71,7 @@
 
     <div class="row align-items-center">
       <div class="col-xl py-4">
-        <div class="content-panel-border-style p-4 tunnel-bg-container text-center shadow" style="border-radius: 25px">
+        <div class="content-panel-border-style p-4 darkpads-bg-container text-center shadow" style="border-radius: 25px">
           <img src="../media/assets/One-Logo-Vertical.svg" class="img-fluid my-4 screenz" alt="one fitness" style="max-height: 50vh" />
 
           <p class="my-4 text-center comfortaa-font" style="color: #fff; font-size: 10px">Crafted by Adaptiv Concept

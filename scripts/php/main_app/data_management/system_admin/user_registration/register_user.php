@@ -59,8 +59,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Checking whether the directory exists or not
   if (!is_dir($dir_path)) {
     // does not exist, create a new file or direcotry
-    if (mkdir($dir_path, 0777, true)) echo "User media folder created successfully";
-    else die("User media folder creation failed [Directory path: $dir_path");
+    if (mkdir($dir_path, 0777, true)) {
+      // create sub directories for profile images, profile banners, shared media and private media
+      mkdir($dir_path . "/profile_images", 0777, true);
+      mkdir($dir_path . "/profile_banners", 0777, true);
+      mkdir($dir_path . "/shared_media", 0777, true);
+      mkdir($dir_path . "/private_media", 0777, true);
+
+      echo "User media folder created successfully";
+    } else {
+      die("User media folder creation failed [Directory path: $dir_path");
+    }
   } else {
     echo "$usrnm - user media folder already exists";
   }

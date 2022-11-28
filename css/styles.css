@@ -1053,6 +1053,40 @@ h6 {
   background-attachment: fixed;
 }
 
+.darkpads-bg-container {
+  background-image: url("../media/assets/sfhere_background_rot-683x1024.jpg") !important;
+  background-position: center;
+  background-size: contain;
+  background-attachment: fixed;
+  background-attachment: local;
+  background-repeat: repeat;
+}
+
+.darkpads-bg-container-inverse {
+  background-image: url("../media/assets/sfhere_background_rot-683x1024.jpg") !important;
+  background-position: center;
+  background-size: contain;
+  background-attachment: fixed;
+  background-attachment: local;
+  background-repeat: repeat;
+}
+
+.darkpads-bg-container-static {
+  background-image: url("../media/assets/sfhere_background_rot-683x1024.jpg") !important;
+  background-position: center;
+  background-size: contain;
+  background-attachment: fixed;
+  background-attachment: local;
+}
+
+.darkpads-bg-container-inverse-static {
+  background: url("../media/assets/sfhere_background_rot-683x1024.jpg");
+  background-position: center;
+  background-size: contain;
+  background-attachment: local;
+  background-repeat: no-repeat;
+}
+
 .grid-container {
   margin: 0 auto;
   max-width: 1170px;
@@ -1060,6 +1094,21 @@ h6 {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   grid-column-gap: 1.5rem;
   grid-row-gap: 2rem;
+}
+
+.media-item-tile {
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: local !important;
+  min-height: 200px;
+  border-color: #ffa500;
+  border-bottom: #ffa500 5px solid;
+  transition: .3s;
+}
+
+.media-item-tile:hover {
+  transform: scale(1.05, 1.05);
 }
 
 .variable-grid-container {
@@ -1652,7 +1701,8 @@ div.horizontal-scroll-card-nav {
   background-attachment: local;
   background-position: center;
   background-clip: content-box;
-  border-radius: 50%;
+  border-radius: 25px;
+  /* 50%; */
   height: 150px;
   width: 150px;
 }

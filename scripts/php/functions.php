@@ -360,7 +360,7 @@ function getUserFriends()
             $profileUserFriendsList .= '
             <!-- User Friends - dark Grad -->
             <div class="grid-tile p-0">
-                <div class="my-4 tunnel-bg-container" id="friend-' . $friendid . '-' . $friendUsername . '" style="border-radius: 25px;">
+                <div class="my-4 darkpads-bg-container" id="friend-' . $friendid . '-' . $friendUsername . '" style="border-radius: 25px;">
                     <div class="top-down-grad-light" style="border-radius: 25px;">
                         <div class="row align-items-center content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaftz left-right-grad-mineshaft">
                             <div class="col-xlg-2 text-center p-4">
@@ -423,7 +423,7 @@ function getUserGroups()
             $profileUserSubsGroupsList .= '
             <!-- Group Card -->
             <div class="grid-tile">
-                <div class="px-2 mx-0 content-panel-border-style my-4 tunnel-bg-container"
+                <div class="px-2 mx-0 content-panel-border-style my-4 darkpads-bg-container"
                 style="overflow: hidden; border-radius: 25px;" id="group-' . $grps_groupid . '-' . $grps_refcode . '">
                     <div class="row align-items-center top-down-grad-dark">
                         <div class="col-lg-4 text-center p-4 w-100">
@@ -502,7 +502,7 @@ function getUserNotifications()
     $sql = "SELECT * FROM notifications WHERE notify_user = '$currentUser_Usrnm' ORDER BY created_by DESC";
 
     if ($result = mysqli_query($dbconn, $sql)) {
-        $communicationUserNotifications = '<div class="my-4 text-dark tunnel-bg-container"
+        $communicationUserNotifications = '<div class="my-4 text-dark darkpads-bg-container"
         style="border-radius: 25px;">';
         while ($row = mysqli_fetch_assoc($result)) {
             //`notification_id`, `notification_title`, `notification_message`, `notify_user`, `created_by`, `notification_date`, `notification_read`
@@ -573,7 +573,7 @@ function getUserProgSubs()
             $programs_activityduration = $row["activity_duration"];*/
 
             $profileUsersProgramsList .= '
-            <div class="p-0 mx-0 my-4 tunnel-bg-container" style="border-radius: 25px;" id="discover_programs-' . $programs_progid . '-' . $programs_refcode . '">
+            <div class="p-0 mx-0 my-4 darkpads-bg-container" style="border-radius: 25px;" id="discover_programs-' . $programs_progid . '-' . $programs_refcode . '">
                 <div class="card content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaft"
                     style="border-right: 0 !important;">
                     <div class="card-body">
@@ -650,7 +650,7 @@ function getUserResources()
             $profileUsersResourcesList .= '
             <!-- User Resources - Tile -->
             <div class="grid-tile">
-                <div class="p-0 mx-0 my-4 tunnel-bg-container" style="border-radius: 25px;"
+                <div class="p-0 mx-0 my-4 darkpads-bg-container" style="border-radius: 25px;"
                 id="resource-' . $usrresources_resourceid . '-' . $currentUser_Usrnm . '" style="max-width: 100%!important">
                 <div class="content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaft p-4">
                     <h3 class=" text-truncate">' . $usrresources_title . ' <span
@@ -1359,7 +1359,7 @@ function getAllUsers()
             $discoverPeopleList .= '
             <!-- All Users Card - dark Grad -->
             <div class="grid-tile">
-              <div class="my-4 container-fluid tunnel-bg-container" id="discover_trainee-' . $allusrs_userid . '-' . $allusrs_username . '"
+              <div class="my-4 container-fluid darkpads-bg-container" id="discover_trainee-' . $allusrs_userid . '-' . $allusrs_username . '"
                 style="border-radius: 25px;">
                 <div class="top-down-grad-light" style="border-radius: 25px;">
                   <div
@@ -1585,7 +1585,7 @@ function getAllTrainees()
                 $activitiesTraineesList .= '
                 <!-- Trainees Card - dark Grad -->
                 <div class="grid-tile">
-                    <div class="my-4 container-fluid tunnel-bg-container" id="discover_trainee-' . $trainee_userid . '-' . $trainee_username . '" style="border-radius: 25px;">
+                    <div class="my-4 container-fluid darkpads-bg-container" id="discover_trainee-' . $trainee_userid . '-' . $trainee_username . '" style="border-radius: 25px;">
                         <div class="top-down-grad-light" style="border-radius: 25px;">
                             <div class="row align-items-center content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaftz left-right-grad-mineshaft">
                                 <div class="col-xlg-2 text-center p-4">
@@ -1682,7 +1682,7 @@ function getAllTrainers()
                 $activitiesTrainersList .= '
                 <!-- All Trainers Card - dark Grad -->
                 <div class="grid-tile">
-                  <div class="my-4 container-fluid tunnel-bg-container" id="discover_trainer-' . $trainer_userid . '-' . $trainer_username . '"
+                  <div class="my-4 container-fluid darkpads-bg-container" id="discover_trainer-' . $trainer_userid . '-' . $trainer_username . '"
                     style="border-radius: 25px;">
                     <div class="top-down-grad-light" style="border-radius: 25px;">
                       <div

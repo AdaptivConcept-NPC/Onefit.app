@@ -124,7 +124,7 @@ try {
     // get count of users challenges completed
     $result = null;
 
-    $query = "SELECT `challenget_log_id`, `workout_challenges_workout_challenge_id` FROM `user_challenge_cmplt_log` WHERE `users_username` = '$user_loggedin_username'";
+    $query = "SELECT `challenge_log_id`, `workout_challenges_workout_challenge_id` FROM `user_challenge_cmplt_log` WHERE `users_username` = '$user_loggedin_username'";
 
     $result = $dbconn->query($query);
 

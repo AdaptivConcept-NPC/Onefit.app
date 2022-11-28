@@ -84,7 +84,8 @@ try {
 
     // assign default profile picture if unavailable
     if ($usrdetails_profile_img_url == "default" || $usrdetails_profile_img_url == null || $usrdetails_profile_img_url == "") {
-        $usrdetails_profile_img_url = "../../../../../media/profiles/0_default/default_profile_pic.svg";
+        $usrdetails_profile_img_url = "../media/profiles/0_default/default_profile_pic.svg";
+        // ../../../../
     }
 
     // assign profile image htm;
@@ -92,7 +93,8 @@ try {
 
     // assign default profile banner if unavailable
     if ($usrdetails_profile_banner_url == "default" || $usrdetails_profile_banner_url == null || $usrdetails_profile_banner_url == "") {
-        $usrdetails_profile_banner_url = "../../../../../media/profiles/0_default/default_profile_banner.jpg";
+        $usrdetails_profile_banner_url = "../media/profiles/0_default/default_profile_banner.jpg";
+        // ../../../../
     }
 
     // verification icon
@@ -147,7 +149,7 @@ try {
     // get count of users challenges completed
     $result = null;
 
-    $query = "SELECT `challenget_log_id`, `workout_challenges_workout_challenge_id` FROM `user_challenge_cmplt_log` WHERE `users_username` = '$user_loggedin_username'";
+    $query = "SELECT `challenge_log_id`, `workout_challenges_workout_challenge_id` FROM `user_challenge_cmplt_log` WHERE `users_username` = '$user_loggedin_username'";
 
     $result = $dbconn->query($query);
 
@@ -177,32 +179,32 @@ try {
         }
     }
 
-    // if user_current_fp_xp is  null / blank / 0, set 0 as value to avoid DIV/0 error, else calculate the fp xp progression rate
-    if (is_null($user_current_fp_xp) || !isset($user_current_fp_xp) || $user_current_fp_xp == 0) $fp_xp_progression_rate = 1;
-    else $fp_xp_progression_rate = ($user_current_fp_xp / $goal_fp_xp) * 100; // get the progression rate (%) of the current fp xp to the goal fp xp (progress bar)
-
     // if user_current_fp_xp is null / blank / 0, set it to 1 so that we can get the nearest goal_fp_xp
     if (is_null($user_current_fp_xp) || !isset($user_current_fp_xp) || $user_current_fp_xp == 0) $goal_fp_xp = get_thousands_xp(1, 1000); // pass xp value of 1 to get the thousannd tier
     else $goal_fp_xp = get_thousands_xp($user_current_fp_xp, 1000); // xp is tiered/leveled at a factor of 1000 per level
+
+    // if user_current_fp_xp is  null / blank / 0, set 0 as value to avoid DIV/0 error, else calculate the fp xp progression rate
+    if (is_null($user_current_fp_xp) || !isset($user_current_fp_xp) || $user_current_fp_xp == 0) $fp_xp_progression_rate = 1;
+    else $fp_xp_progression_rate = ($user_current_fp_xp / $goal_fp_xp) * 100; // get the progression rate (%) of the current fp xp to the goal fp xp (progress bar)
 
 
     // assign user details to the user pro
     $final_output = <<<_END
     <style>
         .display-profile-img-container {
-            background: url('../../../../../media/profiles/$usrdetails_profile_img_url');
+            background: url('../media/profiles/$usrdetails_profile_img_url');
             background-repeat: no-repeat;
             background-position: center; 
             background-attachment: local; 
             background-clip: content-box; 
-            background-size: cover;
-            border-radius: 50%;
+            background-size: contain;
+            border-radius: 25px;
             height: 150px;
             width: 150px;
             overflow: hidden; 
         }
         .display-profile-banner-container {
-            background-image: url('../../../../../media/profiles/$usrdetails_profile_banner_url');
+            background-image: url('../media/profiles/$usrdetails_profile_banner_url');
         }
     </style>
     <div style="background-color: rgba(52, 52, 52, 0.8);">
@@ -280,7 +282,27 @@ try {
         </div>
         <!-- ./ main buttons for interacting with user post -->
         <hr class="text-white"/>
-        <!-- user detailed progression list -->
+        <!-- $usrdetails_name's fitness progression progress bar -->
+        <div class="p-4 my-0 d-grid align-items-center" id="user-fp-xp-bar" style="background-color: rgb(255 165 0 / 80%);border-radius:25px 25px 0 0;">
+            <!-- rgba(52, 52, 52, 0.8) -->
+            <!-- $usrdetails_name's fitness progression progress bar -->
+            <div id="fitness-progression-progress-bar">
+                <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle" style="color: #fff;">data_exploration</span> <span class="align-middle">Fitness Progression</span></h5>
+                <div class="progress mt-4 bg-white" style="height: 20px;">
+                    <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: $fp_xp_progression_rate%; background-color: #343434 !important; border-right: #ffa500 10px solid;" aria-valuenow="$fp_xp_progression_rate" aria-valuemin="$user_current_fp_xp" aria-valuemax="$goal_fp_xp"></div>
+                </div>
+                <div class="row mt-2" style="margin-bottom: 60px;">
+                    <div class="col text-start comfortaa-font" style="font-size: 12px;">
+                        Current XP <strong>($user_current_fp_xp)</strong>
+                    </div>
+                    <div class="col text-end comfortaa-font" style="font-size: 12px;">
+                        Target XP <strong>($goal_fp_xp)</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./ $usrdetails_name's fitness progression progress bar -->
+        <!-- user detailed progression list - user info -->
         <ol class='list-group list-group-numberedz list-group-flush p-4' style="background-color: rgba(52, 52, 52, 0.8);border-radius:25px;">
             <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
                 <div class='ms-2 me-auto'>
@@ -334,87 +356,13 @@ try {
             </li>
         </ol>
         <hr class="text-white"/>
-        <!-- $usrdetails_name's fitness progression progress bar -->
-        <div class="p-4 my-0 d-grid align-items-center" id="user-fp-xp-bar" style="background-color: rgb(255 165 0 / 80%);border-radius:25px 25px 0 0;">
-            <!-- rgba(52, 52, 52, 0.8) -->
-            <!-- $usrdetails_name's fitness progression progress bar -->
-            <div id="fitness-progression-progress-bar">
-                <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle" style="color: #fff;">data_exploration</span> <span class="align-middle">Fitness Progression</span></h5>
-                <div class="progress mt-4 bg-white" style="height: 20px;">
-                    <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: $fp_xp_progression_rate%; background-color: #343434 !important; border-right: #ffa500 10px solid;" aria-valuenow="$fp_xp_progression_rate" aria-valuemin="$user_current_fp_xp" aria-valuemax="$goal_fp_xp"></div>
-                </div>
-                <div class="row mt-2" style="margin-bottom: 60px;">
-                    <div class="col text-start comfortaa-font" style="font-size: 12px;">
-                        Current XP <strong>($user_current_fp_xp)</strong>
-                    </div>
-                    <div class="col text-end comfortaa-font" style="font-size: 12px;">
-                        Target XP <strong>($goal_fp_xp)</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ./ $usrdetails_name's fitness progression progress bar -->
-        <div class="text-center p-4" style="background-color: rgba(52, 52, 52, 0.8);" hidden aria-hidden="tru">
-            <img src="../../../../../media/assets/One-Symbol-Logo-Orange.svg" class="img-fluid" style="height: 50px;"/>
+        <div class="text-center p-4" style="background-color: rgba(52, 52, 52, 0.8);" hidden aria-hidden="true">
+            <img src="../media/assets/One-Symbol-Logo-Orange.svg" class="img-fluid" style="height: 50px;"/>
         </div>
     </div>
     _END;
 
-    // echo $final_output;
+    echo $final_output;
 } catch (\Throwable $th) {
     throw $th;
 }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<!--  class="bg-transparent" -->
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <title>Onefit.app&trade; | Onefit.Net&reg; &copy; <?php echo date('Y'); ?></title>
-
-    <!--fontawesome-->
-    <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
-
-    <!-- Google Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-
-    <!-- Plyr.io Media Player -->
-    <link rel="stylesheet" href="https://cdn.plyr.io/1.8.2/plyr.css">
-
-    <!-- Plry.io JS CDN -->
-    <script src="https://cdn.plyr.io/1.8.2/plyr.js"></script>
-    <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-
-    <!-- W3 CSS -->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-
-    <!-- My CSS styles -->
-    <link rel="stylesheet" href="../../../../../css/styles.css" />
-    <link rel="stylesheet" href="../../../../../css/digital-clock.css" />
-    <link rel="stylesheet" href="../../../../../css/timeline-styles.css" />
-
-    <!-- Site Scripts -->
-    <!-- <script src="../scripts/js/script.js"></script>
-    <script src="../scripts/js/api_requests.js"></script> -->
-
-    <!-- ./ Site Scripts -->
-
-    <!-- JQuery CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</head>
-
-<body class="bg-transparent p-0 no-scroller noselect">
-    <div class="container-fluid p-0">
-        <?php echo $final_output; ?>
-    </div>
-</body>
-
-</html>
