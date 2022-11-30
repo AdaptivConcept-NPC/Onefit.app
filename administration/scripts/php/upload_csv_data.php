@@ -48,21 +48,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $category_class_name = $getData[2];
 
                 // If user category/class exists in the database with the same category_class_code
-                $query = "SELECT * FROM `category_class` WHERE `category_class_code` = '" . $getData[1] . "'";
+                $query = "SELECT * FROM `category_class` WHERE `category_class_code` = '$category_class_code'";
 
                 $check = mysqli_query($dbconn, $query);
 
                 if ($check->num_rows > 0) {
                     // update the existing record with the new data/values
                     mysqli_query($dbconn, "UPDATE `category_class` 
-                SET `category_class_code`='$category_class_code',`category_class_name`='$category_class_name' 
-                WHERE `category_class_code` = '$category_class_code'");
+                    SET `category_class_code`='$category_class_code',`category_class_name`='$category_class_name' 
+                    WHERE `category_class_code` = '$category_class_code'");
                 } else {
                     // insert/create a new record 
                     mysqli_query($dbconn, "INSERT INTO `category_class`
-                (`category_class_id`, `category_class_code`, `category_class_name`) 
-                VALUES 
-                (null,'$category_class_code','$category_class_name')" . $getData[1] . "'");
+                    (`category_class_id`, `category_class_code`, `category_class_name`) 
+                    VALUES 
+                    (null,'$category_class_code','$category_class_name')");
                 }
             }
 

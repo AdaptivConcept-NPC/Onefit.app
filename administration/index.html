@@ -107,7 +107,7 @@
             </div>
             <div class="tab-pane fade" id="pills-workoutmgmt" role="tabpanel" aria-labelledby="pills-workoutmgmt-tab"
                 tabindex="0">
-                <!-- upload bulk csv file -->
+                <!-- upload bulk csv file - Categories / Classes -->
                 <form id="csv-bulk-upload-form" name="csv-bulk-upload-form" class="my-4"
                     action="scripts/php/upload_csv_data.php" method="post" enctype="multipart/form-data">
                     <!-- Form Name -->
@@ -115,18 +115,61 @@
 
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFileInput"
-                                aria-describedby="customFileInput" name="csvfile" type="file">
-                            <label class="custom-file-label" for="customFileInput"></label>
+                            <input type="file" class="custom-file-input" id="csvfile-category_class"
+                                aria-describedby="lbl-csvfile-category_class" name="csvfile-category_class" type="file">
+                            <label id="lbl-csvfile-category_class" class="custom-file-label"
+                                for="csvfile-category_class"></label>
                         </div>
                         <div class="input-group-append">
-                            <input type="submit" name="submit" value="Upload CSV file" class="btn btn-primary">
+                            <input type="submit" name="submit" value="Upload Categories/Classes Data CSV file"
+                                class="btn btn-primary">
                         </div>
                     </div>
                 </form>
-                <!-- ./ upload bulk csv file -->
+                <!-- ./ upload bulk csv file - Categories / Classes -->
 
-                <!-- capture workout -->
+                <!-- upload bulk csv file - Workouts Information -->
+                <form id="csv-bulk-upload-form" name="csv-bulk-upload-form" class="my-4"
+                    action="scripts/php/upload_csv_data.php" method="post" enctype="multipart/form-data">
+                    <!-- Form Name -->
+                    <legend>Bulk CSV Upload - Workouts Information</legend>
+
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="csvfile-workout_info"
+                                aria-describedby="lbl-csvfile-workout_info" name="csvfile-workout_info" type="file">
+                            <label id="lbl-csvfile-workout_info" class="custom-file-label"
+                                for="csvfile-workout_info"></label>
+                        </div>
+                        <div class="input-group-append">
+                            <input type="submit" name="submit" value="Upload Workout Data CSV file"
+                                class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
+                <!-- ./ upload bulk csv file - Workouts Information -->
+
+                <!-- upload bulk csv file - Exercises -->
+                <form id="csv-bulk-upload-form" name="csv-bulk-upload-form" class="my-4"
+                    action="scripts/php/upload_csv_data.php" method="post" enctype="multipart/form-data">
+                    <!-- Form Name -->
+                    <legend>Bulk CSV Upload - Exercises</legend>
+
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="csvfile-exercises"
+                                aria-describedby="lbl-csvfile-exercises" name="csvfile-exercises" type="file">
+                            <label id="lbl-csvfile-exercises" class="custom-file-label" for="csvfile-exercises"></label>
+                        </div>
+                        <div class="input-group-append">
+                            <input type="submit" name="submit" value="Upload Exercise Data CSV file"
+                                class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
+                <!-- ./ upload bulk csv file - Exercises -->
+
+                <!-- capture workouts -->
                 <form id="capture-workout-form" name="capture-workout-form" class="form-horizontal">
                     <fieldset>
 

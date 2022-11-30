@@ -955,7 +955,11 @@ if (isset($_SESSION["currentUserAuth"])) {
 </head>
 
 <body class="noselect" onload="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
-    <!--  -->
+    <!-- Notification Snackbar (mini) -->
+    <button class="btn btn-primary btn-lg" onclick="showSnackbar('notification message here...')">Show Snackbar</button>
+    <!-- The actual snackbar -->
+    <div id="snackbar">No notification.</div>
+
     <!-- Load Curtain -->
     <div class="load-curtain" id="LoadCurtain" style="display: block;">
         <!-- twitter social panel -->

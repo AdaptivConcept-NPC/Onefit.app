@@ -10,7 +10,7 @@ $output = $gridContainerItems = null;
 // function to list the files and sub-directories in a specified root directory
 function listDirectory($path)
 {
-    global $gridContainerItems;
+    global $output, $gridContainerItems;
     $items = scandir($path);
 
     foreach ($items as $item) {
@@ -80,8 +80,24 @@ function listDirectory($path)
             }
         }
     }
+
+    $output = $gridContainerItems;
+    echo $output;
+}
+
+switch ($dirPath) {
+    case 'shared':
+        listDirectory("../../../../../media/profiles/$currentUser_Usrnm/shared_media");
+        break;
+    case 'private':
+        listDirectory("../../../../../media/profiles/$currentUser_Usrnm/private_media");
+        break;
+    case 'videos':
+        listDirectory("../../../../../media/profiles/$currentUser_Usrnm/video_media");
+        break;
+
+    default:
+        break;
 }
 
 // listDirectory($dirPath);
-$output = $gridContainerItems;
-echo $output;

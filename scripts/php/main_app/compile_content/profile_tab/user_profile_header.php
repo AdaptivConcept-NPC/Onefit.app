@@ -180,11 +180,11 @@ try {
     }
 
     // if user_current_fp_xp is null / blank / 0, set it to 1 so that we can get the nearest goal_fp_xp
-    if (is_null($user_current_fp_xp) || !isset($user_current_fp_xp) || $user_current_fp_xp == 0) $goal_fp_xp = get_thousands_xp(1, 1000); // pass xp value of 1 to get the thousannd tier
+    if (is_null($user_current_fp_xp) || !isset($user_current_fp_xp) || $user_current_fp_xp === 0) $goal_fp_xp = get_thousands_xp(1, 1000); // pass xp value of 1 to get the thousannd tier
     else $goal_fp_xp = get_thousands_xp($user_current_fp_xp, 1000); // xp is tiered/leveled at a factor of 1000 per level
 
     // if user_current_fp_xp is  null / blank / 0, set 0 as value to avoid DIV/0 error, else calculate the fp xp progression rate
-    if (is_null($user_current_fp_xp) || !isset($user_current_fp_xp) || $user_current_fp_xp == 0) $fp_xp_progression_rate = 1;
+    if (is_null($user_current_fp_xp) || !isset($user_current_fp_xp) || $user_current_fp_xp === 0) $fp_xp_progression_rate = 1;
     else $fp_xp_progression_rate = ($user_current_fp_xp / $goal_fp_xp) * 100; // get the progression rate (%) of the current fp xp to the goal fp xp (progress bar)
 
 

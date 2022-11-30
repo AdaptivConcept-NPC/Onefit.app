@@ -65,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       mkdir($dir_path . "/profile_banners", 0777, true);
       mkdir($dir_path . "/shared_media", 0777, true);
       mkdir($dir_path . "/private_media", 0777, true);
+      mkdir($dir_path . "/video_media", 0777, true);
 
       echo "User media folder created successfully";
     } else {
