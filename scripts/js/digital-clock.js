@@ -2,6 +2,7 @@ $(function () {
 
     // Cache some selectors
 
+    // main clock
     var clock = $('#clock'),
         alarm = clock.find('.alarm'),
         ampm = clock.find('.ampm');
@@ -20,6 +21,7 @@ $(function () {
     // Generate the digits with the needed markup,
     // and add them to the clock
 
+    // main digit holder
     var digit_holder = clock.find('.digits');
 
     $.each(positions, function () {
@@ -49,6 +51,7 @@ $(function () {
     var weekday_names = 'MON TUE WED THU FRI SAT SUN'.split(' '),
         weekday_holder = clock.find('.weekdays');
 
+    // main
     $.each(weekday_names, function () {
         weekday_holder.append('<span>' + this + '</span>');
     });
@@ -99,6 +102,7 @@ $(function () {
 
     // Switch the theme
 
+    // main
     $('a.button').click(function () {
         clock.toggleClass('light dark');
     });

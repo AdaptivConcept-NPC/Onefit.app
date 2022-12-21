@@ -1082,7 +1082,7 @@ function getCommunityNews()
 function getCommunityResources()
 {
     global $dbconn, $resourceid, $resource_title, $resource_descr, $resource_type, $resource_link, $sharedbyUsername, $sharedate, $openlinkbtn, $outputCommunityResources, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
-
+    $group_ref = "";
     //fitness resources (latest 50 resources)
     $sql = "SELECT * FROM community_resources";
 
@@ -1095,8 +1095,9 @@ function getCommunityResources()
             $resource_descr = $row["resource_description"];
             $resource_type = $row["resource_type"];
             $resource_link = $row["resource_link"];
-            $sharedbyUsername = $row["shared_by"];
+            $sharedbyUsername = $row["users_username"];
             $sharedate = $row["share_date"];
+            $group_ref = $row["share_date"];
 
             if ($resource_type == "external link") {
                 $openlinkbtn = '<button class="null-btn shadow" type="button" onclick="openExtLink(' . "'" . $resource_link . "'" . ')"><i class="fas fa-link"></i> Follow link</button>';
@@ -1153,7 +1154,7 @@ function getCommunityUpdates()
 
     //community posts (latest 50 posts)
     $sql = "SELECT * FROM community_posts cp 
-    INNER JOIN users u ON cp.username = u.username
+    INNER JOIN users u ON cp.users_username = u.username
     INNER JOIN general_user_profiles gup ON u.username = gup.users_username;";
 
     if ($result = mysqli_query($dbconn, $sql)) {
@@ -1308,7 +1309,8 @@ function getAllUsers()
 
     //loading: Discover (load max of 50 records)
     //People
-    $sql = "SELECT * FROM users u INNER JOIN general_user_profiles gup ON u.username = gup.users_username;";
+    $sql = "SELECT * FROM users u 
+    INNER JOIN general_user_profiles gup ON u.username = gup.users_username;";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 
@@ -1424,110 +1426,7 @@ function getAllUsers()
 
     return $output;
 }
-function getFitProgramsIndi()
-{
-    global $dbconn, $indi_programs_progid, $indi_programs_refcode, $indi_programs_title, $indi_programs_description, $indi_programs_duration, $indi_programs_category, $indi_programs_privacy, $indi_programs_creator, $indi_programs_active, $discoverIndiProgramsList, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
 
-    //Programs
-    //$sql = "SELECT * FROM training_programs tp INNER JOIN program_activities pa ON tp.program_ref_code = pa.program_ref_code;";
-    $sql = "SELECT * FROM training_programs;";
-
-    if ($result = mysqli_query($dbconn, $sql)) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            //TP: `program_id`, `program_ref_code`, `program_title`, `program_description`, `program_duration`, `program_category`, `program_privacy`, `created_by`, `creation_date`, `active` 
-            //PA: `prog_activity_id`, `activity_title`, `activity_description`, `activity_duration`, `activity_reps`, `activity_sets`, `achievement_id`, `program_ref_code`
-            $indi_programs_progid = $row["program_id"];
-            $indi_programs_refcode = $row["program_ref_code"];
-            $indi_programs_title = $row["program_title"];
-            $indi_programs_description = $row["program_description"];
-            $indi_programs_duration = $row["program_duration"];
-            $indi_programs_category = $row["program_category"];
-            $indi_programs_privacy = $row["program_privacy"];
-            $indi_programs_creator = $row["created_by"];
-            $indi_programs_active = $row["active"];
-
-            /*$programs_activityid = $row["prog_activity_id"];
-            $programs_activitytitle = $row["activity_title"];
-            $programs_activityduration = $row["activity_duration"];*/
-
-            $discoverIndiProgramsList .= '
-            <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="discover_programs-' . $indi_programs_progid . '-' . $indi_programs_refcode . '">
-                <div class="card bg-transparent">
-                    <div class="card-body">
-                        <h3 class="card-title">' . $indi_programs_title . ' <span style="font-size: 10px">(' . $indi_programs_privacy . ')</span></h3>
-                        <p class="card-subtitle ">Trainer: @' . $indi_programs_creator . '</p>
-                        <p class="card-text">' . $indi_programs_description . '</p>
-                        <div class="text-center">
-                        <button class="null-btn m-4 shadow" onclick="openProgram(' . "'" . $indi_programs_refcode . "'" . ')"><i class="fas fa-chevron-circle-right"></i> View program</button>
-                        </div>
-                    </div>
-                </div>
-            </div>';
-        }
-
-        $output = $discoverIndiProgramsList;
-    } else {
-        $output_msg = "|[System Error]|:. [Discover load (All Groups) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
-        //exit();
-
-        $output = $app_err_msg;
-    }
-
-    return $output;
-}
-function getFitProgramsTeams()
-{
-    global $dbconn, $team_programs_progid, $team_programs_refcode, $team_programs_title, $team_programs_description, $team_programs_duration, $team_programs_category, $team_programs_privacy, $team_programs_creator, $team_programs_active, $discoverTeamProgramsList, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
-
-    //Programs
-    //$sql = "SELECT * FROM training_programs tp INNER JOIN program_activities pa ON tp.program_ref_code = pa.program_ref_code;";
-    $sql = "SELECT * FROM training_programs;";
-
-    if ($result = mysqli_query($dbconn, $sql)) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            //TP: `program_id`, `program_ref_code`, `program_title`, `program_description`, `program_duration`, `program_category`, `program_privacy`, `created_by`, `creation_date`, `active` 
-            //PA: `prog_activity_id`, `activity_title`, `activity_description`, `activity_duration`, `activity_reps`, `activity_sets`, `achievement_id`, `program_ref_code`
-            $team_programs_progid = $row["program_id"];
-            $team_programs_refcode = $row["program_ref_code"];
-            $team_programs_title = $row["program_title"];
-            $team_programs_description = $row["program_description"];
-            $team_programs_duration = $row["program_duration"];
-            $team_programs_category = $row["program_category"];
-            $team_programs_privacy = $row["program_privacy"];
-            $team_programs_creator = $row["created_by"];
-            $team_programs_active = $row["active"];
-
-            /*$programs_activityid = $row["prog_activity_id"];
-            $programs_activitytitle = $row["activity_title"];
-            $programs_activityduration = $row["activity_duration"];*/
-
-            $discoverTeamProgramsList .= '
-            <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="discover_programs-' . $team_programs_progid . '-' . $team_programs_refcode . '">
-                <div class="card bg-transparent">
-                <div class="card-body">
-                    <h3 class="card-title">' . $team_programs_title . ' <span style="font-size: 10px">(' . $team_programs_privacy . ')</span></h3>
-                    <p class="card-subtitle ">Trainer: @' . $team_programs_creator . '</p>
-                    <p class="card-text">' . $team_programs_description . '</p>
-                    <div class="text-center">
-                    <button class="null-btn m-4 shadow" onclick="openProgram(' . "'" . $team_programs_refcode . "'" . ')"><i class="fas fa-chevron-circle-right"></i> View program</button>
-                    </div>
-                </div>
-                </div>
-            </div>';
-        }
-
-        $output = $discoverTeamProgramsList;
-    } else {
-        $output_msg = "|[System Error]|:. [Discover load (All Groups) - " . mysqli_error($dbconn) . "]";
-        $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
-        //exit();
-
-        $output = $app_err_msg;
-    }
-
-    return $output;
-}
 function getAllTrainees()
 {
     global $dbconn, $usrs_userid, $usrs_username, $usrs_name, $usrs_surname, $usrs_idnumber, $usrs_email, $usrs_contact, $usrs_dob, $usrs_gender, $usrs_race, $usrs_nationality, $usrs_acc_active, $activitiesTraineesList, $usrs_prof_acctype, $currentUser_Usrnm, $output, $output_msg, $app_err_msg, $usr_profileid, $usr_about, $usr_profiletype, $usr_profilepicurl, $usr_verification;
@@ -1540,7 +1439,9 @@ function getAllTrainees()
 
     //loading: Discover (load max of 50 records)
     //People
-    $sql = "SELECT * FROM users u INNER JOIN general_user_profiles gup ON u.username = gup.users_username;";
+    $sql = "SELECT * FROM users u 
+    INNER JOIN general_user_profiles gup ON u.username = gup.users_username 
+    WHERE gup.profile_type = 'community_trainee' OR gup.profile_type = 'pro_trainee'";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 
@@ -1615,7 +1516,7 @@ function getAllTrainees()
 
         $output = $activitiesTraineesList;
     } else {
-        $output_msg = "|[System Error]|:. [Discover load (All People) - " . mysqli_error($dbconn) . "]";
+        $output_msg = "|[System Error]|:. [Discover load (All Trainees) - " . mysqli_error($dbconn) . "]";
         $app_err_msg = '<div class="application-error-msg shadow d-grid gap-2"><h3 style="color: red">An error has occured</h3><p>It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport(' . "'" . $currentUser_Usrnm . "'" . ',' . "'" . $output_msg . "'" . ')">support</a></p><div class="application-error-msg-output" style="font-size: 10px">' . $output_msg . '</div></div>';
         //exit();
 
@@ -1636,7 +1537,9 @@ function getAllTrainers()
 
     //loading: Discover (load max of 50 records)
     //People
-    $sql = "SELECT * FROM users u INNER JOIN general_user_profiles gup ON u.username = gup.users_username;";
+    $sql = "SELECT * FROM users u 
+    INNER JOIN general_user_profiles gup ON u.username = gup.users_username 
+    WHERE gup.profile_type = 'community_trainer' OR gup.profile_type = 'pro_trainer'";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 

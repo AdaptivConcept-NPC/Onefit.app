@@ -93,8 +93,8 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // get the discovery content
         $discoveryAllUsersList = getAllUsers();
-        $discoveryFitProgsIndi = getFitProgramsIndi();
-        $discoveryFitProgsTeams = getFitProgramsTeams();
+        // $discoveryFitProgsIndi = getFitProgramsIndi();
+        // $discoveryFitProgsTeams = getFitProgramsTeams();
         $discoveryAllTrainees = getAllTrainees();
         $discoveryAllTrainers = getAllTrainers();
 
@@ -439,7 +439,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 setTimeout(function() {
                     $.ajax({
                         type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_heartrate.php',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_heartrate.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -476,7 +476,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 setTimeout(function() {
                     $.ajax({
                         type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bodytemp.php',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_bodytemp.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -514,7 +514,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 setTimeout(function() {
                     $.ajax({
                         type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_speed.php',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_speed.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -552,7 +552,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 setTimeout(function() {
                     $.ajax({
                         type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bmiweight.php',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_bmiweight.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -591,7 +591,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 setTimeout(function() {
                     $.ajax({
                         type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_heartrate.php',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_heartrate.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -628,7 +628,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 setTimeout(function() {
                     $.ajax({
                         type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bodytemp.php',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_bodytemp.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -666,7 +666,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 setTimeout(function() {
                     $.ajax({
                         type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_speed.php',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_speed.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -704,7 +704,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 setTimeout(function() {
                     $.ajax({
                         type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bmiweight.php',
+                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_bmiweight.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -958,7 +958,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- Notification Snackbar (mini) -->
     <button class="btn btn-primary btn-lg" onclick="showSnackbar('notification message here...')">Show Snackbar</button>
     <!-- The actual snackbar -->
-    <div id="snackbar">No notification.</div>
+    <div id="snackbar" class="shadow p-4"><span class="material-icons material-icons-round align-middle" style="font-size: 24px !important"> notifications </span>No notification.</div>
 
     <!-- Load Curtain -->
     <div class="load-curtain" id="LoadCurtain" style="display: block;">
@@ -4619,7 +4619,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                             <hr class="text-white">
 
-                                            <form id="single-heartrate-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_heartrate.php" autocomplete="off">
+                                            <form id="single-heartrate-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_heartrate.php" autocomplete="off">
                                                 <div class="output-container my-2" id="output-container">
                                                     <!--<?php echo $output; ?>-->
                                                 </div>
@@ -4724,7 +4724,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                             <hr class="text-white">
 
-                                            <form id="single-bodytemp-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bodytemp.php" autocomplete="off">
+                                            <form id="single-bodytemp-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_bodytemp.php" autocomplete="off">
                                                 <div class="output-container my-2" id="output-container">
                                                     <!--<?php echo $output; ?>-->
                                                 </div>
@@ -4827,7 +4827,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                             <hr class="text-white">
 
-                                            <form id="single-speed-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_speed.php" autocomplete="off">
+                                            <form id="single-speed-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_speed.php" autocomplete="off">
                                                 <div class="output-container my-2" id="output-container">
                                                     <!--<?php echo $output; ?>-->
                                                 </div>
@@ -4964,7 +4964,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                             <hr class="text-white">
 
-                                            <form id="single-weight-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bmiweight.php" autocomplete="off">
+                                            <form id="single-weight-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_bmiweight.php" autocomplete="off">
                                                 <div class="output-container my-2" id="output-container">
                                                     <!--<?php echo $output; ?>-->
                                                 </div>
@@ -8336,7 +8336,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                         <!-- Widget: Digital Clock -->
                         <!-- Digital Clock -->
-                        <div id="clock" class="dark my-4 shadow">
+                        <div id="clock-widget" class="dark my-4 shadow">
                             <div class="display no-scroller">
                                 <div class="weekdays"></div>
                                 <div class="ampm"></div>
@@ -9164,7 +9164,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                         <hr class="text-white">
 
-                                        <form id="modal-heartrate-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_heartrate.php" autocomplete="off">
+                                        <form id="modal-heartrate-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_heartrate.php" autocomplete="off">
                                             <div class="output-container my-2" id="output-container">
                                                 <!--<?php echo $output; ?>-->
                                             </div>
@@ -9251,7 +9251,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                         <hr class="text-white">
 
-                                        <form id="modal-bodytemp-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bodytemp.php" autocomplete="off">
+                                        <form id="modal-bodytemp-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_bodytemp.php" autocomplete="off">
                                             <div class="output-container my-2" id="output-container">
                                                 <!--<?php echo $output; ?>-->
                                             </div>
@@ -9337,7 +9337,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                         <hr class="text-white">
 
-                                        <form id="modal-speed-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_speed.php" autocomplete="off">
+                                        <form id="modal-speed-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_speed.php" autocomplete="off">
                                             <div class="output-container my-2" id="output-container">
                                                 <!--<?php echo $output; ?>-->
                                             </div>
@@ -9448,7 +9448,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                         <hr class="text-white">
 
-                                        <form id="modal-weight-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_bmiweight.php" autocomplete="off">
+                                        <form id="modal-weight-insights-activitytracker-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/general_data/user_capture_stats_bmiweight.php" autocomplete="off">
                                             <div class="output-container my-2" id="output-container">
                                                 <!--<?php echo $output; ?>-->
                                             </div>
@@ -10832,7 +10832,9 @@ if (isset($_SESSION["currentUserAuth"])) {
         }
     </script>
 
+    <!-- Digital Clock -->
     <script src="../scripts/js/digital-clock.js"></script>
+    <script src="../scripts/js/digital-clock-widget.js"></script>
 
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
