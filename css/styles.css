@@ -1719,7 +1719,7 @@ div.horizontal-scroll-card-nav {
   overflow: hidden;
 }
 
-/* Snackbar styling - https://www.w3schools.com/howto/howto_js_snackbar.asp*/
+/* Snackbar styling */
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
   visibility: hidden;
@@ -1805,18 +1805,6 @@ div.horizontal-scroll-card-nav {
     bottom: 0;
     opacity: 0;
   }
-}
-
-/* Activity Calender */
-/* .calender-day-td {
-  transition: color .3s, background-color .3s;
-} */
-
-.calender-day-td:hover {
-  /* border-radius: 50rem !important; */
-  transition: .3s;
-  color: var(--white) !important;
-  background-color: var(--mineshaft) !important;
 }
 
 /*Animations Only!*/

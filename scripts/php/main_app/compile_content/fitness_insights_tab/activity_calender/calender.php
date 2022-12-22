@@ -33,7 +33,7 @@ $startday = $thismonth['wday'];
 for ($i = 0; $i < ($maxday + $startday); $i++) {
     if (($i % 7) == 0) $output .= '<tr>';
     if ($i < $startday) $output .= '<td></td>';
-    else $output .= '<td class="calender-day-td" align="center" valign="middle" height="20px" onclick="viewEvent(' . "'" . $cYear . "/" . $cMonth . "/" . ($i - $startday + 1) . "'" . ')">' . ($i - $startday + 1) . '</td>';
+    else $output .= '<td align="center" valign="middle" height="20px" onclick="openForm(' . "'" . $cYear . "/" . $cMonth . "/" . ($i - $startday + 1) . "'" . ')">' . ($i - $startday + 1) . '</td>';
     if (($i % 7) == 6) $output .= '</tr>';
 }
 

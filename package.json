@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "chart.js": "^3.9.1",
-    "git-filter-repo": "^0.0.30"
+    "chart.js": "^3.9.1"
   }
 }

@@ -1,5 +1,0 @@
-# ignore ALL .log files
-*.log
-
-# ignore media folder as it is too big for upload to the server
-media/
