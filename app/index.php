@@ -955,6 +955,13 @@ if (isset($_SESSION["currentUserAuth"])) {
 </head>
 
 <body class="noselect" onload="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
+    <!-- imbaChat plugin code/api: -->
+    <script src="https://api.imbachat.com/imbachat/v1/20525/widget"></script>
+    <script>
+        window.imbaApi.load();
+    </script>
+
+
     <!-- Notification Snackbar (mini) -->
     <button class="btn btn-primary btn-lg" onclick="showSnackbar('notification message here...')">Show Snackbar</button>
     <!-- The actual snackbar -->
@@ -7709,7 +7716,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <h1 class="fs-1 fw-bold rounded-pill p-4 text-center my-4">Stream library – Live stream recording history (Community and Private)</h1> -->
 
                     <!-- inline/flex media tab subtabs controller btns -->
-                    <div id="inline-media-content-tab-btns" class="d-grid justify-content-center w3-animate-bottom p-2 sticky-top" style="background: #333; border-radius: 25px; overflow: hidden;">
+                    <div id="inline-media-content-tab-btns" class="d-grid justify-content-center w3-animate-bottom p-2 sticky-topz" style="background: #333; border-radius: 25px; overflow: hidden;">
                         <style>
                             .force-inline-nav {
                                 flex-wrap: nowrap !important;
