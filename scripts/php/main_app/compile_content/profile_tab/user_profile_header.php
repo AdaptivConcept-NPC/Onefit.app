@@ -223,7 +223,7 @@ try {
         </div>
         <!--<hr class='text-white' />-->
         <!-- main buttons for interacting with user profile -->
-        <div class="d-flex justify-content-around align-items-center p-4" style="background-color: #343434;border-radius:0 0 25px 25px;">
+        <div class="d-flex justify-content-around align-items-center p-4 mx-2" style="background-color: #343434;border-radius:0 0 25px 25px;">
             <!--  -->
             <button type="button"
                 class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
@@ -283,7 +283,7 @@ try {
         <!-- ./ main buttons for interacting with user post -->
         <hr class="text-white"/>
         <!-- $usrdetails_name's fitness progression progress bar -->
-        <div class="p-4 my-0 d-grid align-items-center" id="user-fp-xp-bar" style="background-color: rgb(255 165 0 / 80%);border-radius:25px 25px 0 0;">
+        <div class="p-4 my-0 mx-2 d-grid align-items-center" id="user-fp-xp-bar" style="background-color: rgb(255 165 0 / 80%);border-radius:25px 25px 0 0;padding-bottom:40px!important;">
             <!-- rgba(52, 52, 52, 0.8) -->
             <!-- $usrdetails_name's fitness progression progress bar -->
             <div id="fitness-progression-progress-bar">
@@ -300,10 +300,26 @@ try {
                     </div>
                 </div>
             </div>
+            <!-- Insight Summary Chart placeholders -->
+            <div class="row align-items-center">
+                <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle" style="color: #fff;">insights</span> <span class="align-middle">Fitness Summary</span></h5>
+                <div class="col-md-8 rounded" style="overflow: hidden">
+                    <img src="../media/assets/chartjs_profletab_analytics chart_example_line.png" class="img-fluid" alt="chart placeholder - line chart" srcset="" style="border-radius: 25px !important">
+                </div>
+                <div class="col-md">
+                    <img src="../media/assets/chartjs_profletab_analytics chart_example_polar_area.png" class="img-fluid" alt="chart placeholder - polar area chart" srcset="" style="border-radius: 25px !important">
+                </div>
+            </div>
+            <!-- ./ Insight Summary Chart placeholders -->
+            <!-- Trainer notes (open diary model and focus on trainer notes section) -->
+            <div class="d-grid mt-5">
+                <button class="onefit-buttons-style-dark p-4"><span class="material-icons material-icons-outlined align-middle" style="color: #fff;">speaker_notes</span> Trainer Notes</button>
+            </div>
+            <!-- ./ Trainer notes (open diary model and focus on trainer notes section) -->
         </div>
         <!-- ./ $usrdetails_name's fitness progression progress bar -->
         <!-- user detailed progression list - user info -->
-        <ol class='list-group list-group-numberedz list-group-flush p-4' style="background-color: rgba(52, 52, 52, 0.8);border-radius:25px;">
+        <ol class='list-group list-group-numberedz list-group-flush p-4 mx-2' style="background-color: rgba(52, 52, 52, 1);border-radius:25px;margin-top:-25px;">
             <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
                 <div class='ms-2 me-auto'>
                     <div class='fw-bold users-name-tag fs-5 mb-2' style='color: #ffa500'>
@@ -356,7 +372,7 @@ try {
             </li>
         </ol>
         <hr class="text-white"/>
-        <div class="text-center p-4" style="background-color: rgba(52, 52, 52, 0.8);" hidden aria-hidden="true">
+        <div class="text-center p-4 mx-2" style="background-color: rgba(52, 52, 52, 0.8);" hidden aria-hidden="true">
             <img src="../media/assets/One-Symbol-Logo-Orange.svg" class="img-fluid" style="height: 50px;"/>
         </div>
     </div>

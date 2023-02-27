@@ -625,7 +625,7 @@ h6 {
   color: var(--tahitigold) !important;
   border-bottom: solid var(--tahitigold) 5px;
 
-  transform: scale(1.05, 1.05);
+  transform: scale(1.02, 1.02);
 }
 
 .onefit-buttons-style-light:active {
@@ -671,7 +671,7 @@ h6 {
 .onefit-buttons-style-dark:hover {
   color: var(--tahitigold) !important;
   border-bottom: solid var(--tahitigold) 5px;
-  transform: scale(1.05, 1.05);
+  transform: scale(1.02, 1.02);
 }
 
 .onefit-buttons-style-dark:active {
@@ -722,7 +722,7 @@ h6 {
 .onefit-buttons-style-tahiti:hover {
   color: var(--white) !important;
   border-bottom: solid var(--white) 5px;
-  transform: scale(1.05, 1.05);
+  transform: scale(1.02, 1.02);
 }
 
 .onefit-buttons-style-tahiti:active {
@@ -743,7 +743,7 @@ h6 {
 .onefit-buttons-style-danger:hover {
   color: var(--white) !important;
   border-bottom: solid var(--white) 5px;
-  transform: scale(1.1, 1.1);
+  transform: scale(1.02, 1.02);
 }
 
 .onefit-buttons-style-danger:active {
@@ -869,7 +869,7 @@ h6 {
   background: rgb(232, 138, 4);
   background: linear-gradient(180deg, rgba(232, 138, 4, 1) 0%, rgba(52, 52, 52, 1) 100%);
 
-  border-radius: 15px 15px 0 0;
+  border-radius: 25px 25px 0 0;
   border-top: var(--white) solid 5px;
   /*border-bottom: var(--tahitigold) solid 5px;*/
 }
@@ -889,7 +889,37 @@ h6 {
 .nav-link:hover {
   /*border-bottom: var(--tahitigold) 5px solid;*/
   color: var(--tahitigold);
-  transform: scale(1.1, 1.1);
+  transform: scale(1.02, 1.02);
+}
+
+.side-nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--white);
+  text-decoration: none;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+  border-radius: 25px 0 0 25px !important;
+  transition: 0.4s;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.side-nav-link:hover {
+  /*border-bottom: var(--tahitigold) 5px solid;*/
+  color: var(--tahitigold);
+  transform: scale(1.0.2, 1.0.2);
+}
+
+.side-nav-link.active {
+  color: var(--white) !important;
+  background: rgb(232, 138, 4) !important;
+  background: linear-gradient(90deg, rgba(232, 138, 4, 1) 0%, rgba(52, 52, 52, 1) 100%) !important;
+
+  border-radius: 15px 0 0 15px !important;
+  border-bottom: 0px !important;
+  border-top: 0px !important;
+  border-right: 0px !important;
+  border-left: var(--white) solid 5px !important;
 }
 
 .form-control-text-input {
@@ -1626,6 +1656,16 @@ div.horizontal-scroll-card-nav {
   border-radius: 25px !important;
 }
 
+.create-btn-container-static {
+  /* z-index: 1999; */
+  /* position: fixed; */
+  /* top: 50vh;
+  right: 10px; */
+  background-color: var(--mineshaft) !important;
+  color: var(--white) !important;
+  border-radius: 25px !important;
+}
+
 /*./Create nutton*/
 
 .load-curtain-social-btn-panel {
@@ -2203,4 +2243,22 @@ div.horizontal-scroll-card-nav {
   .in-div-button-container {
     max-width: 30vw !important;
   }
+}
+
+/* Activity Calender Styling */
+.calender-day-item {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.calender-day-item:hover {
+  background-color: var(--tahitigold) !important;
+  color: var(--white) !important;
+  /* transform: scale(1.1, 1.1); */
+}
+
+.calender-day-item:active {
+  background-color: var(--tahitigold) !important;
+  color: var(--white) !important;
+  transform: scale(1.2, 1.2);
 }

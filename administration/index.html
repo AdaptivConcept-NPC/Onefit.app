@@ -35,14 +35,14 @@
         //$.noConflict();
         $(document).ready(function () {
             // ajax jquery - submit CSV bulk file
-            $("#csv-bulk-upload-form").submit(function (e) {
+            $("#wrkout-categories-csv-bulk-upload-form").submit(function (e) {
                 e.preventDefault();
 
-                var form_data = new FormData($('#csv-bulk-upload-form')[0]);
+                var form_data = new FormData($('#wrkout-categories-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'scripts/php/upload_csv_data.php',
+                        url: './scripts/php/workout_categories_upload_csv_data.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -69,6 +69,44 @@
                 }, 1000);
             });
             // ./ ajax jquery - submit CSV bulk file
+
+            // ajax jquery - submit CSV bulk file [store products]
+            $("#store-csv-bulk-upload-form").submit(function (e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#store-csv-bulk-upload-form')[0]);
+                setTimeout(function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: './scripts/php/upload_store_products_csv.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+                        beforeSend: function () {
+                            console.log('beforeSend: submitting store products bulk CSV file');
+                        },
+                        success: function (response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - submitting store products bulk CSV file successfully');
+                                console.log("Response: \n" + response);
+                            } else {
+                                console.log("error: returning response - an error occurred");
+                                console.log("Response: \n" + response);
+                            }
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit CSV bulk file [store products]
+
+
         });
     </script>
     <!-- ./ JQuery Scripts -->
@@ -88,11 +126,12 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-workoutmgmt-tab" data-bs-toggle="pill"
                     data-bs-target="#pills-workoutmgmt" type="button" role="tab" aria-controls="pills-workoutmgmt"
-                    aria-selected="false">Workout Management</button>
+                    aria-selected="false">Workout Content Management</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
-                    type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Unknown</button>
+                <button class="nav-link" id="pills-storemgmt-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-storemgmt" type="button" role="tab" aria-controls="pills-storemgmt"
+                    aria-selected="false">Store Management</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled"
@@ -103,13 +142,17 @@
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-usermgmt" role="tabpanel"
                 aria-labelledby="pills-usermgmt-tab" tabindex="0">
+                <h1>User Management</h1>
 
             </div>
             <div class="tab-pane fade" id="pills-workoutmgmt" role="tabpanel" aria-labelledby="pills-workoutmgmt-tab"
                 tabindex="0">
+                <h1>Workout Content Management</h1>
+
                 <!-- upload bulk csv file - Categories / Classes -->
-                <form id="csv-bulk-upload-form" name="csv-bulk-upload-form" class="my-4"
-                    action="scripts/php/upload_csv_data.php" method="post" enctype="multipart/form-data">
+                <form id="wrkout-categories-csv-bulk-upload-form" name="wrkout-categories-csv-bulk-upload-form"
+                    class="my-4" action="./scripts/php/workout_categories_upload_csv_data.php" method="post"
+                    enctype="multipart/form-data">
                     <!-- Form Name -->
                     <legend>Bulk CSV Upload - Categories / Classes</legend>
 
@@ -130,7 +173,7 @@
 
                 <!-- upload bulk csv file - Workouts Information -->
                 <form id="csv-bulk-upload-form" name="csv-bulk-upload-form" class="my-4"
-                    action="scripts/php/upload_csv_data.php" method="post" enctype="multipart/form-data">
+                    action="./scripts/php/upload_csv_data.php" method="post" enctype="multipart/form-data">
                     <!-- Form Name -->
                     <legend>Bulk CSV Upload - Workouts Information</legend>
 
@@ -151,7 +194,7 @@
 
                 <!-- upload bulk csv file - Exercises -->
                 <form id="csv-bulk-upload-form" name="csv-bulk-upload-form" class="my-4"
-                    action="scripts/php/upload_csv_data.php" method="post" enctype="multipart/form-data">
+                    action="./scripts/php/upload_csv_data.php" method="post" enctype="multipart/form-data">
                     <!-- Form Name -->
                     <legend>Bulk CSV Upload - Exercises</legend>
 
@@ -341,8 +384,31 @@
 
 
             </div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
-                tabindex="0">...</div>
+            <div class="tab-pane fade" id="pills-storemgmt" role="tabpanel" aria-labelledby="pills-storemgmt-tab"
+                tabindex="0">
+                <h1>Store Management</h1>
+
+                <!-- upload bulk csv file - store products -->
+                <form id="store-csv-bulk-upload-form" name="store-csv-bulk-upload-form" class="my-4"
+                    action="./scripts/php/upload_store_products_csv.php" method="post" enctype="multipart/form-data">
+                    <!-- Form Name -->
+                    <legend>Bulk CSV Upload - Store Products</legend>
+
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="csvfile-category_class"
+                                aria-describedby="lbl-csvfile-category_class" name="csvfile-category_class" type="file">
+                            <label id="lbl-csvfile-category_class" class="custom-file-label"
+                                for="csvfile-category_class"></label>
+                        </div>
+                        <div class="input-group-append">
+                            <input type="submit" name="submit" value="Upload Store Products Data CSV file"
+                                class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
+                <!-- ./ upload bulk csv file - store products -->
+            </div>
             <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab"
                 tabindex="0">...</div>
         </div>
