@@ -7,42 +7,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administration Portal</title>
 
-    <!-- Bootstrap CSS only -->
+    <!-- Bootstrap local -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- Bootstrap CSS only - CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <!-- JQuery local -->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 
     <!-- JQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- ./ JQuery CDN -->
 
-    <style>
-        .custom-file-input.selected:lang(en)::after {
-            content: "" !important;
-        }
-
-        .custom-file {
-            overflow: hidden;
-        }
-
-        .custom-file-input {
-            white-space: nowrap;
-        }
-    </style>
+    <!-- custom js -->
+    <script src="../scripts/js/script.js"></script>
 
     <!-- JQuery Scripts -->
     <script>
         //jQuery Code Only
         //$.noConflict();
         $(document).ready(function () {
-            // ajax jquery - submit CSV bulk file
-            $("#wrkout-categories-csv-bulk-upload-form").submit(function (e) {
+            // ajax jquery - submit CSV bulk file [user_accounts]
+            $("#users-csv-bulk-upload-form").submit(function (e) {
                 e.preventDefault();
 
-                var form_data = new FormData($('#wrkout-categories-csv-bulk-upload-form')[0]);
+                alert("User Management - This fuction is unavailable.");
+
+                // var form_data = new FormData($('#store-csv-bulk-upload-form')[0]);
+                // setTimeout(function () {
+                //     $.ajax({
+                //         type: 'POST',
+                //         url: 'scripts/php/upload_user_accounts_csv.php',
+                //         processData: false,
+                //         contentType: false,
+                //         async: false,
+                //         cache: false,
+                //         data: form_data,
+                //         contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+                //         beforeSend: function () {
+                //             console.log('beforeSend: submitting user_accounts bulk CSV file');
+                //         },
+                //         success: function (response) {
+
+                //             if (response.startsWith("success")) {
+                //                 console.log('success: returning response - submitting user_accounts bulk CSV file successfully');
+                //                 console.log("Response: \n" + response);
+                //                 // pass success message output to ui
+                //                 $("#form-output-categories").html("Bulk data submitted successfully.");
+                //                 // toggle alert classes
+                //                 $("#form-output-categories").toggleClass("alert-info");
+                //                 $("#form-output-categories").toggleClass("alert-success");
+                //             } else {
+                //                 console.log("error: returning response - an error occurred");
+                //                 console.log("Response: \n" + response);
+                //                 // pass error message output to ui
+                //                 $("#form-output-categories").html("An error occured whilst processing your request. \n\n" + response);
+                //                 // toggle alert classes
+                //                 $("#form-output-categories").toggleClass("alert-info");
+                //                 $("#form-output-categories").toggleClass("alert-danger");
+                //             }
+                //         },
+                //         error: function (xhr, ajaxOptions, thrownError) {
+                //             console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                //         }
+                //     });
+                // }, 1000);
+            });
+            // ./ ajax jquery - submit CSV bulk file [user_accounts]
+
+            // ajax jquery - submit classes/categories CSV bulk file [categories_classes]
+            $("#workout-categories-csv-bulk-upload-form").submit(function (e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#workout-categories-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
                     $.ajax({
                         type: 'POST',
-                        url: './scripts/php/workout_categories_upload_csv_data.php',
+                        url: 'scripts/php/workout_categories_upload_csv_data.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -50,16 +93,28 @@
                         data: form_data,
                         contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
                         beforeSend: function () {
-                            console.log('beforeSend: submitting bulk CSV file');
+                            console.log('beforeSend: submitting categories/classes bulk CSV file');
                         },
                         success: function (response) {
 
                             if (response.startsWith("success")) {
                                 console.log('success: returning response - submitting bulk CSV file successfully');
                                 console.log("Response: \n" + response);
+                                // pass success message output to ui
+                                $("#form-output-categories").html("Bulk data submitted successfully.");
+                                // toggle alert classes
+                                $("#form-output-categories").show();
+                                $("#form-output-categories").removeClass("alert-info");
+                                $("#form-output-categories").addClass("alert-success");
                             } else {
                                 console.log("error: returning response - an error occurred");
                                 console.log("Response: \n" + response);
+                                // pass error message output to ui
+                                $("#form-output-categories").html("An error occured whilst processing your request. \n\n" + response);
+                                // toggle alert classes
+                                $("#form-output-categories").show();
+                                $("#form-output-categories").removeClass("alert-info");
+                                $("#form-output-categories").addClass("alert-danger");
                             }
                         },
                         error: function (xhr, ajaxOptions, thrownError) {
@@ -68,9 +123,256 @@
                     });
                 }, 1000);
             });
-            // ./ ajax jquery - submit CSV bulk file
+            // ./ ajax jquery - submit classes/categories  CSV bulk file [categories_classes]
 
-            // ajax jquery - submit CSV bulk file [store products]
+            // *** must insert ajax function for uploading complete workout bulk data - csv file still in the works
+            $("#capture-workout-form").submit(function (e) {
+                e.preventDefault();
+
+                alert("Capture Workout (Single) - This fuction is unavailable.");
+            });
+
+            // ajax jquery - submit CSV bulk file [indi_exercises]
+            $("#indi-exercises-csv-bulk-upload-form").submit(function (e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#indi-exercises-csv-bulk-upload-form')[0]);
+                setTimeout(function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'scripts/php/upload_indi_exercises_csv.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+                        beforeSend: function () {
+                            console.log('beforeSend: submitting indi exercises bulk CSV file');
+                        },
+                        success: function (response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - submitting indi exercises bulk CSV file successfully');
+                                console.log("Response: \n" + response);
+                                // pass success message output to ui
+                                $("#form-output-exercises").html("Bulk data submitted successfully.");
+                                // toggle alert classes
+                                $("#form-output-exercises").show();
+                                $("#form-output-exercises").removeClass("alert-info");
+                                $("#form-output-exercises").addClass("alert-success");
+                            } else {
+                                console.log("error: returning response - an error occurred");
+                                console.log("Response: \n" + response);
+                                // pass error message output to ui
+                                $("#form-output-exercises").html("An error occured whilst processing your request. \n\n" + response);
+                                // toggle alert classes
+                                $("#form-output-exercises").show();
+                                $("#form-output-exercises").removeClass("alert-info");
+                                $("#form-output-exercises").addClass("alert-danger");
+                            }
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit CSV bulk file [indi_exercises]
+
+            // ajax jquery - submit CSV bulk file [training_drills]
+            $("#training-drills-csv-bulk-upload-form").submit(function (e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#training-drills-csv-bulk-upload-form')[0]);
+                setTimeout(function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'scripts/php/upload_training_drills_csv.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+                        beforeSend: function () {
+                            console.log('beforeSend: submitting training_drills bulk CSV file');
+                        },
+                        success: function (response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - submitting training_drills bulk CSV file successfully');
+                                console.log("Response: \n" + response);
+                                // pass success message output to ui
+                                $("#form-output-drills").html("Bulk data submitted successfully.");
+                                // toggle alert classes
+                                $("#form-output-drills").show();
+                                $("#form-output-drills").removeClass("alert-info");
+                                $("#form-output-drills").addClass("alert-success");
+                            } else {
+                                console.log("error: returning response - an error occurred");
+                                console.log("Response: \n" + response);
+                                // pass error message output to ui
+                                $("#form-output-drills").html("An error occured whilst processing your request. \n\n" + response);
+                                // toggle alert classes
+                                $("#form-output-drills").show();
+                                $("#form-output-drills").removeClass("alert-info");
+                                $("#form-output-drills").addClass("alert-danger");
+                            }
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit CSV bulk file [training_drills]
+
+            // ajax jquery - submit CSV bulk file [supplements]
+            $("#supplements-csv-bulk-upload-form").submit(function (e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#supplements-csv-bulk-upload-form')[0]);
+                setTimeout(function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'scripts/php/upload_supplements_csv.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+                        beforeSend: function () {
+                            console.log('beforeSend: submitting supplements bulk CSV file');
+                        },
+                        success: function (response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - submitting supplements bulk CSV file successfully');
+                                console.log("Response: \n" + response);
+                                // pass success message output to ui
+                                $("#form-output-supplements").html("Bulk data submitted successfully.");
+                                // toggle alert classes
+                                $("#form-output-supplements").show();
+                                $("#form-output-supplements").removeClass("alert-info");
+                                $("#form-output-supplements").addClass("alert-success");
+                            } else {
+                                console.log("error: returning response - an error occurred");
+                                console.log("Response: \n" + response);
+                                // pass error message output to ui
+                                $("#form-output-supplements").html("An error occured whilst processing your request. \n\n" + response);
+                                // toggle alert classes
+                                $("#form-output-supplements").show();
+                                $("#form-output-supplements").removeClass("alert-info");
+                                $("#form-output-supplements").addClass("alert-danger");
+                            }
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit CSV bulk file [supplements]
+
+            // ajax jquery - submit CSV bulk file [sports_list]
+            $("#sports-list-csv-bulk-upload-form").submit(function (e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#sports-list-csv-bulk-upload-form')[0]);
+                setTimeout(function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'scripts/php/upload_sports_list_csv.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+                        beforeSend: function () {
+                            console.log('beforeSend: submitting supplements bulk CSV file');
+                        },
+                        success: function (response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - submitting sports_list bulk CSV file successfully');
+                                console.log("Response: \n" + response);
+                                // pass success message output to ui
+                                $("#form-output-sports").html("Bulk data submitted successfully.");
+                                // toggle alert classes
+                                $("#form-output-sports").show();
+                                $("#form-output-sports").removeClass("alert-info");
+                                $("#form-output-sports").addClass("alert-success");
+                            } else {
+                                console.log("error: returning response - an error occurred");
+                                console.log("Response: \n" + response);
+                                // pass error message output to ui
+                                $("#form-output-sports").html("An error occured whilst processing your request. \n\n" + response);
+                                // toggle alert classes
+                                $("#form-output-sports").show();
+                                $("#form-output-sports").removeClass("alert-info");
+                                $("#form-output-sports").addClass("alert-danger");
+                            }
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit CSV bulk file [sports]
+
+            // ajax jquery - submit CSV bulk file [sports_list]
+            $("#muscles-list-csv-bulk-upload-form").submit(function (e) {
+                e.preventDefault();
+
+                var form_data = new FormData($('#muscles-list-csv-bulk-upload-form')[0]);
+                setTimeout(function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'scripts/php/upload_muscle_groups_csv.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+                        beforeSend: function () {
+                            console.log('beforeSend: submitting muscle_groups bulk CSV file');
+                        },
+                        success: function (response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - submitting muscle_groups bulk CSV file successfully');
+                                console.log("Response: \n" + response);
+                                // pass success message output to ui
+                                $("#form-output-muscles").html("Bulk data submitted successfully.");
+                                // toggle alert classes
+                                $("#form-output-muscles").show();
+                                $("#form-output-muscles").removeClass("alert-info");
+                                $("#form-output-muscles").addClass("alert-success");
+                            } else {
+                                console.log("error: returning response - an error occurred");
+                                console.log("Response: \n" + response);
+                                // pass error message output to ui
+                                $("#form-output-muscles").html("An error occured whilst processing your request. \n\n" + response);
+                                // toggle alert classes
+                                $("#form-output-muscles").show();
+                                $("#form-output-muscles").removeClass("alert-info");
+                                $("#form-output-muscles").addClass("alert-danger");
+                            }
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
+            });
+            // ./ ajax jquery - submit CSV bulk file [sports]
+
+            // ajax jquery - submit CSV bulk file [store_products]
             $("#store-csv-bulk-upload-form").submit(function (e) {
                 e.preventDefault();
 
@@ -78,7 +380,7 @@
                 setTimeout(function () {
                     $.ajax({
                         type: 'POST',
-                        url: './scripts/php/upload_store_products_csv.php',
+                        url: 'scripts/php/upload_store_products_csv.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -93,9 +395,21 @@
                             if (response.startsWith("success")) {
                                 console.log('success: returning response - submitting store products bulk CSV file successfully');
                                 console.log("Response: \n" + response);
+                                // pass success message output to ui
+                                $("#form-output-categories").html("Bulk data submitted successfully.");
+                                // toggle alert classes
+                                $("#form-output-categories").show();
+                                $("#form-output-categories").removeClass("alert-info");
+                                $("#form-output-categories").addClass("alert-success");
                             } else {
                                 console.log("error: returning response - an error occurred");
                                 console.log("Response: \n" + response);
+                                // pass error message output to ui
+                                $("#form-output-categories").html("An error occured whilst processing your request. \n\n" + response);
+                                // toggle alert classes
+                                $("#form-output-categories").show();
+                                $("#form-output-categories").removeClass("alert-info");
+                                $("#form-output-categories").addClass("alert-danger");
                             }
                         },
                         error: function (xhr, ajaxOptions, thrownError) {
@@ -104,283 +418,846 @@
                     });
                 }, 1000);
             });
-            // ./ ajax jquery - submit CSV bulk file [store products]
+            // ./ ajax jquery - submit CSV bulk file [store_products]
+
+            // move multiple list items between two multi-select elements
+            function moveItems(origin, dest) {
+                $(origin).find(':selected').appendTo(dest);
+            }
+
+            function moveAllItems(origin, dest) {
+                $(origin).children().appendTo(dest);
+            };
+
+            $('#move-items-selected-btn').click(function () {
+                moveItems('#select-workout-exercises', '#select-workout-exercises-selected');
+            });
+
+            $('#remove-items-selected-btn').on('click', function () {
+                moveItems('#select-workout-exercises-selected', '#select-workout-exercises');
+            });
+
+            $('#remove-all-items-selected-btn').on('click', function () {
+                moveAllItems('#select-workout-exercises-selected', '#select-workout-exercises');
+            });
+
+            // *** get select element items
+            // get users items
+            $.getUserAccounts = function (request) {
+                $.get("./scripts/php/get_items/get_users.php?giveme=" + request, function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.getUserAccounts returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        $('#user-account-list').html(data);
+                        if (request == 'json') console.log('User Accounts Json: \n'.data);
+                    }
+                });
+            };
+            // get classes/categories items
+            $.getCategoriesClasses = function (request) {
+                $.get("./scripts/php/get_items/get_classes.php?giveme=" + request, function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.getCategoriesClasses returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        $('#select-workout-category').html(data);
+                        if (request == 'json') console.log('Categories & Classes Json: \n'.data);
+                    }
+                });
+            };
+            // get indi exercises items
+            $.getIndiExercises = function (request) {
+                $.get("./scripts/php/get_items/get_indi_exercises.php?giveme=" + request, function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.getIndiExercises returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        $('#select-workout-exercises').html(data);
+                        if (request == 'json') console.log('Indi Exercises Json: \n'.data);
+                    }
+                });
+            };
+            // get supplements list items
+            $.getSupplementsList = function (request) {
+                $.get("./scripts/php/get_items/get_supplements.php?giveme=" + request, function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.getSupplementsList returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        $('#select-workout-recommeded-supplements').html(data);
+                        if (request == 'json') console.log('Supplements List Json: \n'.data);
+                    }
+                });
+            };
+
+
+            // get store product items
+            $.getStoreProducts = function (request) {
+                $.get("./scripts/php/get_items/get_store_products.php?giveme=" + request, function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.getStoreProducts returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        $('#store-products-list').html(data);
+                        // console log if json was requested
+                        if (request == 'json') console.log('Store Products Json: \n'.data);
+                    }
+                });
+            };
+
+            // *** compile data tables ***
 
 
         });
     </script>
     <!-- ./ JQuery Scripts -->
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Comfortaa:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap&family=Libre+Barcode+128&display=swap&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        input,
+        select,
+        textarea {
+            outline: none !important;
+            box-shadow: none;
+        }
+
+        .custom-file-input.selected:lang(en)::after {
+            content: "" !important;
+        }
+
+        .custom-file {
+            overflow: hidden;
+        }
+
+        .custom-file-input {
+            white-space: nowrap;
+        }
+
+        #refresh-data-btn {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .container-card {
+            background-color: var(--bs-dark);
+            color: #fff;
+
+            border-radius: 25px;
+            padding: 40px;
+
+            min-height: 200px;
+        }
+
+        /* custom bootstrap override */
+        .nav-link {
+            color: #fff;
+            /* !important */
+            /* var(--bs-nav-link-color) */
+            padding-top: 1.5rem;
+            border-radius: 25px !important;
+            padding-bottom: 1.5rem;
+        }
+
+        .nav-link:hover {
+            color: #e88a04;
+            border-bottom: 5px solid var(--tahitigold);
+        }
+
+        .nav-pills .nav-link.active,
+        .nav-pills .show>.nav-link {
+            font-weight: bold !important;
+            color: #fff !important;
+            background-color: transparent !important;
+            border-radius: 25px 25px 0 0 !important;
+            border-top: 5px solid var(--tahitigold);
+            border-bottom: 0px !important;
+            padding: 1.5rem !important;
+        }
+
+        .btn-outline-warning {
+            --bs-btn-color: #e88a04;
+            --bs-btn-border-color: #e88a04;
+            --bs-btn-hover-color: #000;
+            --bs-btn-hover-bg: #e88a04;
+            --bs-btn-hover-border-color: #e88a04;
+            --bs-btn-focus-shadow-rgb: 255, 193, 7;
+            --bs-btn-active-color: #000;
+            --bs-btn-active-bg: #e88a04;
+            --bs-btn-active-border-color: #e88a04;
+            --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            --bs-btn-disabled-color: #e88a04;
+            --bs-btn-disabled-bg: transparent;
+            --bs-btn-disabled-border-color: #e88a04;
+            --bs-gradient: none;
+        }
+
+        .btn-warning {
+            --bs-btn-color: #000;
+            --bs-btn-bg: #e88a04;
+            --bs-btn-border-color: #e88a04;
+            --bs-btn-hover-color: #000;
+            --bs-btn-hover-bg: #ffca2c;
+            --bs-btn-hover-border-color: #ffc720;
+            --bs-btn-focus-shadow-rgb: 217, 164, 6;
+            --bs-btn-active-color: #000;
+            --bs-btn-active-bg: #ffcd39;
+            --bs-btn-active-border-color: #ffc720;
+            --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            --bs-btn-disabled-color: #000;
+            --bs-btn-disabled-bg: #e88a04;
+            --bs-btn-disabled-border-color: #e88a04;
+        }
+    </style>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 
-<body>
-    <h1>Admin Portal</h1>
+<body onload="initializeContent()">
+    <!-- Notification Snackbar (mini) -->
+    <!-- <button class="btn btn-primary btn-lg" onclick="showSnackbar('notification message here...')">Show Snackbar</button> -->
+    <!-- The actual snackbar -->
+    <div id="snackbar">No notification.</div>
+
+    <nav class="navbar sticky-top bg-body-tertiary bg-dark mb-5">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../media/assets/One-Logo.svg" alt="onefit.app logo" class="img-fluid p-4 px-0"
+                    style="height: 100px;">
+            </a>
+
+            <h1 class="fs-5 text-white my-0 py-4">Onefit.app Administration Portal</h1>
+
+            <form class="d-flex py-4" role="search">
+                <input class="form-control me-2"
+                    style="padding-right: 85px !important; border-radius:25px;outline: none !important;box-shadow: none;"
+                    type="search" placeholder="" aria-label="Search">
+                <button class="onefit-buttons-style-dark my-2 p-2 fs-bold shadow" type="submit"
+                    style="margin-left: -90px;">Search</button>
+            </form>
+        </div>
+        <div class="container d-flex justify-content-start align-items-end">
+            <!-- main tab container -->
+            <ul class="nav nav-pills my-4" id="pills-tab" role="tablist">
+                <li class="nav-item d-grid align-items-center" role="presentation">
+                    <button class="nav-link active" id="pills-usermgmt-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-usermgmt" type="button" role="tab" aria-controls="pills-usermgmt"
+                        aria-selected="true">User Management</button>
+                </li>
+                <li class="nav-item d-grid align-items-center" role="presentation">
+                    <button class="nav-link" id="pills-trainingmgmt-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-trainingmgmt" type="button" role="tab" aria-controls="pills-trainingmgmt"
+                        aria-selected="false">Training Content Management</button>
+                </li>
+                <li class="nav-item d-grid align-items-center" role="presentation">
+                    <button class="nav-link" id="pills-storemgmt-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-storemgmt" type="button" role="tab" aria-controls="pills-storemgmt"
+                        aria-selected="false">Store Management</button>
+                </li>
+                <li class="nav-item d-grid align-items-center" role="presentation">
+                    <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled"
+                        aria-selected="false" disabled>Data
+                        Tools</button>
+                </li>
+            </ul>
+        </div>
+
+        <div id="refresh-data-btn" class="d-gridz align-items-centerz" role="presentation">
+            <!-- refresh / initialize tables -->
+            <!-- style="font-size: 10px;" -->
+            <button class="onefit-buttons-style-dark p-4 m-2 shadow" onclick="initializeContent()">
+                refresh
+            </button>
+        </div>
+    </nav>
+
 
     <div class="container">
-        <!-- main tab container -->
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="pills-usermgmt-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-usermgmt" type="button" role="tab" aria-controls="pills-usermgmt"
-                    aria-selected="true">User Management</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-workoutmgmt-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-workoutmgmt" type="button" role="tab" aria-controls="pills-workoutmgmt"
-                    aria-selected="false">Workout Content Management</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-storemgmt-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-storemgmt" type="button" role="tab" aria-controls="pills-storemgmt"
-                    aria-selected="false">Store Management</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled"
-                    type="button" role="tab" aria-controls="pills-disabled" aria-selected="false"
-                    disabled>Disabled</button>
-            </li>
-        </ul>
+
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-usermgmt" role="tabpanel"
                 aria-labelledby="pills-usermgmt-tab" tabindex="0">
                 <h1>User Management</h1>
 
+                <hr>
+
+                <h5>User Accounts</h5>
+
+                <!-- user accounts list -->
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"># <!-- user_id --></th>
+                                <th scope="col">username</th>
+                                <!-- <th scope="col">password_hash</th> -->
+                                <th scope="col">Name <!-- user_name --></th>
+                                <th scope="col">Surname <!-- user_surname --></th>
+                                <th scope="col">ID Number <!-- id_number --></th>
+                                <th scope="col">Email <!-- user_email --></th>
+                                <th scope="col">Contact Number <!-- contact_number --></th>
+                                <th scope="col">Date of birth <!-- date_of_birth --></th>
+                                <th scope="col">Gender <!-- user_gender --></th>
+                                <th scope="col">Race/Ethnicity <!-- user_race --></th>
+                                <th scope="col">Nationality <!-- user_nationality --></th>
+                                <th scope="col">Account active <!-- account_active --></th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-account-list" class="table-group-divider"
+                            style="max-height: 100vh;overflow-y: auto;">
+                            <tr>
+                                <td colspan="12">
+                                    <div class="d-flex justify-content-center p-4">
+                                        <div class="spinner-border" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr>
+
+                <h5>Administrator Accounts</h5>
+
+                <hr>
+
+                <h5>Trainer Accounts</h5>
+
+                <hr>
+
+                <div class="row gap-4 my-4">
+                    <div class="col-md container-card">
+                        <h5>Teams</h5>
+                        <hr>
+                    </div>
+                    <div class="col-md container-card">
+                        <h5>Community Groups</h5>
+                        <hr>
+                    </div>
+                </div>
+
             </div>
-            <div class="tab-pane fade" id="pills-workoutmgmt" role="tabpanel" aria-labelledby="pills-workoutmgmt-tab"
+            <div class="tab-pane fade" id="pills-trainingmgmt" role="tabpanel" aria-labelledby="pills-trainingmgmt-tab"
                 tabindex="0">
-                <h1>Workout Content Management</h1>
+                <h1>Training Content Management</h1>
 
-                <!-- upload bulk csv file - Categories / Classes -->
-                <form id="wrkout-categories-csv-bulk-upload-form" name="wrkout-categories-csv-bulk-upload-form"
-                    class="my-4" action="./scripts/php/workout_categories_upload_csv_data.php" method="post"
-                    enctype="multipart/form-data">
-                    <!-- Form Name -->
-                    <legend>Bulk CSV Upload - Categories / Classes</legend>
+                <hr>
 
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="csvfile-category_class"
-                                aria-describedby="lbl-csvfile-category_class" name="csvfile-category_class" type="file">
-                            <label id="lbl-csvfile-category_class" class="custom-file-label"
-                                for="csvfile-category_class"></label>
+                <div id="bulk-upload-section">
+                    <div class="row my-4 gap-4">
+                        <div class="col-md-4 container-card">
+                            <h5>Bulk Upload</h5>
+
+                            <hr>
+
+                            <!-- upload bulk csv file - Categories / Classes -->
+                            <form id="workout-categories-csv-bulk-upload-form"
+                                name="workout-categories-csv-bulk-upload-form" class="my-4"
+                                action="./scripts/php/workout_categories_upload_csv_data.php" method="post"
+                                enctype="multipart/form-data">
+                                <!-- Form Name -->
+                                <legend class="fs-5 fw-bold">A. Bulk CSV Upload - Categories / Classes</legend>
+
+                                <div id="form-output-categories" class="alert alert-info p-2 my-3"
+                                    style="display: none;">
+                                    Output Alert
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input form-control"
+                                            id="csvfile-category_class" aria-describedby="lbl-csvfile-category_class"
+                                            name="csvfile-category_class" type="file">
+                                        <label id="lbl-csvfile-category_class" class="custom-file-label"
+                                            for="csvfile-category_class"></label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <input type="submit" name="submit"
+                                            value="Upload Categories/Classes Data CSV file"
+                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- ./ upload bulk csv file - Categories / Classes -->
+
+                            <!-- upload bulk csv file - Workouts Information -->
+                            <form id="workouts-csv-bulk-upload-form" name="workouts-csv-bulk-upload-form" class="my-4"
+                                action="./scripts/php/upload_workout_csv.php" method="post"
+                                enctype="multipart/form-data">
+                                <!-- Form Name -->
+                                <legend class="fs-5 fw-bold">B. Bulk CSV Upload - Workouts Information</legend>
+
+                                <div id="form-output-workouts" class="alert alert-info p-2 my-3" style="display: none;">
+                                    Output Alert
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input form-control"
+                                            id="csvfile-workout_info" aria-describedby="lbl-csvfile-workout_info"
+                                            name="csvfile-workout_info" type="file" disabled>
+                                        <label id="lbl-csvfile-workout_info" class="custom-file-label"
+                                            for="csvfile-workout_info"></label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <input type="submit" name="submit" value="Upload Workout Data CSV file"
+                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;"
+                                            disabled>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- ./ upload bulk csv file - Workouts Information -->
+
+                            <!-- upload bulk csv file - Indi Exercises -->
+                            <form id="indi-exercises-csv-bulk-upload-form" name="indi-exercises-csv-bulk-upload-form"
+                                class="my-4" action="./scripts/php/upload_indi_exercises_csv.php" method="post"
+                                enctype="multipart/form-data">
+                                <!-- Form Name -->
+                                <legend class="fs-5 fw-bold">C. Bulk CSV Upload - Indi Exercises</legend>
+
+                                <div id="form-output-exercises" class="alert alert-info p-2 my-3"
+                                    style="display: none;">
+                                    Output Alert
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input form-control" id="csvfile-exercises"
+                                            aria-describedby="lbl-csvfile-exercises" name="csvfile-exercises"
+                                            type="file">
+                                        <label id="lbl-csvfile-exercises" class="custom-file-label"
+                                            for="csvfile-exercises"></label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <input type="submit" name="submit" value="Upload Exercise Data CSV file"
+                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- ./ upload bulk csv file - Indi Exercises -->
+
+                            <!-- upload bulk csv file - Teams Training Exercise Drills -->
+                            <form id="training-drills-csv-bulk-upload-form" name="training-csv-bulk-upload-form"
+                                class="my-4" action="./scripts/php/upload_teans_training_drills_csv.php" method="post"
+                                enctype="multipart/form-data">
+                                <!-- Form Name -->
+                                <legend class="fs-5 fw-bold">D. Bulk CSV Upload - Teams. Training Drills</legend>
+
+                                <div id="form-output-drills" class="alert alert-info p-2 my-3" style="display: none;">
+                                    Output Alert
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input form-control"
+                                            id="csvfile-training_drills" aria-describedby="lbl-csvfile-training_drills"
+                                            name="csvfile-training_drills" type="file">
+                                        <label id="lbl-csvfile-training_drills" class="custom-file-label"
+                                            for="csvfile-training_drills"></label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <input type="submit" name="submit" value="Upload Training Drills Data CSV file"
+                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- ./ upload bulk csv file - Teams Training Exercise Drills -->
+
+                            <!-- upload bulk csv file - Supplements -->
+                            <form id="supplements-csv-bulk-upload-form" name="supplements-csv-bulk-upload-form"
+                                class="my-4" action="./scripts/php/upload_supplements_csv.php" method="post"
+                                enctype="multipart/form-data">
+                                <!-- Form Name -->
+                                <legend class="fs-5 fw-bold">E. Bulk CSV Upload - Supplements</legend>
+
+                                <div id="form-output-supplements" class="alert alert-info p-2 my-3"
+                                    style="display: none;">
+                                    Output Alert
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input form-control"
+                                            id="csvfile-supplements" aria-describedby="lbl-csvfile-supplements"
+                                            name="csvfile-supplements" type="file">
+                                        <label id="lbl-csvfile-supplements" class="custom-file-label"
+                                            for="csvfile-supplements"></label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <input type="submit" name="submit" value="Upload Supplements Data CSV file"
+                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- ./ upload bulk csv file - Supplements -->
+
+                            <!-- upload bulk csv file - Sports List -->
+                            <form id="sports-list-csv-bulk-upload-form" name="sports-list-csv-bulk-upload-form"
+                                class="my-4" action="./scripts/php/upload_sports_list_csv.php" method="post"
+                                enctype="multipart/form-data">
+                                <!-- Form Name -->
+                                <legend class="fs-5 fw-bold">F. Bulk CSV Upload - Sports list</legend>
+
+                                <div id="form-output-sports" class="alert alert-info p-2 my-3" style="display: none;">
+                                    Output Alert
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input form-control"
+                                            id="csvfile-sports_list" aria-describedby="lbl-csvfile-sports_list"
+                                            name="csvfile-sports_list" type="file">
+                                        <label id="lbl-csvfile-sports_list" class="custom-file-label"
+                                            for="csvfile-sports_list"></label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <input type="submit" name="submit" value="Upload Sports List Data CSV file"
+                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- ./ upload bulk csv file - Sports List -->
+
+                            <!-- upload bulk csv file - Muscle Groups -->
+                            <form id="muscles-list-csv-bulk-upload-form" name="muscles-list-csv-bulk-upload-form"
+                                class="my-4" action="./scripts/php/upload_muscle_groups_csv.php" method="post"
+                                enctype="multipart/form-data">
+                                <!-- Form Name -->
+                                <legend class="fs-5 fw-bold">G. Bulk CSV Upload - Muscle Groups</legend>
+
+                                <div id="form-output-muscles" class="alert alert-info p-2 my-3" style="display: none;">
+                                    Output Alert
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input form-control"
+                                            id="csvfile-muscle_groups" aria-describedby="lbl-csvfile-muscle_groups"
+                                            name="csvfile-muscle_groups" type="file">
+                                        <label id="lbl-csvfile-muscle_groups" class="custom-file-label"
+                                            for="csvfile-muscle_groups"></label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <input type="submit" name="submit" value="Upload Muscle Groups Data CSV file"
+                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- ./ upload bulk csv file - Muscle Groups -->
                         </div>
-                        <div class="input-group-append">
-                            <input type="submit" name="submit" value="Upload Categories/Classes Data CSV file"
-                                class="btn btn-primary">
+                        <div class="col-md container-card">
+                            <h5>Preview Tables</h5>
+                            <hr>
+
+
                         </div>
                     </div>
-                </form>
-                <!-- ./ upload bulk csv file - Categories / Classes -->
+                </div>
 
-                <!-- upload bulk csv file - Workouts Information -->
-                <form id="csv-bulk-upload-form" name="csv-bulk-upload-form" class="my-4"
-                    action="./scripts/php/upload_csv_data.php" method="post" enctype="multipart/form-data">
-                    <!-- Form Name -->
-                    <legend>Bulk CSV Upload - Workouts Information</legend>
+                <hr>
 
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="csvfile-workout_info"
-                                aria-describedby="lbl-csvfile-workout_info" name="csvfile-workout_info" type="file">
-                            <label id="lbl-csvfile-workout_info" class="custom-file-label"
-                                for="csvfile-workout_info"></label>
+                <h1>Creation Tools</h1>
+
+                <div class="row gap-4 my-4">
+                    <div class="col-md container-card">
+                        <!-- capture workouts -->
+                        <form id="capture-workout-form" name="capture-workout-form" class="form-horizontal">
+                            <fieldset>
+
+                                <!-- Form Name -->
+                                <h1>Create Workout</h1>
+
+                                <hr>
+
+                                <div id="form-output-single-workout" class="alert alert-info p-2 my-3"
+                                    style="display: none;">
+                                    Output Alert
+                                </div>
+
+                                <div class="form-group my-4">
+                                    <h5 class="col-md-4z control-label" for="singlebutton">H. Category Class</h5>
+                                </div>
+
+                                <!-- Select Basic -->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label" for="select-workout-category">Select a
+                                        Category
+                                        Class</label>
+                                    <div class="col-md-4z">
+                                        <select id="select-workout-category" name="select-workout-category"
+                                            class="form-control">
+                                            <option value="noselection">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="form-group my-4">
+                                    <h5 class="col-md-4z control-label" for="singlebutton">I. Workout Info</h5>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label" for="input-workout-name">Workout
+                                        Name</label>
+                                    <div class="col-md-4z">
+                                        <input id="input-workout-name" name="input-workout-name" type="text"
+                                            placeholder="Workout Name" class="form-control input-md" required="">
+                                    </div>
+                                </div>
+
+                                <!-- Textarea -->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label" for="input-workout-description">Workout
+                                        Description</label>
+                                    <div class="col-md-4z">
+                                        <textarea class="form-control" id="input-workout-description"
+                                            name="input-workout-description" rows="5"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Textarea -->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label" for="input-workout-goal-definition">Goal
+                                        Definition</label>
+                                    <div class="col-md-4z">
+                                        <textarea class="form-control" id="input-workout-goal-definition"
+                                            name="input-workout-goal-definition" rows="5"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label" for="input-workout-xp">Total XP Point
+                                        (Int)</label>
+                                    <div class="col-md-4z">
+                                        <input id="input-workout-xp" name="input-workout-xp" type="number"
+                                            placeholder="Total XP" class="form-control input-md" required="">
+                                        <span class="help-block">
+                                            Please allocate the total/max xp points obtainable from this workout.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Select Basic -->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label" for="select-workout-premium">
+                                        Premium Workout?
+                                    </label>
+                                    <div class="col-md-4z">
+                                        <select id="select-workout-premium" name="select-workout-premium"
+                                            class="form-control">
+                                            <option value="0">No</option>
+                                            <option value="1">Yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="form-group my-4">
+                                    <h5 class="col-md-4z control-label" for="singlebutton">J. Workout Summary</h5>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label" for="input-workout-main-goal">
+                                        Main Goal
+                                    </label>
+                                    <div class="col-md-4z">
+                                        <input id="input-workout-main-goal" name="input-workout-main-goal" type="text"
+                                            placeholder="Main Goal" class="form-control input-md" required="">
+                                        <span class="help-block">
+                                            Please describe the main goal you are trying to help
+                                            trainees
+                                            achieve with this workout.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label" for="input-workout-type">Workout
+                                        Type</label>
+                                    <div class="col-md-4z">
+                                        <input id="input-workout-type" name="input-workout-type" type="text"
+                                            placeholder="Workout Type" class="form-control input-md" required="">
+                                        <span class="help-block">Please describe the type of workout this is.</span>
+                                    </div>
+                                </div>
+
+                                <!-- Select Basic -->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label" for="select-workout-training-level">
+                                        Recommeded Training Level
+                                    </label>
+                                    <div class="col-md-4z">
+                                        <select id="select-workout-training-level" name="select-workout-training-level"
+                                            class="form-control">
+                                            <option value="beginner">Level 1: Beginner</option>
+                                            <option value="intermediate">Level 2: intermediate</option>
+                                            <option value="advanced">Level 3: Advanced</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label" for="input-workout-program-duration">
+                                        Workout Program Duration
+                                    </label>
+                                    <div class="col-md-4z">
+                                        <input id="input-workout-program-duration" name="input-workout-program-duration"
+                                            type="number" placeholder="Program Duration / Length (in weeks)"
+                                            class="form-control input-md">
+                                        <span class="help-block">
+                                            Please define the Program duration / Length of this workout in weeks.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label"
+                                        for="input-workout-exercise-days-week">Exercise
+                                        Days Per Week</label>
+                                    <div class="col-md-4z">
+                                        <input id="input-workout-exercise-days-week"
+                                            name="input-workout-exercise-days-week" type="number"
+                                            placeholder="Exercise Days Per Week" class="form-control input-md"
+                                            required="">
+                                    </div>
+                                </div>
+
+                                <!-- Select Basic -->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label" for="select-workout-target-gender">Target
+                                        Gender</label>
+                                    <div class="col-md-4z">
+                                        <select id="select-workout-target-gender" name="select-workout-target-gender"
+                                            class="form-control">
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Select Multiple -->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label" for="select-workout-recommeded-supplements">
+                                        Recommeded Supplements
+                                    </label>
+                                    <div class="col-md-4z">
+                                        <select id="select-workout-recommeded-supplements"
+                                            name="select-workout-recommeded-supplements" class="form-control"
+                                            multiple="multiple">
+                                            <option value="none">None</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="form-group my-4">
+                                    <h5 class="col-md-4z control-label" for="singlebutton">K. Workout Training /
+                                        Exercises</h5>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group mb-3">
+                                    <label class="col-md-4z control-label mb-4" for="input-workout-main-goal">
+                                        Select exercises to add to this workout
+                                    </label>
+
+                                    <div class="row align-items-center">
+                                        <div class="col-xlg">
+                                            <label class="control-label" for="select-workout-exercises">
+                                                All exercises
+                                            </label>
+                                            <select id="select-workout-exercises" title="all exercises list"
+                                                class="form-control mb-4" multiple="multiple" rows="10">
+                                            </select>
+                                        </div>
+                                        <div class="col-xlg -1 text-center">
+                                            <div class="d-flex justify-content-center gap-2 mb-4">
+                                                <button id="move-items-selected-btn" class="btn btn-success">
+                                                    <span class="align-middle" style="font-size: 35px;">
+                                                        &rsaquo;
+                                                    </span>
+                                                    <span class="align-middle d-none d-lg-block"
+                                                        style="font-size: 10px;">
+                                                        Add selection
+                                                    </span>
+                                                </button>
+                                                <button id="remove-items-selected-btn" class="btn btn-danger">
+                                                    <span class="align-middle" style="font-size: 35px;">
+                                                        &lsaquo;
+                                                    </span>
+                                                    <span class="align-middle d-none d-lg-block"
+                                                        style="font-size: 10px;">
+                                                        Remove selection
+                                                    </span>
+                                                </button>
+                                                <button id="remove-all-items-selected-btn" class="btn btn-danger">
+                                                    <span class="align-middle" style="font-size: 30px;">
+                                                        &times;
+                                                    </span>
+                                                    <span class="align-middle d-none d-lg-block"
+                                                        style="font-size: 10px;">
+                                                        Remove all items
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-xlg">
+                                            <label class="control-label" for="select-workout-exercises-selected">
+                                                Workout exercises
+                                            </label>
+                                            <select id="select-workout-exercises-selected"
+                                                name="select-workout-exercises-selected" class="form-control mb-4"
+                                                multiple="multiple" rows="10">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </fieldset>
+                        </form>
+                        <!-- ./ capture workouts -->
+                    </div>
+                    <div class="col-md-4 p-0">
+                        <div class="container-card mb-4">
+                            <h5>Create Team</h5>
+                            <hr>
                         </div>
-                        <div class="input-group-append">
-                            <input type="submit" name="submit" value="Upload Workout Data CSV file"
-                                class="btn btn-primary">
+                        <div class="container-card mb-4">
+                            <h5>Create Group</h5>
+                            <hr>
+                        </div>
+                        <div class="container-card mb-4">
+                            <h5>Create Resources</h5>
+                            <hr>
+                        </div>
+                        <div class="container-card mb-4">
+                            <h5>Community Updates</h5>
+                            <hr>
                         </div>
                     </div>
-                </form>
-                <!-- ./ upload bulk csv file - Workouts Information -->
-
-                <!-- upload bulk csv file - Exercises -->
-                <form id="csv-bulk-upload-form" name="csv-bulk-upload-form" class="my-4"
-                    action="./scripts/php/upload_csv_data.php" method="post" enctype="multipart/form-data">
-                    <!-- Form Name -->
-                    <legend>Bulk CSV Upload - Exercises</legend>
-
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="csvfile-exercises"
-                                aria-describedby="lbl-csvfile-exercises" name="csvfile-exercises" type="file">
-                            <label id="lbl-csvfile-exercises" class="custom-file-label" for="csvfile-exercises"></label>
-                        </div>
-                        <div class="input-group-append">
-                            <input type="submit" name="submit" value="Upload Exercise Data CSV file"
-                                class="btn btn-primary">
-                        </div>
-                    </div>
-                </form>
-                <!-- ./ upload bulk csv file - Exercises -->
-
-                <!-- capture workouts -->
-                <form id="capture-workout-form" name="capture-workout-form" class="form-horizontal">
-                    <fieldset>
-
-                        <!-- Form Name -->
-                        <legend>Capture Workouts</legend>
-
-                        <!-- Button -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="singlebutton">Category Class</label>
-
-                        </div>
-
-                        <!-- Select Basic -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Select a Category Class</label>
-                            <div class="col-md-4">
-                                <select id="selectbasic" name="selectbasic" class="form-control">
-                                    <option value="noselection">Select</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Button -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="singlebutton">Workout Info</label>
-                        </div>
-
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Workout Name</label>
-                            <div class="col-md-4">
-                                <input id="textinput" name="textinput" type="text" placeholder="Workout Name"
-                                    class="form-control input-md" required="">
-
-                            </div>
-                        </div>
-
-                        <!-- Textarea -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textarea">Workout Description</label>
-                            <div class="col-md-4">
-                                <textarea class="form-control" id="textarea" name="textarea"></textarea>
-                            </div>
-                        </div>
-
-                        <!-- Textarea -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textarea">Goal Definition</label>
-                            <div class="col-md-4">
-                                <textarea class="form-control" id="textarea" name="textarea"></textarea>
-                            </div>
-                        </div>
-
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Total XP Point (Int)</label>
-                            <div class="col-md-4">
-                                <input id="textinput" name="textinput" type="text" placeholder="Total XP"
-                                    class="form-control input-md" required="">
-                                <span class="help-block">Please allocate the total/max xp points obtainable from
-                                    this
-                                    workout.</span>
-                            </div>
-                        </div>
-
-                        <!-- Select Basic -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Premium Workout?</label>
-                            <div class="col-md-4">
-                                <select id="selectbasic" name="selectbasic" class="form-control">
-                                    <option value="0">No</option>
-                                    <option value="1">Yes</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Button -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="singlebutton">Workout Summary</label>
-
-                        </div>
-
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Main Goal</label>
-                            <div class="col-md-4">
-                                <input id="textinput" name="textinput" type="text" placeholder="Main Goal"
-                                    class="form-control input-md" required="">
-                                <span class="help-block">Please describe the main goal you are trying to help
-                                    trainees
-                                    achieve with this workout.</span>
-                            </div>
-                        </div>
-
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Workout Type</label>
-                            <div class="col-md-4">
-                                <input id="textinput" name="textinput" type="text" placeholder="Workout Type"
-                                    class="form-control input-md" required="">
-                                <span class="help-block">Please describe the type of workout this is.</span>
-                            </div>
-                        </div>
-
-                        <!-- Select Basic -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Recommeded Training
-                                Level</label>
-                            <div class="col-md-4">
-                                <select id="selectbasic" name="selectbasic" class="form-control">
-                                    <option value="L1_Beginner">Beginner</option>
-                                    <option value="L2_Semi-Advanced">Semi-Advanced</option>
-                                    <option value="L3_Advanced Athlete">Advanced Athlete</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Workout Program Duration</label>
-                            <div class="col-md-4">
-                                <input id="textinput" name="textinput" type="text"
-                                    placeholder="Program Duration / Length (in weeks)" class="form-control input-md">
-                                <span class="help-block">Please define the Program duration / Length of this workout
-                                    in
-                                    weeks.</span>
-                            </div>
-                        </div>
-
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Exercise Days Per Week</label>
-                            <div class="col-md-4">
-                                <input id="textinput" name="textinput" type="text" placeholder="Exercise Days Per Week"
-                                    class="form-control input-md" required="">
-
-                            </div>
-                        </div>
-
-                        <!-- Select Basic -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Target Gender</label>
-                            <div class="col-md-4">
-                                <select id="selectbasic" name="selectbasic" class="form-control">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Select Multiple -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectmultiple">Recommeded
-                                Supplements</label>
-                            <div class="col-md-4">
-                                <select id="selectmultiple" name="selectmultiple" class="form-control"
-                                    multiple="multiple">
-                                    <option value="noselect">None</option>
-                                    <option value="Supplement Sci-Name 1">Supplement Sci-Name 1</option>
-                                    <option value="Supplement Sci-Name 2">Supplement Sci-Name 2</option>
-                                    <option value="Supplement Sci-Name 3">Supplement Sci-Name 3</option>
-                                </select>
-                            </div>
-                        </div>
-
-                    </fieldset>
-                </form>
-
+                </div>
 
 
             </div>
@@ -388,32 +1265,110 @@
                 tabindex="0">
                 <h1>Store Management</h1>
 
-                <!-- upload bulk csv file - store products -->
-                <form id="store-csv-bulk-upload-form" name="store-csv-bulk-upload-form" class="my-4"
-                    action="./scripts/php/upload_store_products_csv.php" method="post" enctype="multipart/form-data">
-                    <!-- Form Name -->
-                    <legend>Bulk CSV Upload - Store Products</legend>
+                <hr>
 
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="csvfile-category_class"
-                                aria-describedby="lbl-csvfile-category_class" name="csvfile-category_class" type="file">
-                            <label id="lbl-csvfile-category_class" class="custom-file-label"
-                                for="csvfile-category_class"></label>
-                        </div>
-                        <div class="input-group-append">
-                            <input type="submit" name="submit" value="Upload Store Products Data CSV file"
-                                class="btn btn-primary">
-                        </div>
+                <div class="row my-4 gap-4">
+                    <div class="col-md-4 container-card">
+                        <h5>Bulk Upload</h5>
+
+                        <hr>
+
+                        <!-- upload bulk csv file - store products -->
+                        <form id="store-csv-bulk-upload-form" name="store-csv-bulk-upload-form" class="my-4"
+                            action="./scripts/php/upload_store_products_csv.php" method="post"
+                            enctype="multipart/form-data">
+                            <!-- Form Name -->
+                            <legend class="fs-5 fw-bold">Bulk CSV Upload - Store Products</legend>
+
+                            <div id="form-output-store" class="alert alert-info p-2 my-3" style="display: none;">
+                                Output Alert
+                            </div>
+
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input form-control"
+                                        id="csvfile-store_products" aria-describedby="lbl-csvfile-store_products"
+                                        name="csvfile-store_products" type="file">
+                                    <label id="lbl-csvfile-store_products" class="custom-file-label"
+                                        for="csvfile-store_products"></label>
+                                </div>
+                                <div class="input-group-append">
+                                    <input type="submit" name="submit" value="Upload Store Products Data CSV file"
+                                        class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
+                                </div>
+                            </div>
+                        </form>
+                        <!-- ./ upload bulk csv file - store products -->
                     </div>
-                </form>
-                <!-- ./ upload bulk csv file - store products -->
+                    <div class="col-md container-card">
+                        <h5>Add Product</h5>
+                        <hr>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- store products list -->
+                <h1>Store Inventory</h1>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"># <!-- product_id --></th>
+                                <th scopr="col">Inventory Code <!-- inventory_number --></th>
+                                <th scopr="col">Name <!-- product_name --></th>
+                                <th scopr="col">Brand <!-- product_brand --></th>
+                                <th scopr="col">Categories <!-- product_category --></th>
+                                <th scopr="col">Purchase Price (R) <!-- purchase_price_zar --></th>
+                                <th scopr="col">Selling Price (R) <!-- selling_price_zar --></th>
+                                <th scopr="col">Description <!-- product_description --></th>
+                                <th scopr="col">Specs <!-- product_specifications --></th>
+                                <th scopr="col">Weight (kg) <!-- product_weight --></th>
+                                <th scopr="col">Availability <!-- inventory_status --></th>
+                                <th scopr="col">Tags <!-- product_tag --></th>
+                                <th scopr="col">Image <!-- product_image --></th>
+                            </tr>
+                        </thead>
+                        <tbody id="store-products-list" class="table-group-divider"
+                            style="max-height: 100vh;overflow-y: auto;">
+                            <tr>
+                                <td colspan="13">
+                                    <div class="d-flex justify-content-center p-4">
+                                        <div class="spinner-border" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
             <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab"
-                tabindex="0">...</div>
+                tabindex="0">
+                <h1>Data Tools</h1>
+                <hr>
+            </div>
         </div>
         <!-- ./main tab container -->
     </div>
+
+    <script>
+        function initializeContent() {
+            $.getUserAccounts('ui_data');
+            $.getCategoriesClasses('ui_data');
+            $.getIndiExercises('ui_data');
+            $.getSupplementsList('ui_data');
+
+            $.getStoreProducts('ui_data');
+
+            showSnackbar('Data has been refreshed.');
+        }
+    </script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Bootstrap JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

@@ -27,11 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'text/plain'
         );
 
+
+
         // Validate whether selected file is a CSV file
-        if (!empty($_FILES['csvfile']['name']) && in_array($_FILES['csvfile']['type'], $fileMimes)) {
+        if (!empty($_FILES['csvfile-store_products']['name']) && in_array($_FILES['csvfile-store_products']['type'], $fileMimes)) {
 
             // Open uploaded CSV file with read-only mode
-            $csvFile = fopen($_FILES['csvfile']['tmp_name'], 'r');
+            $csvFile = fopen($_FILES['csvfile-store_products']['tmp_name'], 'r');
 
             // Skip the first line
             fgetcsv($csvFile);
@@ -51,20 +53,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // product_specifications	
                 // product_weight	
                 // inventory_status	
-                // product_tag	product_image
-
-                $inventory_number = $getData[0];
-                $product_name = $getData[1];
-                $product_brand = $getData[2];
-                $product_category = $getData[3];
-                $purchase_price_zar = $getData[4];
-                $selling_price_zar = $getData[5];
-                $product_description = $getData[6];
-                $product_specifications = $getData[7];
-                $product_weight = $getData[8];
-                $inventory_status = $getData[9];
-                $product_tag = $getData[10];
-                $product_image = $getData[11];
+                // product_tag	
+                // product_image_url
+                $product_id = sanitizeMySQL($dbconn, $getData[0]);
+                $inventory_number = sanitizeMySQL($dbconn, $getData[1]);
+                $product_name = sanitizeMySQL($dbconn, $getData[2]);
+                $product_brand = sanitizeMySQL($dbconn, $getData[3]);
+                $product_category = sanitizeMySQL($dbconn, $getData[4]);
+                $purchase_price_zar = sanitizeMySQL($dbconn, $getData[5]);
+                $selling_price_zar = sanitizeMySQL($dbconn, $getData[6]);
+                $product_description = sanitizeMySQL($dbconn, $getData[7]);
+                $product_specifications = sanitizeMySQL($dbconn, $getData[8]);
+                $product_weight = sanitizeMySQL($dbconn, $getData[9]);
+                $inventory_status = sanitizeMySQL($dbconn, $getData[10]);
+                $product_tag = sanitizeMySQL($dbconn, $getData[11]);
+                $product_image_url = sanitizeMySQL($dbconn, $getData[12]);
 
                 // mysql query to check If user an identifier exists in the database, in this case we want to query if there
                 // are records in the database that have the same inventory number
@@ -74,26 +77,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 if ($check->num_rows > 0) {
                     // record exists, update the existing record with the new data/values
-                    mysqli_query($dbconn, "UPDATE `store_products` SET 
-                    `product_name`='[value-3]',
-                    `product_brand`='[value-4]',
-                    `product_category`='[value-5]',
-                    `purchase_price_zar`='[value-6]',
-                    `selling_price_zar`='[value-7]',
-                    `product_description`='[value-8]',
-                    `product_specifications`='[value-9]',
-                    `product_weight`='[value-10]',
-                    `inventory_status`='[value-11]',
-                    `product_tag`='[value-12]',
-                    `product_image_url`='[value-13]' 
-                    WHERE `inventory_number`='[value-2]'");
+                    $result = mysqli_query($dbconn, "UPDATE `store_products` SET 
+                    `product_name`='$product_name',
+                    `product_brand`='$product_name',
+                    `product_category`='$product_category',
+                    `purchase_price_zar`=$purchase_price_zar,
+                    `selling_price_zar`=$selling_price_zar,
+                    `product_description`='$product_description',
+                    `product_specifications`='$product_specifications',
+                    `product_weight`=$product_weight,
+                    `inventory_status`=$inventory_status,
+                    `product_tag`='$product_tag',
+                    `product_image_url`='$product_image_url' 
+                    WHERE `inventory_number`='$inventory_number'");
+
+                    if (!$result) die("An error occurred while trying to update the existing record [ $inventory_number ]: " . $dbconn->error . "]");
                 } else {
                     // record does not exist, insert/create a new record 
-                    mysqli_query($dbconn, "INSERT INTO 
+                    $result = mysqli_query($dbconn, "INSERT INTO 
                     `store_products`(`product_id`, `inventory_number`, `product_name`, `product_brand`, `product_category`, `purchase_price_zar`, `selling_price_zar`, 
                     `product_description`, `product_specifications`, `product_weight`, `inventory_status`, `product_tag`, `product_image_url`) 
                     VALUES (null,'$inventory_number','$product_name','$product_brand','$product_category',$purchase_price_zar,$selling_price_zar,
-                    '$product_description','$product_specifications',$product_weight,$inventory_status,'$product_tag','$product_image')");
+                    '$product_description','$product_specifications',$product_weight,$inventory_status,'$product_tag','$product_image_url')");
+
+                    // $result = $dbconn->query($query);
+
+                    if (!$result) die("An error occurred while trying to save the new record [ $inventory_number ]: " . $dbconn->error . "]");
                 }
             }
 
@@ -105,7 +114,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // return success message
             echo "success";
         } else {
-            echo "Request could not be processed. Please select a valid file. *or no data was received";
+            echo "Request could not be processed. Please select a valid file. *or no data was received \n" .
+                "_FILES['csvfile-store_products']['name']?=> " . $_FILES['csvfile-store_products']['name'] . " \n " .
+                "_FILES['csvfile-store_products']['type']?=> " . $_FILES['csvfile-store_products']['type'] . " \n";
         }
     } catch (\Throwable $th) {
         throw "Exeption error occured: " . $th->getMessage();

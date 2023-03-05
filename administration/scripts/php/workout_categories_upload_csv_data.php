@@ -28,10 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         );
 
         // Validate whether selected file is a CSV file
-        if (!empty($_FILES['csvfile']['name']) && in_array($_FILES['csvfile']['type'], $fileMimes)) {
+        if (!empty($_FILES['csvfile-category_class']['name']) && in_array($_FILES['csvfile-category_class']['type'], $fileMimes)) {
 
             // Open uploaded CSV file with read-only mode
-            $csvFile = fopen($_FILES['csvfile']['tmp_name'], 'r');
+            $csvFile = fopen($_FILES['csvfile-category_class']['tmp_name'], 'r');
 
             // Skip the first line
             fgetcsv($csvFile);
@@ -43,9 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // category_class_id
                 // category_class_code
                 // category_class_name
-                $category_class_id = $getData[0];
-                $category_class_code = $getData[1];
-                $category_class_name = $getData[2];
+                $category_class_id = sanitizeMySQL($dbconn, $getData[0]);
+                $category_class_code = sanitizeMySQL($dbconn, $getData[1]);
+                $category_class_name = sanitizeMySQL($dbconn, $getData[2]);
 
                 // If user category/class exists in the database with the same category_class_code
                 $query = "SELECT * FROM `category_class` WHERE `category_class_code` = '$category_class_code'";

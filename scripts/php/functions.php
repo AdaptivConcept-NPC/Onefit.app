@@ -6,6 +6,7 @@ function sanitizeString($var)
     $var = stripslashes($var);
     $var = strip_tags($var);
     $var = htmlentities($var);
+    $var = str_replace("'", '`', $var);
     return $var;
 }
 function sanitizeMySQL($connection, $var)
