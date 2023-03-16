@@ -147,7 +147,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" /> -->
 
     <!-- W3 CSS -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
@@ -157,14 +157,15 @@ if (isset($_SESSION["currentUserAuth"])) {
     <link rel="stylesheet" href="../css/digital-clock.css" />
     <link rel="stylesheet" href="../css/timeline-styles.css" />
 
+    <!-- JQuery local -->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+
     <!-- Site Scripts -->
+    <script src="../scripts/js/jquery_functions.js"></script>
     <script src="../scripts/js/script.js"></script>
     <script src="../scripts/js/api_requests.js"></script>
 
     <!-- ./ Site Scripts -->
-
-    <!-- JQuery local -->
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 
     <!-- JQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -191,911 +192,14 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <!-- chartjs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <!-- <script src="../node_modules/dist/chart.min.js"></script> *** local file - no chart object detected -->
 
     <!-- JQuery Scripts -->
-    <script>
+    <!-- <script>
         //jQuery Code Only
         //$.noConflict();
-        $(document).ready(function() {
-            // compile Dashboard content - ajax
-
-            // compile Profile content - ajax
-            // user group subscriptions
-            $.compileUserProfileHeader = function() {
-                $.get("../scripts/php/main_app/compile_content/profile_tab/user_profile_header.php?usnm=<?php echo $currentUser_Usrnm; ?>", function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.compileUserProfileHeader returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileUserProfileHeader returned: \n[Status]: " + status + "\n[Data]: " + data);
-                    } else {
-                        $('#profile-header-container').html(data);
-                    }
-                });
-            }
-
-            $.compileUserCommunityGroupSubs = function() {
-                $.get("../scripts/php/main_app/compile_content/profile_tab/get_user_community_group_subs.php?entry=init", function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.compileUserCommunityGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileUserCommunityGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
-                    } else {
-                        $('#user-community-groups-subs-list').html(data);
-                    }
-
-
-                });
-            }
-            $.compileUserTeamsGroupSubs = function() {
-                $.get("../scripts/php/main_app/compile_content/profile_tab/get_user_teams_group_subs.php?entry=init", function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.compileUserTeamsGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileUserTeamsGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
-                    } else {
-                        $('#user-teams-groups-subs-list').html(data);
-                    }
-
-
-                });
-            }
-            $.compileUserProGroupSubs = function() {
-                $.get("../scripts/php/main_app/compile_content/profile_tab/get_user_pro_group_subs.php?entry=init", function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.compileUserProGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileUserProGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
-                    } else {
-                        $('#user-pro-groups-subs-list').html(data);
-                    }
-
-
-                });
-            }
-
-            // complete group lists
-            $.compileCommunityGroups = function() {
-                $.get("../scripts/php/main_app/compile_content/community_content/community_groups.php?entry=init", function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-                    } else {
-                        $('#community-groups-full-list').html(data);
-                    }
-
-
-                });
-            }
-            $.compileTeamsGroups = function() {
-                $.get("../scripts/php/main_app/compile_content/teams_content/teams_groups.php?entry=init", function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.compileTeamsGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileTeamsGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-                    } else {
-                        $('#teams-groups-full-list').html(data);
-                    }
-
-
-                });
-            }
-            $.compileProGroups = function() {
-                $.get("../scripts/php/main_app/compile_content/premium_content/pro_groups.php?entry=init", function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.compileProGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileProGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-                    } else {
-                        $('#pro-groups-full-list').html(data);
-                    }
-
-
-                });
-            }
-            // get user profile header
-            $.compileUserProfileHeader();
-            // get full groups list
-            $.compileCommunityGroups();
-            $.compileTeamsGroups();
-            $.compileProGroups();
-            // get user group subs
-            $.compileUserCommunityGroupSubs();
-            $.compileUserTeamsGroupSubs();
-            $.compileUserProGroupSubs();
-
-            // compile Discovery content - ajax
-
-            // compile Studio content - ajax
-
-            // compile Store content - ajax
-
-            // compile Social content - ajax
-
-            // compile Fitness Insights content - ajax
-
-            // compile Achievements content - ajax
-
-            // compile Media content - ajax
-            $.compileMediaTabContent = function() {
-                // shared-media-grid-container
-                // private-media-grid-container
-                // video-media-grid-container
-                var mediaClassArray = ['shared', 'private', 'videos'];
-
-                mediaClassArray.forEach(mClass => {
-                    $.get("../scripts/php/main_app/compile_content/media_tab/main_user_media_gallery.php?dir=" + mClass, function(data, status) {
-
-                        if (status != "success") {
-                            console.log("Get Req Failed -> $.compileMediaTabContent returned: \n[Status]: " + status + "\n[Data]: " + data);
-                            alert("Get Req Failed -> $.compileMediaTabContent returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        } else {
-                            switch (weekday) {
-                                case "shared":
-                                    $('#shared-media-grid-container').html(data);
-                                    break;
-                                case "private":
-                                    $('#private-media-grid-container').html(data);
-                                    break;
-                                case "videos":
-                                    $('#video-media-grid-container').html(data);
-                                    break;
-
-                                default:
-                                    console.log("Error [$.compileMediaTabContent]: mClass/Directory: " + mClass);
-                                    break;
-                            }
-                        }
-                    });
-
-                });
-
-            }
-
-            // compile Communications content - ajax
-
-            // compile Messages content - ajax
-
-            // compile Preferences content - ajax
-
-
-            // soccer field player formation
-            var data = [{
-                    name: 'KEYLOR NAVAS',
-                    position: 'C_GK',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'MARCELO',
-                    position: 'LC_B',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'SERGIO RAMOS',
-                    position: 'C_B',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'CARVAJAL',
-                    position: 'RC_B',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'CASEMIRO',
-                    position: 'C_DM',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'KROOS',
-                    position: 'L_M',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'ISCO',
-                    position: 'LC_M',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'ASENSIO',
-                    position: 'RC_M',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'MODRIC',
-                    position: 'R_M',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'RONALDO',
-                    position: 'LC_F',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'BENZEMA',
-                    position: 'RC_F',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-            ];
-
-            $("#soccerfield").soccerfield(data, {
-                field: {
-                    width: "960px",
-                    height: "600px",
-                    img: '../media/assets/field_diagrams/soccer-field-dimensions-1.jpg',
-                    startHidden: false,
-                    animate: false,
-                    fadeTime: 1000,
-                    autoReveal: false,
-                    onReveal: function() {
-                        // triggered on reveal
-                    }
-                },
-                players: {
-                    font_size: 16,
-                    reveal: false,
-                    sim: true, // reveal simultaneously
-                    timeout: 1000,
-                    fadeTime: 1000,
-                    img: true,
-                    onReveal: function() {
-                        // triggered on reveal
-                    }
-                }
-            });
-
-            // ***** Locaion: Modal
-            // ajax jquery - submit activity tracking data [Heart Rate]
-            $("#modal-heartrate-insights-activitytracker-data-form").submit(function(e) {
-                e.preventDefault();
-
-                // get the localy stored user_usnm
-                let user_usnm = localStorage.getItem('user_usnm');
-
-                var form_data = new FormData($('#modal-heartrate-insights-activitytracker-data-form')[0]);
-                setTimeout(function() {
-                    $.ajax({
-                        type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_heartrate.php',
-                        processData: false,
-                        contentType: false,
-                        async: false,
-                        cache: false,
-                        data: form_data,
-                        beforeSend: function() {
-                            console.log('beforeSend: submitting activity tracking data [Heart Rate]');
-                        },
-                        success: function(response) {
-                            if (response.startsWith("success")) {
-                                console.log('success: returning response - activity tracking data [Heart Rate]');
-                                console.log("Response: " + response);
-
-                                // run sync function for heartrate chart
-                                var dateToday = new Date('Y-m-d');
-                                syncUserActivityTrackerChart(heartRateChart, user_usnm, 'heart_rate_monitor_chart', null, dateToday);
-
-                                // reset the form
-                                // $('#modal-heartrate-insights-activitytracker-data-form :input').val('');
-                                $('#modal-heartrate-insights-activitytracker-data-form[name=checkListItem]').val('');
-                            } else {
-                                console.log("error: returning response - activity tracking data [Heart Rate]");
-                                console.log("Response: " + response);
-                            }
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                        }
-                    });
-                }, 1000);
-            });
-            // ./ ajax jquery - submit activity tracking data [Heart Rate]
-
-            // ajax jquery - submit activity tracking data [Body Temp]
-            $("#modal-bodytemp-insights-activitytracker-data-form").submit(function(e) {
-                e.preventDefault();
-
-                // get the localy stored user_usnm
-                let user_usnm = localStorage.getItem('user_usnm');
-
-                var form_data = new FormData($('#modal-bodytemp-insights-activitytracker-data-form')[0]);
-                setTimeout(function() {
-                    $.ajax({
-                        type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_bodytemp.php',
-                        processData: false,
-                        contentType: false,
-                        async: false,
-                        cache: false,
-                        data: form_data,
-                        beforeSend: function() {
-                            console.log('beforeSend: submitting activity tracking data [Body Temp]');
-                        },
-                        success: function(response) {
-
-                            if (response.startsWith("success")) {
-                                console.log('success: returning response - activity tracking data [Body Temp]');
-                                console.log("Response: " + response);
-                                // get the profile image name and append it to the src attribute str
-                                // var str = response;
-                                // var imgSrcStr = str.split('[').pop().split(']')[0];
-                            } else {
-                                console.log("error: returning response - activity tracking data [Body Temp]");
-                                console.log("Response: " + response);
-                            }
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                        }
-                    });
-                }, 1000);
-            });
-            // ./ ajax jquery - submit activity tracking data [Body Temp]
-
-            // ajax jquery - submit activity tracking data [Speed]
-            $("#modal-speed-insights-activitytracker-data-form").submit(function(e) {
-                e.preventDefault();
-
-                // get the localy stored user_usnm
-                let user_usnm = localStorage.getItem('user_usnm');
-
-                var form_data = new FormData($('#modal-speed-insights-activitytracker-data-form')[0]);
-                setTimeout(function() {
-                    $.ajax({
-                        type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_speed.php',
-                        processData: false,
-                        contentType: false,
-                        async: false,
-                        cache: false,
-                        data: form_data,
-                        beforeSend: function() {
-                            console.log('beforeSend: submitting activity tracking data [Speed]');
-                        },
-                        success: function(response) {
-
-                            if (response.startsWith("success")) {
-                                console.log('success: returning response - activity tracking data [Speed]');
-                                console.log("Response: " + response);
-                                // get the profile image name and append it to the src attribute str
-                                // var str = response;
-                                // var imgSrcStr = str.split('[').pop().split(']')[0];
-                            } else {
-                                console.log("error: returning response - activity tracking data [Speed]");
-                                console.log("Response: " + response);
-                            }
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                        }
-                    });
-                }, 1000);
-            });
-            // ./ ajax jquery - submit activity tracking data [Speed]
-
-            // ajax jquery - submit activity tracking data [BMI Weight]
-            $("#modal-weight-insights-activitytracker-data-form").submit(function(e) {
-                e.preventDefault();
-
-                // get the localy stored user_usnm
-                let user_usnm = localStorage.getItem('user_usnm');
-
-                var form_data = new FormData($('#modal-weight-insights-activitytracker-data-form')[0]);
-                setTimeout(function() {
-                    $.ajax({
-                        type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_bmiweight.php',
-                        processData: false,
-                        contentType: false,
-                        async: false,
-                        cache: false,
-                        data: form_data,
-                        beforeSend: function() {
-                            console.log('beforeSend: submitting activity tracking data [BMI Weight]');
-                        },
-                        success: function(response) {
-
-                            if (response.startsWith("success")) {
-                                console.log('success: returning response - activity tracking data [BMI Weight]');
-                                console.log("Response: " + response);
-                                // get the profile image name and append it to the src attribute str
-                                // var str = response;
-                                // var imgSrcStr = str.split('[').pop().split(']')[0];
-                            } else {
-                                console.log("error: returning response - activity tracking data [BMI Weight]");
-                                console.log("Response: " + response);
-                            }
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                        }
-                    });
-                }, 1000);
-            });
-            // ./ ajax jquery - submit activity tracking data [BMI Weight]
-
-            // ***** Locaion: Single
-            // ajax jquery - submit activity tracking data [Heart Rate]
-            $("#single-heartrate-insights-activitytracker-data-form").submit(function(e) {
-                e.preventDefault();
-
-                // get the localy stored user_usnm
-                let user_usnm = localStorage.getItem('user_usnm');
-
-                var form_data = new FormData($('#single-heartrate-insights-activitytracker-data-form')[0]);
-                setTimeout(function() {
-                    $.ajax({
-                        type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_heartrate.php',
-                        processData: false,
-                        contentType: false,
-                        async: false,
-                        cache: false,
-                        data: form_data,
-                        beforeSend: function() {
-                            console.log('beforeSend: submitting activity tracking data [Heart Rate]');
-                        },
-                        success: function(response) {
-                            if (response.startsWith("success")) {
-                                console.log('success: returning response - activity tracking data [Heart Rate]');
-                                console.log("Response: " + response);
-
-                                // run sync function for heartrate chart
-                                var dateToday = new Date();
-                                syncUserActivityTrackerChart(heartRateChart, user_usnm, 'heart_rate_monitor_chart', null, dateToday);
-
-                                // reset the form
-                                $('#single-heartrate-insights-activitytracker-data-form :input').val('');
-
-                            } else {
-                                console.log("error: returning response - activity tracking data [Heart Rate]");
-                                console.log("Response: " + response);
-                            }
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                        }
-                    });
-                }, 1000);
-            });
-            // ./ ajax jquery - submit activity tracking data [Heart Rate]
-
-            // ajax jquery - submit activity tracking data [Body Temp]
-            $("#single-bodytemp-insights-activitytracker-data-form").submit(function(e) {
-                e.preventDefault();
-
-                // get the localy stored user_usnm
-                let user_usnm = localStorage.getItem('user_usnm');
-
-                var form_data = new FormData($('#single-bodytemp-insights-activitytracker-data-form')[0]);
-                setTimeout(function() {
-                    $.ajax({
-                        type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_bodytemp.php',
-                        processData: false,
-                        contentType: false,
-                        async: false,
-                        cache: false,
-                        data: form_data,
-                        beforeSend: function() {
-                            console.log('beforeSend: submitting activity tracking data [Body Temp]');
-                        },
-                        success: function(response) {
-
-                            if (response.startsWith("success")) {
-                                console.log('success: returning response - activity tracking data [Body Temp]');
-                                console.log("Response: " + response);
-                                // get the profile image name and append it to the src attribute str
-                                // var str = response;
-                                // var imgSrcStr = str.split('[').pop().split(']')[0];
-                            } else {
-                                console.log("error: returning response - activity tracking data [Body Temp]");
-                                console.log("Response: " + response);
-                            }
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                        }
-                    });
-                }, 1000);
-            });
-            // ./ ajax jquery - submit activity tracking data [Body Temp]
-
-            // ajax jquery - submit activity tracking data [Speed]
-            $("#single-speed-insights-activitytracker-data-form").submit(function(e) {
-                e.preventDefault();
-
-                // get the localy stored user_usnm
-                let user_usnm = localStorage.getItem('user_usnm');
-
-                var form_data = new FormData($('#single-speed-insights-activitytracker-data-form')[0]);
-                setTimeout(function() {
-                    $.ajax({
-                        type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_speed.php',
-                        processData: false,
-                        contentType: false,
-                        async: false,
-                        cache: false,
-                        data: form_data,
-                        beforeSend: function() {
-                            console.log('beforeSend: submitting activity tracking data [Speed]');
-                        },
-                        success: function(response) {
-
-                            if (response.startsWith("success")) {
-                                console.log('success: returning response - activity tracking data [Speed]');
-                                console.log("Response: " + response);
-                                // get the profile image name and append it to the src attribute str
-                                // var str = response;
-                                // var imgSrcStr = str.split('[').pop().split(']')[0];
-                            } else {
-                                console.log("error: returning response - activity tracking data [Speed]");
-                                console.log("Response: " + response);
-                            }
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                        }
-                    });
-                }, 1000);
-            });
-            // ./ ajax jquery - submit activity tracking data [Speed]
-
-            // ajax jquery - submit activity tracking data [BMI Weight]
-            $("#single-weight-insights-activitytracker-data-form").submit(function(e) {
-                e.preventDefault();
-
-                // get the localy stored user_usnm
-                let user_usnm = localStorage.getItem('user_usnm');
-
-                var form_data = new FormData($('#single-weight-insights-activitytracker-data-form')[0]);
-                setTimeout(function() {
-                    $.ajax({
-                        type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_bmiweight.php',
-                        processData: false,
-                        contentType: false,
-                        async: false,
-                        cache: false,
-                        data: form_data,
-                        beforeSend: function() {
-                            console.log('beforeSend: submitting activity tracking data [BMI Weight]');
-                        },
-                        success: function(response) {
-
-                            if (response.startsWith("success")) {
-                                console.log('success: returning response - activity tracking data [BMI Weight]');
-                                console.log("Response: " + response);
-
-                                // run sync function for heartrate chart
-                                var dateToday = new Date();
-                                syncUserActivityTrackerChart(bmiWeightChart, user_usnm, 'heart_rate_monitor_chart', null, dateToday);
-
-                                // reset the form
-                                $('#modal-heartrate-insights-activitytracker-data-form :input').val('');
-
-                            } else {
-                                console.log("error: returning response - activity tracking data [BMI Weight]");
-                                console.log("Response: " + response);
-                            }
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                        }
-                    });
-                }, 1000);
-            });
-            // ./ ajax jquery - submit activity tracking data [BMI Weight]
-
-            // load Teams Activity Capturing Form
-            $.loadTeamsActivityCaptureForm = function(day, grpRefcode) {
-                // alert("../scripts/php/main_app/data_management/system_admin/team_athletics_data/compile_teams_add_new_activity_day_form.php?day=" + day + "&gref=" + grpRefcode);
-
-                // store grpRefcode locally so we can access it later
-                localStorage.setItem('grcode', grpRefcode);
-
-                $.get("../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/compile/compile_teams_add_new_activity_day_form.php?day=" + day + "&gref=" + grpRefcode, function(data, status) {
-                    console.log("loadTeamsActivityCaptureForm returned: \n[Status]: " + status + "\n[Data]: " + data);
-
-                    if (status.startsWith('exception error')) {
-                        // provide an error message
-                        console.log("Error loading editing form");
-                    } else {
-                        // populate the modal body
-                        $('#display-activity-bar-preview').html(data);
-                    }
-                });
-            }
-
-            $.populateWeeklyActivityBarChart = function() {
-                // inner bar activity containers
-                // $('#teams-weekly-activity-barchart-bar-day1').html(data);
-                // $('#teams-weekly-activity-barchart-bar-day2').html(data);
-                // $('#teams-weekly-activity-barchart-bar-day3').html(data);
-                // $('#teams-weekly-activity-barchart-bar-day4').html(data);
-                // $('#teams-weekly-activity-barchart-bar-day5').html(data);
-                // $('#teams-weekly-activity-barchart-bar-day6').html(data);
-                // $('#teams-weekly-activity-barchart-bar-day7').html(data);
-
-                // bar cols
-                // $('#day-1-col').html(data);
-                // $('#day-2-col').html(data);
-                // $('#day-3-col').html(data);
-                // $('#day-4-col').html(data);
-                // $('#day-5-col').html(data);
-                // $('#day-6-col').html(data);
-                // $('#day-7-col').html(data);
-
-                var weekDaysArray = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-
-                // alert("JQuery AJAX populateWeeklyActivityBarChart");
-                var grpRefCode = "tst_grp_0001";
-
-                weekDaysArray.forEach(weekday => {
-                    $.get("../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/compile/compile_teams_daily_activities.php?day=" + weekday + "&gref=" + grpRefCode, function(data, status) {
-
-
-                        if (status != "success") {
-                            console.log("Get Req Failed -> $.populateWeeklyActivityBarChart returned: \n[Status]: " + status + "\n[Data]: " + data);
-                            alert("Get Req Failed -> $.populateWeeklyActivityBarChart returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        } else {
-                            switch (weekday) {
-                                case "monday":
-                                    $('#day-1-col').html(data);
-                                    break;
-                                case "tuesday":
-                                    $('#day-2-col').html(data);
-                                    break;
-                                case "wednesday":
-                                    $('#day-3-col').html(data);
-                                    break;
-                                case "thursday":
-                                    $('#day-4-col').html(data);
-                                    break;
-                                case "friday":
-                                    $('#day-5-col').html(data);
-                                    break;
-                                case "saturday":
-                                    $('#day-6-col').html(data);
-                                    break;
-                                case "sunday":
-                                    $('#day-7-col').html(data);
-                                    break;
-
-                                default:
-                                    console.log("Error [$.populateWeeklyActivityBarChart]: Day: " + weekday + " | grpRefCode" + grpRefCode);
-                                    break;
-                            }
-                        }
-                    });
-
-                });
-
-                // populate the weekly assessments list cards as well
-                weekDaysArray.forEach(weekday => {
-                    // populate the weekly assessments list cards as well
-                    $.populateWeeklyAssessmentsHorizCardContainer(weekday, grpRefCode);
-                });
-
-            }
-
-            $.populateWeeklyAssessmentsHorizCardContainer = function(weekday, grpRefCode) {
-                // var grpRefCode = "tst_grp_0001";
-                $.get("../scripts/php/main_app/compile_content/profile_tab/get_users_daily_assessments_and_activities_list.php?day=" + weekday + "&gref=" + grpRefCode, function(data, status) {
-
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.populateWeeklyAssessmentsHorizCardContainer returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.populateWeeklyAssessmentsHorizCardContainer returned: \n[Status]: " + status + "\n[Data]: " + data);
-                    } else {
-                        switch (weekday) {
-                            case "sunday":
-                                $('#weekly-assessment-h-scroll-weekday-card-varsunday').html(data);
-                                break;
-                            case "monday":
-                                $('#weekly-assessment-h-scroll-weekday-card-varmonday').html(data);
-                                break;
-                            case "tuesday":
-                                $('#weekly-assessment-h-scroll-weekday-card-vartuesday').html(data);
-                                break;
-                            case "wednesday":
-                                $('#weekly-assessment-h-scroll-weekday-card-varwednesday').html(data);
-                                break;
-                            case "thursday":
-                                $('#weekly-assessment-h-scroll-weekday-card-varthursday').html(data);
-                                break;
-                            case "friday":
-                                $('#weekly-assessment-h-scroll-weekday-card-varfriday').html(data);
-                                break;
-                            case "saturday":
-                                $('#weekly-assessment-h-scroll-weekday-card-varsaturday').html(data);
-                                break;
-
-                            default:
-                                console.log("Error: no weekday output to pass to card. [$.populateWeeklyAssessmentsHorizCardContainer]: Day: " + weekday + " | grpRefCode" + grpRefCode);
-                                alert("Error: no weekday output to pass to card. [$.populateWeeklyAssessmentsHorizCardContainer]: Day: " + weekday + " | grpRefCode" + grpRefCode);
-                                break;
-                        }
-                    }
-                });
-            }
-
-            // ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
-            $("#teams-add-new-day-activity-data-form").submit(function(e) {
-                e.preventDefault();
-
-                var form_data = new FormData($('#teams-add-new-day-activity-data-form')[0]);
-                setTimeout(function() {
-                    $.ajax({
-                        type: 'POST',
-                        url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/teams_add_new_activity_day_form_submit.php',
-                        processData: false,
-                        contentType: false,
-                        async: false,
-                        cache: false,
-                        data: form_data,
-                        beforeSend: function() {
-                            console.log('beforeSend: submit edited weekly teams activity data [Teams Submit Edited Activities Form]');
-                        },
-                        success: function(response) {
-
-                            if (response.startsWith("success")) {
-                                console.log('success: returning response - submit edited weekly teams activity data [Teams Submit Edited Activities Form]');
-                                console.log("Response: " + response);
-                                // get the profile image name and append it to the src attribute str
-                                // var str = response;
-                                // var imgSrcStr = str.split('[').pop().split(']')[0];
-
-                                // call the function/code to populate the modal body - use jquery ajax
-                                var local_grpRefcode = localStorage.setItem('grcode');
-                                $.loadTeamsActivityCaptureForm(day, local_grpRefcode);
-                            } else {
-                                console.log("error: returning response - submit edited weekly teams activity data [Teams Submit Edited Activities Form]");
-                                console.log("Response: " + response);
-                            }
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                        }
-                    });
-                }, 1000);
-            });
-            // ./ ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
-
-            // load interaction model content
-            $.loadInteractionContent = function(loadContent) {
-                let user_id = localStorage.getItem('user_usnm');
-                var getRequestLink, modalHeader = null;
-
-                // show the interaction modal
-                // $('#show-interaction-modal-btn').click();
-
-                // set loading display
-                $('#interactionsContentContainer').html(
-                    `<div class="d-flex justify-content-center">
-                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                    </div>
-                    <p class="text-center">Loading. Please wait.</p>`
-                );
-
-                switch (loadContent) {
-                    case "TrainingDrillsWorkouts":
-                        modalHeader = `<span class="material-icons material-icons-round align-middle">shuffle_on</span>
-                        <span class="align-middle d-none d-md-block"> Training Drills &amp; Workouts.</span>`;
-                        getRequestLink = '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_training_drills_workouts.php?uid=' + user_id;
-                        break;
-                    case "PhysicalAssessment":
-                        modalHeader = `<span class="material-icons material-icons-round align-middle">personal_injury</span>
-                        <span class="align-middle d-none d-md-block"> Physical Assessment</span>`;
-                        getRequestLink = '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_physical_assessment.php?uid=' + user_id;
-                        break;
-                    case "NutritionBoard":
-                        modalHeader = `<span class="material-icons material-icons-round align-middle">developer_board</span>
-                        <span class="align-middle d-none d-md-block"> Nutrition Board.</span>`;
-                        getRequestLink = '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_nutrition_board.php?uid=' + user_id;
-                        break;
-                    case "CreationTools":
-                        modalHeader = `<span class="material-icons material-icons-round align-middle">brush</span>
-                        <span class="align-middle d-none d-md-block"> Creation Tools.</span>`;
-                        getRequestLink = '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_creation_tools.php?uid=' + user_id;
-                        break;
-                    case "AdminDataMgmt":
-                        modalHeader = `<span class="material-icons material-icons-round align-middle">account_tree</span>
-                        <span class="align-middle d-none d-md-block"> Data Management.</span>`;
-                        getRequestLink = '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_data_mgmt.php?uid=' + user_id;
-                        break;
-
-                    default:
-                        modalHeader = `<span class="material-icons material-icons-round align-middle">account_tree</span>
-                        <span class="align-middle d-none d-md-block"> Data Management.</span>`;
-                        getRequestLink = 'abort operation';
-                        console.log("Error: no content request received. [$.loadInteractionContent]: loadContent Param: " + loadContent);
-                        alert("Error: no content request received. [$.loadInteractionContent]: loadContent Param: " + loadContent);
-                        break;
-                }
-
-                if (getRequestLink != 'abort operation') {
-                    $.get(getRequestLink, function(data, status) {
-
-                        if (status.startsWith('return')) {
-                            console.log("Get Req Failed -> $.loadInteractionContent returned: \n[Status]: " + status + "\n[Data]: " + data);
-                            alert("Get Req Failed -> $.loadInteractionContent returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        } else {
-                            // show the interaction modal
-                            // $('#show-interaction-modal-btn').click();
-                            // load the interaction modal with requested content
-                            $('#trainingInteractionsContentModalLabel').html(modalHeader);
-                            $('#interactionsContentContainer').html(data);
-                        }
-                    });
-                }
-
-            }
-
-            //<!-- script for loading edit forms for weekly teams activities -->
-            $.editAddNewActivityModal = function(day, grpRefcode) {
-                // open the modal
-                // $("#toggleTabeditWeeklyTeamsTrainingScheduleModalBtn").click();
-
-                // call the function/code to populate the modal body - use jquery ajax
-                $.loadTeamsActivityCaptureForm(day, grpRefcode);
-
-                // update the modal header label
-                $('#tabeditWeeklyTeamsTrainingScheduleModalLabelText').html('Edit weekly training schedule ( ' + day + ' )');
-            }
-
-            $.toggleEditDayBar = function(day, groupRefCode) {
-                // open the modal
-                // $("#toggleTabeditWeeklyTeamsTrainingScheduleModalBtn").click();
-
-                // call the function/code to populate the modal body - use jquery ajax - "editbar" value (grpRefcode) will load a form for updating the title and rpe
-                var initVal = "editbar";
-                $.loadTeamsActivityCaptureForm(day, initVal);
-            }
-
-            $.removeWeeklyTrainingActivity = function(day, groupRefCode, exerciseID) {
-
-            }
-            // <!-- ./ script for loading edit forms for weekly teams activities -->
-
-            // $("map[name=image-map-male-front]").mapoid({
-            //     click: function(e) {
-            //         /*// stroke color
-            //         strokeColor: 'black',
-            //         // stroke width
-            //         strokeWidth: 1,
-            //         // fill color
-            //         fillColor: 'black',
-            //         // 0-1
-            //         fillOpacity: 0.5,
-            //         // in milliseconds
-            //         fadeTime: 500,
-            //         // an array of selected areas
-            //         selectedArea: false,
-            //         // select on click
-            //         selectOnClick: true*/
-
-            //         //alert('click');
-            //         e.preventDefault();
-            //         var clickedArea = $(this); // remember clicked area
-            //         // foreach area
-            //         $("map[name=image-map-male-front]").each(function() {
-            //             hData = $(this).data('maphilight') || {}; // get
-            //             hData.alwaysOn = $(this).is(clickedArea); // modify
-            //             $(this).data('maphilight', hData).trigger('alwaysOn.maphilight'); // set
-            //         });
-            //     }
-            // });
-            //JQuery Image Map Highlighting
-            //$('.map').maphilight();
-
-            //$('.map').maphilight();
-
-            /*$('#musclepart').click(function(e) {
-                e.preventDefault();
-                var clickedArea = $(this); // remember clicked area
-                // foreach area
-                $('#musclepart').each(function() {
-                    hData = $(this).data('maphilight') || {}; // get
-                    hData.alwaysOn = $(this).is(clickedArea); // modify
-                    $(this).data('maphilight', hData).trigger('alwaysOn.maphilight'); // set
-                });
-            });*/
-        });
-    </script>
+        // $(document).ready(function() {});
+    </script> -->
 </head>
 
 <body class="noselect" onload="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
@@ -1111,29 +215,75 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- The actual snackbar -->
     <div id="snackbar">No notification.</div>
 
-    <!-- Load Curtain -->
-    <div class="load-curtain" id="LoadCurtain" style="display: block;">
-        <!-- twitter social panel -->
-        <div class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4 left-right-grad-tahiti-mineshaft shadow-lgz">
-            <!--  d-none d-lg-block p-4 -->
-            <div class="d-flex gap-2 w-100 justify-content-end">
-                <button class="p-4 m-0 shadow onefit-buttons-style-dark-twitter onefit-buttons-style-light-twitterz" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
-                    <div class="d-grid">
-                        <span class="material-icons material-icons-round" style="font-size: 48px !important;">
-                            <i class="fab fa-twitter" style="font-size: 40px;"></i>
-                        </span>
-                        <p class="comfortaa-font mt-1 mb-0" style="font-size: 10px;">@onefitnet</p>
-                    </div>
-                </button>
+    <!-- outer - twitter social panel -->
+    <div id="twitter-social-panel" class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4 right-left-grad-tahiti-mineshaft bg-darkz shadow-lgz">
+        <!--  d-none d-lg-block p-4 -->
+        <div class="d-flex gap-2 w-100 justify-content-end">
+            <button class="p-4 m-0 shadow onefit-buttons-style-dark-twitter onefit-buttons-style-light-twitterz" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
+                <div class="d-grid">
+                    <span class="material-icons material-icons-round" style="font-size: 48px !important;">
+                        <i class="fab fa-twitter" style="font-size: 40px;"></i>
+                    </span>
+                    <p class="comfortaa-font mt-1 mb-0" style="font-size: 10px;color:#fff!important;"><span style="color:var(--twitter)!important;">@</span>onefitnet</p>
+                </div>
+            </button>
+        </div>
+        <div class="collapse no-scroller pb-4 w3-animate-bottom" id="collapseloadCurtainTweetFeed" style="overflow-y: auto;">
+            <div class="pb-4 no-scroller" style="border-radius: 25px !important; overflow-y: auto; max-height: 90vh; min-width: 500px;">
+                <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by OnefitNet</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
-            <div class="collapse no-scroller pb-4 w3-animate-bottom" id="collapseloadCurtainTweetFeed" style="overflow-y: auto;">
-                <div class="pb-4 no-scroller" style="border-radius: 25px !important; overflow-y: auto; max-height: 90vh; min-width: 500px;">
-                    <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by OnefitNet</a>
-                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+    <!-- ./ outer - twitter social panel -->
+
+    <!-- Create Button - hidden on screens smaller than lg -->
+    <div id="creation-tools-content-panel" class="create-btn-container my-pulse-animation-tahiti comfortaa-font d-grid gap-2 d-none d-lg-block">
+        <div class="collapse p-4 w3-animate-bottom" id="collapseCreateCommandList">
+            <ul class="list-groupz list-group-flush list-group border-0 text-white fw-bold text-center comfortaa-font" style="overflow: initial !important;">
+                <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Social Update</button></li>
+                <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Community Resource</button></li>
+                <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Share Media</button></li>
+                <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Chat Message</button></li>
+            </ul>
+        </div>
+        <div class="d-grid gap-2 w-100">
+            <button class="p-4 m-0 shadow onefit-buttons-style-dark border-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCreateCommandList" aria-expanded="false" aria-controls="collapseCreateCommandList">
+                <div class="d-grid">
+                    <span class="material-icons material-icons-round" style="font-size: 48px !important;">
+                        brush
+                    </span>
+                    <p class="comfortaa-font" style="font-size: 20px;">Create.</p>
+                </div>
+            </button>
+        </div>
+
+    </div>
+    <!-- ./ Create Button - hidden on screens smaller than lg -->
+
+    <!-- offline Curtain -->
+    <div class="offline-curtain" id="offline-curtain" style="display: none;">
+        <div class="d-flex align-items-center top-down-grad-tahitiz" style="width: 100%; height: 100%;">
+            <div class="text-center w-100">
+                <div class="ring d-flex align-items-center p-4 my-pulse-animation-light">
+                    <!-- <span></span> -->
+                    <div class="d-flex align-items-center justify-content-center" style="width: 100%;">
+                        <!-- <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid p-4" style="height: 130px;" alt="onefit logo"> -->
+                        <span class="material-icons material-icons-round" style="font-size:100px!important;">
+                            wifi_off <!-- offline_bolt -->
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- ./ twitter social panel -->
+        <nav class="text-center text-center p-4 fixed-bottom" alt="">
+            <p class="navbar-brand fs-1 text-white comfortaa-font fs-5"><span style="color: #ffa500">You are offline</span></p>
+            <p class="text-center comfortaa-font" style="font-size: 20px;">Please check your internet connection</p>
+        </nav>
+    </div>
+
+    <!-- Load Curtain -->
+    <div class="load-curtain" id="LoadCurtain" style="display: block;">
 
         <div class="d-flex align-items-center top-down-grad-tahiti" style="width: 100%; height: 100%;">
             <div class="text-center w-100">
@@ -1147,7 +297,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         </div>
         <nav class="text-center text-center p-4 fixed-bottom" alt="">
             <p class="navbar-brand fs-1 text-white comfortaa-font">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></p>
-            <p class="text-center comfortaa-font" styl="font-size: 10px !important;">Loading. Please wait.</p>
+            <p class="text-center comfortaa-font">Loading. Please wait.</p>
         </nav>
     </div>
     <!-- ./Load Curtain -->
@@ -1158,7 +308,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ Facebook API -->
 
     <!-- Navigation bar, Cart & Other functions -->
-    <div class="container-xlg -fluid text-center pt-4">
+    <div id="nav-bar-header" class="container-xlg -fluid text-center pt-4">
         <a class="navbar-brand my-4 mx-0 p-4 fs-1 text-white comfortaa-font" href="#">
             One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span>
         </a>
@@ -1491,37 +641,13 @@ if (isset($_SESSION["currentUserAuth"])) {
             </div>
         </div>
         <!-- ./ Cart Container  -->
-
-        <!-- Create Button - hidden on screens smaller than lg -->
-        <div class="create-btn-container my-pulse-animation-tahiti comfortaa-font d-grid gap-2 d-none d-lg-block">
-            <div class="collapse p-4 w3-animate-bottom" id="collapseCreateCommandList">
-                <ul class="list-groupz list-group-flush list-group border-0 text-white fw-bold text-center comfortaa-font" style="overflow: initial !important;">
-                    <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Social Update</button></li>
-                    <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Community Resource</button></li>
-                    <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Share Media</button></li>
-                    <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Chat Message</button></li>
-                </ul>
-            </div>
-            <div class="d-grid gap-2 w-100">
-                <button class="p-4 m-0 shadow onefit-buttons-style-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCreateCommandList" aria-expanded="false" aria-controls="collapseCreateCommandList">
-                    <div class="d-grid">
-                        <span class="material-icons material-icons-round" style="font-size: 48px !important;">
-                            brush
-                        </span>
-                        <p class="comfortaa-font" style="font-size: 20px;">Create.</p>
-                    </div>
-                </button>
-            </div>
-
-        </div>
-        <!-- ./ Create Button - hidden on screens smaller than lg -->
     </div>
     <!-- ./ Navigation bar, Cart & Other functions -->
 
 
 
     <!-- Main Content -->
-    <div class="container-lg" style="padding-bottom: 50px">
+    <div id="main-content-container" class="container-lg" style="padding-bottom: 50px">
         <!-- Main Navigation Bar -->
         <nav class="navbar navbar-light sticky-top navbar-style w-100 mb-4" style="border-radius: 25px; max-height: 100vh !important; border-bottom: #ffa500 solid 5px;">
             <!-- App Function Buttons -->
@@ -1533,11 +659,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
                 </button>
 
-                <button type="button" id="display-current-tab-button" class="onefit-buttons-style-dark p-3 my-4 shadow comfortaa-font" style="max-width:87px;" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#tabNavModal">
+                <button type="button" id="apps-tray-open-btn" class="onefit-buttons-style-dark p-3 my-4 shadow comfortaa-font" style="max-width:87px;" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#tabNavModal">
                     <div class="d-grid gap-2">
-                        <span class="material-icons material-icons-round" style="font-size: 24px !important;" id="display-current-tab-button-icon">
+                        <span class="material-icons material-icons-round" style="font-size: 24px !important;" id="apps-tray-open-btn-icon">
                             dashboard </span>
-                        <span class="d-none d-lg-block text-truncate" id="display-current-tab-button-text" style="font-size: 10px;">Dashboard</span>
+                        <span class="d-none d-lg-block text-truncate" id="apps-tray-open-btn-text" style="font-size: 10px;">Dashboard</span>
                     </div>
                 </button>
 
@@ -7103,7 +6229,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             <div class="modal-content feature-tab-nav-content">
                 <div class="modal-header border-0">
                     <h5 class="modal-title fs-1" id="tabNavModalLabel"><span style="color: #ffa500;">.apps</span> menu</h5>
-                    <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
+                    <button id="apps-tray-close-btn" type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
                         <span class="material-icons material-icons-round"> cancel </span>
                     </button>
                 </div>
@@ -7214,44 +6340,59 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <button class="onefit-buttons-style-dark fs-5 fw-bold my-4 px-4 pt-4 text-center comfortaa-font border-0" type="button" data-bs-toggle="collapse" data-bs-target="#tab-nav-social-quickpost" aria-expanded="false" aria-controls="tab-nav-social-quickpost"><i class="fas fa-paper-plane"></i> | <span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Social</button>
                     </div>
 
-                    <div class="row align-items-center collapse" id="tab-nav-social-quickpost">
-                        <div class="col-sm d-grid gap-2 py-4 px-0">
+                    <div class="collapse" id="tab-nav-social-quickpost">
+                        <div class="d-grid gap-2 p-4">
                             <!-- Quick Post to Social -->
-                            <div class="social-quick-post d-grid">
-                                <textarea name="" class="w-100 quick-post-input" id="" cols="30" rows="3" placeholder="Share an update with the Community.">Share an update with the Community.</textarea>
+                            <div class="social-quick-post d-grid comfortaa-font">
+                                <textarea name="" class="w-100 quick-post-input" id="post-message-community" cols="30" rows="5" placeholder="Share an update with the Community."></textarea>
+                                <div id="post-message-options" class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex justify-content-start">
+                                        <!--  -->
+                                        <button type="button" class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">add_reaction</span>
+                                            <span class="align-middle d-none d-lg-block" style="font-size: 10px;">
+                                                <span style="color: #ffa500 !important;">+</span>
+                                                feeling</span>
+                                        </button>
+                                        <!--  -->
+                                        <button type="button" class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">attach_file </span>
+                                            <span class="align-middle d-none d-lg-block" style="font-size: 10px;">
+                                                <span style="color: #ffa500 !important;">+</span>
+                                                resource</span>
+                                        </button>
+                                        <!--  -->
+                                        <button type="button" class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">perm_media </span>
+                                            <span class="align-middle d-none d-lg-block" style="font-size: 10px;">
+                                                <span style="color: #ffa500 !important;">+</span>
+                                                media</span>
+                                        </button>
+                                        <!--  -->
+                                        <button type="button" class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">link</span>
+                                            <span class="align-middle d-none d-lg-block" style="font-size: 10px;">
+                                                <span style="color: #ffa500 !important;">+</span>
+                                                web</span>
+                                        </button>
+                                        <!--  -->
+                                        <button type="button" class="onefit-buttons-style-dark p-3 m-1 border-1 bg-transparent d-grid">
+                                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">history_edu</span>
+                                            <span class="align-middle d-none d-lg-block" style="font-size: 10px;">
+                                                <span style="color: #ffa500 !important;">+</span>
+                                                quote</span>
+                                        </button>
+                                    </div>
+                                    <!--  -->
+                                    <button type="button" class="onefit-buttons-style-dark p-3 m-1 border-1">
+                                        <!-- <i class="fas fa-paper-plane" style="font-size: 38px !important"></i> -->
+                                        <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important;color: #ffa500;"> post_add
+                                        </span>
+                                        <span class="align-middle">Send.</span>
+                                    </button>
+                                </div>
                             </div>
                             <!-- ./ Quick Post to Social -->
-                        </div>
-                        <div class="col-sm-4 d-grid gap-2">
-                            <div class="row text-center">
-                                <div class="col -sm px-0">
-                                    <div class="d-grid">
-                                        <button type="button" class="onefit-buttons-style-light p-2 m-1">
-                                            <span class="material-icons material-icons-round" style="font-size: 18px !important">
-                                                attach_file </span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col -sm px-0">
-                                    <div class="d-grid">
-                                        <button type="button" class="onefit-buttons-style-light p-2 m-1">
-                                            <span class="material-icons material-icons-round" style="font-size: 18px !important">
-                                                perm_media </span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col -sm px-0">
-                                    <div class="d-grid">
-                                        <button type="button" class="onefit-buttons-style-light p-2 m-1">
-                                            <span class="material-icons material-icons-round" style="font-size: 18px !important"> link
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="onefit-buttons-style-light p-4">
-                                <i class="fas fa-paper-plane" style="font-size: 38px !important"></i>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -8441,6 +7582,10 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ Modals ----------------------------------------------------------------------------------------- -->
 
     <script>
+        // check online connectivity log on console - test code
+        checkConnection();
+
+
         // initialize global activity tracker chart objects
         // initialize activity tracking charts
         // Note: changes to the plugin code is not reflected to the chart, because the plugin is loaded at chart construction time and editor changes only trigger an chart.update().
@@ -9137,6 +8282,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                 // loadCommunityMedia();
                 // loadCommunityResources();
                 // loadCommunityRewards();
+
+                // load store products
+                $.getStoreProducts('ui_data', '#store-smart-watch-grid-container');
             } else {
                 //call guest applicable functions
                 alert("auth = false | User: " + usernm);
@@ -9189,9 +8337,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                 localStorage.setItem("current_app_tab", "TabHome");
             }
 
-            // hide the loading curtain
-            var curtain = document.getElementById("LoadCurtain");
-            curtain.style.display = "none";
+            // hide the loading curtain - fade out
+            // var curtain = document.getElementById("LoadCurtain");
+            // curtain.style.display = "none";
+            $('#LoadCurtain').fadeOut('2500');
 
             // load the weekly activiies bar chart under Teams athletics training (insights tab)
             $.populateWeeklyActivityBarChart();
@@ -9320,11 +8469,11 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         function openLink(evt, tabName) {
             var i, x, tabContainer, tablinks;
-            var tabBtnIco = document.getElementById("display-current-tab-button-icon");
-            var tabBtnTxt = document.getElementById("display-current-tab-button-text");
+            var tabBtnIco = document.getElementById("apps-tray-open-btn-icon");
+            var tabBtnTxt = document.getElementById("apps-tray-open-btn-text");
 
 
-            //Change the #display-current-tab-button icon and text
+            //Change the #apps-tray-open-btn icon and text
             if (tabName == "TabHome") {
                 tabBtnTxt.innerHTML = "Dashboard";
                 tabBtnIco.innerHTML = " dashboard ";
@@ -9583,7 +8732,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Bootstrap Bundle JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
 </body>
 
 </html>

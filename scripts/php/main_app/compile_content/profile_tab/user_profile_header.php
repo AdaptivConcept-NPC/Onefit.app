@@ -37,7 +37,8 @@ $usrdetails_userid =
     $usrdetails_profiletype =
     $usrdetails_profile_url =
     $usrdetails_profile_img_url =
-    $usrdetails_profile_banner_url = null;
+    $usrdetails_profile_banner_url =
+    $usrdetails_verification = null;
 
 // assign get param values
 $user_loggedin_username = sanitizeMySQL($dbconn, $_GET['usnm']);
@@ -51,7 +52,7 @@ try {
     $query = "SELECT * FROM users u INNER JOIN general_user_profiles gup ON u.username = gup.users_username WHERE u.username = '$user_loggedin_username';";
     $result = $dbconn->query($query);
 
-    if (!$result) die("An error occurred while trying to process this request. [user profile header error: - " . $dbconn->error . "]");
+    if (!$result) die("An error occurred while trying to process this request. [user profile header error (1): - " . $dbconn->error . "]");
 
     $rows = $result->num_rows;
 
@@ -112,7 +113,7 @@ try {
 
     $result = $dbconn->query($query);
 
-    if (!$result) die("An error occurred while trying to process this request. [user profile header error: - " . $dbconn->error . "]");
+    if (!$result) die("An error occurred while trying to process this request. [user profile header error (2): - " . $dbconn->error . "]");
 
     $row = $result->num_rows;
 
@@ -126,7 +127,7 @@ try {
 
     $result = $dbconn->query($query);
 
-    if (!$result) die("An error occurred while trying to process this request. [user profile header error: - " . $dbconn->error . "]");
+    if (!$result) die("An error occurred while trying to process this request. [user profile header error (3): - " . $dbconn->error . "]");
 
     $row = $result->num_rows;
 
@@ -140,7 +141,7 @@ try {
 
     $result = $dbconn->query($query);
 
-    if (!$result) die("An error occurred while trying to process this request. [user profile header error: - " . $dbconn->error . "]");
+    if (!$result) die("An error occurred while trying to process this request. [user profile header error (4): - " . $dbconn->error . "]");
 
     $row = $result->num_rows;
 
@@ -153,7 +154,7 @@ try {
 
     $result = $dbconn->query($query);
 
-    if (!$result) die("An error occurred while trying to process this request. [user profile header error: - " . $dbconn->error . "]");
+    if (!$result) die("An error occurred while trying to process this request. [user profile header error (5): - " . $dbconn->error . "]");
 
     $row = $result->num_rows;
 
@@ -163,11 +164,11 @@ try {
     $result = null;
 
     $query = "SELECT SUM(`total_xp`) AS total_xp FROM `user_profile_xp` uxp
-    WHERE `general_user_profiles_user_profile_id` =  $usrdetails_profileid";
+    WHERE `general_user_profiles_user_profile_id` = $usrdetails_profileid;";
 
     $result = $dbconn->query($query);
 
-    if (!$result) die("An error occurred while trying to process this request. [user profile header error: - " . $dbconn->error . "]");
+    if (!$result) die("An error occurred while trying to process this request. [user profile header error (6): - " . $dbconn->error . " \nsql query: \n" . $query . "]");
 
     $row = $result->num_rows;
 
@@ -208,7 +209,7 @@ try {
         }
     </style>
     <div style="background-color: rgba(52, 52, 52, 0.8);">
-        <div class='text-center'>
+        <div class="text-center">
             <!-- Users Profile Banner -->
             <div class="shadow-lg display-profile-banner-container">
                 <div class="h-100 down-top-grad-dark"><!-- gradient overlay --></div>
@@ -219,21 +220,32 @@ try {
                 $output_user_account_profile_img
             </div>
             <!-- ./ Profile Picture -->
-            <p class='poppins-font mt-2 username-tag' hidden>@$user_loggedin_username</p>
+            <div id="profile-verification-strip" class="p-4" style="background:#343434;">
+                <p class="poppins-font p-4 m-0 fs-5">$usrdetails_name $usrdetails_surname</p>
+                <div class="d-grid justify-content-center">
+                    <span class="comfortaa-font" style="font-size:8px;color:var(--tahitigold);">@$user_loggedin_username</span>
+                    <div class="col-sm border-start border-end border-light p-4" style="border-radius:15px;">
+                        <span class="material-icons material-icons-round align-middle" style="font-size: 50px !important;">
+                            verified_user
+                        </span>
+                    </div>
+                    <span class="comfortaa-font" style="font-size:8px;color:var(--tahitigold);">verified.</span>
+                </div>
+            </div>
         </div>
-        <!--<hr class='text-white' />-->
+        <!--<hr class="text-white" />-->
         <!-- main buttons for interacting with user profile -->
-        <div class="d-flex justify-content-around align-items-center p-4 mx-2" style="background-color: #343434;border-radius:0 0 25px 25px;">
+        <div class="d-flex justify-content-around align-items-center p-4 pt-0 mx-2" style="background-color: #343434;border-radius:0 0 25px 25px;">
             <!--  -->
             <button type="button"
                 class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
                 <span
                     class="material-icons material-icons-round align-middle"
-                    style="font-size: 20px !important">follow_the_signs</span>
-                <span class="align-middle d-none d-lg-block"
+                    style="font-size: 40px !important">follow_the_signs</span>
+                <span class="align-middle"
                     style="font-size: 10px;">
-                    <!-- <span style="color: #ffa500 !important;">+</span> -->
-                    Follow Me
+                    <!-- d-none d-lg-block <span style="color: #ffa500 !important;">+</span> -->
+                    Followers
                 </span>
             </button>
             <!-- visual divide -->
@@ -250,12 +262,12 @@ try {
                 class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
                 <span
                     class="material-icons material-icons-round align-middle"
-                    style="font-size: 20px !important"> handshake
+                    style="font-size: 40px !important"> handshake
                 </span>
-                <span class="align-middle d-none d-lg-block"
+                <span class="align-middle"
                     style="font-size: 10px;">
-                    <!-- <span style="color: #ffa500 !important;">+</span> -->
-                    Help
+                    <!-- d-none d-lg-block <span style="color: #ffa500 !important;">+</span> -->
+                    Trainer Support
                 </span>
             </button>
             <!-- visual divide -->
@@ -272,11 +284,11 @@ try {
                 class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
                 <span
                     class="material-icons material-icons-round align-middle"
-                    style="font-size: 20px !important"> 3p </span>
-                <span class="align-middle d-none d-lg-block"
+                    style="font-size: 40px !important"> 3p </span>
+                <span class="align-middle"
                     style="font-size: 10px;">
-                    <!-- <span style="color: #ffa500 !important;">+</span> -->
-                    Message
+                    <!-- d-none d-lg-block <span style="color: #ffa500 !important;">+</span> -->
+                    Messages
                 </span>
             </button>
         </div>
@@ -319,54 +331,54 @@ try {
         </div>
         <!-- ./ $usrdetails_name's fitness progression progress bar -->
         <!-- user detailed progression list - user info -->
-        <ol class='list-group list-group-numberedz list-group-flush p-4 mx-2' style="background-color: rgba(52, 52, 52, 1);border-radius:25px;margin-top:-25px;">
-            <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
-                <div class='ms-2 me-auto'>
-                    <div class='fw-bold users-name-tag fs-5 mb-2' style='color: #ffa500'>
+        <ol class="list-group list-group-numberedz list-group-flush p-4 mx-2 edge-line-tahiti-vertical-grad-slanted gap-4" style="background-color: rgba(52, 52, 52, 1);border-radius:25px;margin-top:-25px;">
+            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark" style="border-radius:25px">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold users-name-tag fs-5 mb-2" style="color: #ffa500">
                         $usrdetails_name $usrdetails_surname
                     </div>
                     <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500; font-size: 20px !important;">alternate_email</span>
-                    <span class='username-tag mb-4 barcode-fontz'>$user_loggedin_username</span><br />
+                    <span class="username-tag mb-4 barcode-fontz">$user_loggedin_username</span><br />
                     <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500; font-size: 20px !important;">data_exploration</span> 
                     <span class="align-middle">Level 1 [$user_current_fp_xp xp]</span>
                 </div>
-                <span class='badge bg-primary p-4' style='background-color: #ffa500 !important; color: #333 !important; border-radius: 25px'>
+                <span class="badge bg-primary p-4" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
                     $verif_icon
                 </span>
             </li>
             <!-- Friends section -->
-            <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
-                <div class='ms-2 me-auto'>
-                    <div class='fw-bold mb-2' style='color: #ffa500'>Followers</div>
+            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark" style="border-radius:25px">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold mb-2" style="color: #ffa500">Followers</div>
                     <span>$user_friend_count Friends</span><br />
                     <span>0 Followers</span><br />
                     <span>0 Following</span>
                 </div>
                 <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
-                    <span class='material-icons material-icons-round' style='font-size: 40px !important'> people_alt </span>
+                    <span class="material-icons material-icons-round" style="font-size: 40px !important"> people_alt </span>
                     <span>$user_friend_count</span>
                 <span>
             </li>
             <!-- Achievements section -->
-            <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
-                <div class='ms-2 me-auto'>
-                    <div class='fw-bold mb-2' style='color: #ffa500'>Achievements</div>
+            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark" style="border-radius:25px">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold mb-2" style="color: #ffa500">Achievements</div>
                     <span>$user_workout_achievements_count Achievements</span><br />
                     <span>0 Awards</span><br />
                 </div>
                 <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
-                    <span class='material-icons material-icons-round' style='font-size: 40px !important'> emoji_events </span>
+                    <span class="material-icons material-icons-round" style="font-size: 40px !important"> emoji_events </span>
                     <span>$user_workout_achievements_count</span>
                 </span>
             </li>
             <!-- Challengess section -->
-            <li class='list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white'>
-                <div class='ms-2 me-auto'>
-                    <div class='fw-bold mb-2' style='color: #ffa500'>Challenges</div>
+            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark" style="border-radius:25px">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold mb-2" style="color: #ffa500">Challenges</div>
                     <span>$user_challenge_cmplt_count Challenges Completed</span>
                 </div>
                 <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
-                    <span class='material-icons material-icons-round' style='font-size: 40px !important'> stars </span>
+                    <span class="material-icons material-icons-round" style="font-size: 40px !important"> stars </span>
                     <span>$user_challenge_cmplt_count</span>
                 </span>
             </li>

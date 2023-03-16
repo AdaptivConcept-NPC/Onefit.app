@@ -1,4 +1,22 @@
+// *** Vanilla JS
+function checkConnection() {
+    console.log("Initially " + (window.navigator.onLine ? "on" : "off") + "line");
 
+    window.addEventListener('online', () => isOffline(false));
+    window.addEventListener('offline', () => isOffline(true));
+}
+
+function isOffline(state) {
+    if (state) {
+        // true - show curtain
+        console.log('Is Offline');
+        document.getElementById('offline-curtain').style.display = 'block';
+    } else {
+        // false - hide curtain
+        console.log('Is Online');
+        document.getElementById('offline-curtain').style.display = 'none';
+    }
+}
 
 function loadUserProfile() {
     //Declaring variables

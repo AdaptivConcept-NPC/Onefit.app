@@ -25,21 +25,16 @@ $output =
     $product_tag =
     $product_image_url = null;
 
-if (!isset($_GET['giveme'])) $requestfor = "json";
+if (!isset($_GET['giveme'])) $requestfor = "";
 else $requestfor = sanitizeMySQL($dbconn, $_GET['giveme']);
 
 try {
     // 
-    $query = "SELECT * FROM `store_products` WHERE `product_category` = 'wearables' ORDER BY `inventory_number` DESC";
+    $query = "SELECT * FROM `store_products` ORDER BY `inventory_number` DESC";
 
     $result = $dbconn->query($query);
 
     if (!$result) die($output);
-
-    if ($requestfor == 'json') {
-        $output = $result;
-        die(json_encode($output));
-    }
 
     $rows = $result->num_rows;
 
@@ -60,44 +55,34 @@ try {
         $product_tag = $row["product_tag"];
         $product_image_url = $row["product_image_url"];
 
-        $addToCartBtn = null;
-        if ($inventory_status === 0) {
-            $addToCartBtn = <<<_END
-            <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold" disabled>
-                Sold Out
-            </button>
-            _END;
-        } else {
-            $addToCartBtn = <<<_END
-            <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                Add to Cart
-            </button>
-            _END;
-        }
-
         $compile .= <<<_END
-        <div id="inventory-$inventory_number" class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
-            <img src="$product_image_url" class="card-img-top" alt="$product_name | $product_category | $product_tag">
-            <div class="card-body">
-                <h5 class="card-title fs-4">$product_name</h5>
-                <h5 class="card-title">R $selling_price_zar</h5>
-                <p class="card-text">$product_description</p>
-                <hr>
-                <p class="card-text">Specifications</p>
-                <div>
-                    $product_specifications
-                </div>
-            </div>
-            <div class="card-footer d-grid">
-                $addToCartBtn
-            </div>
-        </div>
+        <tr>
+            <td>$product_id</td>
+            <td>$inventory_number</td>
+            <td>$product_name</td>
+            <td>$product_brand</td>
+            <td>$product_category</td>
+            <td>R $purchase_price_zar</td>
+            <td>R $selling_price_zar</td>
+            <td>$product_description</td>
+            <td>$product_specifications</td>
+            <td>$product_weight</td>
+            <td>$inventory_status</td>
+            <td>$product_tag</td>
+            <td>$product_image_url</td>
+        </tr>
         _END;
     }
 
-    // echo ui_data
-    $output = $compile;
-    echo $output;
+    if ($requestfor == 'ui_data') {
+        $output = $compile;
+        echo $output;
+    } elseif ($requestfor == 'json') {
+        $output = $result;
+        echo json_encode($output);
+    }
+
+    // echo $output;
 } catch (\Throwable $th) {
     throw "Exeption error occured: " . $th->getMessage();
 }

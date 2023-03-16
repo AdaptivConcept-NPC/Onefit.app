@@ -34,10 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         // Validate whether selected file is a CSV file
-        if (!empty($_FILES['csvfile-store_products']['name']) && in_array($_FILES['csvfile-store_products']['type'], $fileMimes)) {
+        if (!empty($_FILES['csvfile-sports_list']['name']) && in_array($_FILES['csvfile-sports_list']['type'], $fileMimes)) {
 
             // Open uploaded CSV file with read-only mode
-            $csvFile = fopen($_FILES['csvfile-store_products']['tmp_name'], 'r');
+            $csvFile = fopen($_FILES['csvfile-sports_list']['tmp_name'], 'r');
 
             // Skip the first line
             fgetcsv($csvFile);
