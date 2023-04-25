@@ -3,6 +3,9 @@ session_start();
 require("../../../config.php");
 require_once("../../../functions.php");
 
+//test connection - if fail then die
+if ($dbconn->connect_error) die("Fatal Error");
+
 // check to see if username passed get
 if (!isset($_GET['usnm'])) die("Fatal Error");
 // if ($_GET['usnm'] !== $_SESSION['currentUserUsername']) die("invalid_session");
@@ -160,11 +163,28 @@ try {
 
     $user_challenge_cmplt_count = $row;
 
+    $result = null;
+
+    $query = "SELECT `user_profile_id` FROM `general_user_profiles` WHERE `users_username` = '$user_loggedin_username'";
+    $result = $dbconn->query($query);
+
+    if (!$result) die("User profile ID cannot be found");
+
+    if ($row > 0) {
+        for ($j = 0; $j < $rows; ++$j) {
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+
+            $usrdetails_profileid = $row["user_profile_id"];
+        }
+    }
+
+    // die("$ usrdetails_profileid: " . $usrdetails_profileid . " \n query: " . $query);
+
     // get users fitness progression xp
     $result = null;
 
-    $query = "SELECT SUM(`total_xp`) AS total_xp FROM `user_profile_xp` uxp
-    WHERE `general_user_profiles_user_profile_id` = $usrdetails_profileid;";
+    $query = "SELECT SUM(`total_xp`) AS total_xp FROM `user_profile_xp`
+    WHERE `general_user_profiles_user_profile_id` = $usrdetails_profileid";
 
     $result = $dbconn->query($query);
 
@@ -221,7 +241,7 @@ try {
             </div>
             <!-- ./ Profile Picture -->
             <div id="profile-verification-strip" class="p-4" style="background:#343434;">
-                <p class="poppins-font p-4 m-0 fs-5">$usrdetails_name $usrdetails_surname</p>
+                <p class="poppins-font p-4 m-0 fs-1">$usrdetails_name $usrdetails_surname</p>
                 <div class="d-grid justify-content-center">
                     <span class="comfortaa-font" style="font-size:8px;color:var(--tahitigold);">@$user_loggedin_username</span>
                     <div class="col-sm border-start border-end border-light p-4" style="border-radius:15px;">
@@ -235,17 +255,19 @@ try {
         </div>
         <!--<hr class="text-white" />-->
         <!-- main buttons for interacting with user profile -->
-        <div class="d-flex justify-content-around align-items-center p-4 pt-0 mx-2" style="background-color: #343434;border-radius:0 0 25px 25px;">
+        <div class="d-flex justify-content-around align-items-center p-4 mx-2" style="background-color: #343434;border-radius:0 0 25px 25px;">
             <!--  -->
             <button type="button"
-                class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
+                class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid position-relative">
                 <span
                     class="material-icons material-icons-round align-middle"
                     style="font-size: 40px !important">follow_the_signs</span>
                 <span class="align-middle"
                     style="font-size: 10px;">
-                    <!-- d-none d-lg-block <span style="color: #ffa500 !important;">+</span> -->
                     Followers
+                </span>
+                <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill text-dark p-2 px-3 poppins-font fs-5z shadow" style="background-color:var(--tahitigold)!important;">
+                    99+ <span class="visually-hidden">followers</span>
                 </span>
             </button>
             <!-- visual divide -->
@@ -259,15 +281,17 @@ try {
             <!-- ./ visual divide -->
             <!--  -->
             <button type="button"
-                class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
+                class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid position-relative">
                 <span
                     class="material-icons material-icons-round align-middle"
                     style="font-size: 40px !important"> handshake
                 </span>
                 <span class="align-middle"
                     style="font-size: 10px;">
-                    <!-- d-none d-lg-block <span style="color: #ffa500 !important;">+</span> -->
                     Trainer Support
+                </span>
+                <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill text-dark p-2 px-3 poppins-font fs-5z shadow" style="background-color:var(--tahitigold)!important;">
+                    12 <span class="visually-hidden">support requests</span>
                 </span>
             </button>
             <!-- visual divide -->
@@ -281,40 +305,42 @@ try {
             <!-- ./ visual divide -->
             <!--  -->
             <button type="button"
-                class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
+                class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid position-relative">
                 <span
                     class="material-icons material-icons-round align-middle"
                     style="font-size: 40px !important"> 3p </span>
                 <span class="align-middle"
                     style="font-size: 10px;">
-                    <!-- d-none d-lg-block <span style="color: #ffa500 !important;">+</span> -->
                     Messages
+                </span>
+                <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill text-dark p-2 px-3 poppins-font fs-5z shadow" style="background-color:var(--tahitigold)!important;">
+                    99+ <span class="visually-hidden">unread messages</span>
                 </span>
             </button>
         </div>
         <!-- ./ main buttons for interacting with user post -->
         <hr class="text-white"/>
         <!-- $usrdetails_name's fitness progression progress bar -->
-        <div class="p-4 my-0 mx-2 d-grid align-items-center" id="user-fp-xp-bar" style="background-color: rgb(255 165 0 / 80%);border-radius:25px 25px 0 0;padding-bottom:40px!important;">
+        <div class="p-4 my-0 mx-2 d-grid align-items-center top-down-grad-dark" id="user-fp-xp-bar" style="background-color: rgb(255 165 0 / 80%);border-radius:25px 25px 0 0;padding-bottom:40px!important;">
             <!-- rgba(52, 52, 52, 0.8) -->
             <!-- $usrdetails_name's fitness progression progress bar -->
-            <div id="fitness-progression-progress-bar">
-                <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle" style="color: #fff;">data_exploration</span> <span class="align-middle">Fitness Progression</span></h5>
-                <div class="progress mt-4 bg-white" style="height: 20px;">
+            <div id="fitness-progression-progress-bar" class="bar-fpwidget">
+                <h5 class="mt-4 text-center fs-1"><span class="material-icons material-icons-outlined align-middle" style="color: #fff;">data_exploration</span> <span class="align-middle">Fitness Progression</span></h5>
+                <div class="progress mt-4 bg-white" style="height:20px;border:1px solid white !important;">
                     <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: $fp_xp_progression_rate%; background-color: #343434 !important; border-right: #ffa500 10px solid;" aria-valuenow="$fp_xp_progression_rate" aria-valuemin="$user_current_fp_xp" aria-valuemax="$goal_fp_xp"></div>
                 </div>
-                <div class="row mt-2" style="margin-bottom: 60px;">
-                    <div class="col text-start comfortaa-font" style="font-size: 12px;">
+                <div class="mt-2 w-100 d-flex justify-content-between" style="margin-bottom:20px!important;">
+                    <p class="text-start m-0 poppins-font" style="font-size: 12px;">
                         Current XP <strong>($user_current_fp_xp)</strong>
-                    </div>
-                    <div class="col text-end comfortaa-font" style="font-size: 12px;">
+                    </p>
+                    <p class="text-end m-0 poppins-font" style="font-size: 12px;">
                         Target XP <strong>($goal_fp_xp)</strong>
-                    </div>
+                    </p>
                 </div>
             </div>
             <!-- Insight Summary Chart placeholders -->
             <div class="row align-items-center">
-                <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle" style="color: #fff;">insights</span> <span class="align-middle">Fitness Summary</span></h5>
+                <h5 class="mt-4 text-center fs-1"><span class="material-icons material-icons-outlined align-middle" style="color: #fff;">insights</span> <span class="align-middle">Fitness Summary</span></h5>
                 <div class="col-md-8 rounded" style="overflow: hidden">
                     <img src="../media/assets/chartjs_profletab_analytics chart_example_line.png" class="img-fluid" alt="chart placeholder - line chart" srcset="" style="border-radius: 25px !important">
                 </div>
@@ -324,15 +350,15 @@ try {
             </div>
             <!-- ./ Insight Summary Chart placeholders -->
             <!-- Trainer notes (open diary model and focus on trainer notes section) -->
-            <div class="d-grid mt-5">
+            <div class="d-grid mb-4 mt-5">
                 <button class="onefit-buttons-style-dark p-4"><span class="material-icons material-icons-outlined align-middle" style="color: #fff;">speaker_notes</span> Trainer Notes</button>
             </div>
             <!-- ./ Trainer notes (open diary model and focus on trainer notes section) -->
         </div>
         <!-- ./ $usrdetails_name's fitness progression progress bar -->
         <!-- user detailed progression list - user info -->
-        <ol class="list-group list-group-numberedz list-group-flush p-4 mx-2 edge-line-tahiti-vertical-grad-slanted gap-4" style="background-color: rgba(52, 52, 52, 1);border-radius:25px;margin-top:-25px;">
-            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark" style="border-radius:25px">
+        <ol class="p-4 list-group list-group-numberedz list-group-flush p-4 mx-2 edge-line-tahiti-vertical-grad-slanted gap-4" style="background-color: rgba(52, 52, 52, 1);border-radius:25px;margin-top:-25px;">
+            <li class="p-4 list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark left-right-grad-mineshaft" style="border-radius:25px">
                 <div class="ms-2 me-auto">
                     <div class="fw-bold users-name-tag fs-5 mb-2" style="color: #ffa500">
                         $usrdetails_name $usrdetails_surname
@@ -347,7 +373,7 @@ try {
                 </span>
             </li>
             <!-- Friends section -->
-            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark" style="border-radius:25px">
+            <li class="p-4 list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark left-right-grad-mineshaft" style="border-radius:25px">
                 <div class="ms-2 me-auto">
                     <div class="fw-bold mb-2" style="color: #ffa500">Followers</div>
                     <span>$user_friend_count Friends</span><br />
@@ -360,7 +386,7 @@ try {
                 <span>
             </li>
             <!-- Achievements section -->
-            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark" style="border-radius:25px">
+            <li class="p-4 list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark left-right-grad-mineshaft" style="border-radius:25px">
                 <div class="ms-2 me-auto">
                     <div class="fw-bold mb-2" style="color: #ffa500">Achievements</div>
                     <span>$user_workout_achievements_count Achievements</span><br />
@@ -372,7 +398,7 @@ try {
                 </span>
             </li>
             <!-- Challengess section -->
-            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark" style="border-radius:25px">
+            <li class="p-4 list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark left-right-grad-mineshaft" style="border-radius:25px">
                 <div class="ms-2 me-auto">
                     <div class="fw-bold mb-2" style="color: #ffa500">Challenges</div>
                     <span>$user_challenge_cmplt_count Challenges Completed</span>

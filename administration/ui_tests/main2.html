@@ -107,9 +107,9 @@
       width: 10px;
     }
 
-    .main-container {}
+    /*  .main-container {}
 
-    .top-content {}
+    .top-content {} */
 
     .rounded-panel {
       border-radius: 25px;
@@ -226,7 +226,7 @@
       border-bottom: #ffa500 solid 5px;
     }
 
-    .main-modal-style {}
+    /* .main-modal-style {} */
 
     .pulse-box-m-theme {
       background: transparent;
@@ -308,7 +308,12 @@
   <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
     <div class="offcanvas-header">
       <h5 id="offcanvasTopLabel">Offcanvas top</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <button type="button" class="btn-close text-reset onefit-buttons-style-dark shadow" data-bs-dismiss="offcanvas"
+        aria-label="Close">
+        <span class="material-icons material-icons-round align-middle">
+          close
+        </span>
+      </button>
     </div>
     <div class="offcanvas-body">
       <div class="rounded-panel-show-hover shadow p-2 mb-4">
@@ -445,10 +450,9 @@
   </div>
 
   <div class="container-fluid h-100 m-0 p-4" style="padding-top: 120px !important; padding-bottom: 120px !important">
-    <div class="row h-100" style="border-radius: 25px; overflowz: hidden">
-      <!--<div class="col-md-2">
-                
-            </div>-->
+    <div class="row h-100" style="border-radius: 25px;">
+      <!-- overflowz: hidden <div class="col-md-2">
+           ]</div>-->
       <div class="col-md-12 h-100" style="border-radius: 25px; overflow: hidden">
         <div class="scroll-container-h100 h-100 w-100" style="overflow-y: scroll; padding-bottom: 300px">
           <div id="Tab1" class="rounded-panel shadow pt-4 w3-container city w3-animate-right -opacity"
@@ -507,8 +511,13 @@
                 <i class="fab fa-twitter"></i> Social @one<span style="color: #ffa500">fit_za</span>
                 <div class="rounded-element no-scroller" style="max-height: 70vh; overflow-y: scroll !important">
                   <a class="twitter-timeline" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by
-                    OnefitNet</a>
+                    <span style="color: var(--tahitigold)!important;">@OnefitNet</span></a>
                   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  <div class="d-flex justify-content-center">
+                    <div class="spinner-border grow text-light my-4" style="width: 3rem; height: 3rem;" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

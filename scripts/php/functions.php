@@ -60,6 +60,23 @@ function generatePasswordRandomString($length)
     return $randomString;
 }
 
+// check if directory exists / is initialized with propper sub-folders, if true create sub-media folder (media)
+function checkDirectoryInit($username)
+{
+    $requiredFolders = array("shared_media", "private_media", "video_media", "audio_media");
+    $dirStructure = "";
+
+    foreach ($requiredFolders as $subFldr) {
+        $dirStructure = "../../media/profiles/$username/$subFldr";
+        if (!is_dir($dirStructure)) {
+            //create the $dirStructure
+            if (!mkdir($dirStructure, 0777, true)) {
+                die('Failed to create directories...');
+            }
+        }
+    }
+}
+
 // function to compile select list (dropdown list items) for exercises and/or linked workouts
 function compileSelectInputExerciseList()
 {
@@ -1727,7 +1744,88 @@ function getAllTrainers()
 }
 
 // ******** ./get system/platform data functions ********
+// log user activity
+function log_activity($usertype, $action_title, $action_description, $affected_table, $record_id, $username)
+{
+    // $usertype = admin / user
+    global $dbconn;
 
+    $action_title = sanitizeMySQL($dbconn, $action_title);
+    $action_description = sanitizeMySQL($dbconn, $action_description);
+    $affected_table = sanitizeMySQL($dbconn, $affected_table);
+    $record_id = sanitizeMySQL($dbconn, $record_id);
+    $username = sanitizeMySQL($dbconn, $username);
+
+    $datenow = new DateTime('Y/m/d h:i:s');
+
+    switch ($usertype) {
+        case 'admin':
+            # 
+            $sql = "INSERT INTO `admin_activity`
+            (`admin_activity_id`, `action_title`, `action_description`, `affected_table`, `record_id`, `action_date`, `users_username`) 
+            VALUES 
+            (null,'$action_title','$action_description','$affected_table','$record_id','$datenow','$username')";
+            break;
+        case 'user':
+            # 
+            $sql = "INSERT INTO `user_activity`
+            (`user_activity_id`, `action_title`, `action_description`, `affected_table`, `record_id`, `action_date`, `users_username`) 
+            VALUES 
+            (null,'$action_title','$action_description','$affected_table','$record_id','$datenow','$username')";
+            break;
+
+        default:
+            return false;
+            break;
+    }
+
+    if ($result = mysqli_query($dbconn, $sql)) return true;
+    else return false;
+}
+
+// json encode last error checking function
+function jsonEncodeErrorCheck($json_obj_array)
+{
+    // source: https://www.php.net/manual/en/function.json-last-error.php
+    // A valid json string
+    // $json[] = '{"Organization": "PHP Documentation Team"}';
+
+    // An invalid json string which will cause an syntax 
+    // error, in this case we used ' instead of " for quotation
+    // $json[] = "{'Organization': 'PHP Documentation Team'}";
+
+
+    foreach ($json_obj_array as $string) {
+        echo 'Decoding: ' . $string;
+        json_decode($string);
+
+        switch (json_last_error()) {
+            case JSON_ERROR_NONE:
+                echo ' - No errors';
+                break;
+            case JSON_ERROR_DEPTH:
+                echo ' - Maximum stack depth exceeded';
+                break;
+            case JSON_ERROR_STATE_MISMATCH:
+                echo ' - Underflow or the modes mismatch';
+                break;
+            case JSON_ERROR_CTRL_CHAR:
+                echo ' - Unexpected control character found';
+                break;
+            case JSON_ERROR_SYNTAX:
+                echo ' - Syntax error, malformed JSON';
+                break;
+            case JSON_ERROR_UTF8:
+                echo ' - Malformed UTF-8 characters, possibly incorrectly encoded';
+                break;
+            default:
+                echo ' - Unknown error';
+                break;
+        }
+
+        echo PHP_EOL;
+    }
+}
 
 // ****************************************************************************************************************************************************
 // END OF FILE ********************************

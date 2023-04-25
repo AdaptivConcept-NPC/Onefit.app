@@ -14,7 +14,7 @@
                 startHidden: false,
                 animate: false,
                 fadeTime: 1000,
-                autoReveal:false,
+                autoReveal: false,
                 onReveal: function () {
 
                 }
@@ -43,9 +43,9 @@
             soccerfield.data = data;
             var i, len = soccerfield.data.length;
             if (soccerfield.options.field.startHidden) {
-                $(element).css({"display": "none"});
+                $(element).css({ "display": "none" });
             }
-            $(element).css({"width": soccerfield.options.field.width, "height": soccerfield.options.field.height, "position": "relative"});
+            $(element).css({ "width": soccerfield.options.field.width, "height": soccerfield.options.field.height, "position": "relative", "border-radius": "25px" });
             $(element).data('originalClassList', $(element).attr('class'));
             if (soccerfield.options.field.img) {
                 $element.append('<img class="soccerfield-field-field-img" src="' + soccerfield.options.field.img + '" />');
@@ -56,7 +56,7 @@
                     appendPlayer(data[i], i);
                 }
             }
-            if(soccerfield.options.field.autoReveal) {
+            if (soccerfield.options.field.autoReveal) {
                 soccerfield.revealField();
             }
         };
@@ -70,18 +70,18 @@
         };
         //append player element to the field
         var appendPlayer = function (player, i) {
-            var name = player.name, pos, posX, posY, $container = $("<div class='soccerfield-player' id='soccerfield-player-" + i + "'></div>");
-            var img = player.img || soccerfield.options.players.img;			
+            var name = player.name, pos, posX, posY, $container = $("<div class='soccerfield-player player-pin' onmousedown='dragElement(this)' id='soccerfield-player-" + i + "'></div>");
+            var img = player.img || soccerfield.options.players.img;
             pos = player.position.split("_");
             if (soccerfield.options.players.reveal) {
-                $container.css({"display": "none"});
+                $container.css({ "display": "none" });
             }
             $container.addClass("posY-" + pos[0]);
             $container.addClass("posX-" + pos[1]);
             if (img) {
-                $container.append("<div style='left:-"+soccerfield.options.players.font_size+"px' class='soccerfield-player-img'><img src='" + img + "'/></div>");
+                $container.append("<div style='left:-" + soccerfield.options.players.font_size + "px' class='soccerfield-player-img'><img src='" + img + "'/></div>");
             }
-            $container.append("<span class='soccerfield-player-name' style='font-size:" + soccerfield.options.players.font_size + "px"+";min-height:"+ soccerfield.options.players.font_size*2.25 + "px"+"'>" + name + "</span>");
+            $container.append("<span class='soccerfield-player-name' style='font-size:" + soccerfield.options.players.font_size + "px" + ";min-height:" + soccerfield.options.players.font_size * 2.25 + "px" + "'>" + name + "</span>");
             $element.append($container);
         };
 

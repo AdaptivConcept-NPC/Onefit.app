@@ -13,10 +13,11 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
     // execute query
     $getDay = sanitizeMySQL($dbconn, $_GET['day']);
     $getGrpRef = sanitizeMySQL($dbconn, $_GET['gref']);
+    $when = sanitizeMySQL($dbconn, $_GET['when']) || 'this'; // this / last / next
 
-    $dayNum = date("N", strtotime("$getDay this week"));
+    $dayNum = date("N", strtotime("$getDay $when week"));
 
-    $dayDateThisWeek = date('Y-m-d', strtotime("$getDay this week"));
+    $dayDateThisWeek = date('Y-m-d', strtotime("$getDay $when week"));
 
     if ($getGrpRef == "editbar") {
         # compile a form for editing the title and rpe and bars overall

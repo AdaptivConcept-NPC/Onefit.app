@@ -6,17 +6,19 @@ require_once("../../../../../functions.php");
 //test connection - if fail then die
 if ($dbconn->connect_error) die("Fatal Error");
 
-if (isset($_GET['day']) && isset($_GET['gref'])) {
+if (isset($_GET['date']) && isset($_GET['grcode'])) {
     // declaring variables
-    $getDay = $getGrpRef = $activities_bar_content = $inner_activities_bar_content = "";
+    $paramDayName = $grcode = $activities_bar_content = $inner_activities_bar_content = "";
 
     // execute query
-    $getDay = ucfirst(strtolower(sanitizeMySQL($dbconn, $_GET['day'])));
-    $getGrpRef = sanitizeMySQL($dbconn, $_GET['gref']);
+    // $paramDayName = ucfirst(strtolower(sanitizeMySQL($dbconn, $_GET['day'])));
+    $paramDate = date_create(sanitizeMySQL($dbconn, $_GET['date']));
+    $paramDayName = date_format($paramDate, "l"); //strtolower()
+    $dayNum = date_format($paramDate, 'N');;
+    $dayDateThisWeek = date_format($paramDate, 'd/m/Y');
 
-    $dayNum = date("N", strtotime("$getDay this week"));
-
-    $dayDateThisWeek = date('d/m/Y', strtotime("$getDay this week"));
+    $grcode = sanitizeMySQL($dbconn, $_GET['grcode']);
+    // $when = sanitizeMySQL($dbconn, $_GET['when']) || 'this'; // this / last / next
 
     // tws
     $teams_weekly_schedule_id =
@@ -33,12 +35,18 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
         $exercises_exercise_id = null;
 
     try {
+        if ($grcode == 'all') {
+            $grcodeReqStatement = "";
+        } else {
+            # include the "indiws.groups_group_ref_code = '$grcode' AND " statement after the WHERE clause in our sql query
+            $grcodeReqStatement = "tws.groups_group_ref_code = '$grcode' AND";
+        }
         //code to compile the teams daily activities in the daily activities chart bars
         $query = "SELECT tws.teams_weekly_schedule_id, tws.schedule_title, tws.schedule_rpe, tws.schedule_day, tws.schedule_date, tws.groups_group_ref_code, 
         twa.teams_activity_id, twa.activity_title, twa.activity_description, twa.activity_icon, twa.teams_weekly_schedules_teams_weekly_schedule_id, twa.exercises_exercise_id 
         FROM teams_weekly_schedules tws 
         INNER JOIN team_weekly_activities twa ON twa.teams_weekly_schedules_teams_weekly_schedule_id = tws.teams_weekly_schedule_id 
-        WHERE tws.groups_group_ref_code = '$getGrpRef' AND tws.schedule_day = '$getDay' AND tws.schedule_date = '$dayDateThisWeek'";
+        WHERE $grcodeReqStatement tws.schedule_day = '$paramDayName' AND tws.schedule_date = '$dayDateThisWeek'";
 
         $result = $dbconn->query($query);
 
@@ -62,13 +70,13 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
             </div>
             <hr class="text-dark">
             <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('$getDay','$getGrpRef')">
+                <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('$paramDayName','$grcode')">
                     <span class="material-icons material-icons-round align-middle">
                         add_circle
                     </span>
                 </button>
             </div>
-            <p class="text-center fs-5 fw-bold comfortaa-font">$getDay</p>
+            <p class="text-center fs-5 fw-bold comfortaa-font">$paramDayName</p>
             <p class="text-center fs-5 fw-bold comfortaa-font">$dayDateThisWeek</p>
             _END;
             echo $activities_bar_content;
@@ -97,7 +105,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                     <p>$activity_title</p>
                     <img src="$activity_icon" alt="../media/assets/icons/icon.png" class="img-fluid">
                     <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn-bar$dayNum">
-                        <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('$schedule_day','$getGrpRef','$exercises_exercise_id')">
+                        <button class="onefit-buttons-style-danger rounded-circle p-4 my-2" onclick="removeWeeklyTrainingActivity('$schedule_day','$grcode','$exercises_exercise_id')">
                             <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                 delete
                             </span>
@@ -111,7 +119,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
             $activities_bar_content = <<<_END
             <!-- Edit training day bar - Day $dayNum -->
             <div class="collapse multi-collapse w3-animate-bottom" id="edit-bar-weekly-activity-btn-day$dayNum">
-                <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditDayBar('$schedule_day','$getGrpRef')">
+                <button class="onefit-buttons-style-dark rounded-circle p-4 my-2" onclick="toggleEditDayBar('$schedule_day','$grcode')">
                     <span class="material-icons material-icons-round" style="font-size: 20px !important;">
                         edit
                     </span>
@@ -129,7 +137,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
             </div>-->
             <hr class="text-dark">
             <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('$schedule_day','$getGrpRef')">
+                <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('$schedule_day','$grcode')">
                     <span class="material-icons material-icons-round align-middle">
                         add_circle
                     </span>

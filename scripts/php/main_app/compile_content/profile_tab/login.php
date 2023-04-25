@@ -9,7 +9,7 @@ require_once("../../../functions.php");
       die("Connection failed: " . $db->connect_error);
   }
   echo "Connected successfully";*/
-if ($dbconn->connection_error) die("Fatal Error");
+if ($dbconn->connect_error) die("Fatal Error");
 //end of Connection Test============================================>
 
 $username = sanitizeMySQL($dbconn, $_POST['onefitUserEmail']);

@@ -11,6 +11,7 @@ if (!isset($_REQUEST["year"])) $_REQUEST["year"] = date("Y");
 
 $cMonth = $_REQUEST["month"];
 $cYear = $_REQUEST["year"];
+$cDay = 0;
 
 $prev_year = $cYear;
 $next_year = $cYear;
@@ -31,9 +32,38 @@ $maxday = date("t", $timestamp);
 $thismonth = getdate($timestamp);
 $startday = $thismonth['wday'];
 for ($i = 0; $i < ($maxday + $startday); $i++) {
+    $todayClass = "";
+    $todayCheck = "No";
+
+    $todaysDate = date('Y/m/d');
+    $cDay = $i - $startday + 1;
+    // if $cDay is negative then do not perform the check
+    if ($cDay > 0) {
+        $cDateStr = date_format(date_create("$cYear/$cMonth/$cDay"), 'Y/m/d');
+        // echo <<<_END
+        // Todays Date: $todaysDate <br>
+        // Cycle Date String: $cDateStr <br><br>
+        // Cycle Day: $cDay <br><br>
+        // _END; /* test output */
+        if ($todaysDate == $cDateStr) $todayCheck = "Yes";
+        // echo <<<_END
+        // Do they match using ==? $todayCheck <hr><br><br>
+        // _END; /* test output */
+        if ($todayCheck == "Yes") $todayClass = 'today';
+    }
+
     if (($i % 7) == 0) $output .= '<tr>';
-    if ($i < $startday) $output .= '<td></td>';
-    else $output .= '<td class="calender-day-item" align="center" valign="middle" height="20px" onclick="openCalenderActivityForm(' . "'" . $cYear . "/" . $cMonth . "/" . ($i - $startday + 1) . "'" . ')">' . ($i - $startday + 1) . '</td>';
+    if ($i < $startday) {
+        $output .= '<td></td>';
+    } else {
+        // $cDay = $i - $startday + 1;
+        $output .= <<<_END
+        <td class="calender-day-item $todayClass" align="center" valign="middle" height="20px" 
+            onclick="openCalenderActivityForm('$cYear','$cMonth','$cDay')">
+            $cDay
+        </td>
+        _END;
+    }
     if (($i % 7) == 6) $output .= '</tr>';
 }
 
@@ -43,12 +73,12 @@ $calenderHeading = $monthNames[$cMonth - 1] . " " . $cYear;
 
 echo <<<_END
 <div class="table-responsive pb-0" style="border-radius: 25px;">
-    <table class="table table-stripedz mb-0" style="background: #343434;">
+    <table class="table table-hover mb-0" style="background: var(--mineshaft);">
         <thead style="background: #fff; color: #343434;">
             <tr class="comfortaa-font p-4" align="center" style="font-size: 30px">
-                <td colspan="1" align="left"><button class="onefit-buttons-style-light p-3" onclick="navCalender('$prev_month','$prev_year','prev')"><i class="fas fa-chevron-left"></i> Prev</button></td>
-                <td colspan="5" style="font-size: 50px"><strong class="text-truncate"> $calenderHeading </strong></td>
-                <td colspan="1" align="right"><button class="onefit-buttons-style-light p-3" onclick="navCalender('$next_month','$next_year','next')">Next <i class="fas fa-chevron-right"></i></button></td>
+                <td class="p-4" colspan="1" align="left"><button class="onefit-buttons-style-light p-3" onclick="navCalender('$prev_month','$prev_year','prev')"><i class="fas fa-chevron-left"></i> Prev</button></td>
+                <td class="p-4" colspan="5" style="font-size:50px;cursor:pointer;" onclick="navCalender(null,null,'today')"><strong class="text-truncate"> $calenderHeading </strong></td>
+                <td class="p-4" colspan="1" align="right"><button class="onefit-buttons-style-light p-3" onclick="navCalender('$next_month','$next_year','next')">Next <i class="fas fa-chevron-right"></i></button></td>
             </tr>
             <tr>
                 <th class="text-center" scope="col">Sunday</th>
@@ -60,7 +90,7 @@ echo <<<_END
                 <th class="text-center" scope="col">Saturday</th>
             </tr>
         </thead>
-        <tbody class="text-white" style="font-size: 30px">
+        <tbody class="text-white down-top-grad-tahiti" style="font-size: 30px">
             $output
         </tbody>
     </table>

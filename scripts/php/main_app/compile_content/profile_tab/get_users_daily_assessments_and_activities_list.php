@@ -6,17 +6,18 @@ require_once("../../../functions.php");
 //test connection - if fail then die
 if ($dbconn->connect_error) die("Fatal Error");
 
-if (isset($_GET['day']) && isset($_GET['gref'])) {
+if (isset($_GET['date']) && isset($_GET['grcode'])) {
     // declaring variables
-    $getDay = $getGrpRef = $activities_card_content = $inner_activities_card_content = "";
+    $paramDayName = $grcode = $activities_card_content = $inner_activities_card_content = "";
 
     // execute query
-    $getDay = ucfirst(strtolower(sanitizeMySQL($dbconn, $_GET['day'])));
-    $getGrpRef = sanitizeMySQL($dbconn, $_GET['gref']);
+    $paramDate = date_create(sanitizeMySQL($dbconn, $_GET['date']));
+    $paramDayName = date_format($paramDate, "l"); //strtolower()
+    $dayNum = date_format($paramDate, 'N');
+    $dayDateThisWeek = date_format($paramDate, 'd/m/Y');
 
-    $dayNum = date("N", strtotime("$getDay this week"));
-
-    $dayDateThisWeek = date('d/m/Y', strtotime("$getDay this week"));
+    $grcode = sanitizeMySQL($dbconn, $_GET['grcode']);
+    // $when = sanitizeMySQL($dbconn, $_GET['when']) || 'this'; // this / last / next
 
     // teams variables
     // tws
@@ -43,22 +44,32 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
 
     $wtypes = array('indi', 'teams');
 
+    $grcodeReqStatement = "";
+
     foreach ($wtypes as $type) {
         # choose sql script to execute based on the current array item
         if ($type == "indi") {
+            if ($grcode != 'all') {
+                # include the "indiws.groups_group_ref_code = '$grcode' AND " statement after the WHERE clause in our sql query
+                $grcodeReqStatement = "indiws.groups_group_ref_code = '$grcode' AND";
+            }
             // sql code to compile the indi daily activities in the daily activities chart bars
             $query = "SELECT indiws.indi_weekly_schedule_id, indiws.schedule_title, indiws.schedule_rpe, indiws.schedule_day, indiws.schedule_date, indiws.groups_group_ref_code, 
             indiwa.indi_activity_id, indiwa.activity_title, indiwa.activity_description, indiwa.activity_icon, indiwa.indi_weekly_schedules_indi_weekly_schedule_id, indiwa.exercises_exercise_id 
             FROM indi_weekly_schedules indiws 
             INNER JOIN indi_weekly_activities indiwa ON indiwa.indi_weekly_schedules_indi_weekly_schedule_id = indiws.indi_weekly_schedule_id 
-            WHERE indiws.groups_group_ref_code = '$getGrpRef' AND indiws.schedule_day = '$getDay' AND indiws.schedule_date = '$dayDateThisWeek'";
+            WHERE $grcodeReqStatement indiws.schedule_day = '$paramDayName' AND indiws.schedule_date = '$dayDateThisWeek'";
         } elseif ($type == "teams") {
+            if ($grcode != 'all') {
+                # include the "teamsws.groups_group_ref_code = '$grcode' AND " statement after the WHERE clause in our sql query
+                $grcodeReqStatement = "teamsws.groups_group_ref_code = '$grcode' AND";
+            }
             // sql code to compile the teams daily activities in the daily activities chart bars
             $query = "SELECT teamsws.teams_weekly_schedule_id, teamsws.schedule_title, teamsws.schedule_rpe, teamsws.schedule_day, teamsws.schedule_date, teamsws.groups_group_ref_code, 
             teamswa.teams_activity_id, teamswa.activity_title, teamswa.activity_description, teamswa.activity_icon, teamswa.teams_weekly_schedules_teams_weekly_schedule_id, teamswa.exercises_exercise_id 
             FROM teams_weekly_schedules teamsws 
             INNER JOIN team_weekly_activities teamswa ON teamswa.teams_weekly_schedules_teams_weekly_schedule_id = teamsws.teams_weekly_schedule_id 
-            WHERE teamsws.groups_group_ref_code = '$getGrpRef' AND teamsws.schedule_day = '$getDay' AND teamsws.schedule_date = '$dayDateThisWeek'";
+            WHERE $grcodeReqStatement teamsws.schedule_day = '$paramDayName' AND teamsws.schedule_date = '$dayDateThisWeek'";
         } else {
             die("error: Invalid request.");
         }
@@ -202,7 +213,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
     $dbconn->close();
 
     $weekdayCardOutput = <<<_END
-    <h3 class="my-4">$getDay</h3>
+    <h3 class="my-4">$paramDayName</h3>
     <h5 class="my-4 text-muted">$dayDateThisWeek</h5>
     <hr class="text-white" style="height: 5px;">
     <h5 class="">Assessments</h5>
@@ -270,4 +281,6 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
     _END;
 
     echo $weekdayCardOutput;
+} else {
+    die("No request parameters were provided.");
 }

@@ -459,7 +459,7 @@
                 $.get("./scripts/php/get_items/get_users.php?giveme=" + request, function (data, status) {
                     if (status != "success") {
                         console.log("Get Req Failed -> $.getUserAccounts returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        // alert("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
                     } else {
                         $(elemid).html(data);// '#user-account-list'
                         if (request == 'json') console.log('User Accounts Json: \n'.data);
@@ -472,7 +472,7 @@
                 $.get("./scripts/php/get_items/get_classes.php?giveme=" + request, function (data, status) {
                     if (status != "success") {
                         console.log("Get Req Failed -> $.getCategoriesClasses returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        // alert("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
                     } else {
                         $(elemid).html(data);// '#select-workout-category'
                         if (request == 'json') console.log('Categories & Classes Json: \n'.data);
@@ -485,7 +485,7 @@
                 $.get("./scripts/php/get_items/get_indi_exercises.php?giveme=" + request, function (data, status) {
                     if (status != "success") {
                         console.log("Get Req Failed -> $.getIndiExercises returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        // alert("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
                     } else {
                         $(elemid).html(data);// '#select-workout-exercises'
                         if (request == 'json') console.log('Indi Exercises Json: \n'.data);
@@ -498,7 +498,7 @@
                 $.get("./scripts/php/get_items/get_supplements.php?giveme=" + request, function (data, status) {
                     if (status != "success") {
                         console.log("Get Req Failed -> $.getSupplementsList returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        // alert("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
                     } else {
                         $(elemid).html(data);// '#select-workout-recommeded-supplements'
                         if (request == 'json') console.log('Supplements List Json: \n'.data);
@@ -513,7 +513,7 @@
                 $.get("./scripts/php/get_items/get_store_products.php?giveme=" + request, function (data, status) {
                     if (status != "success") {
                         console.log("Get Req Failed -> $.getStoreProducts returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        // alert("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
                     } else {
                         $(elemid).html(data);// '#store-products-list'
                         // console log if json was requested
@@ -635,6 +635,7 @@
 
     <!-- custom css -->
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/chat.css">
 </head>
 
 <body onload="initializeContent()">
@@ -665,12 +666,12 @@
                     style="height: 100px;">
             </a>
 
-            <h1 class="fs-5 text-white my-0 py-4">
+            <h1 class="fs-5 text-white my-0 py-4 d-none d-lg-block">
                 <span class="comfortaa-font">One<span class="text-warning">fit</span>.app</span>
                 <span class="text-warning">|</span> Administration Portal
             </h1>
 
-            <form class="d-flex py-4" role="search">
+            <form class="d-flex py-4 d-none d-lg-block d-lgx-block" role="search">
                 <input class="form-control me-2"
                     style="padding-right: 125px !important; border-radius:25px;outline: none !important;box-shadow: none;"
                     type="search" placeholder="" aria-label="Search">
@@ -696,7 +697,8 @@
                 aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header text-white">
                     <h5 class="offcanvas-title text-truncate" id="offcanvasRightLabel">Name Surname @username</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <button type="button" class="btn-close bg-white p-3" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body text-white">
                     ...
@@ -1154,7 +1156,7 @@
 
                 <h1>Creation Tools</h1>
 
-                <div class="row gap-4 my-4">
+                <div class="row gap-4 my-4 align-items-start">
                     <div class="col-md container-card">
                         <!-- capture workouts -->
                         <form id="capture-workout-form" name="capture-workout-form" class="form-horizontal border-0">
@@ -1514,12 +1516,54 @@
                         <div class="container-card mb-4">
                             <h5>Create Resources</h5>
                             <hr>
+                            <!--  -->
                         </div>
 
-                        <!-- community updates -->
+                        <!-- Group / community updates -->
                         <div class="container-card mb-4">
-                            <h5>Community Updates</h5>
+                            <h5>Group / Community Updates</h5>
                             <hr>
+                            <form id="create-team-form" name="capture-workout-form" class="form-horizontal">
+                                <fieldset class=" border-0">
+
+                                    <div id="form-output-create_team" class="alert alert-info p-2 my-3"
+                                        style="display: none;">
+                                        Output Alert
+                                    </div>
+
+                                    <!-- Select Basic -->
+                                    <div class="form-group mb-3">
+                                        <label class="col-md-4z control-label" for="input-create-group-post-group_name">
+                                            Select a Group
+                                        </label>
+                                        <div class="col-md-4z">
+                                            <select id="select-create-group-post-group_name"
+                                                name="select-create-group-post-group_name" class="form-control">
+                                                <option value="noselection">Select</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="form-group mb-3">
+                                        <label class="col-md-4z control-label"
+                                            for="input-create-group-post-group_post_msg">
+                                            Description
+                                        </label>
+                                        <div class="col-md-4z">
+                                            <textarea id="input-create-group-post-group_post_msg"
+                                                name="input-create-group-post-group_post_msg" type="text" rows="10"
+                                                placeholder="Group Update Message" class="form-control input-md"
+                                                required=""></textarea>
+                                        </div>
+                                    </div>
+
+                                    <!-- submit -->
+                                    <input type="submit" name="submit" value="Send Post"
+                                        class="onefit-buttons-style-light p-3 shadow">
+
+                                </fieldset>
+                            </form>
                         </div>
 
                         <!-- bulk upload -->
@@ -1726,7 +1770,6 @@
                     </div>
                 </div>
 
-
             </div>
             <div class="tab-pane fade" id="pills-storemgmt" role="tabpanel" aria-labelledby="pills-storemgmt-tab"
                 tabindex="0">
@@ -1836,7 +1879,8 @@
                     <h5>Support Request Chat &amp; Messanger</h5>
                     <hr>
                     <div id="support-chat-container" class="container-card p-0" style="overflow: hidden;">
-                        <div class="row" style="height: 80vh;">
+                        <div class="row">
+                            <!--  style="height: 80vh;" -->
                             <div class="col-sm-4 m-0 p-0 h-100">
                                 <div class="chat-list d-gridz border-5 border-white border-endz w-100 h-100">
                                     <!-- -->
@@ -1846,7 +1890,7 @@
                                                 <h5>Chats.</h5>
                                             </div>
                                             <div id="chat-list" class="card-body border-0 ps-5 pt-4 p-0"
-                                                style="overflow-y: auto;max-height:68vh;">
+                                                style="overflow-y: auto;max-height:80vh;">
                                                 <!-- placeholder - default spinner -->
                                                 <div class="d-flex justify-content-center d-none">
                                                     <div class="spinner-border" role="status">
@@ -1859,6 +1903,114 @@
                                                 <!-- placeholder - default ui list -->
 
                                                 <ul class="list-group list-group-flush bg-dark gap-2">
+                                                    <li
+                                                        class="list-group-item select-chat-strip shadow right-left-grad-white-mineshaft text-truncate">
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center gap-1">
+                                                            <!-- profile img thumbnail -->
+                                                            <div class="thumbnail">
+                                                                <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
+                                                                    alt="logo placeholder - profile image thumbnail">
+                                                            </div>
+
+                                                            <!-- Users names -->
+                                                            <div class="d-grid gap-1 text-end">
+                                                                <span class="m-0 align-middle text-truncate fw-bold">
+                                                                    Users Name
+                                                                </span>
+                                                                <span class="m-0 align-middle fw-bold"
+                                                                    style="font-size:10px;">
+                                                                    @username | Email
+                                                                </span>
+                                                                <span class="m-0 align-middle fw-bold"
+                                                                    style="font-size:10px;">
+                                                                    +27 ...
+                                                                </span>
+                                                            </div>
+
+                                                        </div>
+                                                    </li>
+                                                    <li
+                                                        class="list-group-item select-chat-strip shadow right-left-grad-white-mineshaft text-truncate">
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center gap-1">
+                                                            <!-- profile img thumbnail -->
+                                                            <div class="thumbnail">
+                                                                <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
+                                                                    alt="logo placeholder - profile image thumbnail">
+                                                            </div>
+
+                                                            <!-- Users names -->
+                                                            <div class="d-grid gap-1 text-end">
+                                                                <span class="m-0 align-middle text-truncate fw-bold">
+                                                                    Users Name
+                                                                </span>
+                                                                <span class="m-0 align-middle fw-bold"
+                                                                    style="font-size:10px;">
+                                                                    @username | Email
+                                                                </span>
+                                                                <span class="m-0 align-middle fw-bold"
+                                                                    style="font-size:10px;">
+                                                                    +27 ...
+                                                                </span>
+                                                            </div>
+
+                                                        </div>
+                                                    </li>
+                                                    <li
+                                                        class="list-group-item select-chat-strip shadow right-left-grad-white-mineshaft text-truncate">
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center gap-1">
+                                                            <!-- profile img thumbnail -->
+                                                            <div class="thumbnail">
+                                                                <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
+                                                                    alt="logo placeholder - profile image thumbnail">
+                                                            </div>
+
+                                                            <!-- Users names -->
+                                                            <div class="d-grid gap-1 text-end">
+                                                                <span class="m-0 align-middle text-truncate fw-bold">
+                                                                    Users Name
+                                                                </span>
+                                                                <span class="m-0 align-middle fw-bold"
+                                                                    style="font-size:10px;">
+                                                                    @username | Email
+                                                                </span>
+                                                                <span class="m-0 align-middle fw-bold"
+                                                                    style="font-size:10px;">
+                                                                    +27 ...
+                                                                </span>
+                                                            </div>
+
+                                                        </div>
+                                                    </li>
+                                                    <li
+                                                        class="list-group-item select-chat-strip shadow right-left-grad-white-mineshaft text-truncate">
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center gap-1">
+                                                            <!-- profile img thumbnail -->
+                                                            <div class="thumbnail">
+                                                                <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
+                                                                    alt="logo placeholder - profile image thumbnail">
+                                                            </div>
+
+                                                            <!-- Users names -->
+                                                            <div class="d-grid gap-1 text-end">
+                                                                <span class="m-0 align-middle text-truncate fw-bold">
+                                                                    Users Name
+                                                                </span>
+                                                                <span class="m-0 align-middle fw-bold"
+                                                                    style="font-size:10px;">
+                                                                    @username | Email
+                                                                </span>
+                                                                <span class="m-0 align-middle fw-bold"
+                                                                    style="font-size:10px;">
+                                                                    +27 ...
+                                                                </span>
+                                                            </div>
+
+                                                        </div>
+                                                    </li>
                                                     <li
                                                         class="list-group-item select-chat-strip shadow right-left-grad-white-mineshaft text-truncate">
                                                         <div
@@ -1997,8 +2149,8 @@
                                 </div>
                             </div>
                             <div class="col-sm p-0 m-0 h-100">
-                                <div
-                                    class="chat-view d-flex justify-content-center align-items-center border-5 border-white border-start w-100 h-100">
+                                <div class="chat-view d-flex justify-content-center align-items-center 
+                                    border-5 border-white border-start w-100 h-100">
 
                                     <!-- container for chat messages and chat input section -->
                                     <div class="card-group h-100 w-100">
@@ -2006,7 +2158,8 @@
                                             <div class="card-header pt-4">
                                                 <h5>Users Name</h5>
                                             </div>
-                                            <div id="chat-view" class="card-body">
+                                            <div id="chat-view" class="card-body"
+                                                style="overflow-y:auto;max-height:80vh;">
                                                 <!-- placeholder - default spinner -->
                                                 <div class="d-flex justify-content-center d-none">
                                                     <div class="spinner-border" role="status">
@@ -2015,6 +2168,105 @@
                                                     <span class="comfortaa-font ms-4"> messages.</span>
                                                 </div>
                                                 <!-- ./ placeholder - default spinner -->
+
+                                                <div id="chat-msg-container">
+                                                    <!-- chatting with -->
+                                                    <div class="row align-items-center">
+                                                        <div class="col-sm text-start">
+                                                            <div class="d-flex gap-2">
+                                                                <div class="text-start">
+                                                                    <img src="../media/profiles/0_default/default_profile_pic.svg"
+                                                                        class="rounded-circle shadow"
+                                                                        style="height: 50px; width: 50px;"
+                                                                        alt="placeholder profile pic">
+                                                                </div>
+
+                                                                <div class="talk-bubble shadow tri-right shadow btm-leftz left-top border-5 border-end border-bottom"
+                                                                    style="border-radius: 0 25px 25px 25px !important;">
+                                                                    <div class="talktext">
+                                                                        <p>And now using .round we can smooth the sides
+                                                                            down. Also uses .btm-left to show a triangle
+                                                                            at the bottom flush to the left.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3 text-start"></div>
+                                                    </div>
+
+                                                    <!-- current ùser -->
+                                                    <div class="row align-items-start">
+                                                        <div class="col-sm-3"></div>
+                                                        <div class="col-sm text-end">
+                                                            <div class="d-flex gap-2">
+                                                                <div class="talk-bubble shadow tri-right shadow btm-rightz right-top border-5 border-start border-bottom"
+                                                                    style="border-radius: 25px 0 25px 25px !important;">
+                                                                    <div class="talktext">
+                                                                        <p>And now using .round we can smooth the sides
+                                                                            down. Also uses .btm-left to show a triangle
+                                                                            at the bottom flush to the left.</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="text-end">
+                                                                    <img src="../media/profiles/0_default/default_profile_pic.svg"
+                                                                        class="rounded-circle shadow"
+                                                                        style="height: 50px; width: 50px;"
+                                                                        alt="placeholder profile pic">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- chatting with -->
+                                                    <div class="row align-items-center">
+                                                        <div class="col-sm text-start">
+                                                            <div class="d-flex gap-2">
+                                                                <div class="text-start">
+                                                                    <img src="../media/profiles/0_default/default_profile_pic.svg"
+                                                                        class="rounded-circle shadow"
+                                                                        style="height: 50px; width: 50px;"
+                                                                        alt="placeholder profile pic">
+                                                                </div>
+
+                                                                <div class="talk-bubble shadow tri-right shadow btm-leftz left-top border-5 border-end border-bottom"
+                                                                    style="border-radius: 0 25px 25px 25px !important;">
+                                                                    <div class="talktext">
+                                                                        <p>And now using .round we can smooth the sides
+                                                                            down. Also uses .btm-left to show a triangle
+                                                                            at the bottom flush to the left.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3 text-start"></div>
+                                                    </div>
+
+                                                    <!-- current ùser -->
+                                                    <div class="row align-items-start">
+                                                        <div class="col-sm-3"></div>
+                                                        <div class="col-sm text-end">
+                                                            <div class="d-flex gap-2">
+                                                                <div class="talk-bubble shadow tri-right shadow btm-rightz right-top border-5 border-start border-bottom"
+                                                                    style="border-radius: 25px 0 25px 25px !important;">
+                                                                    <div class="talktext">
+                                                                        <p>And now using .round we can smooth the sides
+                                                                            down. Also uses .btm-left to show a triangle
+                                                                            at the bottom flush to the left.</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="text-end">
+                                                                    <img src="../media/profiles/0_default/default_profile_pic.svg"
+                                                                        class="rounded-circle shadow"
+                                                                        style="height: 50px; width: 50px;"
+                                                                        alt="placeholder profile pic">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
                                             </div>
                                             <div class="card-footer p-4 ps-3 pb-3">
                                                 <!-- <small class="text-muted">Last updated 3 mins ago</small> -->

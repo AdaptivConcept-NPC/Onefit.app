@@ -1,3 +1,18 @@
 {
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "onefit.app DB",
+      "database": "adaptivc_onefit_db",
+      "username": "onefit_db_admin",
+      "group": "AdaptivConcept"
+    }
+  ]
 }

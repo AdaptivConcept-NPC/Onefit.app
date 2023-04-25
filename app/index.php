@@ -130,49 +130,52 @@ if (isset($_SESSION["currentUserAuth"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $usrprof_name . " " . $usrprof_surname; ?> - Onefit.app&trade; | Onefit.Net&reg; &copy; <?php echo date('Y'); ?></title>
 
+    <script>
+        var coreScriptLoaded = coreScriptLoaded_googlefont_icons_css = coreScriptLoaded_plyrio_css = coreScriptLoaded_plyrio_js = coreScriptLoaded_hls_js = coreScriptLoaded_bootstrap_local_css = coreScriptLoaded_bootstrap_bundle_local_js = coreScriptLoaded_w3_css = coreScriptLoaded_custom_styles_css = coreScriptLoaded_digiclock_css = coreScriptLoaded_digiclock_js = coreScriptLoaded_timeline_css = coreScriptLoaded_custom_jquery_func_js = coreScriptLoaded_custom_script_js = coreScriptLoaded_custom_api_req_js = coreScriptLoaded_jquery_local_js = coreScriptLoaded_custom_jquery_func_js = coreScriptLoaded_moment_js = coreScriptLoaded_googlefonts_fonts = coreScriptLoaded_googlefonts_css = coreScriptLoaded_soccerfield_css = coreScriptLoaded_soccerfield_css = coreScriptLoaded_soccerfield_js = coreScriptLoaded_chartjs_js = false;
+    </script>
+
     <!--fontawesome-->
     <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
 
     <!-- Google Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" onload="coreScriptLoaded_googlefont_icons_css=true;" />
 
     <!-- Plyr.io Media Player -->
-    <link rel="stylesheet" href="https://cdn.plyr.io/1.8.2/plyr.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/1.8.2/plyr.css" onload="coreScriptLoaded_plyrio_css=true;">
 
     <!-- Plry.io JS CDN -->
-    <script src="https://cdn.plyr.io/1.8.2/plyr.js"></script>
-    <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
+    <script src="https://cdn.plyr.io/1.8.2/plyr.js" onload="coreScriptLoaded_plyrio_js=true;"></script>
+    <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js" onload="coreScriptLoaded_hls_js=true;"></script>
 
     <!-- Bootstrap local -->
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" onload="coreScriptLoaded_bootstrap_local_css=true;">
 
     <!-- Bootstrap CSS -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" /> -->
 
     <!-- W3 CSS -->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" onload="coreScriptLoaded_w3_css=true;" />
 
     <!-- My CSS styles -->
-    <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/digital-clock.css" />
-    <link rel="stylesheet" href="../css/timeline-styles.css" />
+    <link rel="stylesheet" href="../css/styles.css" onload="coreScriptLoaded_custom_styles_css=true;" />
+    <link rel="stylesheet" href="../css/digital-clock.css" onload="coreScriptLoaded_digiclock_css=true;" />
+    <link rel="stylesheet" href="../css/timeline-styles.css" onload="coreScriptLoaded_timeline_css=true;" />
 
     <!-- JQuery local -->
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-
-    <!-- Site Scripts -->
-    <script src="../scripts/js/jquery_functions.js"></script>
-    <script src="../scripts/js/script.js"></script>
-    <script src="../scripts/js/api_requests.js"></script>
-
-    <!-- ./ Site Scripts -->
+    <script src="../node_modules/jquery/dist/jquery.min.js" onload="coreScriptLoaded_jquery_local_js=true;"></script>
 
     <!-- JQuery CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
     <!-- ./ JQuery CDN -->
 
+    <!-- Custom Site Scripts -->
+    <script src="../scripts/js/jquery_functions.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
+    <script src="../scripts/js/script.js" onload="coreScriptLoaded_custom_script_js=true;"></script>
+    <script src="../scripts/js/api_requests.js" onload="coreScriptLoaded_custom_api_req_js=true;"></script>
+    <!-- ./ Custom Site Scripts -->
+
     <!-- For Digital Clock Plugin -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js" onload="coreScriptLoaded_moment_js=true;"></script>
     <!-- ./ For Digital Clock Plugin -->
 
     <!-- Map Highlight -->
@@ -181,17 +184,17 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ Map Highlight -->
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" onload="coreScriptLoaded_googlefonts_fonts=true;">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin onload="coreScriptLoaded_googlefonts_fonts=true;">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap" rel="stylesheet" onload="coreScriptLoaded_googlefonts_css=true;">
 
     <!-- Soccer field -->
-    <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.min.css" />
-    <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.default.min.css" />
-    <script src="../scripts/js/soccer-field-players-positions/jquery.soccerfield.min.js"></script>
+    <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.min.css" onload="coreScriptLoaded_soccerfield_css=true;" />
+    <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.default.min.css" onload="coreScriptLoaded_soccerfield_css=true;" />
+    <script src="../scripts/js/soccer-field-players-positions/jquery.soccerfield.min.js" onload="coreScriptLoaded_soccerfield_js=true;"></script>
 
     <!-- chartjs -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" onload="coreScriptLoaded_chartjs_js=true;"></script>
     <!-- <script src="../node_modules/dist/chart.min.js"></script> *** local file - no chart object detected -->
 
     <!-- JQuery Scripts -->
@@ -216,9 +219,9 @@ if (isset($_SESSION["currentUserAuth"])) {
     <div id="snackbar">No notification.</div>
 
     <!-- outer - twitter social panel -->
-    <div id="twitter-social-panel" class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4 right-left-grad-tahiti-mineshaft bg-darkz shadow-lgz">
+    <div id="twitter-social-panel" class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4 pb-0 d-nonez d-lg-blockz right-left-grad-tahiti-mineshaft bg-darkz shadow-lgz">
         <!--  d-none d-lg-block p-4 -->
-        <div class="d-flex gap-2 w-100 justify-content-end">
+        <div class="position-relative d-flex gap-2 w-100 justify-content-center mb-4">
             <button class="p-4 m-0 shadow onefit-buttons-style-dark-twitter onefit-buttons-style-light-twitterz" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
                 <div class="d-grid">
                     <span class="material-icons material-icons-round" style="font-size: 48px !important;">
@@ -227,9 +230,17 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <p class="comfortaa-font mt-1 mb-0" style="font-size: 10px;color:#fff!important;"><span style="color:var(--twitter)!important;">@</span>onefitnet</p>
                 </div>
             </button>
+            <!-- close button badge -->
+            <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill p-2" onclick="$.hideSingleSidePanel('#twitter-social-panel','left')" style="cursor: pointer;background-color:var(--mineshaft)!important;color:var(--twitter)!important;">
+                <span class="material-icons material-icons-outlined align-middle" style="font-size: 15px !important;">
+                    hide_source
+                </span>
+                <span class="align-middle" style="font-size: 8px!important;">hide.</span>
+            </span>
         </div>
         <div class="collapse no-scroller pb-4 w3-animate-bottom" id="collapseloadCurtainTweetFeed" style="overflow-y: auto;">
             <div class="pb-4 no-scroller" style="border-radius: 25px !important; overflow-y: auto; max-height: 90vh; min-width: 500px;">
+                <!-- twitter api -->
                 <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by OnefitNet</a>
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
@@ -238,9 +249,18 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ outer - twitter social panel -->
 
     <!-- Create Button - hidden on screens smaller than lg -->
-    <div id="creation-tools-content-panel" class="create-btn-container my-pulse-animation-tahiti comfortaa-font d-grid gap-2 d-none d-lg-block">
+    <div id="creation-tools-content-panel" class="create-btn-container my-pulse-animation-tahiti comfortaa-font d-grid gap-2 d-nonez d-lg-blockz">
         <div class="collapse p-4 w3-animate-bottom" id="collapseCreateCommandList">
             <ul class="list-groupz list-group-flush list-group border-0 text-white fw-bold text-center comfortaa-font" style="overflow: initial !important;">
+                <li class="list-group-item bg-transparent d-grid justify-content-center p-0">
+                    <!-- close button badge -->
+                    <span class="badge rounded-pill bg-danger p-2" onclick="$.hideSingleSidePanel('#creation-tools-content-panel','right')" style="cursor: pointer;background-color:var(--mineshaft)!important;color:var(--tahitigold)!important">
+                        <span class="material-icons material-icons-outlined align-middle" style="font-size: 15px !important;">
+                            hide_source
+                        </span>
+                        <span class="align-middle" style="font-size: 8px!important;">hide panel.</span>
+                    </span>
+                </li>
                 <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Social Update</button></li>
                 <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Community Resource</button></li>
                 <li class="list-group-item bg-transparent d-grid"><button type="button" class="onefit-buttons-style-dark text-white">Share Media</button></li>
@@ -262,23 +282,26 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ Create Button - hidden on screens smaller than lg -->
 
     <!-- offline Curtain -->
-    <div class="offline-curtain" id="offline-curtain" style="display: none;">
-        <div class="d-flex align-items-center top-down-grad-tahitiz" style="width: 100%; height: 100%;">
+    <div class="offline-curtain" id="offline-curtain" style="display: none;background-color:var(--mineshaft);">
+        <div class="d-flex align-items-center down-top-grad-white" style="width: 100%; height: 100%;">
             <div class="text-center w-100">
-                <div class="ring d-flex align-items-center p-4 my-pulse-animation-light">
+                <div class="ring d-flex align-items-center p-4 shadow-lg">
                     <!-- <span></span> -->
                     <div class="d-flex align-items-center justify-content-center" style="width: 100%;">
-                        <!-- <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid p-4" style="height: 130px;" alt="onefit logo"> -->
-                        <span class="material-icons material-icons-round" style="font-size:100px!important;">
-                            wifi_off <!-- offline_bolt -->
-                        </span>
+                        <img src="../media/assets/icons/wifi_off_black_24dp.svg" class="img-fluid p-4 rounded-circle text-white border-5 border-white shadow" style="height: 130px;background-color:var(--white)!important;" alt="onefit logo">
+                        <!-- -->
                     </div>
                 </div>
             </div>
         </div>
         <nav class="text-center text-center p-4 fixed-bottom" alt="">
-            <p class="navbar-brand fs-1 text-white comfortaa-font fs-5"><span style="color: #ffa500">You are offline</span></p>
-            <p class="text-center comfortaa-font" style="font-size: 20px;">Please check your internet connection</p>
+            <h1 id="output-msg-heading" class="navbar-brand fs-1 fw-bold comfortaa-font d-grid" style="color: var(--mineshaft);">
+                <span class="material-icons material-icons-round align-middle" style="font-size:40px!important;">
+                    offline_bolt
+                </span>
+                <span class="align-middle">You are offline.</span>
+            </h1>
+            <p id="output-msg-text" class="text-center poppins-font" style="color: var(--mineshaft);">Please check your internet connection</p>
         </nav>
     </div>
 
@@ -303,12 +326,12 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./Load Curtain -->
 
     <!-- Facebook API -->
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0" nonce="47FC3Uf9"></script>
+    <!-- <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0" nonce="47FC3Uf9"></script> -->
     <!-- ./ Facebook API -->
 
     <!-- Navigation bar, Cart & Other functions -->
-    <div id="nav-bar-header" class="container-xlg -fluid text-center pt-4">
+    <header id="nav-bar-header" class="container-xlg -fluid text-center pt-4">
         <a class="navbar-brand my-4 mx-0 p-4 fs-1 text-white comfortaa-font" href="#">
             One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span>
         </a>
@@ -316,7 +339,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         <!-- Cart Container  -->
         <div class="container py-4">
             <div class="text-center">
-                <button class="navbar-toggler shadowz onefit-buttons-style-dark p-2" type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel">
+                <button class="navbar-toggler shadowz onefit-buttons-style-dark p-2 hide-side-panels" type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel">
                     <div class="row px-4 py-2 align-items-centerz">
                         <div class="col-sm border-start border-end border-light p-2">
                             <span class="material-icons material-icons-round align-middle" style="font-size: 50px !important;">
@@ -374,12 +397,37 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;">20220201-879ds6fsdf_id</span> ]
                             </p>
                             <hr class="text-white">
-                            <h1><span style="color: #ffa500;">Total:</span> R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 10px; color: #ffa500;">ZAR</span></h1>
+
+                            <!-- invoice totals -->
+                            <div class="container p-2 pt-4 top-down-grad-dark" style="border-radius: 25px;">
+                                <h1 class="">Cart Totals.</h1>
+                                <div class="row p-4 align-items-center">
+                                    <div class="col-md">
+                                        <h1>R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 10px; color: #ffa500;">ZAR</span></h1>
+                                    </div>
+                                    <div class="col-md -4 border-1 border-start border-end">
+                                        <h1><span id="shop-cart-total-items">4</span> <span class="align-top" style="font-size: 10px; color: #ffa500;">Items</span></h1>
+                                    </div>
+                                    <div class="col-md -2 d-grid">
+                                        <button id="clear-all-cart-item-btn" class="onefit-buttons-style-danger bg-transparent p-3 text-center">
+                                            <div class="d-grid">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
+                                                    delete
+                                                </span>
+                                                <span class="align-middle" style="font-size:10px;">
+                                                    Clear Cart
+                                                </span>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numbered shadow py-4 px-4 w3-animate-left" style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
                                 <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
                                     <div class="w-100 align-items-center justify-content-between">
 
-                                        <div class="row align-items-center">
+                                        <div class="row align-items-center gap-4">
                                             <div class="col-md">
                                                 <div class="d-grid gap-2 text-start px-4 pb-2">
                                                     <div class="comfortaa-font">
@@ -391,18 +439,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md">
+                                            <div class="col-md-2 border-5 border-start border-end" style="border-radius:25px;">
                                                 <div class="d-grid justify-content-center my-4">
                                                     <!-- quantity -->
                                                     <div class="input-group m-0">
                                                         <span class="input-group-text" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
-                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
+                                                        <input type="number" class="form-control text-center" min="0" step="1" oninput="validity.valid||(value='');" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
-                                                <div class="d-grid justify-content-endz">
-                                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                            <div class="col-md-2 p-4">
+                                                <div class="d-flex justify-content-center">
+                                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-4 text-center">
                                                         <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
                                                             highlight_off
                                                         </span>
@@ -416,7 +464,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
                                     <div class="w-100 align-items-center justify-content-between">
 
-                                        <div class="row align-items-center">
+                                        <div class="row align-items-center gap-4">
                                             <div class="col-md">
                                                 <div class="d-grid gap-2 text-start px-4 pb-2">
                                                     <div class="comfortaa-font">
@@ -428,18 +476,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md">
+                                            <div class="col-md-2 border-5 border-start border-end" style="border-radius:25px;">
                                                 <div class="d-grid justify-content-center my-4">
                                                     <!-- quantity -->
                                                     <div class="input-group m-0">
                                                         <span class="input-group-text" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
-                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
+                                                        <input type="number" class="form-control text-center" min="0" step="1" oninput="validity.valid||(value='');" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
-                                                <div class="d-grid justify-content-endz">
-                                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                            <div class="col-md-2 p-4">
+                                                <div class="d-flex justify-content-center">
+                                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-4 text-center">
                                                         <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
                                                             highlight_off
                                                         </span>
@@ -453,7 +501,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
                                     <div class="w-100 align-items-center justify-content-between">
 
-                                        <div class="row align-items-center">
+                                        <div class="row align-items-center gap-4">
                                             <div class="col-md">
                                                 <div class="d-grid gap-2 text-start px-4 pb-2">
                                                     <div class="comfortaa-font">
@@ -465,18 +513,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md">
+                                            <div class="col-md-2 border-5 border-start border-end" style="border-radius:25px;">
                                                 <div class="d-grid justify-content-center my-4">
                                                     <!-- quantity -->
                                                     <div class="input-group m-0">
                                                         <span class="input-group-text" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
-                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
+                                                        <input type="number" class="form-control text-center" min="0" step="1" oninput="validity.valid||(value='');" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
-                                                <div class="d-grid justify-content-endz">
-                                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                            <div class="col-md-2 p-4">
+                                                <div class="d-flex justify-content-center">
+                                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-4 text-center">
                                                         <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
                                                             highlight_off
                                                         </span>
@@ -489,7 +537,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </li>
                                 <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light bg-transparent text-white fs-5 d-flex" style="border-radius: 10px;">
                                     <div class="w-100 align-items-center justify-content-between">
-                                        <div class="row align-items-center">
+                                        <div class="row align-items-center gap-4">
                                             <div class="col-md">
                                                 <div class="d-grid gap-2 text-start px-4 pb-2">
                                                     <div class="comfortaa-font">
@@ -501,18 +549,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md">
+                                            <div class="col-md-2 border-5 border-start border-end" style="border-radius:25px;">
                                                 <div class="d-grid justify-content-center my-4">
                                                     <!-- quantity -->
                                                     <div class="input-group m-0">
                                                         <span class="input-group-text" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
-                                                        <input type="number" class="form-control text-center" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
+                                                        <input type="number" class="form-control text-center" min="0" step="1" oninput="validity.valid||(value='');" placeholder="qty" aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
-                                                <div class="d-grid justify-content-endz">
-                                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                            <div class="col-md-2 p-4">
+                                                <div class="d-flex justify-content-center">
+                                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-4 text-center">
                                                         <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
                                                             highlight_off
                                                         </span>
@@ -534,7 +582,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </p>
                             <hr class="text-white">
                             <div class="horizontal-scroll p-5 w3-animate-right">
-                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative" style="border-color: #ffa500 !important;">
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: #ffa500 !important;">
                                     <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
                                         1
                                     </div>
@@ -545,7 +593,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
                                         </div>
 
-                                        <p class="fw-bold text-truncate text-center py-4 comfortaa-font">
+                                        <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
                                             <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
                                             <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
                                         </p>
@@ -559,7 +607,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </div>
 
                                 </div>
-                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative" style="border-color: #ffa500 !important;">
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: #ffa500 !important;">
                                     <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
                                         2
                                     </div>
@@ -570,7 +618,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
                                         </div>
 
-                                        <p class="fw-bold text-truncate text-center py-4 comfortaa-font">
+                                        <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
                                             <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
                                             <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
                                         </p>
@@ -584,7 +632,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </div>
 
                                 </div>
-                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative" style="border-color: #ffa500 !important;">
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: #ffa500 !important;">
                                     <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
                                         3
                                     </div>
@@ -595,7 +643,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
                                         </div>
 
-                                        <p class="fw-bold text-truncate text-center py-4 comfortaa-font">
+                                        <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
                                             <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
                                             <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
                                         </p>
@@ -609,7 +657,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </div>
 
                                 </div>
-                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative" style="border-color: #ffa500 !important;">
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: #ffa500 !important;">
                                     <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
                                         4
                                     </div>
@@ -620,7 +668,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" Class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
                                         </div>
 
-                                        <p class="fw-bold text-truncate text-center py-4 comfortaa-font">
+                                        <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
                                             <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
                                             <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
                                         </p>
@@ -641,25 +689,23 @@ if (isset($_SESSION["currentUserAuth"])) {
             </div>
         </div>
         <!-- ./ Cart Container  -->
-    </div>
+    </header>
     <!-- ./ Navigation bar, Cart & Other functions -->
 
-
-
     <!-- Main Content -->
-    <div id="main-content-container" class="container-lg" style="padding-bottom: 50px">
+    <main id="main-content-container" class="container-lg" style="padding-bottom: 50px">
         <!-- Main Navigation Bar -->
         <nav class="navbar navbar-light sticky-top navbar-style w-100 mb-4" style="border-radius: 25px; max-height: 100vh !important; border-bottom: #ffa500 solid 5px;">
             <!-- App Function Buttons -->
             <div class="container">
-                <button class="onefit-buttons-style-dark p-3 shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
+                <button id="" main-data-bs-target="#tabLatestSonav-notifications-btn" class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> notifications </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Notifications</span>
                     </div>
                 </button>
 
-                <button type="button" id="apps-tray-open-btn" class="onefit-buttons-style-dark p-3 my-4 shadow comfortaa-font" style="max-width:87px;" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#tabNavModal">
+                <button type="button" id="apps-tray-open-btn" class="onefit-buttons-style-dark p-3 my-4 shadow comfortaa-font hide-side-panels" style="max-width:87px;" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#tabNavModal">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important;" id="apps-tray-open-btn-icon">
                             dashboard </span>
@@ -667,20 +713,21 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
                 </button>
 
-                <!-- Main UPPL Toggle button -->
+                <!-- Main App Content Refresh button -->
                 <div class="d-inline gap-2">
-                    <button class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz" style="overflow: hidden; font-size: 10px;" type="button" data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal">
+                    <button id="main-app-refresh-btn" class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz" style="overflow: hidden; font-size: 10px;" type="button" onclick="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
+                        <!--  data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal" -->
                         <div class="d-grid gap-2 text-center">
                             <!-- Profile Picture -->
                             <img src="../media/assets/One-Symbol-Logo-White.svg" alt="Onefit Logo" class="p-1 img-fluid my-pulse-animation-tahitiz" style="height: 50px; width: 50px; border-radius: 15px; border-color: #ffa500 !important" />
                             <!-- ./ Profile Picture -->
-                            <span class="d-none d-lg-block">Latest</span>
+                            <span class="d-none d-lg-block">Refresh</span>
                         </div>
                     </button>
                 </div>
-                <!-- ./ Main UPPL Toggle button -->
+                <!-- ./ Main App Content Refresh button -->
 
-                <button type="button" class="onefit-buttons-style-dark p-3 my-4 shadow comfortaa-font" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
+                <button type="button" class="onefit-buttons-style-dark p-3 my-4 shadow comfortaa-font hide-side-panels" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> widgets </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Widgets</span>
@@ -688,9 +735,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!--<span class="material-icons material-icons-round" style="font-size: 24px !important"> linear_scale </span>-->
                 </button>
 
-                <button class="navbar-toggler shadow onefit-buttons-style-dark p-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <button id="main-nav-ext-links-btn" class="navbar-toggler shadow onefit-buttons-style-dark p-4 hide-right-side-panels" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <div class="d-grid gap-2">
-                        <span class="material-icons material-icons-round" style="font-size: 24px !important"> menu_open </span>
+                        <span class="material-icons material-icons-round align-middle" style="font-size: 28px !important"> auto_stories <!-- menu_open --> </span>
                         <span class="d-none d-lg-block" id="" style="font-size: 10px;">Navigation</span>
                     </div>
                 </button>
@@ -704,8 +751,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="overflow-x: hidden;">
                                 Navigation
                             </h5>
-                            <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="offcanvas" aria-label="Close">
-                                <span class="material-icons material-icons-round"> cancel </span>
+                            <button type="button" class="onefit-buttons-style-light shadow p-3" data-bs-dismiss="offcanvas" aria-label="Close">
+                                <span class="material-icons material-icons-round align-middle"> close </span>
                             </button>
                         </div>
                         <div class="offcanvas-body" style="padding-bottom: 40px; overflow-y: auto; overflow-x: hidden; max-height: 80vh;">
@@ -807,7 +854,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="full-wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
 
                             <!-- fitness progression progress bar -->
-                            <div id="fitness-progression-progress-bar">
+                            <div id="fitness-progression-progress-bar-dashboard" class="bar-fpwidget">
                                 <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">data_exploration</span> <span class="align-middle">Fitness Progression</span></h5>
                                 <div class="progress mt-4" style="height: 4px;">
                                     <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: 25%; background-color: #ffa500 !important; border-right: #343434 10px solid;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -844,9 +891,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <span class="p-4 align-middle">Activities lined up.</span>
                                     </h4>
 
-                                    <div class="d-flex align-items-center text-center justify-content-center" id="no-activities-banner-container" style="min-height: 100px;">
-                                        <p class="my-4 fs-5 fw-bold comfortaa-font" style="cursor: pointer;" onclick="openLink(event, 'TabStudio')">No activities lined up. Go to the <span style="color: #ffa500;">.Studio</span> to get active.</p>
+                                    <div id="week-activities-list-container">
+                                        <div class="d-flex align-items-center text-center justify-content-center" id="no-activities-banner-container" style="min-height: 100px;">
+                                            <p class="my-4 fs-5 fw-bold comfortaa-font" style="cursor: pointer;" onclick="openLink(event, 'TabStudio')">No activities lined up. Go to the <span style="color: #ffa500;">.Studio</span> to get active.</p>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -900,37 +950,37 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <!-- section seperator to allow user to touch for scrolling -->
                             <div class="text-center p-4 d-flexz justify-content-betweenz align-items-centerz" style="background-color: #343434; color:#ffa500;">
                                 <div class="row align-items-center">
-                                    <div class="col">
+                                    <div class="col mb-2">
                                         <div class="d-gridz gap-0">
                                             <!-- left touch for scroll indicator -->
                                             <span class="material-icons material-icons-round align-middle text-muted p-4 rounded-circle shadow" style="font-size: 20px !important;color: #ffa500 !important;">refresh</span><!-- fingerprint -->
-                                            <span class="text-white align-middle" style="font-size: 20px !important;"> Refresh</span>
+                                            <span class="text-white align-middle" style="font-size: 12px !important;"> Refresh</span>
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col mb-2">
                                         <div class="d-gridz gap-0">
                                             <!-- left touch for scroll indicator -->
                                             <span class="material-icons material-icons-round align-middle text-muted p-4 rounded-circle shadow" style="font-size: 20px !important;color: #ffa500 !important;">support_agent</span><!-- fingerprint -->
-                                            <span class="text-white align-middle" style="font-size: 20px !important;"> Trainer</span>
+                                            <span class="text-white align-middle" style="font-size: 12px !important;"> Trainer</span>
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-md mb-2">
                                         <div class="d-gridz gap-0">
                                             <img src="../media/assets/onefit-full-logo-standard-darkbg.svg" alt="onefit graphic logo" class="img-fluid shadow p-3" style="max-height: 100px;">
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col mb-2">
                                         <div class="d-gridz gap-0">
                                             <!-- right touch for scroll indicator -->
                                             <span class="material-icons material-icons-round align-middle text-muted p-4 rounded-circle shadow" style="font-size: 20px !important;color: #ffa500 !important;">brush</span><!-- fingerprint -->
-                                            <span class="text-white align-middle" style="font-size: 20px !important;"> Create</span>
+                                            <span class="text-white align-middle" style="font-size: 12px !important;"> Create</span>
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col mb-2">
                                         <div class="d-gridz gap-0">
                                             <!-- right touch for scroll indicator -->
                                             <span class="material-icons material-icons-round align-middle text-muted p-4 rounded-circle shadow" style="font-size: 20px !important;color: #ffa500 !important;">more_vert</span><!-- fingerprint -->
-                                            <span class="text-white align-middle" style="font-size: 20px !important;"> More</span>
+                                            <span class="text-white align-middle" style="font-size: 12px !important;"> More</span>
                                         </div>
                                     </div>
                                 </div>
@@ -953,9 +1003,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     }
                                 </style>
 
-                                <div class="w3-animate-bottom horizontal-scroll no-scroller p-4" style="overflow-y: hidden;" id="insights-subfeatures-nav-menu">
+                                <div class="w3-animate-bottom horizontal-scroll no-scroller" style="overflow-y: hidden;" id="insights-subfeatures-nav-menu">
                                     <nav class="m-0">
-                                        <div class="nav force-inline-nav nav-tabs border-0 justify-content-centerz" id="nav-tab-profiletab-subtabs-controller-container" role="tablist" style="border-color: #ffa500 !important">
+                                        <div class="nav force-inline-nav nav-tabs border-0 justify-content-centerz pb-2" id="nav-tab-profiletab-subtabs-controller-container" role="tablist" style="border-color: #ffa500 !important">
                                             <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative active" style="border-radius: 25px !important;min-width: 130px;" id="nav-profiletab-main-communityfeed-subtab" onclick="clickProfileTabMainSubTabs('community_feed')" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-profile-subtab-communityfeed" type="button" role="tab" aria-controls="v-sub-tab-pills-profile-subtab-communityfeed" aria-selected="true">
                                                 <span id="profiletab-main-navs-horizontal-rule-icon-communityfeed" class="material-icons material-icons-outlined align-middle" style="display: block; font-size: 40px !important;">hub</span>
                                                 <span class="align-middle">Community
@@ -1034,7 +1084,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </div>
                                                 <div class="col-md-8">
                                                     <!-- community posts feed -->
-                                                    <div id="profile-community-post-feed-container" class="container shadow mb-4 py-4" style="border-radius: 25px;">
+                                                    <div id="profile-community-post-feed-container" class="container shadow mb-4 py-4 border-5 border-top border-start" style="border-radius: 25px;border-color:var(--tahitigold)!important;">
                                                         <h5 class="mb-4 text-center">
                                                             <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
                                                                 hub
@@ -1258,7 +1308,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                             <!-- user post sharing form and users posts below it -->
                                             <!-- share a community post/update -->
-                                            <div id="profile-social-post-update-container" class="container shadow mb-4 py-4 px-0" style="border-radius: 25px;overflow-x: auto;">
+                                            <div id="profile-social-post-update-container" class="container shadow mb-4 py-4 px-0 border-5 border-top border-start" style="border-radius: 25px;overflow-x: auto;border-color:var(--tahitigold)!important;">
                                                 <h5 class="px-4">
                                                     <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
                                                         post_add
@@ -1927,7 +1977,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <div class="col-xlg-4 p-4">
                                     <div class="nav">
                                         <!-- more stuff -->
-                                        <div id="profile-social-post-update-container" class="container-fluid shadow my-4 py-4 content-panel-border-style-dark-bg w3-animate-top" style="border-radius: 25px;">
+                                        <div id="profile-social-post-update-container" class="container-fluid shadow my-4 py-4 content-panel-border-style-dark-bg w3-animate-top d-none" style="border-radius: 25px;">
                                             <h5 class="text-center"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">
                                                     read_more
                                                 </span><span class="align-middle"> More Stuff.</span></h5>
@@ -1974,12 +2024,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                     </div>
 
-                    • Trainees • Trainers • Onefoodie - Healthy Food and Diet Catalogue • Fitness Programs (Categories: Casual,
-                    Home, Gym, Athlete "A-Prog", Sports / Team-Based "S-Prog"/"TBA-Prog") • Wellness Programs (Categories:
-                    Physical
-                    Health, Mental Health, Sports Rehabilitation, Lifestyle) • FitEngine (Internal curated re-search engine)
-                    powered
-                    by AdaptEngine™
+                    <span class="d-none">
+                        • Trainees • Trainers • Onefoodie - Healthy Food and Diet Catalogue • Fitness Programs (Categories: Casual,
+                        Home, Gym, Athlete "A-Prog", Sports / Team-Based "S-Prog"/"TBA-Prog") • Wellness Programs (Categories:
+                        Physical
+                        Health, Mental Health, Sports Rehabilitation, Lifestyle) • FitEngine (Internal curated re-search engine)
+                        powered
+                        by AdaptEngine™
+                    </span>
 
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab-discovery" role="tablist" style="border-color: #ffa500 !important">
@@ -2088,17 +2140,19 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </h1>
                     <hr class="text-white" /> -->
 
-                    • Onefit.Community Streams (Onefit.tv) – Live stream sessions of scheduled Community (public) & Group-based
-                    fitness program guidance classes. (Scheduled Program Guidance Classes and Community Events on Onefit App and
-                    Socials that are open to all visitors, casual subscribers, and premium members (Onefit.app, Zoom, Skype,
-                    Teams)
-                    • Personal Training Centre – Scheduling of Private/One-On-One Live Streams and/or physical interaction with
-                    Personal Trainers (Streams: Onefit.app, Zoom, Skype, Teams | Physical: Your nearest Gym Company Gym/nearest
-                    Virgin Active and House-Call) • Stream library – Live stream recording history (Community and Private) •
-                    Onefit.Muse (Music Centre/Music Playlist) • Athlete Fitness Programs • Team-Based Athletic Programs •
-                    Individual
-                    Home and Gym Fitness
-                    Programs • Diet Programs (Pre-Defined & Custom)
+                    <span class="d-none">
+                        • Onefit.Community Streams (Onefit.tv) – Live stream sessions of scheduled Community (public) & Group-based
+                        fitness program guidance classes. (Scheduled Program Guidance Classes and Community Events on Onefit App and
+                        Socials that are open to all visitors, casual subscribers, and premium members (Onefit.app, Zoom, Skype,
+                        Teams)
+                        • Personal Training Centre – Scheduling of Private/One-On-One Live Streams and/or physical interaction with
+                        Personal Trainers (Streams: Onefit.app, Zoom, Skype, Teams | Physical: Your nearest Gym Company Gym/nearest
+                        Virgin Active and House-Call) • Stream library – Live stream recording history (Community and Private) •
+                        Onefit.Muse (Music Centre/Music Playlist) • Athlete Fitness Programs • Team-Based Athletic Programs •
+                        Individual
+                        Home and Gym Fitness
+                        Programs • Diet Programs (Pre-Defined & Custom)
+                    </span>
 
                     <div class="grid-container studio-tab-grid">
                         <div class="grid-tile shadow p-4 down-top-grad-dark">
@@ -2166,19 +2220,28 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </h1>
                     <hr class="text-white" /> -->
 
-                    • Sale of Activity Trackers and Smart Watches (wearables) • Sale of Fitness Equipment (weights, weight
-                    benches,
-                    treadmills, scales, etc.) • Sale of Supplements and Vitamins • Sale of Membership Subscriptions (3 Month, 6
-                    Month, and Annual)
+                    <span class="d-none">
+                        • Sale of Activity Trackers and Smart Watches (wearables) • Sale of Fitness Equipment (weights, weight
+                        benches,
+                        treadmills, scales, etc.) • Sale of Supplements and Vitamins • Sale of Membership Subscriptions (3 Month, 6
+                        Month, and Annual)
+                    </span>
 
                     <img src="../media/assets/smartwatches/Watch Banner.png" alt="" class="img-fluid w-100 my-4 shadow" style="border-radius: 25px;">
 
                     <!-- Store Items Container -->
-                    <div class="p-4" style="background-color: #343434; border-radius: 25px;">
-                        <h5 class="fs-1 fw-bold text-center mb-4">
-                            Browse our range of smart watches and activity trackers, weight-lifting and exercise equipment, fitness accessories, apparel, and more!...
+                    <div class="p-4 top-down-grad-dark" style="border-radius: 25px;">
+                        <h5 class="fs-2 fw-bold text-center mb-4" style="color:var(--tahitigold)!important;">
+                            Browse our range of wearables and various training equipment.
                         </h5>
-                        <p class="text-center">Need some stuff for your fitness journey, we have you coverd. Browse our selection of products and get them delivered to your door for free. It is in your benefit to become a Member of the Onefit Community today because all registered users and Premium Mmembers get Loyalty Discounts on every purchase. Go ahead and Register today, or better yet, become a Member to reap greater fitness rewards.</p>
+                        <p class="text-center pb-5">
+                            Need some stuff for your fitness journey, we have you coverd.
+                            Browse our selection of products and get them delivered to your door for free.
+                            It is in your benefit to become a Pro Member of the Onefit Community today!
+                            All Premium Mmembers get Loyalty Discounts on every purchase as well as many
+                            benefits to keep your fitness journey flowing.
+                            Go ahead and Register today, or better yet, become a Pro Member to reap greater fitness rewards.
+                        </p>
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="d-grid gap-2 d-lg-none d-xl-none d-xxl-none">
@@ -2190,55 +2253,63 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </button>
                                 </div>
                                 <div class="collapse show w3-animate-bottom" id="store-items-nav-menu">
-                                    <div class="nav flex-column nav-pills" id="v-pills-store-Equipment-tab" role="tablist" aria-orientation="vertical">
-                                        <button class="nav-link side-nav-link active" id="v-pills-social-store-wearables-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-wearables" type="button" role="tab" aria-controls="v-pills-social-store-wearables" aria-selected="true">
-                                            <span class="material-icons material-icons-outlined">watch</span>
-                                            <p>Wearables</p>
-                                        </button>
-                                        <button class="nav-link side-nav-link" id="v-pills-social-store-weights-bumbells-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-weights-bumbells" type="button" role="tab" aria-controls="v-pills-social-store-weights-bumbells" aria-selected="false">
-                                            <div class="d-grid gap-2">
-                                                <span class="material-icons material-icons-round">fitness_center</span>
-                                                <p style="font-size: 10px;">Weights &amp; Dumbells</p>
-                                            </div>
-                                        </button>
-                                        <button class="nav-link side-nav-link" id="v-pills-social-store-equipment-exercisemachines-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-equipment-exercisemachines" type="button" role="tab" aria-controls="v-pills-social-store-equipment-exercisemachines" aria-selected="false">
-                                            <div class="d-grid gap-2">
-                                                <span class="material-icons material-icons-round">monitor_weight</span>
-                                                <p style="font-size: 10px;">Exercise Machines</p>
-                                            </div>
-                                        </button>
-                                        <button class="nav-link side-nav-link" id="v-pills-social-store-fitness-accessories-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-fitness-accessories" type="button" role="tab" aria-controls="v-pills-social-store-fitness-accessories" aria-selected="false">
-                                            <div class="d-grid gap-2">
-                                                <span class="material-icons material-icons-round">backpack</span>
-                                                <p style="font-size: 10px;">Fitness Accessories</p>
-                                            </div>
-                                        </button>
-                                        <button class="nav-link side-nav-link" id="v-pills-social-store-apparel-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-apparel" type="button" role="tab" aria-controls="v-pills-social-store-apparel" aria-selected="false">
-                                            <div class="d-grid gap-2">
-                                                <span class="material-icons material-icons-round">checkroom</span>
-                                                <p style="font-size: 10px;">Apparel</p>
-                                            </div>
-                                        </button>
-                                        <button class="nav-link side-nav-link" id="v-pills-social-store-nutrition-supplements-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-nutrition-supplements" type="button" role="tab" aria-controls="v-pills-social-store-nutrition-supplements" aria-selected="false">
-                                            <div class="d-grid gap-2">
-                                                <span class="material-icons material-icons-round">medication</span>
-                                                <p style="font-size: 10px;">Nutrition &amp; Supplements</p>
-                                            </div>
-                                        </button>
+                                    <div class="container">
+                                        <div class="nav flex-column nav-pills" id="v-pills-store-Equipment-tab" role="tablist" aria-orientation="vertical">
+                                            <button class="nav-link side-nav-link active" id="v-pills-social-store-wearables-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-wearables" type="button" role="tab" aria-controls="v-pills-social-store-wearables" aria-selected="true">
+                                                <span class="material-icons material-icons-outlined">watch</span>
+                                                <p>Wearables</p>
+                                            </button>
+                                            <button class="nav-link side-nav-link" id="v-pills-social-store-weights-bumbells-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-weights-bumbells" type="button" role="tab" aria-controls="v-pills-social-store-weights-bumbells" aria-selected="false">
+                                                <div class="d-grid gap-2">
+                                                    <span class="material-icons material-icons-round">fitness_center</span>
+                                                    <p style="font-size: 10px;">Weights &amp; Dumbells</p>
+                                                </div>
+                                            </button>
+                                            <button class="nav-link side-nav-link" id="v-pills-social-store-equipment-exercisemachines-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-equipment-exercisemachines" type="button" role="tab" aria-controls="v-pills-social-store-equipment-exercisemachines" aria-selected="false">
+                                                <div class="d-grid gap-2">
+                                                    <span class="material-icons material-icons-round">monitor_weight</span>
+                                                    <p style="font-size: 10px;">Exercise Machines</p>
+                                                </div>
+                                            </button>
+                                            <button class="nav-link side-nav-link" id="v-pills-social-store-fitness-accessories-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-fitness-accessories" type="button" role="tab" aria-controls="v-pills-social-store-fitness-accessories" aria-selected="false">
+                                                <div class="d-grid gap-2">
+                                                    <span class="material-icons material-icons-round">backpack</span>
+                                                    <p style="font-size: 10px;">Fitness Accessories</p>
+                                                </div>
+                                            </button>
+                                            <button class="nav-link side-nav-link" id="v-pills-social-store-apparel-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-apparel" type="button" role="tab" aria-controls="v-pills-social-store-apparel" aria-selected="false">
+                                                <div class="d-grid gap-2">
+                                                    <span class="material-icons material-icons-round">checkroom</span>
+                                                    <p style="font-size: 10px;">Apparel</p>
+                                                </div>
+                                            </button>
+                                            <button class="nav-link side-nav-link" id="v-pills-social-store-nutrition-supplements-tab" data-bs-toggle="pill" data-bs-target="#v-pills-social-store-nutrition-supplements" type="button" role="tab" aria-controls="v-pills-social-store-nutrition-supplements" aria-selected="false">
+                                                <div class="d-grid gap-2">
+                                                    <span class="material-icons material-icons-round">medication</span>
+                                                    <p style="font-size: 10px;">Nutrition &amp; Supplements</p>
+                                                </div>
+                                            </button>
+                                        </div>
+
+                                        <div class="my-4 sticky-topz">
+                                            <img src="../media/assets/advertisment-ph.png" class="img-fluid shadow" alt="ad placeholder">
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="col-md-9">
                                 <div class="tab-content" id="v-pills-tabContent">
                                     <div class="tab-pane fade show active w3-animate-right" id="v-pills-social-store-wearables" role="tabpanel" aria-labelledby="v-pills-social-store-wearables-tab">
-                                        <h5 class="fs-1 fw-bold text-center rounded-pill p-4 shadow">Smart Watches &amp; Activity Trackers</h5>
+                                        <h5 class="fs-2 fw-bold text-center bg-white text-dark rounded-pill p-4 shadow">Smart Watches &amp; Activity Trackers</h5>
                                         <hr>
-                                        <div class="text-center my-4" style="padding: 100px 10px;">
-                                            <small class="text-muted">No items to display. Check back soon.</small>
-                                        </div>
+
                                         <!-- Smart watch Card Grid -->
                                         <div class="container">
                                             <div class="grid-container" id="store-smart-watch-grid-container">
+                                                <div class="text-center my-4" style="padding: 100px 10px;">
+                                                    <small class="text-muted">No items to display. Check back soon.</small>
+                                                </div>
                                                 <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
                                                     <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="card-img-top" alt="...">
                                                     <div class="card-body">
@@ -2596,41 +2667,40 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- ./ Smart watch Card Grid -->
                                     </div>
                                     <div class="tab-pane fade show w3-animate-right" id="v-pills-social-store-weights-bumbells" role="tabpanel" aria-labelledby="v-pills-social-store-weights-bumbells-tab">
-                                        <h5 class="fs-1 fw-bold text-center rounded-pill p-4 shadow">Weights &amp; Dumbells</h5>
+                                        <h5 class="fs-1 fw-bold text-center bg-white text-dark rounded-pill p-4 shadow">Weights &amp; Dumbells</h5>
                                         <hr>
                                         <div class="text-center my-4" style="padding: 100px 10px;">
                                             <small class="text-muted">No items to display. Check back soon.</small>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade show w3-animate-right" id="v-pills-social-store-equipment-exercisemachines" role="tabpanel" aria-labelledby="v-pills-social-store-equipment-exercisemachines-tab">
-                                        <h5 class="fs-1 fw-bold text-center rounded-pill p-4 shadow">Exercise Machines</h5>
+                                        <h5 class="fs-1 fw-bold text-center bg-white text-dark rounded-pill p-4 shadow">Exercise Machines</h5>
                                         <hr>
                                         <div class="text-center my-4" style="padding: 100px 10px;">
                                             <small class="text-muted">No items to display. Check back soon.</small>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade show w3-animate-right" id="v-pills-social-store-fitness-accessories" role="tabpanel" aria-labelledby="v-pills-social-store-fitness-accessories-tab">
-                                        <h5 class="fs-1 fw-bold text-center rounded-pill p-4 shadow">Fitness Accessories</h5>
+                                        <h5 class="fs-1 fw-bold text-center bg-white text-dark rounded-pill p-4 shadow">Fitness Accessories</h5>
                                         <hr>
                                         <div class="text-center my-4" style="padding: 100px 10px;">
                                             <small class="text-muted">No items to display. Check back soon.</small>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade show w3-animate-right" id="v-pills-social-store-apparel" role="tabpanel" aria-labelledby="v-pills-social-store-apparel-tab">
-                                        <h5 class="fs-1 fw-bold text-center rounded-pill p-4 shadow">Apparel</h5>
+                                        <h5 class="fs-1 fw-bold text-center bg-white text-dark rounded-pill p-4 shadow">Apparel</h5>
                                         <hr>
                                         <div class="text-center my-4" style="padding: 100px 10px;">
                                             <small class="text-muted">No items to display. Check back soon.</small>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade show w3-animate-right" id="v-pills-social-store-nutrition-supplements" role="tabpanel" aria-labelledby="v-pills-social-store-nutrition-supplements-tab">
-                                        <h5 class="fs-1 fw-bold text-center rounded-pill p-4 shadow">Nutrition &amp; Supplements</h5>
+                                        <h5 class="fs-1 fw-bold text-center bg-white text-dark rounded-pill p-4 shadow">Nutrition &amp; Supplements</h5>
                                         <hr>
                                         <div class="text-center my-4" style="padding: 100px 10px;">
                                             <small class="text-muted">No items to display. Check back soon.</small>
                                         </div>
                                         <!-- Meds and Supplements Card Grid -->
-                                        <h5 class="fs-1 fw-bold"><span class="material-icons material-icons-round"> medication </span> Supplements and Vitamins</h5>
                                         <div class="card-group">
                                             <div class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
                                                 <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
@@ -2791,7 +2861,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <hr style="color: #ffa500;">
 
                         <div id="vertical-timeline-varusername no-scroller" style="max-height: 90vh; overflow: auto; border-radius: 25px;">
-                            <div class="timeline" style="min-width: 500px; border-radius: 25px;">
+                            <div id="user-activity-timeline" class="timeline" style="min-width: 500px; border-radius: 25px;">
                                 <div class="timeline-container left">
                                     <div class="date comfortaa-font">15 Dec 2022</div>
                                     <span class="icon">
@@ -2939,9 +3009,21 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="row align-items-center text-center comfortaa-font">
                             <div class="col-sm py-2 text-truncate">
                                 <!--<i class="fas fa-heart"></i>-->
-                                <div class="d-inline">
+                                <div class="d-none">
                                     <span class="material-icons material-icons-round align-middle"> monitor_heart </span>
                                     <span class="align-middle">Heart rate</span>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <!--<i class="fas fa-heart"></i>-->
+                                    <span class="align-middle fs-6">
+                                        <span class="heartrate-avg-stat">
+                                            <div class="spinner-grow text-white" style="width:10px;height:10px;" role="status">
+                                                <span class="visually-hidden">Loading Avg Heartrate...</span>
+                                            </div>
+                                        </span>
+                                        <sup style="color: #ffa500;">b/s</sup>
+                                    </span>
+                                    <span class="material-icons material-icons-round align-middle"> monitor_heart </span>
                                 </div>
 
                             </div>
@@ -2952,15 +3034,33 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </div>
                             <div class="col-sm py-2 text-truncate">
                                 <!--<i class="fas fa-thermometer-half"></i>-->
-                                <div class="d-inline">
+                                <div class="d-none">
                                     <span class="material-icons material-icons-round align-middle"> device_thermostat </span>
                                     <!-- Degree symbol html code: &#8451; -->
                                     <span class="align-middle">Temp &#8451;</span>
                                 </div>
+                                <div class="d-grid gap-2">
+                                    <!--<i class="fas fa-thermometer-half"></i>-->
+                                    <span class="align-middle fs-6">
+                                        <span class="temp-avg-stat">
+                                            <div class="spinner-grow text-white" style="width:10px;height:10px;" role="status">
+                                                <span class="visually-hidden">Loading Avg Temparature...</span>
+                                            </div>
+                                        </span>
+                                        <sup style="color: #ffa500;">℃</sup>
+                                    </span>
+                                    <span class="material-icons material-icons-round align-middle"> device_thermostat </span>
+
+                                </div>
+                            </div>
+                            <div class="col-sm py-2 text-truncate">
+                                <div class="d-inline">
+                                    <span class="align-middle" style="color: #ffa500">|</span>
+                                </div>
                             </div>
                             <div class="col-sm py-2 text-center">
                                 <div class="d-inline">
-                                    <button class="btn p-4 onefit-buttons-style-dark my-pulse-animation-tahiti border-5 border" style="border-radius: 25px !important; border-color: #ffa500 !important;" type="button" data-bs-toggle="modal" data-bs-target="#tabCaptureActivityTrackerDataModal">
+                                    <button class="btn p-4 onefit-buttons-style-dark my-pulse-animation-tahiti border-5 border hide-side-panels" style="border-radius: 25px !important; border-color: #ffa500 !important;" type="button" data-bs-toggle="modal" data-bs-target="#tabCaptureActivityTrackerDataModal">
                                         <!--  data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="heartrate-expand-icon heartrate-data-input-form-container" -->
                                         <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid mb-2" />
                                         <span class="material-icons material-icons-round">fitbit</span>
@@ -2968,10 +3068,28 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </div>
                             </div>
                             <div class="col-sm py-2 text-truncate">
-                                <!--<i class="fas fa-bolt"></i>-->
                                 <div class="d-inline">
+                                    <span class="align-middle" style="color: #ffa500">|</span>
+                                </div>
+                            </div>
+                            <div class="col-sm py-2 text-truncate">
+                                <!--<i class="fas fa-bolt"></i>-->
+                                <div class="d-none">
                                     <span class="material-icons material-icons-round align-middle"> bolt </span>
                                     <span class="align-middle">Speed</span>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <!--<i class="fas fa-bolt"></i>-->
+                                    <span class="align-middle fs-6">
+                                        <span class="speed-avg-stat">
+                                            <div class="spinner-grow text-white" style="width:10px;height:10px;" role="status">
+                                                <span class="visually-hidden">Loading Steps taken...</span>
+                                            </div>
+                                        </span>
+                                        <sup style="color: #ffa500;">ms</sup>
+                                    </span>
+                                    <span class="material-icons material-icons-round align-middle"> bolt </span>
+
                                 </div>
                             </div>
                             <div class="col-sm py-2 text-truncate">
@@ -2981,9 +3099,23 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </div>
                             <div class="col-sm py-2 text-truncate">
                                 <!--<i class="fas fa-walking"></i>-->
-                                <div class="d-inline">
+                                <div class="d-none">
                                     <span class="material-icons material-icons-round align-middle"> directions_walk </span>
                                     <span class="align-middle">Steps</span>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <!--<i class="fas fa-walking"></i>-->
+                                    <div class="align-middle fs-6">
+                                        <span class="steps-taken-stat">
+                                            <div class="spinner-grow text-white" style="width:10px;height:10px;" role="status">
+                                                <span class="visually-hidden">Loading Steps taken...</span>
+                                            </div>
+                                        </span>
+
+                                        <sup style="color: #ffa500; font-size: 10px;"> stps</sup>
+                                    </div>
+                                    <span class="material-icons material-icons-round align-middle"> directions_walk </span>
+
                                 </div>
                             </div>
                         </div>
@@ -3013,11 +3145,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </div>
                                     <div class="col-md -8 py-4 no-scroller" style="overflow-x: auto;">
                                         <div class=" d-flex justify-content-center">
-                                            <div class="in-div-button-container">
+                                            <div class="in-div-button-container position-relative">
                                                 <!-- refresh button -->
-                                                <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="syncUserActivityTrackerChart(heartRateChart, '<?php echo $currentUser_Usrnm; ?>','heart_rate_monitor_chart')">
-                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
-                                                    <span class="align-middle" style="font-size: 10px;">Update.</span>
+                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mx-4 position-absolute top-100 start-50 translate-middle" onclick="syncUserActivityTrackerChart(heartRateChart, '<?php echo $currentUser_Usrnm; ?>','heart_rate_monitor_chart')">
+                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
+                                                    <span class="align-middle" style="font-size: 10px;">Sync.</span>
                                                 </button>
                                                 <!-- ./ refresh button -->
 
@@ -3119,11 +3251,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-md -8 py-4 no-scroller" style="overflow-x: auto;">
 
                                         <div class=" d-flex justify-content-center">
-                                            <div class="in-div-button-container">
+                                            <div class="in-div-button-container position-relative">
                                                 <!-- refresh button -->
-                                                <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="syncUserActivityTrackerChart(bodyTempChart, '<?php echo $currentUser_Usrnm; ?>','body_temp_monitor_chart')">
-                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
-                                                    <span class="align-middle" style="font-size: 10px;">Update.</span>
+                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mx-4 position-absolute top-100 start-50 translate-middle" onclick="syncUserActivityTrackerChart(bodyTempChart, '<?php echo $currentUser_Usrnm; ?>','body_temp_monitor_chart')">
+                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
+                                                    <span class="align-middle" style="font-size: 10px;">Sync.</span>
                                                 </button>
                                                 <!-- ./ refresh button -->
 
@@ -3224,11 +3356,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-md -8 py-4 no-scroller" style="overflow-x: auto;">
 
                                         <div class=" d-flex justify-content-center">
-                                            <div class="in-div-button-container">
+                                            <div class="in-div-button-container position-relative">
                                                 <!-- refresh button -->
-                                                <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="syncUserActivityTrackerChart(speedChart, '<?php echo $currentUser_Usrnm; ?>','speed_monitor_chart')">
-                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
-                                                    <span class="align-middle" style="font-size: 10px;">Update.</span>
+                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mx-4 position-absolute top-100 start-50 translate-middle" onclick="syncUserActivityTrackerChart(speedChart, '<?php echo $currentUser_Usrnm; ?>','speed_monitor_chart')">
+                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
+                                                    <span class="align-middle" style="font-size: 10px;">Sync.</span>
                                                 </button>
                                                 <!-- ./ refresh button -->
 
@@ -3323,11 +3455,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <p class="comfortaa-font">Connect your Fitbit activity tracker / smartwatch</p>
                                     </div>
                                     <div class="col-md -8 py-4 d-flex justify-content-center no-scroller d-none" style="overflow-x: auto;">
-                                        <div class="in-div-button-container">
+                                        <div class="in-div-button-container position-relative">
                                             <!-- refresh button -->
-                                            <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="syncUserActivityTrackerChart(stepCountChart, '<?php echo $currentUser_Usrnm; ?>','step_counter_monitor_chart')">
-                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
-                                                <span class="align-middle" style="font-size: 10px;">Update.</span>
+                                            <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mx-4 position-absolute top-100 start-50 translate-middle" onclick="syncUserActivityTrackerChart(stepCountChart, '<?php echo $currentUser_Usrnm; ?>','step_counter_monitor_chart')">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
+                                                <span class="align-middle" style="font-size: 10px;">Sync.</span>
                                             </button>
                                             <!-- ./ refresh button -->
 
@@ -3362,11 +3494,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-md -8 py-4 no-scroller" style="overflow-x: auto;">
 
                                         <div class="d-flex justify-content-center">
-                                            <div class="in-div-button-container">
+                                            <div class="in-div-button-container position-relative">
                                                 <!-- refresh button -->
-                                                <button class="onefit-buttons-style-light p-4 d-grid text-center in-div-btn mx-4" style="top: 0px !important;right: 0px !important;" onclick="syncUserActivityTrackerChart(bmiWeightChart, '<?php echo $currentUser_Usrnm; ?>','bmi_weight_monitor_chart')">
-                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">update</span>
-                                                    <span class="align-middle" style="font-size: 10px;">Update.</span>
+                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mx-4 position-absolute top-100 start-50 translate-middle" onclick="syncUserActivityTrackerChart(bmiWeightChart, '<?php echo $currentUser_Usrnm; ?>','bmi_weight_monitor_chart')">
+                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
+                                                    <span class="align-middle" style="font-size: 10px;">Sync.</span>
                                                 </button>
                                                 <!-- ./ refresh button -->
 
@@ -3455,18 +3587,20 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <!-- Weekly Activities -->
                     <div class="p-4 my-4 d-flex align-items-middle justify-content-between text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <button id="prev-week-btn-weekly-assessments" class="btn p-2 onefit-buttons-style-transp-leftdir comfortaa-font">
+                        <button id="prev-week-btn-weekly-assessments" class="btn p-2 onefit-buttons-style-transp-leftdir comfortaa-font" onclick="$.switchWeeklyActivityView('last')">
                             <span class="material-icons material-icons-round align-middle" style="color: #ffa500 !important">keyboard_arrow_left</span>
                             <span class="align-middle" style="font-size: 10px;">Last Week</span>
                         </button>
                         <div class="d-grid text-center">
                             <span class="material-icons material-icons-outlined"> pending_actions </span>
                             <h5 class="mt-4 fs-1 text-center">Weekly Assessments</h5>
-                            <p class="fs-5 text-center comfortaa-font"> Training Week: (<span id="weekly-survey-duration-dates">Start Date - End Date</span>)</p>
-                            <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
-                            <span class="align-middle" style="font-size: 10px;">This Week</span>
+                            <p class="text-center poppins-font"> Training Week: [ <span class="weekly-survey-duration-dates">Start Date - End Date</span> ]</p>
+                            <button id="this-week-btn-weekly-assessments" class="btn p-2 onefit-buttons-style-dark bg-transparent comfortaa-font d-grid p-4" onclick="$.switchWeeklyActivityView('this')">
+                                <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                                <span class="align-middle" style="font-size: 10px;">This Week</span>
+                            </button>
                         </div>
-                        <button id="prev-week-btn-weekly-assessments" class="btn p-2 onefit-buttons-style-transp-rightdir comfortaa-font">
+                        <button id="prev-week-btn-weekly-assessments" class="btn p-2 onefit-buttons-style-transp-rightdir comfortaa-font" onclick="$.switchWeeklyActivityView('next')">
                             <span class="align-middle" style="font-size: 10px;">Next Week</span>
                             <span class="material-icons material-icons-round align-middle" style="color: #ffa500 !important">keyboard_arrow_right</span>
                         </button>
@@ -3474,97 +3608,6 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <!-- weekly assessment horizontal scroll container -->
                     <div id="weekly-assessment-horizontal-scroll-container" class="horizontal-scroll shadow align-items-start">
-                        <div id="weekly-assessment-h-scroll-weekday-card-varsunday" class="horizontal-scroll-card p-4 m-1 shadow text-center">
-                            <h3 class="my-4">Sunday (dd/mm/yyyy)</h3>
-
-                            <hr class="text-white" style="height: 5px;">
-                            <h5 class="">Assessments</h5>
-
-                            <!-- assessments list -->
-                            <ol class="list-group list-group-flush border-0 my-4">
-                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
-                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
-                                    </span>
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
-                                        Frequency: Daily<br />
-                                        Mendatory: Optional
-                                    </div>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
-                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
-                                    </span>
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
-                                        Frequency: Daily<br />
-                                        Mendatory: Optional
-                                    </div>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
-                                        <span class="material-icons material-icons-round" style="font-size: 20px !important">
-                                            pending_actions </span>
-                                    </span>
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
-                                        Frequency: Daily<br />
-                                        Mendatory: Yes
-                                    </div>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
-                                        <span class="material-icons material-icons-round" style="font-size: 20px !important">
-                                            pending_actions </span>
-                                    </span>
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
-                                        Frequency: Daily<br />
-                                        Mendatory: Yes
-                                    </div>
-                                </li>
-                            </ol>
-                            <!-- ./ assessments list -->
-
-                            <hr class="text-white" style="height: 5px;">
-                            <h5 class="">Indi-fitness activities</h5>
-
-                            <!-- indi-athletics activities list -->
-                            <ol class="list-group list-group-flush border-0 my-4">
-                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
-                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
-                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
-                                        <span class="material-icons material-icons-round">self_improvement</span>
-                                    </span>
-                                    <div class="ms-2 me-auto">
-                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
-                                    </div>
-                                </li>
-                            </ol>
-                            <!-- ./ indi-athletics activities list -->
-
-                            <hr class="text-white" style="height: 5px;">
-                            <h5 class="">Group activities (Teams)</h5>
-
-                            <!-- team-athletics / group activities list -->
-                            <ol class="list-group list-group-flush border-0 my-4">
-                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
-                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
-                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
-                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
-                                        <span class="material-icons material-icons-round">diversity_3</span>
-                                    </span>
-                                    <div class="ms-2 me-auto">
-                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
-                                    </div>
-                                </li>
-                            </ol>
-                            <!-- ./ team-athletics / group activities list -->
-
-                            <span class="material-icons material-icons-round mb-4">horizontal_rule</span>
-                        </div>
                         <div id="weekly-assessment-h-scroll-weekday-card-varmonday" class="horizontal-scroll-card p-4 m-1 shadow text-center">
                             <h3 class="my-4">Monday (dd/mm/yyyy)</h3>
 
@@ -4108,6 +4151,97 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                             <span class="material-icons material-icons-round mb-4">horizontal_rule</span>
                         </div>
+                        <div id="weekly-assessment-h-scroll-weekday-card-varsunday" class="horizontal-scroll-card p-4 m-1 shadow text-center">
+                            <h3 class="my-4">Sunday (dd/mm/yyyy)</h3>
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Assessments</h5>
+
+                            <!-- assessments list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <i class="fab fa-google" style="font-size: 30px!important"></i>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Optional
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
+                                        <span class="material-icons material-icons-round" style="font-size: 20px !important">
+                                            pending_actions </span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Yes
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
+                                        <span class="material-icons material-icons-round" style="font-size: 20px !important">
+                                            pending_actions </span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
+                                        Frequency: Daily<br />
+                                        Mendatory: Yes
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ assessments list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Indi-fitness activities</h5>
+
+                            <!-- indi-athletics activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">self_improvement</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ indi-athletics activities list -->
+
+                            <hr class="text-white" style="height: 5px;">
+                            <h5 class="">Group activities (Teams)</h5>
+
+                            <!-- team-athletics / group activities list -->
+                            <ol class="list-group list-group-flush border-0 my-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
+                                    <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                        <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
+                                        <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
+                                        <span class="material-icons material-icons-round">diversity_3</span>
+                                    </span>
+                                    <div class="ms-2 me-auto">
+                                        <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                            <!-- ./ team-athletics / group activities list -->
+
+                            <span class="material-icons material-icons-round mb-4">horizontal_rule</span>
+                        </div>
                     </div>
                     <!-- ./ weekly assessment horizontal scroll container -->
                     <!-- ./ Weekly Activities -->
@@ -4125,22 +4259,21 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <div class="row mt-4 py-4 content-panel-border-style" style="background-color: #333; border-radius: 25px;">
                         <!-- insight catgories tab panels -->
                         <div class="col -md-9 my-4">
-                            <p class="text-center m-0"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span></p>
-                            <!-- <div class="text-center">
-                                <img src="../media/assets/One-Symbol-Logo-Dark-Mix.png" class="img-fluid" style="max-height: 100px;" alt="onefit darkmx logo">
-                            </div> -->
+                            <div class="mini-fpwidget">
+                                <p class="text-center m-0"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span></p>
 
-                            <!-- display User XP -->
-                            <div class="d-grid justify-content-center">
-                                <p class="comfortaa-font mb-0 text-center" style="font-size: 10px;">Fitness Progression</p>
-                                <div class="text-center px-4 py-0 d-inline comfortaa-font" id="userXPDisplay">
-                                    <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">data_exploration</span>
-                                    <span class="align-middle fs-2">112</span><sup class="align-bottom" style="color: #ffa500;">xp</sup>
+                                <!-- display User XP -->
+                                <div class="d-grid justify-content-center">
+                                    <p class="comfortaa-font mb-0 text-center" style="font-size: 10px;">Fitness Progression</p>
+                                    <div class="text-center px-4 py-0 d-inline comfortaa-font" id="userXPDisplay">
+                                        <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">data_exploration</span>
+                                        <span class="align-middle fs-2">112</span><sup class="align-bottom" style="color: #ffa500;">xp</sup>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- ./ display User XP -->
+                                <!-- ./ display User XP -->
 
-                            <p class="text-center m-0"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span></p>
+                                <p class="text-center m-0"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span></p>
+                            </div>
 
                             <!-- more insights categories v-buttons -->
                             <style>
@@ -4152,7 +4285,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <!-- inline/flex more insights tab controller btns -->
                             <div id="inline-more-insights-tab-btns" class="d-grid align-items-centerz d-lg-none d-xl-none d-xxl-none w3-animate-bottom p-2" style="background: #333; border-radius: 25px; overflow: hidden;">
                                 <div class="d-grid gap-2 p-4">
-                                    <button class="onefit-buttons-style-dark p-4" type="button" data-bs-toggle="collapse" data-bs-target="#insights-subfeatures-nav-menu" aria-expanded="true" aria-controls="insights-subfeatures-nav-menu">
+                                    <button class="onefit-buttons-style-dark p-4" type="button" data-bs-toggle="collapse" data-bs-target="#more-insights-inline-nav-container" aria-expanded="true" aria-controls="more-insights-inline-nav-container">
                                         <div class="d-grid gap-2">
                                             <span class="material-icons material-icons-round"> menu </span>
                                             <p class="m-0" style="font-size: 8px;">More insights</p>
@@ -4160,9 +4293,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </button>
                                 </div>
 
-                                <div class="w3-animate-bottom my-4 horizontal-scroll no-scroller p-4 collapse" style="overflow-y: hidden;" id="insights-subfeatures-nav-menu">
-                                    <nav class="m-0">
-                                        <div class="nav force-inline-nav nav-tabs border-0" id="nav-tab-insightsSubFeatureCategories" role="tablist" style="border-color: #ffa500 !important">
+                                <div id="more-insights-inline-nav-container" class="w3-animate-bottom horizontal-scroll no-scroller px-4 pt-0 pb-0 my-0 collapse" style="overflow-y: hidden;">
+                                    <nav class="m-0 mb-4">
+                                        <div class="nav force-inline-nav nav-tabs border-0 d-flex justify-content-between" id="nav-tab-insightsSubFeatureCategories" role="tablist" style="border-color: #ffa500 !important">
                                             <button class="nav-link p-4 comfortaa-font fw-bold active position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-challenges-tab" onclick="clickTrainingProgramCategories('challenges')">
                                                 Challenges.
                                                 <span class="position-absolute top-50 start-0 translate-middle badge rounded-pill border-2 border p-1  my-pulse-animation-tahiti" style="height: 20px; width: 20px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
@@ -4209,24 +4342,30 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                         </div>
                                     </nav>
+                                    <!-- swipe icon -->
+                                    <div class="text-end">
+                                        <span class="material-icons material-icons-round" style="font-size: 15px!important;">
+                                            swipe_left
+                                        </span>
+                                    </div>
 
                                     <!-- Fitness/Training programe categories - hidden display: none -->
                                     <div class="nav d-grid nav-pills d-none" id="v-sub-tab-pills-insights-subfeatures-tab" role="tablist" aria-orientation="vertical" aria-hidden="true">
-                                        <button class="nav-link" id="v-sub-tab-pills-insights-challenges-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-challenges" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-challenges" aria-selected="false">
+                                        <button class="nav-link active" id="v-sub-tab-pills-insights-challenges-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-challenges" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-challenges" aria-selected="true">
                                             <!--onclick="openLink(event, 'InsightsTabChallenges')"-->
                                             <span class="material-icons material-icons-rounded">stars</span>
                                             <p class="text-break comfortaa-font">Challenges</p>
                                         </button>
-                                        <button class="nav-link active" id="v-sub-tab-pills-insights-googlesurveys-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-googlesurveys" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-googlesurveys" aria-selected="true">
+                                        <button class="nav-link" id="v-sub-tab-pills-insights-googlesurveys-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-googlesurveys" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-googlesurveys" aria-selected="false">
                                             <!--onclick="openLink(event, 'InsightsTabGCS')"-->
                                             <span class="material-icons material-icons-rounded">poll</span>
                                             <p class="text-break comfortaa-font">Google Community Surveys</p>
                                         </button>
-                                        <button class="nav-link" id="v-sub-tab-pills-insights-indiathlete-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-indiathlete" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-indiathlete" aria-selected="false">
-                                            <!--onclick="openLink(event, 'InsightsTabIAT')"-->
+                                        <!-- <button class="nav-link" id="v-sub-tab-pills-insights-indiathlete-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-indiathlete" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-indiathlete" aria-selected="false">
+                                            <--onclick="openLink(event, 'InsightsTabIAT')"--
                                             <span class="material-icons material-icons-rounded">sports_gymnastics</span>
                                             <p class="text-break comfortaa-font">Indi-Athletics</p>
-                                        </button>
+                                        </button> -->
                                         <button class="nav-link" id="v-sub-tab-pills-insights-teamathletics-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-teamathletics" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-teamathletics" aria-selected="false">
                                             <!--onclick="openLink(event, 'InsightsTabCTA')"-->
                                             <span class="material-icons material-icons-rounded">diversity_2</span>
@@ -4298,15 +4437,16 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                             <script>
                                 function clickTrainingProgramCategories(selcategory) {
+                                    console.log(`clickTrainingProgramCategories function was triggered: selected category: [ ${selcategory} ]`);
                                     // declaring variable
                                     var challengesBtn = document.getElementById("v-sub-tab-pills-insights-challenges-tab");
                                     var teamAthleticsBtn = document.getElementById("v-sub-tab-pills-insights-teamathletics-tab");
-                                    var indiAthleteBtn = document.getElementById("v-sub-tab-pills-insights-indiathlete-tab");
+                                    // var indiAthleteBtn = document.getElementById("v-sub-tab-pills-insights-indiathlete-tab");
                                     var googleSurveyBtn = document.getElementById("v-sub-tab-pills-insights-googlesurveys-tab");
                                     var wellnessBtn = document.getElementById("v-sub-tab-pills-insights-wellness-tab");
                                     var nutritionBtn = document.getElementById("v-sub-tab-pills-insights-nutrition-tab");
 
-                                    if (selcategory == "challenges") {
+                                    if (selcategory === "challenges") {
                                         challengesBtn.click();
 
                                         document.getElementById("horizontal-rule-icon-challenges").style.display = "block";
@@ -4323,7 +4463,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
                                         document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
 
-                                    } else if (selcategory == "googleSurveys") {
+                                    } else if (selcategory === "googleSurveys") {
                                         googleSurveyBtn.click();
 
                                         document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
@@ -4340,24 +4480,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
                                         document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
 
-                                    } else if (selcategory == "indiAthlete") {
-                                        indiAthleteBtn.click();
-
-                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
-                                        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "block";
-                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
-
-                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "block";
-                                        // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
-
-                                    } else if (selcategory == "teamAthletics") {
+                                    } else if (selcategory === "teamAthletics") {
                                         teamAthleticsBtn.click();
 
                                         document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
@@ -4374,7 +4497,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
                                         document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
 
-                                    } else if (selcategory == "wellness") {
+                                    } else if (selcategory === "wellness") {
                                         wellnessBtn.click();
 
                                         document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
@@ -4391,7 +4514,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         document.getElementById("md-horizontal-rule-icon-wellness").style.display = "block";
                                         document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
 
-                                    } else if (selcategory == "nutrition") {
+                                    } else if (selcategory === "nutrition") {
                                         nutritionBtn.click();
 
                                         document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
@@ -4409,6 +4532,25 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "block";
 
                                     }
+
+                                    /* else if (selcategory == "indiAthlete") {
+                                        indiAthleteBtn.click();
+
+                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                                        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "block";
+                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+
+                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "block";
+                                        // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
+                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
+
+                                    }  */
                                 }
                             </script>
 
@@ -4425,7 +4567,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <hr class="text-white">
 
                                     <!-- fitness progression progress bar -->
-                                    <div id="fitness-progression-progress-bar">
+                                    <div id="fitness-progression-progress-bar-insights" class="bar-fpwidget">
                                         <h5 class="mt-4">Fitness Progression</h5>
                                         <div class="progress mt-4" style="height: 4px;">
                                             <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: 25%; background-color: #ffa500 !important; border-right: #343434 10px solid;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -4445,7 +4587,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <h5 class="my-4">Daily Challenges</h5>
 
-                                    <div id="daily-challenges-grid" class="grid-container mb-4">
+                                    <div id="daily-challenges-grid" class="daily-challenges-grid grid-container mb-4">
                                         <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
                                             <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4" alt="">
                                             <p>Challenge Title</p>
@@ -4460,7 +4602,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <h5 class="my-4">Weekly Challenges</h5>
 
-                                    <div id="weekly-challenges-grid" class="grid-container mb-4">
+                                    <div id="weekly-challenges-grid" class="weekly-challenges-grid grid-container mb-4">
                                         <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
                                             <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4" alt="">
                                             <p>Challenge Title</p>
@@ -4471,20 +4613,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         </div>
                                     </div>
 
-                                    <hr class="text-white">
-
-                                    <h5 class="my-4">Monthly Monthly</h5>
-
-                                    <div id="monthly-challenges-grid" class="grid-container mb-4">
-                                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
-                                            <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4" alt="">
-                                            <p>Challenge Title</p>
-                                            <small>Workout / Exercise</small>
-                                            <small>Category</small>
-                                            <!-- progress bar -->
-                                            <p>15 / 25 xp</p>
-                                        </div>
-                                    </div>
+                                    <!-- removed section for monthly challenges -->
 
                                     <!-- Next Tab button - Proceed to Google Community Surveys -->
                                     <hr class="text-white">
@@ -4605,27 +4734,292 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- upcoming match fixtures/schedule header -->
                                         <div class="row align-items-center">
                                             <div class="col-md-2 d-grid">
-                                                <button class="onefit-buttons-style-dark p-4 my-2 text-center shadow" type="button">
+                                                <button class="onefit-buttons-style-light p-4 my-2 text-center shadow hide-side-panels" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTeamFormation" aria-controls="offcanvasTeamFormation">
                                                     <div class="d-grid">
                                                         <span class="material-icons material-icons-round">
                                                             psychology
                                                         </span>
-                                                        <span class="align-middle poppins-font" style="font-size: 10px !important">
+                                                        <span class="align-middle poppins-font text-truncate" style="font-size: 10px !important">
                                                             Formations &amp; Drills
                                                         </span>
                                                     </div>
                                                 </button>
+
+                                                <!-- modify player data modal -->
+                                                <!-- Button trigger modal -->
+                                                <button id="toggle-modifyPlayerDataModal-btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyPlayerDataModal" hidden>
+                                                    toggle-modifyPlayerDataModal-btn
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="modifyPlayerDataModal" tabindex="-1" aria-labelledby="modifyPlayerDataModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="modifyPlayerDataModalLabel">Modal title</h1>
+                                                                <button type="button" class="p-4 rounded-4 onefit-buttons-style-light shadow" data-bs-dismiss="modal" aria-label="Close">
+                                                                    <span class="material-icons material-icons-round align-middle align-middle">
+                                                                        close
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form id="change-player-pos-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="" autocomplete="off">
+                                                                    <div class="output-container my-2" id="output-container">
+                                                                        <!---->
+                                                                    </div>
+
+                                                                    <div class="form-group my-4">
+                                                                        <label for="heartrate-workout" class="comfortaa-font fs-5" style="color: #ffa500;">Please select the players position combination.</label>
+                                                                    </div>
+                                                                    <!-- 
+                                                                    _Left part id for "y" position:_
+                                                                    * L - Left
+                                                                    * LC- Left-Center
+                                                                    * C - Center
+                                                                    * RC - Right-Center
+                                                                    * R - Right
+                                                                    _Right part is for "x" or "soccer" position:_
+                                                                    * GK - GoalKeeper
+                                                                    * B - Back
+                                                                    * DM - Defending Midfielder
+                                                                    * M - Midfielder
+                                                                    * AM - Attacking MidFielder
+                                                                    * F - Forward -->
+                                                                    <div class="row">
+                                                                        <div class="col-md">
+                                                                            <div class="form-group my-4">
+                                                                                <label for="horiz-pos" class="poppins-font fs-5z">A. Horizontal positioning:</label>
+                                                                                <select class="custom-select form-control-select-input p-4" name="horiz-pos" id="horiz-pos" placeholder="Horizontal positioning (Required)" required="">
+                                                                                    <option value="L">Left</option>
+                                                                                    <option value="LC">Left-Center</option>
+                                                                                    <option value="C">Center</option>
+                                                                                    <option value="RC">Right-Center</option>
+                                                                                    <option value="R ">Right</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md">
+                                                                            <div class="form-group my-4">
+                                                                                <label for="fwrd-pos" class="poppins-font fs-5z">B. Forward positioning:</label>
+                                                                                <select class="custom-select form-control-select-input p-4" name="fwrd-pos" id="fwrd-pos" placeholder="Forward positioning (Required)" required="">
+                                                                                    <option value="GK">GoalKeeper</option>
+                                                                                    <option value="B">Back (Defender)</option>
+                                                                                    <option value="DM">Defending Midfielder</option>
+                                                                                    <option value="M">Midfielder</option>
+                                                                                    <option value="AM">Attacking MidFielder</option>
+                                                                                    <option value="F">Forward (Attack)</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- submit btn -->
+                                                                    <input id="single-submit-change-player-pos-form" type="submit" value="submit" hidden="" aria-hidden="true">
+
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- ./ modify player data modal -->
+
+                                                <!-- formation offcanvas -->
+                                                <div class="offcanvas offcanvas-start w-100 formation-tactics-offcanvas-tray" style="background-color: var(--mineshaft);" tabindex="-1" id="offcanvasTeamFormation" aria-labelledby="offcanvasTeamFormationLabel">
+                                                    <div class="offcanvas-header top-down-grad-dark p-5">
+                                                        <div class="d-grid me-4">
+                                                            <div class="d-flex align-items-center gap-2 mb-2">
+                                                                <span class="material-icons material-icons-round align-middle p-2" style="color:var(--mineshaft); border-radius:15px;background-color:var(--white);">
+                                                                    psychology
+                                                                </span>
+                                                                <div class="d-grid gap-0">
+                                                                    <span class="comfortaa-font" style="font-size: 10px;">Tactical Strategy &amp; Formation Plan.</span>
+                                                                    <h5 class="offcanvas-title my-0 fs-1" id="offcanvasTeamFormationLabel">
+                                                                        Team Select.
+                                                                    </h5>
+                                                                </div>
+                                                            </div>
+
+                                                            <select id="formation-team-selection" onchange="$.fetchTeamData(this.value)" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                                                <option value="noselection" selected>No teams to select.</option>
+                                                            </select>
+
+                                                            <div id="loading-formation-data-spinner" class="d-flex gap-2 justify-content-between" hidden>
+                                                                <div>
+                                                                    <!-- all teams or teams administrated by me switch -->
+                                                                    <div class="form-check form-switch d-flex gap-2 align-items-center">
+                                                                        <input class="form-check-input" type="checkbox" role="switch" id="myTeamsOnlyCheckChecked" checked>
+                                                                        <label class="form-check-label poppins-font text-truncate" for="myTeamsOnlyCheckChecked">My Teams only?</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="formation-data-loading-spinner" class="text-end" style="display: none;">
+                                                                    <div class="d-flex">
+                                                                        <span class="text-white align-middle comfortaa-font" style="font-size: 10px;">Loading...</span>
+                                                                        <span class="spinner-border align-middle" style="width: 20px; height: 20px;color:var(--tahitigold);" role="status">
+                                                                            <span class="visually-hidden">Loading Team Formation Data...</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <button type="button" class="p-4 rounded-4 onefit-buttons-style-light shadow" data-bs-dismiss="offcanvas" aria-label="Close">
+                                                            <span class="material-icons material-icons-round align-middle align-middle">
+                                                                close
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="offcanvas-body down-top-grad-dark light-scroller">
+                                                        <!-- <hr class="bg-dark shadow" style="height: 10px;"> -->
+                                                        <div class="container -fluid">
+
+                                                            <div id="formation-guidelines-container" class="bg-white text-dark p-4 mb-4 shadow" style="border-radius: 25px;">
+                                                                <h5 class="fs-3 text-center text-dark poppins-font">Tactical Guidelines.</h5>
+                                                                <hr class="bg-dark shadow" style="height: 2px;">
+                                                                <p id="tactical-guidelines-container">
+                                                                    This section is meant for displaying the coaches guidelines and instructions as a means of memorizing key tactics for the game.
+                                                                </p>
+                                                            </div>
+
+                                                            <div id="teamathletics-team-formation" class="py-4">
+                                                                <h5 id="formation-title" class="text-center text-white fs-3 mb-4 comfortaa-font fw-bold">Formation: <span class="poppins-font">2-5-3</span></h5>
+                                                                <div class="mb-4 d-flex justify-content-center shadow" id="soccerfield" style="overflow-x: auto;">
+                                                                    <div class="d-flex justify-content-center p-5">
+                                                                        <div class="spinner-grow text-white" style="width: 3rem; height: 3rem;" role="status">
+                                                                            <span class="visually-hidden">Loading...</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <hr class="bg-dark shadow" style="height: 10px;">
+
+                                                                <!-- starting squad team list -->
+                                                                <h5 class="text-white">Starting lineup.</h5>
+                                                                <table class="table table-light table-striped table-hover table-bordered mb-4 align-middle">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">Kit #</th>
+                                                                            <th scope="col">Player Pin</th>
+                                                                            <th scope="col">Name &amp; Surname</th>
+                                                                            <th scope="col">Field Position</th>
+                                                                            <th scope="col" class="text-center">
+                                                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">
+                                                                                    more_horiz
+                                                                                </span>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="teams-formation-starting-lineup-table-list">
+                                                                        <tr>
+                                                                            <td class="text-center" colspan="5">
+                                                                                <div class="d-flex align-items-center p-4">
+                                                                                    <strong class="text-muted">Awaiting team selection...</strong>
+                                                                                    <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!-- ./ starting squad team list -->
+
+                                                                <!-- Substitude list -->
+                                                                <h5 class="text-white">Substitues.</h5>
+                                                                <table class="table table-light table-striped table-hover table-bordered mb-4 align-middle">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">Kit #</th>
+                                                                            <th scope="col">Player Pin</th>
+                                                                            <th scope="col">Name &amp; Surname</th>
+                                                                            <th scope="col">Field Position</th>
+                                                                            <th scope="col">More</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="teams-formation-substitutes-table-list">
+                                                                        <tr>
+                                                                            <td class="text-center" colspan="5">
+                                                                                <div class="d-flex align-items-center p-4">
+                                                                                    <strong class="text-muted">Awaiting team selection...</strong>
+                                                                                    <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!-- ./ Substitude list -->
+
+                                                                <!-- reserves list -->
+                                                                <h5 class="text-white">Researved.</h5>
+                                                                <table class="table table-light table-striped table-hover table-bordered mb-4 align-middle">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">Kit #</th>
+                                                                            <th scope="col">Player Pin</th>
+                                                                            <th scope="col">Name &amp; Surname</th>
+                                                                            <th scope="col">Field Position</th>
+                                                                            <th scope="col">More</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="teams-formation-reserves-table-list">
+                                                                        <tr>
+                                                                            <td class="text-center" colspan="5">
+                                                                                <div class="d-flex align-items-center p-4">
+                                                                                    <strong class="text-muted">Awaiting team selection...</strong>
+                                                                                    <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!-- ./ reserves list -->
+
+                                                                <!-- technical team list -->
+                                                                <h5 class="text-white">Technical Team.</h5>
+                                                                <table class="table table-light table-striped table-hover table-bordered mb-4 align-middle">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">Role</th>
+                                                                            <th scope="col">Member Pin</th>
+                                                                            <th scope="col">Name &amp; Surname</th>
+                                                                            <th scope="col">Field Position</th>
+                                                                            <th scope="col">More</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="teams-formation-technical-team-table-list">
+                                                                        <tr>
+                                                                            <td class="text-center" colspan="5">
+                                                                                <div class="d-flex align-items-center p-4">
+                                                                                    <strong class="text-muted">Awaiting team selection...</strong>
+                                                                                    <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!-- ./ technical team list -->
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-md">
-                                                <h5 class="fs-2 p-5 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-whitez" style="border-radius:25px !important;">Upcoming Match Schedule</h5>
+                                                <h5 class="fs-2 p-5 fw-bold rounded-pill text-center comfortaa-font shadow my-4 bg-white text-dark" style="border-radius:25px !important;">
+                                                    Match Fixtures.
+                                                </h5>
                                             </div>
                                             <div class="col-md-2 d-grid">
-                                                <button class="onefit-buttons-style-dark p-4 my-2 text-center shadow " type="button">
+                                                <button class="onefit-buttons-style-light p-4 my-2 text-center shadow hide-side-panels" type="button">
                                                     <div class="d-grid">
                                                         <span class="material-icons material-icons-round">
                                                             add_circle
                                                         </span>
-                                                        <span class="align-middle poppins-font" style="font-size: 10px !important">
+                                                        <span class="align-middle poppins-font text-truncate" style="font-size: 10px !important">
                                                             Add to Fixture
                                                         </span>
                                                     </div>
@@ -4634,9 +5028,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         </div>
                                         <!-- ./ upcoming match fixtures/schedule header -->
 
-                                        <!-- match fixtures / schedule table -->
+                                        <!-- match fixtures / upcoming matches table -->
+                                        <h5>Upcoming matches.</h5>
                                         <div class="table-responsive mb-4">
-                                            <table class="table table-light table-striped my-4 shadow" style="border-radius: 25px !important; overflow: hidden;">
+                                            <table class="table table-bordered table-light table-striped my-4 shadow" style="border-radius: 25px !important; overflow: hidden;">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">Match #</th>
@@ -4668,29 +5063,96 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <!-- ./ match fixtures / schedule table -->
+                                        <!-- ./ match fixtures / upcoming matches table -->
+
+                                        <!-- match fixtures / match history table -->
+                                        <h5>Match history.</h5>
+                                        <div class="table-responsive mb-4">
+                                            <table class="table table-bordered table-light table-striped my-4 shadow" style="border-radius: 25px !important; overflow: hidden;">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Match #</th>
+                                                        <th scope="col">Match Title</th>
+                                                        <th scope="col">Home Team</th>
+                                                        <th scope="col">Away Team</th>
+                                                        <th scope="col">Match Venue</th>
+                                                        <th scope="col">Match Date</th>
+                                                        <th scope="col">Start Time</th>
+                                                        <th scope="col">Standard Match Duration (Minutes)</th>
+                                                        <th scope="col">Observed Match Duration (Minutes)</th>
+                                                        <th scope="col">Match Result</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="teams-match-history-tbody">
+                                                    <tr>
+                                                        <td colspan="10" class="text-center fs-5 fw-bold">No fixtures available.</td>
+                                                        <!-- <th scope="row">1</th>
+                                                        <td>League Friendly - Team A (Home) vs Team B (Away)</td>
+                                                        <td>Team A</td>
+                                                        <td>Team B</td>
+                                                        <td>Stadium 1</td>
+                                                        <td>Saturday, 5 February 2022</td>
+                                                        <td>13:00</td>
+                                                        <td>90</td>
+                                                        <td>94</td>
+                                                        <td>Pending</td> -->
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- ./ match fixtures / match history table -->
 
                                         <hr class="text-white">
 
                                         <!-- weekly training schedule header -->
+                                        <div class="d-grid">
+                                            <div class="p-4 rounded-pill text-center shadow my-4 bg-white text-dark" style="border-radius: 25px !important;">
+                                                <h1 class="fs-2 fw-bold comfortaa-font ">Weekly Training Schedule</h1>
+                                                <p class="text-center poppins-font"> Training Week: [ <span class="weekly-survey-duration-dates">Start Date to End Date</span> ]</p>
+                                            </div>
+
+                                            <!-- *collapse - container for date-range selection input-group -->
+                                            <div id="date-range-selector" class="collapse show date-range-selector">
+                                                <p class="m-0 text-center">Note: To view weekly activitiies from a specific date or training week.</p>
+                                                <div class="input-group mb-0 fixed-bottomz down-top-grad-dark px-5 py-4">
+                                                    <span class="material-icons material-icons-round align-middle p-2 d-flex align-items-center">calendar_month</span>
+                                                    <input id="training-week-date-range-input" name="training-week-date-range-input" type="date" class="training-week-date-range-input form-control fs-2 align-middle border-white text-center p-4" placeholder="Training Week Date Sync" aria-label="Training Week Date Sync" aria-describedby="#training-week-date-range-select-btn" style="border-radius:15px 0 0 15px;">
+                                                    <button id="training-week-date-range-select-btn" class="btn btn-outline-light border-5 p-2" type="button" onclick="$.getRequestedTrainingWeekActivities()" style="border-radius: 0 15px 15px 0;">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px !important;">
+                                                            sync
+                                                        </span>
+                                                        <span class="align-middle" style="font-size:10px;">Select Training Week Range.</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row align-items-center">
-                                            <div class="col-md-2 d-grid">
-                                                <button class="onefit-buttons-style-dark p-4 my-2 text-center shadow" type="button">
+                                            <div class="col-md -2 d-grid">
+                                                <button class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" onclick="$.switchWeeklyActivityView('last')">
                                                     <div class="d-grid">
                                                         <span class="material-icons material-icons-round">
                                                             chevron_left
                                                         </span>
                                                         <span class="align-middle poppins-font" style="font-size: 10px !important;">
-                                                            Prev Week
+                                                            Last Week
                                                         </span>
                                                     </div>
                                                 </button>
                                             </div>
-                                            <div class="col-md">
-                                                <p class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahitiz" style="border-radius: 25px !important;">Weekly Training Schedule</p>
+                                            <div class="col-md d-grid">
+                                                <button class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" onclick="$.switchWeeklyActivityView('this')">
+                                                    <div class="d-grid">
+                                                        <span class="material-icons material-icons-round">
+                                                            keyboard_arrow_down
+                                                        </span>
+                                                        <span class="align-middle poppins-font" style="font-size: 10px!important;">
+                                                            This Week
+                                                        </span>
+                                                    </div>
+                                                </button>
                                             </div>
-                                            <div class="col-md-2 d-grid">
-                                                <button class="onefit-buttons-style-dark p-4 my-2 text-center shadow" type="button">
+                                            <div class="col-md -2 d-grid">
+                                                <button class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" onclick="$.switchWeeklyActivityView('next')">
                                                     <div class="d-grid">
                                                         <span class="material-icons material-icons-round">
                                                             chevron_right
@@ -4701,6 +5163,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     </div>
                                                 </button>
                                             </div>
+                                        </div>
+                                        <div class="d-grid">
+
                                         </div>
                                         <!-- ./ weekly training schedule header -->
 
@@ -5021,7 +5486,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <hr class="text-white" />
 
                                         <!-- Section: Interaction buttons (incl: Drills, Physical Assessment, Nutrition board, Program Administration) -->
-                                        <section id="interactions-section">
+                                        <section id="interactions-section" class="p-4">
                                             <!-- class="fs-1 comfortaa-font my-5 text-center"  -->
                                             <h1 class="fs-2 p-5 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-whitez" style="border-radius:25px !important;">
                                                 <span class="material-icons material-icons-round align-middle">touch_app</span>
@@ -5029,16 +5494,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </h1>
 
                                             <div class="d-grid gap-2">
-                                                <button id="interaction-btn-training-drills" class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal" onclick="$.loadInteractionContent('TrainingDrillsWorkouts')">
+                                                <button id="interaction-btn-training-drills" class="onefit-buttons-style-light p-4 my-2 text-center shadow hide-side-panels" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal" onclick="$.loadInteractionContent('TrainingDrillsWorkouts')">
                                                     <span class="material-icons material-icons-round align-middle">shuffle_on</span> <span class="align-middle poppins-font"> Training Drills &amp; Workouts</span>
                                                 </button>
-                                                <button id="interaction-btn-physical-assess" class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal" onclick="$.loadInteractionContent('PhysicalAssessment')">
+                                                <button id="interaction-btn-physical-assess" class="onefit-buttons-style-light p-4 my-2 text-center shadow hide-side-panels" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal" onclick="$.loadInteractionContent('PhysicalAssessment')">
                                                     <span class="material-icons material-icons-round align-middle">personal_injury</span> <span class="align-middle poppins-font"> Physical Assessment</span>
                                                 </button>
-                                                <button id="interaction-btn-nutrition-board" class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal" onclick="$.loadInteractionContent('NutritionBoard')">
+                                                <button id="interaction-btn-nutrition-board" class="onefit-buttons-style-light p-4 my-2 text-center shadow hide-side-panels" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal" onclick="$.loadInteractionContent('NutritionBoard')">
                                                     <span class="material-icons material-icons-round align-middle">developer_board</span> <span class="align-middle poppins-font"> Nutrition Board</span>
                                                 </button>
-                                                <button id="interaction-btn-prog-admin" class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInteractionSubAdmin" aria-expanded="false" aria-controls="collapseInteractionSubAdmin">
+                                                <button id="interaction-btn-prog-admin" class="onefit-buttons-style-light p-4 my-2 text-center shadow hide-side-panels" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInteractionSubAdmin" aria-expanded="false" aria-controls="collapseInteractionSubAdmin">
                                                     <span class="material-icons material-icons-round align-middle">admin_panel_settings</span> <span class="align-middle poppins-font"> Administration</span>
                                                     <div class="text-center">
                                                         <span class="material-icons material-icons-round align-middle">expand_more</span>
@@ -5047,13 +5512,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 <div class="collapse w3-animate-left" id="collapseInteractionSubAdmin">
                                                     <div class="row">
                                                         <div class="col-md d-grid">
-                                                            <button id="interaction-btn-prog-admin-create" class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal" onclick="$.loadInteractionContent('CreationTools')">
+                                                            <button id="interaction-btn-prog-admin-create" class="onefit-buttons-style-light p-4 my-2 text-center shadow hide-side-panels" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal" onclick="$.loadInteractionContent('CreationTools')">
                                                                 <span class="material-icons material-icons-round align-middle">brush</span>
                                                                 <span class="align-middle poppins-font"> Creation Tools.</span>
                                                             </button>
                                                         </div>
                                                         <div class="col-md d-grid">
-                                                            <button id="interaction-btn-prog-admin-data-mgmt" class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal" onclick="$.loadInteractionContent('AdminDataMgmt')">
+                                                            <button id="interaction-btn-prog-admin-data-mgmt" class="onefit-buttons-style-light p-4 my-2 text-center shadow hide-side-panels" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal" onclick="$.loadInteractionContent('AdminDataMgmt')">
                                                                 <span class="material-icons material-icons-round align-middle">account_tree</span>
                                                                 <span class="align-middle poppins-font"> Data Management Tools.</span>
                                                             </button>
@@ -5206,22 +5671,26 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <h5>Challenges</h5>
                     <hr class="text-white">
 
-                    <h5 class="mt-4">Fitness Progression</h5>
-                    <div class="progress mt-4" style="height: 4px;">
-                        <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: 25%; background-color: #ffa500 !important; border-right: #343434 10px solid;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <div class="row mt-2" style="margin-bottom: 60px;">
-                        <div class="col text-start comfortaa-font" style="font-size: 12px;">
-                            Current XP <strong>(112)</strong>
+                    <!-- fitness progression progress bar -->
+                    <div id="fitness-progression-progress-bar-achievements" class="bar-fpwidget">
+                        <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">data_exploration</span> <span class="align-middle">Fitness Progression</span></h5>
+                        <div class="progress mt-4" style="height: 4px;">
+                            <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: 25%; background-color: #ffa500 !important; border-right: #343434 10px solid;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <div class="col text-end comfortaa-font" style="font-size: 12px;">
-                            Target XP <strong>(150)</strong>
+                        <div class="row mt-2" style="margin-bottom: 60px;">
+                            <div class="col text-start comfortaa-font" style="font-size: 12px;">
+                                Current XP <strong>(112)</strong>
+                            </div>
+                            <div class="col text-end comfortaa-font" style="font-size: 12px;">
+                                Target XP <strong>(150)</strong>
+                            </div>
                         </div>
                     </div>
+                    <!-- ./ fitness progression progress bar -->
 
                     <h5 class="my-4">Daily Challenges</h5>
 
-                    <div id="daily-challenges-grid" class="grid-container mb-4">
+                    <div id="daily-challenges-grid" class="daily-challenges-grid grid-container mb-4">
                         <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
                             <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4" alt="">
                             <p>Challenge Title</p>
@@ -5282,7 +5751,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <h5 class="my-4">Weekly Challenges</h5>
 
-                    <div id="weekly-challenges-grid" class="grid-container mb-4">
+                    <div id="weekly-challenges-grid" class="weekly-challenges-grid grid-container mb-4">
                         <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
                             <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4" alt="">
                             <p>Challenge Title</p>
@@ -5341,66 +5810,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                     </div>
 
-                    <h5 class="my-4">Monthly Monthly</h5>
-
-                    <div id="monthly-challenges-grid" class="grid-container mb-4">
-                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
-                            <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4" alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
-                            <img src="../media/assets/icons/icons8-body-50.png" class="img-fluid rounded mb-4" alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
-                            <img src="../media/assets/icons/icons8-deadlift-50.png" class="img-fluid rounded mb-4" alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
-                            <img src="../media/assets/icons/icons8-muscle-flexing-50.png" class="img-fluid rounded mb-4" alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
-                            <img src="../media/assets/icons/icons8-exercise-50.png" class="img-fluid rounded mb-4" alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
-                            <img src="../media/assets/icons/icons8-fit-50.png" class="img-fluid rounded mb-4" alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
-                            <img src="../media/assets/icons/icons8-workout-50.png" class="img-fluid rounded mb-4" alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                    </div>
+                    <!-- removed monthly challenges section -->
 
                     <h5>Diary</h5>
                     <hr class="text-white">
@@ -5924,17 +6334,17 @@ if (isset($_SESSION["currentUserAuth"])) {
             <!-- ./ #tab-container -->
         </div>
         <!-- ./ Tab Content -->
-    </div>
+    </main>
     <!-- ./ Main Content -->
 
     <!-- Footer -->
-    <nav class="text-white w-100 m-0 p-0 fixed-bottom navbar-stylez tunnel-bg-container no-scroller" style="max-height: 100vh !important; overflow-y: auto; overflow-x: hidden">
+    <footer class="text-white w-100 m-0 p-0 fixed-bottom navbar-stylez tunnel-bg-container no-scroller" style="max-height: 100vh !important; overflow-y: auto; overflow-x: hidden">
         <!--style="position: fixed; bottom: 0; left: 0; background: #333; z-index: 10002"-->
-        <div class="down-top-grad-darkz mainapp-footer px-2">
+        <div class="down-top-grad-dark mainapp-footer px-2">
 
             <!-- Widgets Container -->
             <div class="collapse m-0 p-0" id="widget-rows-container">
-                <div class="navbar p-4">
+                <div class="navbar p-4 top-down-grad-dark">
                     <h1 class="text-center mt-4 fs-1">
                         <span class="material-icons material-icons-round align-middle" style="font-size: 60px !important; color: #ffa500;">
                             widgets </span>
@@ -6205,16 +6615,168 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                 <!-- ./ RSS Feed embed -->
 
-                <div class="text-center py-2">
-                    <hr class="text-white" />
-                    | Privacy |
-                    <p class="m-0 p-0"><span class="m-0 float-right" style="font-size: 10px">Crafted by AdaptivConcept &copy;
-                            2021</span></p>
+                <hr class="text-white">
+
+                <!-- onefit.net updates and socials -->
+                <div class="border-0" style="overflow-x: hidden">
+
+                    <h5 class="modal-title fs-1 my-4 text-center" id="tabLatestSocialModalLabel">One<span style="color: #ffa500">fit.</span>Net Updates &amp; Socials</h5>
+
+                    <!-- Latest Updates & Socials Container -->
+                    <!-- Main User Profile Preview List (Main UPPL - It is hidden on screens smaller than lg) -->
+                    <div class="shadow p-0" style="border-radius: 25px; background-color: #343434; overflow: hidden;" id="main-upp-list">
+                        <div class="container comfortaa-font p-0 mt-2 text-white mx-4z d-nonez d-lg-blockz">
+                            <!-- UPPL Header (with Banner and Profile Pic) -->
+                            <div class="text-center top-down-grad-tahiti" style="border-radius:25px;">
+                                <!--<span class="material-icons material-icons-round" style="font-size: 48px !important"> account_circle </span>-->
+
+                                <!-- Users Profile Banner -->
+                                <div class="shadow -lg m-0" style="border-radius: 30px 30px 100% 100%; height: 400px; width: 100%; overflow: hidden; background-image: url('../media/assets/fitness-colage.png'); background-position: center; background-attachment: local; background-clip: content-box; background-size: cover; border-bottom: solid 5px white;">
+                                </div>
+                                <!-- ./ Users Profile Banner -->
+
+                                <!-- Profile Picture -->
+                                <img src="../media/assets/One-Symbol-Logo-Two-Tone.svg" alt="Onefit Logo" class="p-3 img-fluid top-down-grad-tahiti shadow" style="margin-top: -100px; height: 200px; border-radius: 55px; border-color: #ffa500 !important; background-color: var(--mineshaft);">
+                                <!-- ./ Profile Picture -->
+                                <p class="mt-2 mt-4 fs-1 fw-bold comfortaa-font">One<span style="color: #ffa500;">fit</span>.app</p>
+                            </div>
+                            <!-- ./ UPPL Header (with Banner and Profile Pic) -->
+
+                            <div class="row">
+                                <div class="col-md">
+                                    <ol class="list-group list-group-flush border-0 my-4">
+                                        <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold" style="color: #ffa500">One-On-One Fitness Network®</div>
+                                                @OnefitNet<br>
+                                                Community Growth: <br>
+                                                1 Trainee (<i class="fas fa-solid fa-dash" aria-hidden="true"></i> 0%)
+                                            </div>
+                                            <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
+                                                <span class="material-icons material-icons-round" style="font-size: 20px !important">
+                                                    workspace_premium </span>
+                                                Awards Issued
+                                            </span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold text-end" style="color: #ffa500">Followers</div>
+                                                2 Trainees<br>
+                                                6 Trainers<br>
+                                                20 Groups<br>
+                                                16 000 Resources<br>
+                                                89 Fitness Programs<br>
+                                                20 Diet Programs<br>
+                                                5 Wellness Programs
+                                            </div>
+                                            <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px"><span class="material-icons material-icons-round" style="font-size: 20px !important"> people_alt
+                                                </span> 6</span>
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="col-md-5 text-center">
+                                    <h3>Support us on Socials</h3>
+                                    <div class="container-fluid">
+                                        <div class="row align-items-center" style="font-size: 40px;">
+                                            <div class="col m">
+                                                <button class="border-0 social-link-icon-insta p-4 my-4 shadow" style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                                    <div class="d-grid gap-2">
+                                                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                                                        <p style="font-size: 10px !important;">Instagram</p>
+                                                    </div>
+                                                </button>
+                                            </div>
+
+                                            <div class="col">
+                                                <button class="border-0 social-link-icon-twitter p-4 my-4 shadow" style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                                    <div class="d-grid gap-2">
+                                                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                                                        <p style="font-size: 10px !important;">Twitter</p>
+                                                    </div>
+                                                </button>
+                                            </div>
+
+                                            <div class="col">
+                                                <button class="border-0 social-link-icon-fb p-4 my-4 shadow" style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                                    <div class="d-grid gap-2">
+                                                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                                                        <p style="font-size: 10px !important;">Facebook</p>
+                                                    </div>
+                                                </button>
+                                            </div>
+
+                                            <div class="col">
+                                                <button class="border-0 social-link-icon-yt p-4 my-4 shadow" style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                                    <div class="d-grid gap-2">
+                                                        <i class="fab fa-youtube" aria-hidden="true"></i>
+                                                        <p style="font-size: 10px !important;">Youtube</p>
+                                                    </div>
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="text-white">
+                            <div class="row my-4">
+                                <div class="col-md text-center">
+                                    <h4>Twitter Feed</h4>
+                                    <!-- Twitter feed -->
+                                    <div class="m-4 no-scroller" style="border-radius: 25px !important; overflow-y: scroll;">
+                                        <div class="twitter-timeline twitter-timeline-rendered" style="display: flex; max-width: 100%; margin-top: 0px; margin-bottom: 0px;"><iframe id="twitter-widget-2" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" title="Twitter Timeline" src="https://syndication.twitter.com/srv/timeline-profile/screen-name/OnefitNet?dnt=false&amp;embedId=twitter-widget-2&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfbWl4ZWRfbWVkaWFfMTU4OTciOnsiYnVja2V0IjoidHJlYXRtZW50IiwidmVyc2lvbiI6bnVsbH0sInRmd19leHBlcmltZW50c19jb29raWVfZXhwaXJhdGlvbiI6eyJidWNrZXQiOjEyMDk2MDAsInZlcnNpb24iOm51bGx9LCJ0ZndfZHVwbGljYXRlX3NjcmliZXNfdG9fc2V0dGluZ3MiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3ZpZGVvX2hsc19keW5hbWljX21hbmlmZXN0c18xNTA4MiI6eyJidWNrZXQiOiJ0cnVlX2JpdHJhdGUiLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2xlZ2FjeV90aW1lbGluZV9zdW5zZXQiOnsiYnVja2V0Ijp0cnVlLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3R3ZWV0X2VkaXRfZnJvbnRlbmQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfX0%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=false&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;origin=http%3A%2F%2Flocalhost%3A8081%2FOnefit%2Fapp%2F%3Fuserauth%3Dtrue%23&amp;sessionId=1ae8dbda0e6d075a1f5c9f66a57321608e30bc78&amp;showHeader=true&amp;showReplies=false&amp;transparent=false&amp;widgetsVersion=aaf4084522e3a%3A1674595607486" style="position: static; visibility: visible; width: 305px; height: 7866px; display: block; flex-grow: 1;"></iframe></div>
+                                        <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                    </div>
+                                    <!-- ./ Twitter feed -->
+                                </div>
+                                <div class="col-md text-center border-start border-end border-warning" style="border-color: #ffa500 !important;">
+                                    <h4>Facebook Feed</h4>
+                                    <div class="d-flex align-items-center">
+                                        <div style="display: none;">
+                                            <strong>Loading Facebook Feed...</strong>
+                                            <div class="spinner-border text-light ms-auto" role="status" aria-hidden="true"></div>
+                                        </div>
+
+                                        <!-- Facebook feed -->
+                                        <div class="fb-page" data-href="https://web.facebook.com/OnefitnetworkZA" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                            <blockquote cite="https://web.facebook.com/OnefitnetworkZA" class="fb-xfbml-parse-ignore"><a href="https://web.facebook.com/OnefitnetworkZA">One-On-One Fitness Network</a></blockquote>
+                                        </div>
+                                        <!-- ./ Facebook feed -->
+                                    </div>
+                                </div>
+                                <div class="col-md text-center">
+                                    <h4>Instagram Feed</h4>
+                                    <div class="text-center">
+                                        <div class="spinner-border text-light ms-auto" style="width: 5rem; height: 5rem;" role="status" aria-hidden="true"></div>
+                                    </div>
+                                </div>
+                                <!--<div class="col-md">
+                                <h4>Latest on YouTube</h4>-->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./ MainUser Profile Preview List -->
+                    <!-- ./ Latest Updates & Socials Container -->
+
                 </div>
+                <!-- ./ onefit.net updates and socials -->
+
+                <div class="text-center py-5 down-top-grad-dark">
+                    <hr class="text-white mb-5" />
+                    | Privacy |
+                    <p class="m-0 p-0">
+                        <span class="m-0 float-right" style="font-size: 10px">Crafted by AdaptivConcept &copy;
+                            2021
+                        </span>
+                    </p>
+                </div>
+
             </div>
             <!-- ./ Widgets Container -->
+
         </div>
-    </nav>
+    </footer>
     <!-- ./ Footer -->
 
     <!-- Modals ----------------------------------------------------------------------------------------- -->
@@ -6516,8 +7078,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <!-- Twitter feed -->
                                     <div class="m-4 no-scroller" style="border-radius: 25px !important; overflow-y: scroll;">
                                         <a class="twitter-timeline" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by
-                                            OnefitNet</a>
+                                            <span style="color: var(--tahitigold)!important;">@OnefitNet</span></a>
                                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="spinner-border grow text-light my-4" style="width: 3rem; height: 3rem;" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- ./ Twitter feed -->
                                 </div>
@@ -6634,9 +7201,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </h1>
                         </div>
 
-                        <!--<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
+                        <!--<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
+                            <span class="material-icons material-icons-round">
+                                close
+                            </span>
+                        </button>-->
 
-                        <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="offcanvas" aria-label="Close">
+                        <button type="button" class="onefit-buttons-style-danger p-2 onefit-buttons-style-dark shadow" data-bs-dismiss="offcanvas" aria-label="Close">
                             <span class="material-icons material-icons-round"> cancel </span>
                         </button>
                     </div>
@@ -7235,8 +7806,132 @@ if (isset($_SESSION["currentUserAuth"])) {
     </div>
     <!-- ./ >>>>>>>>>> Tab Activity Tracker Capture Modal -->
 
+    <!-- Button trigger modal>>>>>>>>>> Calender Activity Form Modal -->
+    <button id="toggleCalenderActivityFormeModalBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CalenderActivityFormeModal" hidden aria-hidden="true">
+        Launch #CalenderActivityFormeModal</button>
+
+    <!-- >>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
+    <div class="modal fade" id="CalenderActivityFormeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="CalenderActivityFormeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
+            <div class="modal-content feature-tab-nav-content content-panel-border-stylez">
+                <!-- style="border-bottom: #ffa500 5px solid;" -->
+                <div class="modal-header border-0">
+                    <h5 class="modal-title align-middle" id="CalenderActivityFormeModalLabel">
+                        <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
+                            calendar
+                        </span>
+                        <span id="CalenderActivityFormeModalLabelText" class="align-middle">Calender Activity</span>
+                    </h5>
+                    <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="material-icons material-icons-round"> cancel </span>
+                    </button>
+                </div>
+                <hr class="text-white m-0z">
+                <div id="CalenderActivityFormeModal_body" class="modal-body border-0" style="overflow-x: hidden">
+                    <!-- Calender Activity View Accordion -->
+                    <div class="accordion accordion-flush" id="accordionFlushCalenderActivityViewer">
+                        <div class="accordion-item p-2 my-2 shadow">
+                            <h2 class="accordion-header m-0" id="cav-flush-header-activity_lineup">
+                                <button class="accordion-button fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-activity_lineup" aria-expanded="true" aria-controls="cav-flush-panel-activity_lineup">
+                                    <span class="material-icons material-icons-round align-middle">timeline</span>
+                                    <span class="align-middle">Activity Lineup (<span class="calender-date-selected-label">Date</span>)</span>
+                                </button>
+                            </h2>
+                            <div id="cav-flush-panel-activity_lineup" class="accordion-collapse w3-animate-bottom collapse show" aria-labelledby="cav-flush-header-activity_lineup" data-bs-parent="#accordionFlushCalenderActivityViewer">
+                                <div class="accordion-body">
+                                    <h5 class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">
+                                        Activity Lineup.
+                                    </h5>
+                                    <hr class="text-white">
+                                    <div id="calender-activity-viewer-activity_lineup">
+                                        <div class="spinner-border text-white" style="width:3rem;height:3rem;" role="status">
+                                            <span class="visually-hidden">Awaiting Actvity Lineup...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item p-2 my-2 shadow">
+                            <h2 class="accordion-header m-0" id="cav-flush-header-diary_notes">
+                                <button class="accordion-button fs-5 fw-bold text-truncate collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-diary_notes" aria-expanded="false" aria-controls="cav-flush-panel-diary_notes">
+                                    <span class="material-icons material-icons-round align-middle">book</span>
+                                    <span class="align-middle">Diary &amp; Trainer Notes (<span class="calender-date-selected-label">Date</span>)</span>
+                                </button>
+                            </h2>
+                            <div id="cav-flush-panel-diary_notes" class="accordion-collapse w3-animate-bottom collapse" aria-labelledby="cav-flush-header-diary_notes" data-bs-parent="#accordionFlushCalenderActivityViewer">
+                                <div class="accordion-body">
+                                    <h5 class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">
+                                        Diary &amp; Trainer Notes.
+                                    </h5>
+                                    <hr class="text-white">
+                                    <div id="calender-activity-viewer-activity_lineup">
+                                        <div class="row">
+                                            <div class="col-md">
+                                                <!-- Tab for separation of Diary entries and Trainer Notes -->
+                                                <ul class="nav nav-tabs" id="diary-notes-tab" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link active" id="diary-entries-tab" data-bs-toggle="tab" data-bs-target="#diary-entries-tab-pane" type="button" role="tab" aria-controls="diary-entries-tab-pane" aria-selected="true">My Diary</button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="trainer-notes-tab" data-bs-toggle="tab" data-bs-target="#trainer-notes-tab-pane" type="button" role="tab" aria-controls="trainer-notes-tab-pane" aria-selected="false">Trainer Notes.</button>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content" id="diary-notes-tab-content">
+                                                    <div class="tab-pane fade show active" id="diary-entries-tab-pane" role="tabpanel" aria-labelledby="diary-entries-tab" tabindex="0">
+                                                        <div class="spinner-border text-white" style="width:3rem;height:3rem;" role="status">
+                                                            <span class="visually-hidden">Awaiting Diary Entries...</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="trainer-notes-tab" tabindex="0">
+                                                        <div class="spinner-border text-white" style="width:3rem;height:3rem;" role="status">
+                                                            <span class="visually-hidden">Awaiting Trainer Notes...</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- ./ Tab for separation of Diary entries and Trainer Notes -->
+                                            </div>
+                                            <div class="col-md d-grid align-items-center">
+                                                <!-- view window for selected entry-->
+                                                <div id="selected-entry-view-window" class="w-100 h-100">
+                                                    <div class="spinner-border text-white" style="width:3rem;height:3rem;" role="status">
+                                                        <span class="visually-hidden">Awaiting Entry Selection...</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item p-2 my-2 shadow">
+                            <h2 class="accordion-header m-0" id="cav-flush-header-new_activities">
+                                <button class="accordion-button fs-5 fw-bold text-truncate collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-new_activities" aria-expanded="false" aria-controls="cav-flush-panel-new_activities">
+                                    <span class="material-icons material-icons-round align-middle">add_task</span>
+                                    <span class="align-middle">(Admin) New Activities (<span class="calender-date-selected-label">Date</span>)</span>
+                                </button>
+                            </h2>
+                            <div id="cav-flush-panel-new_activities" class="accordion-collapse w3-animate-bottom collapse" aria-labelledby="cav-flush-header-new_activities" data-bs-parent="#accordionFlushCalenderActivityViewer">
+                                <div class="accordion-body">
+                                    <h5 class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">
+                                        Capture New Activity.
+                                    </h5>
+                                    <hr class="text-white">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- ./ Calender Activity View Accordion -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./ >>>>>>>>>> Calender Activity Form Modal -->
+
     <!-- Button trigger modal>>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
-    <button id="toggleTabeditWeeklyTeamsTrainingScheduleModalBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal" hidden aria-hidden="true">
+    <button id="toggleTabeditWeeklyTeamsTrainingScheduleModalBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+        <!-- hidden aria-hidden="true" -->
         Launch #editWeeklyTeamsTrainingSchedule</button>
 
     <!-- >>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
@@ -7582,9 +8277,8 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ Modals ----------------------------------------------------------------------------------------- -->
 
     <script>
-        // check online connectivity log on console - test code
+        // check online connectivity log on console - if offline show the offline curtain
         checkConnection();
-
 
         // initialize global activity tracker chart objects
         // initialize activity tracking charts
@@ -8257,19 +8951,82 @@ if (isset($_SESSION["currentUserAuth"])) {
 
 
         function initializeContent(auth, usernm) {
-            if (auth = true) {
+            auth = auth || "init";
+            usernm = usernm || "init";
+            // check if there are unloaded core scripts and stylesheets
+            if (coreScriptLoaded_googlefont_icons_css == false ||
+                coreScriptLoaded_plyrio_css == false ||
+                coreScriptLoaded_plyrio_js == false ||
+                coreScriptLoaded_hls_js == false ||
+                coreScriptLoaded_bootstrap_local_css == false ||
+                coreScriptLoaded_bootstrap_bundle_local_js == false ||
+                coreScriptLoaded_w3_css == false ||
+                coreScriptLoaded_custom_styles_css == false ||
+                coreScriptLoaded_digiclock_css == false ||
+                coreScriptLoaded_digiclock_js == false ||
+                coreScriptLoaded_timeline_css == false ||
+                coreScriptLoaded_custom_jquery_func_js == false ||
+                coreScriptLoaded_custom_script_js == false ||
+                coreScriptLoaded_custom_api_req_js == false ||
+                coreScriptLoaded_jquery_local_js == false ||
+                coreScriptLoaded_custom_jquery_func_js == false ||
+                coreScriptLoaded_moment_js == false ||
+                /* coreScriptLoaded_googlefonts_fonts == false || */
+                coreScriptLoaded_googlefonts_css == false ||
+                coreScriptLoaded_soccerfield_css == false ||
+                coreScriptLoaded_soccerfield_js == false ||
+                coreScriptLoaded_chartjs_js == false) {
+                console.log("Some core scripts were not loaded. Please check your internet connection. \n" +
+                    "\n googlefont_icons_css: " + coreScriptLoaded_googlefont_icons_css +
+                    "\n plyrio_css: " + coreScriptLoaded_plyrio_css +
+                    "\n plyrio_js: " + coreScriptLoaded_plyrio_js +
+                    "\n hls_js: " + coreScriptLoaded_hls_js +
+                    "\n bootstrap_local_css: " + coreScriptLoaded_bootstrap_local_css +
+                    "\n bootstrap_bundle_local_js: " + coreScriptLoaded_bootstrap_bundle_local_js +
+                    "\n w3_css: " + coreScriptLoaded_w3_css +
+                    "\n custom_styles_css: " + coreScriptLoaded_custom_styles_css +
+                    "\n digiclock_css: " + coreScriptLoaded_digiclock_css +
+                    "\n digiclock_js: " + coreScriptLoaded_digiclock_js +
+                    "\n timeline_css: " + coreScriptLoaded_timeline_css +
+                    "\n custom_jquery_func_js: " + coreScriptLoaded_custom_jquery_func_js +
+                    "\n custom_script_js: " + coreScriptLoaded_custom_script_js +
+                    "\n custom_api_req_js: " + coreScriptLoaded_custom_api_req_js +
+                    "\n jquery_local_js: " + coreScriptLoaded_jquery_local_js +
+                    "\n custom_jquery_func_js: " + coreScriptLoaded_custom_jquery_func_js +
+                    "\n moment_js: " + coreScriptLoaded_moment_js +
+                    "\n googlefonts_fonts: " + coreScriptLoaded_googlefonts_fonts +
+                    "\n googlefonts_css: " + coreScriptLoaded_googlefonts_css +
+                    "\n soccerfield_css: " + coreScriptLoaded_soccerfield_css +
+                    "\n soccerfield_js: " + coreScriptLoaded_soccerfield_js +
+                    "\n chartjs_js: " + coreScriptLoaded_chartjs_js);
+                // show offline curtain and pass message of none-loaded scripts
+                document.getElementById("output-msg-heading").innerHTML = "You may be offline";
+                document.getElementById("output-msg-text").innerHTML = "Some core scripts were not loaded. Please check your internet connection and try reloadig the page.";
+                document.getElementById("offline-curtain").style.display = "block";
+            }
+
+            if ((auth == true || auth == 1) || (auth === "init" && usernm === "init")) {
                 //call all client functions
                 //alert("auth = true | User: " + usernm);
                 loadActivityCalender();
                 getCurrentWeekStartEndDates();
 
-                // loadUserProfile();
+                $.getUserActivityTimeline(usernm);
+                $.getUserWeekActivities(usernm);
+                $.getTeamMatchSchedule('init');
+
+                $.getTeamsSelectInputList('teams');
+
+                $.getUserChallenges(usernm);
+
+                $.getUserProfileHeader(usernm);
                 // loadUserSocials();
                 // loadUserChallenges();
                 // loadUserChat();
                 // loadUserFriends();
                 // loadUserGroups();
                 // loadUserMedia();
+                $.getUsersMediaFiles();
                 // loadUserNotifications();
                 // loadUserPref();
                 // loadUserSaves();
@@ -8285,6 +9042,11 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                 // load store products
                 $.getStoreProducts('ui_data', '#store-smart-watch-grid-container');
+                // load fp widgets
+                $.getFitnessProgressionUIWidgets(usernm, 'bar');
+                $.getFitnessProgressionUIWidgets(usernm, 'mini');
+
+
             } else {
                 //call guest applicable functions
                 alert("auth = false | User: " + usernm);
@@ -8300,7 +9062,28 @@ if (isset($_SESSION["currentUserAuth"])) {
 
             // check if current_app_tab is set and has a value in localStorage, else set default value: TabHome
             const currentAppTab = localStorage.getItem('current_app_tab');
+            switchCurrentAppTab(currentAppTab);
 
+            // load the weekly activiies bar chart under Teams athletics training (insights tab)
+            $.populateWeeklyActivityBarChart('this');
+            $.populateWeeklyAssessmentsHorizCardContainer('this');
+
+            // call the function to update the users activity tracker charts from the db - use vanillajs ajax to compile the data
+            compileUserActivityTrackerCharts(usernm);
+
+            // call to function for checking localstorage values and either show or hide side panels
+            $.checkSidePanelVisibility();
+
+            // hide the loading curtain - fade out
+            // var curtain = document.getElementById("LoadCurtain");
+            // curtain.style.display = "none";
+            $('#LoadCurtain').fadeOut('2500');
+
+            // Show snackbar at the end of this function
+            showSnackbar('Data has been refreshed.');
+        }
+
+        function switchCurrentAppTab(currentAppTab) {
             if (currentAppTab) {
                 var tabName = currentAppTab;
                 console.log('Current App Tab: ' + currentAppTab);
@@ -8336,18 +9119,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                 // set default value: TabHome
                 localStorage.setItem("current_app_tab", "TabHome");
             }
+        }
 
-            // hide the loading curtain - fade out
-            // var curtain = document.getElementById("LoadCurtain");
-            // curtain.style.display = "none";
-            $('#LoadCurtain').fadeOut('2500');
-
-            // load the weekly activiies bar chart under Teams athletics training (insights tab)
-            $.populateWeeklyActivityBarChart();
-
-            // call the function to update the users activity tracker charts from the db - use vanillajs ajax to compile the data
-            compileUserActivityTrackerCharts(usernm);
-
+        function openCalenderActivityForm(date) {
+            // '2023/3/10'
+            alert("show modal for calender day: " + date);
+            const calenderActivityFormModalBtn = document.getElementById('toggleCalenderActivityFormeModalBtn');
+            calenderActivityFormModalBtn.click();
         }
 
         // compile chart data from remote storage and apply to each chartname/ chartObj specified in var forChartNameArray
@@ -8449,22 +9227,97 @@ if (isset($_SESSION["currentUserAuth"])) {
 
             // Grabbing Start/End Dates
             var StartDate = new Date(today.setDate(date));
-            var EndDate = new Date(today.setDate(date + 6));
+            var EndDate = new Date(today.setDate(date + 7));
             return [StartDate, EndDate];
         }
 
-        function getCurrentWeekStartEndDates() {
+        function getLastWeeksDate() {
+            const now = new Date();
+
+            return new Date(now.getFullYear(), now.getMonth(), now.getDate() - 7);
+            // return getWeekRange(-2);
+        }
+
+        function getNextWeeksDate() {
+            const now = new Date();
+
+            return new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7);
+            // return getWeekRange(0);
+        }
+
+        function getThisWeeksDate() {
+            const now = new Date();
+
+            return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            // return getWeekRange(0);
+        }
+
+        function getCurrentWeekStartEndDates(when) {
+            when = when || 'this';
             // test code
-            var elemDatesOutput1 = document.getElementById("weekly-survey-duration-dates");
+            var elemDatesOutput1 = document.querySelectorAll(".weekly-survey-duration-dates");
             // var elemDatesOutput2 = document.getElementById("weekly-training-date-duration-str");
+            var weekDatesArray = [];
+            switch (when) {
+                case "last":
+                    var weekDatesArray = getWeekRange(-2);
+                    break;
+                case "this":
+                    var weekDatesArray = getWeekRange(-1);
+                    break;
+                case "next":
+                    var weekDatesArray = getWeekRange(0);
+                    break;
 
-            var Dates = new Date().getWeek();
+                default:
+                    return false;
+            }
+
+            // after we get the weekDatesArray, we loop through each item using a foreach loop to call ...
+            // weekDatesArray.forEach(dateStr => {
+            //     var dayName = getDayName(dateStr, "en-ZA");
+            // });
+
+            /* Deprecated */
+            // switch (when) {
+            //     case 'last':
+            //         var Dates = getLastWeeksDate().getWeek();
+            //         break;
+            //     case 'next':
+            //         var Dates = getNextWeeksDate().getWeek();
+            //         break;
+            //     case 'this':
+            //         var Dates = getThisWeeksDate().getWeek();
+            //         break;
+            //     default:
+            //         var Dates = new Date().getWeek();
+            //         break;
+            // }
+
             //alert(Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString());
+            console.log(when + " weeks Dates Array:\n" + weekDatesArray);
 
-            elemDatesOutput1.innerHTML = Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString();
-            localStorage.setItem('weekly-survey-duration-dates', Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString());
-            // elemDatesOutput2.innerHTML = Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString();
-            localStorage.setItem('weekly-training-date-duration', Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString());
+            function makeLocalDateString(string) {
+                const dateStr = new Date(string);
+                const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                let day = dateStr.getDate();
+                let month = months[dateStr.getMonth()];
+                let year = dateStr.getFullYear();
+
+                return `${day} ${month} ${year}`;
+            }
+
+            // loop through all nodes of elemDatesOutput1 and add innerHTML
+            elemDatesOutput1.forEach(nodeElem => {
+                // nodeElem.innerHTML = Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString();
+                nodeElem.innerHTML = makeLocalDateString(weekDatesArray[0]) + ' to ' + makeLocalDateString(weekDatesArray[6]); //.toLocaleString('en-GB')
+            });
+
+
+            // localStorage.setItem('weekly-survey-duration-dates', Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString());
+            // localStorage.setItem('weekly-training-date-duration', Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString());
+            localStorage.setItem('weekly-survey-duration-dates', weekDatesArray[0] + ' to ' + weekDatesArray[6]);
+            localStorage.setItem('weekly-training-date-duration', weekDatesArray[0] + ' to ' + weekDatesArray[6]);
         }
 
         function openLink(evt, tabName) {
@@ -8671,15 +9524,23 @@ if (isset($_SESSION["currentUserAuth"])) {
             xhttp.send();
         }
 
+        //executes on button today, next or prev btn click
         function navCalender(nMonth, nYear, cmd) {
-            //executes on button next or prev btn click
-            //alert("clicked: "+cmd+" | Month: "+nMonth+" | Year: "+nYear);
+            // if cmd is today then we want to reset the calender to this month and year
+            if (cmd === "today") {
+                var date = new Date();
+                // get this month number
+                nMonth = date.getMonth();
+                // get this years number
+                nYear = date.getFullYear();
+            }
+            // alert("clicked: " + cmd + " | Month: " + nMonth + " | Year: " + nYear);
 
             reloadActivityCalender(nMonth, nYear);
         }
 
         // Make the DIV element draggable:
-        // dragElement(document.getElementById("drag-player-pin"));  // hide this for now
+        // dragElement(document.getElementById("drag-player-pinheader")); // hide this for now
 
         function dragElement(elmnt) {
             var pos1 = 0,
@@ -8726,12 +9587,12 @@ if (isset($_SESSION["currentUserAuth"])) {
         }
     </script>
 
-    <script src="../scripts/js/digital-clock.js"></script>
+    <script src="../scripts/js/digital-clock.js" onload="coreScriptLoaded_digiclock_js=true;"></script>
 
     <!-- Bootstrap JavaScript -->
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" onload="coreScriptLoaded_bootstrap_bundle_local_js=true;"></script>
 
-    <!-- Bootstrap Bundle JS -->
+    <!-- Bootstrap Bundle JS CDN -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
 </body>
 

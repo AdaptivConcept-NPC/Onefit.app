@@ -48,11 +48,11 @@
     <script>
         $(document).ready(function () {
             // user group subscriptions
-            $.compileUserCommunityGroupSubs = function () {
+            $.getUserCommunityGroupSubs = function () {
                 $.get("../scripts/php/main_app/compile_content/media_tab/main_user_media_gallery.php?dir=", function (data, status) {
                     if (status != "success") {
-                        console.log("Get Req Failed -> $.compileUserCommunityGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileUserCommunityGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        console.log("Get Req Failed -> $.getUserCommunityGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.getUserCommunityGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
                     } else {
                         $('#user-community-groups-subs-list').html(data);
                     }
@@ -555,13 +555,13 @@
     <script>
         function initialize() {
             // get full groups list
-            $.compileCommunityGroups();
-            $.compileTeamsGroups();
-            $.compileProGroups();
+            $.getCommunityGroups();
+            $.getTeamsGroups();
+            $.getProGroups();
             // get user group subs
-            $.compileUserCommunityGroupSubs();
-            $.compileUserTeamsGroupSubs();
-            $.compileUserProGroupSubs();
+            $.getUserCommunityGroupSubs();
+            $.getUserTeamsGroupSubs();
+            $.getUserProGroupSubs();
         }
         function clickmediatabMainSubTabs(name) {
             console.log(name);

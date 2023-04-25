@@ -4,26 +4,32 @@ require("../../../functions.php");
 
 if (!isset($_GET['dir'])) die("No directory specified.");
 
-$dirPath = $_GET['dir'];
+$requestDir = $_GET['dir'];
 $output = $gridContainerItems = null;
+
+if (!isset($_SESSION['currentUserUsername'])) die("Fatal Error");
+else $current_user_username = $_SESSION['currentUserUsername'];
 
 // function to list the files and sub-directories in a specified root directory
 function listDirectory($path)
 {
-    global $output, $gridContainerItems;
-    $items = scandir($path);
+    global $output, $gridContainerItems, $current_user_username;
+    $items = scandir("../../../../" . $path);
 
     foreach ($items as $item) {
 
         // Ignore the . and .. folders
         if ($item != "." and $item != "..") {
-            if (is_file($path . $item)) {
+            if (is_file("../../../../" . $path . $item)) {
                 // this is the file
                 // echo "-> " . $item . "<br>";
                 $fullPath = $path . $item;
+
                 $gridContainerItems .= <<<_END
                 <div class="grid-tile" style="background-color: #343434;>
-                    <div class="media-item-tile p-2 mx-0 center-container shadow d-flex align-items-end justify-content-between" style="border-radius: 25px; overflow: hidden; max-height: 200px; background-image: url('$fullPath');">
+                    <div class="media-item-tile p-2 mx-0 center-container shadow d-flex align-items-end justify-content-between" 
+                    style="border-radius:25px;overflow:hidden;">
+                        <img src="$fullPath" class="img-fluid" style="max-height: 30vh;border-radius:25px;" alt="$current_user_username's media - $item" />
                         <button class="onefit-buttons-style-tahiti p-3 d-grid" onclick="viewMedia('image','$fullPath')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="font-size: 20px !important;">
@@ -75,7 +81,7 @@ function listDirectory($path)
                 </div>
                 _END;
                 // echo "<div style='padding-left: 10px'>";
-                listIt($path . $item . "/");
+                listDirectory($path . $item . "/");
                 // echo "</div>";
             }
         }
@@ -85,18 +91,49 @@ function listDirectory($path)
     echo $output;
 }
 
-switch ($dirPath) {
+function dir_is_empty($dir)
+{
+    $handle = opendir($dir);
+    while (false !== ($entry = readdir($handle))) {
+        if ($entry != "." && $entry != "..") {
+            closedir($handle);
+            return false;
+        }
+    }
+    closedir($handle);
+    return true;
+}
+
+function noMediaItems($req)
+{
+    return <<<_END
+    <div class="text-center">
+        <h5>No media in .</h5>
+    </div>
+    _END;
+}
+
+switch ($requestDir) {
     case 'shared':
-        listDirectory("../../../../../media/profiles/$currentUser_Usrnm/shared_media");
+        $dirpathstring = "../media/profiles/$current_user_username/shared_media/";
+        if (dir_is_empty($dir)) listDirectory($dirpathstring);
+        else echo noMediaItems($requestDir);
         break;
     case 'private':
-        listDirectory("../../../../../media/profiles/$currentUser_Usrnm/private_media");
+        $dirpathstring = "../media/profiles/$current_user_username/private_media/";
+        listDirectory($dirpathstring);
         break;
-    case 'videos':
-        listDirectory("../../../../../media/profiles/$currentUser_Usrnm/video_media");
+    case 'video':
+        $dirpathstring = "../media/profiles/$current_user_username/video_media/";
+        listDirectory($dirpathstring);
+        break;
+    case 'audio':
+        $dirpathstring = "../media/profiles/$current_user_username/audio_media/";
+        listDirectory($dirpathstring);
         break;
 
     default:
+        die("Unknown path requested: $dirPath");
         break;
 }
 

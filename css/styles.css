@@ -530,19 +530,19 @@ h6 {
   display: none !important;
 }
 
-/*White scroller*/
-.no-scroller {
+/* *** light scroller - scroller for white/light bg containers */
+.light-scroller {
   overflow-y: auto !important;
-  max-height: 100vh !important;
+  /* max-height: 100vh !important; */
 }
 
 /* width */
-.no-scroller::-webkit-scrollbar {
-  width: 0px !important;
+.light-scroller::-webkit-scrollbar {
+  width: 10px !important;
 }
 
 /* Track */
-.no-scroller::-webkit-scrollbar-track {
+.light-scroller::-webkit-scrollbar-track {
   background: var(--mineshaft) !important;
   padding-top: 5px;
   margin: 10px 0;
@@ -550,8 +550,58 @@ h6 {
 }
 
 /* Handle */
-.no-scroller::-webkit-scrollbar-thumb {
+.light-scroller::-webkit-scrollbar-thumb {
   background: var(--white) !important;
+  border-radius: 50rem;
+}
+
+/* *** dark scroller - scroller for mineshaft/dark bg containers */
+.dark-scroller {
+  overflow-y: auto !important;
+  max-height: 100vh !important;
+}
+
+/* width */
+.dark-scroller::-webkit-scrollbar {
+  width: 0px !important;
+}
+
+/* Track */
+.dark-scroller::-webkit-scrollbar-track {
+  background: var(--mineshaft) !important;
+  padding-top: 5px;
+  margin: 10px 0;
+  border-radius: 50rem;
+}
+
+/* Handle */
+.dark-scroller::-webkit-scrollbar-thumb {
+  background: var(--white) !important;
+  border-radius: 50rem;
+}
+
+/* *** tahiti scroller - scroller for tahitigold(orangish)/tahiti bg containers */
+.dark-scroller {
+  overflow-y: auto !important;
+  max-height: 100vh !important;
+}
+
+/* width */
+.dark-scroller::-webkit-scrollbar {
+  width: 10px !important;
+}
+
+/* Track */
+.dark-scroller::-webkit-scrollbar-track {
+  background: var(--mineshaft) !important;
+  padding-top: 5px;
+  margin: 10px 0;
+  border-radius: 50rem;
+}
+
+/* Handle */
+.dark-scroller::-webkit-scrollbar-thumb {
+  background: var(--tahitigold) !important;
   border-radius: 50rem;
 }
 
@@ -938,7 +988,7 @@ h6 {
 .side-nav-link.active {
   color: var(--white) !important;
   background: rgb(232, 138, 4) !important;
-  background: linear-gradient(90deg, rgba(232, 138, 4, 1) 0%, rgba(52, 52, 52, 1) 100%) !important;
+  background: linear-gradient(90deg, rgba(232, 138, 4, 1) 0%, rgba(52, 52, 52, 0) 100%) !important;
 
   border-radius: 15px 0 0 15px !important;
   border-bottom: 0px !important;
@@ -1352,7 +1402,7 @@ div.horizontal-scroll-card-nav {
 }
 
 .chart-col-bar:hover {
-  transform: scale(1.1, 1.1);
+  transform: scale(1.02, 1.02);
 }
 
 .chart-col-bar-item {
@@ -1890,7 +1940,7 @@ div.horizontal-scroll-card-nav {
 /*Animations Only!*/
 .my-pulse-animation-tahiti {
   background: transparent;
-  border-radius: 50rem;
+  /* border-radius: 50rem; */
   animation: animate-tahiti 4s linear infinite;
   cursor: pointer;
 }
@@ -1915,7 +1965,7 @@ div.horizontal-scroll-card-nav {
 
 .my-pulse-animation-dark {
   background: transparent;
-  border-radius: 50rem;
+  /* border-radius: 50rem; */
   animation: animate-dark 4s linear infinite;
   cursor: pointer;
 }
@@ -1940,7 +1990,7 @@ div.horizontal-scroll-card-nav {
 
 .my-pulse-animation-light {
   background: transparent;
-  border-radius: 50rem;
+  /* border-radius: 50rem; */
   animation: animate-light 4s linear infinite;
   cursor: pointer;
 }
@@ -2134,7 +2184,7 @@ div.horizontal-scroll-card-nav {
 }
 
 /* Draggable Div */
-#drag-player-pin {
+.player-pin {
   position: absolute;
   z-index: 9;
   background-color: #333333;
@@ -2172,7 +2222,7 @@ div.horizontal-scroll-card-nav {
   margin-left: -20px;
 } */
 
-#drag-player-pinheader {
+.drag-player-pinheader {
   padding: 10px;
   cursor: move;
   z-index: 10;
@@ -2291,14 +2341,42 @@ div.horizontal-scroll-card-nav {
   transition: 0.3s;
 }
 
+.today {
+  background-color: var(--white) !important;
+  color: var(--mineshaft) !important;
+}
+
 .calender-day-item:hover {
-  background-color: var(--tahitigold) !important;
-  color: var(--white) !important;
+  background-color: var(--white) !important;
+  color: var(--mineshaft) !important;
   /* transform: scale(1.1, 1.1); */
 }
 
 .calender-day-item:active {
   background-color: var(--tahitigold) !important;
-  color: var(--white) !important;
+  color: var(--mineshaft) !important;
   transform: scale(1.2, 1.2);
+}
+
+/* soccerfield */
+#soccerfield {
+  background: url('../media/assets/soccer_pitch_imgs/field_1.jpeg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.formation-tactics-offcanvas-tray {
+  background: url('../media/assets/soccer_pitch_imgs/field_1.jpeg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  border-radius: 25px;
+  overflow: hidden;
 }

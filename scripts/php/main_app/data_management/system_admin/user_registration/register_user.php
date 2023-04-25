@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $surname = sanitizeMySQL($dbconn, $_POST['reg-surname']);
   $email = sanitizeMySQL($dbconn, $_POST['reg-email']);
   $contact = sanitizeMySQL($dbconn, $_POST['reg-contact']);
-  $idnum = sanitizeMySQL($dbconn, $_POST['reg-idnum']);
+  // $idnum = sanitizeMySQL($dbconn, $_POST['reg-idnum']);
   $dob = sanitizeMySQL($dbconn, $_POST['reg-dob']);
   $gender = sanitizeMySQL($dbconn, $_POST['reg-gender']);
   $race = sanitizeMySQL($dbconn, $_POST['reg-race']);
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $query = "INSERT INTO `users` 
   (`user_id`, `username`, `password_hash`, `user_name`, `user_surname`, `id_number`, `user_email`, `contact_number`, `date_of_birth`, `user_gender`, `user_race`, `user_nationality`, `account_active`) 
   VALUES 
-  (null, '$usrnm', '$pwdhash', '$name', '$surname', '$idnum', '$email', '$contact', '$dob', '$gender', '$race', '$nation', 0)";
+  (null, '$usrnm', '$pwdhash', '$name', '$surname', 'NULL', '$email', '$contact', '$dob', '$gender', '$race', '$nation', 0)";
   // die($query);
   $result = $dbconn->query($query);
 

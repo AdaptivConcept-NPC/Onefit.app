@@ -47,11 +47,11 @@
     <script>
         $(document).ready(function () {
             // user group subscriptions
-            $.compileUserCommunityGroupSubs = function () {
+            $.getUserCommunityGroupSubs = function () {
                 $.get("../scripts/php/main_app/compile_content/profile_tab/get_user_community_group_subs.php?entry=init", function (data, status) {
                     if (status != "success") {
-                        console.log("Get Req Failed -> $.compileUserCommunityGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileUserCommunityGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        console.log("Get Req Failed -> $.getUserCommunityGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.getUserCommunityGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
                     } else {
                         $('#user-community-groups-subs-list').html(data);
                     }
@@ -59,11 +59,11 @@
 
                 });
             }
-            $.compileUserTeamsGroupSubs = function () {
+            $.getUserTeamsGroupSubs = function () {
                 $.get("../scripts/php/main_app/compile_content/profile_tab/get_user_teams_group_subs.php?entry=init", function (data, status) {
                     if (status != "success") {
-                        console.log("Get Req Failed -> $.compileUserTeamsGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileUserTeamsGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        console.log("Get Req Failed -> $.getUserTeamsGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.getUserTeamsGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
                     } else {
                         $('#user-teams-groups-subs-list').html(data);
                     }
@@ -71,11 +71,11 @@
 
                 });
             }
-            $.compileUserProGroupSubs = function () {
+            $.getUserProGroupSubs = function () {
                 $.get("../scripts/php/main_app/compile_content/profile_tab/get_user_pro_group_subs.php?entry=init", function (data, status) {
                     if (status != "success") {
-                        console.log("Get Req Failed -> $.compileUserProGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileUserProGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        console.log("Get Req Failed -> $.getUserProGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.getUserProGroupSubs returned: \n[Status]: " + status + "\n[Data]: " + data);
                     } else {
                         $('#user-pro-groups-subs-list').html(data);
                     }
@@ -85,11 +85,11 @@
             }
 
             // complete group lists
-            $.compileCommunityGroups = function () {
+            $.getCommunityGroups = function () {
                 $.get("../scripts/php/main_app/compile_content/community_content/community_groups.php?entry=init", function (data, status) {
                     if (status != "success") {
-                        console.log("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        console.log("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
                     } else {
                         $('#community-groups-full-list').html(data);
                     }
@@ -98,11 +98,11 @@
                 });
             }
 
-            $.compileTeamsGroups = function () {
+            $.getTeamsGroups = function () {
                 $.get("../scripts/php/main_app/compile_content/teams_content/teams_groups.php?entry=init", function (data, status) {
                     if (status != "success") {
-                        console.log("Get Req Failed -> $.compileTeamsGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileTeamsGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        console.log("Get Req Failed -> $.getTeamsGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.getTeamsGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
                     } else {
                         $('#teams-groups-full-list').html(data);
                     }
@@ -111,11 +111,11 @@
                 });
             }
 
-            $.compileProGroups = function () {
+            $.getProGroups = function () {
                 $.get("../scripts/php/main_app/compile_content/premium_content/pro_groups.php?entry=init", function (data, status) {
                     if (status != "success") {
-                        console.log("Get Req Failed -> $.compileProGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.compileProGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        console.log("Get Req Failed -> $.getProGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.getProGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
                     } else {
                         $('#pro-groups-full-list').html(data);
                     }
@@ -1834,13 +1834,13 @@
     <script>
         function initialize() {
             // get full groups list
-            $.compileCommunityGroups();
-            $.compileTeamsGroups();
-            $.compileProGroups();
+            $.getCommunityGroups();
+            $.getTeamsGroups();
+            $.getProGroups();
             // get user group subs
-            $.compileUserCommunityGroupSubs();
-            $.compileUserTeamsGroupSubs();
-            $.compileUserProGroupSubs();
+            $.getUserCommunityGroupSubs();
+            $.getUserTeamsGroupSubs();
+            $.getUserProGroupSubs();
         }
         function clickProfileTabMainSubTabs(name) {
             console.log(name);
