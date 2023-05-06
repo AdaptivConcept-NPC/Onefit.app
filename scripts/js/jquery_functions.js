@@ -751,6 +751,88 @@ $(document).ready(function () {
         });
     }
 
+    // function for getting the max/highest requested prop (property/key) value from a json object or array - source: https://stackoverflow.com/questions/22949597/getting-max-values-in-json-array
+    function getMax(arr, prop) {
+        var max;
+        for (var i = 0; i < arr.length; i++) {
+            if (max == null || parseInt(arr[i][prop]) > parseInt(max[prop]))
+                max = arr[i];
+        }
+        return max;
+    }
+
+    $.getActivityTrackerStatsSummaryWidget = function () {
+        function compileWidget(requestFormat) {
+            // if request format value can either be: ui_default / json. If request format is not passed default it to ui_default
+            requestFormat = requestFormat || 'ui_default';
+
+            $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/activity_tracking/tracker_stats_widget.php?request=" + requestFormat, function (data, status) {
+                // console.log("getActivityTrackerStatsWidget returned: \n[Status]: " + status + "\n[Data]: " + data);
+
+                if (status != "success") {
+                    // provide an error message
+                    console.log("Get Req Failed -> $.getActivityTrackerStatsSummaryWidget returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    alert("Get Req Failed -> $.getActivityTrackerStatsSummaryWidget returned: \n[Status]: " + status + "\n[Data]: " + data);
+                } else {
+                    // update the stats in the main widget on the insights tab. We will call a specific function that get the stats in json format and stores the json to localstorage
+                    switch (requestFormat) {
+                        case 'ui_default':
+                            // ui returns and push it to the elems with .activity-tracker-stats-widget-container
+                            $('.activity-tracker-stats-widget-container').html(data);
+                            break;
+                        case 'json':
+                            // store results in localstorage and push/map values to the ui elems on the main widget on the insights tab 
+                            localStorage.setItem('ActivityTrackerStatsSummaryJson', data);
+                            console.log("($.getActivityTrackerStatsSummaryWidget) Returned JSON: \n" + data);
+                            // alert("Output Test - Check JSON output on the console."); //test notification
+                            // we will take the values returned from the json object and pass them to the main activity tracker stats widget ui on the insights tab
+                            let summaryStatsJsonData = JSON.parse(data);
+
+                            // 'averageHeartrate' => null, 'averageTemp' => null, 'averageSpeed' => null, 'totalSteps' => null
+                            $('.heartrate-avg-stat').html(summaryStatsJsonData['averageHeartrate']);
+                            $('.temp-avg-stat').html(summaryStatsJsonData['averageTemp']);
+                            $('.speed-avg-stat').html(summaryStatsJsonData['averageSpeed']);
+                            $('.steps-taken-stat').html(summaryStatsJsonData['totalSteps']);
+                            $('.avg-bmi-stat').html(summaryStatsJsonData['averageBMI']);
+
+                            // go back to the locally stored chart js json data and get the latest entries or max entries according to the requirments of the various tracked data types
+                            // heartrate - get the highest heart rate
+                            let highestHeartrateEntry = getMax(JSON.parse(localStorage.getItem('heart_rate_monitor_chart_data')), 'bpm');
+                            $('.latest-heartrate-entry-value').html(highestHeartrateEntry['bpm'] + " bpm");
+                            $('.avg-heartrate-latest-update-datetime').html(moment(highestHeartrateEntry['date'] + " " + highestHeartrateEntry['time']).fromNow());
+                            // temperature
+                            let highestTempEntry = getMax(JSON.parse(localStorage.getItem('body_temp_monitor_chart_data')), 'temperature');
+                            $('.latest-temp-entry-value').html(highestTempEntry['temperature'] + " °C");
+                            $('.avg-temp-latest-update-datetime').html(moment(highestTempEntry['date'] + " " + highestTempEntry['time']).fromNow());
+                            // speed
+                            let highestSpeedEntry = getMax(JSON.parse(localStorage.getItem('speed_monitor_chart_data')), 'speed');
+                            $('.highest-speed-entry-value').html(highestSpeedEntry['speed'] + " m/s");
+                            $('.highest-speed-entry-datetime').html(moment(highestSpeedEntry['date'] + " " + highestSpeedEntry['time']).fromNow());
+                            // steps - using fitbit data if available
+                            // weight / bmi
+                            let highestBMIEntry = getMax(JSON.parse(localStorage.getItem('bmi_weight_monitor_chart_data')), 'bmi');
+                            $('.latest-bmi-entry-value').html(highestBMIEntry['bmi'] + " (weight: " + highestBMIEntry['weight'] + ")");
+                            $('.bmi-latest-update-datetime').html(moment(highestBMIEntry['date'] + " " + highestBMIEntry['time']).fromNow());
+                            break;
+
+                        default:
+                            // request format is unknown. console log and notify user
+                            console.log('($.getActivityTrackerStatsSummaryWidget) Requested unknown request format: ' + requestFormat);
+                            alert('Activity Tracker Summary Stats Widget Error \nRequested unknown request format: ' + requestFormat);
+                            break;
+                    }
+
+                }
+            });
+        }
+
+        const requestFormats = ["ui_default", "json"];
+
+        requestFormats.forEach(reqformat => {
+            compileWidget(reqformat);
+        });
+    }
+
     // load Teams Activity Capturing Form
     $.loadTeamsActivityCaptureForm = function (day, grpRefcode) {
         // alert("../scripts/php/main_app/data_management/system_admin/team_athletics_data/compile_teams_add_new_activity_day_form.php?day=" + day + "&gref=" + grpRefcode);

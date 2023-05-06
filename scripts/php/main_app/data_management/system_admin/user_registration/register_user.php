@@ -1,7 +1,7 @@
 <?php
 session_start();
-require("../../../config.php");
-require_once("../../../functions.php");
+require("../../../../config.php");
+require_once("../../../../functions.php");
 
 //test connection - if fail then die
 if ($dbconn->connect_error) die("Fatal Error");
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $dbconn->close();
 
   // create a media folder for the user 
-  $dir_path = '../../../../../media/profiles/' . $usrnm;
+  $dir_path = '../../../../../../media/profiles/' . $usrnm;
 
   // Checking whether the directory exists or not
   if (!is_dir($dir_path)) {
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "$usrnm - user media folder already exists";
   }
 
-  header("Location: ../../../../../registration/build_profile/?pid=$profile_id&uid=$user_id"); //index.php
+  header("Location: ../../../../../../registration/build_profile/?pid=$profile_id&uid=$user_id"); //index.php
 
   //Prepare Statement - Getting Fata Error:  Uncaught Error: Cannot pass parameter 2 by reference in C:\wamp64\www\Onefit\scripts\php\userprofile\register_user.php on line 15
   /* $stmt = $dbconn->prepare('INSERT INTO users VALUES(?,?,?, ?,?,?, ?,?,?, ?,?,?, ?)');

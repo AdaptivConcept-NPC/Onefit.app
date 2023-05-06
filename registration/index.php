@@ -73,11 +73,11 @@
     <!-- Navigation bar -->
     <nav class="navbar navbar-light sticky-top navbar-style">
       <div class="container-fluid">
-        <a class="navbar-brand fs-1 text-white comfortaa-font" href="../index.html">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></a>
+        <a class="navbar-brand fs-1 text-white comfortaa-font" href="../index.php">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></a>
         <button class="navbar-toggler shadow onefit-buttons-style-dark bg-transparent p-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <!--<span class="navbar-toggler-icon"></span>-->
           <!--<img src="./media/assets/One-Symbol-Logo-Two-Tone.svg" alt="" class="img-fluid logo-size-1" />-->
-          <span class="material-icons material-icons-round align-middle" style="font-size: 28px!important;"> auto_stories <!-- menu_open --> </span>
+          <span class="material-icons material-icons-round align-middle" style="font-size: 28px!important;"> public <!-- menu_open --> </span>
         </button>
         <div class="offcanvas offcanvas-end offcanvas-menu-primary-style" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="h-100" id="offcanvas-menu">
@@ -668,7 +668,7 @@
             looking for.</p>
           <hr class="mx-4 bg-white" />
 
-          <form id="community-registration-form" name="community-registration-form" class="container text-center comfortaa-font fs-5 needs-validation" method="post" action="../scripts/php/main_app/data_management/user_registration/register_user.php" autocomplete="off">
+          <form id="community-registration-form" name="community-registration-form" class="container text-center comfortaa-font fs-5 needs-validation" method="post" action="../scripts/php/main_app/data_management/system_admin/user_registration/register_user.php" autocomplete="off">
             <div class="output-container my-2" id="output-container">
               <!--<?php echo $output; ?>-->
             </div>
@@ -703,7 +703,8 @@
 
             <div class="form-group mb-4 text-start">
               <label class="fw-bold poppins-font" for="reg-contact" style="color:var(--tahitigold);">Phone number</label>
-              <input class="form-control-text-input p-4" type="tel" pattern="((\+|00)?[1-9]{2}|0)[0-9]{8}" value="+27" name="reg-contact" id="reg-contact" placeholder="Required." required />
+              <input class="form-control-text-input p-4" type="tel" value="+27" name="reg-contact" id="reg-contact" placeholder="Required." required />
+              <!-- pattern="((\+|00)?[1-9]{2}|0)[0-9]{8}" must fix pattern, not working at the moment -->
               <p class="text-center">
                 <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;color:var(--tahitigold);">
                   crisis_alert

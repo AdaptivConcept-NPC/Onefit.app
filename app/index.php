@@ -131,7 +131,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <title><?php echo $usrprof_name . " " . $usrprof_surname; ?> - Onefit.app&trade; | Onefit.Net&reg; &copy; <?php echo date('Y'); ?></title>
 
     <script>
-        var coreScriptLoaded = coreScriptLoaded_googlefont_icons_css = coreScriptLoaded_plyrio_css = coreScriptLoaded_plyrio_js = coreScriptLoaded_hls_js = coreScriptLoaded_bootstrap_local_css = coreScriptLoaded_bootstrap_bundle_local_js = coreScriptLoaded_w3_css = coreScriptLoaded_custom_styles_css = coreScriptLoaded_digiclock_css = coreScriptLoaded_digiclock_js = coreScriptLoaded_timeline_css = coreScriptLoaded_custom_jquery_func_js = coreScriptLoaded_custom_script_js = coreScriptLoaded_custom_api_req_js = coreScriptLoaded_jquery_local_js = coreScriptLoaded_custom_jquery_func_js = coreScriptLoaded_moment_js = coreScriptLoaded_googlefonts_fonts = coreScriptLoaded_googlefonts_css = coreScriptLoaded_soccerfield_css = coreScriptLoaded_soccerfield_css = coreScriptLoaded_soccerfield_js = coreScriptLoaded_chartjs_js = false;
+        var coreScriptLoaded = coreScriptLoaded_googlefont_icons_css = coreScriptLoaded_plyrio_css = coreScriptLoaded_plyrio_js = coreScriptLoaded_hls_js = coreScriptLoaded_bootstrap_local_css = coreScriptLoaded_bootstrap_bundle_local_js = coreScriptLoaded_bootstrap_bundle_cdn_js = coreScriptLoaded_w3_css = coreScriptLoaded_custom_styles_css = coreScriptLoaded_digiclock_css = coreScriptLoaded_digiclock_js = coreScriptLoaded_timeline_css = coreScriptLoaded_custom_jquery_func_js = coreScriptLoaded_custom_script_js = coreScriptLoaded_custom_api_req_js = coreScriptLoaded_jquery_local_js = coreScriptLoaded_custom_jquery_func_js = coreScriptLoaded_moment_js = coreScriptLoaded_googlefonts_fonts = coreScriptLoaded_googlefonts_css = coreScriptLoaded_soccerfield_css = coreScriptLoaded_soccerfield_css = coreScriptLoaded_soccerfield_js = coreScriptLoaded_chartjs_js = false;
     </script>
 
     <!--fontawesome-->
@@ -222,7 +222,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <div id="twitter-social-panel" class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4 pb-0 d-nonez d-lg-blockz right-left-grad-tahiti-mineshaft bg-darkz shadow-lgz">
         <!--  d-none d-lg-block p-4 -->
         <div class="position-relative d-flex gap-2 w-100 justify-content-center mb-4">
-            <button class="p-4 m-0 shadow onefit-buttons-style-dark-twitter onefit-buttons-style-light-twitterz" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
+            <button class="show-left-side-panels p-4 m-0 shadow onefit-buttons-style-dark-twitter onefit-buttons-style-light-twitterz" type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed" aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
                 <div class="d-grid">
                     <span class="material-icons material-icons-round" style="font-size: 48px !important;">
                         <i class="fab fa-twitter" style="font-size: 40px;"></i>
@@ -268,7 +268,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             </ul>
         </div>
         <div class="d-grid gap-2 w-100">
-            <button class="p-4 m-0 shadow onefit-buttons-style-dark border-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCreateCommandList" aria-expanded="false" aria-controls="collapseCreateCommandList">
+            <button class="show-right-side-panels p-4 m-0 shadow onefit-buttons-style-dark border-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCreateCommandList" aria-expanded="false" aria-controls="collapseCreateCommandList">
                 <div class="d-grid">
                     <span class="material-icons material-icons-round" style="font-size: 48px !important;">
                         brush
@@ -304,6 +304,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             <p id="output-msg-text" class="text-center poppins-font" style="color: var(--mineshaft);">Please check your internet connection</p>
         </nav>
     </div>
+    <!-- ./ offline Curtain -->
 
     <!-- Load Curtain -->
     <div class="load-curtain" id="LoadCurtain" style="display: block;">
@@ -737,7 +738,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                 <button id="main-nav-ext-links-btn" class="navbar-toggler shadow onefit-buttons-style-dark p-4 hide-right-side-panels" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <div class="d-grid gap-2">
-                        <span class="material-icons material-icons-round align-middle" style="font-size: 28px !important"> auto_stories <!-- menu_open --> </span>
+                        <span class="material-icons material-icons-round align-middle" style="font-size: 28px !important"> public <!-- menu_open --> </span>
                         <span class="d-none d-lg-block" id="" style="font-size: 10px;">Navigation</span>
                     </div>
                 </button>
@@ -745,18 +746,33 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <!-- Navigation Menu Offcanvas -->
                 <div class="offcanvas offcanvas-end offcanvas-menu-primary-style fitness-bg-containerz" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div class="h-100z" id="offcanvas-menu">
-                        <div class="offcanvas-header shadow fs-1" style="background-color: #343434; color: #fff">
-                            <img src="../media/assets/One-Symbol-Logo-White.svg" alt="" class="img-fluid logo-size-2 pulse-animation" />
-
-                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="overflow-x: hidden;">
-                                Navigation
+                        <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
+                            <img src="./media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;">
+                            <h5 class="offcanvas-title text-center" id="offcanvasNavbarLabel">
+                                <span class="material-icons material-icons-round align-middle" style="color: #ffa500; cursor: pointer;font-size:20px!important;">
+                                    public
+                                </span>
+                                Web.
                             </h5>
-                            <button type="button" class="onefit-buttons-style-light shadow p-3" data-bs-dismiss="offcanvas" aria-label="Close">
+                            <button type="button" class="onefit-buttons-style-light shadow p-4" data-bs-dismiss="offcanvas" aria-label="Close">
                                 <span class="material-icons material-icons-round align-middle"> close </span>
                             </button>
                         </div>
                         <div class="offcanvas-body" style="padding-bottom: 40px; overflow-y: auto; overflow-x: hidden; max-height: 80vh;">
                             <ul class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3">
+                                <li class="nav-item d-grid gap-2">
+                                    <button class="onefit-buttons-style-danger rounded-pill p-4 text-center my-4 shadow" style="transform: translate(0) !important;" onclick="launchLink('../scripts/php/destroy_session.php')" style="border-radius: 25px !important;">
+                                        <div class="row align-items-center">
+                                            <span class="material-icons material-icons-outlined align-middle" style="color: var(--tahitigold);">
+                                                logout
+                                            </span>
+                                            <span class="align-middle">
+                                                Logout.
+                                            </span>
+                                        </div>
+                                    </button>
+                                </li>
+                                <hr class="text-dark" style="height: 5px;" />
                                 <li class="nav-item">
                                     <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Dashboard</a>
                                 </li>
@@ -770,26 +786,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Contact</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active p-4" style="border-radius: 25px !important;" aria-current="page" href="#">Onefit.app&trade;</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Onefit.Edu&trade; (Blog)</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Onefit.Shop&trade;</a>
-                                </li>
-                                <hr class="text-dark" style="height: 5px;" />
-                                <li class="nav-item d-grid gap-2">
-                                    <button class="onefit-buttons-style-danger p-4 text-center my-4" style="transform: translate(0) !important;" onclick="launchLink('../scripts/php/destroy_session.php')" style="border-radius: 25px !important;">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-4">
-                                                <img src="../media/profiles/0_default/default_profile_pic.svg" class="img-fluid rounded-circle" height="50" width="50" alt="user profile picture">
-                                            </div>
-                                            <div class="col-md-8">
-                                                Sign Out
-                                            </div>
-                                        </div>
-                                    </button>
                                 </li>
                             </ul>
                         </div>
@@ -804,17 +804,19 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </button>
 
                 <div class="offcanvas offcanvas-start offcanvas-menu-primary-style fitness-bg-containerz" tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
-                    <div class="offcanvas-header align-center shadow" style="background-color: #343434;">
-                        <span class="material-icons material-icons-round" style="font-size: 48px !important"> notifications </span>
-
-                        <h5 id="offcanvasTopLabel" style="overflow-x: hidden;">
-                            Notifications</h5>
-
-                        <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="offcanvas" aria-label="Close">
-                            <span class="material-icons material-icons-round"> cancel </span>
+                    <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
+                        <!-- <img src="./media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;"> -->
+                        <button type="button" class="onefit-buttons-style-light shadow p-4" data-bs-dismiss="offcanvas" aria-label="Close">
+                            <span class="material-icons material-icons-round align-middle"> close </span>
                         </button>
+                        <h5 class="offcanvas-title text-center" id="offcanvasNavbarLabel">
+                            <span class="material-icons material-icons-round align-middle" style="color: #ffa500; cursor: pointer;font-size:20px!important;">
+                                notifications
+                            </span>
+                            Notifications.
+                        </h5>
                     </div>
-                    <div class="offcanvas-body top-down-grad-white">
+                    <div class="offcanvas-body top-down-grad-dark">
                         <!-- style="background-color: rgba(255, 255, 255, 0.8);" -->
                         <ul class="list-group list-group-flush shadow p-4z" id="notif-list" style="border-radius: 25px; max-height: 60vh;" hidden>
                             <li class="list-group-item border-dark">An item</li>
@@ -3063,7 +3065,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <button class="btn p-4 onefit-buttons-style-dark my-pulse-animation-tahiti border-5 border hide-side-panels" style="border-radius: 25px !important; border-color: #ffa500 !important;" type="button" data-bs-toggle="modal" data-bs-target="#tabCaptureActivityTrackerDataModal">
                                         <!--  data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="heartrate-expand-icon heartrate-data-input-form-container" -->
                                         <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid mb-2" />
-                                        <span class="material-icons material-icons-round">fitbit</span>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            add_circle_outline
+                                        </span>
+                                        <span class="d-none d-lg-block" style="font-size: 8px;">
+                                            Capture Stats.
+                                        </span>
                                     </button>
                                 </div>
                             </div>
@@ -3132,8 +3139,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <span class="material-icons material-icons-round">
                                                 favorite
                                             </span>
-                                            <h1>65<span style="font-size: 10px;" class="align-top">BPM</span></h1>
-                                            <p class="text-muted fw-bold">75 BPM, 5h ago</p>
+                                            <h1>
+                                                <span class="heartrate-avg-stat">
+                                                    <div class="spinner-grow text-white" style="width:10px;height:10px;" role="status">
+                                                        <span class="visually-hidden">Loading Avg Heartrate...</span>
+                                                    </div>
+                                                </span>
+                                                <span style="font-size: 10px;" class="align-top">BPM</span>
+                                            </h1>
+                                            <p class="text-muted fw-bold">
+                                                <span class="latest-heartrate-entry-value">--- BPM</span>,
+                                                <span class="avg-heartrate-latest-update-datetime">last update</span><!-- format: 10m ago / date string if greater than 24 hours -->
+                                            </p>
                                         </div>
 
                                         <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target="#heartrate-data-input-form-container" aria-expanded="false" aria-controls="heartrate-data-input-form-container">
@@ -3237,8 +3254,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <span class="material-icons material-icons-round">
                                                 device_thermostat
                                             </span>
-                                            <h1>36.9<span style="font-size: 10px;" class="align-top">&deg;C</span></h1>
-                                            <p class="text-muted fw-bold">37.2&deg;C, 10m ago</p>
+                                            <h1>
+                                                <span class="temp-avg-stat">
+                                                    <div class="spinner-grow text-white" style="width:10px;height:10px;" role="status">
+                                                        <span class="visually-hidden">Loading Avg Temparature...</span>
+                                                    </div>
+                                                </span>
+                                                <span style="font-size: 10px;" class="align-top">&deg;C</span>
+                                            </h1>
+                                            <p class="text-muted fw-bold">
+                                                <span class="latest-temp-entry-value">---&deg;C</span>,
+                                                <span class="avg-temp-latest-update-datetime">last update</span><!-- format: 10m ago / date string if greater than 24 hours -->
+                                            </p>
                                         </div>
 
                                         <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target="#bodytemp-data-input-form-container" aria-expanded="false" aria-controls="bodytemp-data-input-form-container">
@@ -3342,8 +3369,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <span class="material-icons material-icons-round">
                                                 bolt
                                             </span>
-                                            <h1>10<span style="font-size: 10px;" class="align-top">m/s</span></h1>
-                                            <p class="text-muted fw-bold">Highest Marked Speed: 15m/s</p>
+                                            <h1>
+                                                <span class="speed-avg-stat">
+                                                    <div class="spinner-grow text-white" style="width:10px;height:10px;" role="status">
+                                                        <span class="visually-hidden">Loading Average Speed...</span>
+                                                    </div>
+                                                </span>
+                                                <span style="font-size: 10px;" class="align-top">m/s</span>
+                                            </h1>
+                                            <p class="text-muted fw-bold">
+                                                Highest Marked Speed: <span class="highest-speed-entry-value">15m/s</span>,
+                                                <span class="highest-speed-entry-datetime">last update</span><!-- format: 10m ago / date string if greater than 24 hours -->
+                                            </p>
                                         </div>
 
                                         <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target="#speedmonitor-data-input-form-container" aria-expanded="false" aria-controls="speedmonitor-data-input-form-container">
@@ -3447,8 +3484,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <span class="material-icons material-icons-round">
                                                 directions_walk
                                             </span>
-                                            <h1>1896<span style="font-size: 10px;" class="align-top">Steps</span></h1>
-                                            <p class="text-muted fw-bold">213 Steps remaining (Achievement)</p>
+                                            <h1>
+                                                <span class="steps-taken-stat">
+                                                    <div class="spinner-grow text-white" style="width:10px;height:10px;" role="status">
+                                                        <span class="visually-hidden">Loading Steps taken...</span>
+                                                    </div>
+                                                </span>
+                                                <span style="font-size: 10px;" class="align-top">Steps</span>
+                                            </h1>
+                                            <p class="text-muted fw-bold">
+                                                Steps remaining (Goal: <span class="steps-taken-stat">---</span> / <span class="steps-target">?</span>),
+                                                <span class="steps-latest-update-datetime">last update</span><!-- format: 10m ago / date string if greater than 24 hours -->
+                                            </p>
                                         </div>
 
                                         <img src="../media/assets/smartwatches/branding/fitbit-png-logo-white.png" class="img-fluid mt-4 mb-2" style="max-width: 200px;" alt="fitbit logo">
@@ -3480,8 +3527,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <span class="material-icons material-icons-round">
                                                 monitor_weight
                                             </span>
-                                            <h1>60<span style="font-size: 10px;" class="align-top">kg</span></h1>
-                                            <p class="text-muted fw-bold">75kg, 1w ago</p>
+                                            <h1>
+                                                <span class="avg-bmi-stat">
+                                                    <div class="spinner-grow text-white" style="width:10px;height:10px;" role="status">
+                                                        <span class="visually-hidden">Loading Avg BMI...</span>
+                                                    </div>
+                                                </span>
+                                                <span style="font-size: 10px;" class="align-top">kg</span>
+                                            </h1>
+                                            <p class="text-muted fw-bold">
+                                                <span class="latest-bmi-entry-value">---kg</span>,
+                                                <span class="bmi-latest-update-datetime">last update</span><!-- format: 10m ago / date string if greater than 24 hours -->
+                                            </p>
                                         </div>
 
                                         <button class="btn p-4 mt-4 onefit-buttons-style-tahiti" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target="#bmiweight-data-input-form-container" aria-expanded="false" aria-controls="">
@@ -4284,17 +4341,17 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                             <!-- inline/flex more insights tab controller btns -->
                             <div id="inline-more-insights-tab-btns" class="d-grid align-items-centerz d-lg-none d-xl-none d-xxl-none w3-animate-bottom p-2" style="background: #333; border-radius: 25px; overflow: hidden;">
-                                <div class="d-grid gap-2 p-4">
+                                <div class="d-flex gap-2 pt-0 pb-4 justify-content-center">
                                     <button class="onefit-buttons-style-dark p-4" type="button" data-bs-toggle="collapse" data-bs-target="#more-insights-inline-nav-container" aria-expanded="true" aria-controls="more-insights-inline-nav-container">
                                         <div class="d-grid gap-2">
                                             <span class="material-icons material-icons-round"> menu </span>
-                                            <p class="m-0" style="font-size: 8px;">More insights</p>
+                                            <p class="m-0" style="font-size: 8px;">More insights.</p>
                                         </div>
                                     </button>
                                 </div>
 
-                                <div id="more-insights-inline-nav-container" class="w3-animate-bottom horizontal-scroll no-scroller px-4 pt-0 pb-0 my-0 collapse" style="overflow-y: hidden;">
-                                    <nav class="m-0 mb-4">
+                                <div id="more-insights-inline-nav-container" class="w3-animate-bottom horizontal-scroll no-scroller px-4 py-0 my-0 collapse" style="overflow-y: hidden;">
+                                    <nav class="m-0 mb-1">
                                         <div class="nav force-inline-nav nav-tabs border-0 d-flex justify-content-between" id="nav-tab-insightsSubFeatureCategories" role="tablist" style="border-color: #ffa500 !important">
                                             <button class="nav-link p-4 comfortaa-font fw-bold active position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-challenges-tab" onclick="clickTrainingProgramCategories('challenges')">
                                                 Challenges.
@@ -4343,14 +4400,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         </div>
                                     </nav>
                                     <!-- swipe icon -->
-                                    <div class="text-end">
+                                    <div class="text-end d-none">
                                         <span class="material-icons material-icons-round" style="font-size: 15px!important;">
                                             swipe_left
                                         </span>
                                     </div>
 
                                     <!-- Fitness/Training programe categories - hidden display: none -->
-                                    <div class="nav d-grid nav-pills d-none" id="v-sub-tab-pills-insights-subfeatures-tab" role="tablist" aria-orientation="vertical" aria-hidden="true">
+                                    <div class="nav d-grid nav-pills d-none justify-content-between" id="v-sub-tab-pills-insights-subfeatures-tab" role="tablist" aria-orientation="vertical" aria-hidden="true">
                                         <button class="nav-link active" id="v-sub-tab-pills-insights-challenges-tab" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-insights-challenges" type="button" role="tab" aria-controls="v-sub-tab-pills-insights-challenges" aria-selected="true">
                                             <!--onclick="openLink(event, 'InsightsTabChallenges')"-->
                                             <span class="material-icons material-icons-rounded">stars</span>
@@ -4558,8 +4615,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <div class="tab-content" id="v-pills-tabInsightsSubFeatures">
                                 <!-- insights tab - sub-tabs -->
                                 <!-- Challenges Tab -->
-                                <div class="tab-pane fade show active w3-animate-bottom no-scroller py-4 px-2 gap-4" id="v-sub-tab-pills-insights-challenges" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-challenges-tab">
-                                    <div class="d-grid text-center mt-4 ">
+                                <div class="tab-pane fade show active w3-animate-bottom no-scroller p-2 gap-4" id="v-sub-tab-pills-insights-challenges" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-challenges-tab">
+                                    <div class="d-grid text-center mt-4">
                                         <span class="material-icons material-icons-round">stars</span>
                                         <h5 class="fs-1">Challenges</h5>
                                     </div>
@@ -4631,7 +4688,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <!-- ./ Challenges Tab -->
                                 <!-- *************************************************** -->
                                 <!-- Google Surveys Tab -->
-                                <div class="tab-pane fade w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-googlesurveys" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-googlesurveys-tab">
+                                <div class="tab-pane fade w3-animate-bottom no-scroller p-2" id="v-sub-tab-pills-insights-googlesurveys" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-googlesurveys-tab">
                                     <div class="d-grid text-center mt-4">
                                         <span class="material-icons material-icons-round">poll</span>
                                         <h5 class="fs-1">Google Community Surveys</h5>
@@ -4718,7 +4775,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <!-- XXXXXX- removed indi-athletics tab here -XXXXXX -->
                                 <!-- *************************************************** -->
                                 <!-- Team Athletics Tab -->
-                                <div class="tab-pane fade w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-teamathletics" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-teamathletics-tab">
+                                <div class="tab-pane fade w3-animate-bottom no-scroller p-2" id="v-sub-tab-pills-insights-teamathletics" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-teamathletics-tab">
                                     <div class="d-grid text-center mt-4">
                                         <span class="material-icons material-icons-round">diversity_2</span>
                                         <h5 class="fs-1">Team Athletics</h5>
@@ -5561,19 +5618,20 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <!-- ./ Team Athletics Tab -->
                                 <!-- *********************************** -->
                                 <!-- Wellness Tab -->
-                                <div class="tab-pane fade w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-wellness" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-wellness-tab">
+                                <div class="tab-pane fade w3-animate-bottom no-scroller p-2" id="v-sub-tab-pills-insights-wellness" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-wellness-tab">
                                     <div class="d-grid text-center mt-4">
                                         <span class="material-icons material-icons-round">self_improvement</span>
                                         <h5 class="mt-4 fs-1">Wellness Tracking</h5>
                                     </div>
                                     <hr class="text-white">
 
-                                    <h1 class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti my-4">Wellness Tracking.</h1>
+                                    <img src="../media/assets/app_graphics/feature_unavailable_white.svg" class="img-fluid my-4" alt="this feature is currently unavailable.">
+                                    <!-- <h1 class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti my-4">Wellness Tracking.</h1>
 
                                     <div class="mt-4" id="wellness-tracking-container">
                                         <img src="../media/assets/smartwatches/9aea1c56ffe237edeb69ecd3988bfd51.jpg" class="img-fluid shadow mb-4" style="border-radius: 25px;" alt="dashboard placeholder">
                                         <img src="../media/assets/smartwatches/fitbit-web1.webp" class="img-fluid shadow mb-4" style="border-radius: 25px;" alt="dashboard placeholder">
-                                    </div>
+                                    </div> -->
 
                                     <hr class="text-white">
 
@@ -5605,7 +5663,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <!-- ./ Wellness Tab -->
                                 <!-- ********************************* -->
                                 <!-- Nutrition Tab -->
-                                <div class="tab-pane fade w3-animate-bottom no-scroller py-4 px-2" id="v-sub-tab-pills-insights-nutrition" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-nutrition-tab">
+                                <div class="tab-pane fade w3-animate-bottom no-scroller p-2" id="v-sub-tab-pills-insights-nutrition" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-nutrition-tab">
                                     <div class="d-grid text-center mt-4">
                                         <span class="material-icons material-icons-round">restaurant</span>
                                         <h5 class="mt-4 fs-1">Nutrition Tracking</h5>
@@ -5613,10 +5671,11 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <hr class="text-white">
 
-                                    <h1 class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti my-4">Nutrition Tracking.</h1>
+                                    <img src="../media/assets/app_graphics/feature_unavailable_white.svg" class="img-fluid my-4" alt="this feature is currently unavailable.">
+                                    <!-- <h1 class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti my-4">Nutrition Tracking.</h1>
                                     <div class="mt-4" id="wellness-tracking-container">
                                         <img src="../media/assets/smartwatches/A8_Dashboard_Overview.png" class="img-fluid shadow mb-4" style="border-radius: 25px;" alt="dashboard placeholder">
-                                    </div>
+                                    </div> -->
 
                                     <hr class="text-white">
 
@@ -6352,18 +6411,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </h1>
 
                     <button type="button" class="onefit-buttons-style-danger p-2" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
-                        <span class="material-icons material-icons-round"> cancel </span>
+                        <span class="material-icons material-icons-round"> close </span>
                     </button>
                 </div>
 
                 <!-- Widget: User Profile Preview List (Widget: UPPL - It is hidden on lg screens) -->
-                <iframe id="iframe-load-profile-header-section" class="w-100 mx-4 d-lg-none border-5 border-bottom" src="../scripts/php/main_app/compile_content/profile_tab/user_profile_header.php?usnm=KING_001" frameborder="0" style="height: 50vh; border-radius: 25px;border-color: #ffa500 !important;"></iframe>
+                <!-- <iframe id="iframe-load-profile-header-section" class="w-100 mx-4 d-lg-none border-5 border-bottom" src="../scripts/php/main_app/compile_content/profile_tab/user_profile_header.php?usnm=KING_001" frameborder="0" style="height: 50vh; border-radius: 25px;border-color: #ffa500 !important;"></iframe> -->
                 <!-- ./ Widget: User Profile Preview List -->
 
                 <div class="row align-items-center mb-4">
                     <div class="col-lg text-center my-4">
                         <!-- Widget: mini profile header -->
-                        <div id="mini-profile-header" class="d-none d-lg-block mb-4 container-xlg border-5 border-start border-end" style="border-radius: 25px; overflow: hidden;border-color: #ffa500 !important;">
+                        <div id="mini-profile-header" class="d-nonez d-lg-blockz mb-4 container-xlg border-5 border-start border-end" style="border-radius: 25px; overflow: hidden;border-color: #ffa500 !important;">
                             <div class='text-center'>
                                 <!-- Users Profile Banner -->
                                 <div class="shadow-lg display-profile-banner-container">
@@ -6429,42 +6488,45 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <!-- ./ Widget: mini profile header -->
 
                         <!-- Widget: activity tracker quick capture and view -->
-                        <div class="container-xlg p-4 shadow-lg d-inline-blockz border-5 border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
-                            <div class="row align-items-center text-center comfortaa-font">
-                                <div class="col-sm py-2 d-grid gap-2">
-                                    <!--<i class="fas fa-heart"></i>-->
-                                    <span class="align-middle fs-6">89<sup style="color: #ffa500;">b/s</sub></span>
-                                    <span class="material-icons material-icons-round align-middle"> monitor_heart </span>
+                        <div class="activity-tracker-stats-widget-container">
+                            <div class="container-xlg p-4 shadow-lg d-inline-blockz border-5 border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
+                                <div class="row align-items-center text-center comfortaa-font">
+                                    <div class="col-sm py-2 d-grid gap-2">
+                                        <!--<i class="fas fa-heart"></i>-->
+                                        <span class="align-middle fs-6">89<sup style="color: #ffa500;">b/s</sub></span>
+                                        <span class="material-icons material-icons-round align-middle"> monitor_heart </span>
 
-                                </div>
-                                <div class="col-sm py-2 d-inline"><span style="color: #ffa500">|</span></div>
-                                <div class="col-sm py-2 d-grid gap-2">
-                                    <!--<i class="fas fa-thermometer-half"></i>-->
-                                    <span class="align-middle fs-6">68.3<sup style="color: #ffa500;">&#8451;</sub></span>
-                                    <span class="material-icons material-icons-round align-middle"> device_thermostat </span>
+                                    </div>
+                                    <div class="col-sm py-2 d-inline"><span style="color: #ffa500">|</span></div>
+                                    <div class="col-sm py-2 d-grid gap-2">
+                                        <!--<i class="fas fa-thermometer-half"></i>-->
+                                        <span class="align-middle fs-6">68.3<sup style="color: #ffa500;">&#8451;</sub></span>
+                                        <span class="material-icons material-icons-round align-middle"> device_thermostat </span>
 
-                                </div>
-                                <div class="col-sm py-2 d-grid justify-content-center gap-2">
-                                    <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid p-2" />
-                                    <span class="material-icons material-icons-round align-middle rounded-circle my-pulse-animation-tahiti fs-6 p-2" style="color: #ffa500;">
-                                        add_circle_outline
-                                    </span>
-                                </div>
-                                <div class="col-sm py-2 d-grid gap-2">
-                                    <!--<i class="fas fa-bolt"></i>-->
-                                    <span class="align-middle fs-6">12.5<sup style="color: #ffa500;">ms</sub></span>
-                                    <span class="material-icons material-icons-round align-middle"> bolt </span>
+                                    </div>
+                                    <div class="col-sm py-2 d-grid justify-content-center gap-2">
+                                        <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid p-2" />
+                                        <span class="material-icons material-icons-round align-middle rounded-circle my-pulse-animation-tahiti fs-6 p-2" style="color: #ffa500;">
+                                            add_circle_outline
+                                        </span>
+                                    </div>
+                                    <div class="col-sm py-2 d-grid gap-2">
+                                        <!--<i class="fas fa-bolt"></i>-->
+                                        <span class="align-middle fs-6">12.5<sup style="color: #ffa500;">ms</sub></span>
+                                        <span class="material-icons material-icons-round align-middle"> bolt </span>
 
-                                </div>
-                                <div class="col-sm py-2 d-inline"><span style="color: #ffa500">|</span></div>
-                                <div class="col-sm py-2 d-grid gap-2">
-                                    <!--<i class="fas fa-walking"></i>-->
-                                    <span class="align-middle fs-6">1260<sup style="color: #ffa500; font-size: 10px;"> stps</sub></span>
-                                    <span class="material-icons material-icons-round align-middle"> directions_walk </span>
+                                    </div>
+                                    <div class="col-sm py-2 d-inline"><span style="color: #ffa500">|</span></div>
+                                    <div class="col-sm py-2 d-grid gap-2">
+                                        <!--<i class="fas fa-walking"></i>-->
+                                        <span class="align-middle fs-6">1260<sup style="color: #ffa500; font-size: 10px;"> stps</sub></span>
+                                        <span class="material-icons material-icons-round align-middle"> directions_walk </span>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                         <!-- Widget: activity tracker quick capture and view -->
 
                         <!-- Widget: Digital Clock -->
@@ -6527,7 +6589,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 <div class="card-img-overlay down-top-grad-dark d-grid align-items-end">
                                                     <!-- style="border-radius: 25px !important;" -->
                                                     <div class="text-start">
-                                                        <h5 class="card-title" style="color: #ffa500 !important;">Card title</h5>
+                                                        <h5 class="card-title" style="color: #ffa500 !important;">No media playing.</h5>
                                                         <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
                                                         <div class="d-inline card-text">
                                                             <span class="material-icons material-icons-outlined" style="color: #ffa500; font-size: 10px !important;">tag</span>
@@ -6780,19 +6842,124 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ Footer -->
 
     <!-- Modals ----------------------------------------------------------------------------------------- -->
+    <!-- modal quick access button tray -->
+    <div id="modal-btn-quick-tray" class="p-0 modal-btn-quick-tray fixed-bottom">
+        <!-- quick access tray collapse btn -->
+        <button type="button" class="onefit-buttons-style-tahiti rounded-circlez p-0z shadow collapsed" style="width:100px;height:100px;border-radius:25px 25px 25px 0;margin-top:-100px;" data-bs-toggle="collapse" data-bs-target="#modal-btn-collapse-container" aria-controls="modal-btn-collapse-container" aria-expanded="false" aria-label="modal quick access.">
+            <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important;">
+                shortcut
+            </span>
+            <span class="text-truncate align-middle d-nonez" style="font-size: 10px;">quick access.</span>
+        </button>
+        <!-- ./ quick access tray collapse btn -->
 
-    <!-- Button trigger modal>>>>>>>>>> Tab Navigation Modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tabNavModal" hidden>
-        Launch #tabNavModal</button>
+        <div id="modal-btn-quick-tray" class="px-0 modal-btn-quick-tray fixed-bottom">
+            <!-- quick access tray collapse btn -->
+            <button type="button" class="onefit-buttons-style-tahiti rounded-circlez p-0z shadow collapsed" style="width:100px;height:100px;border-radius:25px 25px 25px 0;margin-top:-100px;" data-bs-toggle="collapse" data-bs-target="#modal-btn-collapse-container" aria-controls="modal-btn-collapse-container" aria-expanded="false" aria-label="modal quick access.">
+                <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important;">
+                    shortcut
+                </span>
+                <span class="text-truncate align-middle d-nonez" style="font-size: 10px;">quick access.</span>
+            </button>
+            <!-- <div class="d-flex"></div> -->
+            <!-- ./ quick access tray collapse btn -->
 
-    <!-- >>>>>>>>>> Tab Navigation Modal -->
+            <!-- quick access buttons collapse container -->
+            <div id="modal-btn-collapse-container" class="top-down-grad-dark pt-4 w3-animate-left collapse" style="border-radius: 0px 25px 0px 0px;">
+                <h1 class="comfortaa-font fs-3 text-white container text-center">
+                    Quick access to <span style="color:var(--tahitigold);">.app</span> features
+                </h1>
+                <div class="grid-container p-4 down-top-grad-dark">
+                    <div class="grid-tile d-grid">
+                        <!-- 1. Button trigger modal>>>>>>>>>> Tab Navigation Modal -->
+                        <button type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" data-bs-toggle="modal" data-bs-target="#tabNavModal">
+                            <span class="material-icons material-icons-round align-middle">
+                                apps
+                            </span>
+                            <span class="text-truncate align-middle">.apps</span>
+                            <span class="visually-hidden">Launch #tabNavModal</span>
+                        </button>
+                    </div>
+                    <div class="grid-tile d-grid">
+                        <button id="latest-social-feed-offcanvas-btn" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" type="button" onclick="alert('Onefit.Social is unavailable at the moment.')">
+                            <span class="material-icons material-icons-round align-middle">
+                                stream
+                            </span>
+                            <span class="text-truncate align-middle">Commnity feed.</span>
+                            <span class="visually-hidden">2. Latest social feed.</span>
+                        </button>
+                    </div>
+                    <div class="grid-tile d-grid">
+                        <!-- 3. Chat Modal / messages offcamvas toggle btn -->
+                        <button id="toggle-messages-offcanvas" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat">
+                            <span class="material-icons material-icons-round align-middle">
+                                chat
+                            </span>
+                            <span class="text-truncate align-middle">Messages.</span>
+                            <span class="visually-hidden">Toggle Chat Messenger offcanvas</span>
+                        </button>
+                    </div>
+                    <div class="grid-tile d-grid">
+                        <!-- 4. Button trigger modal>>>>>>>>>> Tab Activity Tracker Capture Modal -->
+                        <button id="toggleTabCaptureActivityTrackerDataModalBtn" type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" data-bs-toggle="modal" data-bs-target="#tabCaptureActivityTrackerDataModal">
+                            <span class="material-icons material-icons-round align-middle">
+                                track_changes
+                            </span>
+                            <span class="text-truncate align-middle">Capture your Vitals.</span>
+                            <span class="text-truncate align-middle text-muted"><small>(Activity Tracking)</small></span>
+                            <span class="visually-hidden">Launch #captureactivitytrackers</span>
+                        </button>
+                    </div>
+                    <div class="grid-tile d-grid">
+                        <!-- 5. Button trigger modal>>>>>>>>>> Calender Activity Form Modal -->
+                        <button id="toggleCalenderActivityFormeModalBtn" type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" data-bs-toggle="modal" data-bs-target="#CalenderActivityFormeModal">
+                            <span class="material-icons material-icons-round align-middle">
+                                event_note
+                            </span>
+                            <span class="text-truncate align-middle">Todays activities.</span>
+                            <span class="visually-hidden">Launch #CalenderActivityFormeModal</span>
+                        </button>
+                    </div>
+                    <div class="grid-tile d-grid">
+                        <!-- 6. Button trigger modal>>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
+                        <button id="toggleTabeditWeeklyTeamsTrainingScheduleModalBtn" type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                            <!-- hidden aria-hidden="true" -->
+                            <span class="material-icons material-icons-round align-middle">
+                                edit_calendar
+                            </span>
+                            <span>Edit weekly training schedule (Teams).</span>
+                            <span class="visually-hidden">Launch #editWeeklyTeamsTrainingSchedule</span>
+                        </button>
+                    </div>
+                    <div class="grid-tile d-grid d-none">
+                        <!-- 7. Button trigger modal>>>>>>>>>> Insights Interactions: Physical Assessment Modal -->
+                        <button id="show-interaction-modal-btn" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal">
+                            <span class="material-icons material-icons-round align-middle">
+                                touch_app
+                            </span>
+                            <span class="align-middle poppins-font">Training interactions.</span>
+                            <span class="visually-hidden">Launch #trainingInteractionsContentModal</span>
+                        </button>
+                    </div>
+                    <div class="grid-tile d-grid d-none"><small class="text-muted">Modal button container.</small></div>
+                    <div class="grid-tile d-grid d-none"><small class="text-muted">Modal button container.</small></div>
+                    <div class="grid-tile d-grid d-none"><small class="text-muted">Modal button container.</small></div>
+                </div>
+            </div>
+            <!-- ./ quick access buttons collapse container -->
+        </div>
+    </div>
+    <!-- ./ modal quick access button tray -->
+
+
+    <!-- >>>>>>>>>> 1. Tab Navigation Modal -->
     <div class="modal fade" id="tabNavModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tabNavModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
             <div class="modal-content feature-tab-nav-content">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title fs-1" id="tabNavModalLabel"><span style="color: #ffa500;">.apps</span> menu</h5>
+                    <h5 class="modal-title fs-1" id="tabNavModalLabel"><span style="color: #ffa500;">.app</span> navigation</h5>
                     <button id="apps-tray-close-btn" type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
-                        <span class="material-icons material-icons-round"> cancel </span>
+                        <span class="material-icons material-icons-round"> close </span>
                     </button>
                 </div>
                 <hr class="text-white m-0" />
@@ -6963,14 +7130,14 @@ if (isset($_SESSION["currentUserAuth"])) {
     </div>
     <!-- ./ >>>>>>>>>> Tab Navigation Modal -->
 
-    <!-- >>>>>>>>>> Latest Socials Feed Modal -->
+    <!-- >>>>>>>>>> 2. Latest Socials Feed Modal -->
     <div class="modal fade" id="tabLatestSocialModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tabLatestSocialModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
             <div class="modal-content feature-tab-nav-content">
                 <div class="modal-header border-0">
                     <h5 class="modal-title fs-1" id="tabLatestSocialModalLabel">One<span style="color: #ffa500">fit.</span>Net Updates &amp; Socials</h5>
                     <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
-                        <span class="material-icons material-icons-round"> cancel </span>
+                        <span class="material-icons material-icons-round"> close </span>
                     </button>
                 </div>
                 <div class="modal-body bg-whitez border-0" style="overflow-x: hidden">
@@ -7180,9 +7347,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     </div>
     <!-- ./ >>>>>>>>>> Latest Socials Feed Modal -->
 
-    <!-- >>>>>>>>>> Chat Modal -->
-    <button id="toggle-messages-offcanvas" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat" hidden aria-hidden="true">Toggle Chat Messenger offcanvas</button>
-
+    <!-- >>>>>>>>>> 3. Chat Modal -->
     <div class="offcanvas offcanvas-bottom" style="height: 100vh !important; visibility: visible;" tabindex="-1" id="offcanvasBottomOnefitChat" aria-labelledby="offcanvasBottomOnefitChatLabel" aria-modal="true" role="dialog">
         <div class="offcanvas-body small p-0 no-scroller" style="overflow-x: hidden;">
             <div class="card text-center m-0 border-0" style="height:100vh">
@@ -7208,7 +7373,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </button>-->
 
                         <button type="button" class="onefit-buttons-style-danger p-2 onefit-buttons-style-dark shadow" data-bs-dismiss="offcanvas" aria-label="Close">
-                            <span class="material-icons material-icons-round"> cancel </span>
+                            <span class="material-icons material-icons-round"> close </span>
                         </button>
                     </div>
                 </div>
@@ -7312,11 +7477,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     </div>
     <!-- ./ >>>>>>>>>> Chat Modal -->
 
-    <!-- Button trigger modal>>>>>>>>>> Tab Activity Tracker Capture Modal -->
-    <button id="toggleTabCaptureActivityTrackerDataModalBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tabCaptureActivityTrackerDataModal" hidden aria-hidden="true">
-        Launch #captureactivitytracker</button>
-
-    <!-- >>>>>>>>>> Tab Activity Tracker Capture Modal -->
+    <!-- >>>>>>>>>> 4. Tab Activity Tracker Capture Modal -->
     <div class="modal fade" id="tabCaptureActivityTrackerDataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tabCaptureActivityTrackerDataModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
             <div class="modal-content feature-tab-nav-content content-panel-border-stylez">
@@ -7329,58 +7490,60 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <span class=" align-middle">Capture Activity Tracking Data</span>
                     </h5>
                     <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
-                        <span class="material-icons material-icons-round"> cancel </span>
+                        <span class="material-icons material-icons-round"> close </span>
                     </button>
                 </div>
                 <hr class="text-white m-0z">
                 <div class="modal-body border-0" style="overflow-x: hidden">
-                    <div class="row align-items-center text-center comfortaa-font">
-                        <div class="col-sm py-2 text-truncate">
-                            <!--<i class="fas fa-heart"></i>-->
-                            <div class="d-inline">
-                                <span class="material-icons material-icons-round align-middle"> monitor_heart </span>
-                                <span class="align-middle">Heart rate</span>
-                            </div>
+                    <div class="activity-tracker-stats-widget-container">
+                        <div class="row align-items-center text-center comfortaa-font">
+                            <div class="col-sm py-2 text-truncate">
+                                <!--<i class="fas fa-heart"></i>-->
+                                <div class="d-inline">
+                                    <span class="material-icons material-icons-round align-middle"> monitor_heart </span>
+                                    <span class="align-middle">Heart rate</span>
+                                </div>
 
-                        </div>
-                        <div class="col-sm py-2 text-truncate">
-                            <div class="d-inline">
-                                <span class="align-middle" style="color: #ffa500">|</span>
                             </div>
-                        </div>
-                        <div class="col-sm py-2 text-truncate">
-                            <!--<i class="fas fa-thermometer-half"></i>-->
-                            <div class="d-inline">
-                                <span class="material-icons material-icons-round align-middle"> device_thermostat </span>
-                                <!-- Degree symbol html code: &#8451; -->
-                                <span class="align-middle">Temp &#8451;</span>
+                            <div class="col-sm py-2 text-truncate">
+                                <div class="d-inline">
+                                    <span class="align-middle" style="color: #ffa500">|</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm py-2 text-center">
-                            <div class="d-inline">
-                                <button class="btn p-4 onefit-buttons-style-dark" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="heartrate-expand-icon heartrate-data-input-form-container">
-                                    <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid mb-2" />
-                                    <span class="material-icons material-icons-round my-pulse-animation-tahiti p-2">fitbit</span>
-                                </button>
+                            <div class="col-sm py-2 text-truncate">
+                                <!--<i class="fas fa-thermometer-half"></i>-->
+                                <div class="d-inline">
+                                    <span class="material-icons material-icons-round align-middle"> device_thermostat </span>
+                                    <!-- Degree symbol html code: &#8451; -->
+                                    <span class="align-middle">Temp &#8451;</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm py-2 text-truncate">
-                            <!--<i class="fas fa-bolt"></i>-->
-                            <div class="d-inline">
-                                <span class="material-icons material-icons-round align-middle"> bolt </span>
-                                <span class="align-middle">Speed</span>
+                            <div class="col-sm py-2 text-center">
+                                <div class="d-inline">
+                                    <button class="btn p-4 onefit-buttons-style-dark" style="border-radius: 25px !important;" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="heartrate-expand-icon heartrate-data-input-form-container">
+                                        <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid mb-2" />
+                                        <span class="material-icons material-icons-round my-pulse-animation-tahiti p-2">fitbit</span>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm py-2 text-truncate">
-                            <div class="d-inline">
-                                <span class="align-middle" style="color: #ffa500">|</span>
+                            <div class="col-sm py-2 text-truncate">
+                                <!--<i class="fas fa-bolt"></i>-->
+                                <div class="d-inline">
+                                    <span class="material-icons material-icons-round align-middle"> bolt </span>
+                                    <span class="align-middle">Speed</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm py-2 text-truncate">
-                            <!--<i class="fas fa-walking"></i>-->
-                            <div class="d-inline">
-                                <span class="material-icons material-icons-round align-middle"> directions_walk </span>
-                                <span class="align-middle">Steps</span>
+                            <div class="col-sm py-2 text-truncate">
+                                <div class="d-inline">
+                                    <span class="align-middle" style="color: #ffa500">|</span>
+                                </div>
+                            </div>
+                            <div class="col-sm py-2 text-truncate">
+                                <!--<i class="fas fa-walking"></i>-->
+                                <div class="d-inline">
+                                    <span class="material-icons material-icons-round align-middle"> directions_walk </span>
+                                    <span class="align-middle">Steps</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -7806,61 +7969,64 @@ if (isset($_SESSION["currentUserAuth"])) {
     </div>
     <!-- ./ >>>>>>>>>> Tab Activity Tracker Capture Modal -->
 
-    <!-- Button trigger modal>>>>>>>>>> Calender Activity Form Modal -->
-    <button id="toggleCalenderActivityFormeModalBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CalenderActivityFormeModal" hidden aria-hidden="true">
-        Launch #CalenderActivityFormeModal</button>
-
-    <!-- >>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
+    <!-- >>>>>>>>>> 5. Tab Edit weekly training schedule for Teams Modal -->
     <div class="modal fade" id="CalenderActivityFormeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="CalenderActivityFormeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
             <div class="modal-content feature-tab-nav-content content-panel-border-stylez">
                 <!-- style="border-bottom: #ffa500 5px solid;" -->
                 <div class="modal-header border-0">
-                    <h5 class="modal-title align-middle" id="CalenderActivityFormeModalLabel">
-                        <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
-                            calendar
-                        </span>
-                        <span id="CalenderActivityFormeModalLabelText" class="align-middle">Calender Activity</span>
-                    </h5>
+                    <div class="d-grid gap-2">
+                        <h5 class="modal-title align-middle fs-1" id="CalenderActivityFormeModalLabel">
+                            <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
+                                calendar_month
+                            </span>
+                            <span id="CalenderActivityFormeModalLabelText" class="align-middle"> Fitness Calender. </span>
+                        </h5>
+                        <p class="text-muted text-center m-0">My activities for <span class="calender-date-selected-label text-white fw-bold">Date</span>.</p>
+                    </div>
+
                     <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
-                        <span class="material-icons material-icons-round"> cancel </span>
+                        <span class="material-icons material-icons-round"> close </span>
                     </button>
                 </div>
-                <hr class="text-white m-0z">
-                <div id="CalenderActivityFormeModal_body" class="modal-body border-0" style="overflow-x: hidden">
+                <!-- <hr class="text-white m-0z"> -->
+                <div id="CalenderActivityFormeModal_body" class="modal-body border-0 pt-0" style="overflow-x: hidden">
                     <!-- Calender Activity View Accordion -->
                     <div class="accordion accordion-flush" id="accordionFlushCalenderActivityViewer">
-                        <div class="accordion-item p-2 my-2 shadow">
+                        <div class="accordion-item p-2 my-2 border-0 shadow">
                             <h2 class="accordion-header m-0" id="cav-flush-header-activity_lineup">
-                                <button class="accordion-button fs-5 fw-bold text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-activity_lineup" aria-expanded="true" aria-controls="cav-flush-panel-activity_lineup">
+                                <button class="accordion-button fs-5 fw-bold text-truncate gap-2" type="button" data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-activity_lineup" aria-expanded="true" aria-controls="cav-flush-panel-activity_lineup">
                                     <span class="material-icons material-icons-round align-middle">timeline</span>
-                                    <span class="align-middle">Activity Lineup (<span class="calender-date-selected-label">Date</span>)</span>
+                                    <span class="align-middle">Activity Lineup <!-- (<span class="calender-date-selected-label">Date</span>) --></span>
                                 </button>
                             </h2>
                             <div id="cav-flush-panel-activity_lineup" class="accordion-collapse w3-animate-bottom collapse show" aria-labelledby="cav-flush-header-activity_lineup" data-bs-parent="#accordionFlushCalenderActivityViewer">
                                 <div class="accordion-body">
-                                    <h5 class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">
-                                        Activity Lineup.
+                                    <h5 class="fs-2 p-4 fw-bold text-center comfortaa-font shadow my-4 border-5 border-start border-end" style="border-radius:25px;">
+                                        Activities for <span class="calender-date-selected-label">Date</span>.
                                     </h5>
                                     <hr class="text-white">
                                     <div id="calender-activity-viewer-activity_lineup">
-                                        <div class="spinner-border text-white" style="width:3rem;height:3rem;" role="status">
-                                            <span class="visually-hidden">Awaiting Actvity Lineup...</span>
+                                        <div class="h-100 w-100 d-flex gap-4 justify-content-center align-items-center">
+                                            <div class="spinner-border text-white" style="width:3rem;height:3rem;" role="status">
+                                                <span class="visually-hidden">Loading Actvity Lineup...</span>
+                                            </div>
+                                            <p class="m-0">Loading Activities.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item p-2 my-2 shadow">
+                        <div class="accordion-item p-2 my-2 border-0 shadow">
                             <h2 class="accordion-header m-0" id="cav-flush-header-diary_notes">
-                                <button class="accordion-button fs-5 fw-bold text-truncate collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-diary_notes" aria-expanded="false" aria-controls="cav-flush-panel-diary_notes">
+                                <button class="accordion-button fs-5 fw-bold text-truncate gap-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-diary_notes" aria-expanded="false" aria-controls="cav-flush-panel-diary_notes">
                                     <span class="material-icons material-icons-round align-middle">book</span>
-                                    <span class="align-middle">Diary &amp; Trainer Notes (<span class="calender-date-selected-label">Date</span>)</span>
+                                    <span class="align-middle">Diary &amp; Trainer Notes <!-- (<span class="calender-date-selected-label">Date</span>) --></span>
                                 </button>
                             </h2>
                             <div id="cav-flush-panel-diary_notes" class="accordion-collapse w3-animate-bottom collapse" aria-labelledby="cav-flush-header-diary_notes" data-bs-parent="#accordionFlushCalenderActivityViewer">
                                 <div class="accordion-body">
-                                    <h5 class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">
+                                    <h5 class="fs-2 p-4 fw-bold text-center comfortaa-font shadow my-4 border-5 border-start border-end" style="border-radius:25px;">
                                         Diary &amp; Trainer Notes.
                                     </h5>
                                     <hr class="text-white">
@@ -7868,31 +8034,37 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div class="row">
                                             <div class="col-md">
                                                 <!-- Tab for separation of Diary entries and Trainer Notes -->
-                                                <ul class="nav nav-tabs" id="diary-notes-tab" role="tablist">
+                                                <ul class="nav nav-tabs" style="border-bottom: 1px solid var(--tahitigold);" id="diary-notes-tab" role="tablist">
                                                     <li class="nav-item" role="presentation">
-                                                        <button class="nav-link active" id="diary-entries-tab" data-bs-toggle="tab" data-bs-target="#diary-entries-tab-pane" type="button" role="tab" aria-controls="diary-entries-tab-pane" aria-selected="true">My Diary</button>
+                                                        <button class="nav-link p-4 shadow active" style="border-radius: 15px 15px 0 0 !important;" id="diary-entries-tab" data-bs-toggle="tab" data-bs-target="#diary-entries-tab-pane" type="button" role="tab" aria-controls="diary-entries-tab-pane" aria-selected="true">Diary.</button>
                                                     </li>
                                                     <li class="nav-item" role="presentation">
-                                                        <button class="nav-link" id="trainer-notes-tab" data-bs-toggle="tab" data-bs-target="#trainer-notes-tab-pane" type="button" role="tab" aria-controls="trainer-notes-tab-pane" aria-selected="false">Trainer Notes.</button>
+                                                        <button class="nav-link p-4 shadow" style="border-radius: 15px 15px 0 0 !important;" id="trainer-notes-tab" data-bs-toggle="tab" data-bs-target="#trainer-notes-tab-pane" type="button" role="tab" aria-controls="trainer-notes-tab-pane" aria-selected="false">Trainer Notes.</button>
                                                     </li>
                                                 </ul>
                                                 <div class="tab-content" id="diary-notes-tab-content">
-                                                    <div class="tab-pane fade show active" id="diary-entries-tab-pane" role="tabpanel" aria-labelledby="diary-entries-tab" tabindex="0">
-                                                        <div class="spinner-border text-white" style="width:3rem;height:3rem;" role="status">
-                                                            <span class="visually-hidden">Awaiting Diary Entries...</span>
+                                                    <div class="tab-pane fade shadow active show" id="diary-entries-tab-pane" style="border-radius: 0 0 25px 25px;" role="tabpanel" aria-labelledby="diary-entries-tab" tabindex="0">
+                                                        <div class="h-100 w-100 p-4 d-grid justify-content-center align-items-center">
+                                                            <div class="spinner-border text-white" style="width:3rem;height:3rem;" role="status">
+                                                                <span class="visually-hidden">Awaiting Diary Entries...</span>
+                                                            </div>
                                                         </div>
+
                                                     </div>
-                                                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="trainer-notes-tab" tabindex="0">
-                                                        <div class="spinner-border text-white" style="width:3rem;height:3rem;" role="status">
-                                                            <span class="visually-hidden">Awaiting Trainer Notes...</span>
+                                                    <div class="tab-pane fade shadow" id="trainer-notes-tab-pane" style="border-radius: 0 0 25px 25px;" role="tabpanel" aria-labelledby="trainer-notes-tab" tabindex="0">
+                                                        <div class="h-100 w-100 p-4 d-grid justify-content-center align-items-center">
+                                                            <div class="spinner-border text-white" style="width:3rem;height:3rem;" role="status">
+                                                                <span class="visually-hidden">Awaiting Trainer Notes...</span>
+                                                            </div>
                                                         </div>
+
                                                     </div>
                                                 </div>
                                                 <!-- ./ Tab for separation of Diary entries and Trainer Notes -->
                                             </div>
-                                            <div class="col-md d-grid align-items-center">
+                                            <div class="col-md d-grid align-items-center shadow" style="border-radius: 25px;">
                                                 <!-- view window for selected entry-->
-                                                <div id="selected-entry-view-window" class="w-100 h-100">
+                                                <div id="selected-entry-view-window" class="w-100 h-100 d-grid justify-content-center align-items-center">
                                                     <div class="spinner-border text-white" style="width:3rem;height:3rem;" role="status">
                                                         <span class="visually-hidden">Awaiting Entry Selection...</span>
                                                     </div>
@@ -7904,19 +8076,202 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item p-2 my-2 shadow">
+                        <div class="accordion-item p-2 my-2 border-0 shadow">
                             <h2 class="accordion-header m-0" id="cav-flush-header-new_activities">
-                                <button class="accordion-button fs-5 fw-bold text-truncate collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-new_activities" aria-expanded="false" aria-controls="cav-flush-panel-new_activities">
+                                <button class="accordion-button fs-5 fw-bold text-truncate gap-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-new_activities" aria-expanded="false" aria-controls="cav-flush-panel-new_activities">
                                     <span class="material-icons material-icons-round align-middle">add_task</span>
-                                    <span class="align-middle">(Admin) New Activities (<span class="calender-date-selected-label">Date</span>)</span>
+                                    <span class="align-middle">(Admin) New Activities <!-- (<span class="calender-date-selected-label">Date</span>) --></span>
                                 </button>
                             </h2>
                             <div id="cav-flush-panel-new_activities" class="accordion-collapse w3-animate-bottom collapse" aria-labelledby="cav-flush-header-new_activities" data-bs-parent="#accordionFlushCalenderActivityViewer">
                                 <div class="accordion-body">
-                                    <h5 class="fs-2 p-4 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti">
-                                        Capture New Activity.
-                                    </h5>
-                                    <hr class="text-white">
+                                    <form id="add-new-activity-form" class="text-start d-grid gap-2 p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_heartrate.php" autocomplete="off">
+                                        <h5 class="fs-2 p-4 fw-bold text-center comfortaa-font shadow my-4 border-5 border-start border-end" style="border-radius:25px;">
+                                            Capture New Activity.
+                                        </h5>
+                                        <hr class="text-white">
+
+                                        <div class="output-container my-2" id="output-container">
+                                            <!---->
+                                        </div>
+
+                                        <div class="form-group my-4">
+                                            <label for="add-to-calender-activity-title-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">1. Title:</label>
+                                            <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-title-value" id="add-to-calender-activity-title-value" placeholder="Title" required="">
+                                        </div>
+                                        <div class="form-group my-4">
+                                            <label for="add-to-calender-activity-rpe-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">2. RPE:</label>
+                                            <input class="form-control-text-input p-4" type="number" name="add-to-calender-activity-rpe-value" id="add-to-calender-activity-rpe-value" placeholder="RPE" required="">
+                                        </div>
+                                        <div class="form-group my-4">
+                                            <label for="add-to-calender-activity-day-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">3. Day:</label>
+                                            <input class="form-control-text-input p-4" type="number" name="add-to-calender-activity-day-value" id="add-to-calender-activity-day-value" placeholder="Day" required="" readonly="">
+                                        </div>
+                                        <div class="form-group my-4">
+                                            <label for="add-to-calender-activity-date-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">4. Date:</label>
+                                            <input class="form-control-text-input p-4" type="date" name="add-to-calender-activity-date-value" id="add-to-calender-activity-date-value" placeholder="Date" required="" readonly="">
+                                        </div>
+                                        <script>
+                                            function toggleCustomColorSelection(value) {
+                                                if (value === 'custom') {
+                                                    // set display value to block for #custom-color-selection
+                                                    document.getElementById('custom-color-selection').style.display = "block";
+                                                    // default th bg value to white
+                                                    document.getElementById('color-preview').style.backgroundColor = "white";
+                                                } else {
+                                                    // set display value to greenyellow as it it the first item/color code in our select input for #custom-color-selection
+                                                    document.getElementById('custom-color-selection').style.display = "none";
+                                                    // extract the color of the selection made/passed through the value parameter and set it as the backgroun color of #custom-color-selection
+                                                    var colorExtract = value.split('[').pop().split(']')[0];
+                                                    document.getElementById('color-preview').style.backgroundColor = colorExtract;
+                                                }
+                                            }
+                                        </script>
+                                        <div class="form-group my-4">
+                                            <label for="add-to-calender-activity-colorcode-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">
+                                                5. Assign color code:
+                                            </label>
+                                            <select class="custom-select form-control-select-input p-4" onchange="toggleCustomColorSelection(this.value)" name="add-to-calender-activity-colorcode-value" id="add-to-calender-activity-colorcode-value" placeholder="Select a color code" required="">
+                                                <!-- MATCH DAYS    OFF DAYS     TRAINING DAYS   FRIENDLY GAMES    RECOVERY -->
+                                                <option value="off_day[greenyellow]" style="color: greenyellow;">Off day</option>
+                                                <option value="recovery_day[blue]" style="color: blue;">Recovery day</option>
+                                                <option value="training_day[green]" style="color: green;">Training day</option>
+                                                <option value="friendly_game[purple]" style="color: purple;">Friendly game</option>
+                                                <option value="match_day[red]" style="color: red;">Match day</option>
+                                                <option value="custom">Custom color code</option>
+                                            </select>
+                                        </div>
+                                        <div class="row justify-content-center align-items-center">
+                                            <div id="custom-color-selection" class="col-md-10" style="display:none;">
+                                                <div class="form-group my-4">
+                                                    <label for="add-to-calender-activity-custom-colorcode-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">5.1. Custom Color Code:</label>
+                                                    <div class="d-flex gap-2 align-items-center">
+                                                        <div class="d-grid gap-1 text-center">
+                                                            <span class="material-icons material-icons-outlined align-middle" style="font-size:20px!important;">
+                                                                format_color_fill
+                                                            </span>
+                                                            <input class="form-control-text-input p-4" type="color" name="add-to-calender-activity-custom-colorcode-value" id="add-to-calender-activity-custom-colorcode-value" oninput="toggleCustomColorSelection(this.value)" placeholder="select a custom color" value="#ffffff" style="width:50px;height:50px;">
+                                                        </div>
+                                                        <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-custom-colorcode-title-value" id="add-to-calender-activity-custom-colorcode-title-value" placeholder="Please provide a title to identify what the selected color code means">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 d-grid text-center">
+                                                <span id="color-preview" class="p-4 shadow align-middle text-truncate text-dark shadow" style="background-color: white; border-radius: 25px;">
+                                                    <span class="material-icons material-icons-round align-middle" style="color: var(--mineshaft);">
+                                                        palette
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <!-- we will have a two-col row elem: left col is for either selecting existing activities to push them to the listbox on the right col / using a textarea field to type in activities to push them to the listbox on the right col -->
+
+                                        <h5 class="poppins-font fs-4 mb-4">6. Add Activities</h5>
+                                        <div class="row align-items-center">
+                                            <div class="col-md d-grid">
+                                                <!-- select an existing exercise activity -->
+                                                <div class="form-group my-4 gap-4 d-grid gap-4">
+                                                    <label for="add-to-calender-activity-selection" class="poppins-font fs-4 mb-4" style="color: #ffa500;">Exercises &amp; Activities.</label>
+                                                    <select class="custom-select form-control-select-input p-2 light-scroller" id="add-to-calender-activity-selection" style="border-radius:25px;" multiple="multiple" rows="10">
+                                                        <option value="no-selection" selected>Select a workout / activity.</option>
+                                                        <option value="40"> 90/90 spiral with rotation (At-Home - Back Exercises - Cooldowns) (10xp)</option>
+                                                        <option value="35"> Bent-over double delt raises (At-Home - Back Exercises - Standing movements) (15xp)</option>
+                                                        <option value="36"> Bent-over row with resistance band (At-Home - Back Exercises - Standing movements) (10xp)</option>
+                                                        <option value="29"> Bird dog (At-Home - Back Exercises - Floor movements) (8xp)</option>
+                                                        <option value="2"> Cable crossover (75xp)</option>
+                                                        <option value="26"> Cat-Cow (At-Home - Back Exercises - Warmups) (6xp)</option>
+                                                        <option value="1"> Chest dip (45xp)</option>
+                                                        <option value="12"> Chest press (Upper-body bulk and sculpt) (48xp)</option>
+                                                        <option value="23"> Chest press (Upper-body tone and tighten) (45xp)</option>
+                                                        <option value="3"> Decline bench press (39xp)</option>
+                                                        <option value="24"> Deltoid raises (Upper-body tone and tighten) (45xp)</option>
+                                                        <option value="18"> Diamond pushups (Upper-body tone and tighten) (30xp)</option>
+                                                        <option value="20"> Dumbbell curls (Upper-body tone and tighten) (45xp)</option>
+                                                        <option value="25"> Dumbbell front raises (Upper-body tone and tighten) (45xp)</option>
+                                                        <option value="37"> Extend rotate At-Home - Back Exercises - (Standing movements) (10xp)</option>
+                                                        <option value="28"> Hammock (At-Home - Back Exercises - Warmups) (4xp)</option>
+                                                        <option value="19"> Hand release pushup (Upper-body tone and tighten) (30xp)</option>
+                                                        <option value="33"> Hip hinges (At-Home - Back Exercises - Standing movements) (20xp)</option>
+                                                        <option value="13"> Incline dumbbell flies (Upper-body bulk and sculpt) (48xp)</option>
+                                                        <option value="14"> Incline dumbbell triceps extension (Upper-body bulk and sculpt) (48xp)</option>
+                                                        <option value="4"> Incline push up (50xp)</option>
+                                                        <option value="34"> Isometric hip hinges (At-Home - Back Exercises - Standing movements) (3xp)</option>
+                                                        <option value="39"> Isometric neck extension (At-Home - Back Exercises - Chair exercises) (5xp)</option>
+                                                        <option value="27"> Lateral Wheel (At-Home - Back Exercises - Warmups) (3xp)</option>
+                                                        <option value="30"> Lunge rotate (At-Home - Back Exercises - Floor movements) (50xp)</option>
+                                                        <option value="17"> Mountain climbers (Upper-body tone and tighten) (60xp)</option>
+                                                        <option value="10"> Overhead dumbbell press (Upper-body bulk and sculpt) (40xp)</option>
+                                                        <option value="6"> Parallel Bar Dips (Upper-body bulk and sculpt) (36xp)</option>
+                                                        <option value="31"> Plank with lateral arm raise (At-Home - Back Exercises - Floor movements) (20xp)</option>
+                                                        <option value="8"> Plyometric Push-ups (Upper-body bulk and sculpt) (36xp)</option>
+                                                        <option value="7"> Push-ups (Upper-body bulk and sculpt) (36xp)</option>
+                                                        <option value="5"> Seated machine fly (90xp)</option>
+                                                        <option value="38"> Shoulder squeeze (At-Home - Back Exercises - Chair exercises) (5xp)</option>
+                                                        <option value="11"> Standing dumbbell upright row (Upper-body bulk and sculpt) (40xp)</option>
+                                                        <option value="32"> Superman (At-Home - Back Exercises - Floor movements) (10xp)</option>
+                                                        <option value="42"> Supine twist (At-Home - Back Exercises - Cooldowns) (2xp)</option>
+                                                        <option value="15"> Triceps dips (Upper-body tone and tighten) (45xp)</option>
+                                                        <option value="21"> Triceps kickbacks (Upper-body tone and tighten) (45xp)</option>
+                                                        <option value="22"> Two-arm dumbbell row (Upper-body tone and tighten) (36xp)</option>
+                                                        <option value="9"> Walking plank (Upper-body bulk and sculpt) (36xp)</option>
+                                                        <option value="16"> Wall angels (Upper-body tone and tighten) (60xp)</option>
+                                                        <option value="41"> Wind-relieving pose (At-Home - Back Exercises - Cooldowns) (2xp)</option>
+                                                        <option value="other">Other</option>
+                                                    </select>
+                                                    <button type="button" id="add-selection-to-activities-list-btn" class="onefit-buttons-style-light p-4">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
+                                                            add
+                                                        </span>
+                                                        add.
+                                                    </button>
+                                                </div>
+                                                <!-- ./ select an existing exercise activity -->
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="py-0 text-center">
+                                                    Or
+                                                </div>
+                                            </div>
+                                            <div class="col-md d-grid gap-4">
+                                                <!-- Textarea for typing out the exercises -->
+                                                <div class="form-group my-4 d-grid gap-4">
+                                                    <label for="add-to-calender-activity-specify-new" class="comfortaa-font fs-5" style="color: #ffa500;">Create New Activities:</label>
+                                                    <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-specify-title" id="add-to-calender-activity-specify-title" placeholder="Exercise/Activity title.">
+
+                                                    <textarea class="form-control-text-input p-2 text-dark light-scroller" rows="3" type="text" name="add-to-calender-activity-specify-new-instructions" id="add-to-calender-activity-specify-new-instructions" placeholder="Define the instructions here." style="border-radius:25px;"></textarea>
+                                                    <button type="button" id="add-selection-to-activities-list-btn" class="onefit-buttons-style-light p-4">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
+                                                            add
+                                                        </span>
+                                                        add.
+                                                    </button>
+                                                </div>
+                                                <!-- ./ Textarea for typing out the exercises -->
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <hr class="text-white">
+                                            <label for="select-workout-exercises-selected" class="mb-2">
+                                                <span class="material-icons material-icons-outlined align-middle" style="font-size:20px!important;">
+                                                    queue
+                                                </span>
+                                                <span class="align-middle"> Activities Added.</span>
+                                            </label>
+                                            <!-- listbox on the right col is the listbox that will be submitted on form submit -->
+                                            <select id="select-workout-exercises-selected" name="select-workout-exercises-selected[]" class="form-control light-scroller" multiple="multiple" rows="50" style="min-height:200px;border-radius:25px;"></select>
+                                        </div>
+
+                                        <!-- submit btn -->
+                                        <button id="single-submit-heartrate-insights-activitytracker-data-form" class="onefit-buttons-style-tahiti p-4 mt-4 shadow d-grid" type="submit" value="Save">
+                                            <span class="material-icons material-icons-outlined align-middle">
+                                                event_available
+                                            </span>
+                                            <span class="align-middle">Save.</span>
+                                        </button>
+                                        <!-- hidden="" aria-hidden="true" -->
+
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -7929,12 +8284,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     </div>
     <!-- ./ >>>>>>>>>> Calender Activity Form Modal -->
 
-    <!-- Button trigger modal>>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
-    <button id="toggleTabeditWeeklyTeamsTrainingScheduleModalBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
-        <!-- hidden aria-hidden="true" -->
-        Launch #editWeeklyTeamsTrainingSchedule</button>
-
-    <!-- >>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
+    <!-- >>>>>>>>>> 6. Tab Edit weekly training schedule for Teams Modal -->
     <div class="modal fade" id="tabeditWeeklyTeamsTrainingScheduleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tabeditWeeklyTeamsTrainingScheduleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
             <div class="modal-content feature-tab-nav-content content-panel-border-stylez">
@@ -7947,7 +8297,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <span id="tabeditWeeklyTeamsTrainingScheduleModalLabelText" class="align-middle">Edit weekly training schedule</span>
                     </h5>
                     <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
-                        <span class="material-icons material-icons-round"> cancel </span>
+                        <span class="material-icons material-icons-round"> close </span>
                     </button>
                 </div>
                 <hr class="text-white m-0z">
@@ -8036,12 +8386,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     </div>
     <!-- ./ >>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
 
-    <!-- Button trigger modal>>>>>>>>>> Insights Interactions: Physical Assessment Modal -->
-    <button id="show-interaction-modal-btn" class="onefit-buttons-style-light p-4 my-2 text-center shadow" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal" hidden>
-        <span class="align-middle poppins-font"> Show Interactions Modal</span>
-    </button>
-
-    <!-- Version 1 -->
+    <!-- 7. Insights Interactions: Physical Assessment Modal : Version 1 -->
     <div class="modal fade" id="trainingInteractionsContentModal" tabindex="-1" aria-labelledby="trainingInteractionsContentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content" style="color: #fff; background-color: #343434!important;">
@@ -8087,191 +8432,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             </div>
         </div>
     </div>
-
-    <!-- Insights Interactions: Training Drills Modal -->
-    <!-- <div class="modal fade" id="trainingDrillsModal" tabindex="-1" aria-labelledby="trainingDrillsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content" style="color: #fff; background-color: #343434!important;">
-                <div class="modal-header p-5 border-5 border-bottom down-top-grad-white" style="border-radius: 0 0 25px 25px !important;border-color: var(--tahitigold)!important;">
-                    <button type="button" class="onefit-buttons-style-dark p-4 shadow" data-bs-dismiss="modal">
-                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">arrow_back</span>
-                        <span class="align-middle"> Close</span>
-                    </button>
-
-                    <h1 class="modal-title fs-1 text-dark" id="trainingDrillsModalLabel">
-                        <span class="material-icons material-icons-round align-middle">shuffle_on</span>
-                        <span class="align-middle"> Training Drills &amp; Workouts.</span>
-                    </h1>
-                </div>
-                <div class="modal-body">
-                    
-
-                </div>
-                <div class="modal-footer justify-content-between border-5 border-top d-none" style="border-radius: 25px 25px 0 0 !important;">
-                    <button type="button" class="onefit-buttons-style-dark p-2 px-4 shadow" data-bs-dismiss="modal">
-                        <span class="material-icons material-icons-round align-middle">arrow_back</span>
-                        <span class="align-middle"> Close</span>
-                    </button>
-
-                    <button type="button" class="onefit-buttons-style-dark p-4 shadow">
-                        <span class="align-middle">Save changes </span>
-                        <span class="material-icons material-icons-round align-middle">add_circle</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-    <!-- ./ Insights Interactions: Training Drills Modal -->
-
-    <!-- Insights Interactions: Physical Assessment Modal -->
-    <!-- <div class="modal fade" id="phyisicalAssessmentModal" tabindex="-1" aria-labelledby="phyisicalAssessmentModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content" style="color: #fff; background-color: #343434!important;">
-                <div class="modal-header p-5 border-5 border-bottom" style="border-radius: 0 0 25px 25px !important;"> -->
-    <!-- <div class="d-flex justify-content-between">
-                        
-                    </div> -->
-    <!-- <h1 class="modal-title fs-1" id="phyisicalAssessmentModalLabel">
-                        <span class="material-icons material-icons-round align-middle">personal_injury</span>
-                        <span class="align-middle"> Physical Assessment</span>
-                    </h1> -->
-
-    <!-- <div class="row align-items-center">
-                        <div class="col">
-                            
-                        </div>
-                        <div class="col text-center">
-                            <img src="../media/assets/One-Symbol-Logo-White.svg" alt="onefit logo" style="max-height: 50px;" class="img-fluid my-4 shadow">
-                        </div>
-                        <div class="col">
-                            <button type="button" class="onefit-buttons-style-dark p-4 shadow">
-                                <span class="material-icons material-icons-round align-middle">support_agent</span>
-                                <span class="align-middle"> Trainer Support.</span>
-                            </button>
-                        </div>
-                    </div> -->
-    <!-- </div>
-                <div class="modal-body">
-                    
-                </div>
-                <div class="modal-footer justify-content-between border-5 border-top" style="border-radius: 25px 25px 0 0 !important;">
-                    <button type="button" class="onefit-buttons-style-danger p-4 shadow" data-bs-dismiss="modal">
-                        <span class="material-icons material-icons-round align-middle">cancel</span>
-                        <span class="align-middle"> Close</span>
-                    </button>
-
-                    <div style="max-width: 60vw">
-                        <p class="fs-5 fw-bold text-center">Rate your Muscle Soreness according to the scale below:</p>
-                        <img src="../media/assets/Muscle Sorness Rating Scale.png" alt="Muscle Soreness Rating Scale" style="border-radius: 15px;" class="img-fluid mb-4 shadow">
-                    </div>
-
-                    <button type="button" class="onefit-buttons-style-dark p-4 shadow">
-                        <span class="align-middle"> Save changes</span>
-                        <span class="material-icons material-icons-round align-middle">add_circle</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- ./ Insights Interactions: Physical Assessment Modal -->
-
-    <!-- Insights Interactions: Nutrition Board Modal -->
-    <!-- <div class="modal fade" id="nutritionBoardModal" tabindex="-1" aria-labelledby="nutritionBoardModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content" style="color: #fff; background-color: #343434!important;">
-                <div class="modal-header p-5 border-5 border-bottom" style="border-radius: 0 0 25px 25px !important;">
-                    <h1 class="modal-title fs-1" id="nutritionBoardModalLabel">
-                        <span class="material-icons material-icons-round align-middle">developer_board</span>
-                        <span class="align-middle"> Nutrition Board.</span>
-                    </h1>
-                </div>
-                <div class="modal-body">
-
-                    
-                </div>
-                <div class="modal-footer justify-content-between border-5 border-top" style="border-radius: 25px 25px 0 0 !important;">
-                    <button type="button" class="onefit-buttons-style-danger p-4 shadow" data-bs-dismiss="modal">
-                        <span class="material-icons material-icons-round align-middle">cancel</span>
-                        <span class="align-middle"> Close</span>
-                    </button>
-
-                    <button type="button" class="onefit-buttons-style-dark p-4 shadow">
-                        <span class="align-middle"> Save changes</span>
-                        <span class="material-icons material-icons-round align-middle">add_circle</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- ./ Insights Interactions: Nutrition Board Modal -->
-
-    <!-- Insights Interactions: Administration: Creation Tools Modal -->
-    <!-- <div class="modal fade" id="creationToolsModal" tabindex="-1" aria-labelledby="creationToolsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content" style="color: #fff; background-color: #343434!important;">
-                <div class="modal-header p-5 border-5 border-bottom" style="border-radius: 0 0 25px 25px !important;">
-                    <h1 class="modal-title fs-1" id="creationToolsModalLabel">
-                        <span class="material-icons material-icons-round align-middle">brush</span>
-                        <span class="align-middle"> Creation Tools.</span>
-                    </h1>
-                </div>
-                <div class="modal-body">
-                    
-
-                </div>
-                <div class="modal-footer justify-content-between border-5 border-top" style="border-radius: 25px 25px 0 0 !important;">
-                    <button type="button" class="onefit-buttons-style-danger p-4 shadow" data-bs-dismiss="modal">
-                        <span class="material-icons material-icons-round align-middle">cancel</span>
-                        <span class="align-middle"> Close</span>
-                    </button>
-
-                    <button type="button" class="onefit-buttons-style-dark p-4 shadow">
-                        <span class="align-middle"> Save changes</span>
-                        <span class="material-icons material-icons-round align-middle">add_circle</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- ./ Insights Interactions: Administration: Creation Tools Modal -->
-
-    <!-- Insights Interactions: Administration: Data Management Tools Modal -->
-    <!-- <div class="modal fade" id="dataMgmtToolsModal" tabindex="-1" aria-labelledby="dataMgmtToolsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content" style="color: #fff; background-color: #343434!important;">
-                <div class="modal-header p-5 border-5 border-bottom" style="border-radius: 0 0 25px 25px !important;">
-                    <h1 class="modal-title fs-1" id="dataMgmtToolsModalLabel">
-                        <span class="material-icons material-icons-round align-middle">account_tree</span>
-                        <span class="align-middle"> Data Management.</span>
-                    </h1>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-2">
-                            Data Managemeht Options
-                        </div>
-                        <div class="col-md border-1 border-start border-end border-white">
-                            Load table data and lists (preview window)
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer justify-content-between border-5 border-top" style="border-radius: 25px 25px 0 0 !important;">
-                    <button type="button" class="onefit-buttons-style-danger p-4 shadow" data-bs-dismiss="modal">
-                        <span class="material-icons material-icons-round align-middle">cancel</span>
-                        <span class="align-middle"> Close</span>
-                    </button>
-
-                    <button type="button" class="onefit-buttons-style-dark p-4 shadow">
-                        <span class="align-middle"> Save changes</span>
-                        <span class="material-icons material-icons-round align-middle">add_circle</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- ./ Insights Interactions: Administration: Data Management Modal -->
+    <!-- ./ Insights Interactions: Physical Assessment Modal : Version 1 -->
 
 
     <!-- ./ Modals ----------------------------------------------------------------------------------------- -->
@@ -8954,12 +9115,14 @@ if (isset($_SESSION["currentUserAuth"])) {
             auth = auth || "init";
             usernm = usernm || "init";
             // check if there are unloaded core scripts and stylesheets
+
+            // coreScriptLoaded_bootstrap_bundle_local_js == false ||
             if (coreScriptLoaded_googlefont_icons_css == false ||
                 coreScriptLoaded_plyrio_css == false ||
                 coreScriptLoaded_plyrio_js == false ||
                 coreScriptLoaded_hls_js == false ||
                 coreScriptLoaded_bootstrap_local_css == false ||
-                coreScriptLoaded_bootstrap_bundle_local_js == false ||
+                coreScriptLoaded_bootstrap_bundle_cdn_js == false ||
                 coreScriptLoaded_w3_css == false ||
                 coreScriptLoaded_custom_styles_css == false ||
                 coreScriptLoaded_digiclock_css == false ||
@@ -8982,7 +9145,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     "\n plyrio_js: " + coreScriptLoaded_plyrio_js +
                     "\n hls_js: " + coreScriptLoaded_hls_js +
                     "\n bootstrap_local_css: " + coreScriptLoaded_bootstrap_local_css +
-                    "\n bootstrap_bundle_local_js: " + coreScriptLoaded_bootstrap_bundle_local_js +
+                    "\n bootstrap_bundle_cdn_js: " + coreScriptLoaded_bootstrap_bundle_cdn_js +
                     "\n w3_css: " + coreScriptLoaded_w3_css +
                     "\n custom_styles_css: " + coreScriptLoaded_custom_styles_css +
                     "\n digiclock_css: " + coreScriptLoaded_digiclock_css +
@@ -9000,8 +9163,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     "\n soccerfield_js: " + coreScriptLoaded_soccerfield_js +
                     "\n chartjs_js: " + coreScriptLoaded_chartjs_js);
                 // show offline curtain and pass message of none-loaded scripts
-                document.getElementById("output-msg-heading").innerHTML = "You may be offline";
-                document.getElementById("output-msg-text").innerHTML = "Some core scripts were not loaded. Please check your internet connection and try reloadig the page.";
+                document.getElementById("output-msg-heading").innerHTML = "You are offline.";
+                document.getElementById("output-msg-text").innerHTML = "Some core scripts were not loaded. Please check your internet connection and try reloadig the page.<br>If the error persists, please contact <a href='https://help.onefitnet.co.za/systems/?errortype=core_script_error'>support</a>";
                 document.getElementById("offline-curtain").style.display = "block";
             }
 
@@ -9059,6 +9222,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                 // loadCommunityResources();
                 // loadCommunityRewards();
             }
+
+            // get the activity tracker stats summary widget
+            $.getActivityTrackerStatsSummaryWidget();
 
             // check if current_app_tab is set and has a value in localStorage, else set default value: TabHome
             const currentAppTab = localStorage.getItem('current_app_tab');
@@ -9121,9 +9287,19 @@ if (isset($_SESSION["currentUserAuth"])) {
             }
         }
 
-        function openCalenderActivityForm(date) {
+        function openCalenderActivityForm(dateYear, dateMonth, dateDay) {
             // '2023/3/10'
-            alert("show modal for calender day: " + date);
+            alert(`Show modal for calender day: ${dateYear}/${dateMonth}/${dateDay}`);
+
+            // create date object
+            var dateQueried = new Date(`${dateYear}/${dateMonth}/${dateDay}`);
+
+            // pass the date value to .calender-date-selected-label elements
+            const calenderSelectionDateLabels = document.querySelectorAll('.calender-date-selected-label');
+            calenderSelectionDateLabels.forEach(elemLbl => {
+                elemLbl.innerHTML = dateQueried.toDateString();
+            });
+
             const calenderActivityFormModalBtn = document.getElementById('toggleCalenderActivityFormeModalBtn');
             calenderActivityFormModalBtn.click();
         }
@@ -9590,7 +9766,8 @@ if (isset($_SESSION["currentUserAuth"])) {
     <script src="../scripts/js/digital-clock.js" onload="coreScriptLoaded_digiclock_js=true;"></script>
 
     <!-- Bootstrap JavaScript -->
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" onload="coreScriptLoaded_bootstrap_bundle_local_js=true;"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" onload="coreScriptLoaded_bootstrap_bundle_cdn_js=true;"></script>
+    <!-- <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" onload="coreScriptLoaded_bootstrap_bundle_local_js=true;"></script> -->
 
     <!-- Bootstrap Bundle JS CDN -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->

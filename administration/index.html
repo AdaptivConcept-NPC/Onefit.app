@@ -50,7 +50,7 @@
                 // setTimeout(function () {
                 //     $.ajax({
                 //         type: 'POST',
-                //         url: 'scripts/php/upload_user_accounts_csv.php',
+                //         url: 'scripts/php/bulk_upload/upload_user_accounts_csv.php',
                 //         processData: false,
                 //         contentType: false,
                 //         async: false,
@@ -96,7 +96,7 @@
                 setTimeout(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'scripts/php/workout_categories_upload_csv_data.php',
+                        url: 'scripts/php/workout_categories_bulk_upload/upload_csv_data.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -140,7 +140,48 @@
             $("#capture-workout-form").submit(function (e) {
                 e.preventDefault();
 
-                alert("Capture Workout (Single) - This fuction is unavailable.");
+                // alert("Capture Workout (Single) - This fuction is unavailable.");
+                var form_data = new FormData($('#capture-workout-form')[0]);
+                setTimeout(function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'scripts/php/capture/new_workout.php',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data: form_data,
+                        contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+                        beforeSend: function () {
+                            console.log('beforeSend: submitting new workout');
+                        },
+                        success: function (response) {
+
+                            if (response.startsWith("success")) {
+                                console.log('success: returning response - submitting indi exercises bulk CSV file successfully');
+                                console.log("Response: \n" + response);
+                                // pass success message output to ui
+                                $("#form-output-single-workout").html("New workout was created successfully.");
+                                // toggle alert classes
+                                $("#form-output-single-workout").show();
+                                $("#form-output-single-workout").removeClass("alert-info");
+                                $("#form-output-single-workout").addClass("alert-success");
+                            } else {
+                                console.log("error: returning response - an error occurred");
+                                console.log("Response: \n" + response);
+                                // pass error message output to ui
+                                $("#form-output-single-workout").html("An error occured whilst processing your request. \n\n" + response);
+                                // toggle alert classes
+                                $("#form-output-single-workout").show();
+                                $("#form-output-single-workout").removeClass("alert-info");
+                                $("#form-output-single-workout").addClass("alert-danger");
+                            }
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                }, 1000);
             });
 
             // ajax jquery - submit CSV bulk file [indi_exercises]
@@ -151,7 +192,7 @@
                 setTimeout(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'scripts/php/upload_indi_exercises_csv.php',
+                        url: 'scripts/php/bulk_upload/upload_indi_exercises_csv.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -199,7 +240,7 @@
                 setTimeout(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'scripts/php/upload_training_drills_csv.php',
+                        url: 'scripts/php/bulk_upload/upload_training_drills_csv.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -247,7 +288,7 @@
                 setTimeout(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'scripts/php/upload_supplements_csv.php',
+                        url: 'scripts/php/bulk_upload/upload_supplements_csv.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -295,7 +336,7 @@
                 setTimeout(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'scripts/php/upload_sports_list_csv.php',
+                        url: 'scripts/php/bulk_upload/upload_sports_list_csv.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -343,7 +384,7 @@
                 setTimeout(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'scripts/php/upload_muscle_groups_csv.php',
+                        url: 'scripts/php/bulk_upload/upload_muscle_groups_csv.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -391,7 +432,7 @@
                 setTimeout(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'scripts/php/upload_store_products_csv.php',
+                        url: 'scripts/php/bulk_upload/upload_store_products_csv.php',
                         processData: false,
                         contentType: false,
                         async: false,
@@ -440,16 +481,37 @@
                 $(origin).children().appendTo(dest);
             };
 
+            function calculateWorkoutTotalXP() {
+                // reinitialize the sumXP
+                var sumXP = 0;
+                $("#select-workout-exercises-selected > option").each(function () {
+                    // console.log(this.text + ' ' + this.value);
+                    // extract the exercise xp value from this.text
+                    var selectedExerciseText = this.text;
+
+                    sumXP += parseInt(selectedExerciseText.split('[').pop().split(']')[0])
+                });
+
+                // update #input-workout-xp field with sumXP value
+                $('#input-workout-xp').val(sumXP);
+            }
+
             $('#move-items-selected-btn').click(function () {
                 moveItems('#select-workout-exercises', '#select-workout-exercises-selected');
+                // re-calculate the sum of exercise xp and pass it to the #input-workout-xp input field
+                calculateWorkoutTotalXP();
             });
 
             $('#remove-items-selected-btn').on('click', function () {
                 moveItems('#select-workout-exercises-selected', '#select-workout-exercises');
+                // re-calculate the sum of exercise xp and pass it to the #input-workout-xp input field
+                calculateWorkoutTotalXP();
             });
 
             $('#remove-all-items-selected-btn').on('click', function () {
                 moveAllItems('#select-workout-exercises-selected', '#select-workout-exercises');
+                // re-calculate the sum of exercise xp and pass it to the #input-workout-xp input field
+                calculateWorkoutTotalXP();
             });
 
             // *** get select element items
@@ -1231,9 +1293,12 @@
                                         (Int)</label>
                                     <div class="col-md-4z">
                                         <input id="input-workout-xp" name="input-workout-xp" type="number"
-                                            placeholder="Total XP" class="form-control input-md" required="">
+                                            placeholder="Total XP" class="form-control input-md" value="0" required=""
+                                            readonly>
                                         <span class="help-block">
-                                            Please allocate the total/max xp points obtainable from this workout.
+                                            <!-- Please allocate the total/max xp points obtainable from this workout. -->
+                                            Max XP is automatically calculated according to the exercises selected on
+                                            <strong>K. Workout Training / Exercises</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -1348,7 +1413,7 @@
                                     </label>
                                     <div class="col-md-4z">
                                         <select id="select-workout-recommeded-supplements"
-                                            name="select-workout-recommeded-supplements" class="form-control"
+                                            name="select-workout-recommeded-supplements[]" class="form-control"
                                             multiple="multiple">
                                             <option value="none">None</option>
                                         </select>
@@ -1377,9 +1442,11 @@
                                                 class="form-control mb-4" multiple="multiple" rows="10">
                                             </select>
                                         </div>
+                                        <!-- exercise selection control buttons -->
                                         <div class="col-xlg -1 text-center">
                                             <div class="d-flex justify-content-center gap-2 mb-4">
-                                                <button id="move-items-selected-btn" class="btn btn-success">
+                                                <button id="move-items-selected-btn" class="btn btn-success"
+                                                    type="button">
                                                     <span class="material-icons material-icons-round align-middle"
                                                         style="font-size: 35px;">
                                                         add
@@ -1389,7 +1456,8 @@
                                                         Add selection
                                                     </span>
                                                 </button>
-                                                <button id="remove-items-selected-btn" class="btn btn-danger">
+                                                <button id="remove-items-selected-btn" class="btn btn-danger"
+                                                    type="button">
                                                     <span class="material-icons material-icons-round align-middle"
                                                         style="font-size: 35px;">
                                                         remove
@@ -1399,7 +1467,8 @@
                                                         Remove selection
                                                     </span>
                                                 </button>
-                                                <button id="remove-all-items-selected-btn" class="btn btn-warning">
+                                                <button id="remove-all-items-selected-btn" class="btn btn-warning"
+                                                    type="button">
                                                     <span class="material-icons material-icons-round align-middle"
                                                         style="font-size: 30px;">
                                                         restart_alt
@@ -1411,12 +1480,13 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        <!-- ./ exercise selection control buttons -->
                                         <div class="col-xlg">
                                             <label class="control-label" for="select-workout-exercises-selected">
                                                 Selected Exercises
                                             </label>
                                             <select id="select-workout-exercises-selected"
-                                                name="select-workout-exercises-selected" class="form-control mb-4"
+                                                name="select-workout-exercises-selected[]" class="form-control mb-4"
                                                 multiple="multiple" rows="10">
                                             </select>
                                         </div>
@@ -1575,7 +1645,7 @@
                             <!-- upload bulk csv file - Categories / Classes -->
                             <form id="workout-categories-csv-bulk-upload-form"
                                 name="workout-categories-csv-bulk-upload-form" class="my-4"
-                                action="./scripts/php/workout_categories_upload_csv_data.php" method="post"
+                                action="./scripts/php/workout_categories_bulk_upload/upload_csv_data.php" method="post"
                                 enctype="multipart/form-data">
                                 <!-- Form Name -->
                                 <legend class="fs-5 fw-bold">A. Bulk CSV Upload - Categories / Classes</legend>
@@ -1604,7 +1674,7 @@
 
                             <!-- upload bulk csv file - Workouts Information -->
                             <form id="workouts-csv-bulk-upload-form" name="workouts-csv-bulk-upload-form" class="my-4"
-                                action="./scripts/php/upload_workout_csv.php" method="post"
+                                action="./scripts/php/bulk_upload/upload_workout_csv.php" method="post"
                                 enctype="multipart/form-data">
                                 <!-- Form Name -->
                                 <legend class="fs-5 fw-bold">B. Bulk CSV Upload - Workouts Information</legend>
@@ -1632,8 +1702,8 @@
 
                             <!-- upload bulk csv file - Indi Exercises -->
                             <form id="indi-exercises-csv-bulk-upload-form" name="indi-exercises-csv-bulk-upload-form"
-                                class="my-4" action="./scripts/php/upload_indi_exercises_csv.php" method="post"
-                                enctype="multipart/form-data">
+                                class="my-4" action="./scripts/php/bulk_upload/upload_indi_exercises_csv.php"
+                                method="post" enctype="multipart/form-data">
                                 <!-- Form Name -->
                                 <legend class="fs-5 fw-bold">C. Bulk CSV Upload - Indi Exercises</legend>
 
@@ -1660,8 +1730,8 @@
 
                             <!-- upload bulk csv file - Teams Training Exercise Drills -->
                             <form id="training-drills-csv-bulk-upload-form" name="training-csv-bulk-upload-form"
-                                class="my-4" action="./scripts/php/upload_teans_training_drills_csv.php" method="post"
-                                enctype="multipart/form-data">
+                                class="my-4" action="./scripts/php/bulk_upload/upload_teans_training_drills_csv.php"
+                                method="post" enctype="multipart/form-data">
                                 <!-- Form Name -->
                                 <legend class="fs-5 fw-bold">D. Bulk CSV Upload - Teams. Training Drills</legend>
 
@@ -1687,7 +1757,7 @@
 
                             <!-- upload bulk csv file - Supplements -->
                             <form id="supplements-csv-bulk-upload-form" name="supplements-csv-bulk-upload-form"
-                                class="my-4" action="./scripts/php/upload_supplements_csv.php" method="post"
+                                class="my-4" action="./scripts/php/bulk_upload/upload_supplements_csv.php" method="post"
                                 enctype="multipart/form-data">
                                 <!-- Form Name -->
                                 <legend class="fs-5 fw-bold">E. Bulk CSV Upload - Supplements</legend>
@@ -1715,7 +1785,7 @@
 
                             <!-- upload bulk csv file - Sports List -->
                             <form id="sports-list-csv-bulk-upload-form" name="sports-list-csv-bulk-upload-form"
-                                class="my-4" action="./scripts/php/upload_sports_list_csv.php" method="post"
+                                class="my-4" action="./scripts/php/bulk_upload/upload_sports_list_csv.php" method="post"
                                 enctype="multipart/form-data">
                                 <!-- Form Name -->
                                 <legend class="fs-5 fw-bold">F. Bulk CSV Upload - Sports list</legend>
@@ -1742,8 +1812,8 @@
 
                             <!-- upload bulk csv file - Muscle Groups -->
                             <form id="muscles-list-csv-bulk-upload-form" name="muscles-list-csv-bulk-upload-form"
-                                class="my-4" action="./scripts/php/upload_muscle_groups_csv.php" method="post"
-                                enctype="multipart/form-data">
+                                class="my-4" action="./scripts/php/bulk_upload/upload_muscle_groups_csv.php"
+                                method="post" enctype="multipart/form-data">
                                 <!-- Form Name -->
                                 <legend class="fs-5 fw-bold">G. Bulk CSV Upload - Muscle Groups</legend>
 
@@ -1785,7 +1855,7 @@
 
                         <!-- upload bulk csv file - store products -->
                         <form id="store-csv-bulk-upload-form" name="store-csv-bulk-upload-form" class="my-4"
-                            action="./scripts/php/upload_store_products_csv.php" method="post"
+                            action="./scripts/php/bulk_upload/upload_store_products_csv.php" method="post"
                             enctype="multipart/form-data">
                             <!-- Form Name -->
                             <legend class="fs-5 fw-bold">Bulk CSV Upload - Store Products</legend>

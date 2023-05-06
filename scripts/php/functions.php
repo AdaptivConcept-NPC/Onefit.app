@@ -59,6 +59,31 @@ function generatePasswordRandomString($length)
     }
     return $randomString;
 }
+// cryptographically accurate
+function generateRandomBytes($length)
+{
+    try {
+        //check if #length is an integer, if true then return the formated uuid string, else return false flag.
+        if (is_int($length)) {
+            $bytes = random_bytes($length);
+            return format_uuidv4($bytes);
+        } else {
+            return false;
+        }
+    } catch (\Throwable $th) {
+        throw "Exception Error [generateRandomBytes]: \n $th";
+    }
+}
+// source: https://stackoverflow.com/questions/2040240/php-function-to-generate-v4-uuid
+function format_uuidv4($data)
+{
+    assert(strlen($data) == 16);
+
+    $data[6] = chr(ord($data[6]) & 0x0f | 0x40); // set version to 0100
+    $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // set bits 6-7 to 10
+
+    return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+}
 
 // check if directory exists / is initialized with propper sub-folders, if true create sub-media folder (media)
 function checkDirectoryInit($username)
@@ -1824,6 +1849,93 @@ function jsonEncodeErrorCheck($json_obj_array)
         }
 
         echo PHP_EOL;
+    }
+}
+
+// remember user functions
+function onLogin($usernm)
+{
+    $token = format_uuidv4(generateRandomBytes(128)); // generate a token, should be 128 - 256 bit
+    // storeTokenForUser($user, $token);
+    $cookie = $usernm . ':' . $token;
+    // $mac = hash_hmac('sha256', $cookie, SECRET_KEY);
+    // $cookie .= ':' . $mac;
+    $expires = time() + 60 * 60 * 24 * 7; // expires in seven days
+    setcookie('rememberme', $cookie, $expires, '/'); //cookie is called remeberMe, contains the username:token, expires in 7 days and is accessible from the *entire web server - must evaluate the path*
+}
+
+// function storeTokenForUser($user, $token)
+// {
+//  return false;
+// }
+
+function checkAccessToken($username, $token)
+{
+    global $dbconn;
+
+    try {
+        // select a record with a matching username and token, if
+        $query = "SELECT * FROM `user_access_tokens` WHERE (`users_username` = '$username' AND `access_token` = '$token')";
+
+        $result = $dbconn->query($query);
+        if (!$result) die("Fatal Error");
+
+        $rows = $result->num_rows;
+
+        if ($rows == 0) {
+            //there is no result so notify user that the account cannot be found
+            // index.php
+            return "invalid_token";
+        } else {
+            for ($j = 0; $j < $rows; ++$j) {
+                $row = $result->fetch_array(MYSQLI_ASSOC);
+
+                $_SESSION['currentUserAuth'] = true;
+                $_SESSION['currentUserForename'] = $row["user_name"];
+                $_SESSION['currentUserSurname'] = $row["user_surname"];
+                $_SESSION['currentUserEmail'] = $row["user_email"];
+                $_SESSION['currentUserUsername'] = $row["username"];
+                // $pwdHash = $row["password_hash"];
+            }
+
+            $result->close();
+            $dbconn->close();
+
+            return true;
+
+            //HASH Bypass - Remove after fixing current password hashes in the db
+            //$hashBypass = password_hash($password, PASSWORD_DEFAULT);
+
+            // if (password_verify($password, $pwdHash)) header("Location: ../../../../../app/?userauth=true");
+            // else header("Location: ../../../../../index.php?return=mismatch&usrn=$username");
+        }
+    } catch (\Throwable $th) {
+        throw "Excepton Error: $th";
+    }
+}
+
+function rememberMe()
+{
+    $cookie = isset($_COOKIE['rememberme']) ? $_COOKIE['rememberme'] : '';
+    $result = null;
+    if ($cookie) {
+        // list($user, $token, $mac) = explode(':', $cookie);
+        // separate the username and token
+        list($usernm, $token) = explode(':', $cookie);
+        // check for a valid match from the db (status should be true and expiration date should not exceed )
+
+        // if valid match is found, authorize access to the user using their credentials
+        $result = checkAccessToken($usernm, $token);
+        if ($result === true) header("Location: ../../app/?userauth=true"); // grant access nav user to main app page
+
+        // if (!hash_equals(hash_hmac('sha256', $usernm . ':' . $token, SECRET_KEY), $mac)) {
+        //     return false;
+        // }
+
+        // $usertoken = fetchTokenByUserName($user);
+        // if (hash_equals($usertoken, $token)) {
+        //     logUserIn($user);
+        // }
     }
 }
 

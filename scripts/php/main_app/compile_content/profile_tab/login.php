@@ -18,7 +18,7 @@ $userDetailsArray = array();
 $foundUser = false;
 $hashBypass = "";
 
-$query = "SELECT * FROM `users` WHERE (`username` = '$username' OR `user_email` = '$username') #AND `password_hash` = '$password'";
+$query = "SELECT * FROM `users` WHERE (`username` = '$username' OR `user_email` = '$username')";
 
 $result = $dbconn->query($query);
 if (!$result) die("A Fatal Error has occured. Please try again and if the problem persists, please contact the system administrator.");
@@ -28,7 +28,7 @@ $rows = $result->num_rows;
 
 if ($rows == 0) {
   //there is no result so notify user that the account cannot be found
-  header("Location: ../../../../../index.html?return=unf&usrn=$username");
+  header("Location: ../../../../../index.php?return=unf&usrn=$username");
 } else {
   for ($j = 0; $j < $rows; ++$j) {
     $row = $result->fetch_array(MYSQLI_ASSOC);
@@ -48,7 +48,7 @@ if ($rows == 0) {
   //$hashBypass = password_hash($password, PASSWORD_DEFAULT);
 
   if (password_verify($password, $pwdHash)) header("Location: ../../../../../app/?userauth=true");
-  else header("Location: ../../../../../index.html?return=mismatch&usrn=$username");
+  else header("Location: ../../../../../index.php?return=mismatch&usrn=$username");
 }
 
 //Sanitization

@@ -459,11 +459,11 @@ try {
   <!-- Navigation bar -->
   <nav class="navbar navbar-light sticky-topz fixed-top navbar-stylez top-down-grad-dark">
     <div class="container-fluid">
-      <a class="navbar-brand fs-1 text-white comfortaa-font" href="../index.html">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></a>
+      <a class="navbar-brand fs-1 text-white comfortaa-font" href="../index.php">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></a>
       <button class="navbar-toggler shadow onefit-buttons-style-dark p-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <!--<span class="navbar-toggler-icon"></span>-->
         <!--<img src="./media/assets/One-Symbol-Logo-Two-Tone.svg" alt="" class="img-fluid logo-size-1" />-->
-        <span class="material-icons material-icons-round align-middle" style="font-size: 28px!important;"> auto_stories <!-- menu_open --> </span>
+        <span class="material-icons material-icons-round align-middle" style="font-size: 28px!important;"> public <!-- menu_open --> </span>
       </button>
       <div class="offcanvas offcanvas-end offcanvas-menu-primary-style" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="h-100z" id="offcanvas-menu">
@@ -2455,7 +2455,7 @@ try {
             <span class=" align-middle">Upload your profle picture and banner image</span>
           </h5>
           <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
-            <span class="material-icons material-icons-round"> cancel </span>
+            <span class="material-icons material-icons-round"> close </span>
           </button>
         </div>
         <hr class="text-white m-0z">
