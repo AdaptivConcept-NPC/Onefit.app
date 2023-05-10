@@ -2,8 +2,8 @@
 // include mysql database configuration file
 // code sourced from: https://www.tutsmake.com/import-csv-file-into-mysql-using-php/
 session_start();
-require("../scripts/php/admin_config.php");
-// require('../scripts/php/functions.php');
+require("../admin_config.php");
+require('../functions.php');
 
 //test connection - if fail then die
 if ($dbconn->connect_error) die("Fatal Error");
@@ -21,7 +21,7 @@ $output =
     $xp_points =
     $training_phase = null;
 
-if (!isset($_GET['giveme'])) $requestfor = "";
+if (!isset($_GET['giveme'])) $requestfor = "ui_data";
 else $requestfor = sanitizeMySQL($dbconn, $_GET['giveme']);
 
 try {
@@ -48,7 +48,7 @@ try {
         $training_phase = $row["training_phase"];
 
         $compile .= <<<_END
-        <option value="$exercise_id"> $exercise_name [$xp_points]XP </option>
+        <option value="$exercise_id"> $exercise_name X[$xp_points]P </option>
         _END;
     }
 

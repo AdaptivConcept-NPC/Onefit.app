@@ -147,7 +147,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <script src="https://cdn.plyr.io/1.8.2/plyr.js" onload="coreScriptLoaded_plyrio_js=true;"></script>
     <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js" onload="coreScriptLoaded_hls_js=true;"></script>
 
-    <!-- Bootstrap local -->
+    <!-- Bootstrap local - 5.2 -->
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" onload="coreScriptLoaded_bootstrap_local_css=true;">
 
     <!-- Bootstrap CSS -->
@@ -161,18 +161,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <link rel="stylesheet" href="../css/digital-clock.css" onload="coreScriptLoaded_digiclock_css=true;" />
     <link rel="stylesheet" href="../css/timeline-styles.css" onload="coreScriptLoaded_timeline_css=true;" />
 
-    <!-- JQuery local -->
-    <script src="../node_modules/jquery/dist/jquery.min.js" onload="coreScriptLoaded_jquery_local_js=true;"></script>
 
-    <!-- JQuery CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
-    <!-- ./ JQuery CDN -->
-
-    <!-- Custom Site Scripts -->
-    <script src="../scripts/js/jquery_functions.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
-    <script src="../scripts/js/script.js" onload="coreScriptLoaded_custom_script_js=true;"></script>
-    <script src="../scripts/js/api_requests.js" onload="coreScriptLoaded_custom_api_req_js=true;"></script>
-    <!-- ./ Custom Site Scripts -->
 
     <!-- For Digital Clock Plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js" onload="coreScriptLoaded_moment_js=true;"></script>
@@ -188,11 +177,6 @@ if (isset($_SESSION["currentUserAuth"])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin onload="coreScriptLoaded_googlefonts_fonts=true;">
     <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap" rel="stylesheet" onload="coreScriptLoaded_googlefonts_css=true;">
 
-    <!-- Soccer field -->
-    <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.min.css" onload="coreScriptLoaded_soccerfield_css=true;" />
-    <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.default.min.css" onload="coreScriptLoaded_soccerfield_css=true;" />
-    <script src="../scripts/js/soccer-field-players-positions/jquery.soccerfield.min.js" onload="coreScriptLoaded_soccerfield_js=true;"></script>
-
     <!-- chartjs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" onload="coreScriptLoaded_chartjs_js=true;"></script>
     <!-- <script src="../node_modules/dist/chart.min.js"></script> *** local file - no chart object detected -->
@@ -203,6 +187,24 @@ if (isset($_SESSION["currentUserAuth"])) {
         //$.noConflict();
         // $(document).ready(function() {});
     </script> -->
+
+
+    <!-- JQuery local 3.6.3 -->
+    <script src="../node_modules/jquery/dist/jquery.min.js" onload="coreScriptLoaded_jquery_local_js=true;"></script>
+
+    <!-- JQuery CDN 3.6.0 -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script> -->
+    <!-- ./ JQuery CDN -->
+    <!-- Custom Site Scripts -->
+    <script src="../scripts/js/jquery_functions.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
+    <script src="../scripts/js/script.js" onload="coreScriptLoaded_custom_script_js=true;"></script>
+    <script src="../scripts/js/api_requests.js" onload="coreScriptLoaded_custom_api_req_js=true;"></script>
+    <!-- ./ Custom Site Scripts -->
+
+    <!-- Soccer field -->
+    <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.min.css" onload="coreScriptLoaded_soccerfield_css=true;" />
+    <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.default.min.css" onload="coreScriptLoaded_soccerfield_css=true;" />
+    <script src="../scripts/js/soccer-field-players-positions/jquery.soccerfield.min.js" onload="coreScriptLoaded_soccerfield_js=true;"></script>
 </head>
 
 <body class="noselect" onload="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
@@ -241,8 +243,15 @@ if (isset($_SESSION["currentUserAuth"])) {
         <div class="collapse no-scroller pb-4 w3-animate-bottom" id="collapseloadCurtainTweetFeed" style="overflow-y: auto;">
             <div class="pb-4 no-scroller" style="border-radius: 25px !important; overflow-y: auto; max-height: 90vh; min-width: 500px;">
                 <!-- twitter api -->
-                <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by OnefitNet</a>
+                <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">
+                    Tweets by <span style="color: var(--tahitigold)!important;">@OnefitNet</span>
+                </a>
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border grow text-light my-4" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -283,6 +292,11 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <!-- offline Curtain -->
     <div class="offline-curtain" id="offline-curtain" style="display: none;background-color:var(--mineshaft);">
+        <nav class="navbar navbar-light stickyz fixed-top navbar-style bg-transparent" style="z-index: 10000;">
+            <div class="container-fluid justify-content-center p-5">
+                <h1 class="navbar-brand fs-1 text-white comfortaa-font m-0">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></h1>
+            </div>
+        </nav>
         <div class="d-flex align-items-center down-top-grad-white" style="width: 100%; height: 100%;">
             <div class="text-center w-100">
                 <div class="ring d-flex align-items-center p-4 shadow-lg">
@@ -747,26 +761,26 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div class="offcanvas offcanvas-end offcanvas-menu-primary-style fitness-bg-containerz" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div class="h-100z" id="offcanvas-menu">
                         <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
-                            <img src="./media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;">
+                            <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;">
                             <h5 class="offcanvas-title text-center" id="offcanvasNavbarLabel">
                                 <span class="material-icons material-icons-round align-middle" style="color: #ffa500; cursor: pointer;font-size:20px!important;">
                                     public
                                 </span>
                                 Web.
                             </h5>
-                            <button type="button" class="onefit-buttons-style-light shadow p-4" data-bs-dismiss="offcanvas" aria-label="Close">
-                                <span class="material-icons material-icons-round align-middle"> close </span>
+                            <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2" data-bs-dismiss="offcanvas" aria-label="Close">
+                                <span class="material-icons material-icons-round align-middle" style="font-size:20px!important;"> close </span>
                             </button>
                         </div>
                         <div class="offcanvas-body" style="padding-bottom: 40px; overflow-y: auto; overflow-x: hidden; max-height: 80vh;">
                             <ul class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3">
                                 <li class="nav-item d-grid gap-2">
-                                    <button class="onefit-buttons-style-danger rounded-pill p-4 text-center my-4 shadow" style="transform: translate(0) !important;" onclick="launchLink('../scripts/php/destroy_session.php')" style="border-radius: 25px !important;">
-                                        <div class="row align-items-center">
-                                            <span class="material-icons material-icons-outlined align-middle" style="color: var(--tahitigold);">
+                                    <button class="onefit-buttons-style-light rounded-pill p-4 text-center shadow fw-bold" style="transform: translate(0) !important; border-radius:25px!important;" onclick="launchLink('../scripts/php/destroy_session.php')">
+                                        <div class="align-items-center">
+                                            <span class="material-icons material-icons-outlined align-middle" style="color: var(--tahitigold);font-size:20px!important;">
                                                 logout
                                             </span>
-                                            <span class="align-middle">
+                                            <span class="align-middle" style="font-size:20px!important;">
                                                 Logout.
                                             </span>
                                         </div>
@@ -805,9 +819,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                 <div class="offcanvas offcanvas-start offcanvas-menu-primary-style fitness-bg-containerz" tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
                     <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
-                        <!-- <img src="./media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;"> -->
-                        <button type="button" class="onefit-buttons-style-light shadow p-4" data-bs-dismiss="offcanvas" aria-label="Close">
-                            <span class="material-icons material-icons-round align-middle"> close </span>
+                        <!-- <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;"> -->
+                        <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2" data-bs-dismiss="offcanvas" aria-label="Close">
+                            <span class="material-icons material-icons-round align-middle" style="font-size:20px!important;"> close </span>
                         </button>
                         <h5 class="offcanvas-title text-center" id="offcanvasNavbarLabel">
                             <span class="material-icons material-icons-round align-middle" style="color: #ffa500; cursor: pointer;font-size:20px!important;">
@@ -815,6 +829,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </span>
                             Notifications.
                         </h5>
+                        <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;">
                     </div>
                     <div class="offcanvas-body top-down-grad-dark">
                         <!-- style="background-color: rgba(255, 255, 255, 0.8);" -->
@@ -3008,7 +3023,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
 
                     <div class="container-fluid p-4 shadow-lg d-inline-block border-5 border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
-                        <div class="row align-items-center text-center comfortaa-font">
+                        <div class="row align-items-center text-center comfortaa-font border-5 border-start border-end" style="border-radius:25px;border-color:var(--tahitigold)!important;">
                             <div class="col-sm py-2 text-truncate">
                                 <!--<i class="fas fa-heart"></i>-->
                                 <div class="d-none">
@@ -3062,14 +3077,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </div>
                             <div class="col-sm py-2 text-center">
                                 <div class="d-inline">
-                                    <button class="btn p-4 onefit-buttons-style-dark my-pulse-animation-tahiti border-5 border hide-side-panels" style="border-radius: 25px !important; border-color: #ffa500 !important;" type="button" data-bs-toggle="modal" data-bs-target="#tabCaptureActivityTrackerDataModal">
+                                    <button class="btn p-4 onefit-buttons-style-dark my-pulse-animation-tahiti border-5 border hide-side-panels d-grid gap-2" style="border-radius: 25px !important; border-color: #ffa500 !important;" type="button" data-bs-toggle="modal" data-bs-target="#tabCaptureActivityTrackerDataModal">
                                         <!--  data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="heartrate-expand-icon heartrate-data-input-form-container" -->
-                                        <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid mb-2" />
+                                        <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid mb-2">
                                         <span class="material-icons material-icons-round align-middle">
                                             add_circle_outline
                                         </span>
                                         <span class="d-none d-lg-block" style="font-size: 8px;">
-                                            Capture Stats.
+                                            Capture Vitals.
                                         </span>
                                     </button>
                                 </div>
@@ -3164,7 +3179,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div class=" d-flex justify-content-center">
                                             <div class="in-div-button-container position-relative">
                                                 <!-- refresh button -->
-                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mx-4 position-absolute top-100 start-50 translate-middle" onclick="syncUserActivityTrackerChart(heartRateChart, '<?php echo $currentUser_Usrnm; ?>','heart_rate_monitor_chart')">
+                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(heartRateChart, '<?php echo $currentUser_Usrnm; ?>','heart_rate_monitor_chart')">
                                                     <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
                                                     <span class="align-middle" style="font-size: 10px;">Sync.</span>
                                                 </button>
@@ -3280,7 +3295,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div class=" d-flex justify-content-center">
                                             <div class="in-div-button-container position-relative">
                                                 <!-- refresh button -->
-                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mx-4 position-absolute top-100 start-50 translate-middle" onclick="syncUserActivityTrackerChart(bodyTempChart, '<?php echo $currentUser_Usrnm; ?>','body_temp_monitor_chart')">
+                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(bodyTempChart, '<?php echo $currentUser_Usrnm; ?>','body_temp_monitor_chart')">
                                                     <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
                                                     <span class="align-middle" style="font-size: 10px;">Sync.</span>
                                                 </button>
@@ -3395,7 +3410,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div class=" d-flex justify-content-center">
                                             <div class="in-div-button-container position-relative">
                                                 <!-- refresh button -->
-                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mx-4 position-absolute top-100 start-50 translate-middle" onclick="syncUserActivityTrackerChart(speedChart, '<?php echo $currentUser_Usrnm; ?>','speed_monitor_chart')">
+                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(speedChart, '<?php echo $currentUser_Usrnm; ?>','speed_monitor_chart')">
                                                     <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
                                                     <span class="align-middle" style="font-size: 10px;">Sync.</span>
                                                 </button>
@@ -3504,7 +3519,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-md -8 py-4 d-flex justify-content-center no-scroller d-none" style="overflow-x: auto;">
                                         <div class="in-div-button-container position-relative">
                                             <!-- refresh button -->
-                                            <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mx-4 position-absolute top-100 start-50 translate-middle" onclick="syncUserActivityTrackerChart(stepCountChart, '<?php echo $currentUser_Usrnm; ?>','step_counter_monitor_chart')">
+                                            <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(stepCountChart, '<?php echo $currentUser_Usrnm; ?>','step_counter_monitor_chart')">
                                                 <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
                                                 <span class="align-middle" style="font-size: 10px;">Sync.</span>
                                             </button>
@@ -3553,7 +3568,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div class="d-flex justify-content-center">
                                             <div class="in-div-button-container position-relative">
                                                 <!-- refresh button -->
-                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mx-4 position-absolute top-100 start-50 translate-middle" onclick="syncUserActivityTrackerChart(bmiWeightChart, '<?php echo $currentUser_Usrnm; ?>','bmi_weight_monitor_chart')">
+                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(bmiWeightChart, '<?php echo $currentUser_Usrnm; ?>','bmi_weight_monitor_chart')">
                                                     <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
                                                     <span class="align-middle" style="font-size: 10px;">Sync.</span>
                                                 </button>
@@ -6295,8 +6310,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <div class="collapse no-scroller pb-4 w3-animate-bottom" id="collapseloadCurtainTweetFeed" style="overflow-y: auto;">
                             <div class="pb-4 no-scroller" style="border-radius: 25px !important; overflow-y: auto; max-height: 90vh; min-width: 500px;">
-                                <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by OnefitNet</a>
+                                <!-- twitter api -->
+                                <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">
+                                    Tweets by <span style="color: var(--tahitigold)!important;">@OnefitNet</span>
+                                </a>
                                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-border grow text-light my-4" style="width: 3rem; height: 3rem;" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -6843,108 +6866,112 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <!-- Modals ----------------------------------------------------------------------------------------- -->
     <!-- modal quick access button tray -->
+    <!-- quick access tray collapse btn -->
+    <button type="button" class="onefit-buttons-style-tahiti rounded-circlez p-0z shadow collapsed" style="width:100px;height:100px;border-radius:25px 25px 25px 0;position:fixed;left:0;bottom:0;" data-bs-toggle="collapse" data-bs-target="#modal-btn-collapse-container" aria-controls="modal-btn-collapse-container" aria-expanded="false" aria-label="modal quick access.">
+        <!-- position:fixed;left:0;bottom:0; -->
+        <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important;">
+            shortcut
+        </span>
+        <span class="text-truncate align-middle d-nonez" style="font-size: 10px;">quick access.</span>
+    </button>
+    <!-- ./ quick access tray collapse btn -->
     <div id="modal-btn-quick-tray" class="p-0 modal-btn-quick-tray fixed-bottom">
-        <!-- quick access tray collapse btn -->
-        <button type="button" class="onefit-buttons-style-tahiti rounded-circlez p-0z shadow collapsed" style="width:100px;height:100px;border-radius:25px 25px 25px 0;margin-top:-100px;" data-bs-toggle="collapse" data-bs-target="#modal-btn-collapse-container" aria-controls="modal-btn-collapse-container" aria-expanded="false" aria-label="modal quick access.">
-            <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important;">
-                shortcut
-            </span>
-            <span class="text-truncate align-middle d-nonez" style="font-size: 10px;">quick access.</span>
-        </button>
-        <!-- ./ quick access tray collapse btn -->
-
-        <div id="modal-btn-quick-tray" class="px-0 modal-btn-quick-tray fixed-bottom">
-            <!-- quick access tray collapse btn -->
-            <button type="button" class="onefit-buttons-style-tahiti rounded-circlez p-0z shadow collapsed" style="width:100px;height:100px;border-radius:25px 25px 25px 0;margin-top:-100px;" data-bs-toggle="collapse" data-bs-target="#modal-btn-collapse-container" aria-controls="modal-btn-collapse-container" aria-expanded="false" aria-label="modal quick access.">
-                <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important;">
-                    shortcut
-                </span>
-                <span class="text-truncate align-middle d-nonez" style="font-size: 10px;">quick access.</span>
-            </button>
-            <!-- <div class="d-flex"></div> -->
-            <!-- ./ quick access tray collapse btn -->
-
+        <div id="modal-btn-quick-tray" class="px-0 modal-btn-quick-tray">
             <!-- quick access buttons collapse container -->
-            <div id="modal-btn-collapse-container" class="top-down-grad-dark pt-4 w3-animate-left collapse" style="border-radius: 0px 25px 0px 0px;">
-                <h1 class="comfortaa-font fs-3 text-white container text-center">
-                    Quick access to <span style="color:var(--tahitigold);">.app</span> features
-                </h1>
-                <div class="grid-container p-4 down-top-grad-dark">
-                    <div class="grid-tile d-grid">
-                        <!-- 1. Button trigger modal>>>>>>>>>> Tab Navigation Modal -->
-                        <button type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" data-bs-toggle="modal" data-bs-target="#tabNavModal">
-                            <span class="material-icons material-icons-round align-middle">
-                                apps
-                            </span>
-                            <span class="text-truncate align-middle">.apps</span>
-                            <span class="visually-hidden">Launch #tabNavModal</span>
-                        </button>
-                    </div>
-                    <div class="grid-tile d-grid">
-                        <button id="latest-social-feed-offcanvas-btn" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" type="button" onclick="alert('Onefit.Social is unavailable at the moment.')">
-                            <span class="material-icons material-icons-round align-middle">
-                                stream
-                            </span>
-                            <span class="text-truncate align-middle">Commnity feed.</span>
-                            <span class="visually-hidden">2. Latest social feed.</span>
-                        </button>
-                    </div>
-                    <div class="grid-tile d-grid">
-                        <!-- 3. Chat Modal / messages offcamvas toggle btn -->
-                        <button id="toggle-messages-offcanvas" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat">
-                            <span class="material-icons material-icons-round align-middle">
-                                chat
-                            </span>
-                            <span class="text-truncate align-middle">Messages.</span>
-                            <span class="visually-hidden">Toggle Chat Messenger offcanvas</span>
-                        </button>
-                    </div>
-                    <div class="grid-tile d-grid">
-                        <!-- 4. Button trigger modal>>>>>>>>>> Tab Activity Tracker Capture Modal -->
-                        <button id="toggleTabCaptureActivityTrackerDataModalBtn" type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" data-bs-toggle="modal" data-bs-target="#tabCaptureActivityTrackerDataModal">
-                            <span class="material-icons material-icons-round align-middle">
-                                track_changes
-                            </span>
-                            <span class="text-truncate align-middle">Capture your Vitals.</span>
-                            <span class="text-truncate align-middle text-muted"><small>(Activity Tracking)</small></span>
-                            <span class="visually-hidden">Launch #captureactivitytrackers</span>
-                        </button>
-                    </div>
-                    <div class="grid-tile d-grid">
-                        <!-- 5. Button trigger modal>>>>>>>>>> Calender Activity Form Modal -->
-                        <button id="toggleCalenderActivityFormeModalBtn" type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" data-bs-toggle="modal" data-bs-target="#CalenderActivityFormeModal">
-                            <span class="material-icons material-icons-round align-middle">
-                                event_note
-                            </span>
-                            <span class="text-truncate align-middle">Todays activities.</span>
-                            <span class="visually-hidden">Launch #CalenderActivityFormeModal</span>
-                        </button>
-                    </div>
-                    <div class="grid-tile d-grid">
-                        <!-- 6. Button trigger modal>>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
-                        <button id="toggleTabeditWeeklyTeamsTrainingScheduleModalBtn" type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
-                            <!-- hidden aria-hidden="true" -->
-                            <span class="material-icons material-icons-round align-middle">
-                                edit_calendar
-                            </span>
-                            <span>Edit weekly training schedule (Teams).</span>
-                            <span class="visually-hidden">Launch #editWeeklyTeamsTrainingSchedule</span>
-                        </button>
-                    </div>
-                    <div class="grid-tile d-grid d-none">
-                        <!-- 7. Button trigger modal>>>>>>>>>> Insights Interactions: Physical Assessment Modal -->
-                        <button id="show-interaction-modal-btn" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal">
-                            <span class="material-icons material-icons-round align-middle">
-                                touch_app
-                            </span>
-                            <span class="align-middle poppins-font">Training interactions.</span>
-                            <span class="visually-hidden">Launch #trainingInteractionsContentModal</span>
-                        </button>
-                    </div>
-                    <div class="grid-tile d-grid d-none"><small class="text-muted">Modal button container.</small></div>
-                    <div class="grid-tile d-grid d-none"><small class="text-muted">Modal button container.</small></div>
-                    <div class="grid-tile d-grid d-none"><small class="text-muted">Modal button container.</small></div>
+            <div id="modal-btn-collapse-container" class="top-down-grad-dark pt-4 w3-animate-left collapse" style="border-radius: 25px 25px 0px 0px;">
+                <div class="container d-flex justify-content-between align-items-center">
+                    <h1 class="comfortaa-font fs-3 text-white text-start align-middle">
+                        <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important;">
+                            shortcut
+                        </span>
+                        Quick access to <span style="color:var(--tahitigold);">.app</span> features
+                    </h1>
+                    <button type="button" class="onefit-buttons-style-light rounded-circlez p-4 shadow" data-bs-toggle="collapse" data-bs-target="#modal-btn-collapse-container" aria-controls="modal-btn-collapse-container" aria-expanded="true" aria-label="close modal quick access.">
+                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px !important;">
+                            close
+                        </span>
+                    </button>
                 </div>
+
+                <div class="container-fluid down-top-grad-dark">
+                    <div class="grid-container p-4">
+                        <div class="grid-tile d-grid">
+                            <!-- 1. Button trigger modal>>>>>>>>>> Tab Navigation Modal -->
+                            <button type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" data-bs-toggle="modal" data-bs-target="#tabNavModal">
+                                <span class="material-icons material-icons-round align-middle">
+                                    apps
+                                </span>
+                                <span class="text-truncate align-middle">.apps</span>
+                                <span class="visually-hidden">Launch #tabNavModal</span>
+                            </button>
+                        </div>
+                        <div class="grid-tile d-grid">
+                            <button id="latest-social-feed-offcanvas-btn" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" type="button" onclick="alert('Onefit.Social is unavailable at the moment.')">
+                                <span class="material-icons material-icons-round align-middle">
+                                    stream
+                                </span>
+                                <span class="text-truncate align-middle">Commnity feed.</span>
+                                <span class="visually-hidden">2. Latest social feed.</span>
+                            </button>
+                        </div>
+                        <div class="grid-tile d-grid">
+                            <!-- 3. Chat Modal / messages offcamvas toggle btn -->
+                            <button id="toggle-messages-offcanvas" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat">
+                                <span class="material-icons material-icons-round align-middle">
+                                    chat
+                                </span>
+                                <span class="text-truncate align-middle">Messages.</span>
+                                <span class="visually-hidden">Toggle Chat Messenger offcanvas</span>
+                            </button>
+                        </div>
+                        <div class="grid-tile d-grid">
+                            <!-- 4. Button trigger modal>>>>>>>>>> Tab Activity Tracker Capture Modal -->
+                            <button id="toggleTabCaptureActivityTrackerDataModalBtn" type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" data-bs-toggle="modal" data-bs-target="#tabCaptureActivityTrackerDataModal">
+                                <span class="material-icons material-icons-round align-middle">
+                                    track_changes
+                                </span>
+                                <span class="text-truncate align-middle">Capture your Vitals.</span>
+                                <span class="text-truncate align-middle text-muted"><small>(Activity Tracking)</small></span>
+                                <span class="visually-hidden">Launch #captureactivitytrackers</span>
+                            </button>
+                        </div>
+                        <div class="grid-tile d-grid">
+                            <!-- 5. Button trigger modal>>>>>>>>>> Calender Activity Form Modal -->
+                            <button id="toggleCalenderActivityFormeModalBtn" type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" data-bs-toggle="modal" data-bs-target="#CalenderActivityFormeModal">
+                                <span class="material-icons material-icons-round align-middle">
+                                    event_note
+                                </span>
+                                <span class="text-truncate align-middle">Todays activities.</span>
+                                <span class="visually-hidden">Launch #CalenderActivityFormeModal</span>
+                            </button>
+                        </div>
+                        <div class="grid-tile d-grid">
+                            <!-- 6. Button trigger modal>>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
+                            <button id="toggleTabeditWeeklyTeamsTrainingScheduleModalBtn" type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                <!-- hidden aria-hidden="true" -->
+                                <span class="material-icons material-icons-round align-middle">
+                                    edit_calendar
+                                </span>
+                                <span>Edit weekly training schedule (Teams).</span>
+                                <span class="visually-hidden">Launch #editWeeklyTeamsTrainingSchedule</span>
+                            </button>
+                        </div>
+                        <div class="grid-tile d-grid d-none">
+                            <!-- 7. Button trigger modal>>>>>>>>>> Insights Interactions: Physical Assessment Modal -->
+                            <button id="show-interaction-modal-btn" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" type="button" data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal">
+                                <span class="material-icons material-icons-round align-middle">
+                                    touch_app
+                                </span>
+                                <span class="align-middle poppins-font">Training interactions.</span>
+                                <span class="visually-hidden">Launch #trainingInteractionsContentModal</span>
+                            </button>
+                        </div>
+                        <div class="grid-tile d-grid d-none"><small class="text-muted">Modal button container.</small></div>
+                        <div class="grid-tile d-grid d-none"><small class="text-muted">Modal button container.</small></div>
+                        <div class="grid-tile d-grid d-none"><small class="text-muted">Modal button container.</small></div>
+                    </div>
+                </div>
+
             </div>
             <!-- ./ quick access buttons collapse container -->
         </div>
@@ -7244,8 +7271,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <h4>Twitter Feed</h4>
                                     <!-- Twitter feed -->
                                     <div class="m-4 no-scroller" style="border-radius: 25px !important; overflow-y: scroll;">
-                                        <a class="twitter-timeline" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by
-                                            <span style="color: var(--tahitigold)!important;">@OnefitNet</span></a>
+                                        <!-- twitter api -->
+                                        <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">
+                                            Tweets by <span style="color: var(--tahitigold)!important;">@OnefitNet</span>
+                                        </a>
                                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                                         <div class="d-flex justify-content-center">
                                             <div class="spinner-border grow text-light my-4" style="width: 3rem; height: 3rem;" role="status">
@@ -7483,12 +7512,16 @@ if (isset($_SESSION["currentUserAuth"])) {
             <div class="modal-content feature-tab-nav-content content-panel-border-stylez">
                 <!-- style="border-bottom: #ffa500 5px solid;" -->
                 <div class="modal-header border-0">
-                    <h5 class="modal-title align-middle" id="tabCaptureActivityTrackerDataModalLabel">
-                        <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
+                    <div class="d-flex justify-content-start">
+                        <span class="material-icons material-icons-round align-middle" style="color: #ffa500;font-size:48px!important;">
                             analytics
                         </span>
-                        <span class=" align-middle">Capture Activity Tracking Data</span>
-                    </h5>
+                        <h5 class="modal-title align-middle d-grid" id="tabCaptureActivityTrackerDataModalLabel">
+                            <span class=" align-middle">Capture your <span style="color: var(--tahitigold);">Vitals</span>.</span>
+                            <small class="text-muted">Activity Tracking Data</small>
+                        </h5>
+                    </div>
+
                     <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
                         <span class="material-icons material-icons-round"> close </span>
                     </button>
@@ -7975,14 +8008,14 @@ if (isset($_SESSION["currentUserAuth"])) {
             <div class="modal-content feature-tab-nav-content content-panel-border-stylez">
                 <!-- style="border-bottom: #ffa500 5px solid;" -->
                 <div class="modal-header border-0">
-                    <div class="d-grid gap-2">
-                        <h5 class="modal-title align-middle fs-1" id="CalenderActivityFormeModalLabel">
-                            <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
-                                calendar_month
-                            </span>
-                            <span id="CalenderActivityFormeModalLabelText" class="align-middle"> Fitness Calender. </span>
+                    <div class="d-flex gap-2 justify-content-start align-items-middle">
+                        <span class="material-icons material-icons-round align-middle" style="color: #ffa500;font-size:48px!important;">
+                            calendar_month
+                        </span>
+                        <h5 class="modal-title align-middle d-grid m-0 fs-4" id="tabCaptureActivityTrackerDataModalLabel">
+                            <span class=" align-middle"> Fitness Calender. </span>
+                            <small class="text-muted">My activities for <span class="calender-date-selected-label text-white fw-bold">Date</span>.</small>
                         </h5>
-                        <p class="text-muted text-center m-0">My activities for <span class="calender-date-selected-label text-white fw-bold">Date</span>.</p>
                     </div>
 
                     <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal" aria-label="Close">
@@ -8112,18 +8145,35 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <input class="form-control-text-input p-4" type="date" name="add-to-calender-activity-date-value" id="add-to-calender-activity-date-value" placeholder="Date" required="" readonly="">
                                         </div>
                                         <script>
-                                            function toggleCustomColorSelection(value) {
+                                            function toggleCustomColorSelection(value, newTag) {
+                                                newTag = newTag || false;
+                                                var colorExtract;
                                                 if (value === 'custom') {
                                                     // set display value to block for #custom-color-selection
                                                     document.getElementById('custom-color-selection').style.display = "block";
                                                     // default th bg value to white
                                                     document.getElementById('color-preview').style.backgroundColor = "white";
                                                 } else {
-                                                    // set display value to greenyellow as it it the first item/color code in our select input for #custom-color-selection
-                                                    document.getElementById('custom-color-selection').style.display = "none";
-                                                    // extract the color of the selection made/passed through the value parameter and set it as the backgroun color of #custom-color-selection
-                                                    var colorExtract = value.split('[').pop().split(']')[0];
-                                                    document.getElementById('color-preview').style.backgroundColor = colorExtract;
+                                                    if (newTag === true) {
+                                                        // call $.newCustomColorTag(tagColor) to 
+                                                        var tagState = $.newCustomColorTag(value);
+                                                        if (tagState == true) {
+                                                            // hide the #custom-color-selection col and console log success message
+                                                            document.getElementById('custom-color-selection').style.display = "none";
+                                                            // colorExtract = value.split('[').pop().split(']')[0];
+                                                            document.getElementById('color-preview').style.backgroundColor = value;
+                                                        } else {
+                                                            // consol log failure message
+                                                            console.log("[toggleCustomColorSelection] failed to create color tag.");
+                                                        }
+                                                    } else {
+                                                        // set display value to greenyellow as it it the first item/color code in our select input for #custom-color-selection
+                                                        document.getElementById('custom-color-selection').style.display = "none";
+                                                        // extract the color of the selection made/passed through the value parameter and set it as the backgroun color of #custom-color-selection
+                                                        colorExtract = value.split('[').pop().split(']')[0];
+                                                        document.getElementById('color-preview').style.backgroundColor = colorExtract;
+                                                    }
+
                                                 }
                                             }
                                         </script>
@@ -8142,22 +8192,31 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </select>
                                         </div>
                                         <div class="row justify-content-center align-items-center">
-                                            <div id="custom-color-selection" class="col-md-10" style="display:none;">
-                                                <div class="form-group my-4">
+                                            <div id="custom-color-selection" class="col-md-8 border-1 border-end w3-animate-left" style="display: none;">
+                                                <div class="form-group my-4 px-2">
                                                     <label for="add-to-calender-activity-custom-colorcode-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">5.1. Custom Color Code:</label>
-                                                    <div class="d-flex gap-2 align-items-center">
+                                                    <div class="d-flex gap-4 align-items-center justify-content-center">
+                                                        <div class="d-grid gap-1">
+                                                            <label for="add-to-calender-activity-custom-colorcode-title-value" class="poppins-font form-check-label text-start pt-2" style="font-size:10px;">
+                                                                Please provide a title to identify what the selected color code tag means.
+                                                            </label>
+                                                            <input class="form-control-text-input p-4" type="text" value="color_tag" name="add-to-calender-activity-custom-colorcode-title-value" id="add-to-calender-activity-custom-colorcode-title-value" placeholder="Please provide a title to identify what the selected color code means">
+                                                        </div>
                                                         <div class="d-grid gap-1 text-center">
                                                             <span class="material-icons material-icons-outlined align-middle" style="font-size:20px!important;">
                                                                 format_color_fill
                                                             </span>
-                                                            <input class="form-control-text-input p-4" type="color" name="add-to-calender-activity-custom-colorcode-value" id="add-to-calender-activity-custom-colorcode-value" oninput="toggleCustomColorSelection(this.value)" placeholder="select a custom color" value="#ffffff" style="width:50px;height:50px;">
+                                                            <input class="rounded-pill p-3" type="color" name="add-to-calender-activity-custom-colorcode-value" id="add-to-calender-activity-custom-colorcode-value" oninput="toggleCustomColorSelection(this.value,true)" placeholder="select a custom color" value="#ffffff" style="width:50px;height:50px;">
                                                         </div>
-                                                        <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-custom-colorcode-title-value" id="add-to-calender-activity-custom-colorcode-title-value" placeholder="Please provide a title to identify what the selected color code means">
+                                                        <div class="form-check d-flex gap-2 text-center justify-content-center">
+                                                            <input class="form-check-input" type="checkbox" id="add-to-calender-activity-custom-colorcode-save-tag">
+                                                            <label for="add-to-calender-activity-custom-colorcode-save-tag" class="poppins-font form-check-label text-center pt-2">Save?</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2 d-grid text-center">
-                                                <span id="color-preview" class="p-4 shadow align-middle text-truncate text-dark shadow" style="background-color: white; border-radius: 25px;">
+                                            <div class="col-md-4 d-grid text-center">
+                                                <span id="color-preview" class="p-4 shadow align-middle text-truncate text-dark shadow" style="background-color: greenyellow; border-radius: 25px;">
                                                     <span class="material-icons material-icons-round align-middle" style="color: var(--mineshaft);">
                                                         palette
                                                     </span>
@@ -8171,10 +8230,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div class="row align-items-center">
                                             <div class="col-md d-grid">
                                                 <!-- select an existing exercise activity -->
-                                                <div class="form-group my-4 gap-4 d-grid gap-4">
-                                                    <label for="add-to-calender-activity-selection" class="poppins-font fs-4 mb-4" style="color: #ffa500;">Exercises &amp; Activities.</label>
-                                                    <select class="custom-select form-control-select-input p-2 light-scroller" id="add-to-calender-activity-selection" style="border-radius:25px;" multiple="multiple" rows="10">
-                                                        <option value="no-selection" selected>Select a workout / activity.</option>
+                                                <div class="form-group d-grid gap-2">
+                                                    <label for="add-to-calender-activity-selection" class="poppins-font fs-4" style="color: #ffa500;">Exercises &amp; Activities.</label>
+                                                    <select class="custom-select form-control-select-input p-2 light-scroller" id="add-to-calender-activity-selection" style="border-radius:25px;height:290px;" multiple="multiple" rows="20">
+                                                        <option value="no-selection" selected="">Select a workout / activity.</option>
                                                         <option value="40"> 90/90 spiral with rotation (At-Home - Back Exercises - Cooldowns) (10xp)</option>
                                                         <option value="35"> Bent-over double delt raises (At-Home - Back Exercises - Standing movements) (15xp)</option>
                                                         <option value="36"> Bent-over row with resistance band (At-Home - Back Exercises - Standing movements) (10xp)</option>
@@ -8219,7 +8278,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         <option value="41"> Wind-relieving pose (At-Home - Back Exercises - Cooldowns) (2xp)</option>
                                                         <option value="other">Other</option>
                                                     </select>
-                                                    <button type="button" id="add-selection-to-activities-list-btn" class="onefit-buttons-style-light p-4">
+                                                    <button type="button" id="add-selection-to-activities-selectlist-btn" class="onefit-buttons-style-light p-4">
                                                         <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
                                                             add
                                                         </span>
@@ -8235,12 +8294,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </div>
                                             <div class="col-md d-grid gap-4">
                                                 <!-- Textarea for typing out the exercises -->
-                                                <div class="form-group my-4 d-grid gap-4">
-                                                    <label for="add-to-calender-activity-specify-new" class="comfortaa-font fs-5" style="color: #ffa500;">Create New Activities:</label>
-                                                    <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-specify-title" id="add-to-calender-activity-specify-title" placeholder="Exercise/Activity title.">
+                                                <div class="form-group d-grid gap-2">
+                                                    <label for="add-to-calender-activity-specify-title" class="poppins-font fs-4" style="color: #ffa500;">Create New Activities:</label>
+                                                    <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-specify-title" id="add-to-calender-activity-specify-title" placeholder="Exercise / activity title." style="border-radius:25px;">
 
-                                                    <textarea class="form-control-text-input p-2 text-dark light-scroller" rows="3" type="text" name="add-to-calender-activity-specify-new-instructions" id="add-to-calender-activity-specify-new-instructions" placeholder="Define the instructions here." style="border-radius:25px;"></textarea>
-                                                    <button type="button" id="add-selection-to-activities-list-btn" class="onefit-buttons-style-light p-4">
+                                                    <label for="add-to-calender-activity-specify-xp" class="poppins-font" style="color: #ffa500;font-size:12px;">Allocate xp pts (1 - 10):</label>
+                                                    <input class="form-control-text-input p-4" type="number" oninput="validity.valid||(value='');" min="1" max="10" name="add-to-calender-activity-specify-xp" id="add-to-calender-activity-specify-xp" placeholder="How much XP? 10xp max." style="border-radius:25px;">
+
+                                                    <textarea class="form-control-text-input p-2 text-dark light-scroller" rows="3" type="text" name="add-to-calender-activity-specify-new-instructions" id="add-to-calender-activity-specify-new-instructions" placeholder="Definition / Instructions..." style="border-radius:25px;"></textarea>
+                                                    <button type="button" id="add-selection-to-activities-textinput-btn" class="onefit-buttons-style-light p-4">
                                                         <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
                                                             add
                                                         </span>
@@ -8258,6 +8320,32 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </span>
                                                 <span class="align-middle"> Activities Added.</span>
                                             </label>
+                                            <!-- move items function buttons -->
+                                            <div class="d-flex justify-content-between gap-2 mb-2">
+                                                <div class="d-grid">
+                                                    <h1 id="selected-xp-counter" class="fs-5" style="color: var(--tahitigold);">Total xp: 0 | 0 activities.</h1>
+                                                </div>
+
+                                                <div class="d-flex justify-content-end gap-2">
+                                                    <button type="button" id="remove-selection-from-selected-activities-list-btn" class="onefit-buttons-style-light p-2">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
+                                                            remove
+                                                        </span>
+                                                        <span style="font-size:10px!important;">
+                                                            Remove selected.
+                                                        </span>
+                                                    </button>
+                                                    <button type="button" id="remove-all-from-selected-activities-list-btn" class="onefit-buttons-style-danger p-2">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
+                                                            restart_alt
+                                                        </span>
+                                                        <span style="font-size:10px!important;">
+                                                            Remove all selected.
+                                                        </span>
+                                                    </button>
+                                                </div>
+
+                                            </div>
                                             <!-- listbox on the right col is the listbox that will be submitted on form submit -->
                                             <select id="select-workout-exercises-selected" name="select-workout-exercises-selected[]" class="form-control light-scroller" multiple="multiple" rows="50" style="min-height:200px;border-radius:25px;"></select>
                                         </div>
@@ -9116,63 +9204,16 @@ if (isset($_SESSION["currentUserAuth"])) {
             usernm = usernm || "init";
             // check if there are unloaded core scripts and stylesheets
 
-            // coreScriptLoaded_bootstrap_bundle_local_js == false ||
-            if (coreScriptLoaded_googlefont_icons_css == false ||
-                coreScriptLoaded_plyrio_css == false ||
-                coreScriptLoaded_plyrio_js == false ||
-                coreScriptLoaded_hls_js == false ||
-                coreScriptLoaded_bootstrap_local_css == false ||
-                coreScriptLoaded_bootstrap_bundle_cdn_js == false ||
-                coreScriptLoaded_w3_css == false ||
-                coreScriptLoaded_custom_styles_css == false ||
-                coreScriptLoaded_digiclock_css == false ||
-                coreScriptLoaded_digiclock_js == false ||
-                coreScriptLoaded_timeline_css == false ||
-                coreScriptLoaded_custom_jquery_func_js == false ||
-                coreScriptLoaded_custom_script_js == false ||
-                coreScriptLoaded_custom_api_req_js == false ||
-                coreScriptLoaded_jquery_local_js == false ||
-                coreScriptLoaded_custom_jquery_func_js == false ||
-                coreScriptLoaded_moment_js == false ||
-                /* coreScriptLoaded_googlefonts_fonts == false || */
-                coreScriptLoaded_googlefonts_css == false ||
-                coreScriptLoaded_soccerfield_css == false ||
-                coreScriptLoaded_soccerfield_js == false ||
-                coreScriptLoaded_chartjs_js == false) {
-                console.log("Some core scripts were not loaded. Please check your internet connection. \n" +
-                    "\n googlefont_icons_css: " + coreScriptLoaded_googlefont_icons_css +
-                    "\n plyrio_css: " + coreScriptLoaded_plyrio_css +
-                    "\n plyrio_js: " + coreScriptLoaded_plyrio_js +
-                    "\n hls_js: " + coreScriptLoaded_hls_js +
-                    "\n bootstrap_local_css: " + coreScriptLoaded_bootstrap_local_css +
-                    "\n bootstrap_bundle_cdn_js: " + coreScriptLoaded_bootstrap_bundle_cdn_js +
-                    "\n w3_css: " + coreScriptLoaded_w3_css +
-                    "\n custom_styles_css: " + coreScriptLoaded_custom_styles_css +
-                    "\n digiclock_css: " + coreScriptLoaded_digiclock_css +
-                    "\n digiclock_js: " + coreScriptLoaded_digiclock_js +
-                    "\n timeline_css: " + coreScriptLoaded_timeline_css +
-                    "\n custom_jquery_func_js: " + coreScriptLoaded_custom_jquery_func_js +
-                    "\n custom_script_js: " + coreScriptLoaded_custom_script_js +
-                    "\n custom_api_req_js: " + coreScriptLoaded_custom_api_req_js +
-                    "\n jquery_local_js: " + coreScriptLoaded_jquery_local_js +
-                    "\n custom_jquery_func_js: " + coreScriptLoaded_custom_jquery_func_js +
-                    "\n moment_js: " + coreScriptLoaded_moment_js +
-                    "\n googlefonts_fonts: " + coreScriptLoaded_googlefonts_fonts +
-                    "\n googlefonts_css: " + coreScriptLoaded_googlefonts_css +
-                    "\n soccerfield_css: " + coreScriptLoaded_soccerfield_css +
-                    "\n soccerfield_js: " + coreScriptLoaded_soccerfield_js +
-                    "\n chartjs_js: " + coreScriptLoaded_chartjs_js);
-                // show offline curtain and pass message of none-loaded scripts
-                document.getElementById("output-msg-heading").innerHTML = "You are offline.";
-                document.getElementById("output-msg-text").innerHTML = "Some core scripts were not loaded. Please check your internet connection and try reloadig the page.<br>If the error persists, please contact <a href='https://help.onefitnet.co.za/systems/?errortype=core_script_error'>support</a>";
-                document.getElementById("offline-curtain").style.display = "block";
-            }
+            // jq function for checking if the core scripts were loaded, if not then the func will display the offline curtain
+            $.checkCoreScriptLoadState();
 
             if ((auth == true || auth == 1) || (auth === "init" && usernm === "init")) {
                 //call all client functions
                 //alert("auth = true | User: " + usernm);
                 loadActivityCalender();
                 getCurrentWeekStartEndDates();
+
+                $.getIndiExercises('ui_data', '#add-to-calender-activity-selection');
 
                 $.getUserActivityTimeline(usernm);
                 $.getUserWeekActivities(usernm);
@@ -9289,7 +9330,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         function openCalenderActivityForm(dateYear, dateMonth, dateDay) {
             // '2023/3/10'
-            alert(`Show modal for calender day: ${dateYear}/${dateMonth}/${dateDay}`);
+            // alert(`Show modal for calender day: ${dateYear}/${dateMonth}/${dateDay}`);
 
             // create date object
             var dateQueried = new Date(`${dateYear}/${dateMonth}/${dateDay}`);
@@ -9763,14 +9804,18 @@ if (isset($_SESSION["currentUserAuth"])) {
         }
     </script>
 
+
     <script src="../scripts/js/digital-clock.js" onload="coreScriptLoaded_digiclock_js=true;"></script>
 
     <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" onload="coreScriptLoaded_bootstrap_bundle_cdn_js=true;"></script>
-    <!-- <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" onload="coreScriptLoaded_bootstrap_bundle_local_js=true;"></script> -->
+    <!-- 5.1 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" onload="coreScriptLoaded_bootstrap_bundle_cdn_js=true;"></script> -->
+    <!-- 5.2 -->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" onload="coreScriptLoaded_bootstrap_bundle_local_js=true;"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous" onload="coreScriptLoaded_bootstrap_bundle_cdn_js=true;"></script> -->
+    <!-- 5.3 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script> -->
 
-    <!-- Bootstrap Bundle JS CDN -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
 </body>
 
 </html>

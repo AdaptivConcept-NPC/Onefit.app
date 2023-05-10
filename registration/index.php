@@ -83,7 +83,7 @@
           <div class="h-100" id="offcanvas-menu">
             <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
               <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="../media/assets/One-Symbol-Logo-White.svg" alt="" class="img-fluid logo-size-2" /> Navigation</h5>
-              <button type="button" class="onefit-buttons-style-light shadow p-4" data-bs-dismiss="offcanvas" aria-label="Close">
+              <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2" data-bs-dismiss="offcanvas" aria-label="Close">
                 <span class="material-icons material-icons-round align-middle">
                   close
                 </span>

@@ -472,8 +472,8 @@ try {
               <img src="../../media/assets/One-Symbol-Logo-White.svg" alt="icon" class="img-fluid logo-size-2" />
               Navigation
             </h5>
-            <button type="button" class="onefit-buttons-style-light shadow p-4" data-bs-dismiss="offcanvas" aria-label="Close">
-              <span class="material-icons material-icons-round align-middle"> close </span>
+            <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2" data-bs-dismiss="offcanvas" aria-label="Close">
+              <span class="material-icons material-icons-round align-middle" style="font-size:20px!important;"> close </span>
             </button>
           </div>
           <div class="offcanvas-body">

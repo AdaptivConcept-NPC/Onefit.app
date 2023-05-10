@@ -2,8 +2,8 @@
 // include mysql database configuration file
 // code sourced from: https://www.tutsmake.com/import-csv-file-into-mysql-using-php/
 session_start();
-require("../scripts/php/admin_config.php");
-// require('../scripts/php/functions.php');
+require("../admin_config.php");
+require('../functions.php');
 
 //test connection - if fail then die
 if ($dbconn->connect_error) die("Fatal Error");

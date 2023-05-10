@@ -489,14 +489,14 @@
                     // extract the exercise xp value from this.text
                     var selectedExerciseText = this.text;
 
-                    sumXP += parseInt(selectedExerciseText.split('[').pop().split(']')[0])
+                    sumXP += parseInt(selectedExerciseText.split('X[').pop().split(']P')[0])
                 });
 
                 // update #input-workout-xp field with sumXP value
                 $('#input-workout-xp').val(sumXP);
             }
 
-            $('#move-items-selected-btn').click(function () {
+            $('#move-items-selected-btn').on('click', function () {
                 moveItems('#select-workout-exercises', '#select-workout-exercises-selected');
                 // re-calculate the sum of exercise xp and pass it to the #input-workout-xp input field
                 calculateWorkoutTotalXP();

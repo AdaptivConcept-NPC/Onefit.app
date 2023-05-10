@@ -1566,9 +1566,55 @@ $(document).ready(function () {
     }
 
     $.removeWeeklyTrainingActivity = function (day, groupRefCode, exerciseID) {
-
+        alert(`Flag: $.removeWeeklyTrainingActivity \n day: ${day} | grcode: ${groupRefCode} | exerciseID: ${exerciseID}`);
     }
     // <!-- ./ script for loading edit forms for weekly teams activities -->
+
+    // function to save custom color tag to db on form #add-new-activity-form
+    $.newCustomColorTag = function (tagColor) {
+        try {
+            var tagTitle = $('#add-to-calender-activity-custom-colorcode-title-value').val();
+            tagTitle = tagTitle.split(' ').join('_'); // .replace(/ /g,"_"); replace empty space with underscore 
+            var saveTagValue = $('#add-to-calender-activity-custom-colorcode-save-tag').val();
+            var saveTag = false;
+
+            if (tagTitle == "") {
+                tagTitle = "color_tag";
+            }
+
+            switch (saveTagValue) {
+                case 0:
+                    saveTag = false;
+                    break;
+                case 1:
+                    saveTag = true;
+                    break;
+
+                default:
+                    saveTag = false;
+                    break;
+            }
+            // create option child element inside #add-to-calender-activity-colorcode-value select element before the last child element (create custom tag option)
+            $('#add-to-calender-activity-colorcode-value > option:last').before(`<option value="${tagTitle}[${tagColor}]" style="color: ${tagColor};"> ${tagTitle} </option>`);
+            $("#add-to-calender-activity-colorcode-value").val(`${tagTitle}[${tagColor}]`);
+            console.log(`$.newCustomColorTag\n tagTitle: ${tagTitle}\n saveTagValue: ${saveTagValue}\n saveTag: ${saveTag}`);
+            return true;
+
+            $.post('scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/add_teams_color_tag.php',  // url 
+                {
+                    tag_name: tagTitle,
+                    tag_color: tagColor,
+                    save_tag: saveTag
+                }, // data to be submit
+                function (data, status, xhr) {   // success callback function
+                    alert('status: ' + status + ', data: ' + data.responseData);
+                },
+                'json'); // response data format
+        } catch (error) {
+            console.log("Exception Error: [$.newCustomColorTag] \n" + error);
+            return false;
+        }
+    }
 
     // $("map[name=image-map-male-front]").mapoid({
     //     click: function(e) {
@@ -1642,5 +1688,162 @@ $(document).ready(function () {
     if (localStorage.getItem('left_side_panel_visibility_state') === null) localStorage.setItem('left_side_panel_visibility_state', true);
     if (localStorage.getItem('right_side_panel_visibility_state') === null) localStorage.setItem('right_side_panel_visibility_state', true);
 
+    // check core script loaded state
+    $.checkCoreScriptLoadState = function () {
+        // coreScriptLoaded_bootstrap_bundle_cdn_js == false ||
+        if (coreScriptLoaded_googlefont_icons_css == false ||
+            coreScriptLoaded_plyrio_css == false ||
+            coreScriptLoaded_plyrio_js == false ||
+            coreScriptLoaded_hls_js == false ||
+            coreScriptLoaded_bootstrap_local_css == false ||
+            coreScriptLoaded_bootstrap_bundle_local_js == false ||
+            coreScriptLoaded_w3_css == false ||
+            coreScriptLoaded_custom_styles_css == false ||
+            coreScriptLoaded_digiclock_css == false ||
+            coreScriptLoaded_digiclock_js == false ||
+            coreScriptLoaded_timeline_css == false ||
+            coreScriptLoaded_custom_jquery_func_js == false ||
+            coreScriptLoaded_custom_script_js == false ||
+            coreScriptLoaded_custom_api_req_js == false ||
+            coreScriptLoaded_jquery_local_js == false ||
+            coreScriptLoaded_moment_js == false ||
+            /* coreScriptLoaded_googlefonts_fonts == false || */
+            coreScriptLoaded_googlefonts_css == false ||
+            coreScriptLoaded_soccerfield_css == false ||
+            coreScriptLoaded_soccerfield_js == false ||
+            coreScriptLoaded_chartjs_js == false) {
+            console.log("Some core scripts were not loaded. Please check your internet connection. \n" +
+                "\n googlefont_icons_css: " + coreScriptLoaded_googlefont_icons_css +
+                "\n plyrio_css: " + coreScriptLoaded_plyrio_css +
+                "\n plyrio_js: " + coreScriptLoaded_plyrio_js +
+                "\n hls_js: " + coreScriptLoaded_hls_js +
+                "\n bootstrap_local_css: " + coreScriptLoaded_bootstrap_local_css +
+                "\n bootstrap_bundle_local_js: " + coreScriptLoaded_bootstrap_bundle_local_js +
+                "\n w3_css: " + coreScriptLoaded_w3_css +
+                "\n custom_styles_css: " + coreScriptLoaded_custom_styles_css +
+                "\n digiclock_css: " + coreScriptLoaded_digiclock_css +
+                "\n digiclock_js: " + coreScriptLoaded_digiclock_js +
+                "\n timeline_css: " + coreScriptLoaded_timeline_css +
+                "\n custom_jquery_func_js: " + coreScriptLoaded_custom_jquery_func_js +
+                "\n custom_script_js: " + coreScriptLoaded_custom_script_js +
+                "\n custom_api_req_js: " + coreScriptLoaded_custom_api_req_js +
+                "\n jquery_local_js: " + coreScriptLoaded_jquery_local_js +
+                "\n custom_jquery_func_js: " + coreScriptLoaded_custom_jquery_func_js +
+                "\n moment_js: " + coreScriptLoaded_moment_js +
+                "\n googlefonts_fonts: " + coreScriptLoaded_googlefonts_fonts +
+                "\n googlefonts_css: " + coreScriptLoaded_googlefonts_css +
+                "\n soccerfield_css: " + coreScriptLoaded_soccerfield_css +
+                "\n soccerfield_js: " + coreScriptLoaded_soccerfield_js +
+                "\n chartjs_js: " + coreScriptLoaded_chartjs_js);
+            // show offline curtain and pass message of none-loaded scripts
+            $("#output-msg-heading").html("You are offline.");
+            $("#output-msg-text").html("Some core scripts were not loaded. Please check your internet connection and try reloadig the page.<br>If the error persists, please contact <a href='https://http://help.onefit.adaptivconcept.co.za/systems/?errortype=core_script_error' style='color:var(--tahitigold);'>support</a>");
+            $("#offline-curtain").css('display', 'block');
+        }
+    }
+
+    // function for sorting the select options - https://stackoverflow.com/questions/278089/javascript-to-sort-contents-of-select-element
+    function sortSelect(selElemID) {
+        let selElem = document.getElementById(selElemID);
+        var tmpAry = new Array();
+        for (var i = 0; i < selElem.options.length; i++) {
+            tmpAry[i] = new Array();
+            tmpAry[i][0] = selElem.options[i].text;
+            tmpAry[i][1] = selElem.options[i].value;
+        }
+        tmpAry.sort();
+        while (selElem.options.length > 0) {
+            selElem.options[0] = null;
+        }
+        for (var i = 0; i < tmpAry.length; i++) {
+            var op = new Option(tmpAry[i][0], tmpAry[i][1]);
+            selElem.options[i] = op;
+        }
+        return;
+    }
+
+    // move multiple list items between two multi-select elements
+    function moveItems(origin, dest) {
+        $(origin).find(':selected').appendTo(dest);
+    }
+
+    function moveAllItems(origin, dest) {
+        $(origin).children().appendTo(dest);
+        $('#selected-xp-counter').html(`Total xp: 0 | 0 activities.`); //reset the selected xp count
+    };
+
+    function calculateWorkoutTotalXP() {
+        // reinitialize the sumXP
+        var sumXP = 0;
+        var listCount = 0;
+        $("#select-workout-exercises-selected > option").each(function () {
+            // console.log(this.text + ' ' + this.value);
+            // extract the exercise xp value from this.text
+            var selectedExerciseText = this.text;
+
+            sumXP += parseInt(selectedExerciseText.split('X[').pop().split(']P')[0])
+
+            listCount += 1;
+        });
+
+        // update #selected-xp-counter field with sumXP value
+        $('#selected-xp-counter').html(`Total xp: ${sumXP} | ${listCount} activities.`);
+    }
+
+    // move/add to selected list
+    $('#add-selection-to-activities-selectlist-btn').on('click', function () {
+        // direction:  init to selected list
+        moveItems('#add-to-calender-activity-selection', '#select-workout-exercises-selected');
+        calculateWorkoutTotalXP();
+    });
+
+    // text-input: pass title and definitionstrings to selected list
+    $('#add-selection-to-activities-textinput-btn').on('click', function () {
+        var newActivityTitle = $('#add-to-calender-activity-specify-title').val();
+        var newActivityDefinition = $('#add-to-calender-activity-specify-new-instructions').val();
+        var newActivityXP = $('#add-to-calender-activity-specify-xp').val();
+
+        // check if input fields are empty, if true the warning alert message is displayed
+        if (newActivityTitle == "" || newActivityDefinition == "" || newActivityXP == 0) {
+            alert('Please provide a new activity title and a new activity definition and xp allocation.');
+        } else {
+            $('#select-workout-exercises-selected').append(`<option value="new_activity({title: '${newActivityTitle}', definition: '${newActivityDefinition}', xp_pts: ${newActivityXP}})" flagnew> ${newActivityTitle} - ( ${newActivityDefinition} ) X[${newActivityXP}]P </option>`);
+        }
+
+    });
+
+    // remove selected item from selected list
+    $('#remove-selection-from-selected-activities-list-btn').on('click', function () {
+        // direction: selected to init list
+        moveItems('#select-workout-exercises-selected', '#add-to-calender-activity-selection');
+        sortSelect('add-to-calender-activity-selection');
+        calculateWorkoutTotalXP();
+    });
+    // remove all items in selected list to initial
+    $('#remove-all-from-selected-activities-list-btn').on('click', function () {
+        // direction: selected to init list
+        moveAllItems('#select-workout-exercises-selected', '#add-to-calender-activity-selection');
+        sortSelect('add-to-calender-activity-selection');
+        calculateWorkoutTotalXP();
+    });
+
+    // ** admin requests **
+    // get indi exercises items (called from app/index.php)
+    $.getIndiExercises = function (request, elemid) {
+
+        var elemid = elemid || '#add-to-calender-activity-selection'; // initialize output elemid if it was not passed through params
+        $.get("../administration/scripts/php/get_items/get_indi_exercises.php?giveme=" + request, function (data, status) {
+            if (status != "success") {
+                console.log("Get Req Failed -> $.getIndiExercises returned: \n[Status]: " + status + "\n[Data]: " + data);
+                // alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+            } else {
+                if (request == 'json') {
+                    console.log('Indi Exercises Json: \n'.data);
+                } else {
+                    $(elemid).html(data);// '#add-to-calender-activity-selection'
+                }
+            }
+        });
+    };
 
 });

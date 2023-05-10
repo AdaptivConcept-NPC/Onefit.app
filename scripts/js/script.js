@@ -1,4 +1,11 @@
 // *** Vanilla JS
+// index.php script
+
+
+
+// app.php script
+
+
 function checkConnection() {
     console.log("Initially " + (window.navigator.onLine ? "on" : "off") + "line");
 

@@ -22,6 +22,7 @@ rememberMe();
     var coreScriptLoaded =
       coreScriptLoaded_googlefont_icons_css =
       coreScriptLoaded_bootstrap_local_css =
+      coreScriptLoaded_bootstrap_bundle_local_js =
       coreScriptLoaded_w3_css =
       coreScriptLoaded_custom_styles_css =
       coreScriptLoaded_custom_script_js =
@@ -32,7 +33,6 @@ rememberMe();
     var coreScriptLoaded_plyrio_css =
       coreScriptLoaded_plyrio_js =
       coreScriptLoaded_hls_js =
-      coreScriptLoaded_bootstrap_bundle_local_js =
       coreScriptLoaded_bootstrap_bundle_cdn_js =
       coreScriptLoaded_digiclock_css =
       coreScriptLoaded_digiclock_js =
@@ -47,6 +47,10 @@ rememberMe();
       coreScriptLoaded_soccerfield_js =
       coreScriptLoaded_chartjs_js = true;
   </script>
+
+  <!-- Plry.io JS CDN -->
+  <script src="https://cdn.plyr.io/1.8.2/plyr.js" onload="coreScriptLoaded_plyrio_js=true;"></script>
+  <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js" onload="coreScriptLoaded_hls_js=true;"></script>
 
   <!--fontawesome-->
   <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
@@ -63,20 +67,27 @@ rememberMe();
   <!-- My CSS styles -->
   <link rel="stylesheet" href="./css/styles.css" onload="coreScriptLoaded_custom_styles_css=true;" />
 
-  <!-- JQuery local -->
+  <!-- 
+  <style>
+    @font-face {
+      font-family: comfortaa;
+      src: url();
+    }
+  </style> -->
+
+  <!-- JQuery local 3.6.3 -->
   <script src="./node_modules/jquery/dist/jquery.min.js" onload="coreScriptLoaded_jquery_local_js=true;"></script>
 
   <!-- JQuery CDN -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script> -->
   <!-- ./ JQuery CDN -->
-
   <!-- Custom Site Scripts -->
   <script src="./scripts/js/jquery_functions.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
   <script src="./scripts/js/script.js" onload="coreScriptLoaded_custom_script_js=true;"></script>
-
 </head>
 
-<body class="noselect" onload="toggleLoadCurtain()">
+<body class="noselect">
+  <!--  onload="toggleLoadCurtain()" -->
 
   <!-- Notification Snackbar (mini) -->
   <!-- <button class="btn btn-primary btn-lg" onclick="showSnackbar('notification message here...')">Show Snackbar</button> -->
@@ -85,12 +96,17 @@ rememberMe();
 
   <!-- offline Curtain -->
   <div class="offline-curtain" id="offline-curtain" style="display: none;background-color:var(--mineshaft);">
+    <nav class="navbar navbar-light stickyz fixed-top navbar-style bg-transparent" style="z-index: 10000;">
+      <div class="container-fluid justify-content-center p-5">
+        <h1 class="navbar-brand fs-1 text-white comfortaa-font m-0">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></h1>
+      </div>
+    </nav>
     <div class="d-flex align-items-center down-top-grad-white" style="width: 100%; height: 100%;">
       <div class="text-center w-100">
         <div class="ring d-flex align-items-center p-4 shadow-lg">
           <!-- <span></span> -->
           <div class="d-flex align-items-center justify-content-center" style="width: 100%;">
-            <img src="../media/assets/icons/wifi_off_black_24dp.svg" class="img-fluid p-4 rounded-circle text-white border-5 border-white shadow" style="height: 130px;background-color:var(--white)!important;" alt="onefit logo">
+            <img src="./media/assets/icons/wifi_off_black_24dp.svg" class="img-fluid p-4 rounded-circle text-white border-5 border-white shadow" style="height: 130px;background-color:var(--white)!important;" alt="onefit logo">
             <!-- -->
           </div>
         </div>
@@ -148,8 +164,8 @@ rememberMe();
               </span>
               Web.
             </h5>
-            <button type="button" class="onefit-buttons-style-light shadow p-4" data-bs-dismiss="offcanvas" aria-label="Close">
-              <span class="material-icons material-icons-round align-middle"> close </span>
+            <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2" data-bs-dismiss="offcanvas" aria-label="Close">
+              <span class="material-icons material-icons-round align-middle" style="font-size:20px!important;"> close </span>
             </button>
           </div>
           <div class="offcanvas-body pb-4 top-down-grad-dark" style="max-height: 80vh;">
@@ -375,10 +391,10 @@ rememberMe();
 
           <h5 class="mt-4 text-center"><i class="fab fa-twitter"></i> Twitter Feed</h5>
 
-          <!--<a class="twitter-timeline" href="https://twitter.com/tweet_shurriken?ref_src=twsrc%5Etfw">Tweets by tweet_shurriken</a>-->
           <div class="pb-4 no-scroller d-grid" style="border-radius: 25px !important; overflow-y: scroll; max-height: 90vh">
-            <a class="twitter-timeline" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">Tweets by
-              <span style="color: var(--tahitigold)!important;">@OnefitNet</span></a>
+            <a class="twitter-timeline" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">
+              Tweets by <span style="color: var(--tahitigold)!important;">@OnefitNet</span>
+            </a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             <div class="d-flex justify-content-center">
               <div class="spinner-border grow text-light my-4" style="width: 3rem; height: 3rem;" role="status">
@@ -741,97 +757,53 @@ rememberMe();
   <!-- ./ Footer -->
 
   <script>
-    // coreScriptLoaded_bootstrap_bundle_local_js == false ||
-    if (coreScriptLoaded_googlefont_icons_css == false ||
-      coreScriptLoaded_plyrio_css == false ||
-      coreScriptLoaded_plyrio_js == false ||
-      coreScriptLoaded_hls_js == false ||
-      coreScriptLoaded_bootstrap_local_css == false ||
-      coreScriptLoaded_bootstrap_bundle_cdn_js == false ||
-      coreScriptLoaded_w3_css == false ||
-      coreScriptLoaded_custom_styles_css == false ||
-      coreScriptLoaded_digiclock_css == false ||
-      coreScriptLoaded_digiclock_js == false ||
-      coreScriptLoaded_timeline_css == false ||
-      coreScriptLoaded_custom_jquery_func_js == false ||
-      coreScriptLoaded_custom_script_js == false ||
-      coreScriptLoaded_custom_api_req_js == false ||
-      coreScriptLoaded_jquery_local_js == false ||
-      coreScriptLoaded_custom_jquery_func_js == false ||
-      coreScriptLoaded_moment_js == false ||
-      /* coreScriptLoaded_googlefonts_fonts == false || */
-      coreScriptLoaded_googlefonts_css == false ||
-      coreScriptLoaded_soccerfield_css == false ||
-      coreScriptLoaded_soccerfield_js == false ||
-      coreScriptLoaded_chartjs_js == false) {
-      console.log("Some core scripts were not loaded. Please check your internet connection. \n" +
-        "\n googlefont_icons_css: " + coreScriptLoaded_googlefont_icons_css +
-        "\n plyrio_css: " + coreScriptLoaded_plyrio_css +
-        "\n plyrio_js: " + coreScriptLoaded_plyrio_js +
-        "\n hls_js: " + coreScriptLoaded_hls_js +
-        "\n bootstrap_local_css: " + coreScriptLoaded_bootstrap_local_css +
-        "\n bootstrap_bundle_cdn_js: " + coreScriptLoaded_bootstrap_bundle_cdn_js +
-        "\n w3_css: " + coreScriptLoaded_w3_css +
-        "\n custom_styles_css: " + coreScriptLoaded_custom_styles_css +
-        "\n digiclock_css: " + coreScriptLoaded_digiclock_css +
-        "\n digiclock_js: " + coreScriptLoaded_digiclock_js +
-        "\n timeline_css: " + coreScriptLoaded_timeline_css +
-        "\n custom_jquery_func_js: " + coreScriptLoaded_custom_jquery_func_js +
-        "\n custom_script_js: " + coreScriptLoaded_custom_script_js +
-        "\n custom_api_req_js: " + coreScriptLoaded_custom_api_req_js +
-        "\n jquery_local_js: " + coreScriptLoaded_jquery_local_js +
-        "\n custom_jquery_func_js: " + coreScriptLoaded_custom_jquery_func_js +
-        "\n moment_js: " + coreScriptLoaded_moment_js +
-        "\n googlefonts_fonts: " + coreScriptLoaded_googlefonts_fonts +
-        "\n googlefonts_css: " + coreScriptLoaded_googlefonts_css +
-        "\n soccerfield_css: " + coreScriptLoaded_soccerfield_css +
-        "\n soccerfield_js: " + coreScriptLoaded_soccerfield_js +
-        "\n chartjs_js: " + coreScriptLoaded_chartjs_js);
-      // show offline curtain and pass message of none-loaded scripts
-      document.getElementById("output-msg-heading").innerHTML = "You are offline.";
-      document.getElementById("output-msg-text").innerHTML = "Some core scripts were not loaded. Please check your internet connection and try reloadig the page.<br>If the error persists, please contact <a href='https://help.onefitnet.co.za/systems/?errortype=core_script_error'>support</a>";
-      document.getElementById("offline-curtain").style.display = "block";
-    }
+    $(document).ready(function() {
+      // jq function for checking if the core scripts were loaded, if not then the func will display the offline curtain
+      $.checkCoreScriptLoadState();
 
-    // *** perform curtain fade using jQuery instead
-    // function toggleLoadCurtain() {
-    //   //Show / Hide the Load Curtain Container
-    //   var curtain = document.getElementById("LoadCurtain");
-    //   var toggleState = curtain.style.display.toString();
-    //   // alert("toggleState: " + toggleState);
 
-    //   if (toggleState == "none") {
-    //     curtain.style.display = "block";
-    //   } else if (toggleState == "block") {
-    //     curtain.style.display = "none";
-    //   } else {
-    //     curtain.style.display = "none";
-    //   }
-    // }
+      // *** perform curtain fade using jQuery instead
+      // function toggleLoadCurtain() {
+      //   //Show / Hide the Load Curtain Container
+      //   var curtain = document.getElementById("LoadCurtain");
+      //   var toggleState = curtain.style.display.toString();
+      //   // alert("toggleState: " + toggleState);
 
-    function checkLoginReturnParams() {
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-      const returnStr = urlParams.get('return');
-      const usrnStr = urlParams.get('usrn');
+      //   if (toggleState == "none") {
+      //     curtain.style.display = "block";
+      //   } else if (toggleState == "block") {
+      //     curtain.style.display = "none";
+      //   } else {
+      //     curtain.style.display = "none";
+      //   }
+      // }
 
-      var errorMsgOutput = document.getElementById('error-output');
-      var usernameFld = document.getElementById('onefitUserEmail');
+      function checkLoginReturnParams() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const returnStr = urlParams.get('return');
+        const usrnStr = urlParams.get('usrn');
 
-      if (returnStr == "mismatch") {
-        // set the usrn value in the username/email address field
-        usernameFld.value = usrnStr;
-        errorMsgOutput.innerText = "The email address or password you entered is incorrect. Please try again.";
-        errorMsgOutput.style.display = "block";
+        var errorMsgOutput = document.getElementById('error-output');
+        var usernameFld = document.getElementById('onefitUserEmail');
+
+        if (returnStr == "mismatch") {
+          // set the usrn value in the username/email address field
+          usernameFld.value = usrnStr;
+          errorMsgOutput.innerText = "The email address or password you entered is incorrect. Please try again.";
+          errorMsgOutput.style.display = "block";
+        }
       }
-    }
 
-    // hide the loading curtain - fade out jquery
-    $('#LoadCurtain').fadeOut('2500');
+      // hide the loading curtain - fade out jquery
+      $('#LoadCurtain').fadeOut('2500');
+    });
   </script>
 
-  <!-- Bootstrap Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <!-- Bootstrap Bundle JS 5.2 -->
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" onload="coreScriptLoaded_bootstrap_bundle_local_js=true;"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" onload="coreScriptLoaded_bootstrap_bundle_local_js = true;"></script> -->
+
 </body>
 
 </html>
