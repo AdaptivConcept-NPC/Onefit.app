@@ -14,6 +14,13 @@ rememberMe();
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Onefit.app | OnefitNet &copy; 2022</title>
 
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="./media/assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./media/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./media/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./media/assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="./media/assets/favicon/site.webmanifest">
+
   <!-- My CSS styles -->
   <link rel="stylesheet" href="./css/styles.css" />
 
@@ -82,7 +89,7 @@ rememberMe();
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script> -->
   <!-- ./ JQuery CDN -->
   <!-- Custom Site Scripts -->
-  <script src="./scripts/js/jquery_functions.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
+  <script src="./scripts/js/script_jquery.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
   <script src="./scripts/js/script.js" onload="coreScriptLoaded_custom_script_js=true;"></script>
 </head>
 
@@ -228,20 +235,19 @@ rememberMe();
     <img src="./media/assets/One-Logo-Vertical.svg" class="border-5 border-start border-end p-4" alt="Onefit™.app Logo" style="max-height: 50vh; width: auto !important; border-radius: 25px; background-color: #343434;">
   </div>
 
-  <hr class="text-white" style="height: 50px" />
+  <hr class="text-white m-0" />
   <!-- Onefit.app Logo -->
 
   <div class="text-center p-4" style="background-color: rgba(52, 52, 52, 0.8); margin: 40px 0;">
     <span class="material-icons material-icons-round" style="font-size: 100px!important;color: #fff!important;">
       fingerprint </span>
 
-    <h1 class="down-top-grad-dark py-0 px-4" style="color: #fff; font-size: 40px; border-radius: 00 25px 25px !important;">Sign into your Account<span style="color: #ffa500;">.</span></h1>
+    <h1 class="py-0 px-4 text-truncate" style="color: #fff; font-size: 40px; border-radius: 00 25px 25px !important;">Sign into your account<span style="color: #ffa500;">.</span></h1>
   </div>
 
   <!-- User Sign in Section -->
-  <div class="container-fluid m-0 down-top-grad-dark">
+  <div class="container-fluid m-0 down-top-grad-tahiti">
     <div class="container text-center text-white mt-4" style="min-height: 100vh; padding-bottom: 10vh">
-
       <div class="row align-items-center my-4 px-4" style="border-radius: 25px; background-color: rgba(52, 52, 52, 0.8)">
         <div class="col-sm py-4">
           <form class="text-center text-white comfortaa-font align-middle" method="post" action="./scripts/php/main_app/compile_content/profile_tab/login.php" autocomplete="off">
@@ -333,14 +339,14 @@ rememberMe();
   <!-- / User Sign in Section -->
 
   <!-- Main Content -->
-  <div class="container-fluid">
-    <div class="row align-items-center text-white py-4" style="background-color: rgba(52, 52, 52, 0.9)">
+  <div class="container-fluid top-down-grad-dark" style="border-radius:25px 25px 0 0;overflow:hidden;margin-top:-25px;">
+    <div class="row align-items-center text-white py-4" style="background-color: rgba(52, 52, 52, 0)">
       <div class="col-md py-4">
-        <div class="content-panel-border-style p-4 tunnel-bg text-center" style="border-radius: 25px">
+        <div class="content-panel-border-style p-4 tunnel-bg text-center" style="border-radius: 25px;background-color: rgba(52, 52, 52, 0.8)">
           <div class="my-2 pt-4 site-description text-center">
-            <h1>Welcome to the One<span style="color: #ffa500 !important">fit</span><span style="font-size: 10px">&trade;</span> Community.</h1>
+            <h1>Welcome to the One<span style="color: #ffa500 !important">fit</span><span style="font-size: 10px">™</span> Community.</h1>
             <p class="mt-2 p-4 comfortaa-font">
-              One<span style="color: #ffa500 !important">fit</span><span style="font-size: 10px">&trade;</span> is a
+              One<span style="color: #ffa500 !important">fit</span><span style="font-size: 10px">™</span> is a
               community based fitness, wellness and lifestyle platform. We aim to assist people from all backgrounds
               find a better state of being by accessing inspirational and instructional resources, connecting trainers
               with trainees and developing fitness groups in all spheres of physical activity and athletisism. We will
@@ -349,15 +355,15 @@ rememberMe();
               as
               well as resources from health professionals. Proudly brought to you by AdaptivConcept (Media), LMM
               1-ON-1
-              Trainer and One-On-One Fitness Network. &copy; 2021
+              Trainer and One-On-One Fitness Network. © 2021
             </p>
           </div>
-          <img src="./media/assets/OnefitNet Profile Pic Redone.png" class="img-fluid my-4 shadow" alt="one fitness" style="max-height: 50vh; border-radius: 25px" />
-          <p class="my-4 text-center comfortaa-font" style="font-size: 10px">Crafted by AdaptivConcept&trade; NPC,
-            <br />in Partneship
-            with One-On-One Fitness Network | &copy; 2021
+          <img src="./media/assets/OnefitNet Profile Pic Redone.png" class="img-fluid my-4 shadow" alt="one fitness" style="max-height: 50vh; border-radius: 25px">
+          <p class="my-4 text-center comfortaa-font" style="font-size: 10px">Crafted by AdaptivConcept™ NPC,
+            <br>in Partneship
+            with One-On-One Fitness Network | © 2021
           </p>
-          <hr class="text-white" />
+          <hr class="text-white">
         </div>
       </div>
       <div class="col-md py-4 text-center" style="overflow-y: auto; overflow-x: hidden">
@@ -385,17 +391,15 @@ rememberMe();
             </div>
           </div>-->
 
-        <div class="content-panel-border-style p-4 tunnel-bg -white shadow" style="border-radius: 25px">
+        <div class="content-panel-border-style p-4 tunnel-bg -white shadow" style="border-radius: 25px;background-color: rgba(52, 52, 52, 0.8)">
           <h2 class="text-center mt-4" style="color: #ffa500">Social</h2>
-          <hr class="bg-warning" />
+          <hr class="bg-warning">
 
-          <h5 class="mt-4 text-center"><i class="fab fa-twitter"></i> Twitter Feed</h5>
+          <h5 class="mt-4 text-center"><i class="fab fa-twitter" aria-hidden="true"></i> Twitter Feed</h5>
 
           <div class="pb-4 no-scroller d-grid" style="border-radius: 25px !important; overflow-y: scroll; max-height: 90vh">
-            <a class="twitter-timeline" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">
-              Tweets by <span style="color: var(--tahitigold)!important;">@OnefitNet</span>
-            </a>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <div class="twitter-timeline twitter-timeline-rendered" style="display: flex; max-width: 100%; margin-top: 0px; margin-bottom: 0px;"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" style="position: static; visibility: visible; width: 334px; height: 7972px; display: block; flex-grow: 1;" title="Twitter Timeline" src="https://syndication.twitter.com/srv/timeline-profile/screen-name/OnefitNet?dnt=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=false&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;origin=http%3A%2F%2Flocalhost%3A8081%2FOnefit%2F%3Freturn%3Dsess_end&amp;sessionId=36bccd59108ca51751c04b11196860d0fbafdfd5&amp;showHeader=true&amp;showReplies=false&amp;transparent=false&amp;widgetsVersion=aaf4084522e3a%3A1674595607486"></iframe></div>
+            <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             <div class="d-flex justify-content-center">
               <div class="spinner-border grow text-light my-4" style="width: 3rem; height: 3rem;" role="status">
                 <span class="visually-hidden">Loading...</span>
@@ -759,7 +763,7 @@ rememberMe();
   <script>
     $(document).ready(function() {
       // jq function for checking if the core scripts were loaded, if not then the func will display the offline curtain
-      $.checkCoreScriptLoadState();
+      // $.checkCoreScriptLoadState();
 
 
       // *** perform curtain fade using jQuery instead

@@ -63,7 +63,7 @@
   <!-- ./ JQuery CDN -->
 
   <!-- Custom Site Scripts -->
-  <script src="../scripts/js/jquery_functions.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
+  <script src="../scripts/js/script_jquery.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
   <script src="../scripts/js/script.js" onload="coreScriptLoaded_custom_script_js=true;"></script>
 
 </head>
