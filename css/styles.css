@@ -397,6 +397,70 @@ sup {
   transform: scale(1.05, 1.05);
 }
 
+/* inputs with grad bg styling */
+.onefit-input-grad-white-dark {
+  color: var(--mineshaft);
+  background: linear-gradient(90deg, var(--white), var(--mineshaft));
+}
+
+.onefit-input-grad-white-dark:not(:placeholder-shown) {
+  color: var(--mineshaft);
+}
+
+/* .onefit-input-grad-dark::placeholder {
+  background: linear-gradient(var(--white), var(--tahiti));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.onefit-input-grad-dark:not(:placeholder-shown) {
+  background:
+    linear-gradient(var(--mineshaft), var(--tahiti)),
+    var(--white);
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
+  -webkit-text-fill-color: transparent;
+} */
+
+.onefit-input-grad-tahiti-white {
+  color: var(--mineshaft);
+  background: linear-gradient(90deg, var(--tahitigold), var(--white));
+}
+
+.onefit-input-grad-tahiti-white:not(:placeholder-shown) {
+  color: var(--mineshaft);
+}
+
+.onefit-input-grad-tahiti-dark {
+  color: var(--white);
+  background: linear-gradient(90deg, var(--tahitigold), var(--mineshaft));
+}
+
+.onefit-input-grad-tahiti-dark:not(:placeholder-shown) {
+  color: var(--white);
+}
+
+.onefit-input-grad-white-tahiti {
+  color: var(--mineshaft);
+  background: linear-gradient(90deg, var(--white), var(--tahitigold));
+}
+
+.onefit-input-grad-white-tahiti:not(:placeholder-shown) {
+  color: var(--mineshaft);
+}
+
+.onefit-input-grad-dark-tahiti {
+  color: var(--white);
+  background: linear-gradient(90deg, var(--mineshaft), var(--tahitigold));
+}
+
+.onefit-input-grad-dark-tahiti:not(:placeholder-shown) {
+  color: var(--white);
+}
+
+/* ./ inputs with grad bg styling */
+
 .social-link-icon-fb {
   color: var(--white) !important;
   background-color: var(--mineshaft);

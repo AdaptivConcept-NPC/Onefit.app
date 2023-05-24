@@ -1,7 +1,7 @@
 <?php
 session_start();
-require("../../../config.php");
-require("../../../functions.php");
+require("../../../../config.php");
+require("../../../../functions.php");
 
 //test connection - if fail then die
 if ($dbconn->connect_error) die("Fatal Error");

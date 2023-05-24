@@ -222,8 +222,9 @@ rememberMe();
   <div class="text-center pb-4" style="padding-top: 150px;">
     <div class="d-grid mb-2 w3-animate-top">
       <p class="text-white comfortaa-font fs-4 mb-0 fw-bold"> Presented by </p>
-      <p class="text-white audiowide-font mt-1 mb-4 fw-bold" style="font-size: 8px !important;"> <span style="color: #ffa500;">One</span>-On-<span style="color: #ffa500;">One</span> Fitness
-        Network<sup style="color: #ffa500;">&reg;</sup>
+      <p class="text-white audiowide-font mt-1 mb-4 fw-bold" style="font-size: 8px !important;">
+        <span style="color: #ffa500;">
+          One</span>-On-<span style="color: #ffa500;">One</span> Fitness Network<sup style="color: #ffa500;">&reg;</sup>
       </p>
 
       <!-- <i class="fas fa-grip-lines -vertical text-white"></i> -->
@@ -232,10 +233,10 @@ rememberMe();
       </span>
     </div>
 
-    <img src="./media/assets/One-Logo-Vertical.svg" class="border-5 border-start border-end p-4" alt="Onefit™.app Logo" style="max-height: 50vh; width: auto !important; border-radius: 25px; background-color: #343434;">
+    <img src="./media/assets/One-Logo-Vertical.png" class="border-5 border-start border-end p-4" alt="Onefit™.app Logo" style="max-height: 50vh; width: auto !important; border-radius: 25px; background-color: #343434;">
   </div>
 
-  <hr class="text-white m-0" />
+  <!-- <hr class="text-white m-0" /> -->
   <!-- Onefit.app Logo -->
 
   <div class="text-center p-4" style="background-color: rgba(52, 52, 52, 0.8); margin: 40px 0;">
@@ -247,8 +248,8 @@ rememberMe();
 
   <!-- User Sign in Section -->
   <div class="container-fluid m-0 down-top-grad-tahiti">
-    <div class="container text-center text-white mt-4" style="min-height: 100vh; padding-bottom: 10vh">
-      <div class="row align-items-center my-4 px-4" style="border-radius: 25px; background-color: rgba(52, 52, 52, 0.8)">
+    <div class="container text-center text-white mt-4" style="min-height: 100vh; padding-bottom: 40px;">
+      <div class="row align-items-center p-4" style="border-radius: 25px; background-color: rgba(52, 52, 52, 0.8)">
         <div class="col-sm py-4">
           <form class="text-center text-white comfortaa-font align-middle" method="post" action="./scripts/php/main_app/compile_content/profile_tab/login.php" autocomplete="off">
             <!--target="_blank"-->
@@ -283,7 +284,7 @@ rememberMe();
           </form>
         </div>
 
-        <div class="col-sm py-4 darkpads-bg-container shadow border-5 border-start border-end" style="border-radius: 25px; color: #fff">
+        <div class="col-sm p-4 darkpads-bg-container shadow border-5 border-start border-end" style="border-radius: 25px; color: #fff">
           <div class="d-grid gap-2">
             <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Google API is not available at the moment. Please use your email to login.')">
               <i class="fab fa-google"></i>
@@ -323,7 +324,7 @@ rememberMe();
         <span class="material-icons material-icons-outlined"> tv </span>
         <p style="font-size: 10px">Latest Training Programs | <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span></p>
 
-        <div class="video-card-container">
+        <div class="video-card-container border-white border border-5 bg-white">
           <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="" class="img-fluid shadow" />
           <button class="onefit-buttons-style-light shadow play-btn p-3" onclick="playVideo()">
             <span class="material-icons material-icons-round" style="font-size: 40px !important;">
@@ -415,12 +416,11 @@ rememberMe();
   <!-- Footer -->
 
   <div class="navbar navbar-dark fixed-bottom navbar-stylez down-top-grad-dark py-4 justify-content-center">
-    <div class="collapse w-100z fitness-bg-containerz darkpads-bg-container no-scroller shadow -lg border-5 border-start border-end mx-4 px-4" style="max-height: 90vh !important; overflow-y: auto; border-radius: 25px; border-color: #ffa500 !important; margin-bottom: 40px; padding-top: 100px;" id="navbarToggleExternalContent">
-      <div class="p-4 top-down-grad-dark" style="border-radius: 25px;">
-        <div class="text-center pt-4 mb-4">
-          <img src="./media/assets/One-Symbol-Logo-White.svg" alt="logo" class="img-fluid my-4 p-4 my-pulse-animation-light" style="max-width: 100px;border-radius: 50%;">
+    <div class="no-scroller shadow border-5 border-start border-end mx-4 px-3 collapse top-down-grad-tahiti" style="overflow-y: auto; border-radius: 25px; margin-bottom: 40px; padding-top: 100px; max-height: 90vh !important; border-color: rgb(255, 165, 0) !important;" id="navbarToggleExternalContent">
+      <div class="p-0">
+        <div class="text-center pt-4 mb-4 top-down-grad-dark" style="border-radius: 25px 25px 0 0;">
+          <img src="./media/assets/One-Symbol-Logo-White.svg" alt="logo" class="img-fluid my-4 p-4 my-pulse-animation-light" style="max-width: 150px;border-radius:25px;">
         </div>
-
 
         <!-- Onefit.TV Horizontal Content Stream -->
         <div class="mb-4" id="onefittv-footer-h-content-stream">
@@ -430,7 +430,7 @@ rememberMe();
               <span class="material-icons material-icons-outlined" style="color: #fff;"> tv </span>
               <span>OnefitNet.TV</span>
             </h5>
-            <hr class="text-white" />
+            <hr class="text-white">
 
             <p class="my-4 text-center" style=" font-size: 10px">Latest Training Programs | <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span></p>
 
@@ -440,7 +440,7 @@ rememberMe();
                 > -->
 
               <div class="video-card-container">
-                <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="latest video" class="img-fluid shadow mb-4" style="border-radius: 15px;" />
+                <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="latest video" class="img-fluid shadow m-0" style="border-radius: 15px;">
                 <button class="onefit-buttons-style-light shadow-lg play-btn p-2 aligh-middle" onclick="playVideo()">
                   <span class="material-icons material-icons-round aligh-middle" style="font-size: 20px !important;">
                     play_circle_outline
@@ -626,12 +626,12 @@ rememberMe();
             <div class="content-panel-border-style p-4 h-100" style="padding-bottom: 40px; border-radius: 25px; background-color: #343434;">
               <span class="material-icons material-icons-outlined" style="color: #fff;">tag</span>
               <h5 class="fs-1 h4" style="color: #ffa500;">Social</h5>
-              <hr class="text-white" />
+              <hr class="text-white">
               <ul class="list-group bg-transparent comfortaa-font">
-                <li class="list-group-item bg-transparent border-0 social-link-icon-insta my-2 shadow" style="cursor: pointer" onClick="launchLink('www.google.com')">
+                <li class="list-group-item bg-transparent border-0 social-link-icon-insta my-2 shadow" style="cursor: pointer" onclick="launchLink('www.google.com')">
                   <div class="row align-items-center">
                     <div class="col-4 text-end">
-                      <i class="fab fa-instagram" style="font-size: 40px;"></i>
+                      <i class="fab fa-instagram" style="font-size: 40px;" aria-hidden="true"></i>
                     </div>
                     <div class="col text-center" style="color: #ffa500;">
                       |
@@ -641,10 +641,10 @@ rememberMe();
                     </div>
                   </div>
                 </li>
-                <li class="list-group-item bg-transparent border-0 social-link-icon-twitter my-2 shadow" style="cursor: pointer" onClick="launchLink('www.google.com')">
+                <li class="list-group-item bg-transparent border-0 social-link-icon-twitter my-2 shadow" style="cursor: pointer" onclick="launchLink('www.google.com')">
                   <div class="row align-items-center">
                     <div class="col-4 text-end">
-                      <i class="fab fa-twitter" style="font-size: 40px;"></i>
+                      <i class="fab fa-twitter" style="font-size: 40px;" aria-hidden="true"></i>
                     </div>
                     <div class="col text-center" style="color: #ffa500;">
                       |
@@ -654,10 +654,10 @@ rememberMe();
                     </div>
                   </div>
                 </li>
-                <li class="list-group-item bg-transparent border-0 social-link-icon-fb my-2 shadow" style="cursor: pointer" onClick="launchLink('www.google.com')">
+                <li class="list-group-item bg-transparent border-0 social-link-icon-fb my-2 shadow" style="cursor: pointer" onclick="launchLink('www.google.com')">
                   <div class="row align-items-center">
                     <div class="col-4 text-end">
-                      <i class="fab fa-facebook" style="font-size: 40px;"></i>
+                      <i class="fab fa-facebook" style="font-size: 40px;" aria-hidden="true"></i>
                     </div>
                     <div class="col text-center" style="color: #ffa500;">
                       |
@@ -667,10 +667,10 @@ rememberMe();
                     </div>
                   </div>
                 </li>
-                <li class="list-group-item bg-transparent border-0 social-link-icon-yt my-2 shadow" style="cursor: pointer" onClick="launchLink('www.google.com')">
+                <li class="list-group-item bg-transparent border-0 social-link-icon-yt my-2 shadow" style="cursor: pointer" onclick="launchLink('www.google.com')">
                   <div class="row align-items-center">
                     <div class="col-4 text-end">
-                      <i class="fab fa-youtube" style="font-size: 40px;"></i>
+                      <i class="fab fa-youtube" style="font-size: 40px;" aria-hidden="true"></i>
                     </div>
                     <div class="col text-center" style="color: #ffa500;">
                       |
@@ -684,18 +684,18 @@ rememberMe();
 
               <span class="material-icons material-icons-outlined mt-4" style="color: #fff;">error_outline</span>
               <h5 class="fs-1 h4" style="color: #ffa500;">Important</h5>
-              <hr class="text-white" />
+              <hr class="text-white">
               <ul class="list-group bg-transparent comfortaa-font">
-                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4" style="cursor: pointer" onClick="launchLink('www.google.com')">
+                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4" style="cursor: pointer" onclick="launchLink('www.google.com')">
                   Our COVID-19 Responsibility
                 </li>
-                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4" style="cursor: pointer" onClick="launchLink('www.google.com')">
+                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4" style="cursor: pointer" onclick="launchLink('www.google.com')">
                   Privacy Policy
                 </li>
-                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4" style="cursor: pointer" onClick="launchLink('www.google.com')">
+                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4" style="cursor: pointer" onclick="launchLink('www.google.com')">
                   Terms of use
                 </li>
-                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4" style="cursor: pointer" onClick="launchLink('www.google.com')">
+                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4" style="cursor: pointer" onclick="launchLink('www.google.com')">
                   Refund Policy
                 </li>
               </ul>
@@ -705,7 +705,7 @@ rememberMe();
             <div class="content-panel-border-style p-4 h-100" style="padding-bottom: 40px; border-radius: 25px; background-color: #343434;">
               <span class="material-icons material-icons-outlined" style="color: #fff;">touch_app</span>
               <h5 class="fs-1 h4" style="color: #ffa500;">Navigation</h5>
-              <hr class="text-white" />
+              <hr class="text-white">
               <ul class="list-group justify-content-end flex-grow-1z pe-3 comfortaa-font fs-3">
                 <li class="my-2 shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
                   <button class="nav-link onefit-buttons-style-dark p-4 text-center" href="#">Home</button>
@@ -720,16 +720,16 @@ rememberMe();
                   <button class="nav-link onefit-buttons-style-dark p-4 text-center" href="#">Contact</button>
                 </li>
                 <li class="my-2 shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
-                  <button class="nav-link onefit-buttons-style-dark p-4 text-center active" aria-current="page" href="#">Onefit.app&trade;</button>
+                  <button class="nav-link onefit-buttons-style-dark p-4 text-center active" aria-current="page" href="#">Onefit.app™</button>
                 </li>
                 <li class="my-2 shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
-                  <button class="nav-link onefit-buttons-style-dark p-4 text-center" href="#">Onefit.Edu&trade;
+                  <button class="nav-link onefit-buttons-style-dark p-4 text-center" href="#">Onefit.Edu™
                     (Blog)</button>
                 </li>
                 <li class="my-2 shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
-                  <button class="nav-link onefit-buttons-style-dark p-4 text-center" href="#">Onefit.Shop&trade;</button>
+                  <button class="nav-link onefit-buttons-style-dark p-4 text-center" href="#">Onefit.Shop™</button>
                 </li>
-                <hr class="text-dark" />
+                <hr class="text-dark">
                 <li class="my-2 shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
                   <a class="nav-link onefit-buttons-style-dark p-4 text-center" href="registration/" style="border-bottom: 0 !important">Account
                     Registration</a>

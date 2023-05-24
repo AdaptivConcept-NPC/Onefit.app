@@ -5,6 +5,40 @@ include("../../../../functions.php");
 
 $monthNames = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 $output = "";
+$activitiesCount = 0;
+$badgeColor = "white";
+
+function getActivitiesCount($Year, $Month, $Day)
+{
+    global $dbconn, $badgeColor;
+    $colorTagString = "white";
+    try {
+        //code...
+        $query = "SELECT DISTINCT(tws.schedule_title), tws.color_code, tws.groups_group_ref_code, twa.* 
+        FROM teams_weekly_schedules tws 
+        LEFT JOIN team_weekly_activities twa ON twa.teams_weekly_schedules_teams_weekly_schedule_id = tws.teams_weekly_schedule_id 
+        WHERE tws.schedule_date = '$Year-$Month-$Day'";
+        $result = $dbconn->query($query);
+        $result = mysqli_query($dbconn, $query);
+        if (!$result) die("Fatal error [2]: " . $dbconn->error);
+
+        $rows = $result->num_rows;
+
+        if ($rows > 0) {
+            for ($j = 0; $j < $rows; ++$j) {
+                $row = $result->fetch_array(MYSQLI_ASSOC);
+
+                $colorTagString = $row["color_code"];
+
+                $badgeColor = get_string_between($colorTagString, "[", "]");
+            }
+        }
+
+        return $rows;
+    } catch (\Throwable $th) {
+        throw $th;
+    }
+}
 
 if (!isset($_REQUEST["month"])) $_REQUEST["month"] = date("n");
 if (!isset($_REQUEST["year"])) $_REQUEST["year"] = date("Y");
@@ -56,10 +90,29 @@ for ($i = 0; $i < ($maxday + $startday); $i++) {
     if ($i < $startday) {
         $output .= '<td></td>';
     } else {
+        // call a function to get the count of scheduled activities activities and the color tag of the latest/last schedule entry for the current day/date 
+        $activitiesCount = getActivitiesCount($cYear, $cMonth, $cDay);
+
+        $countBadgeTag = $tdStyling = $borderStyling = "";
+        if ($activitiesCount > 0) {
+            $countBadgeTag = <<<_END
+            <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill" style="background-color: $badgeColor;z-index:100;font-size:14px;">
+                $activitiesCount activities.
+                <span class="visually-hidden">number of activities</span>
+            </span>
+            _END;
+
+            $borderStyling = <<<_END
+            border:solid 5px $badgeColor!important;
+            _END;
+            $tdStyling .= $borderStyling;
+        }
+
         // $cDay = $i - $startday + 1;
         $output .= <<<_END
-        <td class="calender-day-item $todayClass" align="center" valign="middle" height="20px" 
+        <td class="calender-day-item position-relative $todayClass" style="coursor:pointer;$tdStyling" align="center" valign="middle" height="20px" 
             onclick="openCalenderActivityForm('$cYear','$cMonth','$cDay')">
+            $countBadgeTag 
             $cDay
         </td>
         _END;

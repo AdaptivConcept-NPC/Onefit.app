@@ -256,7 +256,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: '../../scripts/php/main_app/data_management/user_registration/submit/aboutyou_submit.php',
+            url: '../../scripts/php/main_app/data_management/system_admin/user_registration/submit/aboutyou_submit.php',
             processData: false,
             contentType: false,
             async: false,
@@ -286,7 +286,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: '../../scripts/php/main_app/data_management/user_registration/submit/goalsetting_submit.php',
+            url: '../../scripts/php/main_app/data_management/system_admin/user_registration/submit/goalsetting_submit.php',
             processData: false,
             contentType: false,
             async: false,
@@ -316,7 +316,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: '../../scripts/php/main_app/data_management/user_registration/submit/fitprefs_submit.php',
+            url: '../../scripts/php/main_app/data_management/system_admin/user_registration/submit/fitprefs_submit.php',
             processData: false,
             contentType: false,
             async: false,
@@ -346,7 +346,7 @@ try {
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: '../../scripts/php/main_app/data_management/user_registration/submit/policy_acceptance_submit.php',
+            url: '../../scripts/php/main_app/data_management/system_admin/user_registration/submit/policy_acceptance_submit.php',
             processData: false,
             contentType: false,
             async: false,

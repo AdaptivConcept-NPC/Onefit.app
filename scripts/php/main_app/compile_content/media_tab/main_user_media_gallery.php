@@ -93,7 +93,7 @@ function listDirectory($path)
 
 function dir_is_empty($dir)
 {
-    $handle = opendir($dir);
+    $handle = opendir("../../../../$dir");
     while (false !== ($entry = readdir($handle))) {
         if ($entry != "." && $entry != "..") {
             closedir($handle);
@@ -108,7 +108,7 @@ function noMediaItems($req)
 {
     return <<<_END
     <div class="text-center">
-        <h5>No media in .</h5>
+        <h5>No media in $req.</h5>
     </div>
     _END;
 }
@@ -116,7 +116,7 @@ function noMediaItems($req)
 switch ($requestDir) {
     case 'shared':
         $dirpathstring = "../media/profiles/$current_user_username/shared_media/";
-        if (dir_is_empty($dir)) listDirectory($dirpathstring);
+        if (dir_is_empty($dirpathstring)) listDirectory($dirpathstring);
         else echo noMediaItems($requestDir);
         break;
     case 'private':

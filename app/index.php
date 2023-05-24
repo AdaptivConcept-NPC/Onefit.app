@@ -228,8 +228,8 @@ if (isset($_SESSION["currentUserAuth"])) {
 
 </head>
 
-<body class="noselect">
-    <!-- onload="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')" -->
+<body class="noselect" onload="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
+    <!--  -->
     <!-- imbaChat plugin code/api: -->
     <!-- <script src="https://api.imbachat.com/imbachat/v1/20525/widget"></script>
     <script>
@@ -368,13 +368,13 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ Facebook API -->
 
     <!-- Navigation bar, Cart & Other functions -->
-    <header id="nav-bar-header" class="container-xlg -fluid text-center pt-4">
+    <header id="nav-bar-header" class="container-xlg -fluid text-center py-5 px-4">
         <a class="navbar-brand my-4 mx-0 p-4 fs-1 text-white comfortaa-font" href="#">
             One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span>
         </a>
 
         <!-- Cart Container  -->
-        <div class="container py-4">
+        <div class="container py-4 d-none">
             <div class="text-center">
                 <button class="navbar-toggler shadowz onefit-buttons-style-dark p-2 hide-side-panels" type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel">
                     <div class="row px-4 py-2 align-items-centerz">
@@ -734,8 +734,8 @@ if (isset($_SESSION["currentUserAuth"])) {
         <!-- Main Navigation Bar -->
         <nav class="navbar navbar-light sticky-top navbar-style w-100 mb-4" style="border-radius: 25px; max-height: 100vh !important; border-bottom: #ffa500 solid 5px;">
             <!-- App Function Buttons -->
-            <div class="container">
-                <button id="" main-data-bs-target="#tabLatestSonav-notifications-btn" class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
+            <div class="container d-flex gap-1">
+                <button id="app-notifications-btn" main-data-bs-target="#tabLatestSonav-notifications-btn" class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> notifications </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Notifications</span>
@@ -764,7 +764,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <!-- ./ Main App Content Refresh button -->
 
-                <button type="button" class="onefit-buttons-style-dark p-3 my-4 shadow comfortaa-font hide-side-panels" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
+                <button type="button" class="onefit-buttons-style-dark p-3 my-4 shadow comfortaa-font show-side-panels" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> widgets </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Widgets</span>
@@ -772,7 +772,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!--<span class="material-icons material-icons-round" style="font-size: 24px !important"> linear_scale </span>-->
                 </button>
 
-                <button id="main-nav-ext-links-btn" class="navbar-toggler shadow onefit-buttons-style-dark p-4 hide-right-side-panels" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <button id="main-nav-ext-links-btn" class="navbar-toggler shadow onefit-buttons-style-dark p-3 hide-right-side-panels" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round align-middle" style="font-size: 28px !important"> public <!-- menu_open --> </span>
                         <span class="d-none d-lg-block" id="" style="font-size: 10px;">Navigation</span>
@@ -781,7 +781,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                 <!-- Navigation Menu Offcanvas -->
                 <div class="offcanvas offcanvas-end offcanvas-menu-primary-style fitness-bg-containerz" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                    <div class="h-100z" id="offcanvas-menu">
+                    <div class="no-scroller" id="offcanvas-menu">
                         <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
                             <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;">
                             <h5 class="offcanvas-title text-center" id="offcanvasNavbarLabel">
@@ -794,7 +794,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <span class="material-icons material-icons-round align-middle" style="font-size:20px!important;"> close </span>
                             </button>
                         </div>
-                        <div class="offcanvas-body" style="padding-bottom: 40px; overflow-y: auto; overflow-x: hidden; max-height: 80vh;">
+                        <div class="offcanvas-body" style="padding-bottom: 40px; overflow-y: auto; overflow-x: hidden; max-height: 86.9vh;">
                             <ul class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3">
                                 <li class="nav-item d-grid gap-2">
                                     <button class="onefit-buttons-style-light rounded-pill p-4 text-center shadow fw-bold" style="transform: translate(0) !important; border-radius:25px!important;" onclick="launchLink('../scripts/php/destroy_session.php')">
@@ -924,16 +924,39 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <!-- ./. Digital Clock -->
 
                             <div class="mt-4" id="dashboard-activity-lineup-container">
-                                <div class="p-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important; margin-top: 60px !important;">
+                                <div class="p-4 text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important; margin-top: 60px !important;">
                                     <h4 class="d-grid p-4 text-center border-5 border-top border-bottom" style="background-color: #343434; color: #fff; border-color: #ffa500 !important;border-radius: 15px;">
                                         <span class="material-icons material-icons-round align-middle" style="color: #ffa500 !important">timeline</span>
                                         <span class="p-4 align-middle">Activities lined up.</span>
                                     </h4>
 
                                     <div id="week-activities-list-container">
-                                        <div class="d-flex align-items-center text-center justify-content-center" id="no-activities-banner-container" style="min-height: 100px;">
-                                            <p class="my-4 fs-5 fw-bold comfortaa-font" style="cursor: pointer;" onclick="openLink(event, 'TabStudio')">No activities lined up. Go to the <span style="color: #ffa500;">.Studio</span> to get active.</p>
+
+                                        <div class="grid-container">
+                                            <div class="grid-tile down-top-grad-dark p-4 shadow">
+                                                <p class="my-4 fs-5 fw-bold comfortaa-font" style="cursor: pointer;" onclick="openLink(event, 'TabStudio')">No activities lined up. Go to the <span style="color: #ffa500;">.Studio</span> to get active.</p>
+                                            </div>
+
+                                            <div id="daily-activity-tile-" class="grid-tile down-top-grad-tahiti p-4 shadow border-5 border-bottom border-white" hidden>
+                                                <div class="d-flex gap-2 align-items-center justify-content-between text-center mb-2" id="no-activities-banner-container" style="min-height: 100px;">
+                                                    <div class="activity-icon rounded-circle shadow p-4 border border-white border-5">
+                                                        <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded" alt="" height="50" width="50">
+                                                    </div>
+                                                    <div class="activity-details text-end">
+                                                        <p>Activity title:<br> </p>
+                                                        <p>RPE:<br> </p>
+                                                        <p>Date:<br> (01/01/1970)</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-grid">
+                                                    <button type="button" class="onefit-buttons-style-light p-2 shadow" aria-current="false" onclick="goTrainer('', '')">
+                                                        Start.
+                                                    </button>
+                                                </div>
+                                            </div>
+
                                         </div>
+
                                     </div>
 
                                 </div>
@@ -3098,9 +3121,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </div>
                             </div>
                             <div class="col-sm py-2 text-center">
-                                <div class="d-inline">
+                                <div class="d-flex justify-content-center">
                                     <button class="btn p-4 onefit-buttons-style-dark my-pulse-animation-tahiti border-5 border hide-side-panels d-grid gap-2" style="border-radius: 25px !important; border-color: #ffa500 !important;" type="button" data-bs-toggle="modal" data-bs-target="#tabCaptureActivityTrackerDataModal">
-                                        <!--  data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="heartrate-expand-icon heartrate-data-input-form-container" -->
                                         <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch" class="img-fluid mb-2">
                                         <span class="material-icons material-icons-round align-middle">
                                             add_circle_outline
@@ -3199,13 +3221,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </div>
                                     <div class="col-md -8 py-4 no-scroller" style="overflow-x: auto;">
                                         <div class=" d-flex justify-content-center">
-                                            <div class="in-div-button-container position-relative">
-                                                <!-- refresh button -->
-                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(heartRateChart, '<?php echo $currentUser_Usrnm; ?>','heart_rate_monitor_chart')">
-                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
-                                                    <span class="align-middle" style="font-size: 10px;">Sync.</span>
-                                                </button>
-                                                <!-- ./ refresh button -->
+                                            <div class="in-div-button-container d-grid position-relative">
+                                                <div class="d-flex justify-content-end">
+                                                    <!-- refresh button -->
+                                                    <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(heartRateChart, '<?php echo $currentUser_Usrnm; ?>','heart_rate_monitor_chart')">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
+                                                        <span class="align-middle" style="font-size: 10px;">Sync.</span>
+                                                    </button>
+                                                    <!-- ./ refresh button -->
+                                                </div>
+
 
                                                 <!-- Canvasjs chart canvas -->
                                                 <div class="insight-chart-container no-scroller">
@@ -3315,13 +3340,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-md -8 py-4 no-scroller" style="overflow-x: auto;">
 
                                         <div class=" d-flex justify-content-center">
-                                            <div class="in-div-button-container position-relative">
-                                                <!-- refresh button -->
-                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(bodyTempChart, '<?php echo $currentUser_Usrnm; ?>','body_temp_monitor_chart')">
-                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
-                                                    <span class="align-middle" style="font-size: 10px;">Sync.</span>
-                                                </button>
-                                                <!-- ./ refresh button -->
+                                            <div class="in-div-button-container d-grid position-relative">
+                                                <div class="d-flex justify-content-end">
+                                                    <!-- refresh button -->
+                                                    <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(bodyTempChart, '<?php echo $currentUser_Usrnm; ?>','body_temp_monitor_chart')">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
+                                                        <span class="align-middle" style="font-size: 10px;">Sync.</span>
+                                                    </button>
+                                                    <!-- ./ refresh button -->
+                                                </div>
+
 
                                                 <!-- Canvasjs chart canvas -->
                                                 <div class="insight-chart-container no-scroller">
@@ -3430,13 +3458,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-md -8 py-4 no-scroller" style="overflow-x: auto;">
 
                                         <div class=" d-flex justify-content-center">
-                                            <div class="in-div-button-container position-relative">
-                                                <!-- refresh button -->
-                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(speedChart, '<?php echo $currentUser_Usrnm; ?>','speed_monitor_chart')">
-                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
-                                                    <span class="align-middle" style="font-size: 10px;">Sync.</span>
-                                                </button>
-                                                <!-- ./ refresh button -->
+                                            <div class="in-div-button-container d-grid position-relative">
+                                                <div class="d-flex justify-content-end">
+                                                    <!-- refresh button -->
+                                                    <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(speedChart, '<?php echo $currentUser_Usrnm; ?>','speed_monitor_chart')">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
+                                                        <span class="align-middle" style="font-size: 10px;">Sync.</span>
+                                                    </button>
+                                                    <!-- ./ refresh button -->
+                                                </div>
+
 
                                                 <!-- Canvasjs chart canvas -->
                                                 <div class="insight-chart-container no-scroller">
@@ -3539,13 +3570,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <p class="comfortaa-font">Connect your Fitbit activity tracker / smartwatch</p>
                                     </div>
                                     <div class="col-md -8 py-4 d-flex justify-content-center no-scroller d-none" style="overflow-x: auto;">
-                                        <div class="in-div-button-container position-relative">
-                                            <!-- refresh button -->
-                                            <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(stepCountChart, '<?php echo $currentUser_Usrnm; ?>','step_counter_monitor_chart')">
-                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
-                                                <span class="align-middle" style="font-size: 10px;">Sync.</span>
-                                            </button>
-                                            <!-- ./ refresh button -->
+                                        <div class="in-div-button-container d-grid position-relative">
+                                            <div class="d-flex justify-content-end">
+                                                <!-- refresh button -->
+                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(stepCountChart, '<?php echo $currentUser_Usrnm; ?>','step_counter_monitor_chart')">
+                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
+                                                    <span class="align-middle" style="font-size: 10px;">Sync.</span>
+                                                </button>
+                                                <!-- ./ refresh button -->
+                                            </div>
+
 
                                             <!-- Canvasjs chart canvas -->
                                             <canvas class="chartjs-chart-light shadow" id="step_counter_monitor_chart" width="400" height="400"></canvas>
@@ -3588,13 +3622,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-md -8 py-4 no-scroller" style="overflow-x: auto;">
 
                                         <div class="d-flex justify-content-center">
-                                            <div class="in-div-button-container position-relative">
-                                                <!-- refresh button -->
-                                                <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(bmiWeightChart, '<?php echo $currentUser_Usrnm; ?>','bmi_weight_monitor_chart')">
-                                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
-                                                    <span class="align-middle" style="font-size: 10px;">Sync.</span>
-                                                </button>
-                                                <!-- ./ refresh button -->
+                                            <div class="in-div-button-container d-grid position-relative">
+                                                <div class="d-flex justify-content-end">
+                                                    <!-- refresh button -->
+                                                    <button class="onefit-buttons-style-light p-2 text-center in-div-btnz mb-2" onclick="syncUserActivityTrackerChart(bmiWeightChart, '<?php echo $currentUser_Usrnm; ?>','bmi_weight_monitor_chart')">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">sync</span>
+                                                        <span class="align-middle" style="font-size: 10px;">Sync.</span>
+                                                    </button>
+                                                    <!-- ./ refresh button -->
+                                                </div>
+
 
                                                 <!-- Canvasjs chart canvas -->
                                                 <div class="insight-chart-container no-scroller">
@@ -3680,24 +3717,64 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <hr class="text-white" style="height: 5px;">
 
                     <!-- Weekly Activities -->
-                    <div class="p-4 my-4 d-flex align-items-middle justify-content-between text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <button id="prev-week-btn-weekly-assessments" class="btn p-2 onefit-buttons-style-transp-leftdir comfortaa-font" onclick="$.switchWeeklyActivityView('last')">
-                            <span class="material-icons material-icons-round align-middle" style="color: #ffa500 !important">keyboard_arrow_left</span>
-                            <span class="align-middle" style="font-size: 10px;">Last Week</span>
-                        </button>
+                    <div class="p-4 my-4 text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
                         <div class="d-grid text-center">
                             <span class="material-icons material-icons-outlined"> pending_actions </span>
                             <h5 class="mt-4 fs-1 text-center">Weekly Assessments</h5>
                             <p class="text-center poppins-font"> Training Week: [ <span class="weekly-survey-duration-dates">Start Date - End Date</span> ]</p>
-                            <button id="this-week-btn-weekly-assessments" class="btn p-2 onefit-buttons-style-dark bg-transparent comfortaa-font d-grid p-4" onclick="$.switchWeeklyActivityView('this')">
-                                <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
-                                <span class="align-middle" style="font-size: 10px;">This Week</span>
-                            </button>
+                            <div class="d-flex justify-content-center">
+                                <!-- toggle date range picker collapse container -->
+                                <button class="onefit-buttons-style-dark p-3 my-2z text-center shadow" type="button" data-bs-toggle="collapse" data-bs-target="#date-range-picker-assessments" aria-controls="date-range-picker-assessments" aria-expanded="false">
+                                    <div class="d-grid">
+                                        <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
+                                            date_range
+                                        </span>
+                                        <span class="align-middle poppins-font text-truncate" style="font-size: 10px !important">
+                                            Week select.
+                                        </span>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <!-- date range picker for assessments -->
+                            <div id="date-range-picker-assessments" class="collapse w3-animate-left">
+                                <div id="date-range-selector-assessments" class="date-range-selector pt-4 mb-4">
+                                    <p class="m-0 text-center">Note: To view weekly assessments from a specific date or training week.</p>
+                                    <div class="input-group mb-0 fixed-bottomz down-top-grad-tahiti px-5 py-4" style="border-radius: 25px;">
+                                        <span class="material-icons material-icons-round align-middle p-2 d-flex align-items-center">calendar_month</span>
+                                        <input id="training-week-date-range-input-assessments" name="training-week-date-range-input-assessments" type="date" class="training-week-date-range-input form-control fs-2 align-middle border-white text-center p-4" placeholder="Training Week Date Sync" aria-label="Training Week Date Sync" aria-describedby="#training-week-date-range-select-assessments-btn" style="border-radius:15px 0 0 15px;">
+                                        <button id="training-week-date-range-select-assessments-btn" class="btn btn-outline-light border-5 p-2" type="button" onclick="alert('View weekly assessments for []')" style="border-radius: 0 15px 15px 0;">
+                                            <span class="material-icons material-icons-round align-middle" style="font-size: 30px !important;">
+                                                sync
+                                            </span>
+                                            <span class="align-middle" style="font-size:10px;">Select Training Week Range.</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <button id="prev-week-btn-weekly-assessments" class="btn p-2 onefit-buttons-style-transp-rightdir comfortaa-font" onclick="$.switchWeeklyActivityView('next')">
-                            <span class="align-middle" style="font-size: 10px;">Next Week</span>
-                            <span class="material-icons material-icons-round align-middle" style="color: #ffa500 !important">keyboard_arrow_right</span>
-                        </button>
+                        <div class="row align-items-middle justify-content-between">
+                            <div class="col-md d-grid align-items-center justify-content-center">
+                                <button id="prev-week-btn-weekly-assessments" class="btn p-2 onefit-buttons-style-transp-leftdir comfortaa-font" onclick="$.switchWeeklyActivityView('last')">
+                                    <span class="material-icons material-icons-round align-middle" style="color: #ffa500 !important">keyboard_arrow_left</span>
+                                    <span class="align-middle text-truncate" style="font-size: 10px;">Last Week</span>
+                                </button>
+                            </div>
+                            <div class="col-md-8 d-grid align-items-center justify-content-center">
+                                <button id="this-week-btn-weekly-assessments" class="btn p-2 onefit-buttons-style-dark bg-transparent comfortaa-font d-grid p-4" onclick="$.switchWeeklyActivityView('this')">
+                                    <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                                    <span class="align-middle text-truncate" style="font-size: 10px;">This Week</span>
+                                </button>
+                            </div>
+                            <div class="col-md d-grid align-items-center justify-content-center">
+                                <button id="prev-week-btn-weekly-assessments" class="btn p-2 onefit-buttons-style-transp-rightdir comfortaa-font" onclick="$.switchWeeklyActivityView('next')">
+                                    <span class="align-middle text-truncate" style="font-size: 10px;">Next Week</span>
+                                    <span class="material-icons material-icons-round align-middle" style="color: #ffa500 !important">keyboard_arrow_right</span>
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- weekly assessment horizontal scroll container -->
@@ -4377,9 +4454,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </style>
 
                             <!-- inline/flex more insights tab controller btns -->
-                            <div id="inline-more-insights-tab-btns" class="d-grid align-items-centerz d-lg-none d-xl-none d-xxl-none w3-animate-bottom p-2" style="background: #333; border-radius: 25px; overflow: hidden;">
+                            <div id="inline-more-insights-tab-btns" class="d-grid align-items-centerz d-lg-none d-xl-none d-xxl-none w3-animate-bottom p-2 pb-0" style="background: #333; border-radius: 25px; overflow: hidden;">
                                 <div class="d-flex gap-2 pt-0 pb-4 justify-content-center">
-                                    <button class="onefit-buttons-style-dark p-4" type="button" data-bs-toggle="collapse" data-bs-target="#more-insights-inline-nav-container" aria-expanded="true" aria-controls="more-insights-inline-nav-container">
+                                    <button class="onefit-buttons-style-dark p-4 border-5 border-bottom border-white" type="button" data-bs-toggle="collapse" data-bs-target="#more-insights-inline-nav-container" aria-expanded="true" aria-controls="more-insights-inline-nav-container">
                                         <div class="d-grid gap-2">
                                             <span class="material-icons material-icons-round"> menu </span>
                                             <p class="m-0" style="font-size: 8px;">More insights.</p>
@@ -4388,7 +4465,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </div>
 
                                 <div id="more-insights-inline-nav-container" class="w3-animate-bottom horizontal-scroll no-scroller px-4 py-0 my-0 collapse" style="overflow-y: hidden;">
-                                    <nav class="m-0 mb-1">
+                                    <nav class="mt-0 mx-0 mb-4">
                                         <div class="nav force-inline-nav nav-tabs border-0 d-flex justify-content-between" id="nav-tab-insightsSubFeatureCategories" role="tablist" style="border-color: #ffa500 !important">
                                             <button class="nav-link p-4 comfortaa-font fw-bold active position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-challenges-tab" onclick="clickTrainingProgramCategories('challenges')">
                                                 Challenges.
@@ -4478,7 +4555,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </div>
                                     <!-- ./ Fitness/Training programe categories - hidden display: none -->
                                 </div>
-                                <hr class="text-center" />
+                                <hr class="text-center m-0" />
                             </div>
                             <!-- ./ inline/flex more insights tab controller btns -->
                             <!-- ./ more insight categories v-buttons -->
@@ -4845,7 +4922,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     toggle-modifyPlayerDataModal-btn
                                                 </button>
 
-                                                <!-- Modal -->
+                                                <!-- mpd Modal -->
                                                 <div class="modal fade" id="modifyPlayerDataModal" tabindex="-1" aria-labelledby="modifyPlayerDataModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
@@ -4920,7 +4997,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <!-- ./ mpd Modal -->
                                                 <!-- ./ modify player data modal -->
 
                                                 <!-- formation offcanvas -->
@@ -5108,7 +5185,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </h5>
                                             </div>
                                             <div class="col-md-2 d-grid">
-                                                <button class="onefit-buttons-style-light p-4 my-2 text-center shadow hide-side-panels" type="button">
+                                                <button class="onefit-buttons-style-light p-4 my-2 text-center shadow hide-side-panels" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddToFixtureForm" aria-controls="offcanvasAddToFixtureForm">
                                                     <div class="d-grid">
                                                         <span class="material-icons material-icons-round">
                                                             add_circle
@@ -5118,6 +5195,138 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         </span>
                                                     </div>
                                                 </button>
+
+                                                <!-- add to fixture offcanvas -->
+                                                <div class="offcanvas offcanvas-end w-100 formation-tactics-offcanvas-tray" style="background-color: var(--mineshaft);" tabindex="-1" id="offcanvasAddToFixtureForm" aria-labelledby="offcanvasAddToFixtureFormLabel">
+                                                    <div class="offcanvas-header top-down-grad-dark p-5">
+                                                        <div class="d-grid me-4">
+                                                            <div class="d-flex align-items-center gap-2 mb-2">
+                                                                <span class="material-icons material-icons-round align-middle p-2" style="color:var(--mineshaft); border-radius:15px;background-color:var(--white);">
+                                                                    add_circle
+                                                                </span>
+                                                                <div class="d-grid gap-0">
+                                                                    <span class="comfortaa-font" style="font-size: 10px;">Match fixtures.</span>
+                                                                    <h5 class="offcanvas-title my-0 fs-1" id="offcanvasTeamFormationLabel">
+                                                                        Add match.
+                                                                    </h5>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <button type="button" class="p-4 rounded-4 onefit-buttons-style-light shadow" data-bs-dismiss="offcanvas" aria-label="Close">
+                                                            <span class="material-icons material-icons-round align-middle align-middle">
+                                                                close
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="offcanvas-body down-top-grad-dark light-scroller">
+                                                        <div class="container p-4 top-down-grad-dark border-5 border-top border-white shadow" style="border-radius: 25px;">
+                                                            <h1 class="fs-2 p-4 fw-bold text-center comfortaa-font shadow my-4 border-5 border-start border-end" style="border-radius:25px;">
+                                                                Add match to fixture.
+                                                            </h1>
+
+                                                            <form id="add-match-fixture-form" method="post">
+                                                                <!--  action="" -->
+                                                                <div class="output-container my-2" id="output-container">
+                                                                    <!---->
+                                                                </div>
+
+                                                                <div class="form-group my-4">
+                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">Match Status:</label>
+                                                                    <select class="custom-select form-control-select-input p-4" name="add-match-fixture-" id="add-match-fixture-" placeholder="Match venue" required="">
+                                                                        <option value="upcoming" selected="">Upcoming</option>
+                                                                        <option value="played">Played</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="form-group my-4">
+                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">1. Match Title:</label>
+                                                                    <input class="form-control-text-input p-4" type="text" name="add-match-fixture-" id="add-match-fixture-" placeholder="Match title" required="">
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md">
+                                                                        <div class="form-group my-4">
+                                                                            <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">2. Home Team:</label>
+                                                                            <input class="form-control-text-input p-4" type="text" name="add-match-fixture-" id="add-match-fixture-" placeholder="Home team." required="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md">
+                                                                        <div class="form-group my-4">
+                                                                            <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">3. Away Team:</label>
+                                                                            <select class="custom-select form-control-select-input p-4 team-selection-list" name="add-match-fixture-" id="add-match-fixture-" placeholder="Select the away team or define it." required="">
+                                                                                <option value="noselection" selected="">⚽️ Switch Teams. 🏀</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group my-4">
+                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">4. Match Venue:</label>
+                                                                    <select class="custom-select form-control-select-input p-4 venues-selection-list" name="add-match-fixture-" id="add-match-fixture-" placeholder="Match venue" required="">
+                                                                        <option value="noselection" selected>Select a match venue</option>
+                                                                        <option value="define">New match venue</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="form-group my-4">
+                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">5. Match Date:</label>
+                                                                    <input class="form-control-text-input p-4" type="date" name="add-match-fixture-" id="add-match-fixture-" placeholder="Match date" required="">
+                                                                </div>
+
+                                                                <div class="form-group my-4">
+                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">6. Start Time:</label>
+                                                                    <input class="form-control-text-input p-4" type="time" name="add-match-fixture-" id="add-match-fixture-" placeholder="Match start time" required="">
+                                                                </div>
+
+                                                                <div class="form-group my-4">
+                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">7. SMD (Minutes):</label>
+                                                                    <input oninput="validity.valid||(value='');" step="0" class="form-control-text-input p-4" type="number" name="add-match-fixture-" id="add-match-fixture-" value="90" placeholder="Standard match duration in minutes" required="">
+                                                                </div>
+
+                                                                <div class="form-group my-4">
+                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">7. OMD (Minutes):</label>
+                                                                    <input oninput="validity.valid||(value='');" step="0" class="form-control-text-input p-4" type="number" name="add-match-fixture-" id="add-match-fixture-" value="0" placeholder="Observed match duration in minutes" required="">
+                                                                </div>
+
+
+                                                                <div class="form-group my-4">
+                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">8. Match Result:</label>
+
+                                                                    <div id="" class="row">
+                                                                        <div class="col-md d-grid justify-content-center">
+                                                                            <label for="add-match-fixture-" class="poppins-font fs-4 text-center" style="color: var(--white);font-size:12px!important;">Home Team Name</label>
+                                                                            <input readonly class="form-control-text-input p-4" type="text" name="add-match-fixture-" id="add-match-fixture-" value="0" placeholder="Home team result" required="">
+                                                                        </div>
+                                                                        <div class="col-md d-grid justify-content-center">
+                                                                            <label for="add-match-fixture-" class="poppins-font fs-4 text-center" style="color: var(--white);font-size:12px!important;">Away Team Name</label>
+                                                                            <input readonly class="form-control-text-input p-4" type="text" name="add-match-fixture-" id="add-match-fixture-" value="0" placeholder="Away team result" required="">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <!-- 
+                                                                    <tr>
+                                                                        <th scope="col">Match #</th>
+                                                                        <th scope="col">Match Title</th>
+                                                                        <th scope="col">Home Team</th>
+                                                                        <th scope="col">Away Team</th>
+                                                                        <th scope="col">Match Venue</th>
+                                                                        <th scope="col">Match Date</th>
+                                                                        <th scope="col">Start Time</th>
+                                                                        <th scope="col">Standard Match Duration (Minutes)</th>
+                                                                        <th scope="col">Observed Match Duration (Minutes)</th>
+                                                                        <th scope="col">Match Result</th>
+                                                                    </tr>
+                                                                 -->
+                                                            </form>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <!-- ./ add to fixture offcanvas -->
                                             </div>
                                         </div>
                                         <!-- ./ upcoming match fixtures/schedule header -->
@@ -5200,25 +5409,47 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                         <!-- weekly training schedule header -->
                                         <div class="d-grid">
-                                            <div class="p-4 rounded-pill text-center shadow my-4 bg-white text-dark" style="border-radius: 25px !important;">
-                                                <h1 class="fs-2 fw-bold comfortaa-font ">Weekly Training Schedule</h1>
-                                                <p class="text-center poppins-font"> Training Week: [ <span class="weekly-survey-duration-dates">Start Date to End Date</span> ]</p>
-                                            </div>
-
-                                            <!-- *collapse - container for date-range selection input-group -->
-                                            <div id="date-range-selector" class="collapse show date-range-selector">
-                                                <p class="m-0 text-center">Note: To view weekly activitiies from a specific date or training week.</p>
-                                                <div class="input-group mb-0 fixed-bottomz down-top-grad-dark px-5 py-4">
-                                                    <span class="material-icons material-icons-round align-middle p-2 d-flex align-items-center">calendar_month</span>
-                                                    <input id="training-week-date-range-input" name="training-week-date-range-input" type="date" class="training-week-date-range-input form-control fs-2 align-middle border-white text-center p-4" placeholder="Training Week Date Sync" aria-label="Training Week Date Sync" aria-describedby="#training-week-date-range-select-btn" style="border-radius:15px 0 0 15px;">
-                                                    <button id="training-week-date-range-select-btn" class="btn btn-outline-light border-5 p-2" type="button" onclick="$.getRequestedTrainingWeekActivities()" style="border-radius: 0 15px 15px 0;">
-                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px !important;">
-                                                            sync
-                                                        </span>
-                                                        <span class="align-middle" style="font-size:10px;">Select Training Week Range.</span>
+                                            <div class="row align-items-center mb-2">
+                                                <div class="col-md">
+                                                    <div class="p-4 rounded-pill text-center shadow bg-white text-dark" style="border-radius: 25px !important;">
+                                                        <h1 class="fs-2 fw-bold comfortaa-font ">Weekly Training Schedule</h1>
+                                                        <p class="text-center poppins-font"> Training Week: [ <span class="weekly-survey-duration-dates">Start Date to End Date</span> ]</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 d-grid">
+                                                    <!-- toggle date range picker collapse container -->
+                                                    <button class="onefit-buttons-style-light p-4 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#date-range-picker-activities" aria-controls="date-range-picker-activities" aria-expanded="false">
+                                                        <div class="d-grid">
+                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
+                                                                date_range
+                                                            </span>
+                                                            <span class="align-middle poppins-font text-truncate" style="font-size: 10px !important">
+                                                                Week select.
+                                                            </span>
+                                                        </div>
                                                     </button>
                                                 </div>
                                             </div>
+
+                                            <!-- date range picker for assessments -->
+                                            <div id="date-range-picker-activities" class="collapse w3-animate-left">
+                                                <!-- *collapse - container for date-range selection input-group -->
+                                                <div id="date-range-selector" class="date-range-selector pt-4 mb-4">
+                                                    <p class="m-0 text-center">Note: To view weekly activitiies from a specific date or training week.</p>
+                                                    <div class="input-group mb-0 fixed-bottomz down-top-grad-tahiti px-5 py-4" style="border-radius: 25px;">
+                                                        <span class="material-icons material-icons-round align-middle p-2 d-flex align-items-center">calendar_month</span>
+                                                        <input id="training-week-date-range-input" name="training-week-date-range-input" type="date" class="training-week-date-range-input form-control fs-2 align-middle border-white text-center p-4" placeholder="Training Week Date Sync" aria-label="Training Week Date Sync" aria-describedby="#training-week-date-range-select-btn" style="border-radius:15px 0 0 15px;">
+                                                        <button id="training-week-date-range-select-btn" class="btn btn-outline-light border-5 p-2" type="button" onclick="$.getRequestedTrainingWeekActivities()" style="border-radius: 0 15px 15px 0;">
+                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 30px !important;">
+                                                                sync
+                                                            </span>
+                                                            <span class="align-middle" style="font-size:10px;">Select Training Week Range.</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                         </div>
                                         <div class="row align-items-center">
                                             <div class="col-md -2 d-grid">
@@ -5580,10 +5811,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <hr class="text-white" />
 
                                         <!-- Section: Interaction buttons (incl: Drills, Physical Assessment, Nutrition board, Program Administration) -->
-                                        <section id="interactions-section" class="p-4">
+                                        <section id="interactions-section" class="p-4 pt-0">
                                             <!-- class="fs-1 comfortaa-font my-5 text-center"  -->
                                             <h1 class="fs-2 p-5 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-whitez" style="border-radius:25px !important;">
-                                                <span class="material-icons material-icons-round align-middle">touch_app</span>
+                                                <span class="material-icons material-icons-round align-middle" style="color:var(--tahitigold)!important;">touch_app</span>
                                                 <span class="align-middle comfortaa-font"> Interactions.</span>
                                             </h1>
 
@@ -5662,7 +5893,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </div>
                                     <hr class="text-white">
 
-                                    <img src="../media/assets/app_graphics/feature_unavailable_white.svg" class="img-fluid my-4" alt="this feature is currently unavailable.">
+                                    <div class="d-flex justify-content-center">
+                                        <img src="../media/assets/app_graphics/feature_unavailable_white.svg" class="img-fluid my-4" style="max-height: 500px;" alt="this feature is currently unavailable.">
+                                    </div>
+
                                     <!-- <h1 class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti my-4">Wellness Tracking.</h1>
 
                                     <div class="mt-4" id="wellness-tracking-container">
@@ -5708,7 +5942,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <hr class="text-white">
 
-                                    <img src="../media/assets/app_graphics/feature_unavailable_white.svg" class="img-fluid my-4" alt="this feature is currently unavailable.">
+                                    <div class="d-flex justify-content-center">
+                                        <img src="../media/assets/app_graphics/feature_unavailable_white.svg" class="img-fluid my-4" style="max-height: 500px;" alt="this feature is currently unavailable.">
+                                    </div>
                                     <!-- <h1 class="fs-1 fw-bold rounded-pill p-4 text-center down-top-grad-tahiti my-4">Nutrition Tracking.</h1>
                                     <div class="mt-4" id="wellness-tracking-container">
                                         <img src="../media/assets/smartwatches/A8_Dashboard_Overview.png" class="img-fluid shadow mb-4" style="border-radius: 25px;" alt="dashboard placeholder">
@@ -6889,7 +7125,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- Modals ----------------------------------------------------------------------------------------- -->
     <!-- modal quick access button tray -->
     <!-- quick access tray collapse btn -->
-    <button type="button" class="onefit-buttons-style-tahiti rounded-circlez p-0z shadow collapsed" style="width:100px;height:100px;border-radius:25px 25px 25px 0;position:fixed;left:0;bottom:0;" data-bs-toggle="collapse" data-bs-target="#modal-btn-collapse-container" aria-controls="modal-btn-collapse-container" aria-expanded="false" aria-label="modal quick access.">
+    <button type="button" class="onefit-buttons-style-light shadow collapsed" style="width:100px;height:100px;border-radius:25px 25px 25px 0;position:fixed;left:0;bottom:0;" data-bs-toggle="collapse" data-bs-target="#modal-btn-collapse-container" aria-controls="modal-btn-collapse-container" aria-expanded="false" aria-label="modal quick access.">
         <!-- position:fixed;left:0;bottom:0; -->
         <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important;">
             shortcut
@@ -6897,8 +7133,8 @@ if (isset($_SESSION["currentUserAuth"])) {
         <span class="text-truncate align-middle d-nonez" style="font-size: 10px;">quick access.</span>
     </button>
     <!-- ./ quick access tray collapse btn -->
-    <div id="modal-btn-quick-tray" class="p-0 modal-btn-quick-tray fixed-bottom">
-        <div id="modal-btn-quick-tray" class="px-0 modal-btn-quick-tray">
+    <div id="modal-btn-quick-tray" class="p-0 modal-btn-quick-tray fixed-bottom" style="max-height: 100vh;overflow-y: auto;">
+        <div id="modal-btn-quick-tray" class="px-0 modal-btn-quick-tray h-100">
             <!-- quick access buttons collapse container -->
             <div id="modal-btn-collapse-container" class="top-down-grad-dark pt-4 w3-animate-left collapse" style="border-radius: 25px 25px 0px 0px;">
                 <div class="container d-flex justify-content-between align-items-center">
@@ -8140,7 +8376,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </h2>
                             <div id="cav-flush-panel-new_activities" class="accordion-collapse w3-animate-bottom collapse" aria-labelledby="cav-flush-header-new_activities" data-bs-parent="#accordionFlushCalenderActivityViewer">
                                 <div class="accordion-body">
-                                    <form id="add-new-activity-form" class="text-start d-grid gap-2 p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/user_capture_stats_heartrate.php" autocomplete="off">
+                                    <form id="add-new-schedule-form" name="add-new-schedule-form" class="text-start d-grid gap-2 comfortaa-font fs-5" style="border-radius: 25px;" method="post" action="" autocomplete="off">
                                         <h5 class="fs-2 p-4 fw-bold text-center comfortaa-font shadow my-4 border-5 border-start border-end" style="border-radius:25px;">
                                             Capture New Activity.
                                         </h5>
@@ -8151,6 +8387,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         </div>
 
                                         <div class="form-group my-4">
+                                            <label for="add-to-calender-activity-title-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">Team select:</label>
+                                            <select class="custom-select form-control-select-input p-4 team-selection-list" name="add-to-calender-team-select" id="add-to-calender-team-select" placeholder="Select your Team." required="">
+                                                <option value="noselection" selected="">⚽️ Switch Teams. 🏀</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group my-4">
                                             <label for="add-to-calender-activity-title-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">1. Title:</label>
                                             <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-title-value" id="add-to-calender-activity-title-value" placeholder="Title" required="">
                                         </div>
@@ -8160,11 +8402,26 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         </div>
                                         <div class="form-group my-4">
                                             <label for="add-to-calender-activity-day-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">3. Day:</label>
-                                            <input class="form-control-text-input p-4" type="number" name="add-to-calender-activity-day-value" id="add-to-calender-activity-day-value" placeholder="Day" required="" readonly="">
+                                            <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-day-value" id="add-to-calender-activity-day-value" placeholder="Day" required="" readonly="">
                                         </div>
+                                        <script>
+                                            function getDayName(dateStr, locale) {
+                                                var date = new Date(dateStr);
+                                                return date.toLocaleDateString(locale, {
+                                                    weekday: 'long'
+                                                });
+                                            }
+
+                                            function changeSelDateValues(selDate) {
+                                                var dateStr = selDate;
+                                                console.log("$(#add-to-calender-activity-date-value).oninput: dateStr - " + dateStr);
+                                                var day = getDayName(formatDate(dateStr), "en-ZA");
+                                                document.getElementById('add-to-calender-activity-day-value').value = day;
+                                            };
+                                        </script>
                                         <div class="form-group my-4">
                                             <label for="add-to-calender-activity-date-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">4. Date:</label>
-                                            <input class="form-control-text-input p-4" type="date" name="add-to-calender-activity-date-value" id="add-to-calender-activity-date-value" placeholder="Date" required="" readonly="">
+                                            <input class="form-control-text-input p-4" onchange="changeSelDateValues(this.value)" type="date" name="add-to-calender-activity-date-value" id="add-to-calender-activity-date-value" placeholder="Date" required="">
                                         </div>
                                         <script>
                                             function toggleCustomColorSelection(value, newTag) {
@@ -8217,9 +8474,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <div id="custom-color-selection" class="col-md-8 border-1 border-end w3-animate-left" style="display: none;">
                                                 <div class="form-group my-4 px-2">
                                                     <label for="add-to-calender-activity-custom-colorcode-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">5.1. Custom Color Code:</label>
-                                                    <div class="d-flex gap-4 align-items-center justify-content-center">
+                                                    <div class="d-flex gap-4 align-items-end justify-content-center">
                                                         <div class="d-grid gap-1">
-                                                            <label for="add-to-calender-activity-custom-colorcode-title-value" class="poppins-font form-check-label text-start pt-2" style="font-size:10px;">
+                                                            <label for="add-to-calender-activity-custom-colorcode-title-value" class="poppins-font form-check-label text-center pt-2" style="font-size:10px;">
                                                                 Please provide a title to identify what the selected color code tag means.
                                                             </label>
                                                             <input class="form-control-text-input p-4" type="text" value="color_tag" name="add-to-calender-activity-custom-colorcode-title-value" id="add-to-calender-activity-custom-colorcode-title-value" placeholder="Please provide a title to identify what the selected color code means">
@@ -8302,36 +8559,73 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     </select>
                                                     <button type="button" id="add-selection-to-activities-selectlist-btn" class="onefit-buttons-style-light p-4">
                                                         <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
-                                                            add
+                                                            keyboard_double_arrow_down
                                                         </span>
                                                         add.
                                                     </button>
                                                 </div>
                                                 <!-- ./ select an existing exercise activity -->
                                             </div>
-                                            <div class="col-md-1">
-                                                <div class="py-0 text-center">
-                                                    Or
+                                            <div class="col-md-2 py-4">
+                                                <div class="d-grid justify-content-center text-center">
+                                                    <button type="button" class="onefit-buttons-style-tahiti p-3 d-grid" data-bs-toggle="collapse" data-bs-target="#new-exercise-activity-container" aria-expanded="true" aria-controls="new-exercise-activity-container">
+                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
+                                                            playlist_add
+                                                        </span>
+                                                        <span style="font-size:10px!important;" class="text-truncate">
+                                                            New Exercise/Activity.
+                                                        </span>
+                                                    </button>
                                                 </div>
                                             </div>
-                                            <div class="col-md d-grid gap-4">
+                                            <div id="new-exercise-activity-container" class="col-md-5 gap-4 collapse w3-animate-right">
                                                 <!-- Textarea for typing out the exercises -->
                                                 <div class="form-group d-grid gap-2">
                                                     <label for="add-to-calender-activity-specify-title" class="poppins-font fs-4" style="color: #ffa500;">Create New Activities:</label>
-                                                    <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-specify-title" id="add-to-calender-activity-specify-title" placeholder="Exercise / activity title." style="border-radius:25px;">
+                                                    <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-specify-title" id="add-to-calender-activity-specify-title" placeholder="Exercise / activity title." style="border-radius:25px;font-size:12px!important;">
 
                                                     <label for="add-to-calender-activity-specify-xp" class="poppins-font" style="color: #ffa500;font-size:12px;">Allocate xp pts (1 - 10):</label>
                                                     <input class="form-control-text-input p-4" type="number" oninput="validity.valid||(value='');" min="1" max="10" name="add-to-calender-activity-specify-xp" id="add-to-calender-activity-specify-xp" placeholder="How much XP? 10xp max." style="border-radius:25px;">
 
-                                                    <textarea class="form-control-text-input p-2 text-dark light-scroller" rows="3" type="text" name="add-to-calender-activity-specify-new-instructions" id="add-to-calender-activity-specify-new-instructions" placeholder="Definition / Instructions..." style="border-radius:25px;"></textarea>
+                                                    <div class="form-group">
+                                                        <label for="sets-reps-rests" class="poppins-font" style="color: #ffa500;font-size:12px;">Select the Sets, Reps &amp; Rests:</label>
+                                                        <div class="row" id="sets-reps-rests">
+                                                            <div class="col-md">
+                                                                <input class="form-control-text-input p-4 onefit-input-grad-white-dark border-0" type="number" oninput="validity.valid||(value='');" min="1" max="10" value="1" name="add-to-calender-activity-specify-sets" id="add-to-calender-activity-specify-sets" placeholder="How many Sets? 10 max sets." style="border-radius:25px;">
+                                                            </div>
+                                                            <div class="col-md">
+                                                                <input class="form-control-text-input p-4 onefit-input-grad-white-dark border-0" type="number" oninput="validity.valid||(value='');" min="1" max="100" value="1" name="add-to-calender-activity-specify-reps" id="add-to-calender-activity-specify-reps" placeholder="How many Sets? 10 max reps." style="border-radius:25px;">
+                                                            </div>
+                                                            <div class="col-md">
+                                                                <input class="form-control-text-input p-4 onefit-input-grad-white-dark border-0" type="number" oninput="validity.valid||(value='');" min="0" max="10" value="0" name="add-to-calender-activity-specify-rests" id="add-to-calender-activity-specify-rests" placeholder="How many Sets? 5 max sets." style="border-radius:25px;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="add-to-calender-activity-specify-new-description" class="poppins-font" style="color: #ffa500;font-size:12px;">Please provide the Description &amp; Guidelines/Instructions of this Exercise/Activty:</label>
+                                                        <textarea class="form-control-text-input p-2 text-dark light-scroller" rows="3" type="text" name="add-to-calender-activity-specify-new-description" id="add-to-calender-activity-specify-new-description" placeholder="Description..." style="border-radius:25px;font-size:12px!important;"></textarea>
+
+                                                        <textarea class="form-control-text-input p-2 text-dark light-scroller" rows="3" type="text" name="add-to-calender-activity-specify-new-guidelines" id="add-to-calender-activity-specify-new-guidelines" placeholder="Guidelines / Instructions..." style="border-radius:25px;font-size:12px!important;"></textarea>
+                                                    </div>
+
+
+                                                    <label for="add-to-calender-specify-training-phase" class="poppins-font" style="color: #ffa500;font-size:12px;">Select the Training level (L1 - L3):</label>
+                                                    <select class="custom-select form-control-select-input p-2 light-scroller" id="add-to-calender-specify-training-phase" name="add-to-calender-specify-training-phase" style="border-radius:25px;">
+                                                        <option value="beginner" selected>Beginner (L1).</option>
+                                                        <option value="intermediate">Intermediate (L2).</option>
+                                                        <option value="advanced">Advanced (L3).</option>
+                                                    </select>
+
                                                     <button type="button" id="add-selection-to-activities-textinput-btn" class="onefit-buttons-style-light p-4">
                                                         <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
                                                             add
                                                         </span>
-                                                        add.
+                                                        save.
                                                     </button>
                                                 </div>
                                                 <!-- ./ Textarea for typing out the exercises -->
+
                                             </div>
                                         </div>
                                         <div>
@@ -8373,7 +8667,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         </div>
 
                                         <!-- submit btn -->
-                                        <button id="single-submit-heartrate-insights-activitytracker-data-form" class="onefit-buttons-style-tahiti p-4 mt-4 shadow d-grid" type="submit" value="Save">
+                                        <button id="single-submit-add-new-schedule-data-form" class="onefit-buttons-style-tahiti p-4 mt-4 shadow d-grid" type="submit" value="Save">
                                             <span class="material-icons material-icons-outlined align-middle">
                                                 event_available
                                             </span>
@@ -8972,7 +9266,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 $.getIndiExercises('ui_data', '#add-to-calender-activity-selection');
 
                 $.getUserActivityTimeline(usernm);
-                $.getUserWeekActivities(usernm);
+                $.getUserWeekActivities(usernm, '#week-activities-list-container');
                 $.getTeamMatchSchedule('init');
 
                 $.getTeamsSelectInputList('teams');
@@ -9046,12 +9340,12 @@ if (isset($_SESSION["currentUserAuth"])) {
             showSnackbar('Data has been refreshed.');
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // check online connectivity log on console - if offline show the offline curtain
-            checkConnection();
-            // initialize the app page content
-            initializeContent('<?php echo $userAuth; ?>', '<?php echo $currentUser_Usrnm; ?>');
-        });
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     // check online connectivity log on console - if offline show the offline curtain
+        //     checkConnection();
+        //     // initialize the app page content
+        //     initializeContent('<?php echo $userAuth; ?>', '<?php echo $currentUser_Usrnm; ?>');
+        // });
 
         // *** script.js functions
         // check core script loaded state
@@ -9125,8 +9419,15 @@ if (isset($_SESSION["currentUserAuth"])) {
             // '2023/3/10'
             // alert(`Show modal for calender day: ${dateYear}/${dateMonth}/${dateDay}`);
 
+
             // create date object
             var dateQueried = new Date(`${dateYear}/${dateMonth}/${dateDay}`);
+
+            let usernm = localStorage.getItem('user_usnm');
+            $.getUserWeekActivities(usernm, '#calender-activity-viewer-activity_lineup', dateQueried);
+
+            $('#add-to-calender-activity-date-value').val(formatDate(dateQueried));
+            $('#add-to-calender-activity-day-value').val(getDayName(dateQueried));
 
             // pass the date value to .calender-date-selected-label elements
             const calenderSelectionDateLabels = document.querySelectorAll('.calender-date-selected-label');
@@ -10429,6 +10730,21 @@ if (isset($_SESSION["currentUserAuth"])) {
         // document.getElementById('training-week-date-range-input').value = new Date().toDateInputValue();
         $('.training-week-date-range-input').val(new Date().toDateInputValue());
 
+        // function to smooth scroll
+        $.smoothScroll = function(containerElemID, scrollToElemID, scrollSpeed) {
+            scrollSpeed = scrollSpeed || 2000; // default
+
+            if (!containerElemID.startsWith("#")) {
+                containerElemID = "#" + containerElemID;
+            }
+            if (!scrollToElemID.startsWith("#")) {
+                scrollToElemID = "#" + scrollToElemID;
+            }
+            $(containerElemID).animate({ // "#main-form-window-scroll-container" [document.documentElement, document.body]
+                scrollTop: $(scrollToElemID).offset().top // "#user-welcome-header"
+            }, scrollSpeed); // 2000 ms
+        }
+
         // run function when scrolled to #main-content-container
         $(window).scroll(function() {
             // var left_side_panel_visibility_state = localStorage.getItem('left_side_panel_visibility_state');
@@ -10638,15 +10954,32 @@ if (isset($_SESSION["currentUserAuth"])) {
         $.getStoreProducts('json');
 
         // get Dashboard content - ajax
-        $.getUserWeekActivities = function(username) {
-            $.get("../scripts/php/main_app/compile_content/dashboard_tab/user_daily_activity_lineup.php?usnm=" + username, function(data, status) {
+        $.getUserWeekActivities = function(username, elemId, queryDate) {
+            elemId = elemId || '#week-activities-list-container';
+            queryDate = formatDate(queryDate) || formatDate(now()); // default: date today
+            $.get("../scripts/php/main_app/compile_content/dashboard_tab/user_daily_activity_lineup.php?usnm=" + username + "qdate=" + queryDate, function(data, status) {
                 if (status != "success") {
                     console.log("Get Req Failed -> $.getUserWeekActivities returned: \n[Status]: " + status + "\n[Data]: " + data);
                     alert("Get Req Failed -> $.getUserWeekActivities returned: \n[Status]: " + status + "\n[Data]: " + data);
                 } else {
-                    $('#week-activities-list-container').html(data);
+                    $(elemId).html(data);
                 }
             });
+        }
+
+        // source: https://stackoverflow.com/questions/23593052/format-javascript-date-as-yyyy-mm-dd#23593099
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+
+            return [year, month, day].join('-');
         }
 
         // get team match schedule
@@ -10879,6 +11212,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     alert("Get Req Failed -> $.getTeamsSelectInputList returned: \n[Status]: " + status + "\n[Data]: " + data);
                 } else {
                     $('#formation-team-selection').html(data);
+                    $('.team-selection-list').html(data);
                 }
             });
         }
@@ -10971,22 +11305,24 @@ if (isset($_SESSION["currentUserAuth"])) {
                         var players = responseJSONData.map(
                             function(index) {
                                 var arrayItem = `
-                        {
-                            name: '${index.user_name} ${index.user_surname}',
-                            position: '${index.field_position}',
-                            img: '../media/profiles/0_default/soccer-player.png'
-                        }`
+                                {
+                                    name: '${index.user_name} ${index.user_surname}',
+                                    position: '${index.field_position}',
+                                    img: '../media/profiles/0_default/soccer-player.png'
+                                }`;
                                 return arrayItem;
                             }
                         );
                         console.log("players array (mapped): \n" + players);
                         // *** TESTING ********************************
+
+
                     }
                 });
             }
 
             // clear the #soccefield container
-            $('#soccefield').html('');
+            $('#soccerfield').empty();
 
             getRequestedGMJSONList(grcode);
 
@@ -10995,8 +11331,6 @@ if (isset($_SESSION["currentUserAuth"])) {
             // let compiledPlayerPositionData = getRequestedGMJSONList(grcode);
 
             // console.log("compiledPlayerPositionData: \n" + compiledPlayerPositionData);
-
-
 
             var playerPositionData = [{
                     name: 'KEYLOR NAVAS',
@@ -11890,6 +12224,79 @@ if (isset($_SESSION["currentUserAuth"])) {
         });
         // ./ ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
 
+        // ajax jquery - submit add new activity data form on the calender view modal
+        $("#add-new-schedule-form").submit(function(e) {
+            e.preventDefault();
+
+            // get the localy stored user_usnm
+            let user_usnm = localStorage.getItem('user_usnm');
+
+            var form_data = new FormData($('#add-new-schedule-form')[0]);
+            setTimeout(function() {
+                $.ajax({
+                    type: 'POST',
+                    url: '../scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/add_to_teams_training_schedule.php?submitted_by=' + user_usnm,
+                    processData: false,
+                    contentType: false,
+                    async: false,
+                    cache: false,
+                    data: form_data,
+                    beforeSend: function() {
+                        console.log('beforeSend: submitting add new activity data form on the calender view modal');
+                    },
+                    success: function(response) {
+                        if (response.startsWith("success")) {
+                            console.log('success: returning response - added new activity data form on the calender view modal');
+                            console.log("Response: " + response);
+
+                            // test output
+                            // alert("Success: returning response - added new activity data form on the calender view modal \nResponse: " + response);
+                            // 
+                            $('#add-new-schedule-form > #output-container').html(`<div class="alert alert-success p-4 text-center" style="border-radius:25px;">
+                            <span class="material-icons material-icons-round align-middle" style="color:var(--mineshaft);font-size:48px!important;">
+                            check_circle
+                            </span> 
+                            Data saved successfully.
+                            </div>`);
+
+                            // scroll to the output-container for the form - params (containerElemID, scrollToElemID, scrollSpeed)
+                            $.smoothScroll('#CalenderActivityFormeModal_body', '#output-container', 1000);
+
+                            // reset the form
+                            // loop through this form and clear all inputs / reset them to default values
+                            $('#add-new-activity-form *').filter(':input').each(function(key, value) {
+                                //set each input value to ''
+                                $(this).val('');
+                            });
+                            // $('#id="add-new-schedule-form :input').val(''); // alternative one-liner
+                            // $('#id="add-new-schedule-form[name=checkListItem]').val(''); // alternative one-liner
+                        } else {
+                            console.log("error: returning response - add new activity data form on the calender view modal");
+                            console.log("Response: " + response);
+                            $('#add-new-schedule-form > #output-container').html(`<div class="alert alert-danger p-4 text-center" style="border-radius:25px;">
+                            <span class="material-icons material-icons-round align-middle" style="color:var(--white);font-size:48px!important;">
+                            error_outline
+                            </span> 
+                            ${response}
+                            </div>`);
+
+                            // scroll to the output-container for the form - params (containerElemID, scrollToElemID, scrollSpeed - ms)
+                            $.smoothScroll('#CalenderActivityFormeModal_body', '#output-container', 1000);
+
+                            // test output
+                            // alert("Failure: returning response - failed to add new activity data form on the calender view modal \nResponse: " + response);
+                        }
+
+
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    }
+                });
+            }, 1000);
+        });
+        // ./ ajax jquery - submit add new activity data form on the calender view modal
+
         // load interaction model content
         $.loadInteractionContent = function(loadContent) {
             let user_id = localStorage.getItem('user_usnm');
@@ -11901,43 +12308,43 @@ if (isset($_SESSION["currentUserAuth"])) {
             // set loading display
             $('#interactionsContentContainer').html(
                 `<div class="d-flex justify-content-center">
-            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-                <span class="visually-hidden">Loading...</span>
+                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
-        </div>
-        <p class="text-center">Loading. Please wait.</p>`
+            <p class="text-center">Loading. Please wait.</p>`
             );
 
             switch (loadContent) {
                 case "TrainingDrillsWorkouts":
                     modalHeader = `<span class="material-icons material-icons-round align-middle">shuffle_on</span>
-            <span class="align-middle d-none d-md-block"> Training Drills &amp; Workouts.</span>`;
+                    <span class="align-middle d-none d-md-block"> Training Drills &amp; Workouts.</span>`;
                     getRequestLink = '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_training_drills_workouts.php?uid=' + user_id;
                     break;
                 case "PhysicalAssessment":
                     modalHeader = `<span class="material-icons material-icons-round align-middle">personal_injury</span>
-            <span class="align-middle d-none d-md-block"> Physical Assessment</span>`;
+                    <span class="align-middle d-none d-md-block"> Physical Assessment</span>`;
                     getRequestLink = '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_physical_assessment.php?uid=' + user_id;
                     break;
                 case "NutritionBoard":
                     modalHeader = `<span class="material-icons material-icons-round align-middle">developer_board</span>
-            <span class="align-middle d-none d-md-block"> Nutrition Board.</span>`;
+                    <span class="align-middle d-none d-md-block"> Nutrition Board.</span>`;
                     getRequestLink = '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_nutrition_board.php?uid=' + user_id;
                     break;
                 case "CreationTools":
                     modalHeader = `<span class="material-icons material-icons-round align-middle">brush</span>
-            <span class="align-middle d-none d-md-block"> Creation Tools.</span>`;
+                    <span class="align-middle d-none d-md-block"> Creation Tools.</span>`;
                     getRequestLink = '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_creation_tools.php?uid=' + user_id;
                     break;
                 case "AdminDataMgmt":
                     modalHeader = `<span class="material-icons material-icons-round align-middle">account_tree</span>
-            <span class="align-middle d-none d-md-block"> Data Management.</span>`;
+                    <span class="align-middle d-none d-md-block"> Data Management.</span>`;
                     getRequestLink = '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_data_mgmt.php?uid=' + user_id;
                     break;
 
                 default:
                     modalHeader = `<span class="material-icons material-icons-round align-middle">account_tree</span>
-            <span class="align-middle d-none d-md-block"> Data Management.</span>`;
+                    <span class="align-middle d-none d-md-block"> Data Management.</span>`;
                     getRequestLink = 'abort operation';
                     console.log("Error: no content request received. [$.loadInteractionContent]: loadContent Param: " + loadContent);
                     alert("Error: no content request received. [$.loadInteractionContent]: loadContent Param: " + loadContent);
@@ -12018,7 +12425,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 console.log(`$.newCustomColorTag\n tagTitle: ${tagTitle}\n saveTagValue: ${saveTagValue}\n saveTag: ${saveTag}`);
                 return true;
 
-                $.post('scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/add_teams_color_tag.php', // url 
+                $.post('scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/new_teams_color_tag.php', // url 
                     {
                         tag_name: tagTitle,
                         tag_color: tagColor,
@@ -12089,18 +12496,145 @@ if (isset($_SESSION["currentUserAuth"])) {
             calculateWorkoutTotalXP();
         });
 
+        $.resetThisForm = function(formElemId, elemType) {
+            // loop through all option elems in #add-to-calender-activity-selection and remove the selected attribute
+            $(`${formElemId} *`).filter(`:${elemType}`).each(function(key, value) {
+                //set each input value to ''
+                switch (elemType) {
+                    case "input":
+                        // 
+                        $(this).val("");
+                        break;
+                    case "option":
+                        // 
+                        $(this).removeAttr("selected");
+                        break;
+
+                    default:
+                        alert("Unable to reset the requested form. Check the console for more details.");
+                        console.log("Cannot find/reset this element: <" + elemType + " />");
+                        break;
+                }
+
+            });
+        }
+
         // text-input: pass title and definitionstrings to selected list
-        $('#add-selection-to-activities-textinput-btn').on('click', function() {
-            var newActivityTitle = $('#add-to-calender-activity-specify-title').val();
-            var newActivityDefinition = $('#add-to-calender-activity-specify-new-instructions').val();
-            var newActivityXP = $('#add-to-calender-activity-specify-xp').val();
+        $('#add-selection-to-activities-textinput-btn').on('click', function(e) {
+            e.preventDefault();
+
+            let newExerciseTitle = $('#add-to-calender-activity-specify-title').val();
+
+            let newExerciseDescription = $('#add-to-calender-activity-specify-new-description').val();
+            let newExerciseGuidelines = $('#add-to-calender-activity-specify-new-guidelines').val();
+
+            let newExerciseSets = $('#add-to-calender-activity-specify-sets').val();
+            let newExerciseReps = $('#add-to-calender-activity-specify-reps').val();
+            let newExerciseRests = $('#add-to-calender-activity-specify-rests').val();
+
+            let newExerciseXP = $('#add-to-calender-activity-specify-xp').val();
+            let newExerciseTrainingPhase = $('#add-to-calender-specify-training-phase').val();
+
+            var exerciseSaveStatus = null;
 
             // check if input fields are empty, if true the warning alert message is displayed
-            if (newActivityTitle == "" || newActivityDefinition == "" || newActivityXP == 0) {
-                alert('Please provide a new activity title and a new activity definition and xp allocation.');
+            if (newExerciseTitle == "" ||
+                newExerciseDescription == "" ||
+                newExerciseSets <= 0 ||
+                newExerciseReps <= 0 ||
+                newExerciseRests < 0 ||
+                newExerciseXP <= 0 ||
+                newExerciseTrainingPhase == "") {
+                alert('Please provide information in all fields.');
             } else {
-                $('#select-workout-exercises-selected').append(`<option value="new_activity({title: '${newActivityTitle}', definition: '${newActivityDefinition}', xp_pts: ${newActivityXP}})" flagnew> ${newActivityTitle} - ( ${newActivityDefinition} ) X[${newActivityXP}]P </option>`);
+                // add the exercise/activity to the db 
+                try {
+                    $.post("../administration/scripts/php/capture/new_exercise.php", {
+                                exerciseTitle: newExerciseTitle,
+                                exerciseDescription: newExerciseDescription,
+                                exerciseGuidelines: newExerciseGuidelines,
+                                exerciseSets: newExerciseSets,
+                                exerciseReps: newExerciseReps,
+                                exerciseRests: newExerciseRests,
+                                xp_points: newExerciseXP,
+                                trainingPhase: newExerciseTrainingPhase
+                            },
+                            function(data, status) {
+                                console.log("$.post(../administration/scripts/php/capture/new_exercise.php) status: \n" + status);
+                                // data returned is the exercise_id
+                                let exercise_id = data;
+                                if (status == 'success') {
+                                    exerciseSaveStatus = "success";
+                                    console.log('$(#add-selection-to-activities-textinput-btn) -> status: ' + status + ', \ndata: ' + data);
+                                    // alert('Successfull. \n$(#add-selection-to-activities-textinput-btn) -> status: ' + status + ', \ndata: ' + data);
+                                } else {
+                                    exerciseSaveStatus = "fail";
+                                    console.log("$(#add-selection-to-activities-textinput-btn) -> fail returned: " + status + ', \ndata: ' + data);
+                                    // alert("Failure. \n$(#add-selection-to-activities-textinput-btn) -> fail returned: " + status + ', \ndata: ' + data);
+                                }
+
+                                // and then create new <options>  node to #add-to-calender-activity-selection, and then move the added node to #select-workout-exercises-selected
+                                switch (exerciseSaveStatus) {
+                                    case "success":
+                                        // loop through all option elems in #add-to-calender-activity-selection and remove the selected attribute
+                                        // $('#add-to-calender-activity-selection *').filter(':option')
+                                        $("#add-to-calender-activity-selection > option").each(function(key, value) {
+                                            //remove the selected attribute from all select child nodes
+                                            $(this).removeAttr("selected");
+                                        });
+                                        // so that we can set the selected attribute to the new exercise/activity record item we have created in the db
+                                        // $('#add-to-calender-activity-selection').append(`<option value="${exercise_id}" flagnew> ${newExerciseTitle} - ( ${newExerciseDescription} ) X[${newExerciseXP}]P </option>`);
+                                        // after which we add the option item to the '#select-workout-exercises-selected list
+                                        $('#select-workout-exercises-selected').append(`<option value="${parseInt(exercise_id)}" flagnew> ${newExerciseTitle} - ( ${newExerciseDescription} ) X[${newExerciseXP}]P </option>`);
+                                        // and then we sort the list
+                                        sortSelect('select-workout-exercises-selected');
+                                        // recalculate the total xp
+                                        calculateWorkoutTotalXP();
+                                        // reset/clear all inputs
+                                        $('#add-to-calender-activity-specify-title').val('');
+
+                                        $('#add-to-calender-activity-specify-new-description').val('');
+                                        $('#add-to-calender-activity-specify-new-guidelines').val('');
+
+                                        $('#add-to-calender-activity-specify-sets').val('1');
+                                        $('#add-to-calender-activity-specify-reps').val('1');
+                                        $('#add-to-calender-activity-specify-rests').val('0');
+
+                                        $('#add-to-calender-activity-specify-xp').val('');
+                                        $('#add-to-calender-specify-training-phase').val('beginner');
+
+                                        showSnackbar("New Exercise was saved successfully.");
+
+                                        break;
+                                    case "fail":
+                                        showSnackbar("A fail error has occured. We are unable to save your new exercise entry. Contact Support.");
+                                        console.log("A fail error has occured. We are unable to save your new exercise entry. Contact Support.");
+                                        break;
+
+                                    default:
+                                        // error - status unknown
+                                        showSnackbar("Default Error: status unknown. Contact Support. \nStatus: " + status);
+                                        console.log("Default Error: status unknown. Contact Support.");
+                                        break;
+                                }
+
+                            }
+                        )
+                        .done(function() {
+                            console.log("New exercise entry submission is complete.");
+                        })
+                        .fail(function() {
+                            console.log("$(#add-selection-to-activities-textinput-btn) -> post fail error");
+                            alert("Failure. \n$(#add-selection-to-activities-textinput-btn) -> post fail error");
+                        });
+                } catch (error) {
+                    console.log("$(#add-selection-to-activities-textinput-btn) -> Exception error: \n" + error);
+                    console.log("An exception error occured. We are unable to save your new exercise entry. Contact Support.");
+                    showSnackbar("An exception error occured. We are unable to save your new exercise entry. Contact Support.");
+                }
             }
+
+            return false;
 
         });
 

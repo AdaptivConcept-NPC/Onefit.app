@@ -11,6 +11,19 @@ Date.prototype.toDateInputValue = (function () {
 // document.getElementById('training-week-date-range-input').value = new Date().toDateInputValue();
 $('.training-week-date-range-input').val(new Date().toDateInputValue());
 
+// function to smooth scroll
+$.smoothScroll = function (containerElemID, scrollToElemID) {
+    if (!containerElemID.startsWith("#")) {
+        containerElemID = "#" + containerElemID;
+    }
+    if (!scrollToElemID.startsWith("#")) {
+        scrollToElemID = "#" + scrollToElemID;
+    }
+    $(containerElemID).animate({ // "#main-form-window-scroll-container" [document.documentElement, document.body]
+        scrollTop: $(scrollToElemID).offset().top // "#user-welcome-header"
+    }, 2000);
+}
+
 // run function when scrolled to #main-content-container
 $(window).scroll(function () {
     // var left_side_panel_visibility_state = localStorage.getItem('left_side_panel_visibility_state');
@@ -461,6 +474,7 @@ $.getTeamsSelectInputList = function (privacyType) {
             alert("Get Req Failed -> $.getTeamsSelectInputList returned: \n[Status]: " + status + "\n[Data]: " + data);
         } else {
             $('#formation-team-selection').html(data);
+            $('.team-selection-list').html(data);
         }
     });
 }
@@ -568,7 +582,7 @@ $.initializeSoccerfieldFormation = function (grcode) {
     }
 
     // clear the #soccefield container
-    $('#soccefield').html('');
+    $('#soccefield').empty();
 
     getRequestedGMJSONList(grcode);
 
@@ -1600,14 +1614,14 @@ $.newCustomColorTag = function (tagColor) {
         console.log(`$.newCustomColorTag\n tagTitle: ${tagTitle}\n saveTagValue: ${saveTagValue}\n saveTag: ${saveTag}`);
         return true;
 
-        $.post('scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/add_teams_color_tag.php',  // url 
+        $.post('scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/new_teams_color_tag.php',  // url 
             {
                 tag_name: tagTitle,
                 tag_color: tagColor,
                 save_tag: saveTag
             }, // data to be submit
             function (data, status, xhr) {   // success callback function
-                alert('status: ' + status + ', data: ' + data.responseData);
+                alert('status: ' + status + ', \ndata: ' + data.responseData);
             },
             'json'); // response data format
     } catch (error) {

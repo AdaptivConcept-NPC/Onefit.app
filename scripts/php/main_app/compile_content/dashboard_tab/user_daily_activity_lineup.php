@@ -12,6 +12,11 @@ else $current_user_username = $_SESSION['currentUserUsername'];
 
 $dateToday = date("Y-m-d");
 $dateDayNumber = date("N", strtotime($dateToday));
+$query_date = null;
+
+if (!isset($_GET['qdate'])) $query_date = $dateToday;
+else $query_date = date("Y-m-d", $_GET['qdate']);
+
 
 // twa
 $teams_activity_id =
@@ -26,6 +31,22 @@ $userGroupRefSubsArray = array();
 
 // get the current users group reference codes (groups they are subbed to)
 try {
+    // get linked grc codes of the current user from the teams members tbl
+    $query = "SELECT `groups_group_ref_code` FROM `teams_group_members` WHERE `users_username` = '$current_user_username' AND `active` = 1";
+    $result = $dbconn->query($query);
+    if (!$result) die("An error occurred while trying to process this request.");
+
+    $rows = $result->num_rows;
+    for ($j = 0; $j < $rows; ++$j) {
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+
+        // push/insert the groups_group_ref_code values to the $userGroupRefSubsArray array variable
+        $grouprefcode = $row["groups_group_ref_code"];
+        if (!in_array($grouprefcode, $userGroupRefSubsArray)) $userGroupRefSubsArray[] = $grouprefcode;
+    }
+
+    $result = null;
+
     // get linked grc codes of the current user from the community/indi members tbl
     $query = "SELECT `groups_group_ref_code` FROM `community_group_members` WHERE `users_username` = '$current_user_username' AND `active` = 1";
     $result = $dbconn->query($query);
@@ -41,21 +62,7 @@ try {
     }
 
     // clear the resultsets
-    $result = $innerResult = null;
-
-    // get linked grc codes of the current user from the teams members tbl
-    $query = "SELECT `groups_group_ref_code` FROM `teams_group_members` WHERE `users_username` = '$current_user_username' AND `active` = 1";
-    $result = $dbconn->query($query);
-    if (!$result) die("An error occurred while trying to process this request.");
-
-    $rows = $result->num_rows;
-    for ($j = 0; $j < $rows; ++$j) {
-        $row = $result->fetch_array(MYSQLI_ASSOC);
-
-        // push/insert the groups_group_ref_code values to the $userGroupRefSubsArray array variable
-        $grouprefcode = $row["groups_group_ref_code"];
-        if (!in_array($grouprefcode, $userGroupRefSubsArray)) $userGroupRefSubsArray[] = $grouprefcode;
-    }
+    $result = null;
 
     // get linked grc codes of the current user from the premium members tbl
     $query = "SELECT `groups_group_ref_code` FROM `premium_group_members` WHERE `users_username` = '$current_user_username' AND `active` = 1";
@@ -72,12 +79,19 @@ try {
     }
 
     // clear the resultsets
-    $result = $innerResult = null;
+    $result = null;
+
+    // test: print the $userGroupRefSubsArray
+    // print_r($userGroupRefSubsArray);
+    // echo "<br/>";
 
     // echo count($userGroupRefSubsArray) . "<br/>";
 
     // init variables
     $recordsFound = $recordsFound_Indi = $recordsFound_Teams = false;
+    $group_name =
+        $group_category =
+        $group_privacy = null;
     $teams_weekly_schedule_id =
         $teams_schedule_title =
         $teams_schedule_rpe =
@@ -91,6 +105,8 @@ try {
         $indi_schedule_date =
         $indi_group_ref_code = null;
     $ui_output_elems = $indi_elems = $teams_elems = null;
+
+    $privacy_icon = null;
 
     // compile the activities for each grc code in the array
     foreach ($userGroupRefSubsArray as $grc) {
@@ -114,7 +130,7 @@ try {
             ON indiws.groups_group_ref_code = grps.group_ref_code 
         LEFT JOIN teams_weekly_schedules teamsws 
             ON teamsws.groups_group_ref_code = grps.group_ref_code 
-        WHERE grps.group_ref_code  = '$grouprefcode'"; // AND (indiws.schedule_date = '$dateToday' OR teamsws.schedule_date = '$dateToday')
+        WHERE grps.group_ref_code  = '$grc' AND (indiws.schedule_date = '$query_date' OR teamsws.schedule_date = '$query_date')"; // AND (indiws.schedule_date = '$query_date' OR teamsws.schedule_date = '$query_date')
 
         // echo "grc( $grc ) <br /> $query<br />";
 
@@ -128,7 +144,12 @@ try {
 
             $recordsFound = true;
 
-            // indiws
+            // group details
+            $group_name = $row['group_name'];
+            $group_category = $row['group_category'];
+            $group_privacy = $row['group_privacy'];
+
+            // indiws details
             $indi_weekly_schedule_id = $row["indiws_id"];
             $indi_schedule_title = $row["indiws_title"];
             $indi_schedule_rpe = $row["indiws_rpe"];
@@ -136,32 +157,7 @@ try {
             $indi_schedule_date = date("d/m/Y", strtotime($row["indiws_date"]));
             $indi_group_ref_code = $row["indiws_grc"];
 
-            // check if indiws_id is NULL, if not NULL then set $recordsFound_Indi to true and append 
-            // ui element to display data to output var
-            if ($indi_weekly_schedule_id != "NULL") {
-                $recordsFound_Indi = true;
-                // do something
-                $indi_elems .= <<<_END
-                <button type="button" class="list-group-item list-group-item-action" aria-current="false" onclick="goTrainer('$indi_weekly_schedule_id', '$indi_group_ref_code')">
-                    <div class="row">
-                        <div class="col">
-                            <p class="fs-bold">Schedule</p> 
-                            <p>Title: $indi_schedule_title</p>
-                            <p>RPE: $indi_schedule_rpe</p>
-                            <p>Date: $indi_schedule_day ($indi_schedule_date)</p>
-                        </div>
-                    </div>
-                </button>
-                _END;
-            }
-
-            /* <div class="col">
-                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
-                    <img src="$activity_icon" src="$schedule_title - $activity_title" class="img-fluidz" style="width: 48px;">
-                </span>
-            </div> */
-
-            // teamsws
+            // teamsws details
             $teams_weekly_schedule_id = $row["teamsws_id"];
             $teams_schedule_title = $row["teamsws_title"];
             $teams_schedule_rpe = $row["teamsws_rpe"];
@@ -169,32 +165,87 @@ try {
             $teams_schedule_date = date("d/m/Y", strtotime($row["teamsws_date"]));
             $teams_group_ref_code = $row["teamsws_grc"];
 
+            switch ($group_privacy) {
+                case 'public':
+                    # code...
+                    $privacy_icon = <<<_END
+                    <span class="material-icons material-icons-outlined align-middle" style="font-size:20px!important;">
+                        lock_open
+                    </span>
+                    _END;
+                    break;
+                case 'private':
+                    # code...
+                    $privacy_icon = <<<_END
+                    <span class="material-icons material-icons-outlined align-middle" style="font-size:20px!important;">
+                        lock
+                    </span>
+                    _END;
+                    break;
+
+                default:
+                    # public
+                    $privacy_icon = <<<_END
+                    <span class="material-icons material-icons-outlined align-middle" style="font-size:20px!important;">
+                        lock_open
+                    </span>
+                    _END;
+                    break;
+            }
+
             // check if indiws_id is NULL, if not NULL then set $recordsFound_Indi to true and append 
             // ui element to display data to output var
-            if ($teams_weekly_schedule_id != "NULL") {
-                $recordsFound_Teams = true;
+            if ($indi_weekly_schedule_id != "NULL" && $group_category == "indi") {
+                $recordsFound_Indi = true;
                 // do something
-                $teams_elems .= <<<_END
-                <button type="button" class="list-group-item list-group-item-action" aria-current="false" onclick="goTrainer('$teams_weekly_schedule_id', '$teams_group_ref_code')">
-                    <div class="row">
-                        <div class="col">
-                            <p class="fs-bold">Schedule</p> 
-                            <p>Title: $teams_schedule_title</p>
-                            <p>RPE: $teams_schedule_rpe</p>
-                            <p>Date: $teams_schedule_day ($teams_schedule_date)</p>
+                $indi_elems .= <<<_END
+                <div id="daily-activity-tile-$indi_weekly_schedule_id" class="card grid-tile down-top-grad-tahiti shadow border-5 border-bottom border-white">
+                    <div class="card-body d-flex gap-2 align-items-center justify-content-between text-center mb-2" id="no-activities-banner-container" style="min-height: 100px;">
+                        <div class="activity-icon rounded-circle shadow p-4 border border-white border-5">
+                            <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded" alt="" height="50" width="50">
+                        </div>
+                        <div class="activity-details text-end">
+                            <p class="text-start"><span class="align-middle" style="font-size:10px;">$group_name</span> | <span class="align-middle" style="font-size:10px;">$group_category</span> | $privacy_icon <span class="align-middle" style="font-size:10px;">$group_privacy</span></p>
+                            <p>Activity title:<br/> $indi_schedule_title</p>
+                            <p>RPE:<br/> $indi_schedule_rpe</p>
+                            <p>Date:<br/> $indi_schedule_day, $indi_schedule_date</p>
                         </div>
                     </div>
-                </button>
+                    <div class="card-footer d-grid p-4" style="border-radius:25px;">
+                        <button type="button" class="onefit-buttons-style-light p-2 shadow" aria-current="false" onclick="goTrainer('$indi_weekly_schedule_id', '$indi_group_ref_code')">
+                            Start.
+                        </button>
+                    </div>
+                </div>
                 _END;
             }
 
-            // indiwa
-            // $indi_activity_id = $row["indi_activity_id"];
-            // $activity_title = $row["activity_title"];
-            // $activity_description = $row["activity_description"];
-            // $activity_icon = $row["activity_icon"];
-            // $teams_weekly_schedules_teams_weekly_schedule_id = $row["teams_weekly_schedules_teams_weekly_schedule_id"];
-            // $exercises_exercise_id = $row["exercises_exercise_id"];
+            // check if indiws_id is NULL, if not NULL then set $recordsFound_Indi to true and append 
+            // ui element to display data to output var
+            if ($teams_weekly_schedule_id != "NULL" && $group_category == "teams") {
+                $recordsFound_Teams = true;
+                // do something
+                $teams_elems .= <<<_END
+                <div id="daily-activity-tile-$teams_weekly_schedule_id" class="card grid-tile down-top-grad-tahiti shadow border-5 border-bottom border-white">
+                    <div class="card-body d-flex gap-2 align-items-center justify-content-between text-center mb-2" id="no-activities-banner-container" style="min-height: 100px;">
+                        <div class="activity-icon rounded-circle shadow p-4 border border-white border-5">
+                            <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded" alt="" height="50" width="50">
+                        </div>
+                        <div class="activity-details text-end">
+                            <p class="text-start"><span class="align-middle" style="font-size:10px;">$group_name</span> | <span class="align-middle" style="font-size:10px;">$group_category</span> | $privacy_icon <span class="align-middle" style="font-size:10px;">$group_privacy</span></p>
+                            <p>Activity title:<br/> $teams_schedule_title</p>
+                            <p>RPE:<br/> $teams_schedule_rpe</p>
+                            <p>Date:<br/> $teams_schedule_day, $teams_schedule_date</p>
+                        </div>
+                    </div>
+                    <div class="card-footer d-grid p-4" style="border-radius:25px;">
+                        <button type="button" class="onefit-buttons-style-light p-2 shadow" aria-current="false" onclick="goTrainer('$teams_weekly_schedule_id', '$teams_group_ref_code')">
+                            Start.
+                        </button>
+                    </div>
+                </div>
+                _END;
+            }
         }
     }
 
@@ -206,16 +257,28 @@ try {
         </div>
         _END;
     } else {
-        $ui_output_elems .= <<<_END
-        <li class="list-group-item list-group-item-actionz">
-            <h5>Indi &amp; Community activities.</h5>
-        </li>
-        $indi_elems
-        <li class="list-group-item list-group-item-actionz">
-            <h5>Teams activities.</h5>
-        </li>
-        $teams_elems
-        _END;
+        if ($recordsFound_Teams) {
+            # if true then add teams_elems to ui output
+            $ui_output_elems .= <<<_END
+            <h5 class="fs-2 py-4">Teams activities.</h5>
+            <div class="w-100" style="overflow-x:auto;">
+                <div class="grid-container mb-4">
+                    $teams_elems
+                </div>
+            </div>
+            _END;
+        }
+        if ($recordsFound_Indi) {
+            # if true then add indi_elems to ui output
+            $ui_output_elems .= <<<_END
+            <h5 class="fs-2 py-4">Indi activities.</h5>
+            <div class="w-100" style="overflow-x:auto;">
+                <div class="grid-container mb-4">
+                    $indi_elems
+                </div>
+            </div>
+            _END;
+        }
     }
 
     echo $ui_output_elems;
