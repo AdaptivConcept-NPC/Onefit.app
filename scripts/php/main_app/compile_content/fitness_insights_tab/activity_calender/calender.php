@@ -7,16 +7,19 @@ $monthNames = array("January", "February", "March", "April", "May", "June", "Jul
 $output = "";
 $activitiesCount = 0;
 $badgeColor = "white";
+$groupGRC = null;
+$groupName = "Default_X.";
 
 function getActivitiesCount($Year, $Month, $Day)
 {
-    global $dbconn, $badgeColor;
+    global $dbconn, $badgeColor, $groupGRC, $groupName;
     $colorTagString = "white";
     try {
         //code...
-        $query = "SELECT DISTINCT(tws.schedule_title), tws.color_code, tws.groups_group_ref_code, twa.* 
+        $query = "SELECT DISTINCT(tws.schedule_title), tws.color_code, tws.groups_group_ref_code, twa.* , grps.group_name
         FROM teams_weekly_schedules tws 
         LEFT JOIN team_weekly_activities twa ON twa.teams_weekly_schedules_teams_weekly_schedule_id = tws.teams_weekly_schedule_id 
+        LEFT JOIN groups grps ON tws.groups_group_ref_code = grps.group_ref_code
         WHERE tws.schedule_date = '$Year-$Month-$Day'";
         $result = $dbconn->query($query);
         $result = mysqli_query($dbconn, $query);
@@ -29,7 +32,10 @@ function getActivitiesCount($Year, $Month, $Day)
                 $row = $result->fetch_array(MYSQLI_ASSOC);
 
                 $colorTagString = $row["color_code"];
+                $groupGRC = $row["groups_group_ref_code"];
+                $groupName = $row["group_name"];
 
+                // extract color name/code
                 $badgeColor = get_string_between($colorTagString, "[", "]");
             }
         }
@@ -93,27 +99,53 @@ for ($i = 0; $i < ($maxday + $startday); $i++) {
         // call a function to get the count of scheduled activities activities and the color tag of the latest/last schedule entry for the current day/date 
         $activitiesCount = getActivitiesCount($cYear, $cMonth, $cDay);
 
-        $countBadgeTag = $tdStyling = $borderStyling = "";
+        $countBadgeTag = $scheduleTitleBadgeTag = $tdStyling = $borderStyling = $badgeHexColorCode = $badgeTextColor = $badgeBGColorStyling = "";
+        $zIndexElevation = "z-index:9;"; // default elevation css value
         if ($activitiesCount > 0) {
             $countBadgeTag = <<<_END
-            <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill" style="background-color: $badgeColor;z-index:100;font-size:14px;">
+            <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill" 
+            style="background-color: $badgeColor;z-index:100;font-size:14px;">
                 $activitiesCount activities.
                 <span class="visually-hidden">number of activities</span>
             </span>
             _END;
 
-            $borderStyling = <<<_END
-            border:solid 5px $badgeColor!important;
+            $scheduleTitleBadgeTag = <<<_END
+            <span id="scheduleTitleBadgeTag_$groupGRC" class="text-truncate position-absolute top-100 start-50 translate-middle badge rounded-pill py-2" 
+            style="background-color: $badgeColor;z-index:100;font-size:8px;">
+                $groupName.
+                <span class="visually-hidden">schedule title</span>
+            </span>
             _END;
-            $tdStyling .= $borderStyling;
+
+            $borderStyling = <<<_END
+            border-top:solid 5px $badgeColor!important;border-bottom:solid 5px $badgeColor!important;
+            _END;
+
+            // get the badges text contrast color using the two color mgmnt functions below
+            $badgeHexColorCode = color_name_to_hex($badgeColor);
+            $badgeTextColor = getContrastColor($badgeHexColorCode);
+
+            $textColorStyling = <<<_END
+            color:$badgeTextColor!important;
+            _END;
+
+            $badgeBGColorStyling = <<<_END
+            background-color:$badgeColor!important;
+            _END;
+            $zIndexElevation = "z-index:10;";
+            $tdStyling .= $zIndexElevation . $borderStyling . $textColorStyling . $badgeBGColorStyling;
+        } else {
+            $tdStyling = $zIndexElevation;
         }
 
         // $cDay = $i - $startday + 1;
         $output .= <<<_END
         <td class="calender-day-item position-relative $todayClass" style="coursor:pointer;$tdStyling" align="center" valign="middle" height="20px" 
             onclick="openCalenderActivityForm('$cYear','$cMonth','$cDay')">
-            $countBadgeTag 
-            $cDay
+            <span data-countBadgeTag> $countBadgeTag </span>
+            <span data-cDay> $cDay </span>
+            <span data-scheduleTitleBadgeTag> $scheduleTitleBadgeTag </span>
         </td>
         _END;
     }
@@ -125,22 +157,28 @@ $currentServerPath = $_SERVER["PHP_SELF"];
 $calenderHeading = $monthNames[$cMonth - 1] . " " . $cYear;
 
 echo <<<_END
-<div class="table-responsive pb-0" style="border-radius: 25px;">
+<div class="table-responsive pb-4" style="border-radius: 25px;">
     <table class="table table-hover mb-0" style="background: var(--mineshaft);">
         <thead style="background: #fff; color: #343434;">
             <tr class="comfortaa-font p-4" align="center" style="font-size: 30px">
-                <td class="p-4" colspan="1" align="left"><button class="onefit-buttons-style-light p-3" onclick="navCalender('$prev_month','$prev_year','prev')"><i class="fas fa-chevron-left"></i> Prev</button></td>
-                <td class="p-4" colspan="5" style="font-size:50px;cursor:pointer;" onclick="navCalender(null,null,'today')"><strong class="text-truncate"> $calenderHeading </strong></td>
-                <td class="p-4" colspan="1" align="right"><button class="onefit-buttons-style-light p-3" onclick="navCalender('$next_month','$next_year','next')">Next <i class="fas fa-chevron-right"></i></button></td>
+                <td class="p-4" colspan="7">
+                    <div class="w-100 h-100 d-flex gap-4 justify-content-between">
+                        <button class="onefit-buttons-style-light p-3" onclick="navCalender('$prev_month','$prev_year','prev')"><i class="fas fa-chevron-left"></i> Prev</button>
+                    
+                        <div class="p-4" colspan="5" style="font-size:50px;cursor:pointer;" onclick="navCalender(null,null,'today')"><strong class="text-truncate"> $calenderHeading </strong></div>
+
+                        <button class="onefit-buttons-style-light p-3" onclick="navCalender('$next_month','$next_year','next')">Next <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </td>
             </tr>
-            <tr>
-                <th class="text-center" scope="col">Sunday</th>
-                <th class="text-center" scope="col">Monday</th>
-                <th class="text-center" scope="col">Tuesday</th>
-                <th class="text-center" scope="col">Wednesday</th>
-                <th class="text-center" scope="col">Thursday</th>
-                <th class="text-center" scope="col">Friday</th>
-                <th class="text-center" scope="col">Saturday</th>
+            <tr class="border-0">
+                <th class="text-center border-0" scope="col">Sunday</th>
+                <th class="text-center border-0" scope="col">Monday</th>
+                <th class="text-center border-0" scope="col">Tuesday</th>
+                <th class="text-center border-0" scope="col">Wednesday</th>
+                <th class="text-center border-0" scope="col">Thursday</th>
+                <th class="text-center border-0" scope="col">Friday</th>
+                <th class="text-center border-0" scope="col">Saturday</th>
             </tr>
         </thead>
         <tbody class="text-white down-top-grad-tahiti" style="font-size: 30px">

@@ -5211,7 +5211,44 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                     </h5>
                                                                 </div>
                                                             </div>
+                                                            <div class="d-grid gap-2">
+                                                                <script>
+                                                                    function updateSelectedTeam_Forms(inputElemID, pushValue, executingElem) {
+                                                                        console.log("Changing the users selected team: " + pushValue);
+                                                                        var pushValueHere = document.getElementById(inputElemID);
 
+                                                                        if (pushValue == "noselection") {
+                                                                            alert("Please select a Team");
+                                                                            pushValueHere = "tst_grp_0001";
+                                                                            pushValueHere.focus();
+                                                                        } else {
+                                                                            pushValueHere.value = pushValue;
+                                                                            document.getElementById("add-match-fixture-home-team").value = executingElem.options[executingElem.selectedIndex].text;
+                                                                        }
+
+                                                                    }
+
+                                                                    function toggleInputsReadonlyState(matchStatus) {
+                                                                        console.log("Changing match status: " + matchStatus);
+                                                                        if (matchStatus === "upcoming") {
+                                                                            document.getElementById("add-match-fixture-observed-match-duration").setAttribute("readonly", true);
+                                                                            document.getElementById("add-match-fixture-match-results-home-team").setAttribute("readonly", true);
+                                                                            document.getElementById("add-match-fixture-match-results-away-team").setAttribute("readonly", true);
+                                                                        } else if (matchStatus === "played") {
+                                                                            document.getElementById("add-match-fixture-observed-match-duration").removeAttribute("readonly");
+                                                                            document.getElementById("add-match-fixture-match-results-home-team").removeAttribute("readonly");
+                                                                            document.getElementById("add-match-fixture-match-results-away-team").removeAttribute("readonly");
+                                                                        }
+                                                                    }
+                                                                </script>
+                                                                <select id="fixture-team-selection" onchange="updateSelectedTeam_Forms('add-match-fixture-group-selected', this.value, this)" class="form-select form-select-lg mb-3 team-selection-list" aria-label=".form-select-lg example">
+                                                                    <option value="noselection" selected="">⚽️ Switch Teams. 🏀</option>
+                                                                </select>
+                                                                <div class="form-check form-switch d-flex gap-2 align-items-center">
+                                                                    <input class="form-check-input" type="checkbox" role="switch" id="myTeamsOnlyCheckChecked_FixtureAdd" checked="">
+                                                                    <label class="form-check-label poppins-font text-truncate" for="myTeamsOnlyCheckChecked_FixtureAdd">My Teams only?</label>
+                                                                </div>
+                                                            </div>
                                                         </div>
 
                                                         <button type="button" class="p-4 rounded-4 onefit-buttons-style-light shadow" data-bs-dismiss="offcanvas" aria-label="Close">
@@ -5220,7 +5257,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             </span>
                                                         </button>
                                                     </div>
-                                                    <div class="offcanvas-body down-top-grad-dark light-scroller">
+                                                    <div class="offcanvas-body down-top-grad-dark light-scroller" id="add-match-fixture-body-container">
                                                         <div class="container p-4 top-down-grad-dark border-5 border-top border-white shadow" style="border-radius: 25px;">
                                                             <h1 class="fs-2 p-4 fw-bold text-center comfortaa-font shadow my-4 border-5 border-start border-end" style="border-radius:25px;">
                                                                 Add match to fixture.
@@ -5232,30 +5269,35 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                     <!---->
                                                                 </div>
 
+                                                                <!-- selected / users current group selection - grcode -->
+                                                                <div class="form-group d-none">
+                                                                    <input id="add-match-fixture-group-selected" value="tst_grp_001" name="add-match-fixture-group-selected" class="form-control-text-input team-selection-list" />
+                                                                </div>
+
                                                                 <div class="form-group my-4">
-                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">Match Status:</label>
-                                                                    <select class="custom-select form-control-select-input p-4" name="add-match-fixture-" id="add-match-fixture-" placeholder="Match venue" required="">
-                                                                        <option value="upcoming" selected="">Upcoming</option>
+                                                                    <label for="add-match-fixture-match-status" class="poppins-font fs-4 mb-4" style="color: var(--white);">Match Status:</label>
+                                                                    <select onchange="toggleInputsReadonlyState(this.value)" class="custom-select form-control-select-input p-4" name="add-match-fixture-match-status" id="add-match-fixture-match-status" placeholder="Match venue" required="">
+                                                                        <option value="upcoming" selected>Upcoming</option>
                                                                         <option value="played">Played</option>
                                                                     </select>
                                                                 </div>
 
                                                                 <div class="form-group my-4">
-                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">1. Match Title:</label>
-                                                                    <input class="form-control-text-input p-4" type="text" name="add-match-fixture-" id="add-match-fixture-" placeholder="Match title" required="">
+                                                                    <label for="add-match-fixture-match-title" class="poppins-font fs-4 mb-4" style="color: var(--white);">1. Match Title:</label>
+                                                                    <input class="form-control-text-input p-4" type="text" name="add-match-fixture-match-title" id="add-match-fixture-match-title" placeholder="Match title" required="">
                                                                 </div>
 
                                                                 <div class="row">
                                                                     <div class="col-md">
                                                                         <div class="form-group my-4">
-                                                                            <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">2. Home Team:</label>
-                                                                            <input class="form-control-text-input p-4" type="text" name="add-match-fixture-" id="add-match-fixture-" placeholder="Home team." required="">
+                                                                            <label for="add-match-fixture-home-team" class="poppins-font fs-4 mb-4" style="color: var(--white);">2. Home Team:</label>
+                                                                            <input class="form-control-text-input p-4" type="text" name="add-match-fixture-home-team" id="add-match-fixture-home-team" placeholder="Home team." required="" readonly>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md">
                                                                         <div class="form-group my-4">
-                                                                            <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">3. Away Team:</label>
-                                                                            <select class="custom-select form-control-select-input p-4 team-selection-list" name="add-match-fixture-" id="add-match-fixture-" placeholder="Select the away team or define it." required="">
+                                                                            <label for="add-match-fixture-away-team" class="poppins-font fs-4 mb-4" style="color: var(--white);">3. Away Team:</label>
+                                                                            <select class="custom-select form-control-select-input p-4 team-selection-list" name="add-match-fixture-away-team" id="add-match-fixture-away-team" placeholder="Select the away team or define it." required="">
                                                                                 <option value="noselection" selected="">⚽️ Switch Teams. 🏀</option>
                                                                             </select>
                                                                         </div>
@@ -5263,45 +5305,45 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 </div>
 
                                                                 <div class="form-group my-4">
-                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">4. Match Venue:</label>
-                                                                    <select class="custom-select form-control-select-input p-4 venues-selection-list" name="add-match-fixture-" id="add-match-fixture-" placeholder="Match venue" required="">
+                                                                    <label for="add-match-fixture-match-venue" class="poppins-font fs-4 mb-4" style="color: var(--white);">4. Match Venue:</label>
+                                                                    <select class="custom-select form-control-select-input p-4 venues-selection-list" name="add-match-fixture-match-venue" id="add-match-fixture-match-venue" placeholder="Match venue" required="">
                                                                         <option value="noselection" selected>Select a match venue</option>
                                                                         <option value="define">New match venue</option>
                                                                     </select>
                                                                 </div>
 
                                                                 <div class="form-group my-4">
-                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">5. Match Date:</label>
-                                                                    <input class="form-control-text-input p-4" type="date" name="add-match-fixture-" id="add-match-fixture-" placeholder="Match date" required="">
+                                                                    <label for="add-match-fixture-match-date" class="poppins-font fs-4 mb-4" style="color: var(--white);">5. Match Date:</label>
+                                                                    <input class="form-control-text-input p-4" type="date" name="add-match-fixture-match-date" id="add-match-fixture-match-date" placeholder="Match date" required="">
                                                                 </div>
 
                                                                 <div class="form-group my-4">
-                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">6. Start Time:</label>
-                                                                    <input class="form-control-text-input p-4" type="time" name="add-match-fixture-" id="add-match-fixture-" placeholder="Match start time" required="">
+                                                                    <label for="add-match-fixture-match-start-time" class="poppins-font fs-4 mb-4" style="color: var(--white);">6. Start Time:</label>
+                                                                    <input class="form-control-text-input p-4" type="time" name="add-match-fixture-match-start-time" id="add-match-fixture-match-start-time" placeholder="Match start time" required="">
                                                                 </div>
 
                                                                 <div class="form-group my-4">
-                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">7. SMD (Minutes):</label>
-                                                                    <input oninput="validity.valid||(value='');" step="0" class="form-control-text-input p-4" type="number" name="add-match-fixture-" id="add-match-fixture-" value="90" placeholder="Standard match duration in minutes" required="">
+                                                                    <label for="add-match-fixture-standard-match-duration" class="poppins-font fs-4 mb-4" style="color: var(--white);">7. SMD (Minutes):</label>
+                                                                    <input oninput="validity.valid||(value='');" step="0" class="form-control-text-input p-4" type="number" name="add-match-fixture-standard-match-duration" id="add-match-fixture-standard-match-duration" value="90" placeholder="Standard match duration in minutes" required="">
                                                                 </div>
 
                                                                 <div class="form-group my-4">
-                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">7. OMD (Minutes):</label>
-                                                                    <input oninput="validity.valid||(value='');" step="0" class="form-control-text-input p-4" type="number" name="add-match-fixture-" id="add-match-fixture-" value="0" placeholder="Observed match duration in minutes" required="">
+                                                                    <label for="add-match-fixture-observed-match-duration" class="poppins-font fs-4 mb-4" style="color: var(--white);">7. OMD (Minutes):</label>
+                                                                    <input oninput="validity.valid||(value='');" step="0" class="form-control-text-input p-4" type="number" name="add-match-fixture-observed-match-duration" id="add-match-fixture-observed-match-duration" value="0" placeholder="Observed match duration in minutes" required="">
                                                                 </div>
 
 
                                                                 <div class="form-group my-4">
-                                                                    <label for="add-match-fixture-" class="poppins-font fs-4 mb-4" style="color: var(--white);">8. Match Result:</label>
+                                                                    <label for="add-match-fixture-match-results" class="poppins-font fs-4 mb-4" style="color: var(--white);">8. Match Result:</label>
 
-                                                                    <div id="" class="row">
+                                                                    <div id="add-match-fixture-match-results" class="row">
                                                                         <div class="col-md d-grid justify-content-center">
-                                                                            <label for="add-match-fixture-" class="poppins-font fs-4 text-center" style="color: var(--white);font-size:12px!important;">Home Team Name</label>
-                                                                            <input readonly class="form-control-text-input p-4" type="text" name="add-match-fixture-" id="add-match-fixture-" value="0" placeholder="Home team result" required="">
+                                                                            <label for="add-match-fixture-match-results-home-team" class="poppins-font fs-4 text-center my-4" style="color: var(--white);font-size:12px!important;" id="h-team-display">Home Team Name</label>
+                                                                            <input readonly class="form-control-text-input p-4" type="text" name="add-match-fixture-match-results-home-team" id="add-match-fixture-match-results-home-team" value="0" placeholder="Home team result" required="" readonly>
                                                                         </div>
                                                                         <div class="col-md d-grid justify-content-center">
-                                                                            <label for="add-match-fixture-" class="poppins-font fs-4 text-center" style="color: var(--white);font-size:12px!important;">Away Team Name</label>
-                                                                            <input readonly class="form-control-text-input p-4" type="text" name="add-match-fixture-" id="add-match-fixture-" value="0" placeholder="Away team result" required="">
+                                                                            <label for="add-match-fixture-match-results-away-team" class="poppins-font fs-4 text-center my-4" style="color: var(--white);font-size:12px!important;" id="a-team-display">Away Team Name</label>
+                                                                            <input readonly class="form-control-text-input p-4" type="text" name="add-match-fixture-match-results-away-team" id="add-match-fixture-match-results-away-team" value="0" placeholder="Away team result" required="" readonly>
                                                                         </div>
                                                                     </div>
 
@@ -5321,6 +5363,17 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         <th scope="col">Match Result</th>
                                                                     </tr>
                                                                  -->
+
+                                                                <div class="d-grid justify-content-center">
+                                                                    <!-- submit btn -->
+                                                                    <button id="single-submit-add-match-fixture-data-form" class="onefit-buttons-style-light p-4 px-5 my-4 shadow d-grid" type="submit" value="Save">
+                                                                        <span class="material-icons material-icons-outlined align-middle">
+                                                                            add_circle
+                                                                        </span>
+                                                                        <span class="align-middle">Save.</span>
+                                                                    </button>
+                                                                </div>
+
                                                             </form>
                                                         </div>
 
@@ -8321,7 +8374,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         Diary &amp; Trainer Notes.
                                     </h5>
                                     <hr class="text-white">
-                                    <div id="calender-activity-viewer-activity_lineup">
+                                    <div id="calender-activity-viewer-diary-entries-container">
                                         <div class="row">
                                             <div class="col-md">
                                                 <!-- Tab for separation of Diary entries and Trainer Notes -->
@@ -9266,7 +9319,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 $.getIndiExercises('ui_data', '#add-to-calender-activity-selection');
 
                 $.getUserActivityTimeline(usernm);
-                $.getUserWeekActivities(usernm, '#week-activities-list-container');
+                $.getUserWeekActivities(usernm, '#week-activities-list-container', formatDate(Date.now()));
                 $.getTeamMatchSchedule('init');
 
                 $.getTeamsSelectInputList('teams');
@@ -10955,9 +11008,10 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // get Dashboard content - ajax
         $.getUserWeekActivities = function(username, elemId, queryDate) {
-            elemId = elemId || '#week-activities-list-container';
-            queryDate = formatDate(queryDate) || formatDate(now()); // default: date today
-            $.get("../scripts/php/main_app/compile_content/dashboard_tab/user_daily_activity_lineup.php?usnm=" + username + "qdate=" + queryDate, function(data, status) {
+            elemId = elemId || '.general-weekly-activities-container';
+            queryDate = formatDate(queryDate) || formatDate(Date.now()); // default: date today
+            console.log(queryDate);
+            $.get("../scripts/php/main_app/compile_content/dashboard_tab/user_daily_activity_lineup.php?usnm=" + username + "&qdate=" + queryDate, function(data, status) {
                 if (status != "success") {
                     console.log("Get Req Failed -> $.getUserWeekActivities returned: \n[Status]: " + status + "\n[Data]: " + data);
                     alert("Get Req Failed -> $.getUserWeekActivities returned: \n[Status]: " + status + "\n[Data]: " + data);
@@ -12296,6 +12350,85 @@ if (isset($_SESSION["currentUserAuth"])) {
             }, 1000);
         });
         // ./ ajax jquery - submit add new activity data form on the calender view modal
+
+        // ajax jquery - submit add match to fixture data form
+        $("#add-match-fixture-form").submit(function(e) {
+            e.preventDefault();
+
+            // get the localy stored user_usnm
+            let user_usnm = localStorage.getItem('user_usnm');
+
+            // scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/create/add_match_to_fixture.php
+            var form_data = new FormData($('#add-match-fixture-form')[0]);
+            setTimeout(function() {
+                $.ajax({
+                    type: 'POST',
+                    url: '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/create/add_match_to_fixture.php?submitted_by=' + user_usnm,
+                    processData: false,
+                    contentType: false,
+                    async: false,
+                    cache: false,
+                    data: form_data,
+                    beforeSend: function() {
+                        console.log('beforeSend: submitting add match to fixture data form');
+                    },
+                    success: function(response) {
+                        if (response.startsWith("success")) {
+                            console.log('success: returning response - added add match to fixture data form');
+                            console.log("Response: " + response);
+
+                            // test output
+                            // alert("Success: returning response - added new activity data form on the calender view modal \nResponse: " + response);
+                            // 
+                            $('#add-match-fixture-form > #output-container').html(`
+                            <div class="alert alert-success p-4 text-center" style="border-radius:25px;">
+                            <span class="material-icons material-icons-round align-middle" 
+                            style="color:var(--mineshaft);font-size:48px!important;">
+                            check_circle
+                            </span> 
+                            Data saved successfully.
+                            </div>
+                            `);
+
+                            // // scroll to the output-container for the form - params (containerElemID, scrollToElemID, scrollSpeed)
+                            $.smoothScroll('#add-match-fixture-body-container', '#output-container', 1000);
+
+                            // // reset the form
+                            // // loop through this form and clear all inputs / reset them to default values
+                            // $('#add-new-activity-form *').filter(':input').each(function(key, value) {
+                            //     //set each input value to ''
+                            //     $(this).val('');
+                            // });
+                            // $('#id="add-match-fixture-form :input').val(''); // alternative one-liner
+                            // $('#id="add-match-fixture-form[name=checkListItem]').val(''); // alternative one-liner
+                        } else {
+                            console.log("error: returning response - add match to fixture data form");
+                            console.log("Response: " + response);
+                            $('#add-match-fixture-form > #output-container').html(`
+                            <div class="alert alert-danger p-4 text-center" style="border-radius:25px;">
+                            <span class="material-icons material-icons-round align-middle" style="color:var(--white);font-size:48px!important;">
+                            error_outline
+                            </span> 
+                            ${response}
+                            </div>
+                            `);
+
+                            // // scroll to the output-container for the form - params (containerElemID, scrollToElemID, scrollSpeed - ms)
+                            $.smoothScroll('#add-match-fixture-body-container', '#output-container', 1000);
+
+                            // test output
+                            // alert("Failure: returning response - failed to add new activity data form on the calender view modal \nResponse: " + response);
+                        }
+
+
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    }
+                });
+            }, 1000);
+        });
+        // ./ ajax jquery - submit add match to fixture data form
 
         // load interaction model content
         $.loadInteractionContent = function(loadContent) {
