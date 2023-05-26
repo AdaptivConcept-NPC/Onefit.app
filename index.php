@@ -99,7 +99,7 @@ rememberMe();
   <!-- Notification Snackbar (mini) -->
   <!-- <button class="btn btn-primary btn-lg" onclick="showSnackbar('notification message here...')">Show Snackbar</button> -->
   <!-- The actual snackbar -->
-  <div id="snackbar">No notification.</div>
+  <div id="snackbar" class="w3-animate-bottom">No notification.</div>
 
   <!-- offline Curtain -->
   <div class="offline-curtain" id="offline-curtain" style="display: none;background-color:var(--mineshaft);">

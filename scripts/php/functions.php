@@ -2140,17 +2140,18 @@ function getAllTrainers()
 // log user activity
 function log_activity($usertype, $action_title, $action_description, $affected_table, $record_id, $username)
 {
-    // $usertype = admin / user
+
     global $dbconn;
 
-    $action_title = sanitizeMySQL($dbconn, $action_title);
-    $action_description = sanitizeMySQL($dbconn, $action_description);
-    $affected_table = sanitizeMySQL($dbconn, $affected_table);
-    $record_id = sanitizeMySQL($dbconn, $record_id);
-    $username = sanitizeMySQL($dbconn, $username);
+    // $action_title = sanitizeMySQL($dbconn, $action_title);
+    // $action_description = sanitizeMySQL($dbconn, $action_description);
+    // $affected_table = sanitizeMySQL($dbconn, $affected_table);
+    // $record_id = sanitizeMySQL($dbconn, $record_id);
+    // $username = sanitizeMySQL($dbconn, $username);
 
-    $datenow = new DateTime('Y/m/d h:i:s');
+    $datenow = date('Y/m/d h:i:s');
 
+    // $usertype = admin / user
     switch ($usertype) {
         case 'admin':
             # 
@@ -2173,7 +2174,7 @@ function log_activity($usertype, $action_title, $action_description, $affected_t
     }
 
     if ($result = mysqli_query($dbconn, $sql)) return true;
-    else return false;
+    else return "Fatal error: " . $dbconn->error; //false;
 }
 
 // json encode last error checking function

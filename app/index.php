@@ -240,7 +240,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- Notification Snackbar (mini) -->
     <!-- <button class="btn btn-primary btn-lg" onclick="showSnackbar('notification message here...')">Show Snackbar</button> -->
     <!-- The actual snackbar -->
-    <div id="snackbar">No notification.</div>
+    <div id="snackbar" class="w3-animate-bottom">No notification.</div>
 
     <!-- outer - twitter social panel -->
     <div id="twitter-social-panel" class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4 pb-0 d-nonez d-lg-blockz right-left-grad-tahiti-mineshaft bg-darkz shadow-lgz">
@@ -2894,7 +2894,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </span>
                             <span class="align-middle">Fitness Insights</span>
                         </h1>
-                        <p class="text-center my-4 comfortaa-font">Use the Fitness Insights page to track your fitness progression and workout activities.</p>
+                        <p class="text-center my-4 comfortaa-font">Use the Fitness Insights page to track your Training progression and workout activities.</p>
                     </div>
 
                     <hr class="text-white" style="height: 5px;">
@@ -10702,7 +10702,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             // After 3 seconds, remove the show class from DIV
             setTimeout(function() {
                 x.className = x.className.replace("show", "");
-            }, 3000);
+            }, 15000);
         }
 
         // capitalize the first letter of passed string
@@ -11519,6 +11519,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                 } else {
                     // populate the activity timeline container
                     $('#user-activity-timeline').html(data);
+
+                    // enclose the entry ref (attr: data-barcode) in the description container with a class, barcode-font 
+                    // $('[data-barcode=true]')
+                    $('span[data-barcode]').attr('class', 'barcode-font');
+                    $('span[data-barcode]').attr('style', 'font-size: 10px!important;');
                 }
             });
         }
@@ -11912,6 +11917,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     data: form_data,
                     beforeSend: function() {
                         console.log('beforeSend: submitting activity tracking data [Heart Rate]');
+                        // disable the form submit btn
+                        $('#modal-heartrate-insights-activitytracker-data-form > [type="submit"]').attr('disabled', true);
                     },
                     success: function(response) {
                         if (response.startsWith("success")) {
@@ -11929,6 +11936,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                             console.log("error: returning response - activity tracking data [Heart Rate]");
                             console.log("Response: " + response);
                         }
+
+                        // enable the form submit btn
+                        $('#modal-heartrate-insights-activitytracker-data-form > [type="submit"]').attr('disabled',false);
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

@@ -15,13 +15,15 @@ if (isset($_GET['usernm'])) {
         = $record_id
         = $action_date
         = $users_username
+        = $action_datestr
+        = $action_timestr
         = $timeline = null;
 
     $cardDirection = "left";
 
     try {
         //get the users activity timeline/history
-        $query = "SELECT * FROM `user_activity` WHERE `users_username` = '$username' ORDER BY `action_date` DESC";
+        $query = "SELECT * FROM `user_activity` WHERE `users_username` = '$username' ORDER BY `action_date` DESC LIMIT 100";
         $result = $dbconn->query($query);
 
         if (!$result) die("An error occurred while trying to compile the requested data. [output - " . $dbconn->error . "]");
@@ -49,40 +51,67 @@ if (isset($_GET['usernm'])) {
                 $action_date = $row["action_date"];
                 $users_username = $row["users_username"];
 
+                // split the action_date to date and time variables
+                $action_datestr = date('D, d M Y', strtotime($action_date));
+                $action_timestr = date('h:i', strtotime($action_date));
+
                 switch ($cardDirection) {
                     case 'left':
                         # change value to right
                         $cardDirection = 'right';
+                        $degreeRotation = '-90deg';
                         break;
                     case 'right':
                         # change value to left
                         $cardDirection = 'left';
+                        $degreeRotation = '90deg';
                         break;
                     default:
                         # by default should be left
                         $cardDirection = 'left';
+                        $degreeRotation = '90deg';
+                        break;
+                }
+
+                switch ($action_title) {
+                    case 'Signed in.':
+                        # code...
+                        $icon = "login";
+                        $iconColor = "var(--green)";
+                        break;
+                    case 'Signed out.':
+                        # code...
+                        $icon = "logout";
+                        $iconColor = "var(--red)";
+                        break;
+
+                    default:
+                        # code...
+                        $icon = "task_alt";
+                        $iconColor = "var(--white)";
                         break;
                 }
 
                 $timeline .= <<<_END
                 <div class="timeline-container $cardDirection">
-                    <div class="date comfortaa-font">$action_date</div><!-- format: 15 Dec 2022 -->
+                    <div class="date comfortaa-font d-grid" style="transform:rotate($degreeRotation);">
+                        <span>$action_datestr</span>
+                    </div><!-- format: 15 Dec 2022 -->
                     <span class="icon">
-                        <span class="material-icons material-icons-round" style="font-size: 18px !important;">
-                            task_alt
+                        <span class="material-icons material-icons-round" style="font-size:20px!important;color:$iconColor!important;">
+                            $icon
                         </span>
                     </span>
                     <div class="content">
                         <h2 class="comfortaa-font">$action_title</h2>
                         <p class="mb-4">
-                            Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit
-                            semper pretium.
+                            $action_description
                         </p>
                         <p class="mt-4" style="color: #ffa500;">
                             <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                 schedule
                             </span>
-                            <span class="align-middle">10h00</span>
+                            <span class="align-middle">$action_timestr</span>
                         </p>
                     </div>
                 </div>

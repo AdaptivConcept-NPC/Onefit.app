@@ -245,7 +245,10 @@ switch ($requestFormat) {
             </div>  
             <!-- fitbit management options panel -->  
             <div id="fitbit-manage-panel" class="collapse p-4 w3-animate-left">
-                <h1 class="fs-5">fitbit account.</h1>
+                <h1 class="fs-5">
+                    <span class="material-icons material-icons-round align-middle" style="color: var(--fitbit-light-blue);">fitbit</span>
+                    <span>fitbit account.</span>
+                </h1>
             </div>
             <!-- ./ fitbit management options panel -->  
         </div>

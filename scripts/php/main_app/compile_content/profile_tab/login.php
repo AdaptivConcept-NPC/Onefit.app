@@ -17,6 +17,12 @@ $password = sanitizeMySQL($dbconn, $_POST['onefitUserPassword']);
 $userDetailsArray = array();
 $foundUser = false;
 $hashBypass = "";
+$currentUserUsername =
+  $currentUserFName =
+  $currentUserLName = null;
+$dateNow = date('Y-m-d ');
+$timeNow = date('H-i-s');
+$entry_ref = null;
 
 $query = "SELECT * FROM `users` WHERE (`username` = '$username' OR `user_email` = '$username')";
 
@@ -39,29 +45,39 @@ if ($rows == 0) {
     $_SESSION['currentUserEmail'] = $row["user_email"];
     $_SESSION['currentUserUsername'] = $row["username"];
     $pwdHash = $row["password_hash"];
+
+    $currentUserUsername = $row["username"];
+    $currentUserFName = $row["user_name"];
+    $currentUserLName = $row["user_surname"];
   }
 
-  $result->close();
-  $dbconn->close();
+  function closeDBConnection()
+  {
+    global $result, $dbconn;
+    $result->close();
+    $dbconn->close();
+  }
 
   //HASH Bypass - Remove after fixing current password hashes in the db
   //$hashBypass = password_hash($password, PASSWORD_DEFAULT);
 
-  if (password_verify($password, $pwdHash)) header("Location: ../../../../../app/?userauth=true");
-  else header("Location: ../../../../../index.php?return=mismatch&usrn=$username");
-}
+  $submissionFlag = false;
 
-//Sanitization
-/* function sanitizeString($var){
-  if(get_magic_quotes_gpc())
-  $var = stripslashes($var);
-  $var = strip_tags($var);
-  $var = htmlentities($var);
-  return $var;
-}
+  // generate a entry reference string
+  $entry_ref = generateAlphaNumericRandomString(6) . "_" . $dateNow . "_" . $timeNow;
 
-function sanitizeMySQL($connection, $var){
-  $var = $connection->real_escape_string($var);
-  $var = sanitizeString($var);
-  return $var;
-} */
+  if (password_verify($password, $pwdHash)) {
+    $submissionFlag = log_activity("user", "Signed in.", "$currentUserFName $currentUserLName ($currentUserUsername) signed into the app. <br/> <span data-barcode>[ $entry_ref ]</span>", "user_activity", "NULL", $currentUserUsername);
+    if ($submissionFlag === true) {
+      closeDBConnection();
+      header("Location: ../../../../../app/?userauth=true&logged=true");
+    } else {
+      closeDBConnection();
+      die($submissionFlag);
+      header("Location: ../../../../../app/?userauth=true&logged=false");
+    }
+  } else {
+    closeDBConnection();
+    header("Location: ../../../../../index.php?return=mismatch&usrn=$username");
+  }
+}

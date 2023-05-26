@@ -1943,6 +1943,7 @@ div.horizontal-scroll-card-nav {
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
   visibility: hidden;
+  display: none;
   /* Hidden by default. Visible on click */
   min-width: 250px;
   /* Set a default minimum width */
@@ -1960,7 +1961,7 @@ div.horizontal-scroll-card-nav {
   /* Padding */
   position: fixed;
   /* Sit on top of the screen */
-  z-index: 1;
+  z-index: 1000;
   /* Add a z-index if needed */
   left: 50%;
   /* Center the snackbar */
@@ -1973,11 +1974,16 @@ div.horizontal-scroll-card-nav {
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
 #snackbar.show {
   visibility: visible;
+  display: block;
   /* Show the snackbar */
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
   However, delay the fade out process for 2.5 seconds */
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  -webkit-animation: fadein 0.5s
+    /*,  fadeout 0.5s 2.5s */
+  ;
+  animation: fadein 0.5s
+    /* , fadeout 0.5s 2.5s */
+  ;
 }
 
 /* Animations to fade the snackbar in and out */
