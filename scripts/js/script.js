@@ -109,7 +109,7 @@ function syncUserActivityTrackerChart(chartObj, usernm, chartName, data, rangeDa
                 // provide user with error message
                 // alert(output);
                 console.log("An error has occured: \n" + output);
-                showSnackbar("An error has occured: \n" + output);
+                showSnackbar("An error has occured: \n" + output, 'alert_error', 'long_15000');
             } else {
                 let chartData = JSON.parse(output);
                 console.log("Parsed JSON for " + chartName + ": \n" + output);
@@ -1282,18 +1282,94 @@ function socialFunctions(action, origin) {
 //freeNBAUnofficial();
 
 // *****snackbar scripting
-function showSnackbar(message) {
+function showSnackbar(message, alert_type, display_length) {
+    // alert_type:alert_google, 
+    // alert_type:alert_twitter, 
+    // alert_type:alert_facebook,
+    // alert_type:alert_fitbit,
+    // alert_type:alert_general, 
+    // alert_type:alert_error, 
+    // alert_type:alert_success, 
+
+    // display_length: short_5000
+    // display_length: medium_10000
+    // display_length: long_15000
+    alert_type = alert_type || 'alert_general'; // initialize
+    display_length = display_length || 'medium_10000'; // initialize
+
+    var alert_class;
+
+    switch (alert_type) {
+        case 'alert_google':
+            console.log('snackbar alert: ' + alert_type);
+            alert_class = "snackbar-alert-google";
+            break;
+        case 'alert_twitter':
+            console.log('snackbar alert: ' + alert_type);
+            alert_class = "snackbar-alert-twitter";
+            break;
+        case 'alert_facebook':
+            console.log('snackbar alert: ' + alert_type);
+            alert_class = "snackbar-alert-facebook";
+            break;
+        case 'alert_fitbit':
+            console.log('snackbar alert: ' + alert_type);
+            alert_class = "snackbar-alert-fitbit";
+            break;
+        case 'alert_general':
+            console.log('snackbar alert: ' + alert_type);
+            alert_class = "snackbar-alert-general";
+            break;
+        case 'alert_error':
+            console.log('snackbar alert: ' + alert_type);
+            alert_class = "snackbar-alert-error";
+            break;
+        case 'alert_success':
+            console.log('snackbar alert: ' + alert_type);
+            alert_class = "snackbar-alert-success";
+            break;
+
+        default:
+            console.log('snackbar alert: default - alert type unrecognized [' + alert_type + ']');
+            break;
+    }
+
+    var displayLength;
+    switch (display_length) {
+        case 'short_5000':
+            console.log('snackbar alert: dl: ' + display_length);
+            displayLength = 5000;
+            break;
+        case 'medium_10000':
+            console.log('snackbar alert: dl: ' + display_length);
+            displayLength = 10000;
+            break;
+        case 'long_15000':
+            console.log('snackbar alert: dl: ' + display_length);
+            displayLength = 15000;
+            break;
+
+        default:
+            console.log('snackbar alert: default - display length unrecognized [' + alert_type + ']');
+            displayLength = 10000;
+            break;
+    }
+
     // Get the snackbar DIV
     var x = document.getElementById("snackbar");
 
-    // Add the "show" class to DIV
-    x.className = "show";
+    // Add the "show" class concatenated with the alert_type class to DIV
+    x.className = "show " + alert_class;
 
     // pass the message into #snackbar
     x.innerHTML = message;
 
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 15000);
+    // After 3 seconds, remove the show class from DIV and remove alert_class
+    setTimeout(function () {
+        x.className = x.className.replace(alert_class, "");
+        x.className = x.className.replace("show", "");
+    }, displayLength);
+
 }
 
 // capitalize the first letter of passed string

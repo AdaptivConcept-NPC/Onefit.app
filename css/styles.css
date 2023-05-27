@@ -1986,6 +1986,95 @@ div.horizontal-scroll-card-nav {
   ;
 }
 
+.snackbar-alert-google {
+  /* Divide value of min-width by 2 */
+  background-color: var(--white);
+  /* Black background color */
+  color: var(--mineshaft);
+  /* 30px from the bottom */
+  border-radius: 15px;
+  border-bottom: 5px solid var(--silver);
+
+  animation: animate-light 4s linear infinite;
+  cursor: pointer;
+}
+
+.snackbar-alert-twitter {
+  /* Divide value of min-width by 2 */
+  background-color: var(--twitter);
+  /* Black background color */
+  color: var(--white);
+  /* 30px from the bottom */
+  border-radius: 15px;
+  border-bottom: 5px solid var(--white);
+
+  animation: animate-twitter 4s linear infinite;
+  cursor: pointer;
+}
+
+.snackbar-alert-facebook {
+  /* Divide value of min-width by 2 */
+  background-color: var(--white) !important;
+  /* Black background color */
+  color: var(--facebook) !important;
+  /* 30px from the bottom */
+  border-radius: 15px;
+  border-bottom: 5px solid var(--facebook) !important;
+
+  animation: animate-facebook 4s linear infinite;
+  cursor: pointer;
+}
+
+.snackbar-alert-fitbit {
+  /* Divide value of min-width by 2 */
+  background-color: var(--white) !important;
+  /* Black background color */
+  color: var(--fitbit-dark-blue) !important;
+  /* 30px from the bottom */
+  border-radius: 15px;
+  border-bottom: 5px solid var(--fitbit-light-blue) !important;
+
+  animation: animate-fitbit 4s linear infinite;
+  cursor: pointer;
+}
+
+.snackbar-alert-general {
+  /* Divide value of min-width by 2 */
+  background-color: #333;
+  /* Black background color */
+  color: #fff;
+  /* 30px from the bottom */
+  border-radius: 15px;
+  border-bottom: 5px solid var(--tahitigold);
+  /* no pulse animation here */
+}
+
+.snackbar-alert-error {
+  /* Divide value of min-width by 2 */
+  background-color: var(--white) !important;
+  /* Black background color */
+  color: var(--red) !important;
+  /* 30px from the bottom */
+  border-radius: 15px;
+  border-bottom: 5px solid var(--red) !important;
+
+  animation: animate-danger 4s linear infinite;
+  cursor: pointer;
+}
+
+.snackbar-alert-success {
+  /* Divide value of min-width by 2 */
+  background-color: var(--green) !important;
+  /* Black background color */
+  color: var(--white) !important;
+  /* 30px from the bottom */
+  border-radius: 15px;
+  border-bottom: 5px solid var(--white) !important;
+
+  animation: animate-success 4s linear infinite;
+  cursor: pointer;
+}
+
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
   from {
@@ -2121,6 +2210,82 @@ div.horizontal-scroll-card-nav {
 @keyframes animate-fitbit {
   0% {
     box-shadow: 0 0 0 0 var(--fitbit-light-blue);
+  }
+
+  40% {
+    box-shadow: 0 0 0 50px rgba(255, 255, 0, 0);
+  }
+
+  80% {
+    box-shadow: 0 0 0 50px rgba(255, 255, 0, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(255, 255, 0, 0);
+  }
+}
+
+/* animate-facebook */
+@keyframes animate-facebook {
+  0% {
+    box-shadow: 0 0 0 0 var(--facebook);
+  }
+
+  40% {
+    box-shadow: 0 0 0 50px rgba(255, 255, 0, 0);
+  }
+
+  80% {
+    box-shadow: 0 0 0 50px rgba(255, 255, 0, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(255, 255, 0, 0);
+  }
+}
+
+/* animate-twitter */
+@keyframes animate-twitter {
+  0% {
+    box-shadow: 0 0 0 0 var(--twitter);
+  }
+
+  40% {
+    box-shadow: 0 0 0 50px rgba(255, 255, 0, 0);
+  }
+
+  80% {
+    box-shadow: 0 0 0 50px rgba(255, 255, 0, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(255, 255, 0, 0);
+  }
+}
+
+/* animate-danger */
+@keyframes animate-danger {
+  0% {
+    box-shadow: 0 0 0 0 var(--red);
+  }
+
+  40% {
+    box-shadow: 0 0 0 50px rgba(255, 255, 0, 0);
+  }
+
+  80% {
+    box-shadow: 0 0 0 50px rgba(255, 255, 0, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(255, 255, 0, 0);
+  }
+}
+
+/* animate-success */
+@keyframes animate-success {
+  0% {
+    box-shadow: 0 0 0 0 var(--green);
   }
 
   40% {

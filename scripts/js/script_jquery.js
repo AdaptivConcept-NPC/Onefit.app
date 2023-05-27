@@ -268,7 +268,7 @@ $.getTeamMatchSchedule = function (grcode) {
                 break;
 
             default:
-                showSnackbar('Error while compiling match schedules. Check console for more information.');
+                showSnackbar('Error while compiling match schedules. Check console for more information.', 'alert_error', 'long_15000');
                 console.log('Invalid period selector: Error while computing match schedules. Check console for more information -> ' + period);
                 break;
         }
@@ -532,7 +532,7 @@ $.getTeamsGroupMembersTableItems = function (grcode) {
         // if (output === false) {
         //     // if output received is false then alert user
         //     console.log("$.getRequestedGMList -> $.getTeamsGroupMembersTableItems data output:\n outputElemID: " + outputElemId + " \n Data: " + output);
-        //     showSnackbar("An error occurred while compiling the requested teams data. Please contact the administrator.")
+        //     showSnackbar("An error occurred while compiling the requested teams data. Please contact the administrator.", 'alert_error', 'long_15000')
         // } else {
         //     console.log("outputing to " + outputElemId + " \n Html Data: " + output);
         //     $(outputElemId).html(output);

@@ -286,21 +286,21 @@ rememberMe();
 
         <div class="col-sm p-4 darkpads-bg-container shadow border-5 border-start border-end" style="border-radius: 25px; color: #fff">
           <div class="d-grid gap-2">
-            <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Google API is not available at the moment. Please use your email to login.')">
+            <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Google API is not available at the moment. Please use your email to login.', 'alert_google', 'short_5000')">
               <i class="fab fa-google"></i>
               Sign in with
               <strong class="fs-5 poppins-font">
                 <span style="color: #4285F4;">G</span><span style="color: #DB4437;">o</span><span style="color: #F4B400;">o</span><span style="color: #4285F4;">g</span><span style="color: #0F9D58;">l</span><span style="color: #DB4437;">e</span>
               </strong>
             </button>
-            <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Twitter API is not available at the moment. Please use your email to login.')">
+            <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Twitter API is not available at the moment. Please use your email to login.','alert_twitter', 'short_5000')">
               <i class="fab fa-twitter"></i>
               Sign in with
               <strong class="fs-5 poppins-font">
                 <span style="color: #1DA1F2;">Twitter</span>
               </strong>
             </button>
-            <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Facebook API is not available at the moment. Please use your email to login.')">
+            <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Facebook API is not available at the moment. Please use your email to login.','alert_facebook', 'short_5000')">
               <i class="fab fa-facebook"></i> Sign in with
               <strong class="fs-5 poppins-font">
                 <span style="color: #4267B2;">Facebook</span>
