@@ -732,31 +732,30 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- Main Content -->
     <main id="main-content-container" class="container-lg" style="padding-bottom: 50px">
         <!-- Main Navigation Bar -->
-        <nav class="navbar navbar-light sticky-top navbar-style w-100 mb-4" style="border-radius: 25px; max-height: 100vh !important; border-bottom: #ffa500 solid 5px;">
+        <nav class="navbar navbar-lightz sticky-top navbar-stylez w-100 mb-4 py-4 top-down-grad-dark" style="border-radius: 25px; max-height: 100vh !important; border-top: var(--mineshaft) solid 0px;">
             <!-- App Function Buttons -->
-            <div class="container d-flex gap-1">
-                <button id="app-notifications-btn" main-data-bs-target="#tabLatestSonav-notifications-btn" class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
+            <div class="container d-flex gap-1 align-items-center">
+                <button id="app-notifications-btn" main-data-bs-target="#tabLatestSonav-notifications-btn" class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels d-none d-sm-block border-bottom border-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> notifications </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Notifications</span>
                     </div>
                 </button>
 
-                <button type="button" id="apps-tray-open-btn" class="onefit-buttons-style-dark p-3 my-4 shadow comfortaa-font hide-side-panels" style="max-width:87px;" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#tabNavModal">
+                <button type="button" id="apps-tray-open-btn" class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font hide-side-panels border-topz border-bottom border-2" style="max-width:87px;" data-bs-toggle="modal" data-bs-target="#tabNavModal">
                     <div class="d-grid gap-2">
-                        <span class="material-icons material-icons-round" style="font-size: 24px !important;" id="apps-tray-open-btn-icon">
-                            dashboard </span>
-                        <span class="d-none d-lg-block text-truncate" id="apps-tray-open-btn-text" style="font-size: 10px;">Dashboard</span>
+                        <span class="material-icons material-icons-round" style="font-size: 24px !important;" id="apps-tray-open-btn-icon"> play_circle_outline </span>
+                        <span class="d-none d-lg-block text-truncate" id="apps-tray-open-btn-text" style="font-size: 10px;">.Studio</span>
                     </div>
                 </button>
 
                 <!-- Main App Content Refresh button -->
                 <div class="d-inline gap-2">
-                    <button id="main-app-refresh-btn" class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz" style="overflow: hidden; font-size: 10px;" type="button" onclick="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
+                    <button id="main-app-refresh-btn" class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz border-start border-end border-2" style="overflow: hidden; font-size: 10px;" type="button" onclick="initializeContent('1','KING_001')">
                         <!--  data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal" -->
                         <div class="d-grid gap-2 text-center">
                             <!-- Profile Picture -->
-                            <img src="../media/assets/One-Symbol-Logo-White.svg" alt="Onefit Logo" class="p-1 img-fluid my-pulse-animation-tahitiz" style="height: 50px; width: 50px; border-radius: 15px; border-color: #ffa500 !important" />
+                            <img src="../media/assets/One-Symbol-Logo-White.svg" alt="Onefit Logo" class="p-1 img-fluid my-pulse-animation-tahitiz" style="height: 50px; width: 50px; border-radius: 15px; border-color: #ffa500 !important">
                             <!-- ./ Profile Picture -->
                             <span class="d-none d-lg-block">Refresh</span>
                         </div>
@@ -764,7 +763,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <!-- ./ Main App Content Refresh button -->
 
-                <button type="button" class="onefit-buttons-style-dark p-3 my-4 shadow comfortaa-font show-side-panels" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
+                <button type="button" class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font show-side-panels border-topz border-bottom border-2" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> widgets </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Widgets</span>
@@ -772,7 +771,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!--<span class="material-icons material-icons-round" style="font-size: 24px !important"> linear_scale </span>-->
                 </button>
 
-                <button id="main-nav-ext-links-btn" class="navbar-toggler shadow onefit-buttons-style-dark p-3 hide-right-side-panels" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <button id="main-nav-ext-links-btn" class="navbar-toggler shadow onefit-buttons-style-dark p-3 hide-right-side-panels d-none d-sm-block border-topz border-bottom border-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round align-middle" style="font-size: 28px !important"> public <!-- menu_open --> </span>
                         <span class="d-none d-lg-block" id="" style="font-size: 10px;">Navigation</span>
@@ -808,7 +807,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         </div>
                                     </button>
                                 </li>
-                                <hr class="text-dark" style="height: 5px;" />
+                                <hr class="text-dark" style="height: 5px;">
                                 <li class="nav-item">
                                     <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Dashboard</a>
                                 </li>
@@ -822,10 +821,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Contact</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Onefit.Edu&trade; (Blog)</a>
+                                    <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Onefit.Edu™ (Blog)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Onefit.Shop&trade;</a>
+                                    <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Onefit.Shop™</a>
                                 </li>
                             </ul>
                         </div>
@@ -834,7 +833,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <!-- ./Navigation Menu Offcanvas -->
 
                 <!-- Notifocation List Offcanvas -->
-                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications" hidden>
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications" hidden="">
                     <span class="material-icons material-icons-round" style="font-size: 48px !important"> notifications </span>
                     Notifications
                 </button>
@@ -855,7 +854,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
                     <div class="offcanvas-body top-down-grad-dark">
                         <!-- style="background-color: rgba(255, 255, 255, 0.8);" -->
-                        <ul class="list-group list-group-flush shadow p-4z" id="notif-list" style="border-radius: 25px; max-height: 60vh;" hidden>
+                        <ul class="list-group list-group-flush shadow p-4z" id="notif-list" style="border-radius: 25px; max-height: 60vh;" hidden="">
                             <li class="list-group-item border-dark">An item</li>
                             <li class="list-group-item border-dark">A second item</li>
                             <li class="list-group-item border-dark">A third item</li>
@@ -863,9 +862,21 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <li class="list-group-item border-dark">And a fifth one</li>
                         </ul>
                         <div id="communicationUserNotifications">
-                            <?php echo $outputProfileUserNotifications; ?>
+                            <div class="my-4 text-dark top-down-grad-tahiti p-4" style="border-radius: 25px;"><a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-1" style="border-radius: 25px !important;">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1 fw-bold text-truncate"> Community Test Notification 1 </h5>
+                                        <small class="text-end" style="font-size:10px;"> 2022-11-23 08:02:13<br>About 6 months ago</small>
+                                    </div>
+                                    <p class="mb-1 text-truncate" style="min-height:30px;max-height:100px;"> This is a test notification. </p>
+                                </a></div>
                         </div>
-                        <?php echo $communicationUserNotifications; ?>
+                        <div class="my-4 text-dark top-down-grad-tahiti p-4" style="border-radius: 25px;"><a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-1" style="border-radius: 25px !important;">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1 fw-bold text-truncate"> Community Test Notification 1 </h5>
+                                    <small class="text-end" style="font-size:10px;"> 2022-11-23 08:02:13<br>About 6 months ago</small>
+                                </div>
+                                <p class="mb-1 text-truncate" style="min-height:30px;max-height:100px;"> This is a test notification. </p>
+                            </a></div>
                     </div>
                 </div>
                 <!-- ./Notifocation List Offcanvas -->
@@ -9450,7 +9461,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     "\n chartjs_js: " + coreScriptLoaded_chartjs_js);
                 // show offline curtain and pass message of none-loaded scripts
                 document.getElementById("output-msg-heading").innerHTML = "You are offline.";
-                document.getElementById("output-msg-text").innerHTML = "Some core scripts were not loaded. Please check your internet connection and try reloadig the page.<br>If the error persists, please contact <a href='https://http://help.onefit.adaptivconcept.co.za/systems/?errortype=core_script_error' style='color:var(--tahitigold);'>support</a>";
+                document.getElementById("output-msg-text").innerHTML = "Some core scripts were not loaded. Please check your internet connection and try reloading the page.<br>If the error persists, please contact <a href='https://http://help.onefit.adaptivconcept.co.za/systems/?errortype=core_script_error' style='color:var(--tahitigold);'>support</a>";
                 document.getElementById("offline-curtain").style.display = 'block';
             }
         }

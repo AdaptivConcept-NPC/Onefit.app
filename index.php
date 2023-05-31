@@ -743,9 +743,10 @@ rememberMe();
     <div class="container-fluid px-4 align-items-center">
       <button class="navbar-toggler shadow onefit-buttons-style-dark p-3 ms-4z" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <!--<span class="navbar-toggler-icon"></span>-->
-        <div class="d-grid">
+        <div class="d-grid gap-2">
           <span class="material-icons material-icons-round" style="font-size: 40px !important"> widgets </span>
-          <span class="material-icons material-icons-round" style="font-size: 20px !important"> more_horiz </span>
+          <span style="font-size: 10px!important;">More stuff...</span>
+          <!-- <span class="material-icons material-icons-round" style="font-size: 20px !important"> more_horiz </span> -->
         </div>
 
       </button>
