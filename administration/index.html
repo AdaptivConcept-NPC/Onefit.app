@@ -521,13 +521,122 @@
                 $.get("./scripts/php/get_items/get_users.php?giveme=" + request, function (data, status) {
                     if (status != "success") {
                         console.log("Get Req Failed -> $.getUserAccounts returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        // alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.getUserAccounts returned: \n[Status]: " + status + "\n[Data]: " + data);
                     } else {
-                        $(elemid).html(data);// '#user-account-list'
                         if (request == 'json') console.log('User Accounts Json: \n'.data);
+                        else $(elemid).html(data);// '#user-account-list'
                     }
                 });
             };
+
+            $.getAdminAccounts = function (request, elemid) {
+                var elemid = elemid || '#admin-account-list'; // initialize output elemid if it was not passed through params
+                $.get("./scripts/php/get_items/get_administrators.php?giveme=" + request, function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.getAdminAccounts returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.getAdminAccounts returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        if (request == 'json') console.log('Admin Accounts Json: \n'.data);
+                        else $(elemid).html(data);// '#admin-account-list'
+                    }
+                });
+            };
+
+            $.getTeamsProGroups = function (request, elemid) {
+                var elemid = elemid || '#teams-group-list'; // initialize output elemid if it was not passed through params
+                $.get("./scripts/php/get_items/get_teams_and_pro_groups.php?giveme=" + request, function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.getTeamsProGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.getTeamsProGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        if (request == 'json') console.log('Teams and Pro Groups Json: \n'.data);
+                        else $(elemid).html(data);// '#teams-group-list'
+                    }
+                });
+            };
+
+            $.getCommunityGroups = function (request, elemid) {
+                var elemid = elemid || '#community-group-list'; // initialize output elemid if it was not passed through params
+                $.get("./scripts/php/get_items/get_indi_groups.php?giveme=" + request, function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        if (request == 'json') console.log('Community Groups (Indi) Json: \n'.data);
+                        else $(elemid).html(data);// '#community-group-list'
+                    }
+                });
+            };
+
+            $.getPreviewTables = function (request) {
+                const contentTypesArray = ["fitness_categies", "workouts",
+                    "exercises", "training_drills",
+                    "supplements", "sports",
+                    "muscle_groups"];
+
+                function getContentType(request, contentType) {
+                    var elemid;
+                    switch (contentType) {
+                        case 'fitness_categies':
+                            // 
+                            elemid = '#category_class-list';
+                            break;
+                        case 'workouts':
+                            // 
+                            elemid = '#workouts-list';
+                            break;
+                        case 'exercises':
+                            // 
+                            elemid = '#indi_exercise-list';
+                            break;
+                        case 'training_drills':
+                            // 
+                            elemid = '#training_drills-list';
+                            break;
+                        case 'supplements':
+                            // 
+                            elemid = '#supplements-list';
+                            break;
+                        case 'sports':
+                            // 
+                            elemid = '#sports_list-list';
+                            break;
+                        case 'muscle_groups':
+                            // 
+                            elemid = '#muscle_groups-list';
+                            break;
+
+                        default:
+                            return false;
+                            break;
+                    }
+
+                    $.get("./scripts/php/get_items/get_preview_tables.php?giveme=" + request + "&content=" + contentType, function (data, status) {
+                        if (status != "success") {
+                            console.log("Get Req Failed -> function getContentType() returned: \n[Status]: " + status + "\n[Data]: " + data);
+                            // alert("Get Req Failed -> function getContentType() returned: \n[Status]: " + status + "\n[Data]: " + data);
+                            return false;
+                        } else {
+                            if (request == 'json') console.log('Community Groups (Indi) Json: \n'.data);
+                            else $(elemid).html(data);
+
+                            return true;
+                        }
+                    });
+                }
+
+                var returnStatus;
+                contentTypesArray.forEach(contentType => {
+                    // call get function 
+                    returnStatus = getContentType(request, contentType);
+                    if (returnStatus === true) {
+                        console.log(`Success: ${contentType} has been successfully loaded.`);
+                    } else {
+                        console.log(`Failure: ${contentType} data could not be loaded.`);
+                    }
+                });
+            }
+
             // get classes/categories items
             $.getCategoriesClasses = function (request, elemid) {
                 var elemid = elemid || '#select-workout-category'; // initialize output elemid if it was not passed through params
@@ -712,116 +821,348 @@
         </span>
     </div>
 
-    <nav class="navbar sticky-top bg-body-tertiary bg-dark mb-5">
-        <div class="container-fluid">
-            <button class="navbar-toggler onefit-buttons-style-dark p-4 shadow" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true"
-                aria-label="Toggle navigation">
-                <!-- <span class="navbar-toggler-icon"></span> -->
-                <span class="material-icons material-icons-round">
-                    menu_open
-                </span>
-            </button>
+    <style>
+        .onefitnet-banner-court-1-bg {
+            background: url('../media/assets/bg_grunge_1.JPG');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
 
-            <a class="navbar-brand" href="#">
-                <img src="../media/assets/One-Logo.svg" alt="onefit.app logo" class="img-fluid p-4 px-0"
-                    style="height: 100px;">
-            </a>
+        .onefitnet-banner-court-2-bg {
+            background: url('../media/assets/bg_grunge_2.JPG');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
 
-            <h1 class="fs-5 text-white my-0 py-4 d-none d-lg-block">
-                <span class="comfortaa-font">One<span class="text-warning">fit</span>.app</span>
-                <span class="text-warning">|</span> Administration Portal
+        .onefitnet-banner-lmm-bo-bg {
+            background: url('../media/assets/lmm_logo_pattern_blackorange.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .onefitnet-banner-lmm-white-stripes-bg {
+            background: url('../media/assets/lmm-logo-white-quality-2_5.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+
+    <div class="onefitnet-banner-court-2-bgz onefitnet-banner-lmm-white-stripes-bg d-grid">
+        <div class="p-4 d-flex justify-content-center align-items-center w-100 h-100">
+            <!-- style="background-color: rgb(52, 52, 52, 0.8);" -->
+            <!--rgb(255, 165, 0, 0.8) 
+                <h1 class="fs-4 text-white my-0 py-0 d-none d-lg-block text-center">
+            <span class="comfortaa-font text-dark">One<span class="text-white">fit</span>.app</span>
+
             </h1>
+            <p class="m-0 text-center text-dark" style="font-size: 12px!important;">
+                <span class="text-dark">|</span>
+                <span class="poppins-font" style="color: var(--white);"> Administration Platform </span>
+                <span class="text-dark">|</span>
+            </p> -->
+            <div class="navbar-brand d-grid gap-2 justify-content-center p-4 m-0 shadow bg-dark text-white"
+                style="border-radius: 25px;" href="#">
+                <div class="text-center">
+                    <img src="../media/assets/flat-logo-colour.png" alt="llm 1on1 logo" class="img-fluid"
+                        style="height: 200px;">
+                </div>
 
-            <form class="d-flex py-4 d-none d-lg-block d-lgx-block" role="search">
-                <input class="form-control me-2"
-                    style="padding-right: 125px !important; border-radius:25px;outline: none !important;box-shadow: none;"
-                    type="search" placeholder="" aria-label="Search">
-                <button class="onefit-buttons-style-dark my-2 p-3 fs-bold shadow d-flex" type="submit"
-                    style="margin-left: -100px;">
-                    <span class="material-icons material-icons-round align-middle" style="font-size:15px!important;">
-                        search
-                    </span>
-                    <span class="align-middle" style="font-size:10px!important;"> Search</span>
-                </button>
-            </form>
+                <h5 class="fs-5 d-grid text-center m-0">
+                    <span style="font-size: 12px!important;">Training &amp; Content Curated by</span>
+                    <span class="audiowide-font">LLM 1-ON-1 Trainer.</span>
+                </h5>
+            </div>
 
-            <button class="navbar-toggler onefit-buttons-style-dark p-4 shadow" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" aria-label="Toggle navigation">
+            <!-- <span class="material-icons material-icons-round" style="font-size: 60px !important;color: var(--white);">
+                add
+            </span>
+
+            <a class="navbar-brand d-flex justify-content-center py-4 m-0" href="#">
+                <img src="../media/assets/lmm-logo-white-quality-5.png" alt="onefit.app logo"
+                    class="img-fluid p-4z px-0 shadow" style="height: 120px;">
+            </a> -->
+        </div>
+
+    </div>
+
+    <header class="navbar sticky-top bg-body-tertiary bg-darkz top-down-grad-dark pt-4 pb-5">
+        <div class="container-fluid">
+            <button class="navbar-toggler onefit-buttons-style-light p-4 d-grid shadow" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft"
+                aria-label="Toggle navigation">
                 <!-- <span class="navbar-toggler-icon"></span> -->
                 <span class="material-icons material-icons-round">
                     account_circle
                 </span>
+                <span class="comfortaa-font" style="font-size: 10px!important;">
+                    profile.
+                </span>
             </button>
 
             <!-- profile offcanvas -->
-            <div class="offcanvas offcanvas-end text- bg-dark" tabindex="-1" id="offcanvasRight"
-                aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas offcanvas-start text- bg-dark" tabindex="-1" id="offcanvasLeft"
+                aria-labelledby="offcanvasLeftLabel">
                 <div class="offcanvas-header text-white">
-                    <h5 class="offcanvas-title text-truncate" id="offcanvasRightLabel">Name Surname @username</h5>
+                    <h5 class="offcanvas-title text-truncate" id="offcanvasLeftLabel">Name Surname @username</h5>
                     <button type="button" class="btn-close bg-white p-3" data-bs-dismiss="offcanvas"
                         aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body text-white">
-                    ...
+                    <div id="account-card-content" class="account-card-content">
+                        <div class="text-center mb-4">
+                            <img src="../media/assets/OnefitNet Profile Pic Redone.png" alt="profile pic thumbnail"
+                                class="img-fluid rounded-circle shadow -sm mb-4" style="max-height: 200px !important;">
+                            <h3 class="fw-bold"><span id="profile-disp-toggle-btn">Mposula, Thabang</span></h3>
+                            <h5><span id="profile-disp-toggle-btn" style="font-size: 8px;">[ 001 ]</span></h5>
+                        </div>
+                        <div id="admin-details-list">
+                            <ul class="list-group list-group-flush mb-4 shadow"
+                                style="border-radius: 25px;overflow: hidden;">
+                                <li class="list-group-item list-group-item-action list-group-item-dark"><span
+                                        class="fw-bold">First
+                                        Name:</span> <br>
+                                    <span class="fs-5">Thabang</span>
+                                </li>
+                                <li class="list-group-item list-group-item-action list-group-item-dark"><span
+                                        class="fw-bold">Last
+                                        Name:</span> <br>
+                                    <span class="fs-5">Mposula</span>
+                                </li>
+                                <li class="list-group-item list-group-item-action list-group-item-dark">
+                                    <span class="fw-bold">Salutation:</span> <br>
+                                    <span class="fs-5">Mr.</span>
+                                </li>
+                                <li class="list-group-item list-group-item-action list-group-item-dark">
+                                    <span class="fw-bold">Username:</span> <br>
+                                    <span>KING_001</span>
+                                </li>
+                                <li class="list-group-item list-group-item-action list-group-item-dark"><span
+                                        class="fw-bold">Email
+                                        Address:</span> <br>
+                                    <span class="fs-5 text-truncate">thabang.mposula@outlook.com</span>
+                                </li>
+                                <li class="list-group-item list-group-item-action list-group-item-dark"><span
+                                        class="fw-bold">Primary
+                                        Contact:</span> <br>
+                                    <span class="fs-5">0987654321</span>
+                                </li>
+                                <li class="list-group-item list-group-item-action list-group-item-dark"><span
+                                        class="fw-bold">Secondary
+                                        Contact:</span> <br>
+                                    <span class="fs-5">1234567890</span>
+                                </li>
+                                <li class="list-group-item list-group-item-action list-group-item-dark"><span
+                                        class="fw-bold">ID
+                                        Number:</span> <br>
+                                    <span class="fs-5">12345678901234</span>
+                                </li>
+                                <li class="list-group-item list-group-item-action list-group-item-dark"><span
+                                        class="fw-bold">Physical
+                                        Address:</span> <br>
+                                    <span class="fs-5">qwerty 123, asdfg road</span>
+                                </li>
+                                <li class="list-group-item list-group-item-action list-group-item-dark"><span
+                                        class="fw-bold">Employee
+                                        Number:</span> <br>
+                                    <span class="fs-5">001</span>
+                                </li>
+                                <li class="list-group-item list-group-item-action list-group-item-dark">
+                                    <span class="fw-bold">Registration Date:</span> <br>
+                                    <span class="fs-5">2023-06-01 19:17:17</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <div class="btn-group dropup dropdown-centerz mt-3 d-grid justify-content-end">
+                                <button class="onefit-buttons-style-dark shadow dropdown-toggle p-4 mb-4" type="button"
+                                    id="dropdownMenuButton" data-bs-toggle="dropdown">
+                                    <span class="material-icons material-icons-round">
+                                        settings
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu fw-bold" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item fw-bold" href="#"><span
+                                                class="material-icons align-middle">manage_accounts</span> <span
+                                                class="align-middle">Edit Profile</span></a></li>
+                                    <li><a class="dropdown-item fw-bold" href="#"><span
+                                                class="material-icons align-middle">settings</span> <span
+                                                class="align-middle">Open Settings</span></a></li>
+                                    <li class="bg-danger"><a class="dropdown-item fw-bold text-white"
+                                            onclick="adminSignOut()"><span
+                                                class="material-icons align-middle">logout</span>
+                                            <span class="align-middle">Sign Out</span></a></li>
+                                </ul>
+                            </div>
+
+                            <div class="text-center">
+                                <!-- version# display -->
+                                <span style="font-size: 10px !important;">App Version: 1.1.1</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- ./ profile offcanvas -->
+
+            <div class="d-grid justify-content-center">
+                <!-- <a class="navbar-brand d-flex justify-content-center py-4 m-0" href="#">
+                    <img src="../media/assets/One-Logo.svg" alt="onefit.app logo" class="img-fluid p-4z px-0"
+                        style="height: 80px;">
+                </a> -->
+
+                <h1 class="fs-4 text-white my-0 py-0 d-none d-lg-block text-center">
+                    <span class="comfortaa-font text-darkz">One<span class="text-warning">fit</span>.app</span>
+
+                </h1>
+                <p class="m-0 text-center text-dark" style="font-size: 12px!important;">
+                    <span class="text-warning">|</span>
+                    <span class="poppins-font" style="color: var(--white);"> Administration Platform </span>
+                    <span class="text-warning">|</span>
+                </p>
+            </div>
+
+
+
+            <button class="navbar-toggler onefit-buttons-style-light p-4 d-grid shadow" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- <span class="navbar-toggler-icon"></span> -->
+                <span class="material-icons material-icons-round">
+                    menu_open
+                </span>
+                <span class="comfortaa-font" style="font-size: 10px!important;">
+                    menu.
+                </span>
+            </button>
+
         </div>
 
-        <div class="collapse navbar-collapse show" id="navbarSupportedContent">
-            <div class="container d-flex justify-content-start align-items-end">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="container d-grid justify-content-center align-items-end" style="border-radius:25px;">
+                <!-- search bar -->
+                <form class="d-flex py-4 d-nonez d-lg-blockz d-lgx-blockz justify-content-center" role="search">
+                    <input class="form-control me-2"
+                        style="border-radius:50rem;outline: none !important;box-shadow: none;max-width:400px;"
+                        type="search" placeholder="" aria-label="Search">
+                    <button class="onefit-buttons-style-dark my-2 p-3 fs-bold shadow d-flex" type="submit"
+                        style="margin-left: 0px;">
+                        <span class="material-icons material-icons-round align-middle"
+                            style="font-size:15px!important;">
+                            search
+                        </span>
+                        <span class="align-middle" style="font-size:10px!important;"> Search</span>
+                    </button>
+                </form>
+                <!-- ./ search bar -->
                 <!-- main tab container -->
-                <ul class="nav nav-pills my-4 w3-animate-left" id="pills-tab" role="tablist">
+                <ul class="nav nav-pills mb-4 p-4 w3-animate-left down-top-grad-dark position-relative" id="pills-tab"
+                    role="tablist" style="border-radius:25px;">
+
                     <li class="nav-item d-grid align-items-center" role="presentation">
                         <button class="nav-link active" id="pills-usermgmt-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-usermgmt" type="button" role="tab" aria-controls="pills-usermgmt"
-                            aria-selected="true">User Management</button>
+                            aria-selected="true">
+                            <div class="d-grid gap-2">
+                                <span class="material-icons material-icons-round"
+                                    style="font-size:30px!important;color:var(--tahitigold)">
+                                    people_alt
+                                </span>
+                                <span>User Management</span>
+                            </div>
+                        </button>
                     </li>
                     <li class="nav-item d-grid align-items-center" role="presentation">
                         <button class="nav-link" id="pills-trainingmgmt-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-trainingmgmt" type="button" role="tab"
-                            aria-controls="pills-trainingmgmt" aria-selected="false">Training Content</button>
+                            aria-controls="pills-trainingmgmt" aria-selected="false" tabindex="-1">
+                            <div class="d-grid gap-2">
+                                <span class="material-icons material-icons-round"
+                                    style="font-size:30px!important;color:var(--tahitigold)">
+                                    sports
+                                </span>
+                                <span>Training Content</span>
+                            </div>
+                        </button>
                     </li>
                     <li class="nav-item d-grid align-items-center" role="presentation">
                         <button class="nav-link" id="pills-storemgmt-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-storemgmt" type="button" role="tab" aria-controls="pills-storemgmt"
-                            aria-selected="false">Store &amp; Monetization</button>
+                            aria-selected="false" tabindex="-1">
+                            <div class="d-grid gap-2">
+                                <span class="material-icons material-icons-round"
+                                    style="font-size:30px!important;color:var(--tahitigold)">
+                                    monetization_on
+                                </span>
+                                <span>Store &amp; Monetization</span>
+                            </div>
+                        </button>
                     </li>
                     <li class="nav-item d-grid align-items-center" role="presentation">
                         <button class="nav-link" id="pills-communications-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-communications" type="button" role="tab"
-                            aria-controls="pills-communications" aria-selected="false">Communications</button>
+                            aria-controls="pills-communications" aria-selected="false" tabindex="-1">
+                            <div class="d-grid gap-2">
+                                <span class="material-icons material-icons-round"
+                                    style="font-size:30px!important;color:var(--tahitigold)">
+                                    connect_without_contact
+                                </span>
+                                <span>Communications</span>
+                            </div>
+                        </button>
                     </li>
                     <li class="nav-item d-grid align-items-center" role="presentation">
                         <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled"
-                            aria-selected="false" disabled>Data
-                            Tools</button>
+                            data-bs-target="#pills-disabled" style="color:var(--tahitigold)!important;" type="button"
+                            role="tab" aria-controls="pills-disabled" aria-selected="false" disabled="" tabindex="-1">
+                            <div class="d-grid gap-2">
+                                <span class="material-icons material-icons-round"
+                                    style="font-size:30px!important;color:var(--tahitigold)">
+                                    architecture
+                                </span>
+                                <span>Data Tools</span>
+                            </div>
+                        </button>
+                    </li>
+
+                    <li class="nav-item d-grid align-items-center" role="presentation">
+                        <!-- refresh / initialize tables -->
+                        <!-- style="font-size: 10px;" -->
+                        <button class="onefit-buttons-style-tahiti p-4 m-2 shadow w3-animate-top"
+                            onclick="initializeContent()">
+                            <span class="material-icons material-icons-round align-middle">
+                                <!-- style="font-size:20px!important;" -->
+                                refresh
+                            </span>
+                        </button>
                     </li>
                 </ul>
             </div>
 
-            <div id="refresh-data-btn" class="d-gridz align-items-centerz" role="presentation">
-                <!-- refresh / initialize tables -->
-                <!-- style="font-size: 10px;" -->
-                <button class="onefit-buttons-style-dark p-4 m-2 shadow w3-animate-right" onclick="initializeContent()">
-                    <span class="material-icons material-icons-round align-middle">
-                        <!-- style="font-size:20px!important;" -->
-                        refresh
-                    </span>
-                </button>
-            </div>
+
         </div>
-    </nav>
+    </header>
 
 
-    <div class="container">
+    <main class="container">
 
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-usermgmt" role="tabpanel"
                 aria-labelledby="pills-usermgmt-tab" tabindex="0">
-                <h1>User Management</h1>
+                <h1 class="text-center text-white">
+                    <span class="material-icons material-icons-round align-middle"
+                        style="font-size:50px!important;color:var(--tahitigold)">
+                        people_alt
+                    </span>
+                    <span class="align-middle"> User Management.</span>
+                </h1>
 
                 <hr>
 
@@ -924,7 +1265,6 @@
                             <thead>
                                 <tr>
                                     <th scope="col"># <!-- group_id --></th>
-                                    <th scope="col">username</th>
                                     <th scope="col">Reference Code <!-- group_ref_code --></th>
                                     <th scope="col">Team Name <!-- group_name --></th>
                                     <th scope="col">Description <!-- group_description --></th>
@@ -964,7 +1304,6 @@
                             <thead>
                                 <tr>
                                     <th scope="col"># <!-- group_id --></th>
-                                    <th scope="col">username</th>
                                     <th scope="col">Reference Code <!-- group_ref_code --></th>
                                     <th scope="col">Team Name <!-- group_name --></th>
                                     <th scope="col">Description <!-- group_description --></th>
@@ -995,228 +1334,449 @@
             </div>
             <div class="tab-pane fade" id="pills-trainingmgmt" role="tabpanel" aria-labelledby="pills-trainingmgmt-tab"
                 tabindex="0">
-                <h1>Training Content Management</h1>
+                <h1 class="text-center text-white">
+                    <span class="material-icons material-icons-round align-middle"
+                        style="font-size:50px!important;color:var(--tahitigold)">
+                        sports
+                    </span>
+                    <span class="align-middle"> Training Content Management.</span>
+                </h1>
 
                 <hr>
 
                 <div id="bulk-upload-section">
                     <div class="row my-4 gap-4">
+                        <div class="col-md">
+                            <!-- bulk upload -->
+                            <div class="container-card mb-4">
+                                <h5>Bulk Upload</h5>
 
-                        <div class="col-md container-card">
-                            <h5>Preview Tables</h5>
-                            <hr>
+                                <hr>
 
-                            <div class="container">
-                                <!-- A. Categories/Classes -->
-                                <h5>A. Fitness Categories / Classes</h5>
-                                <div class="table-responsive mb-4">
-                                    <table class="table table-light">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"># <!-- category_class_id --></th>
-                                                <th scopr="col">Category / Class - Code <!-- category_class_code -->
-                                                </th>
-                                                <th scopr="col">Category / Class - Name <!-- category_class_name -->
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="category_class-list" class="table-group-divider"
-                                            style="max-height: 100vh;overflow-y: auto;">
-                                            <tr>
-                                                <td colspan="3">
-                                                    <div class="d-flex justify-content-center p-4">
-                                                        <div class="spinner-border" role="status">
-                                                            <span class="visually-hidden">Loading...</span>
+                                <!-- upload bulk csv file - Categories / Classes -->
+                                <form id="workout-categories-csv-bulk-upload-form"
+                                    name="workout-categories-csv-bulk-upload-form" class="my-4"
+                                    action="./scripts/php/workout_categories_bulk_upload/upload_csv_data.php"
+                                    method="post" enctype="multipart/form-data">
+                                    <!-- Form Name -->
+                                    <legend class="fs-5 fw-bold">A. Bulk CSV Upload - Categories / Classes</legend>
+
+                                    <div id="form-output-categories" class="alert alert-info p-2 my-3"
+                                        style="display: none;">
+                                        Output Alert
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input form-control"
+                                                id="csvfile-category_class"
+                                                aria-describedby="lbl-csvfile-category_class"
+                                                name="csvfile-category_class" type="file">
+                                            <label id="lbl-csvfile-category_class" class="custom-file-label"
+                                                for="csvfile-category_class"></label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <input type="submit" name="submit"
+                                                value="Upload Categories/Classes Data CSV file"
+                                                class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- ./ upload bulk csv file - Categories / Classes -->
+
+                                <!-- upload bulk csv file - Workouts Information -->
+                                <form id="workouts-csv-bulk-upload-form" name="workouts-csv-bulk-upload-form"
+                                    class="my-4" action="./scripts/php/bulk_upload/upload_workout_csv.php" method="post"
+                                    enctype="multipart/form-data">
+                                    <!-- Form Name -->
+                                    <legend class="fs-5 fw-bold">B. Bulk CSV Upload - Workouts Information</legend>
+
+                                    <div id="form-output-workouts" class="alert alert-info p-2 my-3"
+                                        style="display: none;">
+                                        Output Alert
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input form-control"
+                                                id="csvfile-workout_info" aria-describedby="lbl-csvfile-workout_info"
+                                                name="csvfile-workout_info" type="file" disabled>
+                                            <label id="lbl-csvfile-workout_info" class="custom-file-label"
+                                                for="csvfile-workout_info"></label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <input type="submit" name="submit" value="Upload Workout Data CSV file"
+                                                class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;"
+                                                disabled>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- ./ upload bulk csv file - Workouts Information -->
+
+                                <!-- upload bulk csv file - Indi Exercises -->
+                                <form id="indi-exercises-csv-bulk-upload-form"
+                                    name="indi-exercises-csv-bulk-upload-form" class="my-4"
+                                    action="./scripts/php/bulk_upload/upload_indi_exercises_csv.php" method="post"
+                                    enctype="multipart/form-data">
+                                    <!-- Form Name -->
+                                    <legend class="fs-5 fw-bold">C. Bulk CSV Upload - Indi Exercises</legend>
+
+                                    <div id="form-output-exercises" class="alert alert-info p-2 my-3"
+                                        style="display: none;">
+                                        Output Alert
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input form-control"
+                                                id="csvfile-exercises" aria-describedby="lbl-csvfile-exercises"
+                                                name="csvfile-exercises" type="file">
+                                            <label id="lbl-csvfile-exercises" class="custom-file-label"
+                                                for="csvfile-exercises"></label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <input type="submit" name="submit" value="Upload Exercise Data CSV file"
+                                                class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- ./ upload bulk csv file - Indi Exercises -->
+
+                                <!-- upload bulk csv file - Teams Training Exercise Drills -->
+                                <form id="training-drills-csv-bulk-upload-form" name="training-csv-bulk-upload-form"
+                                    class="my-4" action="./scripts/php/bulk_upload/upload_teans_training_drills_csv.php"
+                                    method="post" enctype="multipart/form-data">
+                                    <!-- Form Name -->
+                                    <legend class="fs-5 fw-bold">D. Bulk CSV Upload - Teams. Training Drills</legend>
+
+                                    <div id="form-output-drills" class="alert alert-info p-2 my-3"
+                                        style="display: none;">
+                                        Output Alert
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input form-control"
+                                                id="csvfile-training_drills"
+                                                aria-describedby="lbl-csvfile-training_drills"
+                                                name="csvfile-training_drills" type="file">
+                                            <label id="lbl-csvfile-training_drills" class="custom-file-label"
+                                                for="csvfile-training_drills"></label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <input type="submit" name="submit"
+                                                value="Upload Training Drills Data CSV file"
+                                                class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- ./ upload bulk csv file - Teams Training Exercise Drills -->
+
+                                <!-- upload bulk csv file - Supplements -->
+                                <form id="supplements-csv-bulk-upload-form" name="supplements-csv-bulk-upload-form"
+                                    class="my-4" action="./scripts/php/bulk_upload/upload_supplements_csv.php"
+                                    method="post" enctype="multipart/form-data">
+                                    <!-- Form Name -->
+                                    <legend class="fs-5 fw-bold">E. Bulk CSV Upload - Supplements</legend>
+
+                                    <div id="form-output-supplements" class="alert alert-info p-2 my-3"
+                                        style="display: none;">
+                                        Output Alert
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input form-control"
+                                                id="csvfile-supplements" aria-describedby="lbl-csvfile-supplements"
+                                                name="csvfile-supplements" type="file">
+                                            <label id="lbl-csvfile-supplements" class="custom-file-label"
+                                                for="csvfile-supplements"></label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <input type="submit" name="submit" value="Upload Supplements Data CSV file"
+                                                class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- ./ upload bulk csv file - Supplements -->
+
+                                <!-- upload bulk csv file - Sports List -->
+                                <form id="sports-list-csv-bulk-upload-form" name="sports-list-csv-bulk-upload-form"
+                                    class="my-4" action="./scripts/php/bulk_upload/upload_sports_list_csv.php"
+                                    method="post" enctype="multipart/form-data">
+                                    <!-- Form Name -->
+                                    <legend class="fs-5 fw-bold">F. Bulk CSV Upload - Sports list</legend>
+
+                                    <div id="form-output-sports" class="alert alert-info p-2 my-3"
+                                        style="display: none;">
+                                        Output Alert
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input form-control"
+                                                id="csvfile-sports_list" aria-describedby="lbl-csvfile-sports_list"
+                                                name="csvfile-sports_list" type="file">
+                                            <label id="lbl-csvfile-sports_list" class="custom-file-label"
+                                                for="csvfile-sports_list"></label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <input type="submit" name="submit" value="Upload Sports List Data CSV file"
+                                                class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- ./ upload bulk csv file - Sports List -->
+
+                                <!-- upload bulk csv file - Muscle Groups -->
+                                <form id="muscles-list-csv-bulk-upload-form" name="muscles-list-csv-bulk-upload-form"
+                                    class="my-4" action="./scripts/php/bulk_upload/upload_muscle_groups_csv.php"
+                                    method="post" enctype="multipart/form-data">
+                                    <!-- Form Name -->
+                                    <legend class="fs-5 fw-bold">G. Bulk CSV Upload - Muscle Groups</legend>
+
+                                    <div id="form-output-muscles" class="alert alert-info p-2 my-3"
+                                        style="display: none;">
+                                        Output Alert
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input form-control"
+                                                id="csvfile-muscle_groups" aria-describedby="lbl-csvfile-muscle_groups"
+                                                name="csvfile-muscle_groups" type="file">
+                                            <label id="lbl-csvfile-muscle_groups" class="custom-file-label"
+                                                for="csvfile-muscle_groups"></label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <input type="submit" name="submit"
+                                                value="Upload Muscle Groups Data CSV file"
+                                                class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- ./ upload bulk csv file - Muscle Groups -->
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="container-card" style="overflow-y: auto;max-height: 1500px;">
+                                <h5>Preview Tables</h5>
+                                <hr>
+
+                                <div class="container">
+                                    <!-- A. Categories/Classes -->
+                                    <h5>A. Fitness Categories / Classes</h5>
+                                    <div class="table-responsive mb-4">
+                                        <table class="table table-light">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"># <!-- category_class_id --></th>
+                                                    <th scopr="col">Category / Class - Code <!-- category_class_code -->
+                                                    </th>
+                                                    <th scopr="col">Category / Class - Name <!-- category_class_name -->
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="category_class-list" class="table-group-divider"
+                                                style="max-height: 100vh;overflow-y: auto;">
+                                                <tr>
+                                                    <td colspan="3">
+                                                        <div class="d-flex justify-content-center p-4">
+                                                            <div class="spinner-border" role="status">
+                                                                <span class="visually-hidden">Loading...</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                <!-- B. Workouts Information -->
-                                <h5>B. Workouts</h5>
-                                <div class="table-responsive mb-4">
-                                    <table class="table table-light">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"># <!-- category_class_id --></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="workouts-list" class="table-group-divider"
-                                            style="max-height: 100vh;overflow-y: auto;">
-                                            <tr>
-                                                <td colspan="1">
-                                                    <div class="d-flex justify-content-center p-4">
-                                                        <div class="spinner-border" role="status">
-                                                            <span class="visually-hidden">Loading...</span>
+                                    <!-- B. Workouts Information -->
+                                    <h5>B. Workouts</h5>
+                                    <div class="table-responsive mb-4">
+                                        <table class="table table-light">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"># <!-- category_class_id --></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="workouts-list" class="table-group-divider"
+                                                style="max-height: 100vh;overflow-y: auto;">
+                                                <tr>
+                                                    <td colspan="1">
+                                                        <div class="d-flex justify-content-center p-4">
+                                                            <div class="spinner-border" role="status">
+                                                                <span class="visually-hidden">Loading...</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                <!-- C. Indi Exercises -->
-                                <h5>C. Indi Exercises</h5>
-                                <div class="table-responsive mb-4">
-                                    <table class="table table-light">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"># <!-- exercise_id --></th>
-                                                <th scopr="col">Exercise Name <!-- exercise_name --></th>
-                                                <th scopr="col">Instructions <!-- instructions --></th>
-                                                <th scopr="col">Guidelines <!-- guidelines --></th>
-                                                <th scopr="col">Sets <!-- sets --></th>
-                                                <th scopr="col">Reps <!-- reps --></th>
-                                                <th scopr="col">Rests <!-- rests --></th>
-                                                <th scopr="col">XP Points <!-- xp_points --></th>
-                                                <th scopr="col">Training Phase <!-- training_phase --></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="indi_exercise-list" class="table-group-divider"
-                                            style="max-height: 100vh;overflow-y: auto;">
-                                            <tr>
-                                                <td colspan="9">
-                                                    <div class="d-flex justify-content-center p-4">
-                                                        <div class="spinner-border" role="status">
-                                                            <span class="visually-hidden">Loading...</span>
+                                    <!-- C. Indi Exercises -->
+                                    <h5>C. Indi Exercises</h5>
+                                    <div class="table-responsive mb-4">
+                                        <table class="table table-light">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"># <!-- exercise_id --></th>
+                                                    <th scopr="col">Exercise Name <!-- exercise_name --></th>
+                                                    <th scopr="col">Instructions <!-- instructions --></th>
+                                                    <th scopr="col">Guidelines <!-- guidelines --></th>
+                                                    <th scopr="col">Sets <!-- sets --></th>
+                                                    <th scopr="col">Reps <!-- reps --></th>
+                                                    <th scopr="col">Rests <!-- rests --></th>
+                                                    <th scopr="col">XP Points <!-- xp_points --></th>
+                                                    <th scopr="col">Training Phase <!-- training_phase --></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="indi_exercise-list" class="table-group-divider"
+                                                style="max-height: 100vh;overflow-y: auto;">
+                                                <tr>
+                                                    <td colspan="9">
+                                                        <div class="d-flex justify-content-center p-4">
+                                                            <div class="spinner-border" role="status">
+                                                                <span class="visually-hidden">Loading...</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                <!-- D. Teams. Training Drills -->
-                                <h5>D. Training Drills</h5>
-                                <div class="table-responsive mb-4">
-                                    <table class="table table-light">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"># <!-- exercise_drill_id --></th>
-                                                <th scopr="col">Category / Class - Code <!-- category_class_code -->
-                                                </th>
-                                                <th scopr="col">Category / Class - Name <!-- category_class_name -->
-                                                </th>
-                                                <th scopr="col">Drill Title <!-- drill_title --></th>
-                                                <th scopr="col">Thumbnail <!-- thumbnail --></th>
-                                                <th scopr="col">Demonstration Video (url) <!-- drill_demo_vid --></th>
-                                                <th scopr="col">Training Level <!-- training_level --></th>
-                                                <th scopr="col">Target Areas <!-- target_area --></th>
-                                                <th scopr="col">Benefits <!-- benefits --></th>
-                                                <th scopr="col">Instructionsn <!-- instructions --></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="training_drills-list" class="table-group-divider"
-                                            style="max-height: 100vh;overflow-y: auto;">
-                                            <tr>
-                                                <td colspan="10">
-                                                    <div class="d-flex justify-content-center p-4">
-                                                        <div class="spinner-border" role="status">
-                                                            <span class="visually-hidden">Loading...</span>
+                                    <!-- D. Teams. Training Drills -->
+                                    <h5>D. Training Drills</h5>
+                                    <div class="table-responsive mb-4">
+                                        <table class="table table-light">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"># <!-- exercise_drill_id --></th>
+                                                    <th scopr="col">Category / Class - Code <!-- category_class_code -->
+                                                    </th>
+                                                    <th scopr="col">Category / Class - Name <!-- category_class_name -->
+                                                    </th>
+                                                    <th scopr="col">Drill Title <!-- drill_title --></th>
+                                                    <th scopr="col">Thumbnail <!-- thumbnail --></th>
+                                                    <th scopr="col">Demonstration Video (url) <!-- drill_demo_vid -->
+                                                    </th>
+                                                    <th scopr="col">Training Level <!-- training_level --></th>
+                                                    <th scopr="col">Target Areas <!-- target_area --></th>
+                                                    <th scopr="col">Benefits <!-- benefits --></th>
+                                                    <th scopr="col">Instructionsn <!-- instructions --></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="training_drills-list" class="table-group-divider"
+                                                style="max-height: 100vh;overflow-y: auto;">
+                                                <tr>
+                                                    <td colspan="10">
+                                                        <div class="d-flex justify-content-center p-4">
+                                                            <div class="spinner-border" role="status">
+                                                                <span class="visually-hidden">Loading...</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                <!-- E. Supplements -->
-                                <h5>E. Supplements</h5>
-                                <div class="table-responsive mb-4">
-                                    <table class="table table-light">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"># <!-- supplements_id --></th>
-                                                <th scopr="col">Category Tags <!-- category_tags --></th>
-                                                <th scopr="col">Supplement Type <!-- supplement_type --></th>
-                                                <th scopr="col">Description <!-- description --></th>
-                                                <th scopr="col">Recommended Dosage <!-- recommended_dosage --></th>
-                                                <th scopr="col">Reference (Source) <!-- source --></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="supplements-list" class="table-group-divider"
-                                            style="max-height: 100vh;overflow-y: auto;">
-                                            <tr>
-                                                <td colspan="6">
-                                                    <div class="d-flex justify-content-center p-4">
-                                                        <div class="spinner-border" role="status">
-                                                            <span class="visually-hidden">Loading...</span>
+                                    <!-- E. Supplements -->
+                                    <h5>E. Supplements</h5>
+                                    <div class="table-responsive mb-4">
+                                        <table class="table table-light">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"># <!-- supplements_id --></th>
+                                                    <th scopr="col">Category Tags <!-- category_tags --></th>
+                                                    <th scopr="col">Supplement Type <!-- supplement_type --></th>
+                                                    <th scopr="col">Description <!-- description --></th>
+                                                    <th scopr="col">Recommended Dosage <!-- recommended_dosage --></th>
+                                                    <th scopr="col">Reference (Source) <!-- source --></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="supplements-list" class="table-group-divider"
+                                                style="max-height: 100vh;overflow-y: auto;">
+                                                <tr>
+                                                    <td colspan="6">
+                                                        <div class="d-flex justify-content-center p-4">
+                                                            <div class="spinner-border" role="status">
+                                                                <span class="visually-hidden">Loading...</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                <!-- F. Sports list -->
-                                <h5>F. Sports List</h5>
-                                <div class="table-responsive mb-4">
-                                    <table class="table table-light">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"># <!-- sport_id --></th>
-                                                <th scopr="col">Category of Sport <!-- category --></th>
-                                                <th scopr="col">Name of Sport <!-- name --></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="sports_list-list" class="table-group-divider"
-                                            style="max-height: 100vh;overflow-y: auto;">
-                                            <tr>
-                                                <td colspan="4">
-                                                    <div class="d-flex justify-content-center p-4">
-                                                        <div class="spinner-border" role="status">
-                                                            <span class="visually-hidden">Loading...</span>
+                                    <!-- F. Sports list -->
+                                    <h5>F. Sports List</h5>
+                                    <div class="table-responsive mb-4">
+                                        <table class="table table-light">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"># <!-- sport_id --></th>
+                                                    <th scopr="col">Category of Sport <!-- category --></th>
+                                                    <th scopr="col">Name of Sport <!-- name --></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="sports_list-list" class="table-group-divider"
+                                                style="max-height: 100vh;overflow-y: auto;">
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <div class="d-flex justify-content-center p-4">
+                                                            <div class="spinner-border" role="status">
+                                                                <span class="visually-hidden">Loading...</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                <!-- G. Muscle Groups -->
-                                <h5>G. Muscle Groups</h5>
-                                <div class="table-responsive mb-4">
-                                    <table class="table table-light">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"># <!-- muscle_group_id --></th>
-                                                <th scopr="col">Major Muscle <!-- major_muscle_group --></th>
-                                                <th scopr="col">Sub-Muscle <!-- sub_muscle_group --></th>
-                                                <th scopr="col">Position &amp; Definition <!-- position_definition -->
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="muscle_groups-list" class="table-group-divider"
-                                            style="max-height: 100vh;overflow-y: auto;">
-                                            <tr>
-                                                <td colspan="4">
-                                                    <div class="d-flex justify-content-center p-4">
-                                                        <div class="spinner-border" role="status">
-                                                            <span class="visually-hidden">Loading...</span>
+                                    <!-- G. Muscle Groups -->
+                                    <h5>G. Muscle Groups</h5>
+                                    <div class="table-responsive mb-4">
+                                        <table class="table table-light">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"># <!-- muscle_group_id --></th>
+                                                    <th scopr="col">Major Muscle <!-- major_muscle_group --></th>
+                                                    <th scopr="col">Sub-Muscle <!-- sub_muscle_group --></th>
+                                                    <th scopr="col">Position &amp; Definition
+                                                        <!-- position_definition -->
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="muscle_groups-list" class="table-group-divider"
+                                                style="max-height: 100vh;overflow-y: auto;">
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <div class="d-flex justify-content-center p-4">
+                                                            <div class="spinner-border" role="status">
+                                                                <span class="visually-hidden">Loading...</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
 
                 <hr>
 
-                <h1>Creation Tools</h1>
+                <h1 class="text-white">Creation Tools</h1>
 
                 <div class="row gap-4 my-4 align-items-start">
                     <div class="col-md container-card">
@@ -1636,214 +2196,20 @@
                             </form>
                         </div>
 
-                        <!-- bulk upload -->
-                        <div class="container-card mb-4">
-                            <h5>Bulk Upload</h5>
 
-                            <hr>
-
-                            <!-- upload bulk csv file - Categories / Classes -->
-                            <form id="workout-categories-csv-bulk-upload-form"
-                                name="workout-categories-csv-bulk-upload-form" class="my-4"
-                                action="./scripts/php/workout_categories_bulk_upload/upload_csv_data.php" method="post"
-                                enctype="multipart/form-data">
-                                <!-- Form Name -->
-                                <legend class="fs-5 fw-bold">A. Bulk CSV Upload - Categories / Classes</legend>
-
-                                <div id="form-output-categories" class="alert alert-info p-2 my-3"
-                                    style="display: none;">
-                                    Output Alert
-                                </div>
-
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input form-control"
-                                            id="csvfile-category_class" aria-describedby="lbl-csvfile-category_class"
-                                            name="csvfile-category_class" type="file">
-                                        <label id="lbl-csvfile-category_class" class="custom-file-label"
-                                            for="csvfile-category_class"></label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <input type="submit" name="submit"
-                                            value="Upload Categories/Classes Data CSV file"
-                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- ./ upload bulk csv file - Categories / Classes -->
-
-                            <!-- upload bulk csv file - Workouts Information -->
-                            <form id="workouts-csv-bulk-upload-form" name="workouts-csv-bulk-upload-form" class="my-4"
-                                action="./scripts/php/bulk_upload/upload_workout_csv.php" method="post"
-                                enctype="multipart/form-data">
-                                <!-- Form Name -->
-                                <legend class="fs-5 fw-bold">B. Bulk CSV Upload - Workouts Information</legend>
-
-                                <div id="form-output-workouts" class="alert alert-info p-2 my-3" style="display: none;">
-                                    Output Alert
-                                </div>
-
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input form-control"
-                                            id="csvfile-workout_info" aria-describedby="lbl-csvfile-workout_info"
-                                            name="csvfile-workout_info" type="file" disabled>
-                                        <label id="lbl-csvfile-workout_info" class="custom-file-label"
-                                            for="csvfile-workout_info"></label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <input type="submit" name="submit" value="Upload Workout Data CSV file"
-                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;"
-                                            disabled>
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- ./ upload bulk csv file - Workouts Information -->
-
-                            <!-- upload bulk csv file - Indi Exercises -->
-                            <form id="indi-exercises-csv-bulk-upload-form" name="indi-exercises-csv-bulk-upload-form"
-                                class="my-4" action="./scripts/php/bulk_upload/upload_indi_exercises_csv.php"
-                                method="post" enctype="multipart/form-data">
-                                <!-- Form Name -->
-                                <legend class="fs-5 fw-bold">C. Bulk CSV Upload - Indi Exercises</legend>
-
-                                <div id="form-output-exercises" class="alert alert-info p-2 my-3"
-                                    style="display: none;">
-                                    Output Alert
-                                </div>
-
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input form-control" id="csvfile-exercises"
-                                            aria-describedby="lbl-csvfile-exercises" name="csvfile-exercises"
-                                            type="file">
-                                        <label id="lbl-csvfile-exercises" class="custom-file-label"
-                                            for="csvfile-exercises"></label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <input type="submit" name="submit" value="Upload Exercise Data CSV file"
-                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- ./ upload bulk csv file - Indi Exercises -->
-
-                            <!-- upload bulk csv file - Teams Training Exercise Drills -->
-                            <form id="training-drills-csv-bulk-upload-form" name="training-csv-bulk-upload-form"
-                                class="my-4" action="./scripts/php/bulk_upload/upload_teans_training_drills_csv.php"
-                                method="post" enctype="multipart/form-data">
-                                <!-- Form Name -->
-                                <legend class="fs-5 fw-bold">D. Bulk CSV Upload - Teams. Training Drills</legend>
-
-                                <div id="form-output-drills" class="alert alert-info p-2 my-3" style="display: none;">
-                                    Output Alert
-                                </div>
-
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input form-control"
-                                            id="csvfile-training_drills" aria-describedby="lbl-csvfile-training_drills"
-                                            name="csvfile-training_drills" type="file">
-                                        <label id="lbl-csvfile-training_drills" class="custom-file-label"
-                                            for="csvfile-training_drills"></label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <input type="submit" name="submit" value="Upload Training Drills Data CSV file"
-                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- ./ upload bulk csv file - Teams Training Exercise Drills -->
-
-                            <!-- upload bulk csv file - Supplements -->
-                            <form id="supplements-csv-bulk-upload-form" name="supplements-csv-bulk-upload-form"
-                                class="my-4" action="./scripts/php/bulk_upload/upload_supplements_csv.php" method="post"
-                                enctype="multipart/form-data">
-                                <!-- Form Name -->
-                                <legend class="fs-5 fw-bold">E. Bulk CSV Upload - Supplements</legend>
-
-                                <div id="form-output-supplements" class="alert alert-info p-2 my-3"
-                                    style="display: none;">
-                                    Output Alert
-                                </div>
-
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input form-control"
-                                            id="csvfile-supplements" aria-describedby="lbl-csvfile-supplements"
-                                            name="csvfile-supplements" type="file">
-                                        <label id="lbl-csvfile-supplements" class="custom-file-label"
-                                            for="csvfile-supplements"></label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <input type="submit" name="submit" value="Upload Supplements Data CSV file"
-                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- ./ upload bulk csv file - Supplements -->
-
-                            <!-- upload bulk csv file - Sports List -->
-                            <form id="sports-list-csv-bulk-upload-form" name="sports-list-csv-bulk-upload-form"
-                                class="my-4" action="./scripts/php/bulk_upload/upload_sports_list_csv.php" method="post"
-                                enctype="multipart/form-data">
-                                <!-- Form Name -->
-                                <legend class="fs-5 fw-bold">F. Bulk CSV Upload - Sports list</legend>
-
-                                <div id="form-output-sports" class="alert alert-info p-2 my-3" style="display: none;">
-                                    Output Alert
-                                </div>
-
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input form-control"
-                                            id="csvfile-sports_list" aria-describedby="lbl-csvfile-sports_list"
-                                            name="csvfile-sports_list" type="file">
-                                        <label id="lbl-csvfile-sports_list" class="custom-file-label"
-                                            for="csvfile-sports_list"></label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <input type="submit" name="submit" value="Upload Sports List Data CSV file"
-                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- ./ upload bulk csv file - Sports List -->
-
-                            <!-- upload bulk csv file - Muscle Groups -->
-                            <form id="muscles-list-csv-bulk-upload-form" name="muscles-list-csv-bulk-upload-form"
-                                class="my-4" action="./scripts/php/bulk_upload/upload_muscle_groups_csv.php"
-                                method="post" enctype="multipart/form-data">
-                                <!-- Form Name -->
-                                <legend class="fs-5 fw-bold">G. Bulk CSV Upload - Muscle Groups</legend>
-
-                                <div id="form-output-muscles" class="alert alert-info p-2 my-3" style="display: none;">
-                                    Output Alert
-                                </div>
-
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input form-control"
-                                            id="csvfile-muscle_groups" aria-describedby="lbl-csvfile-muscle_groups"
-                                            name="csvfile-muscle_groups" type="file">
-                                        <label id="lbl-csvfile-muscle_groups" class="custom-file-label"
-                                            for="csvfile-muscle_groups"></label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <input type="submit" name="submit" value="Upload Muscle Groups Data CSV file"
-                                            class="onefit-buttons-style-light p-3 shadow" style="font-size: 10px;">
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- ./ upload bulk csv file - Muscle Groups -->
-                        </div>
                     </div>
                 </div>
 
             </div>
             <div class="tab-pane fade" id="pills-storemgmt" role="tabpanel" aria-labelledby="pills-storemgmt-tab"
                 tabindex="0">
-                <h1>Store Management</h1>
+                <h1 class="text-center text-white">
+                    <span class="material-icons material-icons-round align-middle"
+                        style="font-size:50px!important;color:var(--tahitigold)">
+                        monetization_on
+                    </span>
+                    <span class="align-middle"> Store Management.</span>
+                </h1>
 
                 <hr>
 
@@ -1889,7 +2255,7 @@
                 <hr>
 
                 <!-- store products list -->
-                <h1>Store Inventory</h1>
+                <h1 class="text-white">Store Inventory</h1>
                 <div class="table-responsive">
                     <table class="table table-light table-striped">
                         <thead>
@@ -1927,7 +2293,13 @@
             </div>
             <div class="tab-pane fade" id="pills-communications" role="tabpanel"
                 aria-labelledby="pills-communications-tab" tabindex="0">
-                <h1>Communications</h1>
+                <h1 class="text-center text-white">
+                    <span class="material-icons material-icons-round align-middle"
+                        style="font-size:50px!important;color:var(--tahitigold)">
+                        connect_without_contact
+                    </span>
+                    <span class="align-middle"> Communications.</span>
+                </h1>
 
                 <hr>
 
@@ -1946,7 +2318,7 @@
                 </div>
 
                 <div id="support-messeges_chat" class="mb-4">
-                    <h5>Support Request Chat &amp; Messanger</h5>
+                    <h5 class="text-white">Support Request Chat &amp; Messanger</h5>
                     <hr>
                     <div id="support-chat-container" class="container-card p-0" style="overflow: hidden;">
                         <div class="row">
@@ -2427,19 +2799,36 @@
             </div>
             <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab"
                 tabindex="0">
-                <h1>Data Tools</h1>
+                <h1 class="text-center text-white">
+                    <span class="material-icons material-icons-round align-middle"
+                        style="font-size:50px!important;color:var(--tahitigold)">
+                        architecture
+                    </span>
+                    <span class="align-middle"> Data Tools.</span>
+                </h1>
                 <hr>
             </div>
         </div>
         <!-- ./main tab container -->
-    </div>
+    </main>
+
+    <footer class="onefitnet-banner-court-1-bgz onefitnet-banner-lmm-white-stripes-bg d-grid mt-5"
+        style="min-height: 200px;">
+        <div class="p-4 d-flex justify-content-center align-items-center w-100 h-100">
+            <!-- style="background-color: #343434cc;" -->
+        </div>
+    </footer>
 
     <script>
         function initializeContent() {
             $.getUserAccounts('ui_data');
+            $.getAdminAccounts('ui_data');
+            $.getTeamsProGroups('ui_data');
+            $.getCommunityGroups('ui_data');
             $.getCategoriesClasses('ui_data');
             $.getIndiExercises('ui_data');
             $.getSupplementsList('ui_data');
+            $.getPreviewTables('ui_data');
 
             $.getStoreProducts('ui_data');
 

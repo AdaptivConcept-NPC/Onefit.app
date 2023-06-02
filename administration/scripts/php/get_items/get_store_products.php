@@ -69,7 +69,7 @@ try {
             <td>$product_weight</td>
             <td>$inventory_status</td>
             <td>$product_tag</td>
-            <td>$product_image_url</td>
+            <td><img src="$product_image_url" class="img-fluid" alt="$product_name"/></td>
         </tr>
         _END;
     }

@@ -371,7 +371,7 @@ sup {
 
   border: 0;
   border-radius: 15px;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .onefit-buttons-style-light-twitter:hover {
@@ -387,14 +387,14 @@ sup {
 
   border: 0;
   border-radius: 15px;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .onefit-buttons-style-dark-twitter:hover {
   color: var(--twitter) !important;
   border-bottom: solid var(--twitter) 5px;
 
-  transform: scale(1.05, 1.05);
+  transform: scale(1.02, 1.02);
 }
 
 /* inputs with grad bg styling */
@@ -783,20 +783,23 @@ h6 {
 
   border: 0;
   border-radius: 15px;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .onefit-buttons-style-light:hover {
   color: var(--tahitigold) !important;
   border-bottom: solid var(--tahitigold) 5px;
+  border-top: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
 
   transform: scale(1.02, 1.02);
 }
 
 .onefit-buttons-style-light:active {
   color: var(--tahitigold) !important;
-  border: solid var(--tahitigold) 7px;
-  transform: scale(0.5, 0.5);
+  border: solid var(--tahitigold) 5px !important;
+  transform: scale(0.95, 0.95);
 }
 
 .onefit-buttons-style-light-modal {
@@ -806,7 +809,7 @@ h6 {
 
   border: 0;
   border-radius: 15px;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .onefit-buttons-style-dark-modal {
@@ -817,7 +820,7 @@ h6 {
 
   border: 0;
   border-radius: 15px;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .onefit-buttons-style-dark-modal:hover {
@@ -830,19 +833,23 @@ h6 {
 
   border: 0;
   border-radius: 15px;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .onefit-buttons-style-dark:hover {
   color: var(--tahitigold) !important;
   border-bottom: solid var(--tahitigold) 5px;
+  border-top: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
+
   transform: scale(1.02, 1.02);
 }
 
 .onefit-buttons-style-dark:active {
   color: var(--tahitigold) !important;
-  border: solid var(--tahitigold) 7px;
-  transform: scale(0.5, 0.5);
+  border: solid var(--tahitigold) 5px !important;
+  transform: scale(0.95, 0.95);
 }
 
 .onefit-buttons-style-transp-leftdir {
@@ -851,13 +858,17 @@ h6 {
 
   border: 0;
   border-radius: 15px;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .onefit-buttons-style-transp-leftdir:hover {
   color: var(--tahitigold) !important;
   border-left: solid var(--tahitigold) 5px;
-  transform: scale(0.9, 0.9);
+  border-top: 0px !important;
+  border-bottom: 0px !important;
+  border-right: 0px !important;
+
+  transform: scale(0.95, 0.95);
 }
 
 .onefit-buttons-style-transp-rightdir {
@@ -866,13 +877,17 @@ h6 {
 
   border: 0;
   border-radius: 15px;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .onefit-buttons-style-transp-rightdir:hover {
   color: var(--tahitigold) !important;
   border-right: solid var(--tahitigold) 5px;
-  transform: scale(0.9, 0.9);
+  border-top: 0px !important;
+  border-left: 0px !important;
+  border-bottom: 0px !important;
+
+  transform: scale(0.95, 0.95);
 }
 
 .onefit-buttons-style-tahiti {
@@ -881,19 +896,23 @@ h6 {
 
   border: 0;
   border-radius: 15px;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .onefit-buttons-style-tahiti:hover {
   color: var(--white) !important;
   border-bottom: solid var(--white) 5px;
+  border-top: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
+
   transform: scale(1.02, 1.02);
 }
 
 .onefit-buttons-style-tahiti:active {
   color: var(--mineshaft) !important;
-  border: solid var(--mineshaft) 7px;
-  transform: scale(0.5, 0.5);
+  border: solid var(--mineshaft) 5px !important;
+  transform: scale(0.95, 0.95);
 }
 
 .onefit-buttons-style-danger {
@@ -902,20 +921,24 @@ h6 {
 
   border: 0;
   border-radius: 15px;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .onefit-buttons-style-danger:hover {
   color: var(--white) !important;
   border-bottom: solid var(--white) 5px;
+  border-top: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
+
   transform: scale(1.02, 1.02);
 }
 
 .onefit-buttons-style-danger:active {
   color: var(--red) !important;
   background-color: var(--white);
-  border: solid var(--red) 7px;
-  transform: scale(0.5, 0.5);
+  border: solid var(--red) 5px !important;
+  transform: scale(0.95, 0.95);
 }
 
 .application-error-msg {

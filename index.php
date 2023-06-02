@@ -800,6 +800,8 @@ rememberMe();
         }
       }
 
+      checkCoreScriptLoadState();
+
       // hide the loading curtain - fade out jquery
       $('#LoadCurtain').fadeOut('2500');
     });
