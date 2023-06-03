@@ -25,7 +25,7 @@ $output =
     $user_nationality =
     $account_active = null;
 
-if (!isset($_GET['giveme'])) $requestfor = "";
+if (!isset($_GET['giveme'])) $requestfor = "ui_data";
 else $requestfor = sanitizeMySQL($dbconn, $_GET['giveme']);
 
 try {

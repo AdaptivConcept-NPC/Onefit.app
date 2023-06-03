@@ -9,7 +9,7 @@ require('../functions.php');
 if ($dbconn->connect_error) die("Fatal Error");
 
 // 
-if (!isset($_GET['giveme'])) $requestfor = "";
+if (!isset($_GET['giveme'])) $requestfor = "ui_data";
 else $requestfor = sanitizeMySQL($dbconn, $_GET['giveme']);
 
 if (!isset($_GET['content'])) die("error: content requested not defined");

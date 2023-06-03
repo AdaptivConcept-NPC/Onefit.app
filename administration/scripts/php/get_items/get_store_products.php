@@ -25,7 +25,7 @@ $output =
     $product_tag =
     $product_image_url = null;
 
-if (!isset($_GET['giveme'])) $requestfor = "";
+if (!isset($_GET['giveme'])) $requestfor = "ui_data";
 else $requestfor = sanitizeMySQL($dbconn, $_GET['giveme']);
 
 try {

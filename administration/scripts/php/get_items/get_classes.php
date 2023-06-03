@@ -15,7 +15,7 @@ $compile = <<<_END
 <option value="noselection">Select</option>
 _END;
 
-if (!isset($_GET['giveme'])) $requestfor = "";
+if (!isset($_GET['giveme'])) $requestfor = "ui_data";
 else $requestfor = sanitizeMySQL($dbconn, $_GET['giveme']);
 
 try {

@@ -21,7 +21,7 @@ $compile = <<<_END
 <option value="none"> None </option>
 _END;
 
-if (!isset($_GET['giveme'])) $requestfor = "";
+if (!isset($_GET['giveme'])) $requestfor = "ui_data";
 else $requestfor = sanitizeMySQL($dbconn, $_GET['giveme']);
 
 try {

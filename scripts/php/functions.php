@@ -1399,10 +1399,10 @@ function getCommunityGroups()
         if ($rows == 0) {
             //there is no result 
             $output = <<<_END
-      <div class="p-4 text-center">
-        <span class="text-muted fs-5">No groups available.</span>
-      </div>
-      _END;
+            <div class="p-4 text-center">
+                <span class="text-muted fs-5">No groups available.</span>
+            </div>
+            _END;
         } else {
             for ($j = 0; $j < $rows; ++$j) {
                 $row = $result->fetch_array(MYSQLI_ASSOC);

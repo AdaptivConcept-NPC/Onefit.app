@@ -732,7 +732,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- Main Content -->
     <main id="main-content-container" class="container-lg" style="padding-bottom: 50px">
         <!-- Main Navigation Bar -->
-        <nav class="navbar navbar-lightz sticky-top navbar-stylez w-100 mb-4 py-4 top-down-grad-dark" style="border-radius: 25px; max-height: 100vh !important; border-top: var(--mineshaft) solid 0px;">
+        <nav id="main-navbar" class="navbar sticky-topz w-100 mb-4 py-4 top-down-grad-dark" style="border-radius: 25px; max-height: 100vh !important; border-top: var(--mineshaft) solid 0px;">
             <!-- App Function Buttons -->
             <div class="container d-flex gap-1 align-items-center">
                 <button id="app-notifications-btn" main-data-bs-target="#tabLatestSonav-notifications-btn" class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels d-none d-sm-block border-bottom border-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
@@ -10902,7 +10902,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                 // $('#twitter-social-panel').css('margin-left', '0px');
                 // $('#creation-tools-content-panel').css('margin-right', '0px');
 
-
+                // remove fixed top class from main navbar
+                $('#main-navbar').removeClass('fixed-top');
             } else {
                 $('#twitter-social-panel').css('top', '20vh');
                 $('#creation-tools-content-panel').css('top', '20vh');
@@ -10910,6 +10911,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                 // make sure to reset the margins to 0xp (deprecated)
                 // $('#twitter-social-panel').css('margin-left', '0px');
                 // $('#creation-tools-content-panel').css('margin-right', '0px');
+
+                // add fixed top class to main navbar
+                $('#main-navbar').addClass('fixed-top');
             }
         });
 

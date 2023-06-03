@@ -12,10 +12,12 @@ $userSubsGroupsList = $app_err_msg = $output = null;
 
 if (isset($_SESSION["currentUserAuth"])) {
   if ($_SESSION["currentUserAuth"] == true) {
-    $currentUser_Usrnm = mysqli_real_escape_string($dbconn, $_SESSION["currentUserAuth"]);
+    $currentUser_Usrnm = mysqli_real_escape_string($dbconn, $_SESSION["currentUserUsername"]);
 
     echo getUserCommunityGroupSubs();
   }
+} else {
+  die("Fatal Error: current user not authenticated.");
 }
 
 function getUserCommunityGroupSubs()
@@ -27,10 +29,11 @@ function getUserCommunityGroupSubs()
   try {
     //groups
     $sql = "SELECT cgm.group_mem_id, cgm.group_role, cgm.group_join_date, cgm.groups_group_ref_code,
-    grps.group_id, grps.group_name, grps.group_description, grps.group_category, grps.group_privacy, grps.administrators_username 
+    grps.*
     FROM community_group_members cgm
     INNER JOIN groups grps ON grps.group_ref_code = cgm.groups_group_ref_code 
     WHERE cgm.users_username = '$currentUser_Usrnm' AND cgm.active = 1 AND grps.group_category = 'indi'";
+    // grps.group_id, grps.group_name, grps.group_description, grps.group_category, grps.group_privacy, grps.administrators_username 
 
     $result = $dbconn->query($sql);
     if (!$result) die("A Fatal Error has occured. Please try again and if the problem persists, please contact the system administrator.");
@@ -68,7 +71,7 @@ function getUserCommunityGroupSubs()
                 <h3>$grps_name<span style="font-size: 10px">$grps_privacy</span></h3>
                 <p><span style="color: #ffa500">$grps_description</span></p>
                 <p>$grps_category</p>
-                <button class="null-btn shadow mt-4" onclick="openGroup('$grps_refcode')"><i class="fas fa-chevron-circle-right"></i> Open group</button>
+                <button class="onefit-buttons-style-light shadow mt-4" onclick="openGroup('$grps_refcode')"><i class="fas fa-chevron-circle-right"></i> Open group</button>
                 <p class="text-right" style="font-size: 8px">$grps_createdby</p>
                 <p class="text-right" style="font-size: 8px">$grps_createdate</p>
               </div>
@@ -76,6 +79,7 @@ function getUserCommunityGroupSubs()
           </div>
           _END;
       }
+      $output = $userSubsGroupsList;
     }
   } catch (\Throwable $th) {
     //throw $th;

@@ -21,7 +21,7 @@ $output =
     $administrators_username = null;
 
 // giveme param is required for determining content output type 
-if (!isset($_GET['giveme'])) $requestfor = "";
+if (!isset($_GET['giveme'])) $requestfor = "ui_data";
 else $requestfor = sanitizeMySQL($dbconn, $_GET['giveme']);
 
 // check username of admin from session data 

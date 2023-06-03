@@ -45,7 +45,10 @@ $(window).scroll(function () {
         // $('#twitter-social-panel').css('margin-left', '0px');
         // $('#creation-tools-content-panel').css('margin-right', '0px');
 
-
+        // fadeout and remove fixed top class from main navbar and fade back in
+        $('#main-navbar').fadeOut('slow');
+        $('#main-navbar').removeClass('fixed-top');
+        $('#main-navbar').fadeIn('slow');
     } else {
         $('#twitter-social-panel').css('top', '20vh');
         $('#creation-tools-content-panel').css('top', '20vh');
@@ -53,6 +56,11 @@ $(window).scroll(function () {
         // make sure to reset the margins to 0xp (deprecated)
         // $('#twitter-social-panel').css('margin-left', '0px');
         // $('#creation-tools-content-panel').css('margin-right', '0px');
+
+        // fadeout and add fixed top class to main navbar and fade back in
+        $('#main-navbar').fadeOut('slow');
+        $('#main-navbar').addClass('fixed-top');
+        $('#main-navbar').fadeIn('slow');
     }
 });
 

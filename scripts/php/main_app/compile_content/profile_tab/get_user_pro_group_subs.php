@@ -12,10 +12,12 @@ $proGroupsList = $app_err_msg = $output = null;
 
 if (isset($_SESSION["currentUserAuth"])) {
   if ($_SESSION["currentUserAuth"] == true) {
-    $currentUser_Usrnm = mysqli_real_escape_string($dbconn, $_SESSION["currentUserAuth"]);
+    $currentUser_Usrnm = mysqli_real_escape_string($dbconn, $_SESSION["currentUserUsername"]);
 
     echo getUserProGroupSubs();
   }
+} else {
+  die("Fatal Error: current user not authenticated.");
 }
 
 function getUserProGroupSubs()
@@ -27,10 +29,11 @@ function getUserProGroupSubs()
   try {
     //groups
     $sql = "SELECT pgm.group_mem_id, pgm.group_role, pgm.group_join_date, pgm.groups_group_ref_code,
-    grps.group_id, grps.group_name, grps.group_description, grps.group_category, grps.group_privacy, grps.administrators_username 
+    grps.* 
     FROM premium_group_members pgm
     INNER JOIN groups grps ON grps.group_ref_code = pgm.groups_group_ref_code 
     WHERE pgm.users_username = '$currentUser_Usrnm' AND pgm.active = 1 AND grps.group_category = 'pro'";
+    // grps.group_id, grps.group_name, grps.group_description, grps.group_category, grps.group_privacy, grps.administrators_username 
 
     $result = $dbconn->query($sql);
     if (!$result) die("A Fatal Error has occured. Please try again and if the problem persists, please contact the system administrator.");
@@ -68,7 +71,7 @@ function getUserProGroupSubs()
                 <h3>$grps_name<span style="font-size: 10px">$grps_privacy</span></h3>
                 <p><span style="color: #ffa500">$grps_description</span></p>
                 <p>$grps_category</p>
-                <button class="null-btn shadow mt-4" onclick="openGroup('$grps_refcode')"><i class="fas fa-chevron-circle-right"></i> Open group</button>
+                <button class="onefit-buttons-style-light shadow mt-4" onclick="openGroup('$grps_refcode')"><i class="fas fa-chevron-circle-right"></i> Open group</button>
                 <p class="text-right" style="font-size: 8px">$grps_createdby</p>
                 <p class="text-right" style="font-size: 8px">$grps_createdate</p>
               </div>
@@ -76,6 +79,7 @@ function getUserProGroupSubs()
           </div>
           _END;
       }
+      $output = $proGroupsList;
     }
   } catch (\Throwable $th) {
     //throw $th;
