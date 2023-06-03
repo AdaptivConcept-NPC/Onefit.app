@@ -23,7 +23,7 @@ if (isset($_GET['usernm'])) {
 
     try {
         //get the users activity timeline/history
-        $query = "SELECT * FROM `user_activity` WHERE `users_username` = '$username' ORDER BY `action_date` DESC LIMIT 100";
+        $query = "SELECT * FROM `user_activity` WHERE `users_username` = '$username' ORDER BY `action_date` DESC LIMIT 10";
         $result = $dbconn->query($query);
 
         if (!$result) die("An error occurred while trying to compile the requested data. [output - " . $dbconn->error . "]");

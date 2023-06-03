@@ -2410,6 +2410,31 @@ if (isset($_SESSION["currentUserAuth"])) {
                         Month, and Annual)
                     </span>
 
+                    <!-- carousel -->
+                    <div id="carouselExampleRide" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <!-- data-bs-ride="true" - carousels autoplay on page load by setting the ride option to carousel / When the ride option is set to true, rather than carousel, the carousel won’t automatically start to cycle on page load. Instead, it will only start after the first user interaction. -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="../media/assets/One-Logo.png" class="d-block w-100" alt="placeholder">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../media/assets/One-Logo-Black.png" class="d-block w-100" alt="placeholder">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../media/assets/One-Logo-Stroke.png" class="d-block w-100" alt="placeholder">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <!-- carousel -->
+
                     <img src="../media/assets/smartwatches/Watch Banner.png" alt="" class="img-fluid w-100 my-4 shadow" style="border-radius: 25px;">
 
                     <!-- Store Items Container -->
