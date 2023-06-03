@@ -102,6 +102,14 @@ function checkDirectoryInit($username)
     }
 }
 
+// Replace all characters that aren't letters and numbers with a hyphen - source: https://stackoverflow.com/questions/14114411/replace-all-characters-that-arent-letters-and-numbers-with-a-hyphen
+function clean($string)
+{
+    $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+
+    return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+}
+
 // function to check if username is an admin username or not
 function verifyAdminUsername($verif_username)
 {

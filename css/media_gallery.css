@@ -1,0 +1,23 @@
+/* source: https://codepen.io/arbaz_js/pen/BaBQmXJ */
+.media-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    /* background: teal; */
+    padding: 15px;
+}
+
+.media-container img {
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    transition: all 100ms ease-out;
+}
+
+.media-container img:hover {
+    transform: scale(1.04);
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+}

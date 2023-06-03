@@ -1382,6 +1382,7 @@ h6 {
 
 .content-panel-border-style-dark-bg {
   border-left: var(--tahitigold) solid 5px;
+  border-right: var(--tahitigold) solid 5px;
   border-bottom: var(--tahitigold) solid 5px;
   border-radius: 25px;
   color: var(--white);

@@ -165,6 +165,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <!-- My CSS styles -->
     <link rel="stylesheet" href="../css/styles.css" onload="coreScriptLoaded_custom_styles_css=true;" />
+    <link rel="stylesheet" href="../css/media_gallery.css" onload="coreScriptLoaded_custom_styles_css=true;" />
     <link rel="stylesheet" href="../css/digital-clock.css" onload="coreScriptLoaded_digiclock_css=true;" />
     <link rel="stylesheet" href="../css/timeline-styles.css" onload="coreScriptLoaded_timeline_css=true;" />
 
@@ -1681,7 +1682,116 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         </div>
                                         <!-- #v-sub-tab-pills-profile-subtab-media -->
                                         <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4" style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-media" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-profile-subtab-media">
-                                            hello world 3
+
+                                            <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                                                <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">perm_media</span> <span class="align-middle">Media</span></h5>
+                                                <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                                            </div>
+                                            <!-- inline/flex media tab subtabs controller btns -->
+                                            <div id="inline-media-content-tab-btns" class="d-grid justify-content-center w3-animate-bottom p-2 sticky-topz" style="background: #333; border-radius: 25px; overflow: hidden;">
+                                                <style>
+                                                    .force-inline-nav {
+                                                        flex-wrap: nowrap !important;
+                                                    }
+                                                </style>
+
+                                                <div class="w3-animate-bottom my-4 horizontal-scroll no-scroller p-4" style="overflow-y: hidden;" id="insights-subfeatures-nav-menu">
+                                                    <nav class="m-0">
+                                                        <div class="nav force-inline-nav nav-tabs border-0 gap-4" id="nav-tab-mediatab-subtabs-controller-container" role="tablist" style="border-color: #ffa500 !important">
+                                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;min-width: 130px;" id="nav-mediatab-main-sharedmedia-subtab" onclick="clickmediatabMainSubTabs('shared_media')" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-profile-media-subtab-sharedmedia" type="button" role="tab" aria-controls="v-sub-tab-pills-profile-media-subtab-sharedmedia" aria-selected="false" tabindex="-1">
+                                                                <span id="mediatab-main-navs-horizontal-rule-icon-sharedmedia" class="material-icons material-icons-outlined align-middle" style="display: block; font-size: 40px !important;">swap_calls</span><br>
+                                                                <span class="material-icons material-icons-outlined align-middle d-none" style="font-size: 20px !important;">
+                                                                    swap_calls
+                                                                </span>
+                                                                <span class="align-middle">Shared</span>
+                                                            </button>
+
+                                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative active" style="border-radius: 25px !important;min-width: 130px;" id="nav-mediatab-main-privatemedia-subtab" onclick="clickmediatabMainSubTabs('private_media')" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-profile-media-subtab-privatemedia" type="button" role="tab" aria-controls="v-sub-tab-pills-profile-media-subtab-privatemedia" aria-selected="true">
+                                                                <span id="mediatab-main-navs-horizontal-rule-icon-sharedmedia" class="material-icons material-icons-outlined align-middle" style="display: block; font-size: 40px !important;">lock</span><br>
+                                                                <span class="material-icons material-icons-round align-middle d-none" style="font-size: 20px !important;">
+                                                                    lock
+                                                                </span>
+                                                                <span class="align-middle">Private</span>
+                                                            </button>
+
+                                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;min-width: 130px;" id="nav-mediatab-main-videos-subtab" onclick="clickmediatabMainSubTabs('videos')" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-profile-media-subtab-videos" type="button" role="tab" aria-controls="v-sub-tab-pills-profile-media-subtab-videos" aria-selected="false" tabindex="-1">
+                                                                <span id="mediatab-main-navs-horizontal-rule-icon-sharedmedia" class="material-icons material-icons-outlined align-middle" style="display: block; font-size: 40px !important;">movie</span><br>
+                                                                <span class="material-icons material-icons-round align-middle d-none" style="font-size: 20px !important;">
+                                                                    movie
+                                                                </span>
+                                                                <span class="align-middle">Videos</span>
+                                                            </button>
+
+                                                        </div>
+                                                    </nav>
+
+                                                </div>
+                                            </div>
+                                            <!-- ./ inline/flex media tab subtabs controller btns -->
+
+                                            <!-- pmain media gallery tabs container -->
+                                            <div class="tab-content" id="v-pills-tab-profile-mediatab-main-subtabs">
+                                                <!-- #v-sub-tab-pills-profile-media-subtab-sharedmedia -->
+                                                <div id="v-sub-tab-pills-profile-media-subtab-sharedmedia" class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4" role="tabpanel" aria-labelledby="v-sub-tab-pills-profile-media-subtab-sharedmedia">
+                                                    <!-- style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" -->
+
+                                                    <h1 class="text-center d-gridz fs-1">
+                                                        <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
+                                                            swap_calls
+                                                        </span>
+                                                        <span class="align-middle">Shared media.</span>
+                                                    </h1>
+
+                                                    <hr class="text-white">
+
+                                                    <!-- media items grid container -->
+                                                    <div id="shared-media-grid-container" class="shared-media-grid-container p-4" style="border-radius: 25px; max-height: 100vh; overflow-y: auto;overflow-x: hidden;">
+
+                                                    </div>
+                                                    <!-- ./ media items grid container -->
+                                                </div>
+                                                <!-- #v-sub-tab-pills-profile-media-subtab-privatemedia -->
+                                                <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4 active show" id="v-sub-tab-pills-profile-media-subtab-privatemedia" role="tabpanel" aria-labelledby="v-sub-tab-pills-profile-media-subtab-privatemedia">
+                                                    <!-- style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" -->
+
+                                                    <h1 class="text-center d-gridz fs-1">
+                                                        <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
+                                                            lock
+                                                        </span>
+                                                        <span class="align-middle">Private media.</span>
+                                                    </h1>
+
+                                                    <hr class="text-white">
+
+
+                                                    <!-- media items grid container -->
+                                                    <div id="private-media-grid-container" class="private-media-grid-container p-4" style="border-radius: 25px; max-height: 100vh; overflow-y: auto;overflow-x: hidden;">
+
+                                                    </div>
+                                                    <!-- ./ media items grid container -->
+                                                </div>
+                                                <!-- #v-sub-tab-pills-profile-media-subtab-videos -->
+                                                <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4" id="v-sub-tab-pills-profile-media-subtab-videos" role="tabpanel" aria-labelledby="v-sub-tab-pills-profile-media-subtab-videos">
+                                                    <!-- style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" -->
+
+                                                    <h1 class="text-center d-gridz fs-1"><span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
+                                                            movie
+                                                        </span>
+                                                        <span class="align-middle">Videos.</span>
+                                                    </h1>
+
+                                                    <hr class="text-white">
+
+
+                                                    <!-- media items grid container -->
+                                                    <div id="videos-media-grid-container" class="grid-container videos-media-grid-container p-4" style="border-radius: 25px; max-height: 100vh; overflow-y: auto;overflow-x: hidden;">
+
+                                                    </div>
+                                                    <!-- ./ media items grid container -->
+                                                </div>
+                                            </div>
+                                            <!-- ./ main media gallery tabs container -->
+
                                         </div>
                                         <!-- #v-sub-tab-pills-profile-subtab-resources -->
                                         <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4" style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-resources" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-profile-subtab-resources">
@@ -6247,7 +6357,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                         <div class="w3-animate-bottom my-4 horizontal-scroll no-scroller p-4" style="overflow-y: hidden;" id="insights-subfeatures-nav-menu">
                             <nav class="m-0">
-                                <div class="nav force-inline-nav nav-tabs border-0" id="nav-tab-mediatab-subtabs-controller-container" role="tablist" style="border-color: #ffa500 !important">
+                                <div class="nav force-inline-nav nav-tabs border-0 gap-4" id="nav-tab-mediatab-subtabs-controller-container" role="tablist" style="border-color: #ffa500 !important">
                                     <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative active" style="border-radius: 25px !important;min-width: 130px;" id="nav-mediatab-main-sharedmedia-subtab" onclick="clickmediatabMainSubTabs('shared_media')" data-bs-toggle="pill" data-bs-target="#v-sub-tab-pills-media-subtab-sharedmedia" type="button" role="tab" aria-controls="v-sub-tab-pills-media-subtab-sharedmedia" aria-selected="true">
                                         <span id="mediatab-main-navs-horizontal-rule-icon-sharedmedia" class="material-icons material-icons-outlined align-middle" style="display: block; font-size: 40px !important;">swap_calls</span><br>
                                         <span class="material-icons material-icons-outlined align-middle d-none" style="font-size: 20px !important;">
@@ -6295,97 +6405,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <hr class="text-white">
 
                             <!-- media items grid container -->
-                            <div id="shared-media-grid-container" class="grid-container p-4" style="border-radius: 25px; max-height: 100vh; overflow-y: auto;overflow-x: hidden;">
-                                <!-- media items grid cards -->
-                                <div class="grid-tile media-item-tile p-2 mx-0 center-container shadow d-flex align-items-end justify-content-between" style="overflow: hidden; max-height: 200px; background-image: url('../media/assets/OnefitNet Profile Pic.png');">
-                                    <button class="onefit-buttons-style-tahiti p-3 d-grid">
-                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
-                                            open_in_new
-                                        </span>
-                                        <span class="align-middle" style="font-size: 10px !important;">View.</span>
-                                    </button>
+                            <div id="shared-media-grid-container" class="shared-media-grid-container p-4" style="border-radius: 25px; max-height: 100vh; overflow-y: auto;overflow-x: hidden;">
 
-                                    <!-- media info collapse -->
-                                    <a style="text-decoration: none;color: #ffa500 !important;" data-bs-toggle="collapse" href="#friend-card-info-userid" role="button" aria-expanded="false" aria-controls="friend-card-info-userid" class="collapsed">
-                                        <span class="material-icons material-icons-round align-middle text-white" style="font-size: 20px !important;">
-                                            info
-                                        </span>
-                                        <span class="align-middle text-white">info.</span>
-                                    </a>
-                                    <span id="friend-card-info-userid" class="collapse p-1 shadow" style="background-color: rgb(52, 52, 52, 0.5);">
-                                        Users
-                                        biography here.media info here.Users
-                                        biography here.media info here.
-                                    </span>
-                                    <!-- media info collapse -->
-
-                                </div>
-                                <div class="grid-tile media-item-tile p-2 mx-0 center-container shadow d-flex align-items-end justify-content-between" style="overflow: hidden; max-height: 200px; background-image: url('../media/assets/lmm_logo_pattern_blackdark.png');">
-                                    <button class="onefit-buttons-style-tahiti p-3 d-grid">
-                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
-                                            open_in_new
-                                        </span>
-                                        <span class="align-middle" style="font-size: 10px !important;">View.</span>
-                                    </button>
-
-                                    <!-- media info collapse -->
-                                    <a style="text-decoration: none;color: #ffa500 !important;" data-bs-toggle="collapse" href="#friend-card-info-userid" role="button" aria-expanded="false" aria-controls="friend-card-info-userid" class="collapsed">
-                                        <span class="material-icons material-icons-round align-middle text-white" style="font-size: 20px !important;">
-                                            info
-                                        </span>
-                                        <span class="align-middle text-white">info.</span>
-                                    </a>
-                                    <span id="friend-card-info-userid" class="collapse p-1 shadow" style="background-color: rgb(52, 52, 52, 0.5);">
-                                        Users
-                                        biography here.media info here.Users
-                                        biography here.media info here.
-                                    </span>
-                                    <!-- media info collapse -->
-                                </div>
-                                <div class="grid-tile media-item-tile p-2 mx-0 center-container shadow d-flex align-items-end justify-content-between" style="overflow: hidden; max-height: 200px; background-image: url('../media/images/fitness/7.jpg');">
-                                    <button class="onefit-buttons-style-tahiti p-3 d-grid">
-                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
-                                            open_in_new
-                                        </span>
-                                        <span class="align-middle" style="font-size: 10px !important;">View.</span>
-                                    </button>
-
-                                    <!-- media info collapse -->
-                                    <a style="text-decoration: none;color: #ffa500 !important;" data-bs-toggle="collapse" href="#friend-card-info-userid" role="button" aria-expanded="false" aria-controls="friend-card-info-userid" class="collapsed">
-                                        <span class="material-icons material-icons-round align-middle text-white" style="font-size: 20px !important;">
-                                            info
-                                        </span>
-                                        <span class="align-middle text-white">info.</span>
-                                    </a>
-                                    <span id="friend-card-info-userid" class="collapse p-1 shadow" style="background-color: rgb(52, 52, 52, 0.5);">
-                                        Users
-                                        biography here.media info here.Users
-                                        biography here.media info here.
-                                    </span>
-                                    <!-- media info collapse -->
-                                </div>
-                                <div class="grid-tile media-item-tile p-2 mx-0 center-container shadow d-flex align-items-end justify-content-between" style="overflow: hidden; max-height: 200px; background-image: url('../media/website_pexels/pexels-cliff-booth-4056964.jpg');">
-                                    <button class="onefit-buttons-style-tahiti p-3 d-grid">
-                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
-                                            open_in_new
-                                        </span>
-                                        <span class="align-middle" style="font-size: 10px !important;">View.</span>
-                                    </button>
-
-                                    <!-- media info collapse -->
-                                    <a style="text-decoration: none;color: #ffa500 !important;" data-bs-toggle="collapse" href="#friend-card-info-userid" role="button" aria-expanded="false" aria-controls="friend-card-info-userid" class="collapsed">
-                                        <span class="material-icons material-icons-round align-middle text-white" style="font-size: 20px !important;">
-                                            info
-                                        </span>
-                                        <span class="align-middle text-white">info.</span>
-                                    </a>
-                                    <span id="friend-card-info-userid" class="collapse p-1 shadow" style="background-color: rgb(52, 52, 52, 0.5);">
-                                        Users
-                                        biography here.media info here.Users
-                                        biography here.media info here.
-                                    </span>
-                                    <!-- media info collapse -->
-                                </div>
                             </div>
                             <!-- ./ media items grid container -->
                         </div>
@@ -6404,97 +6425,8 @@ if (isset($_SESSION["currentUserAuth"])) {
 
 
                             <!-- media items grid container -->
-                            <div id="private-media-grid-container" class="grid-container p-4" style="border-radius: 25px; max-height: 100vh; overflow-y: auto;overflow-x: hidden;">
-                                <!-- media items grid cards -->
-                                <div class="grid-tile media-item-tile p-2 mx-0 center-container shadow d-flex align-items-end justify-content-between" style="overflow: hidden; max-height: 200px; background-image: url('../media/assets/OnefitNet Profile Pic.png');">
-                                    <button class="onefit-buttons-style-tahiti p-3 d-grid">
-                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
-                                            open_in_new
-                                        </span>
-                                        <span class="align-middle" style="font-size: 10px !important;">View.</span>
-                                    </button>
+                            <div id="private-media-grid-container" class="private-media-grid-container p-4" style="border-radius: 25px; max-height: 100vh; overflow-y: auto;overflow-x: hidden;">
 
-                                    <!-- media info collapse -->
-                                    <a style="text-decoration: none;color: #ffa500 !important;" data-bs-toggle="collapse" href="#friend-card-info-userid" role="button" aria-expanded="false" aria-controls="friend-card-info-userid" class="collapsed">
-                                        <span class="material-icons material-icons-round align-middle text-white" style="font-size: 20px !important;">
-                                            info
-                                        </span>
-                                        <span class="align-middle text-white">info.</span>
-                                    </a>
-                                    <span id="friend-card-info-userid" class="collapse p-1 shadow" style="background-color: rgb(52, 52, 52, 0.5);">
-                                        Users
-                                        biography here.media info here.Users
-                                        biography here.media info here.
-                                    </span>
-                                    <!-- media info collapse -->
-
-                                </div>
-                                <div class="grid-tile media-item-tile p-2 mx-0 center-container shadow d-flex align-items-end justify-content-between" style="overflow: hidden; max-height: 200px; background-image: url('../media/assets/lmm_logo_pattern_blackdark.png');">
-                                    <button class="onefit-buttons-style-tahiti p-3 d-grid">
-                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
-                                            open_in_new
-                                        </span>
-                                        <span class="align-middle" style="font-size: 10px !important;">View.</span>
-                                    </button>
-
-                                    <!-- media info collapse -->
-                                    <a style="text-decoration: none;color: #ffa500 !important;" data-bs-toggle="collapse" href="#friend-card-info-userid" role="button" aria-expanded="false" aria-controls="friend-card-info-userid" class="collapsed">
-                                        <span class="material-icons material-icons-round align-middle text-white" style="font-size: 20px !important;">
-                                            info
-                                        </span>
-                                        <span class="align-middle text-white">info.</span>
-                                    </a>
-                                    <span id="friend-card-info-userid" class="collapse p-1 shadow" style="background-color: rgb(52, 52, 52, 0.5);">
-                                        Users
-                                        biography here.media info here.Users
-                                        biography here.media info here.
-                                    </span>
-                                    <!-- media info collapse -->
-                                </div>
-                                <div class="grid-tile media-item-tile p-2 mx-0 center-container shadow d-flex align-items-end justify-content-between" style="overflow: hidden; max-height: 200px; background-image: url('../media/images/fitness/7.jpg');">
-                                    <button class="onefit-buttons-style-tahiti p-3 d-grid">
-                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
-                                            open_in_new
-                                        </span>
-                                        <span class="align-middle" style="font-size: 10px !important;">View.</span>
-                                    </button>
-
-                                    <!-- media info collapse -->
-                                    <a style="text-decoration: none;color: #ffa500 !important;" data-bs-toggle="collapse" href="#friend-card-info-userid" role="button" aria-expanded="false" aria-controls="friend-card-info-userid" class="collapsed">
-                                        <span class="material-icons material-icons-round align-middle text-white" style="font-size: 20px !important;">
-                                            info
-                                        </span>
-                                        <span class="align-middle text-white">info.</span>
-                                    </a>
-                                    <span id="friend-card-info-userid" class="collapse p-1 shadow" style="background-color: rgb(52, 52, 52, 0.5);">
-                                        Users
-                                        biography here.media info here.Users
-                                        biography here.media info here.
-                                    </span>
-                                    <!-- media info collapse -->
-                                </div>
-                                <div class="grid-tile media-item-tile p-2 mx-0 center-container shadow d-flex align-items-end justify-content-between" style="overflow: hidden; max-height: 200px; background-image: url('../media/website_pexels/pexels-cliff-booth-4056964.jpg');">
-                                    <button class="onefit-buttons-style-tahiti p-3 d-grid">
-                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
-                                            open_in_new
-                                        </span>
-                                        <span class="align-middle" style="font-size: 10px !important;">View.</span>
-                                    </button>
-
-                                    <!-- media info collapse -->
-                                    <a style="text-decoration: none;color: #ffa500 !important;" data-bs-toggle="collapse" href="#friend-card-info-userid" role="button" aria-expanded="false" aria-controls="friend-card-info-userid" class="collapsed">
-                                        <span class="material-icons material-icons-round align-middle text-white" style="font-size: 20px !important;">
-                                            info
-                                        </span>
-                                        <span class="align-middle text-white">info.</span>
-                                    </a>
-                                    <span id="friend-card-info-userid" class="collapse p-1 shadow" style="background-color: rgb(52, 52, 52, 0.5);">
-                                        Users
-                                        biography here.media info here.Users
-                                        biography here.media info here.
-                                    </span>
-                                    <!-- media info collapse -->
-                                </div>
                             </div>
                             <!-- ./ media items grid container -->
                         </div>
@@ -6512,7 +6444,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
 
                             <!-- media items grid container -->
-                            <div id="videos-media-grid-container" class="grid-container p-4" style="border-radius: 25px; max-height: 100vh; overflow-y: auto;overflow-x: hidden;">
+                            <div id="videos-media-grid-container" class="grid-container videos-media-grid-container p-4" style="border-radius: 25px; max-height: 100vh; overflow-y: auto;overflow-x: hidden;">
                                 <!-- media items grid cards -->
                                 <div class="grid-tile media-item-tile p-2 mx-0 center-container shadow d-flex align-items-end justify-content-between" style="overflow: hidden; max-height: 200px; background-image: url('../media/assets/OnefitNet Profile Pic.png');">
                                     <button class="onefit-buttons-style-tahiti p-3 d-grid">
@@ -11182,16 +11114,17 @@ if (isset($_SESSION["currentUserAuth"])) {
                     } else {
                         switch (dir) {
                             case 'shared':
-                                $('#shared-media-grid-container').html(data);
+                                $('.shared-media-grid-container').html(data);
                                 break;
                             case 'private':
-                                $('#private-media-grid-container').html(data);
+                                $('.private-media-grid-container').html(data);
                                 break;
                             case 'video':
-                                $('#video-media-grid-container').html(data);
+                                $('.video-media-grid-container').html(data);
                                 break;
                             case 'audio':
                                 // $('#').html(data); do nothing, no container available atm
+                                console.log("$.getUsersMediaFiles -> Audio gallery unavailable.");
                                 break;
 
                             default:
