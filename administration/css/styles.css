@@ -172,6 +172,14 @@ body {
     font-size: 20px !important;
 }
 
+.general-modal-style {
+    border-radius: 25px !important;
+    overflow-x: hidden !important;
+    background-color: var(--mineshaft);
+    color: var(--white);
+    font-size: 18px !important;
+}
+
 /* Snackbar styling */
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
