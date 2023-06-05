@@ -1,7 +1,7 @@
 <?php
 session_start();
 require("../../../../../config.php");
-require_once("../../../../../functions.php");
+require("../../../../../functions.php");
 
 //test connection - if fail then die
 if ($dbconn->connect_error) die("Fatal Error");
@@ -13,11 +13,15 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
     // execute query
     $getDay = sanitizeMySQL($dbconn, $_GET['day']);
     $getGrpRef = sanitizeMySQL($dbconn, $_GET['gref']);
-    $when = sanitizeMySQL($dbconn, $_GET['when']) || 'this'; // this / last / next
+
+    if (isset($_GET['when'])) $when = sanitizeMySQL($dbconn, $_GET['when']); // this / last / next
+    else  $when = 'this';
 
     $dayNum = date("N", strtotime("$getDay $when week"));
 
     $dayDateThisWeek = date('Y-m-d', strtotime("$getDay $when week"));
+
+    echo "dayDateThisWeek: $dayDateThisWeek <br/>";
 
     if ($getGrpRef == "editbar") {
         # compile a form for editing the title and rpe and bars overall
@@ -119,7 +123,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                 </div>
                 <hr class="text-dark">
                 <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                    <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('$schedule_day','$getGrpRef')">
+                    <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.loadTeamsActivityCaptureForm('$schedule_day','$getGrpRef')">
                         <span class="material-icons material-icons-round align-middle">
                             add_circle
                         </span>
@@ -151,17 +155,17 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
             <p class="text-center fs-5 fw-bold comfortaa-font">$schedule_date</p>
             _END;
 
-            $result->close();
-            $dbconn->close();
-
             echo $formHTML;
         } catch (\Throwable $th) {
             //throw $th;
-            $result->close();
-            $dbconn->close();
             echo "exception error: [indi edit-add new activity] " . $th->getMessage;
         }
+
+        $result = null;
+        $dbconn->close();
     }
+} else {
+    die("Error: No day or grcode provided");
 }
 
 // function compileSelectInputExerciseList()

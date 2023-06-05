@@ -31,6 +31,9 @@ echo "<br/>";
 print_r($isNull);
 echo "<br/>";
 echo "<br/>";
+print_r(array_combine($fields, $type));
+echo "<br/>";
+echo "<br/>";
 
 ?>
 

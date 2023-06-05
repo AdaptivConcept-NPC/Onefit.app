@@ -70,7 +70,7 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
             </div>
             <hr class="text-dark">
             <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('$paramDayName','$grcode')">
+                <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.loadTeamsActivityCaptureForm('$paramDayName','$grcode')">
                     <span class="material-icons material-icons-round align-middle">
                         add_circle
                     </span>
@@ -137,7 +137,7 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
             </div>-->
             <hr class="text-dark">
             <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="editAddNewActivityModal('$schedule_day','$grcode')">
+                <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.loadTeamsActivityCaptureForm('$schedule_day','$grcode')">
                     <span class="material-icons material-icons-round align-middle">
                         add_circle
                     </span>

@@ -356,9 +356,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
             </div>
         </div>
-        <nav class="text-center text-center p-4 fixed-bottom" alt="">
-            <p class="navbar-brand fs-1 text-white comfortaa-font">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></p>
-            <p class="text-center comfortaa-font">Loading. Please wait.</p>
+        <nav class="text-center text-center p-4 fixed-bottom d-grid justify-content-center">
+            <p id="loadtime-output-label" class="text-center comfortaa-font mt-2 mb-4 d-none">Loading. Please wait.</p>
+            <div class="progress my-4 rounded-pill shadow" style="height:20px;max-width:500px;border-radius:50rem!important;background-color:var(--tahitigold)">
+                <div id="app-load-progressbar" class="progress-bar text-center px-1 fw-bold" role="progressbar" aria-label="App load progress" style="width: 10%; border-right: 0px solid rgb(255, 165, 0); background-color: var(--white) !important;color:var(--mineshaft)!important;font-size:8px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+
+            <p class="navbar-brand fs-1 text-white comfortaa-font mb-5">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">™</span></p>
         </nav>
     </div>
     <!-- ./Load Curtain -->
@@ -5041,6 +5045,26 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <h5 class="fs-1">Team Athletics</h5>
                                     </div>
 
+                                    <!-- default main team selection -->
+                                    <div class="d-grid gap-2 py-4 justify-content-center">
+                                        <h5 class="fs-3 text-center">⚽️ Switch Teams. 🏀</h5>
+                                        <select id="trainingSubTabMainTeamSelection" onchange="$.trainingSubTabMainTeamSelection(this.value)" class="form-select form-select-lg mb-3 team-selection-list" aria-label=".form-select-lg example">
+                                            <option value="noselection" selected="">⚽️ Switch Teams. 🏀</option>
+                                            <option value="tst_grp_0001"> Test Group - Teams </option>
+                                            <option value="tst_grp_0003"> Test Group - Pro Community </option>
+                                        </select>
+                                        <p>
+                                            <span class="material-icons material-icons-outlined align-middle" style="font-size: 12xp !important;">
+                                                info
+                                            </span>
+                                            <span class="align-middle"> Please select a Team to view their training data. </span>
+                                        </p>
+                                        <div class="form-check form-switch d-flex gap-2 align-items-center">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="myTeamsOnlyCheckChecked_FixtureAdd" checked="">
+                                            <label class="form-check-label poppins-font text-truncate" for="myTeamsOnlyCheckChecked_FixtureAdd">My Teams only?</label>
+                                        </div>
+                                    </div>
+
                                     <hr class="text-white">
 
                                     <!-- Team Athletics Training Panel -->
@@ -5776,7 +5800,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <hr class="text-dark">
 
                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.editAddNewActivityModal('monday','group_ref_code_here')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.loadTeamsActivityCaptureForm('monday','group_ref_code_here')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
                                                             <span class="material-icons material-icons-round align-middle">
                                                                 add_circle
                                                             </span>
@@ -5812,7 +5836,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <hr class="text-dark">
 
                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.editAddNewActivityModal('tuesday','group_ref_code_here')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.loadTeamsActivityCaptureForm('tuesday','group_ref_code_here')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
                                                             <span class="material-icons material-icons-round align-middle">
                                                                 add_circle
                                                             </span>
@@ -5848,7 +5872,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <hr class="text-dark">
 
                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.editAddNewActivityModal('wednesday','group_ref_code_here')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="loadTeamsActivityCaptureForm('wednesday')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
                                                             <span class="material-icons material-icons-round align-middle">
                                                                 add_circle
                                                             </span>
@@ -5884,7 +5908,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <hr class="text-dark">
 
                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.editAddNewActivityModal('thursday','group_ref_code_here')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.loadTeamsActivityCaptureForm('thursday','group_ref_code_here')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
                                                             <span class="material-icons material-icons-round align-middle">
                                                                 add_circle
                                                             </span>
@@ -5920,7 +5944,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <hr class="text-dark">
 
                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.editAddNewActivityModal('friday','group_ref_code_here')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.loadTeamsActivityCaptureForm('friday','group_ref_code_here')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
                                                             <span class="material-icons material-icons-round align-middle">
                                                                 add_circle
                                                             </span>
@@ -5956,7 +5980,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <hr class="text-dark">
 
                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.editAddNewActivityModal('saturday','group_ref_code_here')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.loadTeamsActivityCaptureForm('saturday','group_ref_code_here')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
                                                             <span class="material-icons material-icons-round align-middle">
                                                                 add_circle
                                                             </span>
@@ -5992,7 +6016,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <hr class="text-dark">
 
                                                     <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.editAddNewActivityModal('sunday','group_ref_code_here')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.loadTeamsActivityCaptureForm('sunday','group_ref_code_here')" data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
                                                             <span class="material-icons material-icons-round align-middle">
                                                                 add_circle
                                                             </span>
@@ -9268,6 +9292,167 @@ if (isset($_SESSION["currentUserAuth"])) {
             plugins: [plugin]
         });
 
+        // 
+        function updateLoadProgressBar(progress) {
+            // calculate the progress (12 initialization steps)
+            var progressLength = (progress / 12) * 100;
+
+            console.log("LoadCurtain Progressbar: " + progressLength + " %");
+
+            if (progress == 12) {
+                $('#app-load-progressbar').html(`<span class="material-icons material-icons-round align-middle" style="font-size:16px!important;color:var(--green)!important;"> check_circle </span>`);
+            } else {
+                $('#app-load-progressbar').html(`${progressLength}%`);
+            }
+
+            $('#app-load-progressbar').css('width', `${progressLength}%`);
+
+            $('#app-load-progressbar').attr('aria-valuenow', progressLength);
+            // $('#app-load-progressbar').attr('aria-valuemin', 0);
+            // $('#app-load-progressbar').attr('aria-valuemax', 100);
+        }
+
+
+        /* Step_0: function to load the Global UI tools */
+        function loadGlobalUI(currentUser) {
+
+            $.getIndiExercises('ui_data', '#add-to-calender-activity-selection');
+            $.getTeamsSelectInputList('teams');
+            $.getUserChallenges(currentUser);
+            // load fp widgets
+            $.getFitnessProgressionUIWidgets(currentUser, 'bar');
+            $.getFitnessProgressionUIWidgets(currentUser, 'mini');
+            // get the activity tracker stats summary widget
+            $.getActivityTrackerStatsSummaryWidget();
+            // check if current_app_tab is set and has a value in localStorage, else set default value: TabHome
+            const currentAppTab = localStorage.getItem('current_app_tab');
+            switchCurrentAppTab(currentAppTab);
+            // call to function for checking localstorage values and either show or hide side panels
+            $.checkSidePanelVisibility();
+
+            /* move the progress bar forward */
+            updateLoadProgressBar(1);
+            console.log("loadGlobalUI");
+        }
+
+        /* Step_1: functions to load data for Dashboard Main Tab */
+        function loadDashboard(currentUser) {
+            $.getUserWeekActivities(currentUser, '#week-activities-list-container', formatDate(Date.now()));
+
+            /* move the progress bar forward */
+            updateLoadProgressBar(2);
+            console.log("loadDashboard");
+        }
+
+        /* Step_2: functions to load data for Profile Main Tab */
+        function loadProfile(currentUser) {
+            $.getUserProfileHeader(currentUser);
+
+            /* move the progress bar forward */
+            updateLoadProgressBar(3);
+            console.log("loadProfile");
+        }
+
+        /* Step_3: functions to load data for Discovery Main Tab */
+        function loadDiscovery(currentUser) {
+
+            /* move the progress bar forward */
+            updateLoadProgressBar(4);
+            console.log("loadDiscovery");
+        }
+
+        /* Step_4: functions to load data for Studio Main Tab */
+        function loadStudio(currentUser) {
+
+            /* move the progress bar forward */
+            updateLoadProgressBar(5);
+            console.log("loadStudio");
+        }
+
+        /* Step_5: functions to load data for Store Main Tab */
+        function loadStore(currentUser) {
+            // load store products
+            $.getStoreProducts('ui_data', '#store-smart-watch-grid-container');
+
+            /* move the progress bar forward */
+            updateLoadProgressBar(6);
+            console.log("loadStore");
+        }
+
+        /* Step_6: functions to load data for Insights Main Tab */
+        function loadInsights(currentUser) {
+            loadActivityCalender();
+            getCurrentWeekStartEndDates();
+            $.getUserActivityTimeline(currentUser);
+            $.getTeamMatchSchedule('init');
+            // load the weekly activiies bar chart under Teams athletics training (insights tab)
+            $.populateWeeklyActivityBarChart('this');
+            $.populateWeeklyAssessmentsHorizCardContainer('this');
+            // call the function to update the users activity tracker charts from the db - use vanillajs ajax to compile the data
+            compileUserActivityTrackerCharts(currentUser);
+
+            /* move the progress bar forward */
+            updateLoadProgressBar(7);
+            console.log("loadInsights");
+        }
+
+        /* Step_7: functions to load data for Achievements Main Tab */
+        function loadAchievements(currentUser) {
+
+            /* move the progress bar forward */
+            updateLoadProgressBar(8);
+            console.log("loadAchievements");
+        }
+
+        /* Step_8: functions to load data for Media Main Tab */
+        function loadMedia(currentUser) {
+            $.getUsersMediaFiles();
+
+            /* move the progress bar forward */
+            updateLoadProgressBar(9);
+            console.log("loadMedia");
+        }
+
+        /* Step_9: functions to load data for Communications Main Tab */
+        function loadCommunication(currentUser) {
+
+            /* move the progress bar forward */
+            updateLoadProgressBar(10);
+            console.log("loadCommunication");
+        }
+
+        /* Step_10: functions to load data for Messages Main Tab */
+        function loadMessages(currentUser) {
+
+            /* move the progress bar forward */
+            updateLoadProgressBar(11);
+            console.log("loadMessages");
+        }
+
+        /* Step_11: functions to load data for Preferences Main Tab */
+        function loadPreferences(currentUser) {
+            /* move the progress bar forward */
+            updateLoadProgressBar(12);
+            console.log("loadPreferences");
+        }
+        /* Step_12: finalize the App loading by providing users with access to interaction with UI */
+        function finalizeAppLoading(currentUser) {
+            // hide the loading curtain - fade out
+            // var curtain = document.getElementById("LoadCurtain");
+            // curtain.style.display = "none";
+            // set timeout and then fadeout after 3000ms / 3s
+            setTimeout(() => {
+                $('#LoadCurtain').fadeOut('2500');
+            }, 3000);
+
+            // Show snackbar at the end of this function
+            showSnackbar('Data has been refreshed.', 'alert_general', 'long_15000');
+
+            console.log("finalizeAppLoading");
+        }
+
+        // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
         function initializeContent(auth, usernm) {
             auth = auth || "init";
             usernm = usernm || "init";
@@ -9279,29 +9464,63 @@ if (isset($_SESSION["currentUserAuth"])) {
             checkCoreScriptLoadState();
 
             if ((auth == true || auth == 1) || (auth === "init" && usernm === "init")) {
+                // call initialization sub-functions 
+
+
+
+                /* Step_0: function to load the Global UI tools */
+                loadGlobalUI(usernm);
+
+                /* Step_1: functions to load data for Dashboard Main Tab */
+                loadDashboard(usernm);
+
+                /* Step_2: functions to load data for Profile Main Tab */
+                loadProfile(usernm);
+
+                /* Step_3: functions to load data for Discovery Main Tab */
+                loadDiscovery(usernm);
+
+                /* Step_4: functions to load data for Studio Main Tab */
+                loadStudio(usernm);
+
+                /* Step_5: functions to load data for Store Main Tab */
+                loadStore(usernm);
+
+                /* Step_6: functions to load data for Insights Main Tab */
+                loadInsights(usernm);
+
+                /* Step_7: functions to load data for Achievements Main Tab */
+                loadAchievements(usernm);
+
+                /* Step_8: functions to load data for Media Main Tab */
+                loadMedia(usernm);
+
+                /* Step_9: functions to load data for Communications Main Tab */
+                loadCommunication(usernm);
+
+                /* Step_10: functions to load data for Messages Main Tab */
+                loadMessages(usernm);
+
+                /* Step_11: functions to load data for Preferences Main Tab */
+                loadPreferences(usernm);
+
+                /* Step_12: finalize the App loading by providing users with access to interaction with UI */
+                finalizeAppLoading(usernm);
+
+
+
+                // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
                 //call all client functions
                 //alert("auth = true | User: " + usernm);
-                loadActivityCalender();
-                getCurrentWeekStartEndDates();
 
-                $.getIndiExercises('ui_data', '#add-to-calender-activity-selection');
-
-                $.getUserActivityTimeline(usernm);
-                $.getUserWeekActivities(usernm, '#week-activities-list-container', formatDate(Date.now()));
-                $.getTeamMatchSchedule('init');
-
-                $.getTeamsSelectInputList('teams');
-
-                $.getUserChallenges(usernm);
-
-                $.getUserProfileHeader(usernm);
                 // loadUserSocials();
                 // loadUserChallenges();
                 // loadUserChat();
                 // loadUserFriends();
                 // loadUserGroups();
                 // loadUserMedia();
-                $.getUsersMediaFiles();
+
                 // loadUserNotifications();
                 // loadUserPref();
                 // loadUserSaves();
@@ -9314,13 +9533,6 @@ if (isset($_SESSION["currentUserAuth"])) {
                 // loadCommunityMedia();
                 // loadCommunityResources();
                 // loadCommunityRewards();
-
-                // load store products
-                $.getStoreProducts('ui_data', '#store-smart-watch-grid-container');
-                // load fp widgets
-                $.getFitnessProgressionUIWidgets(usernm, 'bar');
-                $.getFitnessProgressionUIWidgets(usernm, 'mini');
-
 
             } else {
                 //call guest applicable functions
@@ -9335,31 +9547,32 @@ if (isset($_SESSION["currentUserAuth"])) {
                 // loadCommunityRewards();
             }
 
-            // get the activity tracker stats summary widget
-            $.getActivityTrackerStatsSummaryWidget();
+            // // get the activity tracker stats summary widget
+            // $.getActivityTrackerStatsSummaryWidget();
 
-            // check if current_app_tab is set and has a value in localStorage, else set default value: TabHome
-            const currentAppTab = localStorage.getItem('current_app_tab');
-            switchCurrentAppTab(currentAppTab);
+            // // check if current_app_tab is set and has a value in localStorage, else set default value: TabHome
+            // const currentAppTab = localStorage.getItem('current_app_tab');
+            // switchCurrentAppTab(currentAppTab);
 
-            // load the weekly activiies bar chart under Teams athletics training (insights tab)
-            $.populateWeeklyActivityBarChart('this');
-            $.populateWeeklyAssessmentsHorizCardContainer('this');
+            // // load the weekly activiies bar chart under Teams athletics training (insights tab)
+            // $.populateWeeklyActivityBarChart('this');
+            // $.populateWeeklyAssessmentsHorizCardContainer('this');
 
-            // call the function to update the users activity tracker charts from the db - use vanillajs ajax to compile the data
-            compileUserActivityTrackerCharts(usernm);
+            // // call the function to update the users activity tracker charts from the db - use vanillajs ajax to compile the data
+            // compileUserActivityTrackerCharts(usernm);
 
-            // call to function for checking localstorage values and either show or hide side panels
-            $.checkSidePanelVisibility();
+            // // call to function for checking localstorage values and either show or hide side panels
+            // $.checkSidePanelVisibility();
 
-            // hide the loading curtain - fade out
-            // var curtain = document.getElementById("LoadCurtain");
-            // curtain.style.display = "none";
-            $('#LoadCurtain').fadeOut('2500');
+            // // hide the loading curtain - fade out
+            // // var curtain = document.getElementById("LoadCurtain");
+            // // curtain.style.display = "none";
+            // $('#LoadCurtain').fadeOut('2500');
 
-            // Show snackbar at the end of this function
-            showSnackbar('Data has been refreshed.', 'alert_general', 'long_15000');
+            // // Show snackbar at the end of this function
+            // showSnackbar('Data has been refreshed.', 'alert_general', 'long_15000');
         }
+        // ./end initializeContent()
 
         // document.addEventListener('DOMContentLoaded', () => {
         //     // check online connectivity log on console - if offline show the offline curtain
@@ -11689,25 +11902,57 @@ if (isset($_SESSION["currentUserAuth"])) {
             });
         }
 
+        $.trainingSubTabMainTeamSelection = function(team_grcode) {
+            let mainTeamSelectionGRCode = team_grcode;
+
+            if (mainTeamSelectionGRCode == 'noselect') {
+                alert('Please select a team from the Switch Team Selection.');
+                $('#trainingSubTabMainTeamSelection').focus();
+            } else {
+                // store grpRefcode locally so we can access it later
+                grpRefcode = mainTeamSelectionGRCode;
+                localStorage.setItem('teams_training_main_grcode', grpRefcode);
+
+                // *** fetch training data for selected team (grcode) and update the UI ***
+
+            }
+        }
+
         // load Teams Activity Capturing Form
         $.loadTeamsActivityCaptureForm = function(day, grpRefcode) {
             // alert("../scripts/php/main_app/data_management/system_admin/team_athletics_data/compile_teams_add_new_activity_day_form.php?day=" + day + "&gref=" + grpRefcode);
 
-            // store grpRefcode locally so we can access it later
-            localStorage.setItem('grcode', grpRefcode);
+            // get the currently selected teams grcode from #trainingSubTabMainTeamSelection :. onchange func for this elem is $.trainingSubTabMainTeamSelection
+            let mainTeamSelectionGRCode = $('#trainingSubTabMainTeamSelection').val(); // or
+            // let mainTeamSelectionGRCode = localStorage.getItem('teams_training_main_grcode');
 
-            $.get("../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/compile/compile_teams_add_new_activity_day_form.php?day=" + day + "&gref=" + grpRefcode, function(data, status) {
-                console.log("loadTeamsActivityCaptureForm returned: \n[Status]: " + status + "\n[Data]: " + data);
+            if (mainTeamSelectionGRCode == 'noselect') {
+                alert('Please select a team from the Switch Team Selection and try again.');
+                // smooth scroll
+                $.smoothScroll('#v-sub-tab-pills-insights-teamathletics', '#trainingSubTabMainTeamSelection');
+                $('#trainingSubTabMainTeamSelection').focus(); // set focus
+            } else {
+                // store grpRefcode locally so we can access it later
+                grpRefcode = mainTeamSelectionGRCode;
+                localStorage.setItem('grcode', grpRefcode);
 
-                if (status != "success") {
-                    // provide an error message
-                    console.log("Get Req Failed -> $.loadTeamsActivityCaptureForm returned: \n[Status]: " + status + "\n[Data]: " + data);
-                    alert("Get Req Failed -> $.loadTeamsActivityCaptureForm returned: \n[Status]: " + status + "\n[Data]: " + data);
-                } else {
-                    // populate the modal body
-                    $('#display-activity-bar-preview').html(data);
-                }
-            });
+                $.get("../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/compile/compile_teams_add_new_activity_day_form.php?day=" + day + "&gref=" + grpRefcode, function(data, status) {
+                    console.log("loadTeamsActivityCaptureForm returned: \n[Status]: " + status + "\n[Data]: " + data);
+
+                    if (status != "success") {
+                        // provide an error message
+                        console.log("Get Req Failed -> $.loadTeamsActivityCaptureForm returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.loadTeamsActivityCaptureForm returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        showSnackbar("Failed to Load Activities Bar Preview.");
+                    } else {
+                        // populate the modal body
+                        $('#display-activity-bar-preview').html(data);
+                        $('#toggleTabeditWeeklyTeamsTrainingScheduleModalBtn').click();
+                        showSnackbar("Activities Bar Preview Loaded.");
+                    }
+                });
+            }
+
         }
 
         // function for switching weekly view of assessment cards and the activity chart
