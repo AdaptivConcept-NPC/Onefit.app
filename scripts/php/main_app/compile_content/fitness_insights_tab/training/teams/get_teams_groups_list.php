@@ -80,6 +80,7 @@ try {
     echo $compileList;
 
     // close connection
+    // $result = null;
     $result = null;
     $dbconn->close();
 } catch (\Throwable $th) {

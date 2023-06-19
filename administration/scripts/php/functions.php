@@ -102,6 +102,283 @@ function checkDirectoryInit($username)
     }
 }
 
+// Replace all characters that aren't letters and numbers with a hyphen - source: https://stackoverflow.com/questions/14114411/replace-all-characters-that-arent-letters-and-numbers-with-a-hyphen
+function clean($string)
+{
+    $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+
+    return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+}
+
+// function to check if username is an admin username or not
+function verifyAdminUsername($verif_username)
+{
+    global $dbconn;
+    $admin_exists = false;
+    // should return true if username is an admin username, false otherwise
+    try {
+        // check if $verif_username is an admin username
+        $sql = "SELECT username FROM administrators WHERE username ='$verif_username' AND account_active = 1";
+        if ($result = mysqli_query($dbconn, $sql)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $admin_exists = true;
+            }
+        } else {
+            $admin_exists = false;
+        }
+        // $result = null;
+        // $dbconn->close();
+
+        return $admin_exists;
+    } catch (\Throwable $th) {
+        throw "Exception error: $th";
+
+        return false;
+    }
+}
+
+// function to get string between two characters/markers
+// source: http://stackoverflow.com/questions/5696412/ddg#9826656
+function get_string_between($string, $start, $end)
+{
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
+}
+
+// function to get luminosity contract for bg color and text color
+// source: https://stackoverflow.com/questions/1331591/given-a-background-color-black-or-white-text
+function getContrastColor($hexColor)
+{
+    // hexColor RGB
+    $R1 = hexdec(substr($hexColor, 1, 2));
+    $G1 = hexdec(substr($hexColor, 3, 2));
+    $B1 = hexdec(substr($hexColor, 5, 2));
+
+    // Black RGB
+    $blackColor = "#000000";
+    $R2BlackColor = hexdec(substr($blackColor, 1, 2));
+    $G2BlackColor = hexdec(substr($blackColor, 3, 2));
+    $B2BlackColor = hexdec(substr($blackColor, 5, 2));
+
+    // Calc contrast ratio
+    $L1 = 0.2126 * pow($R1 / 255, 2.2) +
+        0.7152 * pow($G1 / 255, 2.2) +
+        0.0722 * pow($B1 / 255, 2.2);
+
+    $L2 = 0.2126 * pow($R2BlackColor / 255, 2.2) +
+        0.7152 * pow($G2BlackColor / 255, 2.2) +
+        0.0722 * pow($B2BlackColor / 255, 2.2);
+
+    $contrastRatio = 0;
+    if ($L1 > $L2) {
+        $contrastRatio = (int)(($L1 + 0.05) / ($L2 + 0.05));
+    } else {
+        $contrastRatio = (int)(($L2 + 0.05) / ($L1 + 0.05));
+    }
+
+    // If contrast is more than 5, return black color
+    if ($contrastRatio > 5) {
+        return '#000000';
+    } else {
+        // if not, return white color.
+        return '#FFFFFF';
+    }
+}
+
+// Will return '#FFFFFF'
+//echo getContrastColor('#FF0000');
+
+// converts an html color name to a hex color value
+// if the input is not a color name, the original value is returned
+// http://wpCodeSnippets.info
+// source: https://stackoverflow.com/questions/2553566/how-to-convert-a-string-color-to-its-hex-code-or-rgb-value
+
+function color_name_to_hex($color_name)
+{
+    // standard 147 HTML color names
+    $colors  =  array(
+        'aliceblue' => 'F0F8FF',
+        'antiquewhite' => 'FAEBD7',
+        'aqua' => '00FFFF',
+        'aquamarine' => '7FFFD4',
+        'azure' => 'F0FFFF',
+        'beige' => 'F5F5DC',
+        'bisque' => 'FFE4C4',
+        'black' => '000000',
+        'blanchedalmond ' => 'FFEBCD',
+        'blue' => '0000FF',
+        'blueviolet' => '8A2BE2',
+        'brown' => 'A52A2A',
+        'burlywood' => 'DEB887',
+        'cadetblue' => '5F9EA0',
+        'chartreuse' => '7FFF00',
+        'chocolate' => 'D2691E',
+        'coral' => 'FF7F50',
+        'cornflowerblue' => '6495ED',
+        'cornsilk' => 'FFF8DC',
+        'crimson' => 'DC143C',
+        'cyan' => '00FFFF',
+        'darkblue' => '00008B',
+        'darkcyan' => '008B8B',
+        'darkgoldenrod' => 'B8860B',
+        'darkgray' => 'A9A9A9',
+        'darkgreen' => '006400',
+        'darkgrey' => 'A9A9A9',
+        'darkkhaki' => 'BDB76B',
+        'darkmagenta' => '8B008B',
+        'darkolivegreen' => '556B2F',
+        'darkorange' => 'FF8C00',
+        'darkorchid' => '9932CC',
+        'darkred' => '8B0000',
+        'darksalmon' => 'E9967A',
+        'darkseagreen' => '8FBC8F',
+        'darkslateblue' => '483D8B',
+        'darkslategray' => '2F4F4F',
+        'darkslategrey' => '2F4F4F',
+        'darkturquoise' => '00CED1',
+        'darkviolet' => '9400D3',
+        'deeppink' => 'FF1493',
+        'deepskyblue' => '00BFFF',
+        'dimgray' => '696969',
+        'dimgrey' => '696969',
+        'dodgerblue' => '1E90FF',
+        'firebrick' => 'B22222',
+        'floralwhite' => 'FFFAF0',
+        'forestgreen' => '228B22',
+        'fuchsia' => 'FF00FF',
+        'gainsboro' => 'DCDCDC',
+        'ghostwhite' => 'F8F8FF',
+        'gold' => 'FFD700',
+        'goldenrod' => 'DAA520',
+        'gray' => '808080',
+        'green' => '008000',
+        'greenyellow' => 'ADFF2F',
+        'grey' => '808080',
+        'honeydew' => 'F0FFF0',
+        'hotpink' => 'FF69B4',
+        'indianred' => 'CD5C5C',
+        'indigo' => '4B0082',
+        'ivory' => 'FFFFF0',
+        'khaki' => 'F0E68C',
+        'lavender' => 'E6E6FA',
+        'lavenderblush' => 'FFF0F5',
+        'lawngreen' => '7CFC00',
+        'lemonchiffon' => 'FFFACD',
+        'lightblue' => 'ADD8E6',
+        'lightcoral' => 'F08080',
+        'lightcyan' => 'E0FFFF',
+        'lightgoldenrodyellow' => 'FAFAD2',
+        'lightgray' => 'D3D3D3',
+        'lightgreen' => '90EE90',
+        'lightgrey' => 'D3D3D3',
+        'lightpink' => 'FFB6C1',
+        'lightsalmon' => 'FFA07A',
+        'lightseagreen' => '20B2AA',
+        'lightskyblue' => '87CEFA',
+        'lightslategray' => '778899',
+        'lightslategrey' => '778899',
+        'lightsteelblue' => 'B0C4DE',
+        'lightyellow' => 'FFFFE0',
+        'lime' => '00FF00',
+        'limegreen' => '32CD32',
+        'linen' => 'FAF0E6',
+        'magenta' => 'FF00FF',
+        'maroon' => '800000',
+        'mediumaquamarine' => '66CDAA',
+        'mediumblue' => '0000CD',
+        'mediumorchid' => 'BA55D3',
+        'mediumpurple' => '9370D0',
+        'mediumseagreen' => '3CB371',
+        'mediumslateblue' => '7B68EE',
+        'mediumspringgreen' => '00FA9A',
+        'mediumturquoise' => '48D1CC',
+        'mediumvioletred' => 'C71585',
+        'midnightblue' => '191970',
+        'mintcream' => 'F5FFFA',
+        'mistyrose' => 'FFE4E1',
+        'moccasin' => 'FFE4B5',
+        'navajowhite' => 'FFDEAD',
+        'navy' => '000080',
+        'oldlace' => 'FDF5E6',
+        'olive' => '808000',
+        'olivedrab' => '6B8E23',
+        'orange' => 'FFA500',
+        'orangered' => 'FF4500',
+        'orchid' => 'DA70D6',
+        'palegoldenrod' => 'EEE8AA',
+        'palegreen' => '98FB98',
+        'paleturquoise' => 'AFEEEE',
+        'palevioletred' => 'DB7093',
+        'papayawhip' => 'FFEFD5',
+        'peachpuff' => 'FFDAB9',
+        'peru' => 'CD853F',
+        'pink' => 'FFC0CB',
+        'plum' => 'DDA0DD',
+        'powderblue' => 'B0E0E6',
+        'purple' => '800080',
+        'red' => 'FF0000',
+        'rosybrown' => 'BC8F8F',
+        'royalblue' => '4169E1',
+        'saddlebrown' => '8B4513',
+        'salmon' => 'FA8072',
+        'sandybrown' => 'F4A460',
+        'seagreen' => '2E8B57',
+        'seashell' => 'FFF5EE',
+        'sienna' => 'A0522D',
+        'silver' => 'C0C0C0',
+        'skyblue' => '87CEEB',
+        'slateblue' => '6A5ACD',
+        'slategray' => '708090',
+        'slategrey' => '708090',
+        'snow' => 'FFFAFA',
+        'springgreen' => '00FF7F',
+        'steelblue' => '4682B4',
+        'tan' => 'D2B48C',
+        'teal' => '008080',
+        'thistle' => 'D8BFD8',
+        'tomato' => 'FF6347',
+        'turquoise' => '40E0D0',
+        'violet' => 'EE82EE',
+        'wheat' => 'F5DEB3',
+        'white' => 'FFFFFF',
+        'whitesmoke' => 'F5F5F5',
+        'yellow' => 'FFFF00',
+        'yellowgreen' => '9ACD32'
+    );
+
+    $color_name = strtolower($color_name);
+    if (isset($colors[$color_name])) {
+        return ('#' . $colors[$color_name]);
+    } else {
+        return ($color_name);
+    }
+}
+
+// function to create a new record in the exercises db table for Teams training schedule
+function newExercise($exercisetitle, $exercisedescription, $exerciseguidelines, $exerciseSets, $exerciseReps, $exerciseRests, $xp_points, $trainingPhase)
+{
+    global $dbconn;
+
+    try {
+        # insert 
+        $query = "INSERT INTO `exercises`
+        (`exercise_id`, `exercise_name`, `instructions`, `guidelines`, `sets`, `reps`, `rests`, `xp_points`, `training_phase`) 
+        VALUES 
+        (null,'$exercisetitle','$exercisedescription','$exerciseguidelines',$exerciseSets,$exerciseReps,$exerciseRests,$xp_points,'$trainingPhase')";
+
+        $result = $dbconn->query($query);
+        $result = mysqli_query($dbconn, $query);
+        if (!$result) die("Fatal error: " . $dbconn->error);
+        else return true;
+    } catch (\Throwable $th) {
+        throw $th;
+    }
+}
+
 // function to compile select list (dropdown list items) for exercises and/or linked workouts
 function compileSelectInputExerciseList()
 {
@@ -138,7 +415,64 @@ function compileSelectInputExerciseList()
         $compile_workout_activities_list = '<option value="error">No exercise items found.</option>';
     }
 
+    // $result = null;
+    $result = null;
+    $dbconn->close();
+
     return $compile_workout_activities_list;
+}
+
+// function to get Scheduled Training Activities list for Teams
+function getScheduledTrainingDayActivities($Year, $Month, $Day, $grcode)
+{
+    global $dbconn;
+
+    $badgeColor =
+        $groupGRC =
+        $groupName = null;
+    $colorTagString = "white";
+    $grcode = $grcode || "tst_grp_0001";
+    $result_array = array();
+    try {
+        //code...
+        $query = "SELECT DISTINCT(twa.activity_title), 
+        twa.teams_activity_id AS twa_id, 
+        twa.activity_description,
+        twa.activity_icon,
+        twa.teams_weekly_schedules_teams_weekly_schedule_id,
+        twa.exercises_exercise_id,
+        tws.teams_weekly_schedule_id AS tws_id, tws.schedule_title, 
+        tws.schedule_rpe, tws.schedule_day, tws.schedule_date, tws.color_code, tws.groups_group_ref_code, grps.*
+        FROM teams_weekly_schedules tws 
+        LEFT JOIN team_weekly_activities twa ON twa.teams_weekly_schedules_teams_weekly_schedule_id = tws.teams_weekly_schedule_id 
+        LEFT JOIN groups grps ON tws.groups_group_ref_code = grps.group_ref_code
+        WHERE tws.schedule_date = '$Year-$Month-$Day'";
+        // AND grps.group_ref_code = '$grcode'
+        $result = $dbconn->query($query);
+        $result = mysqli_query($dbconn, $query);
+        if (!$result) die("Fatal error [2]: " . $dbconn->error);
+
+        $rows = $result->num_rows;
+
+        if ($rows > 0) {
+            for ($j = 0; $j < $rows; ++$j) {
+                $row = $result->fetch_array(MYSQLI_ASSOC);
+
+                $result_array[] = $row;
+
+                // $colorTagString = $row["color_code"];
+                // $groupGRC = $row["groups_group_ref_code"];
+                // $groupName = $row["group_name"];
+
+                // // extract color name/code
+                // $badgeColor = get_string_between($colorTagString, "[", "]");
+            }
+        }
+
+        return json_encode($result_array);
+    } catch (\Throwable $th) {
+        throw "error: " . $th;
+    }
 }
 
 // function to calculate the date difference between two dates (output is in sec).
@@ -369,16 +703,21 @@ function getUserFriends()
     $usr_verification = false;
 
     //users friends list
-    $sql = "SELECT f.friend_id, f.friend_username, u.user_name, u.user_surname, gup.profile_url, gup.verification FROM friends f 
-    INNER JOIN users u ON f.friend_username = u.username 
-    INNER JOIN general_user_profiles gup ON f.friend_username = gup.users_username
-    WHERE f.username = '$currentUser_Usrnm' AND f.friendship_status = 1";
+    // $sql = "SELECT f.friendship_id, f.friend_username, u.user_name, u.user_surname, gup.profile_url, gup.verification FROM friends f 
+    // INNER JOIN users u ON f.friend_username = u.username 
+    // INNER JOIN general_user_profiles gup ON f.friend_username = gup.users_username
+    // WHERE f.username = '$currentUser_Usrnm' AND f.friendship_status = 1";
+
+    $sql = "SELECT DISTINCT(user_friend_username), frnds.*, usrs.*, gup.* FROM `friends` frnds
+    LEFT JOIN users usrs ON usrs.username = frnds.user_friend_username
+    LEFT JOIN general_user_profiles gup ON frnds.user_friend_username = gup.users_username
+    WHERE frnds.users_username = '$currentUser_Usrnm'  AND frnds.friendship_status = 1";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 
         while ($row = mysqli_fetch_assoc($result)) {
-            $friendid = $row["friend_id"];
-            $friendUsername = $row["friend_username"];
+            $friendid = $row["friendship_id"];
+            $friendUsername = $row["user_friend_username"];
 
             $friendName = $row["user_name"];
             $friendSurname = $row["user_surname"];
@@ -443,7 +782,15 @@ function getUserGroups()
     global $grps_groupid, $grps_refcode, $grps_name, $grps_description, $grps_category, $grps_privacy, $grps_createdby, $grps_createdate, $profileUserSubsGroupsList, $dbconn, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
 
     //groups that the user is a member of
-    $sql = "SELECT * FROM groups g INNER JOIN group_members gm ON  g.group_ref_code = gm.group_ref_code WHERE gm.username = '$currentUser_Usrnm';"; //
+    // $sql = "SELECT g.* FROM groups g 
+    // INNER JOIN group_members gm ON  g.group_ref_code = gm.group_ref_code 
+    // WHERE gm.username = '$currentUser_Usrnm';"; //
+
+    $sql = "SELECT DISTINCT(group_ref_code), grps.* FROM groups grps 
+    LEFT JOIN community_group_members cgm ON cgm.groups_group_ref_code = grps.group_ref_code 
+    LEFT JOIN teams_group_members tgm ON tgm.groups_group_ref_code = grps.group_ref_code 
+    LEFT JOIN premium_group_members pgm ON pgm.groups_group_ref_code = grps.group_ref_code 
+    WHERE (cgm.users_username = '$currentUser_Usrnm' OR tgm.users_username = '$currentUser_Usrnm' OR pgm.users_username = '$currentUser_Usrnm');";
 
     $groupMemsArray = array();
     $foundGroup = false;
@@ -460,7 +807,7 @@ function getUserGroups()
             $grps_description = $row["group_description"];
             $grps_category = $row["group_category"];
             $grps_privacy = $row["group_privacy"];
-            $grps_createdby = $row["created_by"];
+            $grps_createdby = $row["administrators_username"];
             $grps_createdate = $row["creation_date"];
 
             $profileUserSubsGroupsList .= '
@@ -537,33 +884,63 @@ function getUserMedia()
 
     return $output;
 }
+// source: 
+function get_time_ago($time)
+{
+    $time_difference = time() - strtotime($time);
+    if ($time_difference < 1) {
+        return 'less than 1 second ago';
+    }
+    $condition = array(
+        12 * 30 * 24 * 60 * 60 =>  'year',
+        30 * 24 * 60 * 60       =>  'month',
+        24 * 60 * 60            =>  'day',
+        60 * 60                 =>  'hour',
+        60                      =>  'minute',
+        1                       =>  'second'
+    );
+
+    foreach ($condition as $secs => $str) {
+        $d = $time_difference / $secs;
+
+        if ($d >= 1) {
+            $t = round($d);
+            return 'About ' . $t . ' ' . $str . ($t > 1 ? 's' : '') . ' ago';
+        }
+    }
+}
 function getUserNotifications()
 {
     global $notif_id, $notif_title, $notif_message, $notif_date, $communicationUserNotifications, $grps_category, $dbconn, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
+    $time_ago = null;
 
     //notifications
-    $sql = "SELECT * FROM notifications WHERE notify_user = '$currentUser_Usrnm' ORDER BY created_by DESC";
+    $sql = "SELECT * FROM notifications WHERE users_username = '$currentUser_Usrnm' ORDER BY notification_date DESC";
 
     if ($result = mysqli_query($dbconn, $sql)) {
-        $communicationUserNotifications = '<div class="my-4 text-dark darkpads-bg-container"
-        style="border-radius: 25px;">';
+        $communicationUserNotifications = <<<_END
+        <div class="my-4 text-dark top-down-grad-tahiti p-4"
+        style="border-radius: 25px;">
+        _END;
         while ($row = mysqli_fetch_assoc($result)) {
-            //`notification_id`, `notification_title`, `notification_message`, `notify_user`, `created_by`, `notification_date`, `notification_read`
+            //`notification_id`, `notification_title`, `notification_message`, `notify_user`, `users_username`, `notification_date`, `notification_read`
 
             $notif_id = $row["notification_id"];
             $notif_title = $row["notification_title"];
             $notif_message = $row["notification_message"];
             $notif_date = $row["notification_date"];
 
-            $communicationUserNotifications .= '
-            <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-' . $notif_id . '" style="border-radius: 25px !important;">
+            $time_ago = get_time_ago($notif_date);
+
+            $communicationUserNotifications .= <<<_END
+            <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-$notif_id" style="border-radius: 25px !important;">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1 fw-bold text-truncate">' . $notif_title . '</h5>
-                    <small class="text-end">' . $notif_date . ' (# days ago)</small>
+                    <h5 class="mb-1 fw-bold text-truncate"> $notif_title </h5>
+                    <small class="text-end" style="font-size:10px;"> $notif_date<br/>$time_ago</small>
                 </div>
-                <p class="mb-1" style="max-height: 100px;">' . $notif_message . '</p>
-                <small>' . $grps_category . '</small>
-            </a>';
+                <p class="mb-1 text-truncate" style="min-height:30px;max-height:100px;"> $notif_message </p>
+            </a>
+            _END;
         }
         $communicationUserNotifications .= '</div>';
 
@@ -590,12 +967,12 @@ function getUserProgSubs()
 
     //subscriptions (programs)
     //$sql = "SELECT * FROM training_programs;";
-    $sql = "SELECT ps.prog_subscriber_id, ps.username, ps.program_ref_code, ps.subscribe_date, tp.program_id, tp.program_title, tp.program_description, tp.program_duration, tp.program_category, tp.program_privacy, tp.created_by, tp.active 
+    $sql = "SELECT ps.prog_subscriber_id, ps.username, ps.program_ref_code, ps.subscribe_date, tp.program_id, tp.program_title, tp.program_description, tp.program_duration, tp.program_category, tp.program_privacy, tp.users_username, tp.active 
   FROM program_subscribers ps 
   INNER JOIN training_programs tp ON ps.program_ref_code = tp.program_ref_code 
   WHERE username = '$currentUser_Usrnm'";
 
-    //TP: `program_id`, `program_ref_code`, `program_title`, `program_description`, `program_duration`, `program_category`, `program_privacy`, `created_by`, `creation_date`, `active` 
+    //TP: `program_id`, `program_ref_code`, `program_title`, `program_description`, `program_duration`, `program_category`, `program_privacy`, `users_username`, `creation_date`, `active` 
     //PA: `prog_activity_id`, `activity_title`, `activity_description`, `activity_duration`, `activity_reps`, `activity_sets`, `achievement_id`, `program_ref_code`
 
     if ($result = mysqli_query($dbconn, $sql)) {
@@ -608,7 +985,7 @@ function getUserProgSubs()
             $programs_duration = $row["program_duration"];
             $programs_category = $row["program_category"];
             $programs_privacy = $row["program_privacy"];
-            $programs_creator = $row["created_by"];
+            $programs_creator = $row["users_username"];
             $programs_active = $row["active"];
 
             /*$programs_activityid = $row["prog_activity_id"];
@@ -1031,10 +1408,10 @@ function getCommunityGroups()
         if ($rows == 0) {
             //there is no result 
             $output = <<<_END
-      <div class="p-4 text-center">
-        <span class="text-muted fs-5">No groups available.</span>
-      </div>
-      _END;
+            <div class="p-4 text-center">
+                <span class="text-muted fs-5">No groups available.</span>
+            </div>
+            _END;
         } else {
             for ($j = 0; $j < $rows; ++$j) {
                 $row = $result->fetch_array(MYSQLI_ASSOC);
@@ -1083,7 +1460,7 @@ function getCommunityNews()
     global $dbconn, $news_id, $news_title, $news_content, $news_createdby, $news_date, $news_poster_name, $news_poster_surname, $communicationNews, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
 
     //news
-    // $sql = "SELECT * FROM news n INNER JOIN users u ON n.created_by = u.username ORDER BY n.creation_date DESC";
+    // $sql = "SELECT * FROM news n INNER JOIN users u ON n.users_username = u.username ORDER BY n.creation_date DESC";
     $sql = "SELECT * FROM news ORDER BY article_id DESC";
 
     if ($result = mysqli_query($dbconn, $sql)) {
@@ -1094,7 +1471,7 @@ function getCommunityNews()
             $news_id = $row["article_id"];
             $news_title = $row["article_title"];
             $news_content = $row["content"];
-            // $news_createdby = $row["created_by"];
+            // $news_createdby = $row["users_username"];
             $news_date = $row["creation_date"];
 
             // $news_poster_name = $row["user_name"];
@@ -1477,7 +1854,7 @@ function getFitProgramsIndi()
 
     if ($result = mysqli_query($dbconn, $sql)) {
         while ($row = mysqli_fetch_assoc($result)) {
-            //TP: `program_id`, `program_ref_code`, `program_title`, `program_description`, `program_duration`, `program_category`, `program_privacy`, `created_by`, `creation_date`, `active` 
+            //TP: `program_id`, `program_ref_code`, `program_title`, `program_description`, `program_duration`, `program_category`, `program_privacy`, `users_username`, `creation_date`, `active` 
             //PA: `prog_activity_id`, `activity_title`, `activity_description`, `activity_duration`, `activity_reps`, `activity_sets`, `achievement_id`, `program_ref_code`
             $indi_programs_progid = $row["program_id"];
             $indi_programs_refcode = $row["program_ref_code"];
@@ -1486,7 +1863,7 @@ function getFitProgramsIndi()
             $indi_programs_duration = $row["program_duration"];
             $indi_programs_category = $row["program_category"];
             $indi_programs_privacy = $row["program_privacy"];
-            $indi_programs_creator = $row["created_by"];
+            $indi_programs_creator = $row["users_username"];
             $indi_programs_active = $row["active"];
 
             /*$programs_activityid = $row["prog_activity_id"];
@@ -1529,7 +1906,7 @@ function getFitProgramsTeams()
 
     if ($result = mysqli_query($dbconn, $sql)) {
         while ($row = mysqli_fetch_assoc($result)) {
-            //TP: `program_id`, `program_ref_code`, `program_title`, `program_description`, `program_duration`, `program_category`, `program_privacy`, `created_by`, `creation_date`, `active` 
+            //TP: `program_id`, `program_ref_code`, `program_title`, `program_description`, `program_duration`, `program_category`, `program_privacy`, `users_username`, `creation_date`, `active` 
             //PA: `prog_activity_id`, `activity_title`, `activity_description`, `activity_duration`, `activity_reps`, `activity_sets`, `achievement_id`, `program_ref_code`
             $team_programs_progid = $row["program_id"];
             $team_programs_refcode = $row["program_ref_code"];
@@ -1538,7 +1915,7 @@ function getFitProgramsTeams()
             $team_programs_duration = $row["program_duration"];
             $team_programs_category = $row["program_category"];
             $team_programs_privacy = $row["program_privacy"];
-            $team_programs_creator = $row["created_by"];
+            $team_programs_creator = $row["users_username"];
             $team_programs_active = $row["active"];
 
             /*$programs_activityid = $row["prog_activity_id"];
@@ -1772,17 +2149,18 @@ function getAllTrainers()
 // log user activity
 function log_activity($usertype, $action_title, $action_description, $affected_table, $record_id, $username)
 {
-    // $usertype = admin / user
+
     global $dbconn;
 
-    $action_title = sanitizeMySQL($dbconn, $action_title);
-    $action_description = sanitizeMySQL($dbconn, $action_description);
-    $affected_table = sanitizeMySQL($dbconn, $affected_table);
-    $record_id = sanitizeMySQL($dbconn, $record_id);
-    $username = sanitizeMySQL($dbconn, $username);
+    // $action_title = sanitizeMySQL($dbconn, $action_title);
+    // $action_description = sanitizeMySQL($dbconn, $action_description);
+    // $affected_table = sanitizeMySQL($dbconn, $affected_table);
+    // $record_id = sanitizeMySQL($dbconn, $record_id);
+    // $username = sanitizeMySQL($dbconn, $username);
 
-    $datenow = new DateTime('Y/m/d h:i:s');
+    $datenow = date('Y/m/d h:i:s');
 
+    // $usertype = admin / user
     switch ($usertype) {
         case 'admin':
             # 
@@ -1805,7 +2183,7 @@ function log_activity($usertype, $action_title, $action_description, $affected_t
     }
 
     if ($result = mysqli_query($dbconn, $sql)) return true;
-    else return false;
+    else return "Fatal error: " . $dbconn->error; //false;
 }
 
 // json encode last error checking function
@@ -1898,7 +2276,8 @@ function checkAccessToken($username, $token)
                 // $pwdHash = $row["password_hash"];
             }
 
-            $result->close();
+            // $result->close();
+            $result = null;
             $dbconn->close();
 
             return true;
@@ -2067,7 +2446,7 @@ function rememberMe()
 //       $grps_description = $row["group_description"];
 //       $grps_category = $row["group_category"];
 //       $grps_privacy = $row["group_privacy"];
-//       $grps_createdby = $row["created_by"];
+//       $grps_createdby = $row["users_username"];
 //       $grps_createdate = $row["creation_date"];
 
 //       $profileUserSubsGroupsList .= '
@@ -2127,12 +2506,12 @@ function rememberMe()
 // }
 // function getUserNotifications() {
 //   //notifications
-//   $sql = "SELECT * FROM notifications WHERE notify_user = '$currentUser_Usrnm' ORDER BY created_by DESC";
+//   $sql = "SELECT * FROM notifications WHERE notify_user = '$currentUser_Usrnm' ORDER BY users_username DESC";
 
 //   if($result = mysqli_query($dbconn,$sql)){
     
 //     while($row = mysqli_fetch_assoc($result)){
-//       //`notification_id`, `notification_title`, `notification_message`, `notify_user`, `created_by`, `notification_date`, `notification_read`
+//       //`notification_id`, `notification_title`, `notification_message`, `notify_user`, `users_username`, `notification_date`, `notification_read`
 
 //       $notif_id = $row["notification_id"];
 //       $notif_title = $row["notification_title"];
@@ -2167,14 +2546,14 @@ function rememberMe()
 // function getUserProgSubs() {
 //   //subscriptions (programs)
 //   //$sql = "SELECT * FROM training_programs;";
-//   $sql = "SELECT ps.prog_subscriber_id, ps.username, ps.program_ref_code, ps.subscribe_date, tp.program_id, tp.program_title, tp.program_description, tp.program_duration, tp.program_category, tp.program_privacy, tp.created_by, tp.active 
+//   $sql = "SELECT ps.prog_subscriber_id, ps.username, ps.program_ref_code, ps.subscribe_date, tp.program_id, tp.program_title, tp.program_description, tp.program_duration, tp.program_category, tp.program_privacy, tp.users_username, tp.active 
 //   FROM program_subscribers ps 
 //   INNER JOIN training_programs tp ON ps.program_ref_code = tp.program_ref_code 
 //   WHERE username = '$currentUser_Usrnm'";
 
 //   if($result = mysqli_query($dbconn,$sql)){
 //     while($row = mysqli_fetch_assoc($result)){
-//       //TP: `program_id`, `program_ref_code`, `program_title`, `program_description`, `program_duration`, `program_category`, `program_privacy`, `created_by`, `creation_date`, `active` 
+//       //TP: `program_id`, `program_ref_code`, `program_title`, `program_description`, `program_duration`, `program_category`, `program_privacy`, `users_username`, `creation_date`, `active` 
 //       //PA: `prog_activity_id`, `activity_title`, `activity_description`, `activity_duration`, `activity_reps`, `activity_sets`, `achievement_id`, `program_ref_code`
 //       $programs_progid = $row["program_id"];
 //       $programs_refcode = $row["program_ref_code"];
@@ -2183,7 +2562,7 @@ function rememberMe()
 //       $programs_duration = $row["program_duration"];
 //       $programs_category = $row["program_category"];
 //       $programs_privacy = $row["program_privacy"];
-//       $programs_creator = $row["created_by"];
+//       $programs_creator = $row["users_username"];
 //       $programs_active = $row["active"];
 
 //       /*$programs_activityid = $row["prog_activity_id"];
@@ -2457,7 +2836,7 @@ function rememberMe()
 //   if($result = mysqli_query($dbconn,$sql)){
     
 //     while($row = mysqli_fetch_assoc($result)){
-//         //`group_id`, `group_ref_code`, `group_name`, `group_description`, `group_category`, `group_privacy`, `created_by`, `creation_date`
+//         //`group_id`, `group_ref_code`, `group_name`, `group_description`, `group_category`, `group_privacy`, `users_username`, `creation_date`
         
 //         $grps_groupid = $row["group_id"];
 //         $grps_refcode = $row["group_ref_code"];
@@ -2465,7 +2844,7 @@ function rememberMe()
 //         $grps_description = $row["group_description"];
 //         $grps_category = $row["group_category"];
 //         $grps_privacy = $row["group_privacy"];
-//         $grps_createdby = $row["created_by"];
+//         $grps_createdby = $row["users_username"];
 //         $grps_createdate = $row["creation_date"];
 
 //         $discoverGroupsList .= '
@@ -2500,17 +2879,17 @@ function rememberMe()
 // }
 // function getCommunityNews() {
 //   //news
-//   $sql = "SELECT * FROM news n INNER JOIN users u ON n.created_by = u.username ORDER BY n.creation_date DESC";
+//   $sql = "SELECT * FROM news n INNER JOIN users u ON n.users_username = u.username ORDER BY n.creation_date DESC";
 
 //   if($result = mysqli_query($dbconn,$sql)){
     
 //     while($row = mysqli_fetch_assoc($result)){
-//       //`article_id`, `article_title`, `content`, `created_by`, `creation_date`
+//       //`article_id`, `article_title`, `content`, `users_username`, `creation_date`
 
 //       $news_id = $row["article_id"];
 //       $news_title = $row["article_title"];
 //       $news_content = $row["content"];
-//         $news_createdby = $row["created_by"];
+//         $news_createdby = $row["users_username"];
 //       $news_date = $row["creation_date"];
 
 //       $news_poster_name = $row["user_name"];

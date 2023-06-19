@@ -69,6 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo "success";
 
+        // $result = null;
         $result = null;
         $dbconn->close();
     } catch (\Throwable $th) {

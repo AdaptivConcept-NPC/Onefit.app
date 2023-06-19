@@ -104,6 +104,7 @@ function getActivityStat($queryStr, $activityType)
             // echo "$userprofileid<br><br>";
         }
         // dump the $result
+        // $result = null;
         $result = null;
     } catch (\Throwable $th) {
         die("An exception error has occured: $th");

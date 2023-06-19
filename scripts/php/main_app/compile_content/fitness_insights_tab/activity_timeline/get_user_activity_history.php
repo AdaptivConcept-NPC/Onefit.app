@@ -120,6 +120,7 @@ if (isset($_GET['usernm'])) {
 
             // output the timeline information and close connections
             echo $timeline;
+            // $result = null;
             $result = null;
             $dbconn->close();
         }

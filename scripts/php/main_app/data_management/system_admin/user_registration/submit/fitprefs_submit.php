@@ -83,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!$result) die("An error occurred while trying to save your details. [FitPrefs Submit Error_01 - " . $dbconn->error . "]");
 
+        // $result = null;
         $result = null;
         $dbconn->close();
 

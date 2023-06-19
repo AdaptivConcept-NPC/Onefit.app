@@ -1,0 +1,247 @@
+:root {
+    /* --main: #fff; */
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-black: #000;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-gray-100: #f8f9fa;
+    --bs-gray-200: #e9ecef;
+    --bs-gray-300: #dee2e6;
+    --bs-gray-400: #ced4da;
+    --bs-gray-500: #adb5bd;
+    --bs-gray-600: #6c757d;
+    --bs-gray-700: #495057;
+    --bs-gray-800: #343a40;
+    --bs-gray-900: #212529;
+    --bs-primary: #0d6efd;
+    --bs-secondary: #6c757d;
+    --bs-success: #198754;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffa500;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #343434;
+    --bs-primary-rgb: 13, 110, 253;
+    --bs-secondary-rgb: 108, 117, 125;
+    --bs-success-rgb: 25, 135, 84;
+    --bs-info-rgb: 13, 202, 240;
+    --bs-warning-rgb: 255, 165, 0;
+    --bs-danger-rgb: 220, 53, 69;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-dark-rgb: 52, 52, 52;
+    --bs-white-rgb: 255, 255, 255;
+    --bs-black-rgb: 0, 0, 0;
+    --bs-body-color-rgb: 33, 37, 41;
+    --bs-body-bg-rgb: 255, 255, 255;
+    --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    --bs-body-font-family: var(--bs-font-sans-serif);
+    --bs-body-font-size: 1rem;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.5;
+    --bs-body-color: #212529;
+    --bs-body-bg: #fff;
+    --bs-border-width: 1px;
+    --bs-border-style: solid;
+    --bs-border-color: #dee2e6;
+    --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
+    --bs-border-radius: 0.375rem;
+    --bs-border-radius-sm: 0.25rem;
+    --bs-border-radius-lg: 0.5rem;
+    --bs-border-radius-xl: 1rem;
+    --bs-border-radius-2xl: 2rem;
+    --bs-border-radius-pill: 50rem;
+    --bs-link-color: #0d6efd;
+    --bs-link-hover-color: #0a58ca;
+    --bs-code-color: #d63384;
+    --bs-highlight-bg: #fff3cd;
+
+    /* onefit */
+    --mineshaft: #343434;
+    --mineshaft-rgba: rgba(52, 52, 52, 0.8);
+    --white: #ffffff;
+    --silver: #c5c5c5;
+    --tahitigold: #ffa500;
+    --dustygray: #949494;
+    --red: #c20000;
+    --green: #119400;
+
+    /*Social Media*/
+    --facebook: #3a549e;
+    --instgram: #;
+    --twitter: #00aff0;
+    --youtube: #e90101;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Comfortaa:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap&family=Libre+Barcode+128&display=swap&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('../../media/fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../../media/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    src: url('../../media/fonts/Outfit/Outfit-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Libre Barcode 128';
+    src: url('../../media/fonts/Libre_Barcode_128/LibreBarcode128-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Audiowide';
+    src: url('../../media/fonts/Audiowide/Audiowide-Regular.ttf') format('truetype');
+}
+
+html {
+    /* background-image: url("../../media/assets/lmm_logo_pattern_blackorange.png") !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important; */
+    background-color: var(--mineshaft);
+    color: var(--white);
+    padding: 0;
+}
+
+body {
+    font-family: "poppins", cursive !important;
+    margin: 0;
+    background-color: var(--mineshaft);
+    color: var(--white);
+    /* top-down-grad-dark */
+    /* background: rgb(255, 255, 255); */
+    /* background: -moz-linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 100%);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(52, 52, 52, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#343434", GradientType=1); */
+}
+
+/*=========================> Custom - Scrollbar for .global-scroll*/
+/* width */
+*::-webkit-scrollbar {
+    /*height: 10px;*/
+    width: 10px;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+    background: var(--tahitigold) !important;
+    /*padding: 5px 0;
+    margin: 30px 0;
+    border-radius: 50rem;*/
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+    background: var(--mineshaft) !important;
+    /*border-radius: 50rem;*/
+}
+
+.audiowide-font {
+    font-family: "Audiowide", cursive !important;
+}
+
+.comfortaa-font {
+    font-family: "Comfortaa", cursive !important;
+}
+
+.outfit-font {
+    font-family: "Outfit", sans-serif !important;
+}
+
+.poppins-font {
+    font-family: 'Poppins', sans-serif;
+}
+
+.barcode-font {
+    font-family: 'Libre Barcode 128', cursive;
+    font-size: 20px !important;
+}
+
+.form-control-text-input {
+    border-radius: 50rem;
+    font-size: 20px;
+    text-align: center !important;
+    border: 0;
+    width: 100%;
+    color: var(--mineshaft);
+
+    transition: 0.2s;
+}
+
+
+.form-control-select-input {
+    border-radius: 50rem;
+    font-size: 20px;
+    text-align: center !important;
+    border: 0;
+    width: 100%;
+
+    transition: 0.2s;
+
+    /* end to end tahiti gradient */
+    background: rgb(255, 165, 0);
+    background: -moz-linear-gradient(90deg, rgba(255, 165, 0, 1) 0%, rgba(255, 205, 112, 1) 5%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 75%, rgba(255, 208, 122, 1) 95%, rgba(255, 165, 0, 1) 100%) !important;
+    background: -webkit-linear-gradient(90deg, rgba(255, 165, 0, 1) 0%, rgba(255, 205, 112, 1) 5%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 75%, rgba(255, 208, 122, 1) 95%, rgba(255, 165, 0, 1) 100%) !important;
+    background: linear-gradient(90deg, rgba(255, 165, 0, 1) 0%, rgba(255, 205, 112, 1) 5%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 75%, rgba(255, 208, 122, 1) 95%, rgba(255, 165, 0, 1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffa500", endColorstr="#ffa500", GradientType=1) !important;
+}
+
+
+.form-control-text-input:focus {
+    outline: 0;
+    border-left: var(--tahitigold) solid 10px;
+    border-right: var(--tahitigold) solid 10px;
+    color: var(--tahitigold);
+
+    border-radius: 50rem;
+
+    /* end to end tahiti gradient */
+    background: rgb(255, 165, 0);
+    background: -moz-linear-gradient(90deg, rgba(255, 165, 0, 1) 0%, rgba(255, 205, 112, 1) 5%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 75%, rgba(255, 208, 122, 1) 95%, rgba(255, 165, 0, 1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(255, 165, 0, 1) 0%, rgba(255, 205, 112, 1) 5%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 75%, rgba(255, 208, 122, 1) 95%, rgba(255, 165, 0, 1) 100%);
+    background: linear-gradient(90deg, rgba(255, 165, 0, 1) 0%, rgba(255, 205, 112, 1) 5%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 75%, rgba(255, 208, 122, 1) 95%, rgba(255, 165, 0, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffa500", endColorstr="#ffa500", GradientType=1);
+}
+
+.form-check-input {
+    width: 2em;
+    height: 2em;
+    border: var(--tahitigold) 3px solid;
+    border-radius: 10px !important;
+    background-color: #333;
+}
+
+.form-check-input:checked {
+    color: var(--mineshaft);
+    background-color: var(--tahitigold);
+    border-color: var(--tahitigold);
+    outline: 0 !important;
+}
+
+.onefit-inputs-style {
+    border-radius: 50rem;
+    outline: 0;
+    border: 0;
+    width: 100%;
+    padding: 20px;
+}

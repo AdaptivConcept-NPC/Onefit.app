@@ -94,6 +94,7 @@ try {
         _END;
     }
 
+    // $result = null;
     $result = null;
 } catch (\Throwable $th) {
     //throw $th;

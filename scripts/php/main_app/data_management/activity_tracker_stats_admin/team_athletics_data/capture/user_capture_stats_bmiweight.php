@@ -113,7 +113,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!$result) die("A Fatal Error has occured. Please reload the page, and if the problem persists, please contact the system administrator. [weight Submit Error_03 - " . $dbconn->error . "]");
 
-        $result->close();
+        // $result->close();
+        $result = null;
         $dbconn->close();
 
         echo "success: activity tracker weight data saved successfully.";

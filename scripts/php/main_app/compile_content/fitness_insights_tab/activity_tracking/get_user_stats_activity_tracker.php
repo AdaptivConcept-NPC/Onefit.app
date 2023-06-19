@@ -85,7 +85,8 @@ if (isset($_GET['forchart']) && isset($_GET['u'])) {
 
         echo json_encode($outputArray);
 
-        $result->close();
+        // $result->close();
+        $result = null;
         $dbconn->close();
     } catch (\Throwable $th) {
         //throw $th;

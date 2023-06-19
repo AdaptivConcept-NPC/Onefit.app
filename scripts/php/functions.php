@@ -415,6 +415,7 @@ function compileSelectInputExerciseList()
         $compile_workout_activities_list = '<option value="error">No exercise items found.</option>';
     }
 
+    // $result = null;
     $result = null;
     $dbconn->close();
 
@@ -2275,7 +2276,8 @@ function checkAccessToken($username, $token)
                 // $pwdHash = $row["password_hash"];
             }
 
-            $result->close();
+            // $result->close();
+            $result = null;
             $dbconn->close();
 
             return true;

@@ -358,8 +358,13 @@ if (isset($_SESSION["currentUserAuth"])) {
         </div>
         <nav class="text-center text-center p-4 fixed-bottom d-grid justify-content-center">
             <p id="loadtime-output-label" class="text-center comfortaa-font mt-2 mb-4 d-none">Loading. Please wait.</p>
-            <div class="progress my-4 rounded-pill shadow" style="height:20px;max-width:500px;border-radius:50rem!important;background-color:var(--tahitigold)">
-                <div id="app-load-progressbar" class="progress-bar text-center px-1 fw-bold" role="progressbar" aria-label="App load progress" style="width: 10%; border-right: 0px solid rgb(255, 165, 0); background-color: var(--white) !important;color:var(--mineshaft)!important;font-size:8px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            <div class="progress my-4 rounded-pill shadow" style="height:20px;max-width:500px;border-radius:50rem!important;background-color:var(--white)">
+                <div id="app-load-progressbar" class="progress-bar text-center px-1 fw-bold rounded-pillz my-pulse-animation-tahiti" role="progressbar" aria-label="App load progress" style="width: 15%; border-right: 0px solid rgb(255, 165, 0); background-color: var(--tahitigold) !important;color:var(--mineshaft)!important;font-size:8px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <span class="align-middle">15%</span>
+                    <!-- <div class="spinner-grow" style="width:10px;height:10px;color:var(--white)" role="status">
+                        <span class="visually-hidden">Loading App Data...</span>
+                    </div> -->
+                </div>
             </div>
 
             <p class="navbar-brand fs-1 text-white comfortaa-font mb-5">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">™</span></p>
@@ -740,14 +745,14 @@ if (isset($_SESSION["currentUserAuth"])) {
         <nav id="main-navbar" class="navbar sticky-topz w-100 mb-4 py-4 top-down-grad-dark" style="border-radius: 25px; max-height: 100vh !important; border-top: var(--mineshaft) solid 0px;">
             <!-- App Function Buttons -->
             <div class="container d-flex gap-1 align-items-center">
-                <button id="app-notifications-btn" main-data-bs-target="#tabLatestSonav-notifications-btn" class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels d-none d-sm-block border-bottom border-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
+                <button id="app-notifications-btn" main-data-bs-target="#tabLatestSonav-notifications-btn" style="border-color:var(--tahitigold)!important" class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels d-none d-sm-block border-bottom border-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> notifications </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Notifications</span>
                     </div>
                 </button>
 
-                <button type="button" id="apps-tray-open-btn" class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font hide-side-panels border-topz border-bottom border-2" style="max-width:87px;" data-bs-toggle="modal" data-bs-target="#tabNavModal">
+                <button type="button" id="apps-tray-open-btn" style="border-color:var(--tahitigold)!important" class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font hide-side-panels border-topz border-bottom border-2" style="max-width:87px;" data-bs-toggle="modal" data-bs-target="#tabNavModal">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important;" id="apps-tray-open-btn-icon"> play_circle_outline </span>
                         <span class="d-none d-lg-block text-truncate" id="apps-tray-open-btn-text" style="font-size: 10px;">.Studio</span>
@@ -756,7 +761,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                 <!-- Main App Content Refresh button -->
                 <div class="d-inline gap-2">
-                    <button id="main-app-refresh-btn" class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz border-start border-end border-2" style="overflow: hidden; font-size: 10px;" type="button" onclick="initializeContent('1','KING_001')">
+                    <button id="main-app-refresh-btn" style="border-color:var(--tahitigold)!important" class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz border-start border-end border-2" style="overflow: hidden; font-size: 10px;" type="button" onclick="initializeContent('1','KING_001')">
                         <!--  data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal" -->
                         <div class="d-grid gap-2 text-center">
                             <!-- Profile Picture -->
@@ -768,7 +773,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <!-- ./ Main App Content Refresh button -->
 
-                <button type="button" class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font show-side-panels border-topz border-bottom border-2" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
+                <button type="button" style="border-color:var(--tahitigold)!important" class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font show-side-panels border-topz border-bottom border-2" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> widgets </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Widgets</span>
@@ -776,7 +781,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!--<span class="material-icons material-icons-round" style="font-size: 24px !important"> linear_scale </span>-->
                 </button>
 
-                <button id="main-nav-ext-links-btn" class="navbar-toggler shadow onefit-buttons-style-dark p-3 hide-right-side-panels d-none d-sm-block border-topz border-bottom border-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <button id="main-nav-ext-links-btn" style="border-color:var(--tahitigold)!important" class="navbar-toggler shadow onefit-buttons-style-dark p-3 hide-right-side-panels d-none d-sm-block border-topz border-bottom border-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round align-middle" style="font-size: 28px !important"> public <!-- menu_open --> </span>
                         <span class="d-none d-lg-block" id="" style="font-size: 10px;">Navigation</span>
@@ -4577,7 +4582,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
 
                     <!-- Features: Tab structured -->
-                    <div class="row mt-4 py-4 content-panel-border-style" style="background-color: #333; border-radius: 25px;">
+                    <div id="insignts-training-section-container" class="row mt-4 py-4 content-panel-border-style" style="background-color: #333; border-radius: 25px;">
                         <!-- insight catgories tab panels -->
                         <div class="col -md-9 my-4">
                             <div class="mini-fpwidget">
@@ -4617,7 +4622,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <div id="more-insights-inline-nav-container" class="w3-animate-bottom horizontal-scroll no-scroller px-4 py-0 my-0 collapse" style="overflow-y: hidden;">
                                     <nav class="mt-0 mx-0 mb-4">
                                         <div class="nav force-inline-nav nav-tabs border-0 d-flex justify-content-between" id="nav-tab-insightsSubFeatureCategories" role="tablist" style="border-color: #ffa500 !important">
-                                            <button class="nav-link p-4 comfortaa-font fw-bold active position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-challenges-tab" onclick="clickTrainingProgramCategories('challenges')">
+                                            <button class="nav-link p-4 comfortaa-font fw-bold active position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-challenges-tab" onclick="setCurrentInsightsTrainingProgramTab('challenges')">
                                                 Challenges.
                                                 <span class="position-absolute top-50 start-0 translate-middle badge rounded-pill border-2 border p-1  my-pulse-animation-tahiti" style="height: 20px; width: 20px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
                                                 </span>
@@ -4626,35 +4631,35 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 <span id="md-horizontal-rule-icon-challenges" class="material-icons material-icons-outlined align-middle" style="display: block;">stars</span>
                                             </button>
 
-                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-googleSurveys-tab" onclick="clickTrainingProgramCategories('googleSurveys')">
+                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-googleSurveys-tab" onclick="setCurrentInsightsTrainingProgramTab('googleSurveys')">
                                                 Google Surveys.
 
                                                 <br>
                                                 <span id="md-horizontal-rule-icon-googlesurveys" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">poll</span>
                                             </button>
 
-                                            <!-- <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-indiAthlete-tab" onclick="clickTrainingProgramCategories('indiAthlete')">
+                                            <!-- <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-indiAthlete-tab" onclick="setCurrentInsightsTrainingProgramTab('indiAthlete')">
                                                 Indi-Athletics.
 
                                                 <br>
                                                 <span id="md-horizontal-rule-icon-indiathlete" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">sports_gymnastics</span>
                                             </button> -->
 
-                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-teamAthletics-tab" onclick="clickTrainingProgramCategories('teamAthletics')">
+                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-teamAthletics-tab" onclick="setCurrentInsightsTrainingProgramTab('teamAthletics')">
                                                 Team Athletics.
 
                                                 <br>
                                                 <span id="md-horizontal-rule-icon-teamathletics" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">diversity_2</span>
                                             </button>
 
-                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-wellness-tab" onclick="clickTrainingProgramCategories('wellness')">
+                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-wellness-tab" onclick="setCurrentInsightsTrainingProgramTab('wellness')">
                                                 Wellness.
 
                                                 <br>
                                                 <span id="md-horizontal-rule-icon-wellness" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">self_improvement</span>
                                             </button>
 
-                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-nutrition-tab" onclick="clickTrainingProgramCategories('nutrition')">
+                                            <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-nutrition-tab" onclick="setCurrentInsightsTrainingProgramTab('nutrition')">
                                                 Nutrition.
 
                                                 <br>
@@ -4713,7 +4718,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <!-- hide on screens smaller than lg -->
                             <nav class="d-none d-lg-block mt-4">
                                 <div class="nav nav-tabs justify-content-center" id="nav-tab-insightsSubFeatureCategories" role="tablist" style="border-color: #ffa500 !important">
-                                    <button class="nav-link p-4 comfortaa-font fw-bold active position-relative" id="nav-trainingProgramCategories-challenges-tab" onclick="clickTrainingProgramCategories('challenges')">
+                                    <button class="nav-link p-4 comfortaa-font fw-bold active position-relative" id="nav-trainingProgramCategories-challenges-tab" onclick="setCurrentInsightsTrainingProgramTab('challenges')">
                                         Challenges.
                                         <span class="position-absolute top-50 start-0 translate-middle badge rounded-pill border-2 border p-1  my-pulse-animation-tahiti" style="height: 20px; width: 20px; font-size: 8px; border-color: #ffa500 !important; background-color: #343434 !important;">
                                         </span>
@@ -4722,7 +4727,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <span id="horizontal-rule-icon-challenges" class="material-icons material-icons-outlined align-middle" style="display: block;">stars</span>
                                     </button>
 
-                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-googleSurveys-tab" onclick="clickTrainingProgramCategories('googleSurveys')">
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-googleSurveys-tab" onclick="setCurrentInsightsTrainingProgramTab('googleSurveys')">
                                         Google Surveys.
 
                                         <br>
@@ -4731,21 +4736,21 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <!-- removed selection button for indi-athletics sub-tab -->
 
-                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-teamAthletics-tab" onclick="clickTrainingProgramCategories('teamAthletics')">
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-teamAthletics-tab" onclick="setCurrentInsightsTrainingProgramTab('teamAthletics')">
                                         Team Athletics.
 
                                         <br>
                                         <span id="horizontal-rule-icon-teamathletics" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">diversity_2</span>
                                     </button>
 
-                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-wellness-tab" onclick="clickTrainingProgramCategories('wellness')">
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-wellness-tab" onclick="setCurrentInsightsTrainingProgramTab('wellness')">
                                         Wellness.
 
                                         <br>
                                         <span id="horizontal-rule-icon-wellness" class="material-icons material-icons-outlined align-middle" style="color: #ffa500; display: none;">self_improvement</span>
                                     </button>
 
-                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-nutrition-tab" onclick="clickTrainingProgramCategories('nutrition')">
+                                    <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" id="nav-trainingProgramCategories-nutrition-tab" onclick="setCurrentInsightsTrainingProgramTab('nutrition')">
                                         Nutrition.
 
                                         <br>
@@ -4755,125 +4760,6 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </div>
                             </nav>
                             <!-- ./ hide on screens smaller than lg -->
-
-                            <script>
-                                function clickTrainingProgramCategories(selcategory) {
-                                    console.log(`clickTrainingProgramCategories function was triggered: selected category: [ ${selcategory} ]`);
-                                    // declaring variable
-                                    var challengesBtn = document.getElementById("v-sub-tab-pills-insights-challenges-tab");
-                                    var teamAthleticsBtn = document.getElementById("v-sub-tab-pills-insights-teamathletics-tab");
-                                    // var indiAthleteBtn = document.getElementById("v-sub-tab-pills-insights-indiathlete-tab");
-                                    var googleSurveyBtn = document.getElementById("v-sub-tab-pills-insights-googlesurveys-tab");
-                                    var wellnessBtn = document.getElementById("v-sub-tab-pills-insights-wellness-tab");
-                                    var nutritionBtn = document.getElementById("v-sub-tab-pills-insights-nutrition-tab");
-
-                                    if (selcategory === "challenges") {
-                                        challengesBtn.click();
-
-                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "block";
-                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
-                                        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
-
-                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "block";
-                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "none";
-                                        // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
-
-                                    } else if (selcategory === "googleSurveys") {
-                                        googleSurveyBtn.click();
-
-                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "block";
-                                        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
-
-                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "block";
-                                        // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
-
-                                    } else if (selcategory === "teamAthletics") {
-                                        teamAthleticsBtn.click();
-
-                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
-                                        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "block";
-                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
-
-                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "none";
-                                        // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "block";
-                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
-
-                                    } else if (selcategory === "wellness") {
-                                        wellnessBtn.click();
-
-                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
-                                        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "block";
-                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
-
-                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "none";
-                                        // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "block";
-                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
-
-                                    } else if (selcategory === "nutrition") {
-                                        nutritionBtn.click();
-
-                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
-                                        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "block";
-
-                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "none";
-                                        // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "block";
-
-                                    }
-
-                                    /* else if (selcategory == "indiAthlete") {
-                                        indiAthleteBtn.click();
-
-                                        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
-                                        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "block";
-                                        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
-                                        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
-
-                                        document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "block";
-                                        // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
-                                        document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
-
-                                    }  */
-                                }
-                            </script>
 
                             <!-- Team Athlectics Training Panel -->
                             <div class="tab-content" id="v-pills-tabInsightsSubFeatures">
@@ -5047,20 +4933,20 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <!-- default main team selection -->
                                     <div class="d-grid gap-2 py-4 justify-content-center">
-                                        <h5 class="fs-3 text-center">⚽️ Switch Teams. 🏀</h5>
+                                        <h5 class="fs-3 text-center">⚽️ Teams. 🏀</h5>
                                         <select id="trainingSubTabMainTeamSelection" onchange="$.trainingSubTabMainTeamSelection(this.value)" class="form-select form-select-lg mb-3 team-selection-list" aria-label=".form-select-lg example">
                                             <option value="noselection" selected="">⚽️ Switch Teams. 🏀</option>
                                             <option value="tst_grp_0001"> Test Group - Teams </option>
                                             <option value="tst_grp_0003"> Test Group - Pro Community </option>
                                         </select>
-                                        <p>
+                                        <p class="m-0" style="font-size:10px!important;">
                                             <span class="material-icons material-icons-outlined align-middle" style="font-size: 12xp !important;">
                                                 info
                                             </span>
                                             <span class="align-middle"> Please select a Team to view their training data. </span>
                                         </p>
-                                        <div class="form-check form-switch d-flex gap-2 align-items-center">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="myTeamsOnlyCheckChecked_FixtureAdd" checked="">
+                                        <div class="form-check form-switch d-flex gap-2 align-items-center justify-content-center">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="myTeamsOnlyCheckChecked_FixtureAdd">
                                             <label class="form-check-label poppins-font text-truncate" for="myTeamsOnlyCheckChecked_FixtureAdd">My Teams only?</label>
                                         </div>
                                     </div>
@@ -5415,8 +5301,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                     <option value="noselection" selected="">⚽️ Switch Teams. 🏀</option>
                                                                 </select>
                                                                 <div class="form-check form-switch d-flex gap-2 align-items-center">
-                                                                    <input class="form-check-input" type="checkbox" role="switch" id="myTeamsOnlyCheckChecked_FixtureAdd" checked="">
-                                                                    <label class="form-check-label poppins-font text-truncate" for="myTeamsOnlyCheckChecked_FixtureAdd">My Teams only?</label>
+                                                                    <input class="form-check-input" type="checkbox" role="switch" id="myTeamsOnlyCheckChecked_FixtureAdd">
+                                                                    <label class="form-check-label poppins-font text-truncate" for="myTeamsOnlyCheckChecked_FixtureAdd" onchange="$.setDefaultTeamSelect(this.value)">My Teams only?</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -8555,7 +8441,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <div class="col-md d-grid">
                                                 <!-- select an existing exercise activity -->
                                                 <div class="form-group d-grid gap-2">
-                                                    <label for="add-to-calender-activity-selection" class="poppins-font fs-4" style="color: #ffa500;">Exercises &amp; Activities.</label>
+                                                    <label for="add-to-calender-activity-selection" class="poppins-font fs-4 add-to-calender-activity-selection" style="color: #ffa500;">Exercises &amp; Activities.</label>
                                                     <select class="custom-select form-control-select-input p-2 light-scroller" id="add-to-calender-activity-selection" style="border-radius:25px;height:290px;" multiple="multiple" rows="20">
                                                         <option value="no-selection" selected="">Select a workout / activity.</option>
                                                         <option value="40"> 90/90 spiral with rotation (At-Home - Back Exercises - Cooldowns) (10xp)</option>
@@ -8813,8 +8699,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </div>
                                 </div>
                                 <div class="form-group my-4">
-                                    <label for="activity-select" class="comfortaa-font fs-5 text-start" style="color: #ffa500;">1. Workout / Activity:</label>
-                                    <select class="custom-select form-control-select-input p-4" name="activity-selectt" id="activity-select" required>
+                                    <label for="activity-select" class="comfortaa-font fs-5 text-start add-to-calender-activity-selection" style="color: #ffa500;">1. Workout / Activity:</label>
+                                    <select class="custom-select form-control-select-input p-4" name="activity-select" id="activity-select" required>
                                         <option value='no-selection'>Select a workout / activity.</option>
                                         $workout_activities_list
                                         <option value='specified'>Specify</option>
@@ -9295,12 +9181,12 @@ if (isset($_SESSION["currentUserAuth"])) {
         // 
         function updateLoadProgressBar(progress) {
             // calculate the progress (12 initialization steps)
-            var progressLength = (progress / 12) * 100;
+            var progressLength = ((progress / 12) * 100).toFixed(0);
 
             console.log("LoadCurtain Progressbar: " + progressLength + " %");
 
             if (progress == 12) {
-                $('#app-load-progressbar').html(`<span class="material-icons material-icons-round align-middle" style="font-size:16px!important;color:var(--green)!important;"> check_circle </span>`);
+                $('#app-load-progressbar').html(`<span class="material-icons material-icons-round align-middle" style="font-size:16px!important;color:var(--mineshaft)!important;"> check_circle </span>`);
             } else {
                 $('#app-load-progressbar').html(`${progressLength}%`);
             }
@@ -9317,16 +9203,23 @@ if (isset($_SESSION["currentUserAuth"])) {
         function loadGlobalUI(currentUser) {
 
             $.getIndiExercises('ui_data', '#add-to-calender-activity-selection');
+            // $.getIndiExercises('ui_data', '.add-to-calender-activity-selection');
             $.getTeamsSelectInputList('teams');
             $.getUserChallenges(currentUser);
+
             // load fp widgets
             $.getFitnessProgressionUIWidgets(currentUser, 'bar');
             $.getFitnessProgressionUIWidgets(currentUser, 'mini');
+
             // get the activity tracker stats summary widget
             $.getActivityTrackerStatsSummaryWidget();
-            // check if current_app_tab is set and has a value in localStorage, else set default value: TabHome
+
+            // check if current_app_tab & currentAppSubTab are set and has a value in localStorage, else set default value: TabHome
             const currentAppTab = localStorage.getItem('current_app_tab');
-            switchCurrentAppTab(currentAppTab);
+            a_switchCurrentAppTab(currentAppTab);
+            const currentAppSubTab = localStorage.getItem('current_app_subtab');
+            b_switchCurrentAppSubTab(currentAppSubTab);
+
             // call to function for checking localstorage values and either show or hide side panels
             $.checkSidePanelVisibility();
 
@@ -9408,6 +9301,8 @@ if (isset($_SESSION["currentUserAuth"])) {
         function loadMedia(currentUser) {
             $.getUsersMediaFiles();
 
+            // we will call lazy loading method helper function in finaizeAppLoading function
+
             /* move the progress bar forward */
             updateLoadProgressBar(9);
             console.log("loadMedia");
@@ -9449,6 +9344,35 @@ if (isset($_SESSION["currentUserAuth"])) {
             showSnackbar('Data has been refreshed.', 'alert_general', 'long_15000');
 
             console.log("finalizeAppLoading");
+
+            // lazy loading images - source: web dev simpified (Youtube) https://www.youtube.com/watch?v=hJ7Rg1821Q0
+            const blurDivs = document.querySelectorAll(".blur-load-img");
+            console.log("blurDivs elems count: " + blurDivs.length);
+            blurDivs.forEach(div => {
+                const img = div.querySelector("img");
+
+                function loaded() {
+                    // show img
+                    div.classList.add("loaded");
+                }
+
+                if (img.complete) {
+                    loaded();
+                } else {
+                    img.addEventListener("load", loaded);
+                }
+
+            })
+
+            // get the local stored getDefaultTeamSelect variable and value, and then set it as the default team selected in all switch team select elems
+            $.getDefaultTeamSelect();
+
+
+            // try {
+
+            // } catch (error) {
+            //     console.log("loadMedia -> Exception error: " + error);
+            // }
         }
 
         // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -9552,7 +9476,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
             // // check if current_app_tab is set and has a value in localStorage, else set default value: TabHome
             // const currentAppTab = localStorage.getItem('current_app_tab');
-            // switchCurrentAppTab(currentAppTab);
+            // a_switchCurrentAppTab(currentAppTab);
 
             // // load the weekly activiies bar chart under Teams athletics training (insights tab)
             // $.populateWeeklyActivityBarChart('this');
@@ -9648,6 +9572,16 @@ if (isset($_SESSION["currentUserAuth"])) {
             var strTime = hours + ':' + minutes + ' ' + ampm;
             return strTime;
         }
+
+        function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url);
+                return false;
+            }
+            return true;
+        }
+
 
         function openCalenderActivityForm(dateYear, dateMonth, dateDay) {
             // '2023/3/10'
@@ -10002,7 +9936,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         }
 
-        function switchCurrentAppTab(currentAppTab) {
+        function a_switchCurrentAppTab(currentAppTab) {
             if (currentAppTab) {
                 var tabName = currentAppTab;
                 console.log('Current App Tab: ' + currentAppTab);
@@ -10040,6 +9974,31 @@ if (isset($_SESSION["currentUserAuth"])) {
             }
         }
 
+        function b_switchCurrentAppSubTab(currentAppSubTab) {
+            if (currentAppSubTab) {
+                var tabName = currentAppSubTab;
+                console.log('Current App Tab: ' + currentAppSubTab);
+
+                // display the current app sub-tab
+                if (tabName == "challenges") {
+                    document.getElementById("nav-trainingProgramCategories-challenges-tab").click();
+                } else if (tabName == "googleSurveys") {
+                    document.getElementById("nav-trainingProgramCategories-googleSurveys-tab").click();
+                } else if (tabName == "teamAthletics") {
+                    document.getElementById("nav-trainingProgramCategories-teamAthletics-tab").click();
+                } else if (tabName == "wellness") {
+                    document.getElementById("nav-trainingProgramCategories-wellness-tab").click();
+                } else if (tabName == "nutrition") {
+                    document.getElementById("nav-trainingProgramCategories-nutrition-tab").click();
+                }
+
+            } else {
+                console.log('Current App Insights Sub-Tab not set.');
+                // set default value: TabHome
+                localStorage.setItem("current_app_subtab", "nav-trainingProgramCategories-challenges-tab");
+            }
+        }
+
         function setCurrentAppTabID(currentPageID) {
             // get the currently active app page
             // var appTabsNode = document.querySelector(".app-tab");
@@ -10049,6 +10008,17 @@ if (isset($_SESSION["currentUserAuth"])) {
             // }
 
             localStorage.setItem("current_app_tab", currentPageID);
+        }
+
+        function setCurrentAppSubTabID(currentPageID) {
+            // get the currently active app page
+            // var appTabsNode = document.querySelector(".app-tab");
+            // alert("appTabsNode.length: " + appTabsNode.length);
+            // for (let i = 0; i < appTabsNode.length; i++) {
+            //     currentPageID = appTabsNode[i].id;
+            // }
+
+            localStorage.setItem("current_app_subtab", currentPageID);
         }
 
         function toggleMapSelection(selection) {
@@ -10174,52 +10144,98 @@ if (isset($_SESSION["currentUserAuth"])) {
             var tabBtnIco = document.getElementById("apps-tray-open-btn-icon");
             var tabBtnTxt = document.getElementById("apps-tray-open-btn-text");
 
+            function dispayTabContainer(tabContainerObj) {
+                // InsightsTabGCS
+                // InsightsTabIAT
+                // InsightsTabCTA
+                // InsightsTabChallenges
+                // v-sub-tab-pills-insights-googlesurveys-tab
+                // v-sub-tab-pills-insights-indiathlete-tab
+                // v-sub-tab-pills-insights-teamathletics-tab
+                // v-sub-tab-pills-insights-challenges-tab
+
+                //x = document.getElementsByClassName("content-tab");
+                x = tabContainerObj;
+
+                if (x) {
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    document.getElementById(tabName).style.display = "block";
+
+                    // set current App Tab ID - must be elem id for content container, not its button
+                    setCurrentAppTabID(tabName);
+                }
+            }
+
 
             //Change the #apps-tray-open-btn icon and text
+
             if (tabName == "TabHome") {
                 tabBtnTxt.innerHTML = "Dashboard";
                 tabBtnIco.innerHTML = " dashboard ";
                 tabContainer = document.getElementsByClassName("content-tab");
+                // tabContainer = document.getElementsById(tabName);
+                dispayTabContainer(tabContainer);
             } else if (tabName == "TabProfile") {
                 tabBtnTxt.innerHTML = "Profile";
                 tabBtnIco.innerHTML = " account_circle ";
                 tabContainer = document.getElementsByClassName("content-tab");
+                dispayTabContainer(tabContainer);
             } else if (tabName == "TabDiscovery") {
                 tabBtnTxt.innerHTML = "Discovery";
                 tabBtnIco.innerHTML = " travel_explore ";
                 tabContainer = document.getElementsByClassName("content-tab");
+                // tabContainer = document.getElementsById(tabName);
+                dispayTabContainer(tabContainer);
             } else if (tabName == "TabStudio") {
                 tabBtnTxt.innerHTML = ".Studio";
                 tabBtnIco.innerHTML = " play_circle_outline ";
                 tabContainer = document.getElementsByClassName("content-tab");
+                /// tabContainer = document.getElementsById(tabName);
+                dispayTabContainer(tabContainer);
             } else if (tabName == "TabStore") {
                 tabBtnTxt.innerHTML = ".Store";
                 tabBtnIco.innerHTML = " storefront ";
                 tabContainer = document.getElementsByClassName("content-tab");
+                // tabContainer = document.getElementsById(tabName);
+                dispayTabContainer(tabContainer);
             } else if (tabName == "TabSocial") {
                 tabBtnTxt.innerHTML = ".Social";
                 tabBtnIco.innerHTML = " hub ";
                 tabContainer = document.getElementsByClassName("content-tab");
+                // tabContainer = document.getElementsById(tabName);
+                dispayTabContainer(tabContainer);
             } else if (tabName == "TabData") {
                 tabBtnTxt.innerHTML = "Insights";
                 tabBtnIco.innerHTML = " insights ";
                 tabContainer = document.getElementsByClassName("content-tab");
+                // tabContainer = document.getElementsById(tabName);
+                dispayTabContainer(tabContainer);
             } else if (tabName == "TabAchievements") {
                 tabBtnTxt.innerHTML = "Achievements";
                 tabBtnIco.innerHTML = " emoji_events ";
                 tabContainer = document.getElementsByClassName("content-tab");
+                // tabContainer = document.getElementsById(tabName);
+                dispayTabContainer(tabContainer);
             } else if (tabName == "TabMedia") {
                 tabBtnTxt.innerHTML = "Media";
                 tabBtnIco.innerHTML = " perm_media ";
                 tabContainer = document.getElementsByClassName("content-tab");
+                // tabContainer = document.getElementsById(tabName);
+                dispayTabContainer(tabContainer);
             } else if (tabName == "TabCommunication") {
                 tabBtnTxt.innerHTML = "Communication";
                 tabBtnIco.innerHTML = " forum ";
                 tabContainer = document.getElementsByClassName("content-tab");
+                // tabContainer = document.getElementsById(tabName);
+                dispayTabContainer(tabContainer);
             } else if (tabName == "TabSettings") {
                 tabBtnTxt.innerHTML = "Preferences";
                 tabBtnIco.innerHTML = " settings_accessibility ";
                 tabContainer = document.getElementsByClassName("content-tab");
+                // tabContainer = document.getElementsById(tabName);
+                dispayTabContainer(tabContainer);
             } else if (tabName == "InsightsTabGCS") {
                 /* Insigts sub features app tabs */
                 tabContainer = null;
@@ -10231,6 +10247,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                 document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
                 document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
                 document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+                // smoothe scroll to #insignts-training-section-container
+                $.smoothScroll("#main-content-container", "#insignts-training-section-container", 100);
             } else if (tabName == "InsightsTabIAT") {
                 tabContainer = null;
                 document.getElementById("v-sub-tab-pills-insights-indiathlete-tab").click();
@@ -10241,6 +10259,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                 document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
                 document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
                 document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+                // smoothe scroll to #insignts-training-section-container
+                $.smoothScroll("#main-content-container", "#insignts-training-section-container", 100);
             } else if (tabName == "InsightsTabCTA") {
                 tabContainer = null;
                 document.getElementById("v-sub-tab-pills-insights-teamathletics-tab").click();
@@ -10251,6 +10271,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                 document.getElementById("horizontal-rule-icon-teamathletics").style.display = "block";
                 document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
                 document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+                // smoothe scroll to #insignts-training-section-container
+                $.smoothScroll("#main-content-container", "#insignts-training-section-container", 100);
             } else if (tabName == "InsightsTabChallenges") {
                 tabContainer = null;
                 document.getElementById("v-sub-tab-pills-insights-challenges-tab").click();
@@ -10261,9 +10283,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                 document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
                 document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
                 document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+                // smoothe scroll to #insignts-training-section-container
+                $.smoothScroll("#main-content-container", "#insignts-training-section-container", 100);
             } else if (tabName == "InsightsTabWellness") {
                 tabContainer = null;
-                document.getElementById("v-sub-tab-pills-insights-challenges-tab").click();
+                document.getElementById("v-sub-tab-pills-insights-wellness-tab").click();
 
                 document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
                 document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
@@ -10271,9 +10295,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                 document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
                 document.getElementById("horizontal-rule-icon-wellness").style.display = "block";
                 document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+                // smoothe scroll to #insignts-training-section-container
+                $.smoothScroll("#main-content-container", "#insignts-training-section-container", 100);
             } else if (tabName == "InsightsTabNutrition") {
                 tabContainer = null;
-                document.getElementById("v-sub-tab-pills-insights-challenges-tab").click();
+                document.getElementById("v-sub-tab-pills-insights-nutrition-tab").click();
 
                 document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
                 document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
@@ -10281,31 +10307,171 @@ if (isset($_SESSION["currentUserAuth"])) {
                 document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
                 document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
                 document.getElementById("horizontal-rule-icon-nutrition").style.display = "block";
+                // smoothe scroll to #insignts-training-section-container
+                $.smoothScroll("#main-content-container", "#insignts-training-section-container", 100);
             } else if (tabName == "OffcanvasMessages") {
                 document.getElementById("toggle-messages-offcanvas").click();
+            } else {
+                // console,log error flag: tabName unknown or invalid
+                console.log("openLink() navigation error: tabName unknown or invalid" + tabName);
             }
 
-            // InsightsTabGCS
-            // InsightsTabIAT
-            // InsightsTabCTA
-            // InsightsTabChallenges
-            // v-sub-tab-pills-insights-googlesurveys-tab
-            // v-sub-tab-pills-insights-indiathlete-tab
-            // v-sub-tab-pills-insights-teamathletics-tab
-            // v-sub-tab-pills-insights-challenges-tab
+        }
 
-            //x = document.getElementsByClassName("content-tab");
-            x = tabContainer;
+        // set the localstorage variable ( via func setCurrentInsightsTrainingProgramTab(subTabName) ) to store the current insights sub-tab container. 
+        // variable will be used to display the current sub-tab on page load/reload / to set current subtab container 
+        function setCurrentInsightsTrainingProgramTab(subTabName) {
+            switch (subTabName) {
+                case 'challenges':
+                    setCurrentAppSubTabID('v-sub-tab-pills-insights-challenges'); // button: nav-trainingProgramCategories-challenges-tab
+                    openLink(null, "InsightsTabChallenges");
+                    break;
+                case 'googleSurveys':
+                    setCurrentAppSubTabID('v-sub-tab-pills-insights-googlesurveys'); // button: nav-trainingProgramCategories-googleSurveys-tab
+                    openLink(null, "InsightsTabGCS");
+                    break;
+                case 'InsightsTabIAT':
+                    console.log("InsightsTabIAT (Indi Athletics Training Tab is unavailable"); // unavailable flag
+                    break;
+                case 'teamAthletics':
+                    setCurrentAppSubTabID('v-sub-tab-pills-insights-teamathletics'); // button: nav-trainingProgramCategories-teamAthletics-tab
+                    openLink(null, "InsightsTabCTA");
+                    break;
+                case 'wellness':
+                    setCurrentAppSubTabID('v-sub-tab-pills-insights-wellness'); // button: nav-trainingProgramCategories-wellness-tab
+                    openLink(null, "InsightsTabWellness");
+                    break;
+                case 'nutrition':
+                    setCurrentAppSubTabID('v-sub-tab-pills-insights-nutrition'); // button: nav-trainingProgramCategories-nutrition-tab
+                    openLink(null, "InsightsTabNutrition");
+                    break;
 
-            if (x) {
-                for (i = 0; i < x.length; i++) {
-                    x[i].style.display = "none";
+                default:
+                    setCurrentAppSubTabID('v-sub-tab-pills-insights-challenges'); // button: nav-trainingProgramCategories-challenges-tab challenges tab is the default
+                    openLink(null, "InsightsTabChallenges");
+                    break;
+            }
+
+            // xxxxxxxxxxxxxxxxxxxx here is another way to execute subtab navigation
+            /* 
+            function setCurrentInsightsTrainingProgramTab(selcategory) {
+                console.log(`setCurrentInsightsTrainingProgramTab function was triggered: selected category: [ ${selcategory} ]`);
+                // declaring variable
+                var challengesBtn = document.getElementById("v-sub-tab-pills-insights-challenges-tab");
+                var teamAthleticsBtn = document.getElementById("v-sub-tab-pills-insights-teamathletics-tab");
+                // var indiAthleteBtn = document.getElementById("v-sub-tab-pills-insights-indiathlete-tab");
+                var googleSurveyBtn = document.getElementById("v-sub-tab-pills-insights-googlesurveys-tab");
+                var wellnessBtn = document.getElementById("v-sub-tab-pills-insights-wellness-tab");
+                var nutritionBtn = document.getElementById("v-sub-tab-pills-insights-nutrition-tab");
+
+                if (selcategory === "challenges") {
+                    challengesBtn.click();
+
+                    document.getElementById("horizontal-rule-icon-challenges").style.display = "block";
+                    document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                    // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+
+                    document.getElementById("md-horizontal-rule-icon-challenges").style.display = "block";
+                    document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "none";
+                    // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
+
+                } else if (selcategory === "googleSurveys") {
+                    googleSurveyBtn.click();
+
+                    document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "block";
+                    // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+
+                    document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "block";
+                    // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
+
+                } else if (selcategory === "teamAthletics") {
+                    teamAthleticsBtn.click();
+
+                    document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                    // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-teamathletics").style.display = "block";
+                    document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+
+                    document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "none";
+                    // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "block";
+                    document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
+
+                } else if (selcategory === "wellness") {
+                    wellnessBtn.click();
+
+                    document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                    // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-wellness").style.display = "block";
+                    document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+
+                    document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "none";
+                    // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-wellness").style.display = "block";
+                    document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
+
+                } else if (selcategory === "nutrition") {
+                    nutritionBtn.click();
+
+                    document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                    // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                    document.getElementById("horizontal-rule-icon-nutrition").style.display = "block";
+
+                    document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "none";
+                    // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
+                    document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "block";
+
                 }
-                document.getElementById(tabName).style.display = "block";
 
-                // set current App Tab ID
-                setCurrentAppTabID(tabName);
-            }
+                // else if (selcategory == "indiAthlete") {
+                //     indiAthleteBtn.click();
+                // 
+                //     document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
+                //     document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
+                //     // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "block";
+                //     document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
+                //     document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
+                //     document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
+                // 
+                //     document.getElementById("md-horizontal-rule-icon-challenges").style.display = "none";
+                //     document.getElementById("md-horizontal-rule-icon-googlesurveys").style.display = "block";
+                //     // document.getElementById("md-horizontal-rule-icon-indiathlete").style.display = "none";
+                //     document.getElementById("md-horizontal-rule-icon-teamathletics").style.display = "none";
+                //     document.getElementById("md-horizontal-rule-icon-wellness").style.display = "none";
+                //     document.getElementById("md-horizontal-rule-icon-nutrition").style.display = "none";
+                // 
+                // }
+            } 
+            */
+            // xxxxxxxxxxxxxxxxxxxx ./end
         }
 
         function loadActivityCalender(monthName) {
@@ -10327,12 +10493,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                         //alert(output);
 
                         convoContainer.innerHTML = `
-    <div class="application-error-msg shadow d-grid gap-2 d-block" id="application-error-msg">
-    <h3 class=" d-block" style="color: red">An error has occured</h3>
-    <p class=" d-block">It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport('` + userParam + `','` + output + `')">support</a></p>
-    <div class="application-error-msg-output d-block" style="font-size: 10px">` + output + `</div>
-    </div>
-    `;
+                        <div class="application-error-msg shadow d-grid gap-2 d-block" id="application-error-msg">
+                        <h3 class=" d-block" style="color: red">An error has occured</h3>
+                        <p class=" d-block">It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport('` + userParam + `','` + output + `')">support</a></p>
+                        <div class="application-error-msg-output d-block" style="font-size: 10px">` + output + `</div>
+                        </div>
+                        `;
 
                         var applicationErrMsg = document.getElementById('application-error-msg');
 
@@ -10406,7 +10572,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
             function dragMouseDown(e) {
                 e = e || window.event;
+                e = e || window.event;
                 e.preventDefault();
+                e.stopImmediatePropagation();
                 // get the mouse cursor position at startup:
                 pos3 = e.clientX;
                 pos4 = e.clientY;
@@ -10417,7 +10585,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
             function elementDrag(e) {
                 e = e || window.event;
+                e = e || window.event;
                 e.preventDefault();
+                e.stopImmediatePropagation();
                 // calculate the new cursor position:
                 pos1 = pos3 - e.clientX;
                 pos2 = pos4 - e.clientY;
@@ -11038,8 +11208,8 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // function to smooth scroll
         $.smoothScroll = function(containerElemID, scrollToElemID, scrollSpeed) {
-            scrollSpeed = scrollSpeed || 2000; // default
-
+            // scrollDirection = scrollDirection || "pageUp";
+            scrollSpeed = scrollSpeed || 100;
             if (!containerElemID.startsWith("#")) {
                 containerElemID = "#" + containerElemID;
             }
@@ -11048,7 +11218,10 @@ if (isset($_SESSION["currentUserAuth"])) {
             }
             $(containerElemID).animate({ // "#main-form-window-scroll-container" [document.documentElement, document.body]
                 scrollTop: $(scrollToElemID).offset().top // "#user-welcome-header"
-            }, scrollSpeed); // 2000 ms
+            }, scrollSpeed);
+            console.log("smoothScroll: window.offset().top => " + $(scrollToElemID).offset().top);
+
+
         }
 
         // run function when scrolled to #main-content-container
@@ -11073,7 +11246,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                 // $('#creation-tools-content-panel').css('margin-right', '0px');
 
                 // remove fixed top class from main navbar
-                $('#main-navbar').removeClass('fixed-top');
+                if ($('#main-navbar').hasClass('fixed-top')) {
+                    $('#main-navbar').fadeOut(100);
+                    setTimeout(function() {
+                        $('#main-navbar').removeClass('fixed-top');
+                        $('#main-navbar').fadeIn(300);
+                    }, 300);
+                }
+
             } else {
                 $('#twitter-social-panel').css('top', '20vh');
                 $('#creation-tools-content-panel').css('top', '20vh');
@@ -11083,7 +11263,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                 // $('#creation-tools-content-panel').css('margin-right', '0px');
 
                 // add fixed top class to main navbar
-                $('#main-navbar').addClass('fixed-top');
+                if (!$('#main-navbar').hasClass('fixed-top')) {
+                    $('#main-navbar').fadeOut(100);
+                    setTimeout(function() {
+                        $('#main-navbar').addClass('fixed-top');
+                        $('#main-navbar').fadeIn(300);
+                    }, 300);
+                }
             }
         });
 
@@ -11592,51 +11778,151 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         }
 
+        // get json data for players
+        // function getRequestedGMJSONList(grcode) {}
+        function getRequestedGMJSONList(grcode) {
+            const memtype = 'starting';
+            $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/training/teams/get_teams_group_members.php?returntype=json&grc=" + grcode + "&memtype=" + memtype, function(data, status) {
+                if (status != "success") {
+                    console.log("Get Req Failed -> $.getRequestedGMJSONList returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    alert("Get Req Failed -> $.getRequestedGMJSONList returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    return false;
+                } else {
+                    console.log("Successfull response: \n" + JSON.stringify(data));
+
+                    let responseJSONData = data; // data; //we used JSON_PRETTY_PRINT param on json_encode in php 
+                    console.log("responseJSONData:");
+                    console.log(responseJSONData);
+
+                    return responseJSONData;
+
+                    // let responseJSONData = data; //JSON.parse(data); 
+                    // console.log("responseJSONData");
+                    // console.log(responseJSONData);
+
+
+                    // var playerData = [];
+                    // // responseJSONData.forEach(record => {
+                    // //     playerData.push(`{name: '${responseJSONData['user_name']} ${responseJSONData['user_surname']}', position: '${responseJSONData['field_position']}', img: '../media/profiles/0_default/soccer-player.png'}`);
+                    // // });
+                    // // this is the way!!! - source: https://www.sitepoint.com/loop-through-json-response-javascript/
+                    // // https://masteringjs.io/tutorials/fundamentals/foreach-object
+                    // Object.entries(responseJSONData).forEach((entry) => {
+                    //     const [key, value] = entry;
+                    //     var user_name, user_surname, field_position;
+                    //     // console.log(entry);
+                    //     console.log(`${key}: ${value}`);
+                    //     if (key === 'user_name') {
+                    //         user_name = value;
+                    //     } else if (key === 'user_surname') {
+                    //         user_surname = value;
+                    //     } else if (key === 'field_position') {
+                    //         field_position = value;
+                    //     }
+                    //     playerData.push(`{name: '${user_name} ${user_surname}', position: '${field_position}', img: '../media/profiles/0_default/soccer-player.png'}`);
+                    // });
+                    // console.log("players array (mapped): \n" + playerData);
+                    // *** TESTING ********************************
+                }
+            });
+        }
+
         $.initializeSoccerfieldFormation = function(grcode) {
             // soccer field player formation
 
-            function getRequestedGMJSONList(grcode) {
-                const memtype = 'starting';
-                $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/training/teams/get_teams_group_members.php?returntype=json&grc=" + grcode + "&memtype=" + memtype, function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.getRequestedGMJSONList returned: \n[Status]: " + status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getRequestedGMJSONList returned: \n[Status]: " + status + "\n[Data]: " + data);
-                    } else {
-                        let responseJSONData = JSON.parse(data); //data; //we used JSON_PRETTY_PRINT param on json_encode in php 
-                        // alert("Successfull response from getRequestedGMJSONList(). Check console for details.");
-                        console.log("Successfull response: \n" + JSON.stringify(responseJSONData));
-                        // return JSON.stringify(responseJSONData);
+            var playerPositionData = [];
+            // {
+            //     name: 'KEYLOR NAVAS',
+            //     position: 'C_GK',
+            //     img: '../media/profiles/0_default/soccer-player.png'
+            // },
+            // {
+            //     name: 'MARCELO',
+            //     position: 'LC_B',
+            //     img: '../media/profiles/0_default/soccer-player.png'
+            // },
+            // {
+            //     name: 'SERGIO RAMOS',
+            //     position: 'C_B',
+            //     img: '../media/profiles/0_default/soccer-player.png'
+            // },
+            // {
+            //     name: 'CARVAJAL',
+            //     position: 'RC_B',
+            //     img: '../media/profiles/0_default/soccer-player.png'
+            // },
+            // {
+            //     name: 'CASEMIRO',
+            //     position: 'C_DM',
+            //     img: '../media/profiles/0_default/soccer-player.png'
+            // },
+            // {
+            //     name: 'KROOS',
+            //     position: 'L_M',
+            //     img: '../media/profiles/0_default/soccer-player.png'
+            // },
+            // {
+            //     name: 'ISCO',
+            //     position: 'LC_M',
+            //     img: '../media/profiles/0_default/soccer-player.png'
+            // },
+            // {
+            //     name: 'ASENSIO',
+            //     position: 'RC_M',
+            //     img: '../media/profiles/0_default/soccer-player.png'
+            // },
+            // {
+            //     name: 'MODRIC',
+            //     position: 'R_M',
+            //     img: '../media/profiles/0_default/soccer-player.png'
+            // },
+            // {
+            //     name: 'RONALDO',
+            //     position: 'LC_F',
+            //     img: '../media/profiles/0_default/soccer-player.png'
+            // },
+            // {
+            //     name: 'BENZEMA',
+            //     position: 'RC_F',
+            //     img: '../media/profiles/0_default/soccer-player.png'
+            // },
 
-                        // run getRequestedGMJSONList function to test what output we get
-                        // let compiledPlayerPositionData = JSON.stringify(responseJSONData);
 
-                        // console.log("compiledPlayerPositionData: \n" + compiledPlayerPositionData);
+            const memtype = 'starting';
+            $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/training/teams/get_teams_group_members.php?returntype=json&grc=" + grcode + "&memtype=" + memtype, function(data, status) {
+                if (status != "success") {
+                    console.log("Get Req Failed -> $.getRequestedGMJSONList returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    alert("Get Req Failed -> $.getRequestedGMJSONList returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    return false;
+                } else {
+                    console.log("Successfull response: \n" + JSON.stringify(data));
 
-                        // *** TESTING ********************************
-                        // use .map to create a new array of players positions
-                        var players = responseJSONData.map(
-                            function(index) {
-                                var arrayItem = `
-                                {
-                                    name: '${index.user_name} ${index.user_surname}',
-                                    position: '${index.field_position}',
-                                    img: '../media/profiles/0_default/soccer-player.png'
-                                }`;
-                                return arrayItem;
-                            }
-                        );
-                        console.log("players array (mapped): \n" + players);
-                        // *** TESTING ********************************
+                    let responseJSONData = data; // data; //we used JSON_PRETTY_PRINT param on json_encode in php 
+                    console.log("responseJSONData:");
+                    console.log(responseJSONData);
+
+                    playerPositionData.push(responseJSONData);
+                    console.log(playerPositionData);
+                }
+            });
 
 
-                    }
-                });
+            // let getPlayerPosJSON = getRequestedGMJSONList(grcode);
+
+            // playerPositionData.push(getPlayerPosJSON);
+            // console.log(playerPositionData);
+
+            function getKeyByValue(object, value) {
+                return Object.keys(object).find(key => object[key] === value);
             }
 
-            // clear the #soccefield container
-            $('#soccerfield').empty();
 
-            getRequestedGMJSONList(grcode);
+
+            // let fieldPositionDataArray = [];
+
+
+            // fieldPositionDataArray = JSON.parse(getRequestedGMJSONList(grcode));
+            // console.log("fieldPositionDataArray \n" + fieldPositionDataArray);
 
             // create api to get json data from our database
             // run getRequestedGMJSONList function to test what output we get
@@ -11644,93 +11930,45 @@ if (isset($_SESSION["currentUserAuth"])) {
 
             // console.log("compiledPlayerPositionData: \n" + compiledPlayerPositionData);
 
-            var playerPositionData = [{
-                    name: 'KEYLOR NAVAS',
-                    position: 'C_GK',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'MARCELO',
-                    position: 'LC_B',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'SERGIO RAMOS',
-                    position: 'C_B',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'CARVAJAL',
-                    position: 'RC_B',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'CASEMIRO',
-                    position: 'C_DM',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'KROOS',
-                    position: 'L_M',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'ISCO',
-                    position: 'LC_M',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'ASENSIO',
-                    position: 'RC_M',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'MODRIC',
-                    position: 'R_M',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'RONALDO',
-                    position: 'LC_F',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-                {
-                    name: 'BENZEMA',
-                    position: 'RC_F',
-                    img: '../media/profiles/0_default/soccer-player.png'
-                },
-            ];
+            if (playerPositionData !== false) {
+                // clear the #soccefield container
+                $('#soccerfield').empty();
+                // compile initialize soccerfield
+                $("#soccerfield").soccerfield(playerPositionData, {
+                    field: {
+                        width: "960px",
+                        height: "600px",
+                        img: '../media/assets/field_diagrams/soccer-field-dimensions-1.jpg',
+                        startHidden: false,
+                        animate: false,
+                        fadeTime: 1000,
+                        autoReveal: false,
+                        onReveal: function() {
+                            // triggered on reveal
+                            showSnackbar("Field - Soccerfield loaded.")
+                            console.log("Field - Soccerfield loaded.")
+                        }
+                    },
+                    players: {
+                        font_size: 16,
+                        reveal: false,
+                        sim: true, // reveal simultaneously
+                        timeout: 1000,
+                        fadeTime: 1000,
+                        img: true,
+                        onReveal: function() {
+                            // triggered on reveal
+                            showSnackbar("Players - Soccerfield plugin has been loaded.");
+                            console.log("Players - soccerfield plugin has been loaded.");
+                        }
+                    }
+                });
+            }
 
-            $("#soccerfield").soccerfield(playerPositionData, {
-                field: {
-                    width: "960px",
-                    height: "600px",
-                    img: '../media/assets/field_diagrams/soccer-field-dimensions-1.jpg',
-                    startHidden: false,
-                    animate: false,
-                    fadeTime: 1000,
-                    autoReveal: false,
-                    onReveal: function() {
-                        // triggered on reveal
-                    }
-                },
-                players: {
-                    font_size: 16,
-                    reveal: false,
-                    sim: true, // reveal simultaneously
-                    timeout: 1000,
-                    fadeTime: 1000,
-                    img: true,
-                    onReveal: function() {
-                        // triggered on reveal
-                        console.log("soccerfield plugin has been loaded.");
-                    }
-                }
-            });
         }
 
         $.fetchTeamData = function(grcode) {
-            alert("($.fetchTeamData) group ref code from this.value: " + grcode);
+            //alert("($.fetchTeamData) group ref code from this.value: " + grcode);
 
             // compile player position data array from a php.get function for starting lineup players
             $.initializeSoccerfieldFormation(grcode);
@@ -11905,13 +12143,14 @@ if (isset($_SESSION["currentUserAuth"])) {
         $.trainingSubTabMainTeamSelection = function(team_grcode) {
             let mainTeamSelectionGRCode = team_grcode;
 
-            if (mainTeamSelectionGRCode == 'noselect') {
+            if (mainTeamSelectionGRCode == 'noselection') {
                 alert('Please select a team from the Switch Team Selection.');
                 $('#trainingSubTabMainTeamSelection').focus();
             } else {
                 // store grpRefcode locally so we can access it later
                 grpRefcode = mainTeamSelectionGRCode;
-                localStorage.setItem('teams_training_main_grcode', grpRefcode);
+                // localStorage.setItem('teams_training_main_grcode', grpRefcode);
+                $.setDefaultTeamSelect(grpRefcode);
 
                 // *** fetch training data for selected team (grcode) and update the UI ***
 
@@ -11926,7 +12165,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             let mainTeamSelectionGRCode = $('#trainingSubTabMainTeamSelection').val(); // or
             // let mainTeamSelectionGRCode = localStorage.getItem('teams_training_main_grcode');
 
-            if (mainTeamSelectionGRCode == 'noselect') {
+            if (mainTeamSelectionGRCode == 'noselection') {
                 alert('Please select a team from the Switch Team Selection and try again.');
                 // smooth scroll
                 $.smoothScroll('#v-sub-tab-pills-insights-teamathletics', '#trainingSubTabMainTeamSelection');
@@ -11953,6 +12192,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                 });
             }
 
+        }
+
+        $.setDefaultTeamSelect = function(grcode) {
+            // location: 'main','fixture' 
+            localStorage.setItem('teams_training_main_grcode', grcode);
+        }
+
+        $.getDefaultTeamSelect = function() {
+            var DefaultTeamSelect = localStorage.getItem('teams_training_main_grcode') || "noselection";
+            // update the seection for all .team-selection-list to the stored grcode
+            // $('.team-selection-list').val(DefaultTeamSelect).change();
+            $(`.team-selection-list > option[value=${DefaultTeamSelect}]`).attr('selected', 'selected');
         }
 
         // function for switching weekly view of assessment cards and the activity chart
@@ -12190,7 +12441,9 @@ if (isset($_SESSION["currentUserAuth"])) {
         // ***** Locaion: Modal
         // ajax jquery - submit activity tracking data [Heart Rate]
         $("#modal-heartrate-insights-activitytracker-data-form").submit(function(e) {
+            e = e || window.event;
             e.preventDefault();
+            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12240,7 +12493,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // ajax jquery - submit activity tracking data [Body Temp]
         $("#modal-bodytemp-insights-activitytracker-data-form").submit(function(e) {
+            e = e || window.event;
             e.preventDefault();
+            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12281,7 +12536,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // ajax jquery - submit activity tracking data [Speed]
         $("#modal-speed-insights-activitytracker-data-form").submit(function(e) {
+            e = e || window.event;
             e.preventDefault();
+            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12322,7 +12579,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // ajax jquery - submit activity tracking data [BMI Weight]
         $("#modal-weight-insights-activitytracker-data-form").submit(function(e) {
+            e = e || window.event;
             e.preventDefault();
+            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12364,7 +12623,9 @@ if (isset($_SESSION["currentUserAuth"])) {
         // ***** Locaion: Single
         // ajax jquery - submit activity tracking data [Heart Rate]
         $("#single-heartrate-insights-activitytracker-data-form").submit(function(e) {
+            e = e || window.event;
             e.preventDefault();
+            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12409,7 +12670,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // ajax jquery - submit activity tracking data [Body Temp]
         $("#single-bodytemp-insights-activitytracker-data-form").submit(function(e) {
+            e = e || window.event;
             e.preventDefault();
+            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12450,7 +12713,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // ajax jquery - submit activity tracking data [Speed]
         $("#single-speed-insights-activitytracker-data-form").submit(function(e) {
+            e = e || window.event;
             e.preventDefault();
+            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12491,7 +12756,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // ajax jquery - submit activity tracking data [BMI Weight]
         $("#single-weight-insights-activitytracker-data-form").submit(function(e) {
+            e = e || window.event;
             e.preventDefault();
+            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12538,7 +12805,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
         $("#teams-add-new-day-activity-data-form").submit(function(e) {
+            e = e || window.event;
             e.preventDefault();
+            e.stopImmediatePropagation();
 
             var form_data = new FormData($('#teams-add-new-day-activity-data-form')[0]);
             setTimeout(function() {
@@ -12580,7 +12849,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // ajax jquery - submit add new activity data form on the calender view modal
         $("#add-new-schedule-form").submit(function(e) {
+            e = e || window.event;
             e.preventDefault();
+            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12653,7 +12924,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // ajax jquery - submit add match to fixture data form
         $("#add-match-fixture-form").submit(function(e) {
+            e = e || window.event;
             e.preventDefault();
+            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12954,7 +13227,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // text-input: pass title and definitionstrings to selected list
         $('#add-selection-to-activities-textinput-btn').on('click', function(e) {
+            e = e || window.event;
             e.preventDefault();
+            e.stopImmediatePropagation();
 
             let newExerciseTitle = $('#add-to-calender-activity-specify-title').val();
 

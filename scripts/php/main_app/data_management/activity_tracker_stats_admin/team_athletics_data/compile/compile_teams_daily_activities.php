@@ -150,7 +150,8 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
             echo $activities_bar_content;
         }
 
-        $result->close();
+        // $result->close();
+        $result = null;
         $dbconn->close();
 
         // echo "success: About You data saved successfully.";

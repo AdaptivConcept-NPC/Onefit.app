@@ -178,6 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tws_id = $dbconn->insert_id;
 
         // dump the results
+        // $result = null;
         $result = null;
 
         // insert each item into the teams schedule activities table
@@ -199,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $result = null;
+        // $result = null;
         $dbconn->close();
     } catch (\Throwable $th) {
         $dbconn->close();

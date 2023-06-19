@@ -31,12 +31,14 @@ $user_name
     = $user_surname
     = $user_gender = null;
 
+$json_compile = null;
+
 if ($returnType === "json") {
     # compile requested data and return it as json string
     try {
         $query = "SELECT tgm.*, usr.user_name, usr.user_surname, usr.user_gender FROM teams_group_members tgm
         INNER JOIN users usr ON tgm.users_username = usr.username
-        WHERE group_role = 'starting' AND groups_group_ref_code = '$grc_code' ORDER BY team_mem_id ASC";
+        WHERE tgm.group_role = 'starting' AND tgm.groups_group_ref_code = '$grc_code' ORDER BY team_mem_id ASC";
 
         // execute query 
         $result = $dbconn->query($query);
@@ -49,27 +51,36 @@ if ($returnType === "json") {
             die("No players found in starting lineup.");
         } else {
             $row = $result->fetch_array(MYSQLI_ASSOC);
-            header('Content-Type: application/json');
-            echo json_encode($row);
+
             // echo json_encode($row, JSON_PRETTY_PRINT);
-            // for ($j = 0; $j < $rows; ++$j) {
-            //     $row = $result->fetch_array(MYSQLI_ASSOC);
+            for ($j = 0; $j < $rows; ++$j) {
+                //     $row = $result->fetch_array(MYSQLI_ASSOC);
 
-            //     $team_mem_id = $row["team_mem_id"];
-            //     $group_sport = $row["group_sport"];
-            //     $group_role = $row["group_role"];
-            //     $field_position = $row["field_position"];
-            //     $group_join_date = $row["group_join_date"];
-            //     $active = $row["active"];
-            //     $status = $row["status"];
-            //     $groups_group_ref_code = $row["groups_group_ref_code"];
-            //     $users_username = $row["users_username"];
+                //     $team_mem_id = $row["team_mem_id"];
+                //     $group_sport = $row["group_sport"];
+                //     $group_role = $row["group_role"];
+                $field_position = $row["field_position"];
+                //     $group_join_date = $row["group_join_date"];
+                //     $active = $row["active"];
+                //     $status = $row["status"];
+                //     $groups_group_ref_code = $row["groups_group_ref_code"];
+                //     $users_username = $row["users_username"];
 
-            //     $user_name = $row["user_name"];
-            //     $user_surname = $row["user_surname"];
-            //     $user_gender = $row["user_gender"];
-            // }
+                $user_name = $row["user_name"];
+                $user_surname = $row["user_surname"];
+                //     $user_gender = $row["user_gender"];
+            }
+
+            // {"name": "$user_name $user_surname", "position": "$field_position", "img": "../media/profiles/0_default/soccer-player.png"},
+
+            $json_compile .= <<<_JSON
+            {name: '$user_name $user_surname', position: '$field_position', img: '../media/profiles/0_default/soccer-player.png'},
+            _JSON;
         }
+
+        header('Content-Type: application/json');
+        // echo json_encode($row, JSON_PRETTY_PRINT);
+        echo json_encode($json_compile, JSON_PRETTY_PRINT);
     } catch (\Throwable $th) {
         throw "Exception Error: " . $th;
     }
@@ -202,6 +213,7 @@ if ($returnType === "json") {
 
         echo $compileTableItems;
 
+        // $result = null;
         $result = null;
         $dbconn->close();
     } catch (\Throwable $th) {

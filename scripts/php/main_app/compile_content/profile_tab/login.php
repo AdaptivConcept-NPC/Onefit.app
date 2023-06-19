@@ -54,7 +54,8 @@ if ($rows == 0) {
   function closeDBConnection()
   {
     global $result, $dbconn;
-    $result->close();
+    // $result->close();
+    $result = null;
     $dbconn->close();
   }
 

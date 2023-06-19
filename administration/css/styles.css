@@ -565,3 +565,56 @@ body {
     background: linear-gradient(0deg, rgba(52, 52, 52, 1) 0%, rgba(255, 255, 255, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#ffffff", GradientType=1);
 }
+
+.form-control-text-input {
+    border-radius: 50rem;
+    font-size: 20px;
+    text-align: center !important;
+    border: 0;
+    width: 100%;
+    color: var(--mineshaft);
+
+    transition: 0.2s;
+}
+
+.form-control-text-input:focus {
+    outline: 0;
+    border-left: var(--tahitigold) solid 10px;
+    border-right: var(--tahitigold) solid 10px;
+    color: var(--tahitigold);
+
+    border-radius: 50rem;
+}
+
+.form-control-select-input {
+    border-radius: 50rem;
+    font-size: 20px;
+    text-align: center !important;
+    border: 0;
+    width: 100%;
+
+    transition: 0.2s;
+}
+
+.form-check-input {
+    width: 2em;
+    height: 2em;
+    border: var(--tahitigold) 3px solid;
+    border-radius: 10px !important;
+    background-color: #333;
+}
+
+.form-check-input:checked {
+    color: var(--mineshaft);
+    background-color: var(--tahitigold);
+    border-color: var(--tahitigold);
+    outline: 0 !important;
+}
+
+.onefit-inputs-style {
+    border-radius: 50rem;
+    outline: 0;
+    border: 0;
+    width: 100%;
+    padding: 20px;
+}

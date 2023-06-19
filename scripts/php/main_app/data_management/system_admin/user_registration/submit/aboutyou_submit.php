@@ -68,7 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!$result) die("An error occurred while trying to save your details. [AboutYou Submit Error_01 - " . $dbconn->error . "]");
 
-        $result->close();
+        // $result->close();
+        $result = null;
         $dbconn->close();
 
         echo "success: About You data saved successfully.";

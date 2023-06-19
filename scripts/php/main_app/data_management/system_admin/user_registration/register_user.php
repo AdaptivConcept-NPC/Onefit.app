@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $profile_id = $dbconn->insert_id;
 
+  // $result = null;
   $result = null;
   $dbconn->close();
 

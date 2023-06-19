@@ -9,45 +9,45 @@ if ($dbconn->connect_error) die("Fatal Error");
 
 $currentUser_Usrnm = $groupsList = $app_err_msg = $output = null;
 $grps_groupid =
-  $grps_refcode =
-  $grps_name =
-  $grps_description =
-  $grps_category =
-  $grps_privacy =
-  $grps_createdby =
-  $grps_createdate = null;
+    $grps_refcode =
+    $grps_name =
+    $grps_description =
+    $grps_category =
+    $grps_privacy =
+    $grps_createdby =
+    $grps_createdate = null;
 
 try {
-  //groups
-  $sql = "SELECT * FROM groups WHERE group_category = 'pro' ORDER BY group_id DESC";
+    //groups
+    $sql = "SELECT * FROM groups WHERE group_category = 'pro' ORDER BY group_id DESC";
 
-  $result = $dbconn->query($sql);
-  if (!$result) die("A Fatal Error has occured. Please try again and if the problem persists, please contact the system administrator.");
+    $result = $dbconn->query($sql);
+    if (!$result) die("A Fatal Error has occured. Please try again and if the problem persists, please contact the system administrator.");
 
-  $rows = $result->num_rows;
+    $rows = $result->num_rows;
 
-  if ($rows == 0) {
-    //there is no result 
-    $output = <<<_END
+    if ($rows == 0) {
+        //there is no result 
+        $output = <<<_END
         <div class="p-4 text-center">
             <span class="text-muted fs-5">No groups available.</span>
         </div>
         _END;
-  } else {
-    for ($j = 0; $j < $rows; ++$j) {
-      $row = $result->fetch_array(MYSQLI_ASSOC);
-      //`group_id`, `group_ref_code`, `group_name`, `group_description`, `group_category`, `group_privacy`, `administrators_username`, `creation_date`
+    } else {
+        for ($j = 0; $j < $rows; ++$j) {
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+            //`group_id`, `group_ref_code`, `group_name`, `group_description`, `group_category`, `group_privacy`, `administrators_username`, `creation_date`
 
-      $grps_groupid = $row["group_id"];
-      $grps_refcode = $row["group_ref_code"];
-      $grps_name = $row["group_name"];
-      $grps_description = $row["group_description"];
-      $grps_category = $row["group_category"];
-      $grps_privacy = $row["group_privacy"];
-      $grps_createdby = $row["administrators_username"];
-      $grps_createdate = $row["creation_date"];
+            $grps_groupid = $row["group_id"];
+            $grps_refcode = $row["group_ref_code"];
+            $grps_name = $row["group_name"];
+            $grps_description = $row["group_description"];
+            $grps_category = $row["group_category"];
+            $grps_privacy = $row["group_privacy"];
+            $grps_createdby = $row["administrators_username"];
+            $grps_createdate = $row["creation_date"];
 
-      $groupsList .= <<<_END
+            $groupsList .= <<<_END
       <li id="group-item-$grps_groupid-$grps_refcode" class="list-group-item list-group-item-action d-flex gap-4 justify-content-between align-items-center left-right-grad-white-mineshaft" style="border-radius:25px;">
           <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="img-fluid shadow" style="border-radius:15px;height:100px;" alt="group image." />
           <div class="ms-2 me-auto d-grid">
@@ -68,9 +68,9 @@ try {
           </div>
       </li>
       _END;
-    }
+        }
 
-    $output = <<<_END
+        $output = <<<_END
         <!-- PRO groups container -->
         <div class="row" style="min-height: 50vh;max-height:100vh;">
             <div class="col-md-4 light-scroller" style="max-height:100vh;overflow-y:auto;">
@@ -93,14 +93,15 @@ try {
         </div>
         <!-- ./ PRO groups container -->
         _END;
-  }
+    }
 
-  $result = null;
+    //   $result = null;
+    $result = null;
 } catch (\Throwable $th) {
-  //throw $th;
-  $output_msg = "System Error:. [get_user_community_subs (user group subs) - " . $th->getMessage() . "]"; //mysqli_error($dbconn)
+    //throw $th;
+    $output_msg = "System Error:. [get_user_community_subs (user group subs) - " . $th->getMessage() . "]"; //mysqli_error($dbconn)
 
-  $app_err_msg = <<<_END
+    $app_err_msg = <<<_END
     <div class="application-error-msg shadow">
         <h3 style="color: red">An error has occured</h3>
         <p>
@@ -109,8 +110,9 @@ try {
         <div class="application-error-msg-output" style="font-size: 10px"> $output_msg </div>
     </div>;
     _END;
-  $output = $app_err_msg;
+    $output = $app_err_msg;
 }
+
 $dbconn->close();
 echo $output;
 

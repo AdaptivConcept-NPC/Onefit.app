@@ -122,6 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // close connection to database
+        // $result = null;
         $result = null;
         $dbconn->close();
     } catch (\Throwable $th) {

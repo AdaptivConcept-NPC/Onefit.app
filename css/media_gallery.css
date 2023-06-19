@@ -21,3 +21,53 @@
     -webkit-filter: grayscale(0);
     filter: grayscale(0);
 }
+
+/* source: web dev simpified (Youtube) https://www.youtube.com/watch?v=hJ7Rg1821Q0 */
+
+.blur-load-img {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border-radius: 25px;
+    overflow: none;
+    /* background-image: url(../media/assets/img-load-placeholder); */
+
+}
+
+.blur-load-img.loaded>img {
+    opacity: 1;
+}
+
+.blur-load-img>img {
+    opacity: 1;
+    transition: opacity 2000ms ease-in-out;
+}
+
+.blur-load-img::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    animation: imgloadpulse 2.5s infinite;
+    background-color: rgba(255, 255, 255, 0.1);
+    /* rgba(255, 165, 0, 0.2) */
+    border-radius: 25px;
+
+}
+
+@keyframes imgloadpulse {
+    0% {
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    50% {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    100% {
+        background-color: rgba(255, 255, 255, 0);
+    }
+}
+
+.blur-load-img.loaded::before {
+    content: "";
+}

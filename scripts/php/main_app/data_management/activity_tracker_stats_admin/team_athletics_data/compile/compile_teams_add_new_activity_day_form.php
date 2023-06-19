@@ -15,13 +15,13 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
     $getGrpRef = sanitizeMySQL($dbconn, $_GET['gref']);
 
     if (isset($_GET['when'])) $when = sanitizeMySQL($dbconn, $_GET['when']); // this / last / next
-    else  $when = 'this';
+    else $when = 'this';
 
     $dayNum = date("N", strtotime("$getDay $when week"));
 
     $dayDateThisWeek = date('Y-m-d', strtotime("$getDay $when week"));
 
-    echo "dayDateThisWeek: $dayDateThisWeek <br/>";
+    // echo "dayDateThisWeek: $dayDateThisWeek <br/>";
 
     if ($getGrpRef == "editbar") {
         # compile a form for editing the title and rpe and bars overall
@@ -54,7 +54,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
 
             if ($rows == 0) {
                 //there is no result
-                echo <<<_END
+                $currentActivityItems = <<<_END
                 <p class="text-center my-4 p-4" style="border-radius:25px;color:var(--mineshaft)">No activities found. Add new activities.</p>
                 _END;
 
@@ -132,6 +132,9 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                 _END;
 
                 // echo $activities_bar_content;
+                // $result = null;
+                $result = null;
+                $dbconn->close();
             }
 
             //get existing/current activities 
@@ -160,9 +163,6 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
             //throw $th;
             echo "exception error: [indi edit-add new activity] " . $th->getMessage;
         }
-
-        $result = null;
-        $dbconn->close();
     }
 } else {
     die("Error: No day or grcode provided");

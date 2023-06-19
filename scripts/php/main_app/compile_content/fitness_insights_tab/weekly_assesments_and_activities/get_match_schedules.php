@@ -108,6 +108,7 @@ try {
 
     echo $compile_table_rows;
 
+    // $result = null;
     $result = null;
     $dbconn->close();
 } catch (\Throwable $th) {

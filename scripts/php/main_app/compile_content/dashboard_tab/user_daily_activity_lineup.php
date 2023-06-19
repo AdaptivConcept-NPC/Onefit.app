@@ -378,5 +378,6 @@ try {
     die("error: [exception 01] " . $th);
 }
 
+// $result = null;
 $result = null;
 $dbconn->close();

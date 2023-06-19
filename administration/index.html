@@ -48,7 +48,10 @@
         $(document).ready(function () {
             // ajax jquery - submit CSV bulk file [user_accounts]
             $("#users-csv-bulk-upload-form").submit(function (e) {
+                e = e || window.event;
                 e.preventDefault();
+                e.stopImmediatePropagation();
+                e.stopImmediatePropagation();
 
                 alert("User Management - This fuction is unavailable.");
 
@@ -96,7 +99,9 @@
 
             // ajax jquery - submit classes/categories CSV bulk file [categories_classes]
             $("#workout-categories-csv-bulk-upload-form").submit(function (e) {
+                e = e || window.event;
                 e.preventDefault();
+                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#workout-categories-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -144,7 +149,9 @@
 
             // *** must insert ajax function for uploading complete workout bulk data - csv file still in the works
             $("#capture-workout-form").submit(function (e) {
+                e = e || window.event;
                 e.preventDefault();
+                e.stopImmediatePropagation();
 
                 // alert("Capture Workout (Single) - This fuction is unavailable.");
                 var form_data = new FormData($('#capture-workout-form')[0]);
@@ -192,7 +199,9 @@
 
             // ajax jquery - submit CSV bulk file [indi_exercises]
             $("#indi-exercises-csv-bulk-upload-form").submit(function (e) {
+                e = e || window.event;
                 e.preventDefault();
+                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#indi-exercises-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -240,7 +249,9 @@
 
             // ajax jquery - submit CSV bulk file [training_drills]
             $("#training-drills-csv-bulk-upload-form").submit(function (e) {
+                e = e || window.event;
                 e.preventDefault();
+                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#training-drills-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -288,7 +299,9 @@
 
             // ajax jquery - submit CSV bulk file [supplements]
             $("#supplements-csv-bulk-upload-form").submit(function (e) {
+                e = e || window.event;
                 e.preventDefault();
+                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#supplements-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -336,7 +349,9 @@
 
             // ajax jquery - submit CSV bulk file [sports_list]
             $("#sports-list-csv-bulk-upload-form").submit(function (e) {
+                e = e || window.event;
                 e.preventDefault();
+                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#sports-list-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -384,7 +399,9 @@
 
             // ajax jquery - submit CSV bulk file [sports_list]
             $("#muscles-list-csv-bulk-upload-form").submit(function (e) {
+                e = e || window.event;
                 e.preventDefault();
+                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#muscles-list-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -432,7 +449,9 @@
 
             // ajax jquery - submit CSV bulk file [store_products]
             $("#store-csv-bulk-upload-form").submit(function (e) {
+                e = e || window.event;
                 e.preventDefault();
+                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#store-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -701,6 +720,94 @@
 
             // *** compile data tables ***
 
+            // generate input data form
+            $.loadForm = function (command, optTblName) {
+                optTblName = optTblName || null;
+                // new_user, new_admin, new_teams_pro_group, new_community_group, 
+
+                function generateForm(tblname, elemid) {
+                    // administration\util\generate_form_from_dbtable.php
+                    $.get("./util/generate_form_from_dbtable.php?tblname=" + tblname, function (data, status) {
+                        if (status != "success") {
+                            console.log("Get Req Failed -> generateForm() returned: \n[Status]: " + status + "\n[Data]: " + data);
+                            // alert("Get Req Failed -> generateForm() returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        } else {
+                            $(elemid).html(data);
+                        }
+                    });
+                }
+
+                switch (command) {
+                    case 'new_user':
+                        // call $.generateForm(tblname) 
+                        generateForm("users", "#command-model-body");
+                        $('#tabCommandModalLabel').html('Create a new User account');
+                        break;
+                    case 'new_admin':
+                        // call $.generateForm(tblname) 
+                        generateForm("administrators", "#command-model-body");
+                        $('#tabCommandModalLabel').html('Create a new Administrator account');
+                        break;
+                    case 'new_teams_pro_group':
+                        // call $.generateForm(tblname) 
+                        generateForm("groups", "#command-model-body");
+                        $('#tabCommandModalLabel').html('Create a new Teams / Pro Group');
+                        break;
+                    case 'new_community_group':
+                        // call $.generateForm(tblname) 
+                        generateForm("groups", "#command-model-body");
+                        $('#tabCommandModalLabel').html('Create a new Community/Indi Group');
+                        break;
+                    case 'table_select':
+                        // means that user has selected to view specific table,  optTblName must not be null but must have the value of a table name
+                        if (optTblName != null || optTblName != "") {
+                            generateForm(optTblName, "#command-model-body");
+                            $('#tabCommandModalLabel').html(`Capture new ${optTblName} record`);
+                        } else {
+                            $("#command-model-body").html(`Table name has not been provided: ${optTblName}`);
+                            $('#tabCommandModalLabel').html('Error: no table name selected');
+                        }
+
+                        break;
+
+                    default:
+                        $("#command-model-body").html(`Command is not recognized: ${command}`);
+                        $('#tabCommandModalLabel').html('Error: Unknown command');
+                        break;
+                }
+            }
+
+            // get select list of db tables from our db
+            $.getDBTables = function (list_format) {
+                // formats: default, table, options, json
+                // administration/scripts/php/database/get_db_tables.php
+
+                switch (list_format) {
+                    case 'table':
+                        get_link = "./scripts/php/database/get_db_tables.php?format=" + list_format;
+                        break;
+                    case 'options':
+                        get_link = "./scripts/php/database/get_db_tables.php?format=" + list_format;
+                        break;
+                    case 'json':
+                        get_link = "./scripts/php/database/get_db_tables.php?format=" + list_format;
+                        break;
+
+                    default:
+                        alert('Unknown list format: ' + format);
+                        return false;
+                        break;
+                }
+
+                $.get(get_link, function (data, status) {
+                    if (status != "success") {
+                        console.log("Get Req Failed -> $.getDBTables returned: \n[Status]: " + status + "\n[Data]: " + data);
+                        // alert("Get Req Failed -> $.getDBTables returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    } else {
+                        $('.db-tables-list').html(data);
+                    }
+                });
+            }
 
         });
     </script>
@@ -1024,7 +1131,7 @@
                         style="height: 80px;">
                 </a> -->
 
-                <h1 class="fs-4 text-white my-0 py-0">
+                <h1 class="fs-4 text-white text-center my-0 py-0">
                     <!--  d-none d-lg-block text-center -->
                     <span class="comfortaa-font text-darkz">One<span class="text-warning">fit</span>.app</span>
 
@@ -1178,8 +1285,9 @@
                         <h5>User Accounts</h5>
 
                         <div class="command-btns-container">
-                            <!-- buttons -->
-                            <button class="onefit-buttons-style-light p-2 my-2 text-center shadow hide-side-panels"
+                            <!-- insert data to table button - Users -->
+                            <button onclick="$.loadForm('new_user')"
+                                class="onefit-buttons-style-light p-2 my-2 text-center shadow hide-side-panels"
                                 type="button" data-bs-toggle="modal" data-bs-target="#tabCommandModal"
                                 aria-controls="tabCommandModal">
                                 <div class="d-flex gap-2 align-items-center">
@@ -1192,47 +1300,9 @@
                                     </span>
                                 </div>
                             </button>
-                            <!-- ./ buttons -->
+                            <!-- insert data to table button - Users -->
                         </div>
                     </div>
-
-                    <div class="command-modals">
-                        <!-- modals -->
-                        <div class="modal fade" id="tabCommandModal" data-bs-backdrop="static" data-bs-keyboard="false"
-                            tabindex="-1" aria-labelledby="tabCommandModalLabel" aria-modal="true" role="dialog">
-                            <div
-                                class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
-                                <div class="modal-content general-modal-style">
-                                    <div class="modal-header border-0">
-                                        <h5 class="modal-title fs-1" id="tabCommandModalLabel">
-                                            Modal Command
-                                        </h5>
-                                        <button id="apps-tray-close-btn" type="button"
-                                            class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal"
-                                            aria-label="Close">
-                                            <span class="material-icons material-icons-round"> close </span>
-                                        </button>
-                                    </div>
-                                    <hr class="text-white m-0">
-                                    <div class="modal-body border-0" style="overflow-x: hidden">
-                                        <!-- loading... waiting -->
-                                        <div class="d-flex text-center justify-content-center align-items-center p-4">
-                                            <strong class="text-muted visually-hiddenz">Loading...</strong>
-                                            <div class="spinner-border text-white ms-auto"
-                                                style="width: 3rem;height: 3rem;" role="status" aria-hidden="true">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr class="text-white m-0">
-                                    <div class="modal-footer border-0 d-inline-block">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ./ modals -->
-                    </div>
-
 
                     <hr>
 
@@ -1278,6 +1348,24 @@
                 <div class="container-card">
                     <h5>Administrator Accounts</h5>
 
+                    <div class="command-btns-container">
+                        <!-- insert data to table button - Users -->
+                        <button onclick="$.loadForm('new_admin')"
+                            class="onefit-buttons-style-light p-2 my-2 text-center shadow hide-side-panels"
+                            type="button" data-bs-toggle="modal" data-bs-target="#tabCommandModal"
+                            aria-controls="tabCommandModal">
+                            <div class="d-flex gap-2 align-items-center">
+                                <span class="material-icons material-icons-round align-middle">
+                                    add_circle
+                                </span>
+                                <span class="align-middle poppins-font text-truncate" style="font-size:12px!important">
+                                    New Administrator
+                                </span>
+                            </div>
+                        </button>
+                        <!-- insert data to table button - Users -->
+                    </div>
+
                     <hr>
 
                     <!-- administrator accounts table -->
@@ -1322,6 +1410,25 @@
 
                 <div class="container-card">
                     <h5>Teams (Teams &amp; Pro)</h5>
+
+                    <div class="command-btns-container">
+                        <!-- insert data to table button - Users -->
+                        <button onclick="$.loadForm('new_teams_pro_group')"
+                            class="onefit-buttons-style-light p-2 my-2 text-center shadow hide-side-panels"
+                            type="button" data-bs-toggle="modal" data-bs-target="#tabCommandModal"
+                            aria-controls="tabCommandModal">
+                            <div class="d-flex gap-2 align-items-center">
+                                <span class="material-icons material-icons-round align-middle">
+                                    add_circle
+                                </span>
+                                <span class="align-middle poppins-font text-truncate" style="font-size:12px!important">
+                                    New Team / Pro Group
+                                </span>
+                            </div>
+                        </button>
+                        <!-- insert data to table button - Users -->
+                    </div>
+
                     <hr>
 
                     <!-- teams groups list table (teams & pro) -->
@@ -1361,6 +1468,25 @@
 
                 <div class="container-card">
                     <h5>Community Groups (Indi)</h5>
+
+                    <div class="command-btns-container">
+                        <!-- insert data to table button - Users -->
+                        <button onclick="$.loadForm('new_community_group')"
+                            class="onefit-buttons-style-light p-2 my-2 text-center shadow hide-side-panels"
+                            type="button" data-bs-toggle="modal" data-bs-target="#tabCommandModal"
+                            aria-controls="tabCommandModal">
+                            <div class="d-flex gap-2 align-items-center">
+                                <span class="material-icons material-icons-round align-middle">
+                                    add_circle
+                                </span>
+                                <span class="align-middle poppins-font text-truncate" style="font-size:12px!important">
+                                    New Community Group (Indi)
+                                </span>
+                            </div>
+                        </button>
+                        <!-- insert data to table button - Users -->
+                    </div>
+
                     <hr>
 
                     <!-- community groups list table (indi) -->
@@ -2278,7 +2404,100 @@
 
                 <hr>
 
-                <div class="row my-4 gap-4">
+                <div class="row my-4 gap-4 align-items-start">
+                    <div class="col-md container-card">
+                        <h5>Add Product</h5>
+                        <hr>
+                        <!-- single form for capturing store products -->
+                        <form id="single-store_products-form" method="post" class="container p-0 gap-2">
+                            <div id="form-output-message"></div>
+                            <div class="form-group my-4">
+                                <label for="product_id" class="poppins-font fs-4 mb-4" style="color: #ffa500;"
+                                    hidden=""> Product id: </label>
+                                <input class="form-control-text-input p-4" type="number" name="product_id"
+                                    id="product_id" maxlength="11" value="null" placeholder="Product id" no=""
+                                    hidden="">
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="inventory_number" class="poppins-font fs-4 mb-4" style="color: #ffa500;">
+                                    Inventory number: </label>
+                                <input class="form-control-text-input p-4" type="text" name="inventory_number"
+                                    id="inventory_number" maxlength="50" value="" placeholder="Inventory number" no="">
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="product_name" class="poppins-font fs-4 mb-4" style="color: #ffa500;">
+                                    Product name: </label>
+                                <input class="form-control-text-input p-4" type="text" name="product_name"
+                                    id="product_name" maxlength="" value="" placeholder="Product name" no="">
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="product_brand" class="poppins-font fs-4 mb-4" style="color: #ffa500;">
+                                    Product brand: </label>
+                                <input class="form-control-text-input p-4" type="text" name="product_brand"
+                                    id="product_brand" maxlength="50" value="" placeholder="Product brand" no="">
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="product_category" class="poppins-font fs-4 mb-4" style="color: #ffa500;">
+                                    Product category: </label>
+                                <input class="form-control-text-input p-4" type="text" name="product_category"
+                                    id="product_category" maxlength="50" value="" placeholder="Product category" no="">
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="purchase_price_zar" class="poppins-font fs-4 mb-4" style="color: #ffa500;">
+                                    Purchase price zar: </label>
+                                <input class="form-control-text-input p-4" type="number" name="purchase_price_zar"
+                                    id="purchase_price_zar" maxlength="" value="" placeholder="Purchase price zar"
+                                    no="">
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="selling_price_zar" class="poppins-font fs-4 mb-4" style="color: #ffa500;">
+                                    Selling price zar: </label>
+                                <input class="form-control-text-input p-4" type="number" name="selling_price_zar"
+                                    id="selling_price_zar" maxlength="" value="" placeholder="Selling price zar" no="">
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="product_description" class="poppins-font fs-4 mb-4" style="color: #ffa500;">
+                                    Product description: </label>
+                                <input class="form-control-text-input p-4" type="text" name="product_description"
+                                    id="product_description" maxlength="" value="" placeholder="Product description"
+                                    no="">
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="product_specifications" class="poppins-font fs-4 mb-4"
+                                    style="color: #ffa500;"> Product specifications: </label>
+                                <input class="form-control-text-input p-4" type="text" name="product_specifications"
+                                    id="product_specifications" maxlength="" value=""
+                                    placeholder="Product specifications" required="">
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="product_weight" class="poppins-font fs-4 mb-4" style="color: #ffa500;">
+                                    Product weight: </label>
+                                <input class="form-control-text-input p-4" type="number" name="product_weight"
+                                    id="product_weight" maxlength="" value="" placeholder="Product weight" required="">
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="inventory_status" class="poppins-font fs-4 mb-4" style="color: #ffa500;">
+                                    Inventory status: </label>
+                                <input class="form-control-text-input p-4" type="number" name="inventory_status"
+                                    id="inventory_status" maxlength="4" value="" placeholder="Inventory status" no="">
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="product_tag" class="poppins-font fs-4 mb-4" style="color: #ffa500;"> Product
+                                    tag: </label>
+                                <input class="form-control-text-input p-4" type="text" name="product_tag"
+                                    id="product_tag" maxlength="50" value="" placeholder="Product tag" required="">
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="product_image_url" class="poppins-font fs-4 mb-4" style="color: #ffa500;">
+                                    Product image url: </label>
+                                <input class="form-control-text-input p-4" type="text" name="product_image_url"
+                                    id="product_image_url" maxlength="" value="" placeholder="Product image url" no="">
+                            </div>
+                            <div class="d-grid">
+                                <input class="onefit-buttons-style-tahiti p-4" type="submit" name="Save.">
+                            </div>
+                        </form>
+                    </div>
                     <div class="col-md-4 container-card">
                         <h5>Bulk Upload</h5>
 
@@ -2310,10 +2529,10 @@
                             </div>
                         </form>
                         <!-- ./ upload bulk csv file - store products -->
-                    </div>
-                    <div class="col-md container-card">
-                        <h5>Add Product</h5>
-                        <hr>
+
+                        <!-- feed -->
+                        <img src="../media/assets/advertisment-ph.png" class="img-fluid shadow my-4"
+                            style="border-radius: 25px;" alt="ad placeholder">
                     </div>
                 </div>
 
@@ -2884,6 +3103,47 @@
         </div>
     </footer>
 
+    <div class="command-modals">
+        <!-- modals -->
+        <div class="modal fade" id="tabCommandModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="tabCommandModalLabel" aria-modal="true" role="dialog">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
+                <div class="modal-content general-modal-style">
+                    <div class="modal-header border-0">
+                        <div class="d-grid gap-2">
+                            <h5 class="modal-title fs-1" id="tabCommandModalLabel">
+                                Modal Command
+                            </h5>
+
+                            <select id="command-modal-dbtable-select" onchange="$.loadForm('table_select', this.value)"
+                                class="db-tables-list form-control-select-input p-2"></select>
+                        </div>
+
+                        <button id="apps-tray-close-btn" type="button" class="onefit-buttons-style-danger p-2"
+                            data-bs-dismiss="modal" aria-label="Close">
+                            <span class="material-icons material-icons-round"> close </span>
+                        </button>
+                    </div>
+                    <hr class="text-white m-0">
+                    <div id="command-model-body" class="modal-body border-0" style="overflow-x: hidden">
+                        <!-- loading... waiting -->
+                        <div class="d-flex text-center justify-content-center align-items-center p-4">
+                            <strong class="text-muted visually-hiddenz">Loading...</strong>
+                            <div class="spinner-border text-white ms-auto" style="width: 3rem;height: 3rem;"
+                                role="status" aria-hidden="true">
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="text-white m-0">
+                    <div class="modal-footer border-0 d-inline-block">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./ modals -->
+    </div>
+
     <script>
         function initializeContent() {
             $.getUserAccounts('ui_data');
@@ -2894,8 +3154,9 @@
             $.getIndiExercises('ui_data');
             $.getSupplementsList('ui_data');
             $.getPreviewTables('ui_data');
-
             $.getStoreProducts('ui_data');
+            // get tb tables - select>options
+            $.getDBTables('options');
 
             showSnackbar('Data has been refreshed.');
         }

@@ -209,7 +209,8 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
         }
     }
 
-    $result->close();
+    // $result->close();
+    $result = null;
     $dbconn->close();
 
     $weekdayCardOutput = <<<_END

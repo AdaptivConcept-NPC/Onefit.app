@@ -84,13 +84,17 @@ function listDirectory($path)
                     // this is the file "../../../../" . 
                     // echo "-> " . $item . "<br>";
                     $fullPath = $path . "/" . $lastIndexItem . "/" . $item;
+                    $placeholderImg = "../media/assets/img-load-placeholder.jpg";
                     // echo $path . "/" . $lastIndexItem .  "/" . $item;
                     // echo "<br/>";
 
                     $randStr = generateNumericRandomString(10);
 
                     $imageGridItems .= <<<_END
-                    <img src="$fullPath" id="media-$subFolderIndex-$randStr" class="img-fluidz" style="border-radius:25px;" alt="$current_user_username media - $item" />
+                    <div class="blur-load-img">
+                    <!-- style="background-image:url($placeholderImg)" -->
+                        <img src="$fullPath" id="media-$subFolderIndex-$randStr" class="img-fluidz" style="border-radius:25px;" loading="lazy" alt="$current_user_username media - $item" />
+                    </div>
                     _END;
                 }
             }

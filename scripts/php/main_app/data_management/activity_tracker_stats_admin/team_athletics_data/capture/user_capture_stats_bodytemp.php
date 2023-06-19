@@ -61,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!$result) die("A Fatal Error has occured. Please reload the page, and if the problem persists, please contact the system administrator. [bodytemp Submit Error_02 - " . $dbconn->error . "]");
 
+        // $result = null;
         $result = null;
         $dbconn->close();
 

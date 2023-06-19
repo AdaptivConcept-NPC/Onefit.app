@@ -12,7 +12,8 @@ Date.prototype.toDateInputValue = (function () {
 $('.training-week-date-range-input').val(new Date().toDateInputValue());
 
 // function to smooth scroll
-$.smoothScroll = function (containerElemID, scrollToElemID) {
+$.smoothScroll = function (containerElemID, scrollToElemID, scrollSpeed) {
+    scrollSpeed = scrollSpeed || 100;
     if (!containerElemID.startsWith("#")) {
         containerElemID = "#" + containerElemID;
     }
@@ -21,7 +22,7 @@ $.smoothScroll = function (containerElemID, scrollToElemID) {
     }
     $(containerElemID).animate({ // "#main-form-window-scroll-container" [document.documentElement, document.body]
         scrollTop: $(scrollToElemID).offset().top // "#user-welcome-header"
-    }, 2000);
+    }, scrollSpeed);
 }
 
 // run function when scrolled to #main-content-container
@@ -1111,7 +1112,9 @@ $.populateWeeklyAssessmentsHorizCardContainer = function (when, grcode) {
 // ***** Locaion: Modal
 // ajax jquery - submit activity tracking data [Heart Rate]
 $("#modal-heartrate-insights-activitytracker-data-form").submit(function (e) {
+    e = e || window.event;
     e.preventDefault();
+    e.stopImmediatePropagation();
 
     // get the localy stored user_usnm
     let user_usnm = localStorage.getItem('user_usnm');
@@ -1156,7 +1159,9 @@ $("#modal-heartrate-insights-activitytracker-data-form").submit(function (e) {
 
 // ajax jquery - submit activity tracking data [Body Temp]
 $("#modal-bodytemp-insights-activitytracker-data-form").submit(function (e) {
+    e = e || window.event;
     e.preventDefault();
+    e.stopImmediatePropagation();
 
     // get the localy stored user_usnm
     let user_usnm = localStorage.getItem('user_usnm');
@@ -1197,7 +1202,9 @@ $("#modal-bodytemp-insights-activitytracker-data-form").submit(function (e) {
 
 // ajax jquery - submit activity tracking data [Speed]
 $("#modal-speed-insights-activitytracker-data-form").submit(function (e) {
+    e = e || window.event;
     e.preventDefault();
+    e.stopImmediatePropagation();
 
     // get the localy stored user_usnm
     let user_usnm = localStorage.getItem('user_usnm');
@@ -1238,7 +1245,9 @@ $("#modal-speed-insights-activitytracker-data-form").submit(function (e) {
 
 // ajax jquery - submit activity tracking data [BMI Weight]
 $("#modal-weight-insights-activitytracker-data-form").submit(function (e) {
+    e = e || window.event;
     e.preventDefault();
+    e.stopImmediatePropagation();
 
     // get the localy stored user_usnm
     let user_usnm = localStorage.getItem('user_usnm');
@@ -1280,7 +1289,9 @@ $("#modal-weight-insights-activitytracker-data-form").submit(function (e) {
 // ***** Locaion: Single
 // ajax jquery - submit activity tracking data [Heart Rate]
 $("#single-heartrate-insights-activitytracker-data-form").submit(function (e) {
+    e = e || window.event;
     e.preventDefault();
+    e.stopImmediatePropagation();
 
     // get the localy stored user_usnm
     let user_usnm = localStorage.getItem('user_usnm');
@@ -1325,7 +1336,9 @@ $("#single-heartrate-insights-activitytracker-data-form").submit(function (e) {
 
 // ajax jquery - submit activity tracking data [Body Temp]
 $("#single-bodytemp-insights-activitytracker-data-form").submit(function (e) {
+    e = e || window.event;
     e.preventDefault();
+    e.stopImmediatePropagation();
 
     // get the localy stored user_usnm
     let user_usnm = localStorage.getItem('user_usnm');
@@ -1366,7 +1379,9 @@ $("#single-bodytemp-insights-activitytracker-data-form").submit(function (e) {
 
 // ajax jquery - submit activity tracking data [Speed]
 $("#single-speed-insights-activitytracker-data-form").submit(function (e) {
+    e = e || window.event;
     e.preventDefault();
+    e.stopImmediatePropagation();
 
     // get the localy stored user_usnm
     let user_usnm = localStorage.getItem('user_usnm');
@@ -1407,7 +1422,9 @@ $("#single-speed-insights-activitytracker-data-form").submit(function (e) {
 
 // ajax jquery - submit activity tracking data [BMI Weight]
 $("#single-weight-insights-activitytracker-data-form").submit(function (e) {
+    e = e || window.event;
     e.preventDefault();
+    e.stopImmediatePropagation();
 
     // get the localy stored user_usnm
     let user_usnm = localStorage.getItem('user_usnm');
@@ -1454,7 +1471,9 @@ $("#single-weight-insights-activitytracker-data-form").submit(function (e) {
 
 // ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
 $("#teams-add-new-day-activity-data-form").submit(function (e) {
+    e = e || window.event;
     e.preventDefault();
+    e.stopImmediatePropagation();
 
     var form_data = new FormData($('#teams-add-new-day-activity-data-form')[0]);
     setTimeout(function () {
@@ -1765,6 +1784,16 @@ $.checkSidePanelVisibility = function () {
         // $.showSingleSidePanel('#creation-tools-content-panel', 'left');
     }
 }
+
+$.loadIframe = function (iframeName, url) {
+    var $iframe = $('#' + iframeName);
+    if ($iframe.length) {
+        $iframe.attr('src', url);
+        return false;
+    }
+    return true;
+}
+
 
 // if not set already, set default (visible) visibility state record on localstorage for side panels (twitter panel and create panel)
 if (localStorage.getItem('left_side_panel_visibility_state') === null) localStorage.setItem('left_side_panel_visibility_state', true);

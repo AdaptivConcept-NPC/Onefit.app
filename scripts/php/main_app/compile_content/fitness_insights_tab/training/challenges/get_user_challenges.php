@@ -134,6 +134,7 @@ if (isset($_GET['usernm']) && isset($_GET['cycle'])) {
 
             // output the timeline information and close connections
             echo $challenges;
+            // $result = null;
             $result = null;
             $dbconn->close();
         }

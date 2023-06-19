@@ -70,6 +70,7 @@ try {
     }
   }
 
+  // $result = null;
   $result = null;
   $dbconn->close();
 } catch (\Throwable $th) {
@@ -159,7 +160,9 @@ try {
 
       // profile images upload ajax jquery
       $("#uploadProfileImgForm").submit(function(e) {
+        e = e || window.event;
         e.preventDefault();
+        e.stopImmediatePropagation();
 
         var form_data = new FormData($('#uploadProfileImgForm')[0]);
         setTimeout(function() {
@@ -203,7 +206,9 @@ try {
 
       // banner images upload ajax jquery
       $("#uploadBannerImgForm").submit(function(e) {
+        e = e || window.event;
         e.preventDefault();
+        e.stopImmediatePropagation();
 
         var form_data = new FormData($('#uploadBannerImgForm')[0]);
         setTimeout(function() {
@@ -250,7 +255,9 @@ try {
 
       // ajax: submit aboutyou data
       $("#aboutyou-info-form").submit(function(e) {
+        e = e || window.event;
         e.preventDefault();
+        e.stopImmediatePropagation();
 
         var form_data = new FormData($('#aboutyou-info-form')[0]);
         setTimeout(function() {
@@ -280,7 +287,9 @@ try {
 
       // ajax: submit goalsetting data
       $("#goalsetting-info-form").submit(function(e) {
+        e = e || window.event;
         e.preventDefault();
+        e.stopImmediatePropagation();
 
         var form_data = new FormData($('#goalsetting-info-form')[0]);
         setTimeout(function() {
@@ -310,7 +319,9 @@ try {
 
       // ajax: submit fitprefs data
       $("#fitprefs-info-form").submit(function(e) {
+        e = e || window.event;
         e.preventDefault();
+        e.stopImmediatePropagation();
 
         var form_data = new FormData($('#fitprefs-info-form')[0]);
         setTimeout(function() {
@@ -340,7 +351,9 @@ try {
 
       // ajax: submit user policy acceptance data
       $("#policy-info-form").submit(function(e) {
+        e = e || window.event;
         e.preventDefault();
+        e.stopImmediatePropagation();
 
         var form_data = new FormData($('#policy-info-form')[0]);
         setTimeout(function() {
