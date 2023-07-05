@@ -821,7 +821,6 @@ function dragElement(elmnt) {
     function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
-        e.stopImmediatePropagation();
         // get the mouse cursor position at startup:
         pos3 = e.clientX;
         pos4 = e.clientY;
@@ -833,7 +832,6 @@ function dragElement(elmnt) {
     function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
-        e.stopImmediatePropagation();
         // calculate the new cursor position:
         pos1 = pos3 - e.clientX;
         pos2 = pos4 - e.clientY;
@@ -1299,6 +1297,14 @@ function showSnackbar(message, alert_type, display_length) {
     alert_type = alert_type || 'alert_general'; // initialize
     display_length = display_length || 'medium_10000'; // initialize
 
+    var icon = message.substring(
+        message.lastIndexOf("<") + 1,
+        message.lastIndexOf(">")
+    );
+
+    // replace text between icon: < and > with material icon span tag
+    var message = message.replace(/(?<=\<)(.*?)(?=\>)/, 'span class="material-icons material-icons-round"> ' + icon + ' </span');
+
     var alert_class;
 
     switch (alert_type) {
@@ -1329,6 +1335,10 @@ function showSnackbar(message, alert_type, display_length) {
         case 'alert_success':
             console.log('snackbar alert: ' + alert_type);
             alert_class = "snackbar-alert-success";
+            break;
+        case 'alert_warning':
+            console.log('snackbar alert: ' + alert_type);
+            alert_class = "snackbar-alert-warning";
             break;
 
         default:

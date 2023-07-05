@@ -21,34 +21,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         = $ctgry_3_q9_prefclasses = null;
     $dateNow = date('Y-m-d h:i:s');
 
-    $user_id = sanitizeMySQL($dbconn, $_POST['user-id']);
+    $user_id = sanitizeMySQL($dbconn, $_POST['user_id']);
 
     $separator = ",";
-    foreach ($_POST['category-3-question-1-field'] as $arrayitem) {
+    foreach ($_POST['category_3_question_1_field'] as $arrayitem) {
         $ctgry_3_q1_howfitareyou = sanitizeMySQL($dbconn, $arrayitem); //[]
     }
-    foreach ($_POST['category-3-question-2-field'] as $arrayitem) {
+    foreach ($_POST['category_3_question_2_field'] as $arrayitem) {
         $ctgry_3_q2_lastidealweight = sanitizeMySQL($dbconn, $arrayitem); //[]
     }
-    foreach ($_POST['category-3-question-3-field'] as $arrayitem) {
+    foreach ($_POST['category_3_question_3_field'] as $arrayitem) {
         $ctgry_3_q3_bodytype = sanitizeMySQL($dbconn, $arrayitem); //[]
     }
-    foreach ($_POST['category-3-question-4-field'] as $arrayitem) {
+    foreach ($_POST['category_3_question_4_field'] as $arrayitem) {
         $ctgry_3_q4_sufferjointpain = sanitizeMySQL($dbconn, $arrayitem); //[]
     }
-    foreach ($_POST['category-3-question-5-field'] as $arrayitem) {
+    foreach ($_POST['category_3_question_5_field'] as $arrayitem) {
         $ctgry_3_q5_howactiveindailylife = sanitizeMySQL($dbconn, $arrayitem); //[]
     }
-    foreach ($_POST['category-3-question-6-field'] as $arrayitem) {
+    foreach ($_POST['category_3_question_6_field'] as $arrayitem) {
         $ctgry_3_q6_energylevelsinday = sanitizeMySQL($dbconn, $arrayitem); //[]
     }
-    foreach ($_POST['category-3-question-7-field'] as $arrayitem) {
+    foreach ($_POST['category_3_question_7_field'] as $arrayitem) {
         $ctgry_3_q7_hoursnightsleep = sanitizeMySQL($dbconn, $arrayitem); //[]
     }
-    foreach ($_POST['category-3-question-8-field'] as $arrayitem) {
+    foreach ($_POST['category_3_question_8_field'] as $arrayitem) {
         $ctgry_3_q8_dailywaterintake = sanitizeMySQL($dbconn, $arrayitem); //[]
     }
-    foreach ($_POST['category-3-question-9-field'] as $arrayitem) {
+    foreach ($_POST['category_3_question_9_field'] as $arrayitem) {
         $ctgry_3_q9_prefclasses .= sanitizeMySQL($dbconn, $arrayitem . $separator); //[]
     }
 

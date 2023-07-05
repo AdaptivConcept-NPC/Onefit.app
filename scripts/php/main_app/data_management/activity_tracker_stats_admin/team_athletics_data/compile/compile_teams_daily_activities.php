@@ -10,12 +10,18 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
     // declaring variables
     $paramDayName = $grcode = $activities_bar_content = $inner_activities_bar_content = "";
 
-    // execute query
-    // $paramDayName = ucfirst(strtolower(sanitizeMySQL($dbconn, $_GET['day'])));
-    $paramDate = date_create(sanitizeMySQL($dbconn, $_GET['date']));
-    $paramDayName = date_format($paramDate, "l"); //strtolower()
-    $dayNum = date_format($paramDate, 'N');;
-    $dayDateThisWeek = date_format($paramDate, 'd/m/Y');
+    try {
+        // try to calculate dates
+        // '2023','5','24' 2023-05-24
+        // $paramDayName = ucfirst(strtolower(sanitizeMySQL($dbconn, $_GET['day'])));
+        $paramDate = date_create(sanitizeMySQL($dbconn, $_GET['date']));
+        $paramDayName = date_format($paramDate, "l"); //strtolower()
+        $dayNum = date_format($paramDate, 'N');;
+        $dayDateThisWeek = date_format($paramDate, 'Y/m/d');
+    } catch (\Throwable $th) {
+        throw "Date compilation exception error: $th";
+    }
+
 
     $grcode = sanitizeMySQL($dbconn, $_GET['grcode']);
     // $when = sanitizeMySQL($dbconn, $_GET['when']) || 'this'; // this / last / next
@@ -46,7 +52,19 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
         twa.teams_activity_id, twa.activity_title, twa.activity_description, twa.activity_icon, twa.teams_weekly_schedules_teams_weekly_schedule_id, twa.exercises_exercise_id 
         FROM teams_weekly_schedules tws 
         INNER JOIN team_weekly_activities twa ON twa.teams_weekly_schedules_teams_weekly_schedule_id = tws.teams_weekly_schedule_id 
-        WHERE $grcodeReqStatement tws.schedule_day = '$paramDayName' AND tws.schedule_date = '$dayDateThisWeek'";
+        WHERE $grcodeReqStatement tws.schedule_date = '$dayDateThisWeek'";
+
+        echo $query;
+        echo "<br>";
+
+        // $query = "SELECT DISTINCT(tws.schedule_title), tws.color_code, tws.groups_group_ref_code, twa.* , grps.group_name
+        // FROM teams_weekly_schedules tws 
+        // LEFT JOIN team_weekly_activities twa ON twa.teams_weekly_schedules_teams_weekly_schedule_id = tws.teams_weekly_schedule_id 
+        // LEFT JOIN groups grps ON tws.groups_group_ref_code = grps.group_ref_code
+        // WHERE $grcodeReqStatement tws.schedule_date = '$dayDateThisWeek'";
+
+        // echo $query;
+        // echo "<br>";
 
         $result = $dbconn->query($query);
 
@@ -59,7 +77,7 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
             // echo "possible error: No schedule and activities found.";
             $activities_bar_content = <<<_END
             <p id="bar-title-day$dayNum" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
-                No activities
+                No activities (F)
             </p>
             <!--<p id="bar-rpe-day$dayNum" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
                 RPE $schedule_rpe
@@ -159,4 +177,8 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
         //throw $th;
         echo "error: " . $th->getMessage;
     }
+} else {
+    echo "Get params not set.";
 }
+
+// get teams weekly activity bar chart

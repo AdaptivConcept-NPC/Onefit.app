@@ -1338,7 +1338,6 @@ $("#single-heartrate-insights-activitytracker-data-form").submit(function (e) {
 $("#single-bodytemp-insights-activitytracker-data-form").submit(function (e) {
     e = e || window.event;
     e.preventDefault();
-    e.stopImmediatePropagation();
 
     // get the localy stored user_usnm
     let user_usnm = localStorage.getItem('user_usnm');
@@ -1374,6 +1373,9 @@ $("#single-bodytemp-insights-activitytracker-data-form").submit(function (e) {
             }
         });
     }, 1000);
+
+    e.stopImmediatePropagation();
+    return false;
 });
 // ./ ajax jquery - submit activity tracking data [Body Temp]
 
@@ -1381,7 +1383,6 @@ $("#single-bodytemp-insights-activitytracker-data-form").submit(function (e) {
 $("#single-speed-insights-activitytracker-data-form").submit(function (e) {
     e = e || window.event;
     e.preventDefault();
-    e.stopImmediatePropagation();
 
     // get the localy stored user_usnm
     let user_usnm = localStorage.getItem('user_usnm');
@@ -1417,6 +1418,9 @@ $("#single-speed-insights-activitytracker-data-form").submit(function (e) {
             }
         });
     }, 1000);
+
+    e.stopImmediatePropagation();
+    return false;
 });
 // ./ ajax jquery - submit activity tracking data [Speed]
 
@@ -1424,7 +1428,6 @@ $("#single-speed-insights-activitytracker-data-form").submit(function (e) {
 $("#single-weight-insights-activitytracker-data-form").submit(function (e) {
     e = e || window.event;
     e.preventDefault();
-    e.stopImmediatePropagation();
 
     // get the localy stored user_usnm
     let user_usnm = localStorage.getItem('user_usnm');
@@ -1465,6 +1468,9 @@ $("#single-weight-insights-activitytracker-data-form").submit(function (e) {
             }
         });
     }, 1000);
+
+    e.stopImmediatePropagation();
+    return false;
 });
 // ./ ajax jquery - submit activity tracking data [BMI Weight]
 
@@ -1473,7 +1479,6 @@ $("#single-weight-insights-activitytracker-data-form").submit(function (e) {
 $("#teams-add-new-day-activity-data-form").submit(function (e) {
     e = e || window.event;
     e.preventDefault();
-    e.stopImmediatePropagation();
 
     var form_data = new FormData($('#teams-add-new-day-activity-data-form')[0]);
     setTimeout(function () {
@@ -1510,6 +1515,9 @@ $("#teams-add-new-day-activity-data-form").submit(function (e) {
             }
         });
     }, 1000);
+
+    e.stopImmediatePropagation();
+    return false;
 });
 // ./ ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
 

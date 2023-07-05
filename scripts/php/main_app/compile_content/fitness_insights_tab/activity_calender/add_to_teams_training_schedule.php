@@ -7,26 +7,130 @@ include("../../../../functions.php");
 if ($dbconn->connect_error) die("Fatal Error");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // ****************************************************************
+    function getExerciseDetailsAddToSchedule($lookup_exerciseid, $schedule_id)
+    {
+        global $dbconn;
+        // $teams_activity_id
+        //     = $activity_title
+        //     = $activity_description
+        //     = $activity_icon
+        //     = $teams_weekly_schedules_teams_weekly_schedule_id
+        //     = $exercises_exercise_id =  null;
+
+        // $teams_activity_id = $row['teams_activity_id'];
+        // $activity_title = $row['activity_title'];
+        // $activity_description = $row['activity_description'];
+        // $activity_icon = $row['activity_icon'];
+        // $teams_weekly_schedules_teams_weekly_schedule_id = $row['teams_weekly_schedules_teams_weekly_schedule_id'];
+        // $exercises_exercise_id = $row['exercises_exercise_id'];
+
+        $exercise_id =
+            $exercise_name =
+            $instructions =
+            $guidelines =
+            $sets =
+            $reps =
+            $rests =
+            $xp_points = null;
+
+        try {
+            // get exercise details from the exercise database table and if found, add the exercise details to the teams weekly activities table
+            $query = "SELECT * FROM `exercises` WHERE `exercise_id` = $lookup_exerciseid";
+            $result = mysqli_query($dbconn, $query);
+            if (!$result) die("Fatal error [1]: " . $dbconn->error);
+
+            $rows = $result->num_rows;
+
+            if ($rows > 0) {
+                for ($j = 0; $j < $rows; ++$j) {
+                    $row = $result->fetch_array(MYSQLI_ASSOC);
+
+                    $exercise_id = $row["exercise_id"];
+                    $exercise_name = $row["exercise_name"];
+                    $instructions = $row["instructions"];
+                    $guidelines = $row["guidelines"];
+                    $sets = $row["sets"];
+                    $reps = $row["reps"];
+                    $rests = $row["rests"];
+                    $xp_points = $row["xp_points"];
+                }
+
+                $returnFlag = null;
+                $returnFlag = addScheduleExerciseActivity(
+                    /* $activity_title */
+                    $exercise_name,
+                    /* $activity_description */
+                    $instructions,
+                    /* $activity_icon */
+                    "NULL",
+                    /* $schedule_id */
+                    $schedule_id,
+                    /* $exercise_activity_id */
+                    $exercise_id,
+                    /* pass 1 iteration count */
+                    1
+                );
+
+                if ($returnFlag === true) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } catch (\Throwable $th) {
+            echo "Exception error occured -> (addScheduleActivities.php>getExerciseDetails()): $th <br/>";
+            return false;
+        }
+    }
+
+    function addScheduleExerciseActivity($exercisetitle, $exercisedescription, $iconurl, $schedule_id, $exercise_activity_id, $i_count)
+    {
+        global $dbconn;
+
+        if ($iconurl == "NULL") {
+            $iconurl = "../media/assets/icons/icons8-stretching-50.png";
+        }
+
+        # create new exercise/activity record in team_weekly_activities table
+        $query = "INSERT INTO `team_weekly_activities`
+            (`teams_activity_id`, `activity_title`, 
+            `activity_description`, `activity_icon`, 
+            `teams_weekly_schedules_teams_weekly_schedule_id`, 
+            `exercises_exercise_id`) 
+            VALUES 
+            (null,'$exercisetitle',
+            '$exercisedescription','$iconurl',
+            $schedule_id,
+            $exercise_activity_id)";
+
+        $result = $dbconn->query($query);
+        $result = mysqli_query($dbconn, $query);
+        if (!$result) {
+            $result = null;
+            die("Fatal error [2 - iterations: $i_count - activityid/exerciseid: $exercise_activity_id]: (Query: $query) " . $dbconn->error);
+        } else {
+            $result = null;
+            return true;
+        }
+    }
+    // ****************************************************************
 
     // get submitted_by username from get parameter
     $is_Admin = false;
     if (!isset($_GET['submitted_by'])) {
         $submitted_by_username = $_SESSION['currentUserUsername'];
-        // method to check if username exists and is an administrator username
-        $is_Admin = verifyAdminUsername($submitted_by_username);
-        if (!$is_Admin) {
-            # if not admin then kill the process and return restriction message
-            die("User is not an Administrator or account is deactivated: [ $submitted_by_username ] - SESSION");
-        }
     } else {
         $submitted_by_username = sanitizeMySQL($dbconn, $_GET['submitted_by']);
-        // method to check if username exists and is an administrator username
-        $is_Admin = verifyAdminUsername($submitted_by_username);
-        if (!$is_Admin) {
-            # if not admin then kill the process and return restriction message
-            die("User is not an Administrator or account is deactivated: [ $submitted_by_username ] - GET");
-        }
     }
+
+    // verify admin status
+    $is_Admin = verifyAdminUsername($submitted_by_username);
+
+    # if not admin then kill the process and return restriction message
+    if (!$is_Admin) die("User is not an Administrator or account is deactivated: [ $submitted_by_username ] - GET");
 
     // declaring variables
     // add-to-calender-activity-title-value
@@ -56,107 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // die(print_r($workout_exercises));
 
     try {
-        // ****************************************************************
-        function getExerciseDetailsAddToSchedule($lookup_id)
-        {
-            global $dbconn, $tws_id;
-            $teams_activity_id
-                = $activity_title
-                = $activity_description
-                = $activity_icon
-                = $teams_weekly_schedules_teams_weekly_schedule_id
-                = $exercises_exercise_id =  null;
-
-            $exercise_id =
-                $exercise_name =
-                $instructions =
-                $guidelines =
-                $sets =
-                $reps =
-                $rests =
-                $xp_points = null;
-
-            try {
-                // get exercise details from the exercise database table and if found, add the exercise details to the teams weekly activities table
-                $query = "SELECT * FROM `exercises` WHERE `exercise_id` = $lookup_id";
-                $result = mysqli_query($dbconn, $query);
-                if (!$result) die("Fatal error [1]: " . $dbconn->error);
-
-                $rows = $result->num_rows;
-
-                if ($rows > 0) {
-                    for ($j = 0; $j < $rows; ++$j) {
-                        $row = $result->fetch_array(MYSQLI_ASSOC);
-
-                        // $teams_activity_id = $row['teams_activity_id'];
-                        // $activity_title = $row['activity_title'];
-                        // $activity_description = $row['activity_description'];
-                        // $activity_icon = $row['activity_icon'];
-                        // $teams_weekly_schedules_teams_weekly_schedule_id = $row['teams_weekly_schedules_teams_weekly_schedule_id'];
-                        // $exercises_exercise_id = $row['exercises_exercise_id'];
-
-                        $exercise_id = $row["exercise_id"];
-                        $exercise_name = $row["exercise_name"];
-                        $instructions = $row["instructions"];
-                        $guidelines = $row["guidelines"];
-                        $sets = $row["sets"];
-                        $reps = $row["reps"];
-                        $rests = $row["rests"];
-                        $xp_points = $row["xp_points"];
-                    }
-
-                    addScheduleExerciseActivity(
-                        /* $activity_title */
-                        $exercise_name,
-                        /* $activity_description */
-                        $instructions,
-                        /* $activity_icon */
-                        "NULL",
-                        /* $tws_id */
-                        $tws_id,
-                        /* $exercise_activity_id */
-                        $exercise_id,
-                        /* pass 1 iteration count */
-                        1
-                    );
-
-                    return true;
-                } else {
-                    return false;
-                }
-            } catch (\Throwable $th) {
-                echo "Exception error occured -> (addScheduleActivities.php>getExerciseDetails()): $th <br/>";
-                return false;
-            }
-        }
-
-        function addScheduleExerciseActivity($exercisetitle, $exercisedescription, $iconurl, $twsid, $exercise_activity_id, $i_count)
-        {
-            global $dbconn;
-
-            if ($iconurl == "NULL") {
-                $iconurl = "../media/assets/icons/icons8-stretching-50.png";
-            }
-
-            # insert 
-            $query = "INSERT INTO `team_weekly_activities`
-                (`teams_activity_id`, `activity_title`, 
-                `activity_description`, `activity_icon`, 
-                `teams_weekly_schedules_teams_weekly_schedule_id`, 
-                `exercises_exercise_id`) 
-                VALUES 
-                (null,'$exercisetitle',
-                '$exercisedescription','$iconurl',
-                $twsid,
-                $exercise_activity_id)";
-
-            $result = $dbconn->query($query);
-            $result = mysqli_query($dbconn, $query);
-            if (!$result) die("Fatal error [2 - iterations: $i_count - activityid/exerciseid: $exercise_activity_id]: (Query: $query) " . $dbconn->error);
-            else return true;
-        }
-        // ****************************************************************
-
+        // for each workout exercise submitted, push id value to $activitiesArray[]
         foreach ($workout_exercises as $exercise_activity) {
             # add selection to activities array
             $activitiesArray[] = sanitizeMySQL($dbconn, $exercise_activity);
@@ -164,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // print_r($activitiesArray); //test
         // echo "<br/>";
 
-        // insert the submitted schedule record
+        // create a new team schedule record
         $query = "INSERT INTO `teams_weekly_schedules` 
         (`teams_weekly_schedule_id`, `schedule_title`, `schedule_rpe`, `schedule_day`, `schedule_date`, `color_code`, `groups_group_ref_code`) 
         VALUES 
@@ -178,7 +182,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tws_id = $dbconn->insert_id;
 
         // dump the results
-        // $result = null;
         $result = null;
 
         // insert each item into the teams schedule activities table
@@ -190,12 +193,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (is_numeric($activity)) {
                 $exercise_id = $activity;
                 // get the exercise details of the exercise id (title, description) and add them to the team_weekly_activities table, if True is returned positive flag, otherwise an error occured
-                $statusflag = getExerciseDetailsAddToSchedule($exercise_id);
+                $returnflag = getExerciseDetailsAddToSchedule($exercise_id, $tws_id);
                 // false: no exercise found, kill script execution
-                if ($statusflag !== true) die("Fatal error: could not find exercise details ( $exercise_id ) | output: $statusflag");
-                else echo "success";
+                if ($returnflag === true) {
+                    echo "success";
+                } else {
+                    die("Fatal error: could not find exercise details ( $exercise_id ) | output: $returnflag");
+                }
             } else {
                 // error, kill script and output notification
+                $dbconn->close();
                 die("Fatal error: invalid exercise id provided: $activity");
             }
         }

@@ -90,7 +90,6 @@ try {
 
             $compile_table_rows .= <<<_END
             <tr>
-                <!--<td colspan="10" class="text-center fs-5 fw-bold">No fixtures available.</td>-->
                 <th scope="row">$team_athletics_match_id</th>
                 <td>$match_title</td>
                 <td>$home_team</td>

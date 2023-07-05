@@ -5319,7 +5319,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 Add match to fixture.
                                                             </h1>
 
-                                                            <form id="add-match-fixture-form" method="post">
+                                                            <form id="add-match-fixture-form" method="post" action="../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/create/add_match_to_fixture.php">
                                                                 <!--  action="" -->
                                                                 <div class="output-container my-2" id="output-container">
                                                                     <!---->
@@ -8307,7 +8307,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </h2>
                             <div id="cav-flush-panel-new_activities" class="accordion-collapse w3-animate-bottom collapse" aria-labelledby="cav-flush-header-new_activities" data-bs-parent="#accordionFlushCalenderActivityViewer">
                                 <div class="accordion-body">
-                                    <form id="add-new-schedule-form" name="add-new-schedule-form" class="text-start d-grid gap-2 comfortaa-font fs-5" style="border-radius: 25px;" method="post" action="" autocomplete="off">
+                                    <form id="add-new-schedule-form" class="text-start d-grid gap-2 comfortaa-font fs-5" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/add_to_teams_training_schedule.php" autocomplete="off">
                                         <h5 class="fs-2 p-4 fw-bold text-center comfortaa-font shadow my-4 border-5 border-start border-end" style="border-radius:25px;">
                                             Capture New Activity.
                                         </h5>
@@ -8642,7 +8642,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <!-- display activity bar here -->
                         </div>
                         <div class="col-md-8">
-                            <form id="teams-add-new-day-activity-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/system_admin/team_athletics_data/submit/teams_add_new_activity_day_form_submit.php" autocomplete="off">
+                            <form id="teams-add-new-day-activity-data-form" class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/teams_add_new_activity_day_form_submit.php" autocomplete="off">
                                 <div class="form-group my-4">
                                     <label for="activity-title" class="comfortaa-font fs-5 text-start" style="color: #ffa500;">Activity title:</label>
                                     <input class="form-control-text-input p-4" type="text" name="activity-title" id="activity-title" placeholder="Activity Title (Required)" required />
@@ -10574,7 +10574,6 @@ if (isset($_SESSION["currentUserAuth"])) {
                 e = e || window.event;
                 e = e || window.event;
                 e.preventDefault();
-                e.stopImmediatePropagation();
                 // get the mouse cursor position at startup:
                 pos3 = e.clientX;
                 pos4 = e.clientY;
@@ -10587,7 +10586,6 @@ if (isset($_SESSION["currentUserAuth"])) {
                 e = e || window.event;
                 e = e || window.event;
                 e.preventDefault();
-                e.stopImmediatePropagation();
                 // calculate the new cursor position:
                 pos1 = pos3 - e.clientX;
                 pos2 = pos4 - e.clientY;
@@ -12231,7 +12229,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         $.populateWeeklyActivityBarChart = function(when, grcode, dateQuery, dateQueryStr) { // when is the week request (this/last/next week)
             when = when || 'this';
-            grcode = grcode || 'test_grp_001';
+            grcode = grcode || localStorage.getItem('teams_training_main_grcode'); // 'test_grp_001'; // get the local stored global grcode    
             // dateQuery flag variables for fetching training week activity data of dateQueryStr date. (function (when = null, *grcode, *bool = dateQuery, *date = dateQueryStr))
             dateQuery = dateQuery || null;
             dateQueryStr = dateQueryStr || null;
@@ -12443,7 +12441,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         $("#modal-heartrate-insights-activitytracker-data-form").submit(function(e) {
             e = e || window.event;
             e.preventDefault();
-            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12488,6 +12485,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     }
                 });
             }, 1000);
+
+            e.stopImmediatePropagation();
+            return false;
         });
         // ./ ajax jquery - submit activity tracking data [Heart Rate]
 
@@ -12495,7 +12495,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         $("#modal-bodytemp-insights-activitytracker-data-form").submit(function(e) {
             e = e || window.event;
             e.preventDefault();
-            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12531,6 +12530,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     }
                 });
             }, 1000);
+
+            e.stopImmediatePropagation();
+            return false;
         });
         // ./ ajax jquery - submit activity tracking data [Body Temp]
 
@@ -12538,7 +12540,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         $("#modal-speed-insights-activitytracker-data-form").submit(function(e) {
             e = e || window.event;
             e.preventDefault();
-            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12574,6 +12575,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     }
                 });
             }, 1000);
+
+            e.stopImmediatePropagation();
+            return false;
         });
         // ./ ajax jquery - submit activity tracking data [Speed]
 
@@ -12581,7 +12585,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         $("#modal-weight-insights-activitytracker-data-form").submit(function(e) {
             e = e || window.event;
             e.preventDefault();
-            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12617,6 +12620,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     }
                 });
             }, 1000);
+
+            e.stopImmediatePropagation();
+            return false;
         });
         // ./ ajax jquery - submit activity tracking data [BMI Weight]
 
@@ -12625,7 +12631,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         $("#single-heartrate-insights-activitytracker-data-form").submit(function(e) {
             e = e || window.event;
             e.preventDefault();
-            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12665,6 +12670,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     }
                 });
             }, 1000);
+
+            e.stopImmediatePropagation();
+            return false;
         });
         // ./ ajax jquery - submit activity tracking data [Heart Rate]
 
@@ -12672,7 +12680,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         $("#single-bodytemp-insights-activitytracker-data-form").submit(function(e) {
             e = e || window.event;
             e.preventDefault();
-            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12708,6 +12715,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     }
                 });
             }, 1000);
+
+            e.stopImmediatePropagation();
+            return false;
         });
         // ./ ajax jquery - submit activity tracking data [Body Temp]
 
@@ -12715,7 +12725,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         $("#single-speed-insights-activitytracker-data-form").submit(function(e) {
             e = e || window.event;
             e.preventDefault();
-            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12751,6 +12760,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     }
                 });
             }, 1000);
+
+            e.stopImmediatePropagation();
+            return false;
         });
         // ./ ajax jquery - submit activity tracking data [Speed]
 
@@ -12758,7 +12770,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         $("#single-weight-insights-activitytracker-data-form").submit(function(e) {
             e = e || window.event;
             e.preventDefault();
-            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12799,6 +12810,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     }
                 });
             }, 1000);
+
+            e.stopImmediatePropagation();
+            return false;
         });
         // ./ ajax jquery - submit activity tracking data [BMI Weight]
 
@@ -12807,7 +12821,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         $("#teams-add-new-day-activity-data-form").submit(function(e) {
             e = e || window.event;
             e.preventDefault();
-            e.stopImmediatePropagation();
 
             var form_data = new FormData($('#teams-add-new-day-activity-data-form')[0]);
             setTimeout(function() {
@@ -12844,6 +12857,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     }
                 });
             }, 1000);
+
+            e.stopImmediatePropagation();
+            return false;
         });
         // ./ ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
 
@@ -12851,7 +12867,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         $("#add-new-schedule-form").submit(function(e) {
             e = e || window.event;
             e.preventDefault();
-            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -12919,6 +12934,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     }
                 });
             }, 1000);
+
+            e.stopImmediatePropagation();
+            return false;
         });
         // ./ ajax jquery - submit add new activity data form on the calender view modal
 
@@ -12926,7 +12944,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         $("#add-match-fixture-form").submit(function(e) {
             e = e || window.event;
             e.preventDefault();
-            e.stopImmediatePropagation();
 
             // get the localy stored user_usnm
             let user_usnm = localStorage.getItem('user_usnm');
@@ -13000,6 +13017,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     }
                 });
             }, 1000);
+
+            e.stopImmediatePropagation();
+            return false;
         });
         // ./ ajax jquery - submit add match to fixture data form
 
@@ -13229,7 +13249,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         $('#add-selection-to-activities-textinput-btn').on('click', function(e) {
             e = e || window.event;
             e.preventDefault();
-            e.stopImmediatePropagation();
 
             let newExerciseTitle = $('#add-to-calender-activity-specify-title').val();
 
@@ -13342,6 +13361,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 }
             }
 
+            e.stopImmediatePropagation();
             return false;
 
         });

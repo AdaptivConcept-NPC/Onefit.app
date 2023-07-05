@@ -50,8 +50,6 @@
             $("#users-csv-bulk-upload-form").submit(function (e) {
                 e = e || window.event;
                 e.preventDefault();
-                e.stopImmediatePropagation();
-                e.stopImmediatePropagation();
 
                 alert("User Management - This fuction is unavailable.");
 
@@ -94,6 +92,9 @@
                 //         }
                 //     });
                 // }, 1000);
+
+                e.stopImmediatePropagation();
+                return false;
             });
             // ./ ajax jquery - submit CSV bulk file [user_accounts]
 
@@ -101,7 +102,6 @@
             $("#workout-categories-csv-bulk-upload-form").submit(function (e) {
                 e = e || window.event;
                 e.preventDefault();
-                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#workout-categories-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -144,6 +144,9 @@
                         }
                     });
                 }, 1000);
+
+                e.stopImmediatePropagation();
+                return false;
             });
             // ./ ajax jquery - submit classes/categories  CSV bulk file [categories_classes]
 
@@ -151,7 +154,6 @@
             $("#capture-workout-form").submit(function (e) {
                 e = e || window.event;
                 e.preventDefault();
-                e.stopImmediatePropagation();
 
                 // alert("Capture Workout (Single) - This fuction is unavailable.");
                 var form_data = new FormData($('#capture-workout-form')[0]);
@@ -195,13 +197,15 @@
                         }
                     });
                 }, 1000);
+
+                e.stopImmediatePropagation();
+                return false;
             });
 
             // ajax jquery - submit CSV bulk file [indi_exercises]
             $("#indi-exercises-csv-bulk-upload-form").submit(function (e) {
                 e = e || window.event;
                 e.preventDefault();
-                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#indi-exercises-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -244,6 +248,9 @@
                         }
                     });
                 }, 1000);
+
+                e.stopImmediatePropagation();
+                return false;
             });
             // ./ ajax jquery - submit CSV bulk file [indi_exercises]
 
@@ -251,7 +258,6 @@
             $("#training-drills-csv-bulk-upload-form").submit(function (e) {
                 e = e || window.event;
                 e.preventDefault();
-                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#training-drills-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -294,6 +300,9 @@
                         }
                     });
                 }, 1000);
+
+                e.stopImmediatePropagation();
+                return false;
             });
             // ./ ajax jquery - submit CSV bulk file [training_drills]
 
@@ -301,7 +310,6 @@
             $("#supplements-csv-bulk-upload-form").submit(function (e) {
                 e = e || window.event;
                 e.preventDefault();
-                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#supplements-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -344,6 +352,9 @@
                         }
                     });
                 }, 1000);
+
+                e.stopImmediatePropagation();
+                return false;
             });
             // ./ ajax jquery - submit CSV bulk file [supplements]
 
@@ -351,7 +362,6 @@
             $("#sports-list-csv-bulk-upload-form").submit(function (e) {
                 e = e || window.event;
                 e.preventDefault();
-                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#sports-list-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -394,6 +404,9 @@
                         }
                     });
                 }, 1000);
+
+                e.stopImmediatePropagation();
+                return false;
             });
             // ./ ajax jquery - submit CSV bulk file [sports]
 
@@ -401,7 +414,6 @@
             $("#muscles-list-csv-bulk-upload-form").submit(function (e) {
                 e = e || window.event;
                 e.preventDefault();
-                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#muscles-list-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -444,6 +456,9 @@
                         }
                     });
                 }, 1000);
+
+                e.stopImmediatePropagation();
+                return false;
             });
             // ./ ajax jquery - submit CSV bulk file [sports]
 
@@ -451,7 +466,6 @@
             $("#store-csv-bulk-upload-form").submit(function (e) {
                 e = e || window.event;
                 e.preventDefault();
-                e.stopImmediatePropagation();
 
                 var form_data = new FormData($('#store-csv-bulk-upload-form')[0]);
                 setTimeout(function () {
@@ -494,6 +508,9 @@
                         }
                     });
                 }, 1000);
+
+                e.stopImmediatePropagation();
+                return false;
             });
             // ./ ajax jquery - submit CSV bulk file [store_products]
 
