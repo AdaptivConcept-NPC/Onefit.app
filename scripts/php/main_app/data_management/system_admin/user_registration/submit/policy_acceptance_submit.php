@@ -9,169 +9,125 @@ if ($dbconn->connect_error) die("Fatal Error");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Declare Variables
-    $user_id = null;
-    $EULA = $TOU = $policy_ref = $policy_name = $policy_effective_date = null;
+    $user_id = $profile_id = $policy_ref = $policy_type = $policy_name = $policy_effective_date = $current_user_username = null;
 
-    // check if user_id post value is set, if not then get the $_SESSION value
-    if (!isset($_POST['user_id'])) {
-        // check if the session value is set
-        if (!isset($_SESSION['currentUserUsername'])) {
-            die("An error occurred while trying to save your details. [ user_id / user_username POST / SESSION value not set ]");
-        } else {
-            // assign session value to variable
-            $user_id = sanitizeMySQL($dbconn, $_SESSION['currentUserUsername']);
-        }
-    } else {
-        // assign posted value to variable 
-        $user_id = sanitizeMySQL($dbconn, $_POST['user_id']);
-    }
+    $dateNow = date("Y-m-d H:i:s");
+    $output = "no message";
 
-    $policy_ref = generateNumericRandomString(10); // must get this reference from official records of actual policies stored in database
-
-    if (isset($_POST['agree_eula']) && isset($_POST['agree_terms'])) {
-        // assign posted values to both variables
-        $EULA = sanitizeMySQL($dbconn, $_POST['agree_eula']);
-        $TOU = sanitizeMySQL($dbconn, $_POST['agree_terms']);
-
-        $policy_name = "End-User License Agreement (13 October 2022) & Terms of use (13 October 2022)";
-        $policy_effective_date = "2022-10-13";
-    } elseif (isset($_POST['agree_eula'])) {
-        // assign eula value to variable
-        $EULA = sanitizeMySQL($dbconn, $_POST['agree_eula']);
-
-        $policy_name = "Terms of use (13 October 2022)";
-        $policy_effective_date = "2022-10-13";
-    } elseif (isset($_POST['agree_terms'])) {
-        // assign tou value to variable
-        $TOU = sanitizeMySQL($dbconn, $_POST['agree_terms']);
-
-        $policy_name = "Terms of use (13 October 2022)";
-        $policy_effective_date = "2022-10-13";
-    } else {
-        die("An error occurred while trying to save your details. [ eula or tou not set ]");
-    }
-
-    // die("PHP POST Data: user id: $user_id | 
-    // EULA Accepted?: $EULA | 
-    // TOU Accepted?: $TOU |");
+    $user_id = $_SESSION['uid'];
 
     // try to insert the data
     try {
-        $dateNow = date("Y-m-d H:i:s");
-        $output = "no message";
-        $separator = ",";
-        $success_count = 0;
+        // check if user_id post value is set, if not then get the $_SESSION value
+        if (isset($_POST['terms_profile_id'])) {
+            // assign posted value to variable if set
+            $profile_id = sanitizeMySQL($dbconn, $_POST['terms_profile_id']);
 
-        $current_user_username = "";
+            $policy_type = "terms";
 
-        // check if $user_id is a numeric or alphanumeric value
-        if (is_numeric($user_id)) {
-            // get the username of the current user id
-            $query = "SELECT `username` FROM `users` WHERE `user_id` = $user_id";
+            $policy_ref = sanitizeMySQL($dbconn, $_POST['terms_policy_ref']);
+            $policy_name = sanitizeMySQL($dbconn, $_POST['terms_policy_name']);
+            $policy_effective_date = sanitizeMySQL($dbconn, $_POST['terms_policy_date']);
+            $policy_effective_date = date("Y-m-d", strtotime($policy_effective_date));
+        } elseif (isset($_POST['eula_profile_id'])) {
+            // assign posted value to variable if set
+            $profile_id = sanitizeMySQL($dbconn, $_POST['eula_profile_id']);
 
-            $result = $dbconn->query($query);
+            $policy_type = "eula";
 
-            if (!$result) die("A Fatal Error has occured. Please reload the page, and if the problem persists, please contact the system administrator.");
+            $policy_ref = sanitizeMySQL($dbconn, $_POST['eula_policy_ref']);
+            $policy_name = sanitizeMySQL($dbconn, $_POST['eula_policy_name']);
+            $policy_effective_date = sanitizeMySQL($dbconn, $_POST['eula_policy_date']);
+            $policy_effective_date = date("Y-m-d", strtotime($policy_effective_date));
+        } else {
+            // die
+            die("An error occurred while trying to save your details. [ user_id POST value not set ]");
+        }
 
-            $rows = $result->num_rows;
+        // get username of the $user_id 
+        $query = "SELECT `username` FROM `users` WHERE `user_id` = $user_id";
+
+        $result = $dbconn->query($query);
+
+        if (!$result) die("A Fatal Error has occured. Please reload the page, and if the problem persists, please contact the system administrator.");
+
+        $rows = $result->num_rows;
+        if ($rows <= 0) {
+            // die: user not found in users table
+            die("An error occurred while trying to save your details. [ user not found in users table ]");
+        } else {
             for ($j = 0; $j < $rows; ++$j) {
                 $row = $result->fetch_array(MYSQLI_ASSOC);
 
                 $current_user_username = htmlspecialchars($row['username']);
             }
-        } else {
-            // get the username of the current user username
-            $query = "SELECT `username` FROM `users` WHERE `username` = '$user_id'";
+        }
+
+        $result = null;
+
+        // function to check if user has already submitted the policy acceptence
+        function checkPolicyAcceptance($dbconn, $policy_ref, $policy_type, $current_user_username)
+        {
+            $query = "SELECT `user_policy_acceptance_id` FROM `user_policy_acceptance` WHERE `policy_reference` = '$policy_ref' AND `policy_type` = '$policy_type' AND `users_username` = '$current_user_username'";
 
             $result = $dbconn->query($query);
 
             if (!$result) die("A Fatal Error has occured. Please reload the page, and if the problem persists, please contact the system administrator.");
 
             $rows = $result->num_rows;
-            for ($j = 0; $j < $rows; ++$j) {
-                $row = $result->fetch_array(MYSQLI_ASSOC);
-
-                $current_user_username = htmlspecialchars($row['username']);
+            if ($rows <= 0) {
+                // user not found in users table
+                return false;
+            } else {
+                return true;
             }
         }
 
         // if $EULA is set the insert data into database
-        if (isset($EULA)) {
+        if ($policy_type == "eula") {
             // mysql save EULA acceptance
-            $query = "INSERT INTO `user_policy_acceptance`
-            (`user_policy_acceptance_id`, `policy_reference`, 'policy_type', `policy_name`, `policy_effective_date`, `user_accepted`, `user_accepted_date`, `users_username`) 
-            VALUES 
-            (null,'$policy_ref','EULA','$policy_name','$policy_effective_date',1,'$dateNow ','$current_user_username')";
-
-            // echo $query . "<br>";
+            if (!checkPolicyAcceptance($dbconn, $policy_ref, $policy_type, $current_user_username)) {
+                // user has already accepted the policy, update the record
+                $query = "INSERT INTO `user_policy_acceptance`
+                (`user_policy_acceptance_id`, `policy_reference`, `policy_type`, `policy_name`, `policy_effective_date`, `user_accepted`, `user_accepted_date`, `users_username`) 
+                VALUES 
+                (null,'$policy_ref','eula','$policy_name','$policy_effective_date',1,'$dateNow ','$current_user_username')";
+            } else {
+                // user has not accepted the policy, insert new record
+                $query = "UPDATE `user_policy_acceptance` 
+                SET `policy_reference` = '$policy_ref', `policy_type` = 'eula', `policy_name` = '$policy_name', `policy_effective_date` = '$policy_effective_date', `user_accepted` = 1, `user_accepted_date` = '$dateNow' 
+                WHERE `policy_type` = '$policy_type' AND `users_username` = '$current_user_username'";
+            }
 
             $result = $dbconn->query($query);
 
             if (!$result) die("An error occurred while trying to save your details. [PolicyAccept Submit Error_01 - " . $dbconn->error . "]");
 
-            $output .= " eula submitted #$policy_ref ";
-            $success_count += 1;
-        }
-
-        // if $TOU is set the insert data into database
-        if (isset($TOU)) {
+            echo "success: EULA Policy Acceptance saved successfully.";
+        } elseif ($policy_type == "terms") {
             // mysql save Terms of Service acceptance
-            $query = "INSERT INTO `user_policy_acceptance`
-            (`user_policy_acceptance_id`, `policy_reference`, 'policy_type', `policy_name`, `policy_effective_date`, `user_accepted`, `user_accepted_date`, `users_username`) 
-            VALUES 
-            (null,'$policy_ref','TOU','$policy_name','$policy_effective_date',1,'$dateNow ','$current_user_username')";
+            if (!checkPolicyAcceptance($dbconn, $policy_ref, $policy_type, $current_user_username)) {
+                // user has already accepted the policy, update the record
+                $query = "INSERT INTO `user_policy_acceptance`
+                (`user_policy_acceptance_id`, `policy_reference`, `policy_type`, `policy_name`, `policy_effective_date`, `user_accepted`, `user_accepted_date`, `users_username`) 
+                VALUES 
+                (null,'$policy_ref','terms','$policy_name','$policy_effective_date',1,'$dateNow ','$current_user_username')";
+            } else {
+                // user has not accepted the policy, insert new record
+                $query = "UPDATE `user_policy_acceptance` 
+                SET `policy_reference` = '$policy_ref', `policy_type` = 'terms', `policy_name` = '$policy_name', `policy_effective_date` = '$policy_effective_date', `user_accepted` = 1, `user_accepted_date` = '$dateNow' 
+                WHERE `policy_type` = '$policy_type' AND `users_username` = '$current_user_username'";
+            }
 
             $result = $dbconn->query($query);
 
             if (!$result) die("An error occurred while trying to save your details. [PolicyAccept Submit Error_02 - " . $dbconn->error . "]");
 
-            $output .= " tou submitted #$policy_ref ";
-            $success_count += 1;
+            echo "success: Terms of Use Policy Acceptance saved successfully.";
         }
 
-        // if $success_count is between 1 then one policy was submitted 2 then both EULA and TOU were succeeded
-        if ($success_count > 0 && $success_count <= 2) {
-            echo "success: $output";
-        } else {
-            echo "error: $output";
-        }
-
-        // mysql save EULA acceptance
-        // $query = "INSERT INTO `user_policy_acceptance`
-        // (`user_policy_acceptance_id`, `policy_reference`, `policy_name`, `policy_effective_date`, `user_accepted`, `user_accepted_date`, `users_username`) 
-        // VALUES 
-        // (null,'$policy_ref','End-User License Agreement (13 October 2022)','2022-10-13',1,'$dateNow ','$current_user_username')";
-
-        // // echo $query . "<br>";
-
-        // $result = $dbconn->query($query);
-
-        // if (!$result) die("An error occurred while trying to save your details. [PolicyAccept Submit Error_01 - " . $dbconn->error . "]");
-
-        // // mysql save Terms of Service acceptance
-        // $query = "INSERT INTO `user_policy_acceptance`
-        // (`user_policy_acceptance_id`, `policy_reference`, `policy_name`, `policy_effective_date`, `user_accepted`, `user_accepted_date`, `users_username`) 
-        // VALUES 
-        // (null,'$policy_ref','Terms of use (13 October 2022)','2022-10-13',1,'$dateNow ','$current_user_username')";
-
-        // $result = $dbconn->query($query);
-
-        // if (!$result) die("An error occurred while trying to save your details. [PolicyAccept Submit Error_02 - " . $dbconn->error . "]");
-
-        // $result = null;
-
-        // activate the users account
-        // $query = "UPDATE `users` SET `account_active` = 1 WHERE (`user_id` = $user_id AND `username` = '$current_user_username')";
-
-        // $result = $dbconn->query($query);
-
-        // if (!$result) die("An error occurred while trying to save your details. [PolicyAccept Submit Error_03 - " . $dbconn->error . "]");
-
-        // $result = null;
         $result = null;
         $dbconn->close();
-
-        echo "success: Policy Acceptance data saved successfully.";
     } catch (\Throwable $th) {
         //throw $th;
         echo "exception error:  [PolicyAccept Except Err_01] " . $th;

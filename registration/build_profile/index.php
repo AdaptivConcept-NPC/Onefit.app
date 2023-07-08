@@ -3,44 +3,137 @@ session_start();
 require("../../scripts/php/config.php");
 require_once("../../scripts/php/functions.php");
 
-//test connection - if fail then die
-if ($dbconn->connect_error) die("Fatal Error");
+// function to die and display error curtain
+function die_error_curtain($error_msg, $error_code)
+{
+  $error_code = $error_code ?? 0;
+  $error_name = null;
+  // error codes
+  // 0 - no error code
+  // 1 - no connection to database
+  // 2 - fatal error
+  // 3 - exception error
+  switch ($error_code) {
+    case 1:
+      $error_name = "No Connection";
+      break;
+    case 2:
+      $error_name = "Fatal Error";
+      break;
+    case 3:
+      $error_name = "Exception Error";
+      break;
 
-if (!isset($_GET['uid'])) die("Fatal Error: User ID not set.");
-// declare variables
-$get_current_user_id = $get_current_user_profile_id = null;
+    default:
+      $error_name = "General Error";
+      break;
+  }
 
-// assign get param values
-$get_current_user_id = sanitizeMySQL($dbconn, $_GET['uid']);
-if (isset($_GET['pid'])) {
-  $get_current_user_profile_id = sanitizeMySQL($dbconn, $_GET['pid']);
+  // error curtain
+  $error_curtain = <<<_END
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>$error_name Occured | Onefit.app | OnefitNet &copy; <?php echo date('Y');?></title>
+      <!-- Google Icons -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+      <!-- CSS -->
+      <link rel="stylesheet" href="../../css/styles.css" />
+    </head>
+    <body>
+      <!-- error Curtain -->
+      <div class="offline-curtain" id="error-curtain" style="background-color:var(--mineshaft);">
+          <nav class="navbar navbar-light stickyz fixed-top navbar-style bg-transparent" style="z-index: 10000;">
+              <div class="container-fluid justify-content-center p-5">
+                  <h1 class="navbar-brand fs-1 text-white comfortaa-font m-0">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></h1>
+              </div>
+          </nav>
+          <div class="d-flex align-items-center down-top-grad-white" style="width: 100%; height: 100%;">
+              <div class="text-center w-100">
+                  <div class="ring d-flex align-items-center p-4 shadow-lg">
+                      <!-- <span></span> -->
+                      <div class="d-flex align-items-center justify-content-center" style="width: 100%;">
+                          <img src="../../media/assets/icons/error_black_24dp.svg" class="img-fluid p-4 rounded-circle text-white border-5 border-white shadow" style="height: 130px;background-color:var(--white)!important;" alt="onefit logo">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <nav class="text-center text-center p-4 fixed-bottom" alt="">
+              <h1 id="output-msg-heading" class="navbar-brand fs-1 fw-bold comfortaa-font d-grid" style="color: var(--mineshaft);">
+                  <!--<span class="material-icons material-icons-round align-middle" style="font-size:40px!important;">
+                    error_outline
+                  </span> -->
+                  <span class="align-middle">Fatal Error.</span>
+              </h1>
+              <p id="output-msg-text" class="text-center poppins-font" style="color: var(--mineshaft);"> $error_msg </p>
+              <div class="d-grid gap-2 col-6 mx-auto my-4">
+                  <a href="../../" class="onefit-buttons-style-dark btn-lg p-4 poppins-font" style="border-radius: 50px;">Go Back</a>
+              </div>
+          </nav>
+      </div>
+      <!-- ./ error Curtain -->
+    </body>
+  </html>
+  _END;
+
+  die($error_curtain);
 }
 
+//test connection - if fail then die
+if ($dbconn->connect_error) die_error_curtain("DB Connection Error.", 1); // db conn error
+
+// both the pid and uid are required
+if (!isset($_GET['pid']) || !isset($_GET['uid'])) die_error_curtain("UID and/or PID not detected.", 2); // fatal error
+
+// store $_POST['pid'] and $_POST['uid'] to $_SESSION variables
+$_SESSION['pid'] = $_GET['pid'];
+$_SESSION['uid'] = $_GET['uid'];
+
+// declare variables
+$get_user_id = $get_user_profile_id = null;
+
+$current_user_id =
+  $current_user_name = $current_user_surname =
+  $current_user_email = $current_user_contact =
+  $current_user_dob = $current_user_gender =
+  $current_user_race = $current_user_nation = "Information unavailable.";
+
+$current_user_prof_id = null;
+
+$current_user_prof_img = $current_user_prof_banner = "";
+
+$policy_content_terms =
+  $policy_ref_terms =
+  $policy_name_terms =
+  $policy_date_terms = null;
+
+$policy_content_eula =
+  $policy_ref_eula =
+  $policy_name_eula =
+  $policy_date_eula = null;
+
+$policy_content_privacy =
+  $policy_ref_privacy =
+  $policy_name_privacy =
+  $policy_date_privacy = null;
+
+// assign get param values
+$get_user_id = sanitizeMySQL($dbconn, $_GET['uid']);
+$get_user_profile_id = sanitizeMySQL($dbconn, $_GET['pid']);
+$current_user_prof_id = $get_user_profile_id;
+
 try {
-  $query = "SELECT * FROM `users` WHERE `user_id` = $get_current_user_id";
+  $query = "SELECT * FROM `users` WHERE `user_id` = $get_user_id";
 
   $result = $dbconn->query($query);
 
-  if (!$result) die("A Fatal Error has occured. Please reload the page, and if the problem persists, please contact the system administrator.");
+  if (!$result) die_error_curtain("Please reload the page, and if the problem persists, please contact the system administrator.", 2); // die("A Fatal Error has occured. Please reload the page, and if the problem persists, please contact the system administrator.");
 
   $rows = $result->num_rows;
-  //echo $rows."<br>";
-  $current_user_profile_id = $get_current_user_profile_id;
-  $current_user_id =
-    $current_user_name = $current_user_surname =
-    $current_user_email = $current_user_contact =
-    $current_user_dob = $current_user_gender =
-    $current_user_race = $current_user_nation = "Information unavailable.";
-
-  $current_user_prof_img = $current_user_prof_banner = "";
-
-  $policy_id =
-    $policy_ref =
-    $policy_type =
-    $policy_name =
-    $policy_content =
-    $policy_date =
-    $administrators_username = null;
 
   if ($rows <= 0) {
     //notify user that a record cannot be found
@@ -70,7 +163,7 @@ try {
 
   $result = $dbconn->query($query);
 
-  if (!$result) die("A Fatal Error has occured. Please reload the page, and if the problem persists, please contact the system administrator.");
+  if (!$result) die_error_curtain("Please reload the page, and if the problem persists, please contact the system administrator.", 2); // die("A Fatal Error has occured. Please reload the page, and if the problem persists, please contact the system administrator.");
 
   $rows = $result->num_rows;
 
@@ -85,50 +178,110 @@ try {
     }
   }
 
+  // dump $result data
   $result = null;
 
-  // get latest policy content using policy_date
-  $query = "SELECT * FROM `app_policies` ORDER BY `policy_date` DESC LIMIT 1";
+  function getPolicy($policy_type)
+  {
+    global $dbconn;
 
-  $result = $dbconn->query($query);
+    // policy content vars
+    global $policy_content_terms, $policy_ref_terms, $policy_name_terms, $policy_date_terms;
+    global $policy_content_eula, $policy_ref_eula, $policy_name_eula, $policy_date_eula;
+    global $policy_content_privacy, $policy_ref_privacy, $policy_name_privacy, $policy_date_privacy;
 
-  if (!$result) die("A Fatal Error has occured. Please reload the page, and if the problem persists, please contact the system administrator.");
+    // declaring local variables
+    $policy_id =
+      $policy_ref =
+      $policy_name =
+      $policy_content =
+      $policy_date = null;
 
-  $rows = $result->num_rows;
+    switch ($policy_type) {
+      case 'terms':
+        $query = "SELECT * FROM `app_policies` WHERE `policy_type` = 'terms' ORDER BY `policy_date` DESC LIMIT 1";
+        break;
+      case 'eula':
+        $query = "SELECT * FROM `app_policies` WHERE `policy_type` = 'eula' ORDER BY `policy_date` DESC LIMIT 1";
+        break;
+      case 'privacy':
+        return false; // no privacy policy yet available
+        $query = "SELECT * FROM `app_policies` WHERE `policy_type` = 'privacy' ORDER BY `policy_date` DESC LIMIT 1";
+        break;
 
-  if ($rows <= 0) {
-    //notify user that a record cannot be found
-    echo '<div class="alert alert-danger p-4 text-start" role="alert" aria-hidden="true">Error: No policy content found.</div>';
-  } else {
-    for ($j = 0; $j < $rows; ++$j) {
-      $row = $result->fetch_array(MYSQLI_ASSOC);
+      default:
+        return false;
+        break;
+    }
 
-      $policy_id = $row['policy_id'];
-      $policy_ref = $row['policy_ref'];
-      $policy_type = $row['policy_type'];
-      $policy_name = $row['policy_name'];
-      $policy_content = $row['policy_content'];
-      $policy_date = $row['policy_date'];
-      // $administrators_username = $row['administrators_username'];
+    $result = $dbconn->query($query);
 
+    if (!$result) die_error_curtain("Please reload the page, and if the problem persists, please contact the system administrator..", 2); // die("A Fatal Error has occured. Please reload the page, and if the problem persists, please contact the system administrator.");
+
+    $rows = $result->num_rows;
+
+    if ($rows <= 0) {
+      //notify user that a record cannot be found
+      $policy_content = '<div class="alert alert-warning p-4 fs-5 text-start rounded-pill" role="alert" aria-hidden="true">Error: No policy content found.</div>';
       if ($policy_type == "terms") {
         //  "Terms of Service"
-        $policy_content_tou = $policy_content;
+        $policy_content_terms = '<div class="alert alert-warning p-4 fs-5 text-start rounded-pill" role="alert" aria-hidden="true">Error: No policy content found.</div>';
       } else if ($policy_type == "eula") {
         // "End User License Agreement"
-        $policy_content_eula = $policy_content;
+        $policy_content_eula = '<div class="alert alert-warning p-4 fs-5 text-start rounded-pill" role="alert" aria-hidden="true">Error: No policy content found.</div>';
       } else if ($policy_type == "privacy") {
         // "Privacy Policy"
-        $policy_content_privacy = $policy_content;
+        $policy_content_privacy = '<div class="alert alert-warning p-4 fs-5 text-start rounded-pill" role="alert" aria-hidden="true">Error: No policy content found.</div>';
+      }
+    } else {
+      for ($j = 0; $j < $rows; ++$j) {
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+
+        $policy_id = $row['policy_id'];
+        $policy_ref = $row['policy_ref'];
+        $policy_type = $row['policy_type'];
+        $policy_name = $row['policy_name'];
+        $policy_content = $row['policy_content'];
+        $policy_date = $row['policy_date'];
+        // $administrators_username = $row['administrators_username'];
+
+        if ($policy_type == "terms") {
+          //  "Terms of Service"
+          $policy_content_terms = $policy_content;
+          $policy_ref_terms = $policy_ref;
+          $policy_name_terms = $policy_name;
+          $policy_date_terms = $policy_date;
+        } else if ($policy_type == "eula") {
+          // "End User License Agreement"
+          $policy_content_eula = $policy_content;
+          $policy_ref_eula = $policy_ref;
+          $policy_name_eula = $policy_name;
+          $policy_date_eula = $policy_date;
+        } else if ($policy_type == "privacy") {
+          // "Privacy Policy"
+          $policy_content_privacy = $policy_content;
+          $policy_ref_privacy = $policy_ref;
+          $policy_name_privacy = $policy_name;
+          $policy_date_privacy = $policy_date;
+        }
       }
     }
+  }
+
+  // get latest EULA policy content using policy_date
+  // array for policy type
+  $policy_type_array = array("terms", "eula", "privacy");
+
+  // for each $policy_type_array, call getPolicy() function
+  foreach ($policy_type_array as $type) {
+    getPolicy($type);
   }
 
   // $result = null;
   $result = null;
   $dbconn->close();
 } catch (\Throwable $th) {
-  die("Exepction error: $th");
+  die_error_curtain($th, 3); // die("Exepction error: $th");
 }
 
 ?>
@@ -140,7 +293,7 @@ try {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create your Profile | Onefit.app | OnefitNet &copy; 2022</title>
+  <title>Create your Profile | Onefit.app | OnefitNet &copy; <?php echo date('Y'); ?></title>
 
   <!--fontawesome-->
   <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
@@ -321,11 +474,15 @@ try {
         e = e || window.event;
         e.preventDefault();
 
+        // get and assign user id  and profile id from localstorage
+        var user_id = localStorage.getItem("registration_user_id");
+        var profile_id = localStorage.getItem("registration_profile_id");
+
         var form_data = new FormData($('#aboutyou-info-form')[0]);
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: '../../scripts/php/main_app/data_management/system_admin/user_registration/submit/aboutyou_submit.php',
+            url: '../../scripts/php/main_app/data_management/system_admin/user_registration/submit/aboutyou_submit.php$user_id=' + user_id,
             processData: false,
             contentType: false,
             async: false,
@@ -333,15 +490,50 @@ try {
             data: form_data,
             beforeSend: function() {
               // do something
-              console.log("BeforeSend: submitting aboutyou form");
+              console.log("BeforeSend: submitting aboutyou form | user_id: " + user_id);
             },
             success: function(response) {
               // do something
-              console.log("Success Response: " + response);
-              $('#aboutyou-confirmation-icon').html = `<span class="material-icons material-icons-round" style="color: var(--green) !important"> check_circle </span>`;
-              $('#aboutyou-confirmation-icon').show();
-              // update the Form Status variables to reflect success status
-              aboutyouFormSubmitStatus = true;
+
+              // if response contains error, show error
+              if (response.includes("error")) {
+                console.log("Error Response: " + response);
+
+                // update the Form Status variables to reflect error status
+                aboutyouFormSubmitStatus = false;
+                // notify user that data could not be submitted by showing snackbar
+                showSnackbar("<error> Error: About You data could not be saved. Check console.", "alert_error");
+                alert("Error: About You data could not be saved. Check console.");
+
+                $('#aboutyou-confirmation-icon').html = `<span class="material-icons material-icons-round" style="color: var(--red) !important;"> error </span>`;
+                $('#aboutyou-confirmation-icon').show();
+
+                return;
+              } else {
+                console.log("Success Response: " + response);
+
+                // update the Form Status variables to reflect success status
+                aboutyouFormSubmitStatus = true;
+
+                // notify user that data was submitted by showing snackbar
+                showSnackbar("<check_circle>  About You data was saved successfully.", "alert_success");
+
+                $('#aboutyou-confirmation-icon').html = `<span class="material-icons material-icons-round" style="color: var(--green) !important;"> check_circle </span>`;
+                $('#aboutyou-confirmation-icon').show();
+
+                // disable #submit-aboutyou-info-form button and show #goalsetting-next-panel-btn button
+                $('#submit-aboutyou-info-form').hide();
+                $('#goalsetting-next-panel-btn').show();
+
+                // set all form inputs to readonly
+                $('#aboutyou-info-form :input').attr("readonly", true);
+              }
+
+              // console.log("Success Response: " + response);
+              // $('#aboutyou-confirmation-icon').html = `<span class="material-icons material-icons-round" style="color: var(--green) !important"> check_circle </span>`;
+              // $('#aboutyou-confirmation-icon').show();
+              // // update the Form Status variables to reflect success status
+              // aboutyouFormSubmitStatus = true;
             },
             error: function(xhr, ajaxOptions, thrownError) {
               // do something
@@ -363,11 +555,15 @@ try {
         e = e || window.event;
         e.preventDefault();
 
+        // get and assign user id  and profile id from localstorage
+        var user_id = localStorage.getItem("registration_user_id");
+        var profile_id = localStorage.getItem("registration_profile_id");
+
         var form_data = new FormData($('#goalsetting-info-form')[0]);
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: '../../scripts/php/main_app/data_management/system_admin/user_registration/submit/goalsetting_submit.php',
+            url: '../../scripts/php/main_app/data_management/system_admin/user_registration/submit/goalsetting_submit.php?user_id=' + user_id,
             processData: false,
             contentType: false,
             async: false,
@@ -375,15 +571,58 @@ try {
             data: form_data,
             beforeSend: function() {
               // do something
-              console.log("BeforeSend: submitting goalsetting form");
+              console.log("BeforeSend: submitting goalsetting form | user_id: " + user_id);
             },
             success: function(response) {
               // do something
-              console.log("Success Response: " + response);
-              $('#goalsetting-confirmation-icon').html = `<span class="material-icons material-icons-round" style="color: var(--green) !important"> check_circle </span>`;
-              $('#goalsetting-confirmation-icon').show();
-              // update the Form Status variables to reflect success status
-              goalsettingFormSubmitStatus = true;
+
+              // if response contains error, show error
+              if (response.includes("error")) {
+                console.log("Error Response: " + response);
+
+                // update the Form Status variables to reflect error status
+                goalsettingFormSubmitStatus = false;
+                // notify user that data could not be submitted by showing snackbar
+                showSnackbar("<error> Error: Goal Setting data could not be saved. Check console.", "alert_error");
+                alert("Error: Goal Setting data could not be saved. Check console.");
+
+                $('#goalsetting-confirmation-icon').html = `<span class="material-icons material-icons-round" style="color: var(--red) !important;"> error </span>`;
+                $('#goalsetting-confirmation-icon').show();
+
+                // remove return false onclick attribute to inpute type checkbox and radio
+                $('#goalsetting-info-form input[type="checkbox"]').removeAttr("onclick");
+                $('#goalsetting-info-form input[type="radio"]').removeAttr("onclick");
+
+                return;
+              } else {
+                console.log("Success Response: " + response);
+
+                // update the Form Status variables to reflect success status
+                goalsettingFormSubmitStatus = true;
+
+                // notify user that data was submitted by showing snackbar
+                showSnackbar("<check_circle>  Goal Setting data was saved successfully.", "alert_success");
+
+                $('#goalsetting-confirmation-icon').html = `<span class="material-icons material-icons-round" style="color: var(--green) !important;"> check_circle </span>`;
+                $('#goalsetting-confirmation-icon').show();
+
+                // disable #submit-goalsetting-info-form button and show #aboutyou-back-panel-btn & #fitprefs-next-panel-btn buttons
+                $('#submit-goalsetting-info-form').hide();
+                $('#aboutyou-back-panel-btn').show();
+                $('#fitprefs-next-panel-btn').show();
+
+                // set all form inputs to readonly
+                $('#goalsetting-info-form :input').attr("readonly", true);
+                // assign return false onclick attribute to inpute type checkbox and radio
+                $('#goalsetting-info-form input[type="checkbox"]').attr("onclick", "return false;");
+                $('#goalsetting-info-form input[type="radio"]').attr("onclick", "return false;");
+              }
+
+              // console.log("Success Response: " + response);
+              // $('#goalsetting-confirmation-icon').html = `<span class="material-icons material-icons-round" style="color: var(--green) !important"> check_circle </span>`;
+              // $('#goalsetting-confirmation-icon').show();
+              // // update the Form Status variables to reflect success status
+              // goalsettingFormSubmitStatus = true;
             },
             error: function(xhr, ajaxOptions, thrownError) {
               // do something
@@ -405,11 +644,15 @@ try {
         e = e || window.event;
         e.preventDefault();
 
+        // get and assign user id  and profile id from localstorage
+        var user_id = localStorage.getItem("registration_user_id");
+        var profile_id = localStorage.getItem("registration_profile_id");
+
         var form_data = new FormData($('#fitprefs-info-form')[0]);
         setTimeout(function() {
           $.ajax({
             type: 'POST',
-            url: '../../scripts/php/main_app/data_management/system_admin/user_registration/submit/fitprefs_submit.php',
+            url: '../../scripts/php/main_app/data_management/system_admin/user_registration/submit/fitprefs_submit.php?user_id=' + user_id,
             processData: false,
             contentType: false,
             async: false,
@@ -417,15 +660,51 @@ try {
             data: form_data,
             beforeSend: function() {
               // do something
-              console.log("BeforeSend: submitting fitprefs form");
+              console.log("BeforeSend: submitting fitprefs form | user_id: " + user_id);
             },
             success: function(response) {
               // do something
-              console.log("Success Response: " + response);
-              $('#fitprefs-confirmation-icon').html = `<span class="material-icons material-icons-round" style="color: var(--green) !important"> check_circle </span>`;
-              $('#fitprefs-confirmation-icon').show();
-              // update the Form Status variables to reflect success status
-              fitprefsFormSubmitStatus = true;
+
+              // if response contains error, show error
+              if (response.includes("error")) {
+                console.log("Error Response: " + response);
+
+                // update the Form Status variables to reflect error status
+                goalsettingFormSubmitStatus = false;
+                // notify user that data could not be submitted by showing snackbar
+                showSnackbar("<error> Error: Fitness Preference data could not be saved. Check console.", "alert_error");
+                alert("Error: Fitness Preference data could not be saved. Check console.");
+
+                $('#fitprefs-confirmation-icon').html = `<span class="material-icons material-icons-round" style="color: var(--red) !important;"> error </span>`;
+                $('#fitprefs-confirmation-icon').show();
+
+                return;
+              } else {
+                console.log("Success Response: " + response);
+
+                // update the Form Status variables to reflect success status
+                goalsettingFormSubmitStatus = true;
+
+                // notify user that data was submitted by showing snackbar
+                showSnackbar("<check_circle>  Fitness Preference data was saved successfully.", "alert_success");
+
+                $('#fitprefs-confirmation-icon').html = `<span class="material-icons material-icons-round" style="color: var(--green) !important;"> check_circle </span>`;
+                $('#fitprefs-confirmation-icon').show();
+
+                // disable #submit-fitprefs-info-form button and show #goalsetting-back-panel-btn & #eu-agreements-next-panel-btn
+                $('#submit-fitprefs-info-form').hide();
+                $('#goalsetting-back-panel-btn').show();
+                $('#eu-agreements-next-panel-btn').show();
+
+                // set all form inputs to readonly
+                $('#fitprefs-info-form :input').attr("readonly", true);
+              }
+
+              // console.log("Success Response: " + response);
+              // $('#fitprefs-confirmation-icon').html = `<span class="material-icons material-icons-round" style="color: var(--green) !important"> check_circle </span>`;
+              // $('#fitprefs-confirmation-icon').show();
+              // // update the Form Status variables to reflect success status
+              // fitprefsFormSubmitStatus = true;
             },
             error: function(xhr, ajaxOptions, thrownError) {
               // do something
@@ -447,8 +726,9 @@ try {
         e = e || window.event;
         e.preventDefault();
 
-        // get and assign user id from localstorage
+        // get and assign user id  and profile id from localstorage
         var user_id = localStorage.getItem("registration_user_id");
+        var profile_id = localStorage.getItem("registration_profile_id");
 
         var form_data = new FormData($('#eula-policy-info-form')[0]);
         setTimeout(function() {
@@ -466,18 +746,32 @@ try {
             },
             success: function(response) {
               // do something
-              console.log("Success Response: " + response);
 
-              // update the Form Status variables to reflect success status
-              eulaPolicyFormSubmitStatus = true;
+              // if response contains error, show error
+              if (response.includes("error")) {
+                console.log("Error Response: " + response);
 
-              // notify user that data was submitted by showing snackbar
-              showSnackbar("<workspace_premium>  EULA Accepted.", "alert_success");
-              proceedToMain();
+                // update the Form Status variables to reflect error status
+                eulaPolicyFormSubmitStatus = false;
+                // notify user that data could not be submitted by showing snackbar
+                showSnackbar("<error> Error: EULA Acceptence could not be saved. Check console.", "alert_error");
+                alert("Error: EULA Acceptence could not be saved. Check console.");
+
+                return;
+              } else {
+                console.log("Success Response: " + response);
+
+                // update the Form Status variables to reflect success status
+                eulaPolicyFormSubmitStatus = true;
+
+                // notify user that data was submitted by showing snackbar
+                showSnackbar("<workspace_premium>  EULA Accepted.", "alert_success");
+                proceedToMain();
+              }
             },
             error: function(xhr, ajaxOptions, thrownError) {
               // do something
-              console.log("Error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+              console.log("Error Response: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
               // update the Form Status variables to reflect error status
               eulaPolicyFormSubmitStatus = false;
               // notify user that data could not be submitted by showing snackbar
@@ -496,8 +790,9 @@ try {
         e = e || window.event;
         e.preventDefault();
 
-        // get and assign user id from localstorage
+        // get and assign user id  and profile id from localstorage
         var user_id = localStorage.getItem("registration_user_id");
+        var profile_id = localStorage.getItem("registration_profile_id");
 
         var form_data = new FormData($('#tou-policy-info-form')[0]);
         setTimeout(function() {
@@ -511,7 +806,7 @@ try {
             data: form_data,
             beforeSend: function() {
               // do something
-              console.log("BeforeSend: submitting Terms of Use (TOU) Policy acceptance form");
+              console.log("BeforeSend: submitting Terms of Use (TOU) Policy acceptance form | user_id: " + user_id);
             },
             success: function(response) {
               // do something
@@ -536,15 +831,15 @@ try {
                 if (goalsettingFormSubmitStatus === false) {
                   formNotSubmittedString += "Goal Setting Form, ";
                 }
-                if (fitprefFormSubmitStatus === false) {
+                if (fitprefsFormSubmitStatus === false) {
                   formNotSubmittedString += "Fitness Preferences Form, ";
                 }
 
                 // notify user that data was not submitted by showing alert
-                alert("Some of your information has not been submitted. Please check the " + formNotSubmittedString + " provide your information and click the Save button.");
+                alert("Some of your information has not been submitted. Please check the " + formNotSubmittedString + " provide any missing information and click the Save button.");
 
                 // notify user that data was not submitted by showing snackbar
-                showSnackbar("<error>  Some of your information has not been submitted. Please check the " + formNotSubmittedString + " provide your information and click the Save button.", "alert_error");
+                showSnackbar("<error>  Some of your information has not been submitted. Please check the " + formNotSubmittedString + " provide any missing information and click the Save button.", "alert_error");
                 return false;
               } else {
                 // notify user that data was submitted by showing snackbar
@@ -592,140 +887,142 @@ try {
         });
       });
 
-      // final submission, validate all forms and submit each if all forms are valid
-      $(function() {
-        $("#final-submit-data-btn").click(function() {
-          console.log("Final submit btn clicked");
+      // obsolete: final submission, validate all forms and submit each if all forms are valid
+      // $(function() {
+      //   $("#final-submit-data-btn").click(function() {
+      //     console.log("Final submit btn clicked");
 
-          // validate all tab forms and submit each if all forms are valid
-          const formsArray = [
-            "#eula-policy-info-form",
-            "#aboutyou-info-form",
-            "#goalsetting-info-form",
-            "#fitprefs-info-form",
-            "#tou-policy-info-form"
-          ];
 
-          var isValid = true;
 
-          formsArray.forEach(formid => {
-            switch (formid) {
+      //     // validate all tab forms and submit each if all forms are valid
+      //     // const formsArray = [
+      //     //   "#eula-policy-info-form",
+      //     //   "#aboutyou-info-form",
+      //     //   "#goalsetting-info-form",
+      //     //   "#fitprefs-info-form",
+      //     //   "#tou-policy-info-form"
+      //     // ];
 
-              case "#eula-policy-info-form":
-                isValid = $.validateForm(formid);
-                if (isValid) {
-                  console.log("Success: EULA form is valid");
-                  // click the form submit button
-                  // $("#submit-eula-policy-info-form").click();
-                } else {
-                  console.log("Success: EULA form is not valid");
-                  showSnackbar("Alert: EULA form is not valid", "danger");
-                  // return false;
-                }
-                break;
-              case "#aboutyou-info-form":
-                isValid = $.validateForm(formid);
-                if (isValid) {
-                  console.log("Success: About You form is valid");
-                  // click the form submit button
-                  // $("#submit-aboutyou-info-form").click();
-                } else {
-                  console.log("Success: About You form is not valid");
-                  showSnackbar("Alert: Please complete the About You form to continue", "danger");
-                  // return false;
-                }
-                break;
-              case "#goalsetting-info-form":
-                isValid = $.validateForm(formid);
-                if (isValid) {
-                  console.log("Success: Goal Setting form is valid");
-                  // click the form submit button
-                  // $("#submit-goalsetting-info-form").click();
-                } else {
-                  console.log("Success: Goal Setting form is not valid");
-                  showSnackbar("Alert: Please complete the Goal Setting form to continue", "danger");
-                  // return false;
-                }
-                break;
-              case "#fitprefs-info-form":
-                isValid = $.validateForm(formid);
-                if (isValid) {
-                  console.log("Success: fitprefs form is valid");
-                  // click the form submit button
-                  // $("#submit-fitprefs-info-form").click();
-                } else {
-                  console.log("Success: fitprefs form is not valid");
-                  showSnackbar("Alert: Please complete the Fitness Preferences form to continue", "danger");
-                  // return false;
-                }
-                break;
-              case "#tou-policy-info-form":
-                isValid = $.validateForm(formid);
-                if (isValid) {
-                  console.log("Success: Terms Of Use form is valid");
-                  // click the form submit button
-                  // $("#submit-tou-policy-info-form").click();
-                } else {
-                  console.log("Success: Terms Of Use form is not valid");
-                  showSnackbar("Alert: Please accept the Terms Of Use to continue", "danger");
-                  // return false;
-                }
-                break;
+      //     // var isValid = true;
 
-              default:
-                // do nothing
-                console.log("error: unknown form - formid: " + formid);
-                showSnackbar("Alert: unknown form - formid: " + formid, "danger");
-                isValid = false;
-                return isValid;
-                break;
-            }
-          });
+      //     // formsArray.forEach(formid => {
+      //     //   switch (formid) {
 
-          // if all forms are valid, submit all forms
-          if (isValid) {
-            console.log("Success: All forms are valid");
-            showSnackbar("We are submitting your information. Please wait.", "alert_general");
-            // submit all forms
-            formsArray.forEach(formid => {
-              // $(formid).submit();
-              switch (formid) {
-                case "#eula-policy-info-form":
-                  // click the form submit button
-                  $("#submit-eula-policy-info-form").click();
-                  break;
-                case "#aboutyou-info-form":
-                  // click the form submit button
-                  $("#submit-aboutyou-info-form").click();
-                  break;
-                case "#goalsetting-info-form":
-                  // click the form submit button
-                  $("#submit-goalsetting-info-form").click();
-                  break;
-                case "#fitprefs-info-form":
-                  // click the form submit button
-                  $("#submit-fitprefs-info-form").click();
-                  break;
-                case "#tou-policy-info-form":
-                  // click the form submit button
-                  $("#submit-tou-policy-info-form").click();
-                  break;
+      //     //     case "#eula-policy-info-form":
+      //     //       isValid = $.validateForm(formid);
+      //     //       if (isValid) {
+      //     //         console.log("Success: EULA form is valid");
+      //     //         // click the form submit button
+      //     //         // $("#submit-eula-policy-info-form").click();
+      //     //       } else {
+      //     //         console.log("Success: EULA form is not valid");
+      //     //         showSnackbar("Alert: EULA form is not valid", "danger");
+      //     //         // return false;
+      //     //       }
+      //     //       break;
+      //     //     case "#aboutyou-info-form":
+      //     //       isValid = $.validateForm(formid);
+      //     //       if (isValid) {
+      //     //         console.log("Success: About You form is valid");
+      //     //         // click the form submit button
+      //     //         // $("#submit-aboutyou-info-form").click();
+      //     //       } else {
+      //     //         console.log("Success: About You form is not valid");
+      //     //         showSnackbar("Alert: Please complete the About You form to continue", "danger");
+      //     //         // return false;
+      //     //       }
+      //     //       break;
+      //     //     case "#goalsetting-info-form":
+      //     //       isValid = $.validateForm(formid);
+      //     //       if (isValid) {
+      //     //         console.log("Success: Goal Setting form is valid");
+      //     //         // click the form submit button
+      //     //         // $("#submit-goalsetting-info-form").click();
+      //     //       } else {
+      //     //         console.log("Success: Goal Setting form is not valid");
+      //     //         showSnackbar("Alert: Please complete the Goal Setting form to continue", "danger");
+      //     //         // return false;
+      //     //       }
+      //     //       break;
+      //     //     case "#fitprefs-info-form":
+      //     //       isValid = $.validateForm(formid);
+      //     //       if (isValid) {
+      //     //         console.log("Success: fitprefs form is valid");
+      //     //         // click the form submit button
+      //     //         // $("#submit-fitprefs-info-form").click();
+      //     //       } else {
+      //     //         console.log("Success: fitprefs form is not valid");
+      //     //         showSnackbar("Alert: Please complete the Fitness Preferences form to continue", "danger");
+      //     //         // return false;
+      //     //       }
+      //     //       break;
+      //     //     case "#tou-policy-info-form":
+      //     //       isValid = $.validateForm(formid);
+      //     //       if (isValid) {
+      //     //         console.log("Success: Terms Of Use form is valid");
+      //     //         // click the form submit button
+      //     //         // $("#submit-tou-policy-info-form").click();
+      //     //       } else {
+      //     //         console.log("Success: Terms Of Use form is not valid");
+      //     //         showSnackbar("Alert: Please accept the Terms Of Use to continue", "danger");
+      //     //         // return false;
+      //     //       }
+      //     //       break;
 
-                default:
-                  // 
-                  console.log("ERROR: Unknown form submission request");
-                  alert("ERROR: Unknown form submission request [" + formid + "]");
-                  break;
-              }
-            });
-            console.log("Success: All forms submitted");
-          } else {
-            console.log("Error: Not all forms are valid");
-            showSnackbar("Alert: Not all forms are valid", "danger");
-            return false;
-          }
-        });
-      });
+      //     //     default:
+      //     //       // do nothing
+      //     //       console.log("error: unknown form - formid: " + formid);
+      //     //       showSnackbar("Alert: unknown form - formid: " + formid, "danger");
+      //     //       isValid = false;
+      //     //       return isValid;
+      //     //       break;
+      //     //   }
+      //     // });
+
+      //     // // if all forms are valid, submit all forms
+      //     // if (isValid) {
+      //     //   console.log("Success: All forms are valid");
+      //     //   showSnackbar("We are submitting your information. Please wait.", "alert_general");
+      //     //   // submit all forms
+      //     //   formsArray.forEach(formid => {
+      //     //     // $(formid).submit();
+      //     //     switch (formid) {
+      //     //       case "#eula-policy-info-form":
+      //     //         // click the form submit button
+      //     //         $("#submit-eula-policy-info-form").click();
+      //     //         break;
+      //     //       case "#aboutyou-info-form":
+      //     //         // click the form submit button
+      //     //         $("#submit-aboutyou-info-form").click();
+      //     //         break;
+      //     //       case "#goalsetting-info-form":
+      //     //         // click the form submit button
+      //     //         $("#submit-goalsetting-info-form").click();
+      //     //         break;
+      //     //       case "#fitprefs-info-form":
+      //     //         // click the form submit button
+      //     //         $("#submit-fitprefs-info-form").click();
+      //     //         break;
+      //     //       case "#tou-policy-info-form":
+      //     //         // click the form submit button
+      //     //         $("#submit-tou-policy-info-form").click();
+      //     //         break;
+
+      //     //       default:
+      //     //         // 
+      //     //         console.log("ERROR: Unknown form submission request");
+      //     //         alert("ERROR: Unknown form submission request [" + formid + "]");
+      //     //         break;
+      //     //     }
+      //     //   });
+      //     //   console.log("Success: All forms submitted");
+      //     // } else {
+      //     //   console.log("Error: Not all forms are valid");
+      //     //   showSnackbar("Alert: Not all forms are valid", "danger");
+      //     //   return false;
+      //     // }
+      //   });
+      // });
 
     });
   </script>
@@ -743,13 +1040,17 @@ try {
       z-index: 9999;
       display: none;
     }
+
+    a {
+      color: var(--tahitigold) !important;
+    }
   </style>
 
   <script src="../../scripts/js/script.js"></script>
   <script src="../../scripts/js/formValidationScripts.js"></script>
 </head>
 
-<body class="noselect" onload="toggleLoadCurtain();storeCurrentUserId('<?php echo $current_user_id; ?>')">
+<body class="noselect" onload="toggleLoadCurtain();storeCurrentUserIDs('<?php echo $current_user_id; ?>','<?php echo $current_user_prof_id; ?>');fetchUserData()">
 
   <!-- snackbar -->
   <div class="snackbar d-grid gap-1 align-items-center" id="snackbar">
@@ -816,230 +1117,7 @@ try {
 
       <!-- EULA -->
       <div id="eula-container" class="text-white comfortaa-font px-2 mb-4" style="overflow-y: auto; max-height: 100vh;padding-top: 180px;">
-        <?php echo $policy_content; ?>
-        <h1 class="text-center">End-User License Agreement &#40;"Agreement"&#41;</h1>
-        <p class="text-center mb-4">Last updated: October 13, 2022</p>
-        <p class="mt-4">Please read this End-User License Agreement carefully before clicking the "I
-          Agree"
-          button, downloading or using Onefit.app.</p>
-        <h1>Interpretation and Definitions</h1>
-        <h2>Interpretation</h2>
-        <p>The words of which the initial letter is capitalized have meanings defined under the following
-          conditions. The following definitions shall have the same meaning regardless of whether they
-          appear in singular or in plural.</p>
-        <h2>Definitions</h2>
-        <p>For the purposes of this End-User License Agreement:</p>
-        <ul>
-          <li>
-            <p><strong>Agreement</strong> means this End-User License Agreement that forms the entire
-              agreement between You and the Company regarding the use of the Application. This Agreement
-              has
-              been created with the help of the <a href="https://www.privacypolicies.com/eula-generator/" target="_blank">EULA Generator</a>.</p>
-          </li>
-          <li>
-            <p><strong>Application</strong> means the software program provided by the Company downloaded
-              by
-              You to a Device, named Onefit.app</p>
-          </li>
-          <li>
-            <p><strong>Company</strong> &#40;referred to as either "the Company", "We",
-              "Us" or "Our" in this Agreement&#41; refers to AdaptivConcept NPC, Unit 201,
-              Anchor Towers, 2 Plein Steet, Johannesburg.</p>
-          </li>
-          <li>
-            <p><strong>Content</strong> refers to content such as text, images, or other information that
-              can be posted, uploaded, linked to or otherwise made available by You, regardless of the
-              form
-              of that content.</p>
-          </li>
-          <li>
-            <p><strong>Country</strong> refers to: South Africa</p>
-          </li>
-          <li>
-            <p><strong>Device</strong> means any device that can access the Application such as a
-              computer,
-              a cellphone or a digital tablet.</p>
-          </li>
-          <li>
-            <p><strong>Third-Party Services</strong> means any services or content &#40;including data,
-              information, applications and other products services&#41; provided by a third-party that may be
-              displayed, included or made available by the Application.</p>
-          </li>
-          <li>
-            <p><strong>You</strong> means the individual accessing or using the Application or the
-              company,
-              or other legal entity on behalf of which such individual is accessing or using the
-              Application, as applicable.</p>
-          </li>
-        </ul>
-        <h1>Acknowledgment</h1>
-        <p>By clicking the "I Agree" button, downloading or using the Application, You are
-          agreeing to be bound by the terms and conditions of this Agreement. If You do not agree to the
-          terms of this Agreement, do not click on the "I Agree" button, do not download or do
-          not
-          use the Application.</p>
-        <p>This Agreement is a legal document between You and the Company and it governs your use of the
-          Application made available to You by the Company.</p>
-        <p>The Application is licensed, not sold, to You by the Company for use strictly in accordance
-          with
-          the terms of this Agreement.</p>
-        <h1>License</h1>
-        <h2>Scope of License</h2>
-        <p>The Company grants You a revocable, non-exclusive, non-transferable, limited license to
-          download,
-          install and use the Application strictly in accordance with the terms of this Agreement.</p>
-        <p>The license that is granted to You by the Company is solely for your personal, non-commercial
-          purposes strictly in accordance with the terms of this Agreement.</p>
-        <h1>Third-Party Services</h1>
-        <p>The Application may display, include or make available third-party content &#40;including data,
-          information, applications and other products services&#41; or provide links to third-party websites
-          or
-          services.</p>
-        <p>You acknowledge and agree that the Company shall not be responsible for any Third-party
-          Services,
-          including their accuracy, completeness, timeliness, validity, copyright compliance, legality,
-          decency, quality or any other aspect thereof. The Company does not assume and shall not have any
-          liability or responsibility to You or any other person or entity for any Third-party Services.
-        </p>
-        <p>You must comply with applicable Third parties&#39; Terms of agreement when using the Application.
-          Third-party Services and links thereto are provided solely as a convenience to You and You
-          access
-          and use them entirely at your own risk and subject to such third parties&#39; Terms and conditions.
-        </p>
-        <h1>Term and Termination</h1>
-        <p>This Agreement shall remain in effect until terminated by You or the Company.
-          The Company may, in its sole discretion, at any time and for any or no reason, suspend or
-          terminate this Agreement with or without prior notice.</p>
-        <p>This Agreement will terminate immediately, without prior notice from the Company, in the event
-          that you fail to comply with any provision of this Agreement. You may also terminate this
-          Agreement by deleting the Application and all copies thereof from your Device or from your
-          computer.</p>
-        <p>Upon termination of this Agreement, You shall cease all use of the Application and delete all
-          copies of the Application from your Device.</p>
-        <p>Termination of this Agreement will not limit any of the Company&#39;s rights or remedies at law or
-          in
-          equity in case of breach by You &#40;during the term of this Agreement&#41; of any of your obligations
-          under the present Agreement.</p>
-        <h1>Indemnification</h1>
-        <p>You agree to indemnify and hold the Company and its parents, subsidiaries, affiliates,
-          officers,
-          employees, agents, partners and licensors &#40;if any&#41; harmless from any claim or demand, including
-          reasonable attorneys&#39; fees, due to or arising out of your: &#40;a&#41; use of the Application; &#40;b&#41;
-          violation of this Agreement or any law or regulation; or &#40;c&#41; violation of any right of a third
-          party.</p>
-        <h1>No Warranties</h1>
-        <p>The Application is provided to You "AS IS" and "AS AVAILABLE" and with all
-          faults and defects without warranty of any kind. To the maximum extent permitted under
-          applicable
-          law, the Company, on its own behalf and on behalf of its affiliates and its and their respective
-          licensors and service providers, expressly disclaims all warranties, whether express, implied,
-          statutory or otherwise, with respect to the Application, including all implied warranties of
-          merchantability, fitness for a particular purpose, title and non-infringement, and warranties
-          that
-          may arise out of course of dealing, course of performance, usage or trade practice. Without
-          limitation to the foregoing, the Company provides no warranty or undertaking, and makes no
-          representation of any kind that the Application will meet your requirements, achieve any
-          intended
-          results, be compatible or work with any other software, applications, systems or services,
-          operate
-          without interruption, meet any performance or reliability standards or be error free or that any
-          errors or defects can or will be corrected.</p>
-        <p>Without limiting the foregoing, neither the Company nor any of the company&#39;s provider makes any
-          representation or warranty of any kind, express or implied: &#40;i&#41; as to the operation or
-          availability of the Application, or the information, content, and materials or products included
-          thereon; &#40;ii&#41; that the Application will be uninterrupted or error-free; &#40;iii&#41; as to the
-          accuracy,
-          reliability, or currency of any information or content provided through the Application; or &#40;iv&#41;
-          that the Application, its servers, the content, or e-mails sent from or on behalf of the Company
-          are free of viruses, scripts, trojan horses, worms, malware, timebombs or other harmful
-          components.</p>
-        <p>Some jurisdictions do not allow the exclusion of certain types of warranties or limitations on
-          applicable statutory rights of a consumer, so some or all of the above exclusions and
-          limitations
-          may not apply to You. But in such a case the exclusions and limitations set forth in this
-          section
-          shall be applied to the greatest extent enforceable under applicable law. To the extent any
-          warranty exists under law that cannot be disclaimed, the Company shall be solely responsible for
-          such warranty.</p>
-        <h1>Limitation of Liability</h1>
-        <p>Notwithstanding any damages that You might incur, the entire liability of the Company and any
-          of
-          its suppliers under any provision of this Agreement and your exclusive remedy for all of the
-          foregoing shall be limited to the amount actually paid by You for the Application or through the
-          Application or 100 USD if You haven&#39;t purchased anything through the Application.</p>
-        <p>To the maximum extent permitted by applicable law, in no event shall the Company or its
-          suppliers
-          be liable for any special, incidental, indirect, or consequential damages whatsoever &#40;including,
-          but not limited to, damages for loss of profits, loss of data or other information, for business
-          interruption, for personal injury, loss of privacy arising out of or in any way related to the
-          use
-          of or inability to use the Application, third-party software and/or third-party hardware used
-          with
-          the Application, or otherwise in connection with any provision of this Agreement&#41;, even if the
-          Company or any supplier has been advised of the possibility of such damages and even if the
-          remedy
-          fails of its essential purpose.</p>
-        <p>Some states/jurisdictions do not allow the exclusion or limitation of incidental or
-          consequential
-          damages, so the above limitation or exclusion may not apply to You.</p>
-        <h1>Severability and Waiver</h1>
-        <h2>Severability</h2>
-        <p>If any provision of this Agreement is held to be unenforceable or invalid, such provision will
-          be
-          changed and interpreted to accomplish the objectives of such provision to the greatest extent
-          possible under applicable law and the remaining provisions will continue in full force and
-          effect.
-        </p>
-        <h2>Waiver</h2>
-        <p>Except as provided herein, the failure to exercise a right or to require performance of an
-          obligation under this Agreement shall not effect a party&#39;s ability to exercise such right or
-          require such performance at any time thereafter nor shall the waiver of a breach constitute a
-          waiver of any subsequent breach.</p>
-        <h1>Product Claims</h1>
-        <p>The Company does not make any warranties concerning the Application.</p>
-        <h1>United States Legal Compliance</h1>
-        <p>You represent and warrant that &#40;i&#41; You are not located in a country that is subject to the
-          United
-          States government embargo, or that has been designated by the United States government as a
-          "terrorist supporting" country, and &#40;ii&#41; You are not listed on any United States
-          government list of prohibited or restricted parties.</p>
-        <h1>Changes to this Agreement</h1>
-        <p>The Company reserves the right, at its sole discretion, to modify or replace this Agreement at
-          any time. If a revision is material we will provide at least 30 days&#39; notice prior to any new
-          terms taking effect. What constitutes a material change will be determined at the sole
-          discretion
-          of the Company.</p>
-        <p>By continuing to access or use the Application after any revisions become effective, You agree
-          to
-          be bound by the revised terms. If You do not agree to the new terms, You are no longer
-          authorized
-          to use the Application.</p>
-        <h1>Governing Law</h1>
-        <p>The laws of the Country, excluding its conflicts of law rules, shall govern this Agreement and
-          your use of the Application. Your use of the Application may also be subject to other local,
-          state, national, or international laws.</p>
-        <h1>Entire Agreement</h1>
-        <p>The Agreement constitutes the entire agreement between You and the Company regarding your use
-          of
-          the Application and supersedes all prior and contemporaneous written or oral agreements between
-          You and the Company.</p>
-        <p>You may be subject to additional terms and conditions that apply when You use or purchase other
-          Company&#39;s services, which the Company will provide to You at the time of such use or purchase.
-        </p>
-        <h1>Contact Us</h1>
-        <p>If you have any questions about this Agreement, You can contact Us:</p>
-        <ul>
-          <li>
-            <p>By email: admin@adaptivconcept.co.za</p>
-          </li>
-          <li>
-            <p>By visiting this page on our website: <a href="https://adaptivconcept.co.za/contact" rel="external nofollow noopener" target="_blank">https://adaptivconcept.co.za/contact</a>
-            </p>
-          </li>
-          <li>
-            <p>By phone number: 0818118095</p>
-          </li>
-        </ul>
+        <?php echo $policy_content_eula; ?>
       </div>
       <!-- ./ EULA -->
 
@@ -1048,12 +1126,30 @@ try {
       <!-- #policy-info-form -->
       <!--<?php echo $output; ?>-->
       <!-- ../../scripts/php/main_app/data_management/system_admin/user_registration/submit/policy_acceptance_submit.php -->
-      <form id="eula-policy-info-form" action="../../scripts/php/main_app/data_management/system_admin/user_registration/submit/policy_acceptance_submit.php?user_id=<?php echo $current_user_id; ?>&agree_eula=true" method="post" autocomplete="off">
+      <form id="eula-policy-info-form" action="../../scripts/php/main_app/data_management/system_admin/user_registration/submit/policy_acceptance_submit.php?agree_eula=true" method="post" autocomplete="off">
         <!-- user id hidden -->
         <div class="form-group my-4">
-          <input class="form-control-text-input p-4" type="number" name="eula_user_id" id="user-id-policy-eula" value="<?php echo $current_user_id; ?>" readonly placeholder="user id" required="" hidden="">
+          <input class="form-control-text-input p-4" type="hidden" name="eula_profile_id" id="user-id-policy-eula" value="<?php echo $current_user_prof_id; ?>" readonly placeholder="user id" required readonly />
         </div>
         <!-- ./ user id hidden -->
+
+        <!-- eula policy ref hidden -->
+        <div class="form-group my-4">
+          <input class="form-control-text-input p-4" type="hidden" name="eula_policy_ref" id="eula-policy-ref" value="<?php echo $policy_ref_eula; ?>" readonly placeholder="EULA Policy Reference Number" required />
+        </div>
+        <!-- ./ eula policy ref hidden -->
+
+        <!-- eula policy name hidden -->
+        <div class="form-group my-4">
+          <input class="form-control-text-input p-4" type="hidden" name="eula_policy_name" id="eula-policy-name" value="<?php echo $policy_name_eula; ?>" readonly placeholder="EULA Policy Name" required />
+        </div>
+        <!-- ./ eula policy name hidden -->
+
+        <!-- eula policy date hidden -->
+        <div class="form-group my-4">
+          <input class="form-control-text-input p-4" type="hidden" name="eula_policy_date" id="eula-policy-date" value="<?php echo $policy_date_eula; ?>" readonly placeholder="EULA Policy Effective Date" required />
+        </div>
+        <!-- ./ eula policy date hidden -->
 
         <div class="d-grid gap-4 justify-content-center">
           <div class="form-check align-items-center align-middle">
@@ -1063,12 +1159,6 @@ try {
               above End-User Licence Agreement?</label>
           </div>
         </div>
-
-        <!-- hidden submit btn -->
-        <!-- <div class="d-block justify-content-center">
-          <input id="submit-policy-info-form" style="font-size: 40px !important;" type="submit" value="submit" hidden=""
-            aria-hidden="true">
-        </div> -->
 
         <hr class="text-white" style="margin-bottom: 80px;">
 
@@ -1088,7 +1178,7 @@ try {
               <!--  gap-2 justify-content-center -->
 
               <!-- EULA Acceptence Message -->
-              <div id="eula-acceptence-msg" style="display: block;">
+              <div id="eula-acceptence-msg" class="w3-animate-left" style="display: block;">
                 <div class="d-grid gap-2 text-center">
                   <div class="d-flex text-center justify-content-center">
                     <span class="material-icons material-icons-round p-4" style="font-size: 80px !important; background-color: #c20000; color: #fff; border-radius: 25px;">
@@ -1101,7 +1191,7 @@ try {
               <!-- ./ EULA Acceptence Message -->
 
               <!-- onclick="proceedToMain()" -->
-              <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow" form="eula-policy-info-form" type="submit" id="proceed-btn" style="display: none;">
+              <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow w3-animate-left" form="eula-policy-info-form" type="submit" id="proceed-btn" style="display: none;">
                 <div class="d-grid gap-2 justify-content-center text-center fw-bold">
                   <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
                     workspace_premium </span>
@@ -1368,7 +1458,7 @@ try {
 
         <div id="main-form-window-scroll-container" class="down-top-grad-white p-4 mb-4 w3-animate-top" style="max-height: 80vh; width: 100%; border-radius: 25px !important; border-bottom: #ffa500 solid 5px; overflow-y: auto; overflow-x: hidden;">
 
-          <div class="p-4 shadow text-center mb-4 comfortaa-font border-5 border-start border-end top-down-grad-dark sticky-top" style="border-radius: 25px; border-color: #ffa500 !important;">
+          <div class="p-4 shadow text-center mb-4 comfortaa-font border-5 border-start border-end top-down-grad-dark sticky-topz" style="border-radius: 25px; border-color: #ffa500 !important;">
             <!-- background-color: #343434;  -->
             <h1 class="align-middle" id="user-welcome-header">
               <span class="material-icons material-icons-outlined align-middle" style="color: var(--tahitigold) !important; font-size: 40px;">account_circle</span>
@@ -1424,7 +1514,7 @@ try {
                     Weight -->
 
                     <!-- user details - output -->
-                    <div class="row">
+                    <div id="user-info-list" class="row">
                       <div class="col-lg">
                         <div class="text-start d-grid gap-2" id="user-account-details">
                           <div id="question-variable">
@@ -1525,73 +1615,85 @@ try {
                         </div>
                       </div>
                     </div>
+                    <!-- .info-list contains the list view elems if a user has an existing record in the db for this form -->
+                    <!-- <div class="info-list" style="display: none;"></div> -->
                     <!-- ./ user details - output -->
 
-                    <hr class="text-white" style="margin: 80px 0px;">
+                    <hr class="text-white mt-4">
 
                     <!-- #aboutyou-info-form -->
-                    <!-- scripts/php/main_app/data_management/system_admin/user_registration/submit/aboutyou_submit.php -->
                     <form id="aboutyou-info-form" action="scripts/php/main_app/data_management/system_admin/user_registration/submit/aboutyou_submit.php" method="post" autocomplete="off">
                       <!-- user id hidden -->
                       <div class="form-group my-4">
-                        <input class="form-control-text-input p-4" type="number" name="user_profile_id" id="user-profile-id-aboutyou" value="<?php echo $current_user_profile_id; ?>" placeholder="user profile id" required hidden aria-hidden="true" />
+                        <input class="form-control-text-input p-4" type="hidden" name="profile_id" id="user-profile-id-aboutyou" value="<?php echo $current_user_prof_id; ?>" placeholder="user profile id" required readonly />
                       </div>
                       <!-- ./ user id hidden -->
 
-                      <p class="fs-5 comfortaa-font align-middle text-center my-4" style="margin-bottom: 40px !important;">Please provide us with your
-                        Height (in
-                        Centimeters) and Weight (in Kilograms)</p>
+                      <!-- .info-list contains the list view elems if a user has an existing record in the db for this form -->
+                      <div class="info-list" style="display: none;"></div>
 
-                      <p class="fs-5 comfortaa-font align-middle text-center"><span class="fs-2" style="color: #ffa500;">9)</span>
-                        Your weight (kg)</p>
+                      <!-- .input-section contains the input elems of this form -->
+                      <div class="input-section" style="display: block;">
+                        <p class="fs-5 comfortaa-font align-middle text-center my-4" style="margin-bottom: 40px !important;">Please provide us with your
+                          Height (in
+                          Centimeters) and Weight (in Kilograms)</p>
 
-                      <div class="form-group my-4">
-                        <input class="form-control-text-input p-4" type="number" step="2" name="category_1_weight_field" id="user-weight" placeholder="Weight (kg)" required />
+                        <p class="fs-5 comfortaa-font align-middle text-center"><span class="fs-2" style="color: #ffa500;">9)</span>
+                          Your weight (kg)</p>
+
+                        <div class="form-group my-4">
+                          <input class="form-control-text-input p-4" type="number" min="0" oninput="validity.valid||(value='');" step="2" name="category_1_weight_field" id="user-weight" placeholder="Weight (kg)" required />
+                        </div>
+
+                        <p class="fs-5 comfortaa-font align-middle text-center"><span class="fs-2" style="color: #ffa500;">10)</span>
+                          Your height (cm)</p>
+
+                        <div class="form-group my-4">
+                          <!-- set max to 180 - avg-max height rules -->
+                          <input class="form-control-text-input p-4" type="number" min="0" max="180" oninput="validity.valid||(value='');" step="2" name="category_1_height_field" id="user-height" placeholder="Height (cm)" required />
+                        </div>
                       </div>
 
-                      <p class="fs-5 comfortaa-font align-middle text-center"><span class="fs-2" style="color: #ffa500;">10)</span>
-                        Your height (cm)</p>
+                      <hr class="text-white" style="margin-bottom: 80px;">
 
-                      <div class="form-group my-4">
-                        <input class="form-control-text-input p-4" type="number" step="2" name="category_1_height_field" id="user-height" placeholder="Height (cm)" required />
-                      </div>
+                      <!-- Procession Buttons -->
+                      <div class="comfortaa-font text-center mt-4" style="margin-bottom: 40px; font-size: 20px;">
 
-                      <!-- submit btn -->
-                      <div class="d-grid justify-content-center">
-                        <input id="submit-aboutyou-info-form" style="font-size: 20px !important;" class="onefit-buttons-style-tahiti p-4 text-center comfortaa-font shadow fw-bold" type="submit" value="Save.">
+                        <div class="d-grid gap-0 w-100 text-white">
+                          <span class="rounded-pill p-4" style="background-color: #343434;">
+                            One<span style="color: #ffa500;">fit</span>.app
+                          </span>
+                          <span class="material-icons material-icons-outlined" style="color: #ffa500;">
+                            horizontal_rule
+                          </span>
+                        </div>
+
+                        <!-- submit btn -->
+                        <div class="d-grid justify-content-center">
+                          <input id="submit-aboutyou-info-form" style="font-size: 20px !important;" class="onefit-buttons-style-tahiti p-4 text-center comfortaa-font shadow fw-bold submit-btn" type="submit" value="Save.">
+                        </div>
+                        <!-- ./ submit btn -->
+
+                        <!-- Procession Buttons -->
+                        <div class="row align-items-center">
+                          <div class="col-lg py-4">
+                            <button type="button" class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow panel-nav-btn" id="goalsetting-next-panel-btn" onclick="survey_controller('aboutyou','goalsetting')" style="display:none;">
+                              <div class="d-grid gap-2 justify-content-center text-center fw-bold">
+                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
+                                  arrow_forward_ios </span>
+                                <span>Goal setting.</span>
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                        <!-- ./ Procession Buttons -->
+
                       </div>
+                      <!-- ./ Procession Buttons -->
 
                       <!-- hidden aria-hidden="true" -->
                     </form>
                     <!-- ./ #aboutyou-info-form -->
-
-                    <hr class="text-white" style="margin: 80px 0px;">
-
-                    <!-- Procession Buttons -->
-                    <div class="comfortaa-font text-center mt-4" style="margin-bottom: 40px; font-size: 20px;">
-                      <div class="d-grid gap-0 w-100 text-white">
-                        <span class="rounded-pill p-4" style="background-color: #343434;">
-                          One<span style="color: #ffa500;">fit</span>.app
-                        </span>
-
-                        <span class="material-icons material-icons-outlined" style="color: #ffa500;">
-                          horizontal_rule
-                        </span>
-                      </div>
-                      <div class="row align-items-center">
-                        <div class="col-lg py-4">
-                          <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow" id="goalsetting-next-panel-btn" onclick="survey_controller('aboutyou','goalsetting')">
-                            <div class="d-grid gap-2 justify-content-center text-center fw-bold">
-                              <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
-                                arrow_forward_ios </span>
-                              <span>Goal setting.</span>
-                            </div>
-
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- ./ Procession Buttons -->
 
                   </div>
 
@@ -1613,153 +1715,274 @@ try {
                         Policy</a> -
                     </div>
 
-                    <hr class="text-white" style="margin: 80px 0px;">
+                    <hr class="text-white" style="margin-top: 80px;">
 
                     <!-- #goalsetting-info-form -->
                     <!-- ../../scripts/php/main_app/data_management/system_admin/user_registration/submit/goalsetting_submit.php -->
                     <form id="goalsetting-info-form" action="../../scripts/php/main_app/data_management/system_admin/user_registration/submit/goalsetting_submit.php" method="post" autocomplete="off">
                       <!-- user id hidden -->
                       <div class="form-group my-4">
-                        <input class="form-control-text-input p-4" type="number" name="user_profile_id" id="user-profile-id-goalsetting" value="<?php echo $current_user_profile_id; ?>" placeholder="user profile id" required hidden aria-hidden="true" />
+                        <input class="form-control-text-input p-4" type="hidden" name="profile_id" id="user-profile-id-goalsetting" value="<?php echo $current_user_prof_id; ?>" placeholder="user profile id" required readonly />
                       </div>
                       <!-- ./ user id hidden -->
 
-                      <!-- 
-                      1. What is your Goal?
-                      2. Please set your own Goal statement
-                      3. By when do you want to have realized this Goal?
-                      4. Which areas of your body do you want to work on?
-                      5. How many workouts per week do you want to do?
-                      6. How much time do you have to workout?
-                      7. How many weeks do you want to start with?
-                      8. Do you have any bad habits?
-                      9. Are you prepared to do what is necessay to let go of bed habits?
-                      10. Please select your prefarred "Cheat-Day"
-                      11. What will you do on your "Cheat-Day"?
-                      -->
+                      <!-- .info-list contains the list view elems if a user has an existing record in the db for this form -->
+                      <div class="info-list" style="display: none;"></div>
 
-                      <!-- 1. Question: What are your Fitness Goals? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg-6 p-2 text-start">
-                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                      <!-- .input-section contains the input elems of this form -->
+                      <div class="input-section" style="display: block;">
+                        <!-- 
+                        1. What is your Goal?
+                        2. Please set your own Goal statement
+                        3. By when do you want to have realized this Goal?
+                        4. Which areas of your body do you want to work on?
+                        5. How many workouts per week do you want to do?
+                        6. How much time do you have to workout?
+                        7. How many weeks do you want to start with?
+                        8. Do you have any bad habits?
+                        9. Are you prepared to do what is necessay to let go of bed habits?
+                        10. Please select your prefarred "Cheat-Day"
+                        11. What will you do on your "Cheat-Day"?
+                        -->
+
+                        <!-- 1. Question: What are your Fitness Goals? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg-6 p-2 text-start">
+                            <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                              sports_score
+                            </span> -->
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">1)</span>
+                              What are
+                              your Fitness
+                              Goals?</p>
+                          </div>
+                          <div class="col-lg -6 p-2">
+                            <!-- 
+                            Be more active
+                            Lose weight
+                            Stay toned
+                            Build muscle
+                            Reduce Stress
+                            Stay healthy
+                            -->
+                            <div class="form-check">
+                              <input class="form-check-input me-4" value="Be more active" type="checkbox" name="category_2_question_1_field[]" id="category-2-be-more-active-field">
+                              <label class="form-check-label p-2" for="category-2-be-more-active-field">
+                                Be more active
+                              </label>
+                            </div>
+
+                            <div class="form-check">
+                              <input class="form-check-input me-4" value="Lose weight" type="checkbox" name="category_2_question_1_field[]" id="category-2-lose-weight-field">
+                              <label class="form-check-label p-2" for="category-2-lose-weight-field">
+                                Lose weight
+                              </label>
+                            </div>
+
+                            <div class="form-check">
+                              <input class="form-check-input me-4" value="Stay toned" type="checkbox" name="category_2_question_1_field[]" id="category-2-stay-toned-field">
+                              <label class="form-check-label p-2" for="category-2-stay-toned-field">
+                                Stay toned
+                              </label>
+                            </div>
+
+                            <div class="form-check">
+                              <input class="form-check-input me-4" value="Build muscle" type="checkbox" name="category_2_question_1_field[]" id="category-2-build-muscle-field">
+                              <label class="form-check-label p-2" for="category-2-build-muscle-field">
+                                Build muscle
+                              </label>
+                            </div>
+
+                            <div class="form-check">
+                              <input class="form-check-input me-4" value="Reduce Stress" type="checkbox" name="category_2_question_1_field[]" id="category-2-reduce-stress-field">
+                              <label class="form-check-label p-2" for="category-2-reduce-stress-field">
+                                Reduce Stress
+                              </label>
+                            </div>
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Stay healthy" type="checkbox" name="category_2_question_1_field[]" id="category-2-stay-healty-field">
+                              <label class="form-check-label p-2" for="category-2-stay-healty-field">
+                                Stay healthy
+                              </label>
+                            </div>
+
+                          </div>
+                        </div>
+                        <!-- ./ Question: What are your Fitness Goals? -->
+
+                        <hr class="text-white">
+
+                        <!-- 2. Question: Please set your own Goal statement? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg-6 p-2 text-start">
+                            <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">1)</span>
-                            What are
-                            your Fitness
-                            Goals?</p>
+                            <p class="fs-5 comfortaa-font align-middle"><span class=" fs-2" style="color: #ffa500;">2)</span>
+                              Please set
+                              your own Goal statement</p>
+                          </div>
+                          <div class="col-lg -6 p-2 text-truncate">
+                            <div class="form-group text-truncate">
+                              <textarea class="form-control-text-input p-4" style="border-radius: 25px !important;" rows="10" type="text" name="category_2_question_2_field" id="goal-statement" placeholder="My goal statement" required></textarea>
+                            </div>
+
+                          </div>
                         </div>
-                        <div class="col-lg -6 p-2">
-                          <!-- 
-                          Be more active
-                          Lose weight
-                          Stay toned
-                          Build muscle
-                          Reduce Stress
-                          Stay healthy
-                          -->
-                          <div class="form-check">
-                            <input class="form-check-input me-4" value="Be more active" type="checkbox" name="category_2_question_1_field[]" id="category-2-be-more-active-field">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              Be more active
-                            </label>
-                          </div>
+                        <!-- ./ Question: Please set your own Goal statement? -->
 
-                          <div class="form-check">
-                            <input class="form-check-input me-4" value="Lose weight" type="checkbox" name="category_2_question_1_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Lose weight
-                            </label>
-                          </div>
+                        <hr class="text-white">
 
-                          <div class="form-check">
-                            <input class="form-check-input me-4" value="Stay toned" type="checkbox" name="category_2_question_1_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              Stay toned
-                            </label>
-                          </div>
-
-                          <div class="form-check">
-                            <input class="form-check-input me-4" value="Build muscle" type="checkbox" name="category_2_question_1_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Build muscle
-                            </label>
-                          </div>
-
-                          <div class="form-check">
-                            <input class="form-check-input me-4" value="Reduce Stress" type="checkbox" name="category_2_question_1_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              Reduce Stress
-                            </label>
-                          </div>
-
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Stay healthy" type="checkbox" name="category_2_question_1_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Stay healthy
-                            </label>
-                          </div>
-
-                        </div>
-                      </div>
-                      <!-- ./ Question: What are your Fitness Goals? -->
-
-                      <hr class="text-white">
-
-                      <!-- 2. Question: Please set your own Goal statement? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg-6 p-2 text-start">
-                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                        <!-- 3. Question: By when do you want to have realized this Goal? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg-6 p-2 text-start">
+                            <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                          <p class="fs-5 comfortaa-font align-middle"><span class=" fs-2" style="color: #ffa500;">2)</span>
-                            Please set
-                            your own Goal statement</p>
-                        </div>
-                        <div class="col-lg -6 p-2 text-truncate">
-                          <div class="form-group text-truncate">
-                            <textarea class="form-control-text-input p-4" style="border-radius: 25px !important;" rows="10" type="text" name="category_2_question_2_field" id="goal-statement" placeholder="My goal statement" required></textarea>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">3)</span>
+                              By when do
+                              you want to have realized this Goal?</p>
+                            <!-- radio buttons to dynamically set date depending on selection of week range -->
+                            <div class="d-block gap-2 justify-content-between">
+                              <!-- one (1) week from now -->
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" onchange="" value="1" name="dynamic-date-select-q3" id="q3-1-dynamic-date-select" selected>
+                                <label class="form-check-label p-2" for="q3-1-dynamic-date-select" style="font-size: 10px !important;">
+                                  1 week
+                                </label>
+                              </div>
+                              <!-- two (2) week from now -->
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4 valu" type="radio" value="2" name="dynamic-date-select-q3" id="q3-2-dynamic-date-select">
+                                <label class="form-check-label p-2" for="q3-2-dynamic-date-select" style="font-size: 10px !important;">
+                                  2 week
+                                </label>
+                              </div>
+                              <!-- three (3) week from now -->
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" value="3" name="dynamic-date-select-q3" id="q3-3-dynamic-date-select">
+                                <label class="form-check-label p-2" for="q3-3-dynamic-date-select" style="font-size: 10px !important;">
+                                  3 week
+                                </label>
+                              </div>
+                              <!-- four (4) week from now -->
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" value="4" name="dynamic-date-select-q3" id="q3-4-dynamic-date-select">
+                                <label class="form-check-label p-2" for="q3-4-dynamic-date-select" style="font-size: 10px !important;">
+                                  4 week
+                                </label>
+                              </div>
+                              <!-- four (4) week from now -->
+                              <div class="form-check text-truncate">
+                                <input class="form-check-input me-4" type="radio" value="5" name="dynamic-date-select-q3" id="q3-5-dynamic-date-select">
+                                <label class="form-check-label p-2" for="q3-5-dynamic-date-select" style="font-size: 10px !important;">
+                                  5 week
+                                </label>
+                              </div>
+
+                              <!-- function to set future date to #reach-goal-date based on selection made on ynamic-date-select-q3[] -->
+                              <script>
+                                $(document).ready(function() {
+                                  $('input[type=radio][name=dynamic-date-select-q3]').change(function() {
+                                    var today = new Date();
+                                    var dd = today.getDate();
+                                    var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+                                    var yyyy = today.getFullYear();
+                                    var daysToAdd = this.value * 7;
+                                    var futureDate = new Date();
+                                    futureDate.setDate(today.getDate() + daysToAdd);
+                                    var futuredd = futureDate.getDate();
+                                    var futuremm = futureDate.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+                                    var futureyyyy = futureDate.getFullYear();
+                                    if (futuredd < 10) {
+                                      futuredd = '0' + futuredd;
+                                    }
+                                    if (futuremm < 10) {
+                                      futuremm = '0' + futuremm;
+                                    }
+                                    var futureDate = futureyyyy + '-' + futuremm + '-' + futuredd;
+                                    document.getElementById("reach-goal-date").value = futureDate;
+
+                                    // if #q3-4-dynamic-date-select to #q3-5-dynamic-date-select is checked, check #category-2-4weeks-field 
+                                    if (document.getElementById("q3-1-dynamic-date-select").checked ||
+                                      document.getElementById("q3-2-dynamic-date-select").checked ||
+                                      document.getElementById("q3-3-dynamic-date-select").checked ||
+                                      document.getElementById("q3-4-dynamic-date-select").checked ||
+                                      document.getElementById("q3-5-dynamic-date-select").checked) {
+                                      document.getElementById("category-2-4weeks-field").checked = true;
+                                    } else {
+                                      document.getElementById("category-2-4weeks-field").checked = false;
+                                    }
+                                  });
+                                  // ./ end of function
+                                });
+                              </script>
+
+                            </div>
                           </div>
+                          <div class="col-lg -6 p-2 text-truncate">
+                            <div class="form-group text-truncate">
+                              <input class="form-control-text-input p-4" onchange="checkReachGoalDate()" type="date" name="category_2_question_3_field" id="reach-goal-date" required />
+                            </div>
 
+                            <!-- javascript function to detect if date selected on #category_2_question_3_field is before todays date -->
+                            <script>
+                              function checkReachGoalDate() {
+                                var selectedDate = document.getElementById("reach-goal-date").value;
+                                var now = new Date();
+                                var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                                if (new Date(selectedDate) < today) {
+                                  alert("Please select a date in the future");
+                                  document.getElementById("reach-goal-date").value = "";
+                                  document.getElementById("reach-goal-date").focus();
+                                } else {
+                                  // if selectedDate is greater than date in 5 weeks time, check #category-2-4weeks-field
+                                  // var today = new Date();
+                                  var dd = today.getDate();
+                                  var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+                                  var yyyy = today.getFullYear();
+                                  var daysToAdd = 5 * 7;
+                                  var futureDate = new Date();
+                                  futureDate.setDate(today.getDate() + daysToAdd);
+
+                                  // check if futureDate is greater than selectedDate
+                                  if (new Date(selectedDate) < futureDate) {
+                                    document.getElementById("category-2-4weeks-field").checked = true;
+                                  } else {
+                                    document.getElementById("category-2-4weeks-field").checked = false;
+                                  }
+
+                                  // get number of weeks from today to selectedDate
+                                  var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+                                  var secondDate = new Date(selectedDate);
+                                  var diffDays = Math.round(Math.abs((today - secondDate) / oneDay));
+                                  var weeks = Math.floor(diffDays / 7);
+
+                                  // assign weeks value to #specific-weeks
+                                  document.getElementById("specific-weeks").value = weeks;
+                                }
+                              }
+                            </script>
+
+                          </div>
                         </div>
-                      </div>
-                      <!-- ./ Question: Please set your own Goal statement? -->
+                        <!-- ./ Question: By when do you want to have realized this Goal? -->
 
-                      <hr class="text-white">
+                        <hr class="text-white">
 
-                      <!-- 3. Question: By when do you want to have realized this Goal? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg-6 p-2 text-start">
-                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                        <!-- 4. Question: Which areas of your body do you want to work on? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg-6 p-2 text-start">
+                            <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">3)</span>
-                            By when do
-                            you want to have realized this Goal?</p>
-                        </div>
-                        <div class="col-lg -6 p-2 text-truncate">
-                          <div class="form-group text-truncate">
-                            <input class="form-control-text-input p-4" type="date" name="category_2_question_3_field" id="reach-goal-date" required />
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">4)</span>
+                              Which areas
+                              of your body do you want to work on?</p>
                           </div>
-
-                        </div>
-                      </div>
-                      <!-- ./ Question: By when do you want to have realized this Goal? -->
-
-                      <hr class="text-white">
-
-                      <!-- 4. Question: Which areas of your body do you want to work on? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg-6 p-2 text-start">
-                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
-                          sports_score
-                        </span> -->
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">4)</span>
-                            Which areas
-                            of your body do you want to work on?</p>
-                        </div>
-                        <div class="col-lg -6 p-2">
-                          <!-- 
+                          <div class="col-lg -6 p-2">
+                            <!-- 
                           Glutes
                           Abs
                           Arms
@@ -1771,264 +1994,268 @@ try {
                           Butt
                           -->
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Glutes" type="checkbox" name="category_2_question_4_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              Glutes
-                            </label>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Glutes" type="checkbox" name="category_2_question_4_field[]" id="category-2-glutes-field">
+                              <label class="form-check-label p-2" for="category-2-glutes-field">
+                                Glutes
+                              </label>
+                            </div>
+
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Abs" type="checkbox" name="category_2_question_4_field[]" id="category-2-abs-field">
+                              <label class="form-check-label p-2" for="category-2-abs-field">
+                                Abs
+                              </label>
+                            </div>
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Arms" type="checkbox" name="category_2_question_4_field[]" id="category-2-arms-field">
+                              <label class="form-check-label p-2" for="category-2-arms-field">
+                                Arms
+                              </label>
+                            </div>
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Legs" type="checkbox" name="category_2_question_4_field[]" id="category-2-legs-field">
+                              <label class="form-check-label p-2" for="category-2-legs-field">
+                                Legs
+                              </label>
+                            </div>
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Back" type="checkbox" name="category_2_question_4_field[]" id="category-2-back-field">
+                              <label class="form-check-label p-2" for="category-2-back-field">
+                                Back
+                              </label>
+                            </div>
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Butt" type="checkbox" name="category_2_question_4_field[]" id="category-2-butt-field">
+                              <label class="form-check-label p-2" for="category-2-butt-field">
+                                Butt
+                              </label>
+                            </div>
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Upper Body" type="checkbox" name="category_2_question_4_field[]" id="category-2-upper-body-field">
+                              <label class="form-check-label p-2" for="category-2-upper-body-field">
+                                Upper Body
+                              </label>
+                            </div>
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Lower Body" type="checkbox" name="category_2_question_4_field[]" id="category-2-lower-body-field">
+                              <label class="form-check-label p-2" for="category-2-lower-body-field">
+                                Lower Body
+                              </label>
+                            </div>
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Total Body" type="checkbox" name="category_2_question_4_field[]" id="category-2-total-body-field">
+                              <label class="form-check-label p-2" for="category-2-total-body-field">
+                                Total Body
+                              </label>
+                            </div>
+
                           </div>
-
-
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Abs" type="checkbox" name="category_2_question_4_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Abs
-                            </label>
-                          </div>
-
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Arms" type="checkbox" name="category_2_question_4_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              Arms
-                            </label>
-                          </div>
-
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Legs" type="checkbox" name="category_2_question_4_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Legs
-                            </label>
-                          </div>
-
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Back" type="checkbox" name="category_2_question_4_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Back
-                            </label>
-                          </div>
-
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Butt" type="checkbox" name="category_2_question_4_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Butt
-                            </label>
-                          </div>
-
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Upper Body" type="checkbox" name="category_2_question_4_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Upper Body
-                            </label>
-                          </div>
-
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Lower Body" type="checkbox" name="category_2_question_4_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              Lower Body
-                            </label>
-                          </div>
-
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Total Body" type="checkbox" name="category_2_question_4_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Total Body
-                            </label>
-                          </div>
-
                         </div>
-                      </div>
-                      <!-- ./ Question: Which areas of your body do you want to work on? -->
+                        <!-- ./ Question: Which areas of your body do you want to work on? -->
 
-                      <hr class="text-white">
+                        <hr class="text-white">
 
-                      <!-- 5. Question: How many workouts per week do you want to do? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg-6 p-2 text-start">
-                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                        <!-- 5. Question: How many workouts per week do you want to do? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg-6 p-2 text-start">
+                            <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">5)</span>
-                            How many workouts per week do you want to do?</p>
-                        </div>
-                        <div class="col-lg -6 p-2">
-                          <!-- 
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">5)</span>
+                              How many workouts per week do you want to do?</p>
+                          </div>
+                          <div class="col-lg -6 p-2">
+                            <!-- 
                         `2-3
                         `3-4
                         `4-5
                         `5+
                         -->
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="2 - 3 weeks" type="radio" name="category_2_question_5_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              2 - 3
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="2 - 3 weeks" type="radio" name="category_2_question_5_field[]" id="category-2-2_3-weeks-field">
+                              <label class="form-check-label p-2" for="category-2-2_3-weeks-field">
+                                2 - 3
+                              </label>
+                            </div>
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="3 - 4 weeks" type="radio" name="category_2_question_5_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              3 - 4
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="3 - 4 weeks" type="radio" name="category_2_question_5_field[]" id="category-2-3_4-weeks-field">
+                              <label class="form-check-label p-2" for="category-2-3_4-weeks-field">
+                                3 - 4
+                              </label>
+                            </div>
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="4 - 5 weeks" type="radio" name="category_2_question_5_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              4 - 5
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="4 - 5 weeks" type="radio" name="category_2_question_5_field[]" id="category-2-4_5-weeks-field">
+                              <label class="form-check-label p-2" for="category-2-4_5-weeks-field">
+                                4 - 5
+                              </label>
+                            </div>
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="5+ weeks" type="radio" name="category_2_question_5_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              5+
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="5+ weeks" type="radio" name="category_2_question_5_field[]" id="category-2-more_5-weeks-field">
+                              <label class="form-check-label p-2" for="category-2-more_5-weeks-field">
+                                5+
+                              </label>
+                            </div>
 
+                          </div>
                         </div>
-                      </div>
-                      <!-- ./ Question: How many workouts per week do you want to do? -->
+                        <!-- ./ Question: How many workouts per week do you want to do? -->
 
-                      <hr class="text-white">
+                        <hr class="text-white">
 
-                      <!-- 6. Question: How much time do you have to workout? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg-6 p-2 text-start">
-                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                        <!-- 6. Question: How much time do you have to workout? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg-6 p-2 text-start">
+                            <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">6)</span>
-                            How much time do you have to workout?</p>
-                        </div>
-                        <div class="col-lg -6 p-2">
-                          <!-- 
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">6)</span>
+                              How much time do you have to workout?</p>
+                          </div>
+                          <div class="col-lg -6 p-2">
+                            <!-- 
                         5-10 Minutes
                         15-20 Minutes
                         25-30 Minutes
                         30+ Minutes
                         -->
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="5 - 10 minutes" type="radio" name="category_2_question_6_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              5 - 10 Minutes
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="5 - 10 minutes" type="radio" name="category_2_question_6_field[]" id="category-2-5_10-mins-field">
+                              <label class="form-check-label p-2" for="category-2-5_10-mins-field">
+                                5 - 10 Minutes
+                              </label>
+                            </div>
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="15 - 20 minutes" type="radio" name="category_2_question_6_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              15 - 20 Minutes
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="15 - 20 minutes" type="radio" name="category_2_question_6_field[]" id="category-2-15_20-mins-field">
+                              <label class="form-check-label p-2" for="category-2-15_20-mins-field">
+                                15 - 20 Minutes
+                              </label>
+                            </div>
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="25 - 30 minutes" type="radio" name="category_2_question_6_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              25 - 30 Minutes
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="25 - 30 minutes" type="radio" name="category_2_question_6_field[]" id="category-2-25_30-mins-field">
+                              <label class="form-check-label p-2" for="category-2-25_30-mins-field">
+                                25 - 30 Minutes
+                              </label>
+                            </div>
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="30+ minutes" type="radio" name="category_2_question_6_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              30+ Minutes
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="30+ minutes" type="radio" name="category_2_question_6_field[]" id="category-2-more_30-mins-field">
+                              <label class="form-check-label p-2" for="category-2-more_30-mins-field">
+                                30+ Minutes
+                              </label>
+                            </div>
 
+                          </div>
                         </div>
-                      </div>
-                      <!-- ./ Question: How much time do you have to workout? -->
+                        <!-- ./ Question: How much time do you have to workout? -->
 
-                      <hr class="text-white">
+                        <hr class="text-white">
 
-                      <!-- 7. Question: How many weeks do you want to start with? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg-6 p-2 text-start">
-                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                        <!-- 7. Question: How many weeks do you want to start with? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg-6 p-2 text-start">
+                            <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">7)</span>
-                            How many weeks do you want to start with?</p>
-                        </div>
-                        <div class="col-lg -6 p-2">
-                          <!-- 
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">7)</span>
+                              How many weeks do you want to start with?</p>
+                          </div>
+                          <div class="col-lg -6 p-2">
+                            <!-- 
                         4 Weeks
                         8 Weeks
                         12 Weeks
                         Specify
                         -->
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="4" type="radio" name="category_2_question_7_field[]" id="flexCheckDefault" onchange="toggleCtgy2SpecifyOther('hide')">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              4 Weeks
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="4" type="radio" name="category_2_question_7_field[]" id="category-2-4weeks-field" onchange="toggleCtgy2SpecifyOther('hide')">
+                              <label class="form-check-label p-2" for="category-2-4weeks-field">
+                                4 Weeks
+                              </label>
+                            </div>
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="8" type="radio" name="category_2_question_7_field[]" id="flexCheckDefault" onchange="toggleCtgy2SpecifyOther('hide')">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              8 Weeks
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="8" type="radio" name="category_2_question_7_field[]" id="category-2-8weeks-field" onchange="toggleCtgy2SpecifyOther('hide')">
+                              <label class="form-check-label p-2" for="category-2-8weeks-field">
+                                8 Weeks
+                              </label>
+                            </div>
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="12" type="radio" name="category_2_question_7_field[]" id="flexCheckDefault" onchange="toggleCtgy2SpecifyOther('hide')">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              12 Weeks
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="12" type="radio" name="category_2_question_7_field[]" id="category-2-12weeks-field" onchange="toggleCtgy2SpecifyOther('hide')">
+                              <label class="form-check-label p-2" for="category-2-12weeks-field">
+                                12 Weeks
+                              </label>
+                            </div>
 
-                          <!-- specify -->
-                          <div class="form-check text-truncate my-4">
-                            <input class="form-check-input me-4" value="specified" type="radio" name="category_2_question_7_field[]" id="specify-weeks" onchange="toggleCtgy2SpecifyOther('show')">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Specify
-                            </label>
-                          </div>
+                            <!-- specify -->
+                            <div class="form-check text-truncate my-4">
+                              <input class="form-check-input me-4" value="specified" type="radio" name="category_2_question_7_field[]" id="specify-weeks" onchange="toggleCtgy2SpecifyOther('show')">
+                              <label class="form-check-label p-2" for="specify-weeks">
+                                Specify.
+                              </label>
+                            </div>
 
-                          <script>
-                            function toggleCtgy2SpecifyOther(state) {
-                              var specifyCheckInput = document.getElementById("specify-weeks").value;
-                              var specifyFieldContainer = document.getElementById("category-2-question-8-specify");
+                            <script>
+                              function toggleCtgy2SpecifyOther(state) {
+                                var specifyCheckInput = document.getElementById("specify-weeks").value;
+                                var specifyFieldContainer = document.getElementById("category-2-question-8-specify");
 
-                              if (state == "show") {
-                                specifyFieldContainer.style.display = "block";
-                              } else {
-                                specifyFieldContainer.style.display = "none";
+                                if (state == "show") {
+                                  specifyFieldContainer.style.display = "block";
+                                  // set #specific-weeks input type to "number"
+                                  document.getElementById("specific-weeks").type = "number";
+                                } else {
+                                  specifyFieldContainer.style.display = "none";
+                                  // set #specific-weeks input type to "hidden"
+                                  document.getElementById("specific-weeks").type = "hidden";
+                                }
                               }
-                            }
-                          </script>
+                            </script>
 
-                          <div class="form-group mt-4 mb-0 w3-animate-right" id="category-2-question-8-specify" style="display: none;">
-                            <input class="form-control-text-input p-4" type="number" value="1" name="category_2_question_7_specify_weeks_field" id="specific-weeks" placeholder="Specify the number of weeks" />
-                            <!-- style="position: relative;"  -->
-                            <p class="comfortaa-font text-center fs-5 mt-2 mb-0" style="color: #ffa500;">
-                              <!-- style="position: absolute; top: 50%; right: 20px; margin-top: -25%; transform: translate(10px, 10px) !important; -ms-transform: translate(10px, 10px) !important;" -->
-                              Weeks
-                            </p>
+                            <div class="form-group mt-4 mb-0 w3-animate-right" id="category-2-question-8-specify" style="display: none;">
+                              <input class="form-control-text-input p-4" type="number" value="specify" name="category_2_question_7_specify_weeks_field" id="specific-weeks" placeholder="Specify the number of weeks" />
+                              <!-- style="position: relative;"  -->
+                              <p class="comfortaa-font text-center fs-5 mt-2 mb-0" style="color: #ffa500;" for="specific-weeks">
+                                <!-- style="position: absolute; top: 50%; right: 20px; margin-top: -25%; transform: translate(10px, 10px) !important; -ms-transform: translate(10px, 10px) !important;" -->
+                                Weeks
+                              </p>
+                            </div>
+                            <!-- ./ specify -->
+
                           </div>
-                          <!-- ./ specify -->
-
                         </div>
-                      </div>
-                      <!-- ./ Question: How many weeks do you want to start with? -->
+                        <!-- ./ Question: How many weeks do you want to start with? -->
 
-                      <hr class="text-white">
+                        <hr class="text-white">
 
-                      <!-- 8. Question: Do you have any bad habits? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg-6 p-2 text-start">
-                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                        <!-- 8. Question: Do you have any bad habits? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg-6 p-2 text-start">
+                            <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">8)</span>
-                            Do you have any bad habits?</p>
-                        </div>
-                        <div class="col-lg -6 p-2">
-                          <!-- 
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">8)</span>
+                              Do you have any bad habits?</p>
+                          </div>
+                          <div class="col-lg -6 p-2">
+                            <!-- 
                         I eat a lot of sweets or sugary treats
                         I drink a lot of sugary drinks
                         I do not sleep enough
@@ -2037,188 +2264,267 @@ try {
                         None whatsoever
                         -->
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="I eat a lot of sweets or sugary treats" type="checkbox" name="category_2_question_8_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2 text-wrap" for="flexCheckDefault">
-                              I eat a lot of sweets or sugary treats
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="I eat a lot of sweets or sugary treats" type="checkbox" name="category_2_question_8_field[]" id="category-2-badhabits-a-field">
+                              <label class="form-check-label p-2 text-wrap" for="category-2-badhabits-a-field">
+                                I eat a lot of sweets or sugary treats
+                              </label>
+                            </div>
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="I do not sleep enough" type="checkbox" name="category_2_question_8_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              I do not sleep enough
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="I do not sleep enough" type="checkbox" name="category_2_question_8_field[]" id="category-2-badhabits-b-field">
+                              <label class="form-check-label p-2" for="category-2-badhabits-b-field">
+                                I do not sleep enough
+                              </label>
+                            </div>
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="I eat a lot of fatty foods / fast foods" type="checkbox" name="category_2_question_8_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              I eat a lot of fatty foods / fast foods
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="I eat a lot of fatty foods / fast foods" type="checkbox" name="category_2_question_8_field[]" id="category-2-badhabits-c-field">
+                              <label class="form-check-label p-2" for="category-2-badhabits-c-field">
+                                I eat a lot of fatty foods / fast foods
+                              </label>
+                            </div>
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="I eat late at night" type="checkbox" name="category_2_question_8_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              I eat late at night
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="I eat late at night" type="checkbox" name="category_2_question_8_field[]" id="category-2-badhabits-d-field">
+                              <label class="form-check-label p-2" for="category-2-badhabits-d-field">
+                                I eat late at night
+                              </label>
+                            </div>
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="I am a smoker" type="checkbox" name="category_2_question_8_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              I am a smoker
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="I am a smoker" type="checkbox" name="category_2_question_8_field[]" id="category-2-badhabits-e-field">
+                              <label class="form-check-label p-2" for="category-2-badhabits-e-field">
+                                I am a smoker
+                              </label>
+                            </div>
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="None" type="checkbox" name="category_2_question_8_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              None whatsoever
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="None" type="checkbox" name="category_2_question_8_field[]" id="category-2-badhabits-none-field" checked>
+                              <label class="form-check-label p-2" for="category-2-badhabits-none-field">
+                                None whatsoever
+                              </label>
+                            </div>
 
+                            <!-- if #category-2-badhabits-none-field is checked, uncheck other name="category_2_question_8_field[]" inputs -->
+                            <script>
+                              var category2BadHabitsNoneField = document.getElementById("category-2-badhabits-none-field");
+                              var category2BadHabitsAField = document.getElementById("category-2-badhabits-a-field");
+                              var category2BadHabitsBField = document.getElementById("category-2-badhabits-b-field");
+                              var category2BadHabitsCField = document.getElementById("category-2-badhabits-c-field");
+                              var category2BadHabitsDField = document.getElementById("category-2-badhabits-d-field");
+                              var category2BadHabitsEField = document.getElementById("category-2-badhabits-e-field");
+
+                              category2BadHabitsNoneField.addEventListener("click", function() {
+                                if (category2BadHabitsNoneField.checked == true) {
+                                  category2BadHabitsAField.checked = false;
+                                  category2BadHabitsBField.checked = false;
+                                  category2BadHabitsCField.checked = false;
+                                  category2BadHabitsDField.checked = false;
+                                  category2BadHabitsEField.checked = false;
+                                }
+                              });
+
+                              // if inputs beside #category-2-badhabits-none-field are checked, unchecked #category-2-badhabits-none-field
+                              category2BadHabitsAField.addEventListener("click", function() {
+                                if (category2BadHabitsAField.checked == true) {
+                                  category2BadHabitsNoneField.checked = false;
+                                }
+                              });
+                              category2BadHabitsBField.addEventListener("click", function() {
+                                if (category2BadHabitsBField.checked == true) {
+                                  category2BadHabitsNoneField.checked = false;
+                                }
+                              });
+                              category2BadHabitsCField.addEventListener("click", function() {
+                                if (category2BadHabitsCField.checked == true) {
+                                  category2BadHabitsNoneField.checked = false;
+                                }
+                              });
+                              category2BadHabitsDField.addEventListener("click", function() {
+                                if (category2BadHabitsDField.checked == true) {
+                                  category2BadHabitsNoneField.checked = false;
+                                }
+                              });
+                              category2BadHabitsEField.addEventListener("click", function() {
+                                if (category2BadHabitsEField.checked == true) {
+                                  category2BadHabitsNoneField.checked = false;
+                                }
+                              });
+                            </script>
+
+                          </div>
                         </div>
-                      </div>
-                      <script>
-                        // add js code to uncheck other inputs if "None whatsoever" is selected/checked
-                      </script>
-                      <!-- ./ Question: Do you have any bad habits?? -->
+                        <script>
+                          // add js code to uncheck other inputs if "None whatsoever" is selected/checked
+                        </script>
+                        <!-- ./ Question: Do you have any bad habits?? -->
 
-                      <hr class="text-white">
+                        <hr class="text-white">
 
-                      <!-- 9. Question: Are you prepared to do what is necessay to let go of bed habits? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg-6 p-2 text-start">
-                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                        <!-- 9. Question: Are you prepared to do what is necessay to let go of bed habits? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg-6 p-2 text-start">
+                            <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                            sports_score
+                          </span> -->
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">9)</span>
+                              Are you prepared to do what is necessay to let go of bed habits?</p>
+                          </div>
+                          <div class="col-lg -6 p-2">
+                            <!-- 
+                          Yes
+                          No
+                          -->
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Yes" type="radio" name="category_2_question_9_field[]" id="category-2-prepared-stop-badhabits-yes-field">
+                              <label class="form-check-label p-2" for="category-2-prepared-stop-badhabits-yes-field">
+                                Yes
+                              </label>
+                            </div>
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="No" type="radio" name="category_2_question_9_field[]" id="category-2-prepared-stop-badhabits-no-field">
+                              <label class="form-check-label p-2" for="category-2-prepared-stop-badhabits-no-field">
+                                No
+                              </label>
+                            </div>
+
+                          </div>
+                        </div>
+                        <!-- ./ Question: Are you prepared to do what is necessay to let go of bed habits? -->
+
+                        <hr class="text-white">
+
+                        <!-- 10. Question: Please select your prefarred "Cheat-Day" -->
+                        <div class="row align-items-center">
+                          <div class="col-lg-6 p-2 text-start">
+                            <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">9)</span>
-                            Are you prepared to do what is necessay to let go of bed habits?</p>
-                        </div>
-                        <div class="col-lg -6 p-2">
-                          <!-- 
-                        Yes
-                        No
-                        -->
-
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="Yes" type="radio" name="category_2_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Yes
-                            </label>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">10)</span>
+                              Please select your prefarred "Cheat-Day".</p>
                           </div>
+                          <div class="col-lg -6 p-2">
+                            <div class="form-groupz my-4">
 
-                          <div class="form-check text-truncate">
-                            <input class="form-check-input me-4" value="No" type="radio" name="category_2_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckDefault">
-                              No
-                            </label>
+                              <select class="custom-select form-control-select-input p-4" onchange="cheatDaySelection()" name="category_2_question_10_field" id="cheatday-selection" required>
+                                <option value="no_cheat" selected="selected">No Cheat Days</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                              </select>
+
+                              <script>
+                                function cheatDaySelection() {
+                                  var x = document.getElementById("cheatday-selection").value;
+
+                                  if (x == "no_cheat") {
+                                    $("#cheat-day-pledge").hide();
+                                    $("#cheat-day-pledge-divide").hide();
+                                    // assign hidden attr to #cheat-day-promise select element
+                                    $("#cheat-day-promise").attr("type", "hidden");
+                                    // set "not cheat" value to #cheat-day-promise input element
+                                    $("#cheat-day-promise").val("not cheat");
+                                  } else {
+                                    $("#cheat-day-pledge").show();
+                                    $("#cheat-day-pledge-divide").show();
+                                    // assign text attr from #cheat-day-promise select element
+                                    $("#cheat-day-promise").attr("type", "text");
+                                    // set "" value to #cheat-day-promise input element
+                                    $("#cheat-day-promise").val("");
+                                  }
+
+                                }
+                              </script>
+
+                            </div>
+
                           </div>
-
                         </div>
-                      </div>
-                      <!-- ./ Question: Are you prepared to do what is necessay to let go of bed habits? -->
+                        <!-- ./ Question: Please select your prefarred "Cheat-Day" -->
 
-                      <hr class="text-white">
+                        <hr class="text-white" id="cheat-day-pledge-divide" style="display: none;">
 
-                      <!-- 10. Question: Please select your prefarred "Cheat-Day" -->
-                      <div class="row align-items-center">
-                        <div class="col-lg-6 p-2 text-start">
-                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
+                        <!-- 11. Question: What will you do on your "Cheat-Day"? -->
+                        <div class="row align-items-center w3-animate-left" id="cheat-day-pledge" style="display: none;">
+                          <div class="col-lg-6 p-2 text-start">
+                            <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">10)</span>
-                            Please select your prefarred "Cheat-Day".</p>
-                        </div>
-                        <div class="col-lg -6 p-2">
-                          <div class="form-groupz my-4">
-
-                            <select class="custom-select form-control-select-input p-4" name="category_2_question_10_field" id="cheatday-selection" required>
-                              <option value="Monday">Monday</option>
-                              <option value="Tuesday">Tuesday</option>
-                              <option value="Wednesday">Wednesday</option>
-                              <option value="Thursday" selected="selected">Thursday</option>
-                              <option value="Friday">Friday</option>
-                              <option value="Saturday">Saturday</option>
-                              <option value="Sunday">Sunday</option>
-                            </select>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">11)</span>
+                              What will you do on your "Cheat-Day"?</p>
+                          </div>
+                          <div class="col-lg -6 p-2">
+                            <div class="form-group">
+                              <p class=" text-center mb-4" for="cheat-day-promise">I promise that I will only</p>
+                              <textarea class="form-control-text-input p-4" style="border-radius: 25px !important;" rows="3" type="text" name="category_2_question_11_field" id="cheat-day-promise" placeholder=" … " required></textarea>
+                              <p class="text-center mt-4" for="cheat-day-promise">on my "cheat-day".</p>
+                            </div>
 
                           </div>
-
                         </div>
+                        <!-- ./ Question: What will you do on your "Cheat-Day"? -->
                       </div>
-                      <!-- ./ Question: Please select your prefarred "Cheat-Day" -->
 
-                      <hr class="text-white">
 
-                      <!-- 11. Question: What will you do on your "Cheat-Day"? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg-6 p-2 text-start">
-                          <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
-                          sports_score
-                        </span> -->
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">11)</span>
-                            What will you do on your "Cheat-Day"?</p>
+
+                      <hr class="text-white" style="margin-bottom: 80px;">
+
+                      <!-- Procession Buttons -->
+                      <div class="comfortaa-font text-center mt-4" style="margin-bottom: 40px; font-size: 20px;">
+
+                        <div class="d-grid gap-0 w-100 text-white">
+                          <span class="rounded-pill p-4" style="background-color: #343434;">
+                            One<span style="color: #ffa500;">fit</span>.app
+                          </span>
+
+                          <span class="material-icons material-icons-outlined" style="color: #ffa500;">
+                            horizontal_rule
+                          </span>
                         </div>
-                        <div class="col-lg -6 p-2">
-                          <div class="form-group">
-                            <p class=" text-center mb-4">I promise that I will only</p>
-                            <textarea class="form-control-text-input p-4" style="border-radius: 25px !important;" rows="3" type="text" name="category_2_question_11_field" id="cheat-day-promise" placeholder=" … " required></textarea>
-                            <p class="text-center mt-4">on my "cheat-day".</p>
+
+                        <!-- submit btn -->
+                        <div class="d-grid justify-content-center">
+                          <input id="submit-goalsetting-info-form" style="font-size: 20px !important;" class="onefit-buttons-style-tahiti p-4 text-center comfortaa-font shadow fw-bold submit-btn" type="submit" value="Save.">
+                        </div>
+                        <!-- ./ submit btn -->
+
+                        <!-- Procession Buttons -->
+                        <div class="row align-items-center">
+                          <div class="col-lg py-4 d-grid">
+                            <button type="button" class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow panel-nav-btn" id="aboutyou-back-panel-btn" onclick="survey_controller('goalsetting','aboutyou')" style="display: none;">
+                              <div class="d-grid gap-2 justify-content-center text-center fw-bold">
+                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
+                                  arrow_back_ios </span>
+                                <span>About you.</span>
+                              </div>
+
+                            </button>
                           </div>
+                          <div class="col-lg py-4 d-grid">
+                            <button type="button" class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow panel-nav-btn" id="fitprefs-next-panel-btn" onclick="survey_controller('goalsetting','fitprefs')" style="display: none;">
+                              <div class="d-grid gap-2 justify-content-center text-center fw-bold">
+                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
+                                  arrow_forward_ios </span>
+                                <span>Fitness Preferances.</span>
+                              </div>
 
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                      <!-- ./ Question: What will you do on your "Cheat-Day"? -->
+                        <!-- ./ Procession Buttons -->
 
-                      <!-- submit btn -->
-                      <div class="d-grid justify-content-center">
-                        <input id="submit-goalsetting-info-form" style="font-size: 20px !important;" class="onefit-buttons-style-tahiti p-4 text-center comfortaa-font shadow fw-bold" type="submit" value="Save.">
                       </div>
+                      <!-- ./ Procession Buttons -->
 
-                      <!-- hidden aria-hidden="true" -->
                     </form>
                     <!-- ./ #goalsetting-info-form -->
-
-                    <hr class="text-white" style="margin: 80px 0px;">
-
-                    <!-- Procession Buttons -->
-                    <div class="comfortaa-font text-center mt-4" style="margin-bottom: 40px; font-size: 20px;">
-                      <div class="d-grid gap-0 w-100 text-white">
-                        <span class="rounded-pill p-4" style="background-color: #343434;">
-                          One<span style="color: #ffa500;">fit</span>.app
-                        </span>
-
-                        <span class="material-icons material-icons-outlined" style="color: #ffa500;">
-                          horizontal_rule
-                        </span>
-                      </div>
-                      <div class="row align-items-center">
-                        <div class="col-lg py-4 d-grid">
-                          <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow" id="aboutyou-back-panel-btn" onclick="survey_controller('goalsetting','aboutyou')">
-                            <div class="d-grid gap-2 justify-content-center text-center fw-bold">
-                              <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
-                                arrow_back_ios </span>
-                              <span>About you.</span>
-                            </div>
-
-                          </button>
-                        </div>
-                        <div class="col-lg py-4 d-grid">
-                          <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow" id="fitprefs-next-panel-btn" onclick="survey_controller('goalsetting','fitprefs')">
-                            <div class="d-grid gap-2 justify-content-center text-center fw-bold">
-                              <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
-                                arrow_forward_ios </span>
-                              <span>Fitness Preferances.</span>
-                            </div>
-
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- ./ Procession Buttons -->
 
                   </div>
                 </div>
@@ -2240,129 +2546,134 @@ try {
                         Policy</a> -
                     </div>
 
-                    <hr class="text-white" style="margin: 80px 0px;">
+                    <hr class="text-white" style="margin-top: 80px;">
 
                     <!-- #fitprefs-info-form -->
                     <!-- ../../scripts/php/main_app/data_management/system_admin/user_registration/submit/ -->
                     <form id="fitprefs-info-form" action="../../scripts/php/main_app/data_management/system_admin/user_registration/submit//fitprefs_submit.php" method="post" autocomplete="off">
                       <!-- user id hidden -->
                       <div class="form-group my-4">
-                        <input class="form-control-text-input p-4" type="number" name="user_profile_id" id="user-profile-id-fitprefs" value="<?php echo $current_user_profile_id; ?>" placeholder="user profile id" required hidden aria-hidden="true" />
+                        <input class="form-control-text-input p-4" type="hidden" name="profile_id" id="user-profile-id-fitprefs" value="<?php echo $current_user_prof_id; ?>" placeholder="user profile id" required readonly />
                       </div>
                       <!-- ./ user id hidden -->
 
-                      <!-- 
-                      How fit are you?
-                      When was the last time you were at your Ideal weight?
-                      What is your body type?
-                      Do you suffer from any joint pain?
-                      How active are you in your daily life?
-                      How are your energy levels during the day?
-                      How much do you sleep every night?
-                      What is your daily water intake?
-                      Select the type of classes you are looing to do:
-                      -->
+                      <!-- .info-list contains the list view elems if a user has an existing record in the db for this form -->
+                      <div class="info-list" style="display: none;"></div>
 
-                      <!-- Question 1: How fit are you? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg -4 p-2">
+                      <!-- .input-section contains the input elems of this form -->
+                      <div class="input-section" style="display: block;">
+                        <!-- 
+                        How fit are you?
+                        When was the last time you were at your Ideal weight?
+                        What is your body type?
+                        Do you suffer from any joint pain?
+                        How active are you in your daily life?
+                        How are your energy levels during the day?
+                        How much do you sleep every night?
+                        What is your daily water intake?
+                        Select the type of classes you are looing to do:
+                        -->
 
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">1)</span>
-                            How fit are you?</p>
+                        <!-- Question 1: How fit are you? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg -4 p-2">
 
-                        </div>
-                        <div class="col-lg -8 p-2 text-truncate">
-                          <!-- 
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">1)</span>
+                              How fit are you?</p>
+
+                          </div>
+                          <div class="col-lg -8 p-2 text-truncate">
+                            <!-- 
                           Not fit
                           Fit
                           Very fit
                           -->
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Not fit" type="radio" name="category_3_question_1_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Not fit
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Not fit" type="radio" name="category_3_question_1_field[]" id="category-3-not-fit-field">
+                              <label class="form-check-label p-2" for="category-3-not-fit-field">
+                                Not fit
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Fit" type="radio" name="category_3_question_1_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Fit
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Fit" type="radio" name="category_3_question_1_field[]" id="category-3-fit-field">
+                              <label class="form-check-label p-2" for="category-3-fit-field">
+                                Fit
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Very fit" type="radio" name="category_3_question_1_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Very fit
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Very fit" type="radio" name="category_3_question_1_field[]" id="category-3-very-fit-field">
+                              <label class="form-check-label p-2" for="category-3-very-fit-field">
+                                Very fit
+                              </label>
+                            </div>
 
+                          </div>
                         </div>
-                      </div>
 
-                      <hr class="text-white">
+                        <hr class="text-white">
 
-                      <!-- Question 2: When was the last time you were at your Ideal weight? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg -4 p-2">
+                        <!-- Question 2: When was the last time you were at your Ideal weight? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg -4 p-2">
 
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">2)</span>
-                            When was the last time you were at your Ideal weight?</p>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">2)</span>
+                              When was the last time you were at your Ideal weight?</p>
 
-                        </div>
-                        <div class="col-lg -8 p-2 text-truncate">
-                          <!-- 
+                          </div>
+                          <div class="col-lg -8 p-2 text-truncate">
+                            <!-- 
                             Less than a year ago
                             1-2 years ago
                             More than 2 years ago
                             never
                           -->
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Less than a year ago" type="radio" name="category_3_question_2_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Less than a year ago
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Less than a year ago" type="radio" name="category_3_question_2_field[]" id="category-3-less-than-1year-field">
+                              <label class="form-check-label p-2" for="category-3-less-than-1year-field">
+                                Less than a year ago
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="1-2 years ago" type="radio" name="category_3_question_2_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              1-2 years ago
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="1-2 years ago" type="radio" name="category_3_question_2_field[]" id="category-3-less-between-1_2year-field">
+                              <label class="form-check-label p-2" for="category-3-less-between-1_2year-field">
+                                1-2 years ago
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="More than 2 years ago" type="radio" name="category_3_question_2_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              More than 2 years ago
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="More than 2 years ago" type="radio" name="category_3_question_2_field[]" id="category-3-more-than-2year-field">
+                              <label class="form-check-label p-2" for="category-3-more-than-2year-field">
+                                More than 2 years ago
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Never" type="radio" name="category_3_question_2_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Never
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Never" type="radio" name="category_3_question_2_field[]" id="category-3-never-field">
+                              <label class="form-check-label p-2" for="category-3-never-field">
+                                Never
+                              </label>
+                            </div>
 
+                          </div>
                         </div>
-                      </div>
 
-                      <hr class="text-white">
+                        <hr class="text-white">
 
-                      <!-- Question 3: What is your body type? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg -4 p-2">
+                        <!-- Question 3: What is your body type? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg -4 p-2">
 
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">3)</span>
-                            What is your body type?</p>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">3)</span>
+                              What is your body type?</p>
 
-                        </div>
-                        <div class="col-lg -8 p-2 text-truncate">
-                          <!-- 
+                          </div>
+                          <div class="col-lg -8 p-2 text-truncate">
+                            <!-- 
                             Slim / Slender
                             Ideal
                             Flabby
@@ -2370,277 +2681,277 @@ try {
                             Obese
                           -->
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Slim_Slender" type="radio" name="category_3_question_3_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Slim / Slender
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Slim_Slender" type="radio" name="category_3_question_3_field[]" id="category-3-slim-field">
+                              <label class="form-check-label p-2" for="category-3-slim-field">
+                                Slim / Slender
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Ideal" type="radio" name="category_3_question_3_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Ideal
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Ideal" type="radio" name="category_3_question_3_field[]" id="category-3-ideal-field">
+                              <label class="form-check-label p-2" for="category-3-ideal-field">
+                                Ideal
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Flabby" type="radio" name="category_3_question_3_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Flabby
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Flabby" type="radio" name="category_3_question_3_field[]" id="category-3-flabby-field">
+                              <label class="form-check-label p-2" for="category-3-flabby-field">
+                                Flabby
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Heavy" type="radio" name="category_3_question_3_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Heavy
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Heavy" type="radio" name="category_3_question_3_field[]" id="category-3-heavy-field">
+                              <label class="form-check-label p-2" for="category-3-heavy-field">
+                                Heavy
+                              </label>
+                            </div>
 
-                          <!-- probably worth removing Obsese as an option -->
-                          <!-- <div class="form-check mb-4 text-truncate">
+                            <!-- probably worth removing Obsese as an option -->
+                            <!-- <div class="form-check text-truncate">
                             <input class="form-check-input me-4" value="Obese" type="radio" name="category_3_question_3_field[]" id="flexCheckDefault">
                             <label class="form-check-label p-2" for="flexCheckChecked">
                               Obese
                             </label>
                           </div> -->
 
+                          </div>
                         </div>
-                      </div>
 
-                      <hr class="text-white">
+                        <hr class="text-white">
 
-                      <!-- Question 4: Do you suffer from any joint pain? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg -4 p-2">
+                        <!-- Question 4: Do you suffer from any joint pain? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg -4 p-2">
 
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">4)</span>
-                            Do you suffer from any joint pain?</p>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">4)</span>
+                              Do you suffer from any joint pain?</p>
 
-                        </div>
-                        <div class="col-lg -8 p-2 text-truncate">
-                          <!-- 
+                          </div>
+                          <div class="col-lg -8 p-2 text-truncate">
+                            <!-- 
                         Yes / No
                        -->
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Yes" type="radio" name="category_3_question_4_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Yes
-                            </label>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Yes" type="radio" name="category_3_question_4_field[]" id="category-3-joint-pain-yes-field">
+                              <label class="form-check-label p-2" for="category-3-joint-pain-yes-field">
+                                Yes
+                              </label>
+                            </div>
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="No" type="radio" name="category_3_question_4_field[]" id="category-3-joint-pain-no-field">
+                              <label class="form-check-label p-2" for="category-3-joint-pain-no-field">
+                                No
+                              </label>
+                            </div>
+
                           </div>
+                        </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="No" type="radio" name="category_3_question_4_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              No
-                            </label>
+                        <hr class="text-white">
+
+                        <!-- Question 5: How active are you in your daily life? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg -4 p-2">
+
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">5)</span>
+                              How active are you in your daily life?</p>
+
                           </div>
-
-                        </div>
-                      </div>
-
-                      <hr class="text-white">
-
-                      <!-- Question 5: How active are you in your daily life? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg -4 p-2">
-
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">5)</span>
-                            How active are you in your daily life?</p>
-
-                        </div>
-                        <div class="col-lg -8 p-2 text-truncate">
-                          <!-- 
+                          <div class="col-lg -8 p-2 text-truncate">
+                            <!-- 
                         Not active
                         Slightly active
                         Active
                         Very active
                        -->
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Not active" type="radio" name="category_3_question_5_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Not active
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Not active" type="radio" name="category_3_question_5_field[]" id="category-3-not-active-field">
+                              <label class="form-check-label p-2" for="category-3-not-active-field">
+                                Not active
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Slightly active" type="radio" name="category_3_question_5_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Slightly active
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Slightly active" type="radio" name="category_3_question_5_field[]" id="category-3-slightly-active-field">
+                              <label class="form-check-label p-2" for="category-3-slightly-active-field">
+                                Slightly active
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Active" type="radio" name="category_3_question_5_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Active
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Active" type="radio" name="category_3_question_5_field[]" id="category-3-active-field">
+                              <label class="form-check-label p-2" for="category-3-active-field">
+                                Active
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Very active" type="radio" name="category_3_question_5_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Very active
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Very active" type="radio" name="category_3_question_5_field[]" id="category-3-very-active-field">
+                              <label class="form-check-label p-2" for="category-3-very-active-field">
+                                Very active
+                              </label>
+                            </div>
 
+                          </div>
                         </div>
-                      </div>
 
-                      <hr class="text-white">
+                        <hr class="text-white">
 
-                      <!-- Question 6: How are your energy levels during the day? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg -4 p-2">
+                        <!-- Question 6: How are your energy levels during the day? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg -4 p-2">
 
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">6)</span>
-                            How are your energy levels during the day?</p>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">6)</span>
+                              How are your energy levels during the day?</p>
 
-                        </div>
-                        <div class="col-lg -8 p-2 text-truncate">
-                          <!-- 
+                          </div>
+                          <div class="col-lg -8 p-2 text-truncate">
+                            <!-- 
                         Stable throughout the day
                         I have energy for half the day / until around lunchtime
                         I always feel sleepy after meals
                        -->
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Stable throughout the day" type="radio" name="category_3_question_6_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Stable throughout the day
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Stable throughout the day" type="radio" name="category_3_question_6_field[]" id="category-3-energy-level-stable-field">
+                              <label class="form-check-label p-2" for="category-3-energy-level-stable-field">
+                                Stable throughout the day
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="I have energy for half the day or until around lunchtime" type="radio" name="category_3_question_6_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              I have energy for half the day / until around lunchtime
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="I have energy for half the day or until around lunchtime" type="radio" name="category_3_question_6_field[]" id="category-3-energy-level-half-field">
+                              <label class="form-check-label p-2" for="category-3-energy-level-half-field">
+                                I have energy for half the day / until around lunchtime
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="I always feel sleepy after meals" type="radio" name="category_3_question_6_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              I always feel sleepy after meals
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="I always feel sleepy after meals" type="radio" name="category_3_question_6_field[]" id="category-3-energy-level-sleepy-field">
+                              <label class="form-check-label p-2" for="category-3-energy-level-sleepy-field">
+                                I always feel sleepy after meals
+                              </label>
+                            </div>
 
+                          </div>
                         </div>
-                      </div>
 
-                      <hr class="text-white">
+                        <hr class="text-white">
 
-                      <!-- Question 7: How much do you sleep every night? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg -4 p-2">
+                        <!-- Question 7: How much do you sleep every night? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg -4 p-2">
 
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">7)</span>
-                            How much do you sleep every night?</p>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">7)</span>
+                              How much do you sleep every night?</p>
 
+                          </div>
+                          <div class="col-lg -8 p-2 text-truncate">
+                            <!-- 
+                            More than 8 hours
+                            7-8 hours
+                            6-7 hours
+                            less than 6 hours
+                            -->
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="More than 8 hours" type="radio" name="category_3_question_7_field[]" id="category-3-sleep-duration-more8hrs-field">
+                              <label class="form-check-label p-2" for="category-3-sleep-duration-more8hrs-field">
+                                More than 8 hours
+                              </label>
+                            </div>
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="7-8 hours" type="radio" name="category_3_question_7_field[]" id="category-3-sleep-duration-7_8hrs-field">
+                              <label class="form-check-label p-2" for="category-3-sleep-duration-7_8hrs-field">
+                                7-8 hours
+                              </label>
+                            </div>
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="6-7 hours" type="radio" name="category_3_question_7_field[]" id="category-3-sleep-duration-6_7hrs-field">
+                              <label class="form-check-label p-2" for="category-3-sleep-duration-6_7hrs-field">
+                                6-7 hours
+                              </label>
+                            </div>
+
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="less than 6 hours" type="radio" name="category_3_question_7_field[]" id="category-3-sleep-duration-less6hrs-field">
+                              <label class="form-check-label p-2" for="category-3-sleep-duration-less6hrs-field">
+                                less than 6 hours
+                              </label>
+                            </div>
+
+                          </div>
                         </div>
-                        <div class="col-lg -8 p-2 text-truncate">
-                          <!-- 
-                          More than 8 hours
-                          7-8 hours
-                          6-7 hours
-                          less than 6 hours
+
+                        <hr class="text-white">
+
+                        <!-- Question 8: What is your daily water intake? -->
+                        <div class="row align-items-center">
+                          <div class="col-lg -4 p-2">
+
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">8)</span>
+                              What is your daily water intake?</p>
+
+                          </div>
+                          <div class="col-lg -8 p-2 text-truncate">
+                            <!-- 
+                            more than 6 glasses
+                            3 to 6 glasses
+                            2 glasses
+                            I only drink soft-drinks / coffee
                           -->
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="More than 8 hours" type="radio" name="category_3_question_7_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              More than 8 hours
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="More than 6 glasses" type="radio" name="category_3_question_8_field[]" id="category-3-water-intake-more6glasses-field">
+                              <label class="form-check-label p-2" for="category-3-water-intake-more6glasses-field">
+                                More than 6 glasses
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="7-8 hours" type="radio" name="category_3_question_7_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              7-8 hours
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="3 to 6 glasses" type="radio" name="category_3_question_8_field[]" id="category-3-water-intake-3_6glasses-field">
+                              <label class="form-check-label p-2" for="category-3-water-intake-3_6glasses-field">
+                                3 to 6 glasses
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="6-7 hours" type="radio" name="category_3_question_7_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              6-7 hours
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="2 glasses" type="radio" name="category_3_question_8_field[]" id="category-3-water-intake-2glasses-field">
+                              <label class="form-check-label p-2" for="category-3-water-intake-2glasses-field">
+                                2 glasses
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="less than 6 hours" type="radio" name="category_3_question_7_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              less than 6 hours
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="I only drink soft-drinks or coffee" type="radio" name="category_3_question_8_field[]" id="category-3-water-intake-onlysoftdrink-field">
+                              <label class="form-check-label p-2" for="category-3-water-intake-onlysoftdrink-field">
+                                I only drink soft-drinks / coffee
+                              </label>
+                            </div>
 
+                          </div>
                         </div>
-                      </div>
 
-                      <hr class="text-white">
+                        <hr class="text-white">
 
-                      <!-- Question 8: What is your daily water intake? -->
-                      <div class="row align-items-center">
-                        <div class="col-lg -4 p-2">
+                        <!-- Question 9: Select the type of classes you are looing to do: -->
+                        <div class="row align-items-center">
+                          <div class="col-lg -4 p-2">
 
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">8)</span>
-                            What is your daily water intake?</p>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">9)</span>
+                              Select the type of classes you are looing to do</p>
 
-                        </div>
-                        <div class="col-lg -8 p-2 text-truncate">
-                          <!-- 
-                        more than 6 glasses
-                        3 to 6 glasses
-                        2 glasses
-                        I only drink soft-drinks / coffee
-                       -->
-
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="More than 6 glasses" type="radio" name="category_3_question_8_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              More than 6 glasses
-                            </label>
                           </div>
-
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="3 to 6 glasses" type="radio" name="category_3_question_8_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              3 to 6 glasses
-                            </label>
-                          </div>
-
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="2 glasses" type="radio" name="category_3_question_8_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              2 glasses
-                            </label>
-                          </div>
-
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="I only drink soft-drinks or coffee" type="radio" name="category_3_question_8_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              I only drink soft-drinks / coffee
-                            </label>
-                          </div>
-
-                        </div>
-                      </div>
-
-                      <hr class="text-white">
-
-                      <!-- Question 9: Select the type of classes you are looing to do: -->
-                      <div class="row align-items-center">
-                        <div class="col-lg -4 p-2">
-
-                          <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">9)</span>
-                            Select the type of classes you are looing to do</p>
-
-                        </div>
-                        <div class="col-lg -8 p-2 text-truncate">
-                          <!-- 
+                          <div class="col-lg -8 p-2 text-truncate">
+                            <!-- 
                           Cardio
                           Strength
                           HIIT
@@ -2657,147 +2968,154 @@ try {
                           Treadmill
                           -->
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Cardio" type="checkbox" name="category_3_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Cardio
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Cardio" type="checkbox" name="category_3_question_9_field[]" id="category-3-classtype-select-cardio-field">
+                              <label class="form-check-label p-2" for="category-3-classtype-select-cardio-field">
+                                Cardio
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Strength" type="checkbox" name="category_3_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Strength
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Strength" type="checkbox" name="category_3_question_9_field[]" id="category-3-classtype-select-strength-field">
+                              <label class="form-check-label p-2" for="category-3-classtype-select-strength-field">
+                                Strength
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="HIIT" type="checkbox" name="category_3_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              HIIT
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="HIIT" type="checkbox" name="category_3_question_9_field[]" id="category-3-classtype-select-hiit-field">
+                              <label class="form-check-label p-2" for="category-3-classtype-select-hiit-field">
+                                HIIT
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Toning" type="checkbox" name="category_3_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Toning
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Toning" type="checkbox" name="category_3_question_9_field[]" id="category-3-classtype-select-toning-field">
+                              <label class="form-check-label p-2" for="category-3-classtype-select-toning-field">
+                                Toning
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Dance_Aerobics" type="checkbox" name="category_3_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Dance / Aerobics
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Dance_Aerobics" type="checkbox" name="category_3_question_9_field[]" id="category-3-classtype-select-dance_aerobics-field">
+                              <label class="form-check-label p-2" for="category-3-classtype-select-dance_aerobics-field">
+                                Dance / Aerobics
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Kickboxing" type="checkbox" name="category_3_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Kickboxing
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Kickboxing" type="checkbox" name="category_3_question_9_field[]" id="category-3-classtype-select-kickboxing-field">
+                              <label class="form-check-label p-2" for="category-3-classtype-select-kickboxing-field">
+                                Kickboxing
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="default" type="checkbox" name="category_3_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Barre
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="default" type="checkbox" name="category_3_question_9_field[]" id="category-3-classtype-select-barre-field">
+                              <label class="form-check-label p-2" for="category-3-classtype-select-barre-field">
+                                Barre
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Pilates" type="checkbox" name="category_3_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Pilates
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Pilates" type="checkbox" name="category_3_question_9_field[]" id="category-3-classtype-select-pilates-field">
+                              <label class="form-check-label p-2" for="category-3-classtype-select-pilates-field">
+                                Pilates
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Meditation" type="checkbox" name="category_3_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Meditation
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Meditation" type="checkbox" name="category_3_question_9_field[]" id="category-3-classtype-select-meditation-field">
+                              <label class="form-check-label p-2" for="category-3-classtype-select-meditation-field">
+                                Meditation
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Stretch_Resistence" type="checkbox" name="category_3_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Stretch / Resistence
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Stretch_Resistence" type="checkbox" name="category_3_question_9_field[]" id="category-3-classtype-select-stretch_resistence-field">
+                              <label class="form-check-label p-2" for="category-3-classtype-select-stretch_resistence-field">
+                                Stretch / Resistence
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Yoga" type="checkbox" name="category_3_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Yoga
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Yoga" type="checkbox" name="category_3_question_9_field[]" id="category-3-classtype-select-yoga-field">
+                              <label class="form-check-label p-2" for="category-3-classtype-select-yoga-field">
+                                Yoga
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Spinning" type="checkbox" name="category_3_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Spinning
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Spinning" type="checkbox" name="category_3_question_9_field[]" id="category-3-classtype-select-spinning-field">
+                              <label class="form-check-label p-2" for="category-3-classtype-select-spinning-field">
+                                Spinning
+                              </label>
+                            </div>
 
-                          <div class="form-check mb-4 text-truncate">
-                            <input class="form-check-input me-4" value="Treadmill" type="checkbox" name="category_3_question_9_field[]" id="flexCheckDefault">
-                            <label class="form-check-label p-2" for="flexCheckChecked">
-                              Treadmill
-                            </label>
-                          </div>
+                            <div class="form-check text-truncate">
+                              <input class="form-check-input me-4" value="Treadmill" type="checkbox" name="category_3_question_9_field[]" id="category-3-classtype-select-treadmill-field">
+                              <label class="form-check-label p-2" for="category-3-classtype-select-treadmill-field">
+                                Treadmill
+                              </label>
+                            </div>
 
+                          </div>
                         </div>
                       </div>
 
-                      <!-- submit btn -->
-                      <div class="d-grid justify-content-center">
-                        <input id="submit-fitprefs-info-form" class="onefit-buttons-style-tahiti p-4 text-center comfortaa-font shadow fw-bold" style="font-size: 20px !important;" type="submit" value="Save.">
+                      <hr class="text-white" style="margin-bottom: 80px;">
+
+                      <!-- Procession Buttons -->
+                      <div class="comfortaa-font text-center mt-4" style="margin-bottom: 40px; font-size: 20px;">
+
+                        <div class="d-grid gap-0 w-100 text-white">
+                          <span class="rounded-pill p-4" style="background-color: #343434;">
+                            One<span style="color: #ffa500;">fit</span>.app
+                          </span>
+
+                          <span class="material-icons material-icons-outlined" style="color: #ffa500;">
+                            horizontal_rule
+                          </span>
+                        </div>
+
+                        <!-- submit btn -->
+                        <div class="d-grid justify-content-center">
+                          <input id="submit-fitprefs-info-form" class="onefit-buttons-style-tahiti p-4 text-center comfortaa-font shadow fw-bold submit-btn" style="font-size: 20px !important;" type="submit" value="Save.">
+                        </div>
+                        <!-- ./ submit btn -->
+
+                        <!-- Procession Buttons -->
+                        <div class="row align-items-center">
+                          <div class="col-lg py-4 d-grid">
+                            <!--  gap-2 justify-content-center -->
+                            <button type="button" class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow panel-nav-btn" id="goalsetting-back-panel-btn" onclick="survey_controller('fitprefs','goalsetting')" style="display: none;">
+                              <div class="d-grid gap-2 justify-content-center text-center fw-bold">
+                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
+                                  arrow_back_ios </span>
+                                <span>Goal setting.</span>
+                              </div>
+
+                            </button>
+                          </div>
+                          <div class="col-lg py-4 d-grid">
+                            <!--  gap-2 justify-content-center -->
+                            <button type="button" class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow panel-nav-btn" id="eu-agreements-next-panel-btn" onclick="survey_controller('finish','finish')" style="display: none;">
+                              <div class="d-grid gap-2 justify-content-center text-center fw-bold">
+                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
+                                  check_circle_outline </span>
+                                <span>Finish.</span>
+                              </div>
+
+                            </button>
+                          </div>
+                        </div>
+                        <!-- ./ Procession Buttons -->
+
                       </div>
+                      <!-- ./ Procession Buttons -->
 
                     </form>
                     <!-- ./ #fitprefs-info-form -->
-
-                    <hr class="text-white" style="margin: 80px 0px;">
-
-                    <!-- Procession Buttons -->
-                    <div class="comfortaa-font text-center mt-4" style="margin-bottom: 40px; font-size: 20px;">
-                      <div class="d-grid gap-0 w-100 text-white">
-                        <span class="rounded-pill p-4" style="background-color: #343434;">
-                          One<span style="color: #ffa500;">fit</span>.app
-                        </span>
-
-                        <span class="material-icons material-icons-outlined" style="color: #ffa500;">
-                          horizontal_rule
-                        </span>
-                      </div>
-                      <div class="row align-items-center">
-                        <div class="col-lg py-4 d-grid">
-                          <!--  gap-2 justify-content-center -->
-                          <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow" id="goalsetting-back-panel-btn" onclick="survey_controller('fitprefs','goalsetting')">
-                            <div class="d-grid gap-2 justify-content-center text-center fw-bold">
-                              <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
-                                arrow_back_ios </span>
-                              <span>Goal setting.</span>
-                            </div>
-
-                          </button>
-                        </div>
-                        <div class="col-lg py-4 d-grid">
-                          <!--  gap-2 justify-content-center -->
-                          <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow" id="eu-agreements-next-panel-btn" onclick="survey_controller('finish','finish')">
-                            <div class="d-grid gap-2 justify-content-center text-center fw-bold">
-                              <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
-                                check_circle_outline </span>
-                              <span>Finish.</span>
-                            </div>
-
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- ./ Procession Buttons -->
 
                   </div>
 
@@ -2820,478 +3138,7 @@ try {
 
                     <!-- Terms of Use -->
                     <div id="terms-container" class="text-white comfortaa-font px-2 mb-4" style="overflow-y: auto; max-height: 100vh;">
-
-                      <h2 style="text-align: center;"><b>TERMS AND CONDITIONS</b></h2>
-                      <p>Last updated: 2023-06-30</p>
-                      <p>1. <b>Introduction</b></p>
-                      <p>Welcome to <b>AdaptivConcept NPC</b> &#40;“Company”, “we”, “our”, “us”&#41;!</p>
-                      <p>These Terms of Service &#40;“Terms”, “Terms of Service”&#41; govern your use of our website
-                        located at
-                        <b>Onefit.app</b> &#40;together or individually “Service”&#41; operated by <b>AdaptivConcept
-                          NPC</b>.
-                      </p>
-                      <p>Our Privacy Policy also governs your use of our Service and explains how we collect, safeguard
-                        and disclose
-                        information that results from your use of our web pages.</p>
-                      <p>Your agreement with us includes these Terms and our Privacy Policy &#40;“Agreements”&#41;. You
-                        acknowledge that you
-                        have read and understood Agreements, and agree to be bound of them.</p>
-                      <p>If you do not agree with &#40;or cannot comply with&#41; Agreements, then you may not use the
-                        Service,
-                        but please let
-                        us know by emailing at <b>admin@adaptivconcept.co.za</b> so we can try to find a solution. These
-                        Terms apply
-                        to all visitors, users and others who wish to access or use Service.</p>
-                      <p>2. <b>Communications</b></p>
-                      <p>By using our Service, you agree to subscribe to newsletters, marketing or promotional materials
-                        and other
-                        information we may send. However, you may opt out of receiving any, or all, of these
-                        communications from us
-                        by following the unsubscribe link or by emailing at admin@adaptivconcept.co.za.</p>
-                      <p>3. <b>Purchases</b></p>
-                      <p>If you wish to purchase any product or service made available through Service
-                        &#40;“Purchase”&#41;, you
-                        may be asked
-                        to supply certain information relevant to your Purchase including but not limited to, your
-                        credit or debit
-                        card number, the expiration date of your card, your billing address, and your shipping
-                        information.</p>
-                      <p>You represent and warrant that: &#40;i&#41; you have the legal right to use any card&#40;s&#41;
-                        or other
-                        payment method&#40;s&#41; in
-                        connection with any Purchase; and that &#40;ii&#41; the information you supply to us is true,
-                        correct
-                        and complete.
-                      </p>
-                      <p>We may employ the use of third party services for the purpose of facilitating payment and the
-                        completion of
-                        Purchases. By submitting your information, you grant us the right to provide the information to
-                        these third
-                        parties subject to our Privacy Policy.</p>
-                      <p>We reserve the right to refuse or cancel your order at any time for reasons including but not
-                        limited to:
-                        product or service availability, errors in the description or price of the product or service,
-                        error in your
-                        order or other reasons.</p>
-                      <p>We reserve the right to refuse or cancel your order if fraud or an unauthorized or illegal
-                        transaction is
-                        suspected.</p>
-                      <p>4. <b>Contests, Sweepstakes and Promotions</b></p>
-                      <p>Any contests, sweepstakes or other promotions &#40;collectively, “Promotions”&#41; made
-                        available
-                        through Service may
-                        be governed by rules that are separate from these Terms of Service. If you participate in any
-                        Promotions,
-                        please review the applicable rules as well as our Privacy Policy. If the rules for a Promotion
-                        conflict with
-                        these Terms of Service, Promotion rules will apply.</p>
-                      <p>5. <b>Subscriptions</b></p>
-                      <p>Some parts of Service are billed on a subscription basis &#40;"Subscription&#40;s&#41;"&#41;.
-                        You will be
-                        billed in advance
-                        on a recurring and periodic basis &#40;"Billing Cycle"&#41;. Billing cycles will be set
-                        depending on the
-                        type of
-                        subscription plan you select when purchasing a Subscription.</p>
-                      <p>At the end of each Billing Cycle, your Subscription will automatically renew under the exact
-                        same conditions
-                        unless you cancel it or AdaptivConcept NPC cancels it. You may cancel your Subscription renewal
-                        either
-                        through your online account management page or by contacting admin@adaptivconcept.co.za customer
-                        support
-                        team.</p>
-                      <p>A valid payment method is required to process the payment for your subscription. You shall
-                        provide
-                        AdaptivConcept NPC with accurate and complete billing information that may include but not
-                        limited to full
-                        name, address, state, postal or zip code, telephone number, and a valid payment method
-                        information. By
-                        submitting such payment information, you automatically authorize AdaptivConcept NPC to charge
-                        all
-                        Subscription fees incurred through your account to any such payment instruments.</p>
-                      <p>Should automatic billing fail to occur for any reason, AdaptivConcept NPC reserves the right to
-                        terminate
-                        your access to the Service with immediate effect.</p>
-                      <p>6. <b>Free Trial</b></p>
-                      <p>AdaptivConcept NPC may, at its sole discretion, offer a Subscription with a free trial for a
-                        limited period
-                        of time &#40;"Free Trial"&#41;.</p>
-                      <p>You may be required to enter your billing information in order to sign up for Free Trial.</p>
-                      <p>If you do enter your billing information when signing up for Free Trial, you will not be
-                        charged by
-                        AdaptivConcept NPC until Free Trial has expired. On the last day of Free Trial period, unless
-                        you cancelled
-                        your Subscription, you will be automatically charged the applicable Subscription fees for the
-                        type of
-                        Subscription you have selected.</p>
-                      <p>At any time and without notice, AdaptivConcept NPC reserves the right to &#40;i&#41; modify
-                        Terms of
-                        Service of Free
-                        Trial offer, or &#40;ii&#41; cancel such Free Trial offer.</p>
-                      <p>7. <b>Fee Changes</b></p>
-                      <p>AdaptivConcept NPC, in its sole discretion and at any time, may modify Subscription fees for
-                        the
-                        Subscriptions. Any Subscription fee change will become effective at the end of the then-current
-                        Billing
-                        Cycle.</p>
-                      <p>AdaptivConcept NPC will provide you with a reasonable prior notice of any change in
-                        Subscription fees to give
-                        you an opportunity to terminate your Subscription before such change becomes effective.</p>
-                      <p>Your continued use of Service after Subscription fee change comes into effect constitutes your
-                        agreement to
-                        pay the modified Subscription fee amount.</p>
-                      <p>8. <b>Refunds</b></p>
-                      <p>We issue refunds for Contracts within <b>30 days</b> of the original purchase of the Contract.
-                      </p>
-                      <p>9. <b>Content</b></p>
-                      <p>Our Service allows you to post, link, store, share and otherwise make available certain
-                        information, text,
-                        graphics, videos, or other material &#40;“Content”&#41;. You are responsible for Content that
-                        you post
-                        on or through
-                        Service, including its legality, reliability, and appropriateness.</p>
-                      <p>By posting Content on or through Service, You represent and warrant that: &#40;i&#41; Content
-                        is yours
-                        &#40;you own it&#41;
-                        and/or you have the right to use it and the right to grant us the rights and license as provided
-                        in these
-                        Terms, and &#40;ii&#41; that the posting of your Content on or through Service does not violate
-                        the
-                        privacy rights,
-                        publicity rights, copyrights, contract rights or any other rights of any person or entity. We
-                        reserve the
-                        right to terminate the account of anyone found to be infringing on a copyright.</p>
-                      <p>You retain any and all of your rights to any Content you submit, post or display on or through
-                        Service and
-                        you are responsible for protecting those rights. We take no responsibility and assume no
-                        liability for
-                        Content you or any third party posts on or through Service. However, by posting Content using
-                        Service you
-                        grant us the right and license to use, modify, publicly perform, publicly display, reproduce,
-                        and distribute
-                        such Content on and through Service. You agree that this license includes the right for us to
-                        make your
-                        Content available to other users of Service, who may also use your Content subject to these
-                        Terms.</p>
-                      <p>AdaptivConcept NPC has the right but not the obligation to monitor and edit all Content
-                        provided by users.
-                      </p>
-                      <p>In addition, Content found on or through this Service are the property of AdaptivConcept NPC or
-                        used with
-                        permission. You may not distribute, modify, transmit, reuse, download, repost, copy, or use said
-                        Content,
-                        whether in whole or in part, for commercial purposes or for personal gain, without express
-                        advance written
-                        permission from us.</p>
-                      <p>10. <b>Prohibited Uses</b></p>
-                      <p>You may use Service only for lawful purposes and in accordance with Terms. You agree not to use
-                        Service:</p>
-                      <p>0.1. In any way that violates any applicable national or international law or regulation.</p>
-                      <p>0.2. For the purpose of exploiting, harming, or attempting to exploit or harm minors in any way
-                        by exposing
-                        them to inappropriate content or otherwise.</p>
-                      <p>0.3. To transmit, or procure the sending of, any advertising or promotional material, including
-                        any “junk
-                        mail”, “chain letter,” “spam,” or any other similar solicitation.</p>
-                      <p>0.4. To impersonate or attempt to impersonate Company, a Company employee, another user, or any
-                        other person
-                        or entity.</p>
-                      <p>0.5. In any way that infringes upon the rights of others, or in any way is illegal,
-                        threatening, fraudulent,
-                        or harmful, or in connection with any unlawful, illegal, fraudulent, or harmful purpose or
-                        activity.</p>
-                      <p>0.6. To engage in any other conduct that restricts or inhibits anyone&#39;s use or enjoyment of
-                        Service, or
-                        which, as determined by us, may harm or offend Company or users of Service or expose them to
-                        liability.</p>
-                      <p>Additionally, you agree not to:</p>
-                      <p>0.1. Use Service in any manner that could disable, overburden, damage, or impair Service or
-                        interfere with
-                        any other party&#39;s use of Service, including their ability to engage in real time activities
-                        through Service.
-                      </p>
-                      <p>0.2. Use any robot, spider, or other automatic device, process, or means to access Service for
-                        any purpose,
-                        including monitoring or copying any of the material on Service.</p>
-                      <p>0.3. Use any manual process to monitor or copy any of the material on Service or for any other
-                        unauthorized
-                        purpose without our prior written consent.</p>
-                      <p>0.4. Use any device, software, or routine that interferes with the proper working of Service.
-                      </p>
-                      <p>0.5. Introduce any viruses, trojan horses, worms, logic bombs, or other material which is
-                        malicious or
-                        technologically harmful.</p>
-                      <p>0.6. Attempt to gain unauthorized access to, interfere with, damage, or disrupt any parts of
-                        Service, the
-                        server on which Service is stored, or any server, computer, or database connected to Service.
-                      </p>
-                      <p>0.7. Attack Service via a denial-of-service attack or a distributed denial-of-service attack.
-                      </p>
-                      <p>0.8. Take any action that may damage or falsify Company rating.</p>
-                      <p>0.9. Otherwise attempt to interfere with the proper working of Service.</p>
-                      <p>11. <b>Analytics</b></p>
-                      <p>We may use third-party Service Providers to monitor and analyze the use of our Service.</p>
-                      <p>12. <b>No Use By Minors</b></p>
-                      <p>Service is intended only for access and use by individuals at least eighteen &#40;18&#41; years
-                        old. By
-                        accessing or
-                        using Service, you warrant and represent that you are at least eighteen &#40;18&#41; years of
-                        age and
-                        with the full
-                        authority, right, and capacity to enter into this agreement and abide by all of the terms and
-                        conditions of
-                        Terms. If you are not at least eighteen &#40;18&#41; years old, you are prohibited from both the
-                        access
-                        and usage of
-                        Service.</p>
-                      <p>13. <b>Accounts</b></p>
-                      <p>When you create an account with us, you guarantee that you are above the age of 18, and that
-                        the information
-                        you provide us is accurate, complete, and current at all times. Inaccurate, incomplete, or
-                        obsolete
-                        information may result in the immediate termination of your account on Service.</p>
-                      <p>You are responsible for maintaining the confidentiality of your account and password, including
-                        but not
-                        limited to the restriction of access to your computer and/or account. You agree to accept
-                        responsibility for
-                        any and all activities or actions that occur under your account and/or password, whether your
-                        password is
-                        with our Service or a third-party service. You must notify us immediately upon becoming aware of
-                        any breach
-                        of security or unauthorized use of your account.</p>
-                      <p>You may not use as a username the name of another person or entity or that is not lawfully
-                        available for use,
-                        a name or trademark that is subject to any rights of another person or entity other than you,
-                        without
-                        appropriate authorization. You may not use as a username any name that is offensive, vulgar or
-                        obscene.</p>
-                      <p>We reserve the right to refuse service, terminate accounts, remove or edit content, or cancel
-                        orders in our
-                        sole discretion.</p>
-                      <p>14. <b>Intellectual Property</b></p>
-                      <p>Service and its original content &#40;excluding Content provided by users&#41;, features and
-                        functionality are and
-                        will remain the exclusive property of AdaptivConcept NPC and its licensors. Service is protected
-                        by
-                        copyright, trademark, and other laws of and foreign countries. Our trademarks may not be used in
-                        connection
-                        with any product or service without the prior written consent of AdaptivConcept NPC.</p>
-                      <p>15. <b>Copyright Policy</b></p>
-                      <p>We respect the intellectual property rights of others. It is our policy to respond to any claim
-                        that Content
-                        posted on Service infringes on the copyright or other intellectual property rights
-                        &#40;“Infringement”&#41; of any
-                        person or entity.</p>
-                      <p>If you are a copyright owner, or authorized on behalf of one, and you believe that the
-                        copyrighted work has
-                        been copied in a way that constitutes copyright infringement, please submit your claim via email
-                        to
-                        admin@adaptivconcept.co.za, with the subject line: “Copyright Infringement” and include in your
-                        claim a
-                        detailed description of the alleged Infringement as detailed below, under “DMCA Notice and
-                        Procedure for
-                        Copyright Infringement Claims”</p>
-                      <p>You may be held accountable for damages &#40;including costs and attorneys&#39; fees&#41; for
-                        misrepresentation or
-                        bad-faith claims on the infringement of any Content found on and/or through Service on your
-                        copyright.</p>
-                      <p>16. <b>DMCA Notice and Procedure for Copyright Infringement Claims</b></p>
-                      <p>You may submit a notification pursuant to the Digital Millennium Copyright Act &#40;DMCA&#41;
-                        by
-                        providing our
-                        Copyright Agent with the following information in writing &#40;see 17 U.S.C
-                        512&#40;c&#41;&#40;3&#41; for further
-                        detail&#41;:</p>
-                      <p>0.1. an electronic or physical signature of the person authorized to act on behalf of the owner
-                        of the
-                        copyright&#39;s interest;</p>
-                      <p>0.2. a description of the copyrighted work that you claim has been infringed, including the URL
-                        &#40;i.e., web
-                        page address&#41; of the location where the copyrighted work exists or a copy of the copyrighted
-                        work;</p>
-                      <p>0.3. identification of the URL or other specific location on Service where the material that
-                        you claim is
-                        infringing is located;</p>
-                      <p>0.4. your address, telephone number, and email address;</p>
-                      <p>0.5. a statement by you that you have a good faith belief that the disputed use is not
-                        authorized by the
-                        copyright owner, its agent, or the law;</p>
-                      <p>0.6. a statement by you, made under penalty of perjury, that the above information in your
-                        notice is accurate
-                        and that you are the copyright owner or authorized to act on the copyright owner&#39;s behalf.
-                      </p>
-                      <p>You can contact our Copyright Agent via email at admin@adaptivconcept.co.za.</p>
-                      <p>17. <b>Error Reporting and Feedback</b></p>
-                      <p>You may provide us either directly at admin@adaptivconcept.co.za or via third party sites and
-                        tools with
-                        information and feedback concerning errors, suggestions for improvements, ideas, problems,
-                        complaints, and
-                        other matters related to our Service &#40;“Feedback”&#41;. You acknowledge and agree that:
-                        &#40;i&#41; you shall
-                        not retain,
-                        acquire or assert any intellectual property right or other right, title or interest in or to the
-                        Feedback;
-                        &#40;ii&#41; Company may have development ideas similar to the Feedback; &#40;iii&#41; Feedback
-                        does not contain
-                        confidential information or proprietary information from you or any third party; and
-                        &#40;iv&#41;
-                        Company is not
-                        under any obligation of confidentiality with respect to the Feedback. In the event the transfer
-                        of the
-                        ownership to the Feedback is not possible due to applicable mandatory laws, you grant Company
-                        and its
-                        affiliates an exclusive, transferable, irrevocable, free-of-charge, sub-licensable, unlimited
-                        and perpetual
-                        right to use &#40;including copy, modify, create derivative works, publish, distribute and
-                        commercialize&#41;
-                        Feedback in any manner and for any purpose.</p>
-                      <p>18. <b>Links To Other Web Sites</b></p>
-                      <p>Our Service may contain links to third party web sites or services that are not owned or
-                        controlled by
-                        AdaptivConcept NPC.</p>
-                      <p>AdaptivConcept NPC has no control over, and assumes no responsibility for the content, privacy
-                        policies, or
-                        practices of any third party web sites or services. We do not warrant the offerings of any of
-                        these
-                        entities/individuals or their websites.</p>
-                      <p>For example, the outlined <a href="https://policymaker.io/terms-and-conditions/">Terms of
-                          Use</a> have been
-                        created using <a href="https://policymaker.io/">PolicyMaker.io</a>, a free web application for
-                        generating
-                        high-quality legal documents. PolicyMaker&#39;s <a href="https://policymaker.io/terms-and-conditions/">Terms and
-                          Conditions generator</a> is an easy-to-use free tool for creating an excellent standard Terms
-                        of Service
-                        template for a website, blog, e-commerce store or app.</p>
-                      <p>YOU ACKNOWLEDGE AND AGREE THAT COMPANY SHALL NOT BE RESPONSIBLE OR LIABLE, DIRECTLY OR
-                        INDIRECTLY, FOR ANY
-                        DAMAGE OR LOSS CAUSED OR ALLEGED TO BE CAUSED BY OR IN CONNECTION WITH USE OF OR RELIANCE ON ANY
-                        SUCH
-                        CONTENT, GOODS OR SERVICES AVAILABLE ON OR THROUGH ANY SUCH THIRD PARTY WEB SITES OR SERVICES.
-                      </p>
-                      <p>WE STRONGLY ADVISE YOU TO READ THE TERMS OF SERVICE AND PRIVACY POLICIES OF ANY THIRD PARTY WEB
-                        SITES OR
-                        SERVICES THAT YOU VISIT.</p>
-                      <p>19. <b>Disclaimer Of Warranty</b></p>
-                      <p>THESE SERVICES ARE PROVIDED BY COMPANY ON AN “AS IS” AND “AS AVAILABLE” BASIS. COMPANY MAKES NO
-                        REPRESENTATIONS OR WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, AS TO THE OPERATION OF THEIR
-                        SERVICES, OR THE
-                        INFORMATION, CONTENT OR MATERIALS INCLUDED THEREIN. YOU EXPRESSLY AGREE THAT YOUR USE OF THESE
-                        SERVICES,
-                        THEIR CONTENT, AND ANY SERVICES OR ITEMS OBTAINED FROM US IS AT YOUR SOLE RISK.</p>
-                      <p>NEITHER COMPANY NOR ANY PERSON ASSOCIATED WITH COMPANY MAKES ANY WARRANTY OR REPRESENTATION
-                        WITH RESPECT TO
-                        THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY, OR AVAILABILITY OF THE SERVICES.
-                        WITHOUT
-                        LIMITING THE FOREGOING, NEITHER COMPANY NOR ANYONE ASSOCIATED WITH COMPANY REPRESENTS OR
-                        WARRANTS THAT THE
-                        SERVICES, THEIR CONTENT, OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE SERVICES WILL BE
-                        ACCURATE, RELIABLE,
-                        ERROR-FREE, OR UNINTERRUPTED, THAT DEFECTS WILL BE CORRECTED, THAT THE SERVICES OR THE SERVER
-                        THAT MAKES IT
-                        AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS OR THAT THE SERVICES OR ANY SERVICES
-                        OR ITEMS
-                        OBTAINED THROUGH THE SERVICES WILL OTHERWISE MEET YOUR NEEDS OR EXPECTATIONS.</p>
-                      <p>COMPANY HEREBY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, STATUTORY, OR
-                        OTHERWISE,
-                        INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT, AND FITNESS
-                        FOR PARTICULAR
-                        PURPOSE.</p>
-                      <p>THE FOREGOING DOES NOT AFFECT ANY WARRANTIES WHICH CANNOT BE EXCLUDED OR LIMITED UNDER
-                        APPLICABLE LAW.</p>
-                      <p>20. <b>Limitation Of Liability</b></p>
-                      <p>EXCEPT AS PROHIBITED BY LAW, YOU WILL HOLD US AND OUR OFFICERS, DIRECTORS, EMPLOYEES, AND
-                        AGENTS HARMLESS FOR
-                        ANY INDIRECT, PUNITIVE, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGE, HOWEVER IT ARISES
-                        &#40;INCLUDING
-                        ATTORNEYS&#39; FEES AND ALL RELATED COSTS AND EXPENSES OF LITIGATION AND ARBITRATION, OR AT
-                        TRIAL OR
-                        ON APPEAL,
-                        IF ANY, WHETHER OR NOT LITIGATION OR ARBITRATION IS INSTITUTED&#41;, WHETHER IN AN ACTION OF
-                        CONTRACT,
-                        NEGLIGENCE, OR OTHER TORTIOUS ACTION, OR ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT,
-                        INCLUDING
-                        WITHOUT LIMITATION ANY CLAIM FOR PERSONAL INJURY OR PROPERTY DAMAGE, ARISING FROM THIS AGREEMENT
-                        AND ANY
-                        VIOLATION BY YOU OF ANY FEDERAL, STATE, OR LOCAL LAWS, STATUTES, RULES, OR REGULATIONS, EVEN IF
-                        COMPANY HAS
-                        BEEN PREVIOUSLY ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. EXCEPT AS PROHIBITED BY LAW, IF THERE
-                        IS
-                        LIABILITY FOUND ON THE PART OF COMPANY, IT WILL BE LIMITED TO THE AMOUNT PAID FOR THE PRODUCTS
-                        AND/OR
-                        SERVICES, AND UNDER NO CIRCUMSTANCES WILL THERE BE CONSEQUENTIAL OR PUNITIVE DAMAGES. SOME
-                        STATES DO NOT
-                        ALLOW THE EXCLUSION OR LIMITATION OF PUNITIVE, INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE PRIOR
-                        LIMITATION
-                        OR EXCLUSION MAY NOT APPLY TO YOU.</p>
-                      <p>21. <b>Termination</b></p>
-                      <p>We may terminate or suspend your account and bar access to Service immediately, without prior
-                        notice or
-                        liability, under our sole discretion, for any reason whatsoever and without limitation,
-                        including but not
-                        limited to a breach of Terms.</p>
-                      <p>If you wish to terminate your account, you may simply discontinue using Service.</p>
-                      <p>All provisions of Terms which by their nature should survive termination shall survive
-                        termination,
-                        including, without limitation, ownership provisions, warranty disclaimers, indemnity and
-                        limitations of
-                        liability.</p>
-                      <p>22. <b>Governing Law</b></p>
-                      <p>These Terms shall be governed and construed in accordance with the laws of South Africa, which
-                        governing law
-                        applies to agreement without regard to its conflict of law provisions.</p>
-                      <p>Our failure to enforce any right or provision of these Terms will not be considered a waiver of
-                        those rights.
-                        If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining
-                        provisions
-                        of these Terms will remain in effect. These Terms constitute the entire agreement between us
-                        regarding our
-                        Service and supersede and replace any prior agreements we might have had between us regarding
-                        Service.</p>
-                      <p>23. <b>Changes To Service</b></p>
-                      <p>We reserve the right to withdraw or amend our Service, and any service or material we provide
-                        via Service, in
-                        our sole discretion without notice. We will not be liable if for any reason all or any part of
-                        Service is
-                        unavailable at any time or for any period. From time to time, we may restrict access to some
-                        parts of
-                        Service, or the entire Service, to users, including registered users.</p>
-                      <p>24. <b>Amendments To Terms</b></p>
-                      <p>We may amend Terms at any time by posting the amended terms on this site. It is your
-                        responsibility to review
-                        these Terms periodically.</p>
-                      <p>Your continued use of the Platform following the posting of revised Terms means that you accept
-                        and agree to
-                        the changes. You are expected to check this page frequently so you are aware of any changes, as
-                        they are
-                        binding on you.</p>
-                      <p>By continuing to access or use our Service after any revisions become effective, you agree to
-                        be bound by the
-                        revised terms. If you do not agree to the new terms, you are no longer authorized to use
-                        Service.</p>
-                      <p>25. <b>Waiver And Severability</b></p>
-                      <p>No waiver by Company of any term or condition set forth in Terms shall be deemed a further or
-                        continuing
-                        waiver of such term or condition or a waiver of any other term or condition, and any failure of
-                        Company to
-                        assert a right or provision under Terms shall not constitute a waiver of such right or
-                        provision.</p>
-                      <p>If any provision of Terms is held by a court or other tribunal of competent jurisdiction to be
-                        invalid,
-                        illegal or unenforceable for any reason, such provision shall be eliminated or limited to the
-                        minimum extent
-                        such that the remaining provisions of Terms will continue in full force and effect.</p>
-                      <p>26. <b>Acknowledgement</b></p>
-                      <p>BY USING SERVICE OR OTHER SERVICES PROVIDED BY US, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE
-                        TERMS OF SERVICE
-                        AND AGREE TO BE BOUND BY THEM.</p>
-                      <p>27. <b>Contact Us</b></p>
-                      <p>Please send your feedback, comments, requests for technical support by email:
-                        <b>admin@adaptivconcept.co.za</b>.
-                      </p>
-                      <p style="margin-top: 5em; font-size: 0.7em;">These <a href="https://policymaker.io/terms-and-conditions/">Terms
-                          of Service</a> were created for <b>Onefit.app</b> by <a href="https://policymaker.io">PolicyMaker.io</a>
-                        on 2023-06-30.</p>
-
+                      <?php echo $policy_content_terms; ?>
                     </div>
                     <!-- ./ Terms of Use -->
 
@@ -3300,12 +3147,30 @@ try {
                     <!-- #policy-info-form -->
                     <!--<?php echo $output; ?>-->
                     <!-- ../../scripts/php/main_app/data_management/system_admin/user_registration/submit -->
-                    <form id="tou-policy-info-form" action="../../scripts/php/main_app/data_management/system_admin/user_registration/submit/policy_acceptance_submit.php?user_id=<?php echo $current_user_id; ?>&agree_tou=true" method="post" autocomplete="off">
+                    <form id="tou-policy-info-form" action="../../scripts/php/main_app/data_management/system_admin/user_registration/submit/policy_acceptance_submit.php?&agree_tou=true" method="post" autocomplete="off">
                       <!-- user id hidden -->
                       <div class="form-group my-4">
-                        <input class="form-control-text-input p-4" type="number" name="tou_user_id" id="user-id-policy-tou" value="<?php echo $current_user_id; ?>" placeholder="user id" required hidden aria-hidden="true" />
+                        <input class="form-control-text-input p-4" type="hidden" name="terms_profile_id" id="user-id-policy-terms" value="<?php echo $current_user_prof_id; ?>" placeholder="user id" required readonly />
                       </div>
                       <!-- ./ user id hidden -->
+
+                      <!-- terms policy ref hidden -->
+                      <div class="form-group my-4">
+                        <input class="form-control-text-input p-4" type="hidden" name="terms_policy_ref" id="terms-policy-ref" value="<?php echo $policy_ref_terms; ?>" readonly placeholder="Terms of Use Policy Reference Number" required />
+                      </div>
+                      <!-- ./ terms policy ref hidden -->
+
+                      <!-- terms policy name hidden -->
+                      <div class="form-group my-4">
+                        <input class="form-control-text-input p-4" type="hidden" name="terms_policy_name" id="terms-policy-name" value="<?php echo $policy_name_terms; ?>" readonly placeholder="Terms of Use Policy Name" required />
+                      </div>
+                      <!-- ./ terms policy name hidden -->
+
+                      <!-- terms policy date hidden -->
+                      <div class="form-group my-4">
+                        <input class="form-control-text-input p-4" type="hidden" name="terms_policy_date" id="terms-policy-date" value="<?php echo $policy_date_terms; ?>" readonly placeholder="Terms of Use Policy Effective Date" required />
+                      </div>
+                      <!-- ./ terms policy date hidden -->
 
                       <div class="d-grid gap-4 justify-content-center">
                         <div class="form-check align-items-center align-middle">
@@ -3539,14 +3404,167 @@ try {
   <script>
     let aboutyouFormSubmitStatus = false;
     let goalsettingFormSubmitStatus = false;
-    let fitprefFormSubmitStatus = false;
+    let fitprefsFormSubmitStatus = false;
     let eulaPolicyFormSubmitStatus = false;
     let touPolicyFormSubmitStatus = false;
 
-    function storeCurrentUserId(user_id) {
+    // function to fetch user data from database: loop through array of form ids and fetch data from database
+    function fetchUserData() {
+
+      // function will controll if form submit buttons are disabled or enabled
+      function fetchUserDataFromDB(formId) {
+        // variables
+        let scriptUrl, formName;
+
+        // toggle display of form submit buttons, panel navigation buttons and input fields container
+        function managePanelElements(formId, status, response) {
+          response = response ? response : "";
+
+          if (status === true) {
+            // set response html in $(formId + " .info-list") and show it
+            $(formId + " .info-list").html(response);
+            $(formId + " .info-list").show();
+
+            // hide .input-section in $(formId)
+            $(formId + " .input-section").hide();
+
+            // jquery hide button with "submit-btn" class in $(formId)
+            $(formId + " .submit-btn").hide();
+            // jquery show button with "panel-nav-btn" class in $(formId) 
+            $(formId + " .panel-nav-btn").show();
+            // set all inputs to readonly state
+            $(formId + " input textarea").attr("readonly", true);
+            // set all selects to return false onchange
+            $(formId + " select").attr("onchange", "return false;");
+
+            // show icon on corresponding button on [ 2. create your profile panel controller ]
+            switch (formId) {
+              case "#aboutyou-info-form":
+                $("#aboutyou-confirmation-icon").show();
+                // set submit status variable to true
+                aboutyouFormSubmitStatus = true;
+                break;
+              case "#goalsetting-info-form":
+                $("#goalsetting-confirmation-icon").show();
+                // set submit status variable to true
+                goalsettingFormSubmitStatus = true;
+                break;
+              case "#fitprefs-info-form":
+                $("#fitprefs-confirmation-icon").show();
+                // set submit status variable to true
+                fitprefsFormSubmitStatus = true;
+                break;
+
+              default:
+                break;
+            }
+          } else {
+            // hide .info-list in $(formId)
+            $(formId + " .info-list").hide();
+
+            // show .input-section in $(formId)
+            $(formId + " .input-section").show();
+
+            // jquery show button with "submit-btn" class in $(formId)
+            $(formId + " .submit-btn").show();
+            // jquery hide button with "panel-nav-btn" class in $(formId) 
+            $(formId + " .panel-nav-btn").hide();
+
+            // hide icon on corresponding button on [ 2. create your profile panel controller ]
+            switch (formId) {
+              case "#aboutyou-info-form":
+                $("#aboutyou-confirmation-icon").hide();
+                // set submit status variable to false
+                aboutyouFormSubmitStatus = false;
+                break;
+              case "#goalsetting-info-form":
+                $("#goalsetting-confirmation-icon").hide();
+                // set submit status variable to false
+                goalsettingFormSubmitStatus = false;
+                break;
+              case "#fitprefs-info-form":
+                $("#fitprefs-confirmation-icon").hide();
+                // set submit status variable to false
+                fitprefsFormSubmitStatus = false;
+                break;
+
+              default:
+                break;
+            }
+          }
+        }
+
+        // assign formName and scriptUrl based on formId
+        switch (formId) {
+          case "#aboutyou-info-form":
+            formName = "aboutyou";
+            scriptUrl = "../../scripts/php/main_app/data_management/system_admin/user_registration/profile_build_controller.php?panel=aboutyou&secure=" + SECURE_REQUEST_PWD_ENCODED;
+            // console.log("SecureInfo - encoded url" + scriptUrl);
+            break;
+          case "#goalsetting-info-form":
+            formName = "goalsetting";
+            scriptUrl = "../../scripts/php/main_app/data_management/system_admin/user_registration/profile_build_controller.php?panel=goalsetting&secure=" + SECURE_REQUEST_PWD_ENCODED;
+            // console.log("SecureInfo - encoded url" + scriptUrl);
+            break;
+          case "#fitprefs-info-form":
+            formName = "fitprefs";
+            scriptUrl = "../../scripts/php/main_app/data_management/system_admin/user_registration/profile_build_controller.php?panel=fitprefs&secure=" + SECURE_REQUEST_PWD_ENCODED;
+            // console.log("SecureInfo - encoded url" + scriptUrl);
+            break;
+
+          default:
+            return false;
+            break;
+        }
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            var myResponse = this.responseText;
+            if (myResponse === false) {
+              // console.log("SecureInfo - No Data OR Error occured, responseText: " + myResponse);
+              // call managePanelElements(formId, status) function
+              managePanelElements(formId, false, null);
+              // do nothing ?
+            } else {
+              // console.log("SecureInfo - Existing Data, responseText: " + myResponse);
+              // call togglePanelProcessionButtons(formId, status) function
+              managePanelElements(formId, true, myResponse);
+            }
+          } else {
+            console.log("AJAX: " + this.status + " - " + this.statusText);
+          }
+        };
+        xhttp.open("GET", scriptUrl, true);
+        xhttp.send();
+      }
+      // *** end of function: fetchUserDataFromDB(formId) ***
+
+      // variables
+      const formIds = ["#aboutyou-info-form", "#goalsetting-info-form", "#fitprefs-info-form"];
+      let currentUserProfileId = localStorage.getItem("registration_profile_id");
+      const SECURE_REQUEST_PWD = "$2y$10$DH00KRtrX9Qh/.R9vc/YhO/Af9QkJX05sfFaeW2h0PST3ualPnSgC"
+      // url encode SECURE_REQUEST_PWD
+      const SECURE_REQUEST_PWD_ENCODED = encodeURIComponent(SECURE_REQUEST_PWD);
+
+      formIds.forEach(formId => {
+        fetchUserDataFromDB(formId);
+      });
+
+      // for (var i = 0; i < formIds.length; i++) {
+      //   var formId = formIds[i];
+
+      //   fetchUserDataFromDB(formId);
+      // }
+    }
+
+
+    function storeCurrentUserIDs(user_id, profile_id) {
       var currentUserId = user_id;
+      var currentProfileId = profile_id;
 
       localStorage.setItem("registration_user_id", currentUserId);
+      localStorage.setItem("registration_profile_id", currentProfileId);
     }
 
     function toggleLoadCurtain() {
