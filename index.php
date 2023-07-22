@@ -12,7 +12,7 @@ rememberMe();
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Onefit.app | OnefitNet &copy; 2022</title>
+  <title>Onefit.app | OnefitNet &copy; <?php echo date('Y'); ?></title>
 
   <!-- favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="./media/assets/favicon/favicon.ico">

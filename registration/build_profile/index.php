@@ -1058,6 +1058,19 @@ try {
   </div>
   <!-- ./ snackbar -->
 
+  <!-- loading wait screen -->
+  <div id="load-wait-screen-curtain" class="wait-load-curtain" style="display: none;">
+    <div class="d-flex justify-content-center align-items-center h-100 w-100">
+      <div class="d-grid gap-4 justify-content-center text-center">
+        <div class="spinner-border text-white" role="status" style="width:10rem;height:10rem;border-width:20px;border-right: 20px var(--tahitigold) solid">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="text-center fs-5 fw-bold text-white">Just a moment.</p>
+      </div>
+    </div>
+  </div>
+  <!-- ./ loading wait screen -->
+
   <!-- Load Curtain -->
   <div class="load-curtain" id="LoadCurtain" style="display: block;">
     <!-- twitter social panel -->

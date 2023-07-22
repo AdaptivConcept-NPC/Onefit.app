@@ -122,7 +122,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html id="ohtml" lang="en">
 
 <head>
     <meta charset="UTF-8" />
@@ -237,6 +237,19 @@ if (isset($_SESSION["currentUserAuth"])) {
         window.imbaApi.load();
     </script> -->
 
+
+    <!-- loading wait screen -->
+    <div id="load-wait-screen-curtain" class="wait-load-curtain" style="display: none;">
+        <div class="d-grid justify-content-center align-items-center h-100 w-100">
+            <div class="d-grid gap-4 justify-content-center text-center p-4 shadow-lgz" style="border-radius:25px;">
+                <div class="spinner-border text-white justify-content-center shadow -lg" role="status" style="width:10rem;height:10rem;border-width:10px;border-right: 10px var(--tahitigold) solid">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="text-center fs-5 fw-bold text-white m-0" style="border-radius:25px;">Just a moment<span style="color:var(--tahitigold) !important;">.</span></p>
+            </div>
+        </div>
+    </div>
+    <!-- ./ loading wait screen -->
 
     <!-- Notification Snackbar (mini) -->
     <!-- <button class="btn btn-primary btn-lg" onclick="showSnackbar('notification message here...')">Show Snackbar</button> -->
@@ -744,7 +757,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         <!-- Main Navigation Bar -->
         <nav id="main-navbar" class="navbar sticky-topz w-100 mb-4 py-4 top-down-grad-dark" style="border-radius: 25px; max-height: 100vh !important; border-top: var(--mineshaft) solid 0px;">
             <!-- App Function Buttons -->
-            <div class="container d-flex gap-1 align-items-center">
+            <div class="container d-flex gap-1 align-items-center w3-animate-top">
                 <button id="app-notifications-btn" main-data-bs-target="#tabLatestSonav-notifications-btn" style="border-color:var(--tahitigold)!important" class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels d-none d-sm-block border-bottom border-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> notifications </span>
@@ -895,6 +908,34 @@ if (isset($_SESSION["currentUserAuth"])) {
         </nav>
         <!-- ./ Main Navigation Bar -->
 
+        <style>
+            .tab-quick-nav {
+                position: fixed;
+                right: 0;
+                bottom: 10px;
+                /* max- */
+                width: 78px;
+                height: auto;
+                /* background-color: var(--tahitigold); */
+                color: var(--white);
+                border-radius: 25px 0 0 25px;
+                border-color: var(--tahitigold) !important;
+                z-index: 10000;
+                transition: all 200ms ease-in-out;
+            }
+
+            .tab-quick-nav:hover {
+                width: 234px !important;
+            }
+
+            .quick-nav-heading {
+                position: absolute;
+                top: 35px;
+                left: 0;
+                transform: rotate(-90deg);
+            }
+        </style>
+
         <!-- Tab Content -->
         <div class="container-xlg">
             <div class="tab-container" id="tab-container">
@@ -1034,36 +1075,65 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <div class="text-center p-4 d-flexz justify-content-betweenz align-items-centerz" style="background-color: #343434; color:#ffa500;">
                                 <div class="row align-items-center">
                                     <div class="col mb-2">
-                                        <div class="d-gridz gap-0">
+                                        <button class="onefit-buttons-style-dark p-3" onclick="alert('refresh profile tab')">
                                             <!-- left touch for scroll indicator -->
                                             <span class="material-icons material-icons-round align-middle text-muted p-4 rounded-circle shadow" style="font-size: 20px !important;color: #ffa500 !important;">refresh</span><!-- fingerprint -->
                                             <span class="text-white align-middle" style="font-size: 12px !important;"> Refresh</span>
-                                        </div>
+                                        </button>
                                     </div>
                                     <div class="col mb-2">
-                                        <div class="d-gridz gap-0">
+                                        <button class="onefit-buttons-style-dark p-3" onclick="alert('open trainer support modal')">
                                             <!-- left touch for scroll indicator -->
                                             <span class="material-icons material-icons-round align-middle text-muted p-4 rounded-circle shadow" style="font-size: 20px !important;color: #ffa500 !important;">support_agent</span><!-- fingerprint -->
                                             <span class="text-white align-middle" style="font-size: 12px !important;"> Trainer</span>
-                                        </div>
+                                        </button>
                                     </div>
                                     <div class="col-md mb-2">
                                         <div class="d-gridz gap-0">
-                                            <img src="../media/assets/onefit-full-logo-standard-darkbg.svg" alt="onefit graphic logo" class="img-fluid shadow p-3" style="max-height: 100px;">
+                                            <img src="../media/assets/One-Logo.png" alt="onefit graphic logo" class="img-fluid shadow p-3" style="max-height: 100px;">
                                         </div>
                                     </div>
                                     <div class="col mb-2">
-                                        <div class="d-gridz gap-0">
+                                        <button class="onefit-buttons-style-dark p-3" onclick="alert('open Create. modal/panel')">
                                             <!-- right touch for scroll indicator -->
                                             <span class="material-icons material-icons-round align-middle text-muted p-4 rounded-circle shadow" style="font-size: 20px !important;color: #ffa500 !important;">brush</span><!-- fingerprint -->
                                             <span class="text-white align-middle" style="font-size: 12px !important;"> Create</span>
-                                        </div>
+                                        </button>
                                     </div>
                                     <div class="col mb-2">
-                                        <div class="d-gridz gap-0">
-                                            <!-- right touch for scroll indicator -->
-                                            <span class="material-icons material-icons-round align-middle text-muted p-4 rounded-circle shadow" style="font-size: 20px !important;color: #ffa500 !important;">more_vert</span><!-- fingerprint -->
-                                            <span class="text-white align-middle" style="font-size: 12px !important;"> More</span>
+                                        <div class="btn-group">
+                                            <button class="onefit-buttons-style-dark p-3" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <!-- right touch for scroll indicator -->
+                                                <span class="material-icons material-icons-round align-middle text-muted p-4 rounded-circle shadow" style="font-size: 20px !important;color: #ffa500 !important;">more_vert</span><!-- fingerprint -->
+                                                <span class="text-white align-middle" style="font-size: 12px !important;"> More</span>
+                                            </button>
+                                            <ul class="dropdown-menu" style="background-color: var(--tahitigold) !important;color: var(--white) !important;">
+                                                <li>
+                                                    <a class="dropdown-item poppins-font fw-bold" style="font-size:12px!important;" onclick="openLink(event, 'TabSettings')">
+                                                        <span class="material-icons material-icons-outlined align-middle" style="font-size:20px!important;">
+                                                            settings_accessibility
+                                                        </span>
+                                                        <span class="align-middle" style="font-size:12px!important;">
+                                                            Preferences
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider bg-dark text-dark">
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item poppins-font fw-bold" onclick="launchLink('../scripts/php/destroy_session.php')">
+                                                        <div class="d-flex align-items-center justify-content-start">
+                                                            <span class="material-icons material-icons-outlined align-middle" style="color: var(--red);font-size:20px!important;">
+                                                                logout
+                                                            </span>
+                                                            <span class="align-middle" style="font-size:12px!important;">
+                                                                Logout.
+                                                            </span>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -1138,12 +1208,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="tab-content" id="v-pills-tab-profiletab-main-subtabs">
                                         <!-- #v-sub-tab-pills-profile-subtab-communityfeed -->
                                         <div class="tab-pane fade show active content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4" style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-communityfeed" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-profile-subtab-communityfeed">
-                                            <div class="row align-items-start">
-                                                <div class="col-md-4 p-4" style="max-height: 90vh;overflow-y: auto">
+                                            <div class="row align-items-startz">
+                                                <div class="col-md-4 p-4 px-1 light-scroller" style="max-height: 90vh;overflow-y: auto">
                                                     <h5><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">
                                                             diversity_3</span><span class="align-middle"> Groups.</span></h5>
                                                     <hr class="text-white">
-                                                    <div id="user-community-groups-subs-list">
+                                                    <div id="user-community-groups-subs-list" class="pb-4" style="max-height:80vh!important;">
                                                         <p>User will b able to see a list of their group subscriptions and open the feeds
                                                             specific to the selected group.</p>
                                                     </div>
@@ -1151,7 +1221,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <h5><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">
                                                             diversity_2</span><span class="align-middle"> Teams.</span></h5>
                                                     <hr class="text-white">
-                                                    <div id="user-teams-groups-subs-list">
+                                                    <div id="user-teams-groups-subs-list" class="pb-4" style="max-height:80vh!important;">
                                                         <p>User will b able to see a list of their group subscriptions and open the feeds
                                                             specific to the selected group.</p>
                                                     </div>
@@ -1159,16 +1229,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <h5><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">
                                                             verified_user</span><span class="align-middle"> Pro.</span></h5>
                                                     <hr class="text-white">
-                                                    <div id="user-pro-groups-subs-list">
+                                                    <div id="user-pro-groups-subs-list" class="pb-4" style="max-height:80vh!important;">
                                                         <p>User will b able to see a list of their group subscriptions and open the feeds
                                                             specific to the selected group.</p>
                                                     </div>
 
                                                 </div>
-                                                <div class="col-md-8">
+                                                <div class="col-md-8 px-1 d-grid light-scroller" style="overflow-x: auto">
                                                     <!-- community posts feed -->
-                                                    <div id="profile-community-post-feed-container" class="container shadow mb-4 py-4 border-5 border-top border-start" style="border-radius: 25px;border-color:var(--tahitigold)!important;">
-                                                        <h5 class="mb-4 text-center">
+                                                    <div id="profile-community-post-feed-container" class="container shadow py-4 border border-5" style="border-radius: 25px;border-color:var(--tahitigold)!important;">
+                                                        <h5 class="mb-4 text-center p-4 border-5 border-end border-start" style="border-radius: 25px;border-color:var(--tahitigold)!important;">
                                                             <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
                                                                 hub
                                                             </span>
@@ -1177,7 +1247,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                                         <hr class="text-white">
 
-                                                        <div id="profile-community-post-social-feed" class="p-0 no-scroller" style="max-height: 90vh;overflow-y: auto">
+                                                        <div id="profile-community-post-social-feed" class="px-3 no-scroller" style="max-height: 90vh;overflow-y: auto">
                                                             <!-- Social Update Card -->
                                                             <div class="my-4 p-0 social-update-card shadow-lg" style="border-bottom: #ffa500 solid 5px;" id="post-' . $usrposts_postid . '-' . $usrposts_user . '">
                                                                 <div class="row align-items-top p-0 m-0 display-profile-banner-container border-5 border-top" style="border-radius: 25px!important; max-height: 200px !important; border-color: #ffa500 !important;">
@@ -1692,7 +1762,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- #v-sub-tab-pills-profile-subtab-media -->
                                         <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4" style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-media" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-profile-subtab-media">
 
-                                            <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                                            <div class="p-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
                                                 <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">perm_media</span> <span class="align-middle">Media</span></h5>
                                                 <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                                             </div>
@@ -1804,20 +1874,34 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         </div>
                                         <!-- #v-sub-tab-pills-profile-subtab-resources -->
                                         <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4" style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-resources" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-profile-subtab-resources">
-                                            hello world 4
+                                            <h5 class="mb-4 text-center p-4 border-5 border-end border-start" style="border-radius: 25px;border-color:var(--tahitigold)!important;">
+                                                <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
+                                                    note_alt
+                                                </span>
+                                                <span class="align-middle"> Training &amp; Wellness Resources.</span>
+                                            </h5>
+
+                                            <hr class="text-white">
                                         </div>
                                         <!-- #v-sub-tab-pills-profile-subtab-favourites -->
                                         <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4" style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-favourites" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-profile-subtab-favourites">
-                                            hello world 5
+                                            <h5 class="mb-4 text-center p-4 border-5 border-end border-start" style="border-radius: 25px;border-color:var(--tahitigold)!important;">
+                                                <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
+                                                    bookmarks
+                                                </span>
+                                                <span class="align-middle"> Saved.</span>
+                                            </h5>
+
+                                            <hr class="text-white">
                                         </div>
                                         <!-- #v-sub-tab-pills-profile-subtab-groups -->
                                         <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4" style="min-height: 50vh;" id="v-sub-tab-pills-profile-subtab-groups" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-profile-subtab-groups">
-                                            <h1 class="text-center">
+                                            <h5 class="text-center p-4 border-5 border-end border-start" style="border-radius: 25px;border-color:var(--tahitigold)!important;">
                                                 <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">
                                                     groups_2
                                                 </span>
                                                 <span class="align-middle"> My Groups.</span>
-                                            </h1>
+                                            </h5>
                                             <hr class="text-white">
                                             <h5>
                                                 <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">
@@ -1854,23 +1938,35 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             that the users follows and a panel for seeing the help requests that 
                                             the user has received and/or has been sent to other users.  -->
 
+                                            <h5 class="mb-4 text-center p-4 border-5 border-end border-start" style="border-radius: 25px;border-color:var(--tahitigold)!important;">
+                                                <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
+                                                    handshake
+                                                </span>
+                                                <span class="align-middle"> Training Interactions &amp; Support.</span>
+                                            </h5>
+
+                                            <hr class="text-white">
+
                                             <div class="row align-items-start">
                                                 <!-- help. focus column -->
-                                                <div class="col-xlg my-4 border-5 border-start border-end py-4 no-scroller" style="max-height: 90vh;border-radius: 25px;border-color: #ffa500 !important;">
+                                                <div class="col-xlg border-5 border-start border-end py-4 no-scroller" style="max-height: 90vh;border-radius: 25px;border-color: #ffa500 !important;">
                                                     <!-- Help section also has sub-sections: ( Help Requests, Trainer Support, Trainee Support, Enquiries ) -->
                                                     <!-- friends list grid section -->
-                                                    <h5 class="text-center d-grid gap-2"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">
-                                                            handshake</span><span class="align-middle"> Help the Community.</span>
+                                                    <h5 class="text-center d-flex gap-2 justify-content-center align-items-center">
+                                                        <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
+                                                            history
+                                                        </span>
+                                                        <span class="align-middle"> Your interactions history.</span>
                                                     </h5>
                                                     <hr class="text-white">
                                                     <div id="help-sub-sections-accord">
                                                         <!-- help. sub-sections -->
-                                                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                                                        <div class="accordion accordion-flush mb-4" id="accordionFlushExample">
                                                             <!-- community help requests support accord segment -->
                                                             <div class="accordion-item">
                                                                 <h2 class="accordion-header" id="flush-headingOne">
                                                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                                                        Community help requests.
+                                                                        Community help. (0 requests)
                                                                     </button>
                                                                 </h2>
                                                                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -1883,7 +1979,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             <div class="accordion-item">
                                                                 <h2 class="accordion-header" id="flush-headingTwo">
                                                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                                                        Trainer support.
+                                                                        Trainer support. (0 requests)
                                                                     </button>
                                                                 </h2>
                                                                 <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
@@ -1897,7 +1993,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             <div class="accordion-item">
                                                                 <h2 class="accordion-header" id="flush-headingThree">
                                                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                                                        Trainee support.
+                                                                        Trainee support. (0 requests)
                                                                     </button>
                                                                 </h2>
                                                                 <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
@@ -1914,7 +2010,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             <div class="accordion-item">
                                                                 <h2 class="accordion-header" id="flush-headingThree">
                                                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                                                                        Enquiries.
+                                                                        Enquiries. (0 enquiries)
                                                                     </button>
                                                                 </h2>
                                                                 <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
@@ -1932,12 +2028,59 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     </div>
 
                                                     <!-- Help. leaderboard -->
-                                                    <h5 class="text-center d-grid gap-2 mt-4"><span class="material-icons material-icons-outlined align-middle">
-                                                            scoreboard</span><span class="align-middle"> Help Leaderboard.</span>
+                                                    <h5 class="text-center d-grid gap-2 mt-4">
+                                                        <span class="material-icons material-icons-outlined align-middle">
+                                                            scoreboard
+                                                        </span>
+                                                        <span class="align-middle"> Assist Leaderboard.</span>
                                                     </h5>
+                                                    <p class="text-center">*Top trainer and trainee interactions &amp; community aid providers.</p>
 
                                                     <hr class="text-white">
+
+                                                    <div class="table-responsive">
+                                                        <table id="assist-leaderboard" class="table text-white">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="fw-bold" scope="col">#</th>
+                                                                    <th class="fw-bold" scope="col">First</th>
+                                                                    <th class="fw-bold" scope="col">Last</th>
+                                                                    <th class="fw-bold" scope="col">Handle</th>
+                                                                    <th class="fw-bold" scope="col">XP</th>
+                                                                    <th class="fw-bold" scope="col">Training Tier</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody class="poppins-font">
+                                                                <tr>
+                                                                    <th scope="row">1</th>
+                                                                    <td>Mark</td>
+                                                                    <td>Otto</td>
+                                                                    <td>@mdo</td>
+                                                                    <td>4501</td>
+                                                                    <td style="color: gold;">Level 3</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">2</th>
+                                                                    <td>Jacob</td>
+                                                                    <td>Thornton</td>
+                                                                    <td>@fat_slim</td>
+                                                                    <td>2914</td>
+                                                                    <td style="color: silver;">Level 2</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">3</th>
+                                                                    <td>Larry</td>
+                                                                    <td>Bird</td>
+                                                                    <td>@birdie</td>
+                                                                    <td>1653</td>
+                                                                    <td style="color: orange;">Level 1</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                     <!-- ./ Help. leaderboard -->
+
+                                                    <hr class="text-white">
 
                                                     <h5 class="mt-4 text-center">Ads<span style="color: #ffa500;">.</span></h5>
                                                     <div class="d-flex justify-content-center">
@@ -1947,7 +2090,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     </div>
 
                                                     <div class="text-center w-100" style="max-height: 50vh;">
-                                                        <img src="../media/assets/advertisment-ph.png" class="img-fluid shadow my-4" alt="placeholder" style="border-radius: 25px;">
+                                                        <img src="../media/assets/advertisment-ph.png" class="img-fluid shadow my-4" alt="placeholder" style="border-radius: 25px;max-height:50vh;">
                                                     </div>
 
                                                 </div>
@@ -3042,6 +3185,34 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <!-- removed Onefit.Social Tab -->
                 <div id="TabData" class="shadow w3-container w3-animate-right content-tab p-4 app-tab" style="display: none">
+                    <!-- tab section navigation -->
+                    <!-- containerElemID, scrollToElemID, scrollSpeed -->
+                    <div id="insights-tab-quick-nav" class="tab-quick-nav p-4 d-grid align-items-center justify-content-start right-left-grad-tahiti-mineshaftz left-right-grad-mineshaft position-fixed border-5 border-top border-bottom">
+                        <p class="m-0 text-white quick-nav-heading pb-4" style="font-size: 10px !important;">Section <span style="color:var(--tahitigold) !important;">nav.</span></p>
+                        <ol class="m-0 quick-nav-secionline" style="list-style: none;">
+                            <li class="quick-nav-container section-btn right" onclick="$.smoothScroll('#ohtml', '#fitness-calender-header', 100);">
+                                <span class="text-truncate">Fitness Calender</span>
+                            </li>
+                            <li class="quick-nav-container section-btn right" onclick="$.smoothScroll('#ohtml', '#activity-timeline-header', 100);">
+                                <span class="text-truncate">Activity Timeline</span>
+                            </li>
+                            <li class="quick-nav-container section-btn right" onclick="$.smoothScroll('#ohtml', '#activity-tracking-header', 100);">
+                                <span class="text-truncate">Activity Tracking</span>
+                            </li>
+                            <li class="quick-nav-container section-btn right" onclick="$.smoothScroll('#ohtml', '#weekly-assessments-header', 100);">
+                                <span class="text-truncate">Weekly Assess</span>
+                            </li>
+                            <li class="quick-nav-container section-btn right" onclick="$.smoothScroll('#ohtml', '#training-header', 100);">
+                                <span class="text-truncate">Training</span>
+                            </li>
+                            <!-- <li class="quick-nav-container section-btn right" onclick="$.smoothScroll('#main-content-container', '#insights-tab-quick-nav', 100);">
+                                <span class="material-icons material-icons-round align-middle">arrow_upward</span> 
+                                <span class="align-middle">Start</span>
+                            </li> -->
+                        </ol>
+                    </div>
+                    <!-- ./ tab section navigation -->
+                
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
                         <h1 class="text-center comfortaa-font">
                             <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">
@@ -3055,7 +3226,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <hr class="text-white" style="height: 5px;">
 
                     <!-- Timelines and Calender -->
-                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                    <div id="fitness-calender-header" class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
                         <span class="material-icons material-icons-round">calendar_month</span>
                         <h5 class="my-4 fs-1 text-center">Fitness Calender</h5>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
@@ -3069,7 +3240,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <div id="v-timeline" class="w-100 my-4 py-4 shadow border-5 border-bottom" style="background-color: #343434; border-radius: 25px; border-color: #ffa500 !important; overflow-x: auto;">
                         <div class="d-grid text-center">
-                            <h5 class="my-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">
+                            <h5 id="activity-timeline-header" class="my-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500 !important; font-size: 40px;">
                                     view_timeline
                                 </span> Activity Timeline
                             </h5>
@@ -3216,7 +3387,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <hr class="text-white" style="height: 5px;">
 
                     <!-- User Smart Device Activity Tracking -->
-                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                    <div id="activity-tracking-header" class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
                         <span class="material-icons material-icons-round">track_changes</span>
                         <h5 class="mt-4 fs-1 text-center">Activity Tracking</h5>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
@@ -3872,7 +4043,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <hr class="text-white" style="height: 5px;">
 
                     <!-- Weekly Activities -->
-                    <div class="p-4 my-4 text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                    <div id="weekly-assessments-header" class="p-4 my-4 text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
                         <div class="d-grid text-center">
                             <span class="material-icons material-icons-outlined"> pending_actions </span>
                             <h5 class="mt-4 fs-1 text-center">Weekly Assessments</h5>
@@ -4575,7 +4746,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <hr class="text-white" style="height: 5px;">
 
                     <!-- Training -->
-                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
+                    <div id="training-header" class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: #ffa500 !important;">
                         <span class="material-icons material-icons-outlined">sports</span>
                         <h5 class="mt-4 fs-1 text-center align-middle">Training.</h5>
                         <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
@@ -5271,15 +5442,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 <script>
                                                                     function updateSelectedTeam_Forms(inputElemID, pushValue, executingElem) {
                                                                         console.log("Changing the users selected team: " + pushValue);
-                                                                        var pushValueHere = document.getElementById(inputElemID);
+                                                                        // var pushValueHere = document.getElementById(inputElemID);
+                                                                        var pushValueHere = document.getElementById("add-match-fixture-group-selected");
 
                                                                         if (pushValue == "noselection") {
                                                                             alert("Please select a Team");
                                                                             pushValueHere = "tst_grp_0001";
-                                                                            pushValueHere.focus();
+                                                                            // pushValueHere.focus();
                                                                         } else {
                                                                             pushValueHere.value = pushValue;
-                                                                            document.getElementById("add-match-fixture-home-team").value = executingElem.options[executingElem.selectedIndex].text;
+                                                                            document.getElementById("add-match-fixture-home-team").value = pushValue; // executingElem.options[executingElem.selectedIndex].text;
                                                                         }
 
                                                                     }
@@ -6601,7 +6773,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <?php echo $profileUserPref; ?>
                     </div>
                 </div>
-            </div>
+                </div>
             <!-- ./ #tab-container -->
         </div>
         <!-- ./ Tab Content -->
@@ -8324,15 +8496,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </select>
                                         </div>
                                         <div class="form-group my-4">
-                                            <label for="add-to-calender-activity-title-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">1. Title:</label>
+                                            <label for="add-to-calender-activity-title-value" class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">1. Title:</label>
                                             <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-title-value" id="add-to-calender-activity-title-value" placeholder="Title" required="">
                                         </div>
                                         <div class="form-group my-4">
-                                            <label for="add-to-calender-activity-rpe-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">2. RPE:</label>
-                                            <input class="form-control-text-input p-4" type="number" name="add-to-calender-activity-rpe-value" id="add-to-calender-activity-rpe-value" placeholder="RPE" required="">
+                                            <label for="add-to-calender-activity-rpe-value" class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">2. RPE (Auto)</label>
+                                            <input class="form-control-text-input p-4" type="number" value="0" name="add-to-calender-activity-rpe-value" id="add-to-calender-activity-rpe-value" placeholder="RPE" required="" readonly>
                                         </div>
                                         <div class="form-group my-4">
-                                            <label for="add-to-calender-activity-day-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">3. Day:</label>
+                                            <label for="add-to-calender-activity-day-value" class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">3. Day:</label>
                                             <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-day-value" id="add-to-calender-activity-day-value" placeholder="Day" required="" readonly="">
                                         </div>
                                         <script>
@@ -8365,7 +8537,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     document.getElementById('color-preview').style.backgroundColor = "white";
                                                 } else {
                                                     if (newTag === true) {
-                                                        // call $.newCustomColorTag(tagColor) to 
+                                                        // call $.newCustomColorTag(tagColor) to change the color
                                                         var tagState = $.newCustomColorTag(value);
                                                         if (tagState == true) {
                                                             // hide the #custom-color-selection col and console log success message
@@ -8384,11 +8556,19 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         document.getElementById('color-preview').style.backgroundColor = colorExtract;
                                                     }
 
+                                                    // if value starts with off_day, hide #question-6-activities, else show #question-6-activities
+                                                    if (value.startsWith('off_day')) {
+                                                        document.getElementById('question-6-activities').style.display = "none";
+                                                        // 
+                                                    } else {
+                                                        document.getElementById('question-6-activities').style.display = "block";
+                                                    }
+
                                                 }
                                             }
                                         </script>
                                         <div class="form-group my-4">
-                                            <label for="add-to-calender-activity-colorcode-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">
+                                            <label for="add-to-calender-activity-colorcode-value" class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">
                                                 5. Assign color code:
                                             </label>
                                             <select class="custom-select form-control-select-input p-4" onchange="toggleCustomColorSelection(this.value)" name="add-to-calender-activity-colorcode-value" id="add-to-calender-activity-colorcode-value" placeholder="Select a color code" required="">
@@ -8436,166 +8616,171 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                         <!-- we will have a two-col row elem: left col is for either selecting existing activities to push them to the listbox on the right col / using a textarea field to type in activities to push them to the listbox on the right col -->
 
-                                        <h5 class="poppins-font fs-4 mb-4">6. Add Activities</h5>
-                                        <div class="row align-items-center">
-                                            <div class="col-md d-grid">
-                                                <!-- select an existing exercise activity -->
-                                                <div class="form-group d-grid gap-2">
-                                                    <label for="add-to-calender-activity-selection" class="poppins-font fs-4 add-to-calender-activity-selection" style="color: #ffa500;">Exercises &amp; Activities.</label>
-                                                    <select class="custom-select form-control-select-input p-2 light-scroller" id="add-to-calender-activity-selection" style="border-radius:25px;height:290px;" multiple="multiple" rows="20">
-                                                        <option value="no-selection" selected="">Select a workout / activity.</option>
-                                                        <option value="40"> 90/90 spiral with rotation (At-Home - Back Exercises - Cooldowns) (10xp)</option>
-                                                        <option value="35"> Bent-over double delt raises (At-Home - Back Exercises - Standing movements) (15xp)</option>
-                                                        <option value="36"> Bent-over row with resistance band (At-Home - Back Exercises - Standing movements) (10xp)</option>
-                                                        <option value="29"> Bird dog (At-Home - Back Exercises - Floor movements) (8xp)</option>
-                                                        <option value="2"> Cable crossover (75xp)</option>
-                                                        <option value="26"> Cat-Cow (At-Home - Back Exercises - Warmups) (6xp)</option>
-                                                        <option value="1"> Chest dip (45xp)</option>
-                                                        <option value="12"> Chest press (Upper-body bulk and sculpt) (48xp)</option>
-                                                        <option value="23"> Chest press (Upper-body tone and tighten) (45xp)</option>
-                                                        <option value="3"> Decline bench press (39xp)</option>
-                                                        <option value="24"> Deltoid raises (Upper-body tone and tighten) (45xp)</option>
-                                                        <option value="18"> Diamond pushups (Upper-body tone and tighten) (30xp)</option>
-                                                        <option value="20"> Dumbbell curls (Upper-body tone and tighten) (45xp)</option>
-                                                        <option value="25"> Dumbbell front raises (Upper-body tone and tighten) (45xp)</option>
-                                                        <option value="37"> Extend rotate At-Home - Back Exercises - (Standing movements) (10xp)</option>
-                                                        <option value="28"> Hammock (At-Home - Back Exercises - Warmups) (4xp)</option>
-                                                        <option value="19"> Hand release pushup (Upper-body tone and tighten) (30xp)</option>
-                                                        <option value="33"> Hip hinges (At-Home - Back Exercises - Standing movements) (20xp)</option>
-                                                        <option value="13"> Incline dumbbell flies (Upper-body bulk and sculpt) (48xp)</option>
-                                                        <option value="14"> Incline dumbbell triceps extension (Upper-body bulk and sculpt) (48xp)</option>
-                                                        <option value="4"> Incline push up (50xp)</option>
-                                                        <option value="34"> Isometric hip hinges (At-Home - Back Exercises - Standing movements) (3xp)</option>
-                                                        <option value="39"> Isometric neck extension (At-Home - Back Exercises - Chair exercises) (5xp)</option>
-                                                        <option value="27"> Lateral Wheel (At-Home - Back Exercises - Warmups) (3xp)</option>
-                                                        <option value="30"> Lunge rotate (At-Home - Back Exercises - Floor movements) (50xp)</option>
-                                                        <option value="17"> Mountain climbers (Upper-body tone and tighten) (60xp)</option>
-                                                        <option value="10"> Overhead dumbbell press (Upper-body bulk and sculpt) (40xp)</option>
-                                                        <option value="6"> Parallel Bar Dips (Upper-body bulk and sculpt) (36xp)</option>
-                                                        <option value="31"> Plank with lateral arm raise (At-Home - Back Exercises - Floor movements) (20xp)</option>
-                                                        <option value="8"> Plyometric Push-ups (Upper-body bulk and sculpt) (36xp)</option>
-                                                        <option value="7"> Push-ups (Upper-body bulk and sculpt) (36xp)</option>
-                                                        <option value="5"> Seated machine fly (90xp)</option>
-                                                        <option value="38"> Shoulder squeeze (At-Home - Back Exercises - Chair exercises) (5xp)</option>
-                                                        <option value="11"> Standing dumbbell upright row (Upper-body bulk and sculpt) (40xp)</option>
-                                                        <option value="32"> Superman (At-Home - Back Exercises - Floor movements) (10xp)</option>
-                                                        <option value="42"> Supine twist (At-Home - Back Exercises - Cooldowns) (2xp)</option>
-                                                        <option value="15"> Triceps dips (Upper-body tone and tighten) (45xp)</option>
-                                                        <option value="21"> Triceps kickbacks (Upper-body tone and tighten) (45xp)</option>
-                                                        <option value="22"> Two-arm dumbbell row (Upper-body tone and tighten) (36xp)</option>
-                                                        <option value="9"> Walking plank (Upper-body bulk and sculpt) (36xp)</option>
-                                                        <option value="16"> Wall angels (Upper-body tone and tighten) (60xp)</option>
-                                                        <option value="41"> Wind-relieving pose (At-Home - Back Exercises - Cooldowns) (2xp)</option>
-                                                        <option value="other">Other</option>
-                                                    </select>
-                                                    <button type="button" id="add-selection-to-activities-selectlist-btn" class="onefit-buttons-style-light p-4">
-                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
-                                                            keyboard_double_arrow_down
-                                                        </span>
-                                                        add.
-                                                    </button>
+                                        <!-- question 6 actvities selection -->
+                                        <div id="question-6-activities" style="display: none;">
+                                            <h5 class="poppins-font fs-4 fw-bold mb-4" style="color: var(--tahitigold) !important">6. Add Activities</h5>
+                                            <div class="row align-items-center">
+                                                <div class="col-md d-grid">
+                                                    <!-- select an existing exercise activity -->
+                                                    <div class="form-group d-grid gap-2">
+                                                        <label for="add-to-calender-activity-selection" class="poppins-font fs-4 add-to-calender-activity-selection" style="color: #ffa500;">Exercises &amp; Activities.</label>
+                                                        <select class="custom-select form-control-select-input p-2 light-scroller" id="add-to-calender-activity-selection" style="border-radius:25px;height:290px;" multiple="multiple" rows="20">
+                                                            <option value="no-selection" selected="">Select a workout / activity.</option>
+                                                            <option value="40"> 90/90 spiral with rotation (At-Home - Back Exercises - Cooldowns) (10xp)</option>
+                                                            <option value="35"> Bent-over double delt raises (At-Home - Back Exercises - Standing movements) (15xp)</option>
+                                                            <option value="36"> Bent-over row with resistance band (At-Home - Back Exercises - Standing movements) (10xp)</option>
+                                                            <option value="29"> Bird dog (At-Home - Back Exercises - Floor movements) (8xp)</option>
+                                                            <option value="2"> Cable crossover (75xp)</option>
+                                                            <option value="26"> Cat-Cow (At-Home - Back Exercises - Warmups) (6xp)</option>
+                                                            <option value="1"> Chest dip (45xp)</option>
+                                                            <option value="12"> Chest press (Upper-body bulk and sculpt) (48xp)</option>
+                                                            <option value="23"> Chest press (Upper-body tone and tighten) (45xp)</option>
+                                                            <option value="3"> Decline bench press (39xp)</option>
+                                                            <option value="24"> Deltoid raises (Upper-body tone and tighten) (45xp)</option>
+                                                            <option value="18"> Diamond pushups (Upper-body tone and tighten) (30xp)</option>
+                                                            <option value="20"> Dumbbell curls (Upper-body tone and tighten) (45xp)</option>
+                                                            <option value="25"> Dumbbell front raises (Upper-body tone and tighten) (45xp)</option>
+                                                            <option value="37"> Extend rotate At-Home - Back Exercises - (Standing movements) (10xp)</option>
+                                                            <option value="28"> Hammock (At-Home - Back Exercises - Warmups) (4xp)</option>
+                                                            <option value="19"> Hand release pushup (Upper-body tone and tighten) (30xp)</option>
+                                                            <option value="33"> Hip hinges (At-Home - Back Exercises - Standing movements) (20xp)</option>
+                                                            <option value="13"> Incline dumbbell flies (Upper-body bulk and sculpt) (48xp)</option>
+                                                            <option value="14"> Incline dumbbell triceps extension (Upper-body bulk and sculpt) (48xp)</option>
+                                                            <option value="4"> Incline push up (50xp)</option>
+                                                            <option value="34"> Isometric hip hinges (At-Home - Back Exercises - Standing movements) (3xp)</option>
+                                                            <option value="39"> Isometric neck extension (At-Home - Back Exercises - Chair exercises) (5xp)</option>
+                                                            <option value="27"> Lateral Wheel (At-Home - Back Exercises - Warmups) (3xp)</option>
+                                                            <option value="30"> Lunge rotate (At-Home - Back Exercises - Floor movements) (50xp)</option>
+                                                            <option value="17"> Mountain climbers (Upper-body tone and tighten) (60xp)</option>
+                                                            <option value="10"> Overhead dumbbell press (Upper-body bulk and sculpt) (40xp)</option>
+                                                            <option value="6"> Parallel Bar Dips (Upper-body bulk and sculpt) (36xp)</option>
+                                                            <option value="31"> Plank with lateral arm raise (At-Home - Back Exercises - Floor movements) (20xp)</option>
+                                                            <option value="8"> Plyometric Push-ups (Upper-body bulk and sculpt) (36xp)</option>
+                                                            <option value="7"> Push-ups (Upper-body bulk and sculpt) (36xp)</option>
+                                                            <option value="5"> Seated machine fly (90xp)</option>
+                                                            <option value="38"> Shoulder squeeze (At-Home - Back Exercises - Chair exercises) (5xp)</option>
+                                                            <option value="11"> Standing dumbbell upright row (Upper-body bulk and sculpt) (40xp)</option>
+                                                            <option value="32"> Superman (At-Home - Back Exercises - Floor movements) (10xp)</option>
+                                                            <option value="42"> Supine twist (At-Home - Back Exercises - Cooldowns) (2xp)</option>
+                                                            <option value="15"> Triceps dips (Upper-body tone and tighten) (45xp)</option>
+                                                            <option value="21"> Triceps kickbacks (Upper-body tone and tighten) (45xp)</option>
+                                                            <option value="22"> Two-arm dumbbell row (Upper-body tone and tighten) (36xp)</option>
+                                                            <option value="9"> Walking plank (Upper-body bulk and sculpt) (36xp)</option>
+                                                            <option value="16"> Wall angels (Upper-body tone and tighten) (60xp)</option>
+                                                            <option value="41"> Wind-relieving pose (At-Home - Back Exercises - Cooldowns) (2xp)</option>
+                                                            <option value="other">Other</option>
+                                                        </select>
+                                                        <button type="button" id="add-selection-to-activities-selectlist-btn" class="onefit-buttons-style-light p-4">
+                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
+                                                                keyboard_double_arrow_down
+                                                            </span>
+                                                            add.
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ select an existing exercise activity -->
                                                 </div>
-                                                <!-- ./ select an existing exercise activity -->
-                                            </div>
-                                            <div class="col-md-2 py-4">
-                                                <div class="d-grid justify-content-center text-center">
-                                                    <button type="button" class="onefit-buttons-style-tahiti p-3 d-grid" data-bs-toggle="collapse" data-bs-target="#new-exercise-activity-container" aria-expanded="true" aria-controls="new-exercise-activity-container">
-                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
-                                                            playlist_add
-                                                        </span>
-                                                        <span style="font-size:10px!important;" class="text-truncate">
-                                                            New Exercise/Activity.
-                                                        </span>
-                                                    </button>
+                                                <div class="col-md-2 py-4">
+                                                    <div class="d-grid justify-content-center text-center">
+                                                        <button type="button" class="onefit-buttons-style-tahiti p-3 d-grid" data-bs-toggle="collapse" data-bs-target="#new-exercise-activity-container" aria-expanded="true" aria-controls="new-exercise-activity-container">
+                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
+                                                                playlist_add
+                                                            </span>
+                                                            <span style="font-size:10px!important;" class="text-truncate">
+                                                                New Exercise/Activity.
+                                                            </span>
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div id="new-exercise-activity-container" class="col-md-5 gap-4 collapse w3-animate-right">
-                                                <!-- Textarea for typing out the exercises -->
-                                                <div class="form-group d-grid gap-2">
-                                                    <label for="add-to-calender-activity-specify-title" class="poppins-font fs-4" style="color: #ffa500;">Create New Activities:</label>
-                                                    <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-specify-title" id="add-to-calender-activity-specify-title" placeholder="Exercise / activity title." style="border-radius:25px;font-size:12px!important;">
+                                                <div id="new-exercise-activity-container" class="col-md-5 gap-4 collapse w3-animate-right">
+                                                    <!-- Textarea for typing out the exercises -->
+                                                    <div class="form-group d-grid gap-2">
+                                                        <label for="add-to-calender-activity-specify-title" class="poppins-font fs-4" style="color: #ffa500;">Create New Activities:</label>
+                                                        <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-specify-title" id="add-to-calender-activity-specify-title" placeholder="Exercise / activity title." style="border-radius:25px;font-size:12px!important;">
 
-                                                    <label for="add-to-calender-activity-specify-xp" class="poppins-font" style="color: #ffa500;font-size:12px;">Allocate xp pts (1 - 10):</label>
-                                                    <input class="form-control-text-input p-4" type="number" oninput="validity.valid||(value='');" min="1" max="10" name="add-to-calender-activity-specify-xp" id="add-to-calender-activity-specify-xp" placeholder="How much XP? 10xp max." style="border-radius:25px;">
+                                                        <label for="add-to-calender-activity-specify-xp" class="poppins-font" style="color: #ffa500;font-size:12px;">Allocate xp pts (1 - 10):</label>
+                                                        <input class="form-control-text-input p-4" type="number" oninput="validity.valid||(value='');" min="1" max="10" name="add-to-calender-activity-specify-xp" id="add-to-calender-activity-specify-xp" placeholder="How much XP? 10xp max." style="border-radius:25px;">
 
-                                                    <div class="form-group">
-                                                        <label for="sets-reps-rests" class="poppins-font" style="color: #ffa500;font-size:12px;">Select the Sets, Reps &amp; Rests:</label>
-                                                        <div class="row" id="sets-reps-rests">
-                                                            <div class="col-md">
-                                                                <input class="form-control-text-input p-4 onefit-input-grad-white-dark border-0" type="number" oninput="validity.valid||(value='');" min="1" max="10" value="1" name="add-to-calender-activity-specify-sets" id="add-to-calender-activity-specify-sets" placeholder="How many Sets? 10 max sets." style="border-radius:25px;">
-                                                            </div>
-                                                            <div class="col-md">
-                                                                <input class="form-control-text-input p-4 onefit-input-grad-white-dark border-0" type="number" oninput="validity.valid||(value='');" min="1" max="100" value="1" name="add-to-calender-activity-specify-reps" id="add-to-calender-activity-specify-reps" placeholder="How many Sets? 10 max reps." style="border-radius:25px;">
-                                                            </div>
-                                                            <div class="col-md">
-                                                                <input class="form-control-text-input p-4 onefit-input-grad-white-dark border-0" type="number" oninput="validity.valid||(value='');" min="0" max="10" value="0" name="add-to-calender-activity-specify-rests" id="add-to-calender-activity-specify-rests" placeholder="How many Sets? 5 max sets." style="border-radius:25px;">
+                                                        <div class="form-group">
+                                                            <label for="sets-reps-rests" class="poppins-font" style="color: #ffa500;font-size:12px;">Select the Sets, Reps &amp; Rests:</label>
+                                                            <div class="row" id="sets-reps-rests">
+                                                                <div class="col-md">
+                                                                    <input class="form-control-text-input p-4 onefit-input-grad-white-dark border-0" type="number" oninput="validity.valid||(value='');" min="1" max="10" value="1" name="add-to-calender-activity-specify-sets" id="add-to-calender-activity-specify-sets" placeholder="How many Sets? 10 max sets." style="border-radius:25px;">
+                                                                </div>
+                                                                <div class="col-md">
+                                                                    <input class="form-control-text-input p-4 onefit-input-grad-white-dark border-0" type="number" oninput="validity.valid||(value='');" min="1" max="100" value="1" name="add-to-calender-activity-specify-reps" id="add-to-calender-activity-specify-reps" placeholder="How many Sets? 10 max reps." style="border-radius:25px;">
+                                                                </div>
+                                                                <div class="col-md">
+                                                                    <input class="form-control-text-input p-4 onefit-input-grad-white-dark border-0" type="number" oninput="validity.valid||(value='');" min="0" max="10" value="0" name="add-to-calender-activity-specify-rests" id="add-to-calender-activity-specify-rests" placeholder="How many Sets? 5 max sets." style="border-radius:25px;">
+                                                                </div>
                                                             </div>
                                                         </div>
+
+                                                        <div class="form-group">
+                                                            <label for="add-to-calender-activity-specify-new-description" class="poppins-font" style="color: #ffa500;font-size:12px;">Please provide the Description &amp; Guidelines/Instructions of this Exercise/Activty:</label>
+                                                            <textarea class="form-control-text-input p-2 text-dark light-scroller" rows="3" type="text" name="add-to-calender-activity-specify-new-description" id="add-to-calender-activity-specify-new-description" placeholder="Description..." style="border-radius:25px;font-size:12px!important;"></textarea>
+
+                                                            <textarea class="form-control-text-input p-2 text-dark light-scroller" rows="3" type="text" name="add-to-calender-activity-specify-new-guidelines" id="add-to-calender-activity-specify-new-guidelines" placeholder="Guidelines / Instructions..." style="border-radius:25px;font-size:12px!important;"></textarea>
+                                                        </div>
+
+
+                                                        <label for="add-to-calender-specify-training-phase" class="poppins-font" style="color: #ffa500;font-size:12px;">Select the Training level (L1 - L3):</label>
+                                                        <select class="custom-select form-control-select-input p-2 light-scroller" id="add-to-calender-specify-training-phase" name="add-to-calender-specify-training-phase" style="border-radius:25px;">
+                                                            <option value="beginner" selected>Beginner (L1).</option>
+                                                            <option value="intermediate">Intermediate (L2).</option>
+                                                            <option value="advanced">Advanced (L3).</option>
+                                                        </select>
+
+                                                        <button type="button" id="add-selection-to-activities-textinput-btn" class="onefit-buttons-style-light p-4">
+                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
+                                                                add
+                                                            </span>
+                                                            save.
+                                                        </button>
+                                                    </div>
+                                                    <!-- ./ Textarea for typing out the exercises -->
+
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <hr class="text-white">
+                                                <label for="select-workout-exercises-selected" class="mb-2">
+                                                    <span class="material-icons material-icons-outlined align-middle" style="font-size:20px!important;">
+                                                        queue
+                                                    </span>
+                                                    <span class="align-middle"> Activities Added.</span>
+                                                </label>
+                                                <!-- move items function buttons -->
+                                                <div class="d-flex justify-content-between gap-2 mb-2">
+                                                    <div class="d-grid">
+                                                        <h1 id="selected-xp-counter" class="fs-5" style="color: var(--tahitigold);">Total xp: 0 | 0 activities.</h1>
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <label for="add-to-calender-activity-specify-new-description" class="poppins-font" style="color: #ffa500;font-size:12px;">Please provide the Description &amp; Guidelines/Instructions of this Exercise/Activty:</label>
-                                                        <textarea class="form-control-text-input p-2 text-dark light-scroller" rows="3" type="text" name="add-to-calender-activity-specify-new-description" id="add-to-calender-activity-specify-new-description" placeholder="Description..." style="border-radius:25px;font-size:12px!important;"></textarea>
-
-                                                        <textarea class="form-control-text-input p-2 text-dark light-scroller" rows="3" type="text" name="add-to-calender-activity-specify-new-guidelines" id="add-to-calender-activity-specify-new-guidelines" placeholder="Guidelines / Instructions..." style="border-radius:25px;font-size:12px!important;"></textarea>
+                                                    <div class="d-flex justify-content-end gap-2">
+                                                        <button type="button" id="remove-selection-from-selected-activities-list-btn" class="onefit-buttons-style-light p-2">
+                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
+                                                                remove
+                                                            </span>
+                                                            <span style="font-size:10px!important;">
+                                                                Remove selected.
+                                                            </span>
+                                                        </button>
+                                                        <button type="button" id="remove-all-from-selected-activities-list-btn" class="onefit-buttons-style-danger p-2">
+                                                            <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
+                                                                restart_alt
+                                                            </span>
+                                                            <span style="font-size:10px!important;">
+                                                                Remove all selected.
+                                                            </span>
+                                                        </button>
                                                     </div>
 
-
-                                                    <label for="add-to-calender-specify-training-phase" class="poppins-font" style="color: #ffa500;font-size:12px;">Select the Training level (L1 - L3):</label>
-                                                    <select class="custom-select form-control-select-input p-2 light-scroller" id="add-to-calender-specify-training-phase" name="add-to-calender-specify-training-phase" style="border-radius:25px;">
-                                                        <option value="beginner" selected>Beginner (L1).</option>
-                                                        <option value="intermediate">Intermediate (L2).</option>
-                                                        <option value="advanced">Advanced (L3).</option>
-                                                    </select>
-
-                                                    <button type="button" id="add-selection-to-activities-textinput-btn" class="onefit-buttons-style-light p-4">
-                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
-                                                            add
-                                                        </span>
-                                                        save.
-                                                    </button>
                                                 </div>
-                                                <!-- ./ Textarea for typing out the exercises -->
-
+                                                <!-- listbox on the right col is the listbox that will be submitted on form submit -->
+                                                <select id="select-workout-exercises-selected" name="select-workout-exercises-selected[]" class="form-control light-scroller" multiple="multiple" rows="50" style="min-height:200px;border-radius:25px;"></select>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <hr class="text-white">
-                                            <label for="select-workout-exercises-selected" class="mb-2">
-                                                <span class="material-icons material-icons-outlined align-middle" style="font-size:20px!important;">
-                                                    queue
-                                                </span>
-                                                <span class="align-middle"> Activities Added.</span>
-                                            </label>
-                                            <!-- move items function buttons -->
-                                            <div class="d-flex justify-content-between gap-2 mb-2">
-                                                <div class="d-grid">
-                                                    <h1 id="selected-xp-counter" class="fs-5" style="color: var(--tahitigold);">Total xp: 0 | 0 activities.</h1>
-                                                </div>
 
-                                                <div class="d-flex justify-content-end gap-2">
-                                                    <button type="button" id="remove-selection-from-selected-activities-list-btn" class="onefit-buttons-style-light p-2">
-                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
-                                                            remove
-                                                        </span>
-                                                        <span style="font-size:10px!important;">
-                                                            Remove selected.
-                                                        </span>
-                                                    </button>
-                                                    <button type="button" id="remove-all-from-selected-activities-list-btn" class="onefit-buttons-style-danger p-2">
-                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 30px!important;">
-                                                            restart_alt
-                                                        </span>
-                                                        <span style="font-size:10px!important;">
-                                                            Remove all selected.
-                                                        </span>
-                                                    </button>
-                                                </div>
-
-                                            </div>
-                                            <!-- listbox on the right col is the listbox that will be submitted on form submit -->
-                                            <select id="select-workout-exercises-selected" name="select-workout-exercises-selected[]" class="form-control light-scroller" multiple="multiple" rows="50" style="min-height:200px;border-radius:25px;"></select>
                                         </div>
+                                        <!-- ./ question 6 actvities selection -->
 
                                         <!-- submit btn -->
                                         <button id="single-submit-add-new-schedule-data-form" class="onefit-buttons-style-tahiti p-4 mt-4 shadow d-grid" type="submit" value="Save">
@@ -8772,6 +8957,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <!-- ./ Modals ----------------------------------------------------------------------------------------- -->
 
+    <!-- A Lot of Javascript here!!! - should be in external js files -->
     <script>
         // initialize global activity tracker chart objects
         // initialize activity tracking charts
@@ -9364,6 +9550,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
             })
 
+            // get the default selected team
             // get the local stored getDefaultTeamSelect variable and value, and then set it as the default team selected in all switch team select elems
             $.getDefaultTeamSelect();
 
@@ -9376,6 +9563,18 @@ if (isset($_SESSION["currentUserAuth"])) {
         }
 
         // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+        // function to toggle load wait curtain visibility 
+        function toggleLoadWaitCurtain(state) {
+            var curtain = document.getElementById("load-wait-screen-curtain");
+            if (state == "show") {
+                console.log("load wait: showing curtain");
+                curtain.style.display = "block";
+            } else if (state == "hide") {
+                console.log("load wait: hiding curtain");
+                curtain.style.display = "none";
+            }
+        }
 
         function initializeContent(auth, usernm) {
             auth = auth || "init";
@@ -9390,6 +9589,10 @@ if (isset($_SESSION["currentUserAuth"])) {
             if ((auth == true || auth == 1) || (auth === "init" && usernm === "init")) {
                 // call initialization sub-functions 
 
+                console.log("initializeContent -> auth: " + auth + " usernm: " + usernm);
+
+                // show the $load-wait-screen-curtain
+                toggleLoadWaitCurtain('show');
 
 
                 /* Step_0: function to load the Global UI tools */
@@ -9458,6 +9661,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                 // loadCommunityResources();
                 // loadCommunityRewards();
 
+                // hide the $load-wait-screen-curtain
+                toggleLoadWaitCurtain('hide');
             } else {
                 //call guest applicable functions
                 alert("auth = false | User: " + usernm);
@@ -9504,6 +9709,8 @@ if (isset($_SESSION["currentUserAuth"])) {
         //     // initialize the app page content
         //     initializeContent('<?php echo $userAuth; ?>', '<?php echo $currentUser_Usrnm; ?>');
         // });
+
+
 
         // *** script.js functions
         // check core script loaded state
@@ -12198,10 +12405,22 @@ if (isset($_SESSION["currentUserAuth"])) {
         }
 
         $.getDefaultTeamSelect = function() {
-            var DefaultTeamSelect = localStorage.getItem('teams_training_main_grcode') || "noselection";
-            // update the seection for all .team-selection-list to the stored grcode
-            // $('.team-selection-list').val(DefaultTeamSelect).change();
-            $(`.team-selection-list > option[value=${DefaultTeamSelect}]`).attr('selected', 'selected');
+            // if 'teams_training_main_grcode' is not set in localstorage, set "noselection"
+            if (localStorage.getItem('teams_training_main_grcode') == null) {
+                localStorage.setItem('teams_training_main_grcode', "noselection");
+            } else {
+                let DefaultTeamSelect = localStorage.getItem('teams_training_main_grcode');
+
+                // select item with value=DefaultTeamSelect .team-selection-list
+                // $('.team-selection-list').val(DefaultTeamSelect).change();
+
+                // foreach node in .team-selection-list, change selected item with value
+                $('.team-selection-list').each(function() {
+                    if ($(this).val() == DefaultTeamSelect) {
+                        $(this).attr('selected', 'selected');
+                    }
+                });
+            }
         }
 
         // function for switching weekly view of assessment cards and the activity chart
@@ -12459,6 +12678,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                         console.log('beforeSend: submitting activity tracking data [Heart Rate]');
                         // disable the form submit btn
                         $('#modal-heartrate-insights-activitytracker-data-form > [type="submit"]').attr('disabled', true);
+                        // show #load-wait-screen-curtain 
+                        $('#load-wait-screen-curtain').show();
                     },
                     success: function(response) {
                         if (response.startsWith("success")) {
@@ -12479,9 +12700,13 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                         // enable the form submit btn
                         $('#modal-heartrate-insights-activitytracker-data-form > [type="submit"]').attr('disabled', false);
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     }
                 });
             }, 1000);
@@ -12511,6 +12736,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     data: form_data,
                     beforeSend: function() {
                         console.log('beforeSend: submitting activity tracking data [Body Temp]');
+                        // show #load-wait-screen-curtain 
+                        $('#load-wait-screen-curtain').show();
                     },
                     success: function(response) {
 
@@ -12524,9 +12751,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                             console.log("error: returning response - activity tracking data [Body Temp]");
                             console.log("Response: " + response);
                         }
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     }
                 });
             }, 1000);
@@ -12556,6 +12787,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     data: form_data,
                     beforeSend: function() {
                         console.log('beforeSend: submitting activity tracking data [Speed]');
+                        // show #load-wait-screen-curtain 
+                        $('#load-wait-screen-curtain').show();
                     },
                     success: function(response) {
 
@@ -12569,9 +12802,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                             console.log("error: returning response - activity tracking data [Speed]");
                             console.log("Response: " + response);
                         }
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     }
                 });
             }, 1000);
@@ -12601,6 +12838,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     data: form_data,
                     beforeSend: function() {
                         console.log('beforeSend: submitting activity tracking data [BMI Weight]');
+                        // show #load-wait-screen-curtain 
+                        $('#load-wait-screen-curtain').show();
                     },
                     success: function(response) {
 
@@ -12614,9 +12853,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                             console.log("error: returning response - activity tracking data [BMI Weight]");
                             console.log("Response: " + response);
                         }
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     }
                 });
             }, 1000);
@@ -12647,6 +12890,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     data: form_data,
                     beforeSend: function() {
                         console.log('beforeSend: submitting activity tracking data [Heart Rate]');
+                        // show #load-wait-screen-curtain 
+                        $('#load-wait-screen-curtain').show();
                     },
                     success: function(response) {
                         if (response.startsWith("success")) {
@@ -12664,9 +12909,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                             console.log("error: returning response - activity tracking data [Heart Rate]");
                             console.log("Response: " + response);
                         }
+
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     }
                 });
             }, 1000);
@@ -12696,6 +12946,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     data: form_data,
                     beforeSend: function() {
                         console.log('beforeSend: submitting activity tracking data [Body Temp]');
+                        // show #load-wait-screen-curtain 
+                        $('#load-wait-screen-curtain').show();
                     },
                     success: function(response) {
 
@@ -12709,9 +12961,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                             console.log("error: returning response - activity tracking data [Body Temp]");
                             console.log("Response: " + response);
                         }
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        // hide #load-wait-screen-curtain
+                        // show #load-wait-screen-curtain 
+                        $('#load-wait-screen-curtain').show();
                     }
                 });
             }, 1000);
@@ -12741,6 +12998,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     data: form_data,
                     beforeSend: function() {
                         console.log('beforeSend: submitting activity tracking data [Speed]');
+                        // show #load-wait-screen-curtain 
+                        $('#load-wait-screen-curtain').show();
                     },
                     success: function(response) {
 
@@ -12754,9 +13013,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                             console.log("error: returning response - activity tracking data [Speed]");
                             console.log("Response: " + response);
                         }
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     }
                 });
             }, 1000);
@@ -12786,6 +13049,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     data: form_data,
                     beforeSend: function() {
                         console.log('beforeSend: submitting activity tracking data [BMI Weight]');
+                        // show #load-wait-screen-curtain 
+                        $('#load-wait-screen-curtain').show();
                     },
                     success: function(response) {
 
@@ -12804,9 +13069,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                             console.log("error: returning response - activity tracking data [BMI Weight]");
                             console.log("Response: " + response);
                         }
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     }
                 });
             }, 1000);
@@ -12834,6 +13103,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     data: form_data,
                     beforeSend: function() {
                         console.log('beforeSend: submit edited weekly teams activity data [Teams Submit Edited Activities Form]');
+                        // show #load-wait-screen-curtain 
+                        $('#load-wait-screen-curtain').show();
                     },
                     success: function(response) {
 
@@ -12851,9 +13122,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                             console.log("error: returning response - submit edited weekly teams activity data [Teams Submit Edited Activities Form]");
                             console.log("Response: " + response);
                         }
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     }
                 });
             }, 1000);
@@ -12883,6 +13158,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     data: form_data,
                     beforeSend: function() {
                         console.log('beforeSend: submitting add new activity data form on the calender view modal');
+                        // show #load-wait-screen-curtain 
+                        $('#load-wait-screen-curtain').show();
                     },
                     success: function(response) {
                         if (response.startsWith("success")) {
@@ -12927,10 +13204,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                             // alert("Failure: returning response - failed to add new activity data form on the calender view modal \nResponse: " + response);
                         }
 
-
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     }
                 });
             }, 1000);
@@ -12961,6 +13241,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     data: form_data,
                     beforeSend: function() {
                         console.log('beforeSend: submitting add match to fixture data form');
+                        // show #load-wait-screen-curtain 
+                        $('#load-wait-screen-curtain').show();
                     },
                     success: function(response) {
                         if (response.startsWith("success")) {
@@ -13009,11 +13291,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                             // test output
                             // alert("Failure: returning response - failed to add new activity data form on the calender view modal \nResponse: " + response);
                         }
-
-
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
                     }
                 });
             }, 1000);
@@ -13200,6 +13484,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         function calculateWorkoutTotalXP() {
             // reinitialize the sumXP
             var sumXP = 0;
+            var sumRPE = 0;
             var listCount = 0;
             $("#select-workout-exercises-selected > option").each(function() {
                 // console.log(this.text + ' ' + this.value);
@@ -13208,11 +13493,17 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                 sumXP += parseInt(selectedExerciseText.split('X[').pop().split(']P')[0])
 
+                // calculate the total / sumRPE
+                sumRPE += parseInt(selectedExerciseText.split('RPE[').pop().split(']R')[0])
+
                 listCount += 1;
             });
 
             // update #selected-xp-counter field with sumXP value
             $('#selected-xp-counter').html(`Total xp: ${sumXP} | ${listCount} activities.`);
+            // assign sumRPE to #add-to-calender-activity-rpe-value
+            $('#add-to-calender-activity-rpe-value').val(sumRPE);
+
         }
 
         // move/add to selected list

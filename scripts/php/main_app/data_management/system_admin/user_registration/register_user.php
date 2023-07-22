@@ -23,11 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $pwd = sanitizeMySQL($dbconn, $_POST['reg-confirmpassword']);
   $pwdhash = password_hash($pwd, PASSWORD_DEFAULT);
 
+  // generate random string for $id_number_random_string
+  $id_number_random_string = "tempt_" . date('Ymd') . generateAlphaNumericRandomString(6);
+
   // create user account record
   $query = "INSERT INTO `users` 
   (`user_id`, `username`, `password_hash`, `user_name`, `user_surname`, `id_number`, `user_email`, `contact_number`, `date_of_birth`, `user_gender`, `user_race`, `user_nationality`, `account_active`) 
   VALUES 
-  (null, '$usrnm', '$pwdhash', '$name', '$surname', 'NULL', '$email', '$contact', '$dob', '$gender', '$race', '$nation', 0)";
+  (null, '$usrnm', '$pwdhash', '$name', '$surname', '$id_number_random_string', '$email', '$contact', '$dob', '$gender', '$race', '$nation', 0)";
   // die($query);
   $result = $dbconn->query($query);
 

@@ -880,6 +880,16 @@ function isOffline(state) {
     }
 }
 
+// function to toggle load wait curtain visibility 
+function toggleLoadWaitCurtain(state) {
+    var curtain = document.getElementById("load-wait-screen-curtain");
+    if (state == "show") {
+        curtain.style.display = "block";
+    } else if (state == "hide") {
+        curtain.style.display = "none";
+    }
+}
+
 // form validation
 // .needs-validation
 // (https://getbootstrap.com/docs/5.3/forms/validation/#server-side) Example starter JavaScript for disabling form submissions if there are invalid fields

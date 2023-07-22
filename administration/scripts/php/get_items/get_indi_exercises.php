@@ -34,6 +34,14 @@ try {
 
     $rows = $result->num_rows;
 
+    $RPE_Rate = $RPE_Ceiling = 0;
+
+    // obsolete
+    function calculate_ceil($num, $factor)
+    {
+        return ceil($num / $factor) * $factor;
+    }
+
     for ($j = 0; $j < $rows; ++$j) {
         $row = $result->fetch_array(MYSQLI_ASSOC);
 
@@ -47,8 +55,14 @@ try {
         $xp_points = $row["xp_points"];
         $training_phase = $row["training_phase"];
 
+        $RPE_Rate = $reps * $sets - $rests;
+        // $RPE_Ceiling = ceil($RPE_Rate);
+
+        // round to nearest integer
+        $RPE_Rate = round($RPE_Rate / 10, 0);
+
         $compile .= <<<_END
-        <option value="$exercise_id"> $exercise_name X[$xp_points]P </option>
+        <option value="$exercise_id"> $exercise_name <u class="visually-hidden"> X[$xp_points]P RPE[$RPE_Rate]R </u> </option>
         _END;
     }
 

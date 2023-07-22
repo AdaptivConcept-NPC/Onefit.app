@@ -253,6 +253,18 @@ sup {
   left: 0;
 }
 
+.wait-load-curtain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  background-color: rgba(52, 52, 52, 0.5);
+
+  z-index: 10999;
+}
+
 .ring {
   position: absolute;
   top: 50%;
@@ -2471,55 +2483,6 @@ div.horizontal-scroll-card-nav {
   }
 }
 
-/*Custome Breakpoint Classes*/
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-  .wide-grid-tile {
-    grid-column: span 1 !important;
-    border-radius: 25px;
-  }
-
-  .full-wide-grid-tile {
-    grid-column: span 1 !important;
-    border-radius: 25px;
-  }
-
-  .tall-grid-tile {
-    grid-row: span 1 !important;
-    border-radius: 25px;
-  }
-
-  .full-tall-grid-tile {
-    grid-row: span 1 !important;
-    border-radius: 25px;
-  }
-}
-
-/* Draggable Div */
-.player-pin {
-  position: absolute;
-  z-index: 9;
-  background-color: #333333;
-  border: 0px solid #d3d3d3;
-  text-align: center;
-
-  color: #FFFFFF;
-  font-family: Arial;
-  font-size: 10px;
-  line-height: 20px;
-  /* filter: drop-shadow(5px 5px 3px #ffa500); */
-  text-align: center;
-  width: 142px;
-  /* height: 140px; */
-  height: auto;
-  border-radius: 10px;
-  padding: 0px;
-
-  overflow-x: hidden;
-  overflow-y: auto;
-  border-radius: 10px;
-}
-
 /* #drag-player-pin:after {
   content: '';
   position: absolute;
@@ -2574,77 +2537,29 @@ div.horizontal-scroll-card-nav {
   margin-left: -20px;
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-  .wide-grid-tile {
-    grid-column: span 2 !important;
-    border-radius: 25px;
-  }
+/* Draggable Div */
+.player-pin {
+  position: absolute;
+  z-index: 9;
+  background-color: #333333;
+  border: 0px solid #d3d3d3;
+  text-align: center;
 
-  .full-wide-grid-tile {
-    grid-column: span 2 !important;
-    border-radius: 25px;
-  }
+  color: #FFFFFF;
+  font-family: Arial;
+  font-size: 10px;
+  line-height: 20px;
+  /* filter: drop-shadow(5px 5px 3px #ffa500); */
+  text-align: center;
+  width: 142px;
+  /* height: 140px; */
+  height: auto;
+  border-radius: 10px;
+  padding: 0px;
 
-  .chartjs-chart-light {
-    height: 400px !important;
-  }
-
-  .insight-chart-container {
-    min-height: 400px !important;
-    min-width: 400px !important;
-    border-radius: 25px !important;
-    overflow-x: auto;
-  }
-
-  .in-div-button-container {
-    width: 100% !important;
-  }
-
-  /*.tall-grid-tile {
-    grid-row: span 2 !important;
-    border-radius: 25px;
-  }
-
-  .full-tall-grid-tile {
-    grid-row: span 2 !important;
-    border-radius: 25px;
-  }*/
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .chartjs-chart-light {
-    height: 400px !important;
-  }
-
-  .in-div-button-container {
-    width: 100% !important;
-  }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-  .full-wide-grid-tile {
-    grid-column: span 3 !important;
-    border-radius: 25px;
-  }
-
-  .in-div-button-container {
-    max-width: 30vw !important;
-  }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  .full-wide-grid-tile {
-    grid-column: span 3 !important;
-    border-radius: 25px;
-  }
-
-  .in-div-button-container {
-    max-width: 30vw !important;
-  }
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 10px;
 }
 
 /* Activity Calender Styling */
@@ -2697,4 +2612,127 @@ div.horizontal-scroll-card-nav {
   background-color: transparent;
   color: var(--mineshaft);
   width: 100%;
+}
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+/* defalut alignment of .align-text-... classes */
+.align-text-center {
+  text-align: center;
+}
+
+/*Custome Breakpoint Classes*/
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .wide-grid-tile {
+    grid-column: span 1 !important;
+    border-radius: 25px;
+  }
+
+  .full-wide-grid-tile {
+    grid-column: span 1 !important;
+    border-radius: 25px;
+  }
+
+  .tall-grid-tile {
+    grid-row: span 1 !important;
+    border-radius: 25px;
+  }
+
+  .full-tall-grid-tile {
+    grid-row: span 1 !important;
+    border-radius: 25px;
+  }
+
+  .align-text-left-xsm {
+    text-align: left !important;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .wide-grid-tile {
+    grid-column: span 2 !important;
+    border-radius: 25px;
+  }
+
+  .full-wide-grid-tile {
+    grid-column: span 2 !important;
+    border-radius: 25px;
+  }
+
+  .chartjs-chart-light {
+    height: 400px !important;
+  }
+
+  .insight-chart-container {
+    min-height: 400px !important;
+    min-width: 400px !important;
+    border-radius: 25px !important;
+    overflow-x: auto;
+  }
+
+  .in-div-button-container {
+    width: 100% !important;
+  }
+
+  /*.tall-grid-tile {
+    grid-row: span 2 !important;
+    border-radius: 25px;
+  }
+
+  .full-tall-grid-tile {
+    grid-row: span 2 !important;
+    border-radius: 25px;
+  }*/
+
+  .align-text-left-sm {
+    text-align: left !important;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .chartjs-chart-light {
+    height: 400px !important;
+  }
+
+  .in-div-button-container {
+    width: 100% !important;
+  }
+
+  .align-text-left-md {
+    text-align: left !important;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .full-wide-grid-tile {
+    grid-column: span 3 !important;
+    border-radius: 25px;
+  }
+
+  .in-div-button-container {
+    max-width: 30vw !important;
+  }
+
+  .align-text-left-lg {
+    text-align: left !important;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .full-wide-grid-tile {
+    grid-column: span 3 !important;
+    border-radius: 25px;
+  }
+
+  .in-div-button-container {
+    max-width: 30vw !important;
+  }
+
+  .align-text-left-xl {
+    text-align: left !important;
+  }
 }
