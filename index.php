@@ -63,6 +63,9 @@ rememberMe();
   <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
 
   <!-- Google Icons -->
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" onload="coreScriptLoaded_googlefont_icons_css=true;" /> -->
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="preload" as="style" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" onload="coreScriptLoaded_googlefont_icons_css=true;" />
 
   <!-- Bootstrap local -->
@@ -91,7 +94,6 @@ rememberMe();
   <!-- Custom Site Scripts -->
   <script src="./scripts/js/script_jquery.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
   <script src="./scripts/js/script.js" onload="coreScriptLoaded_custom_script_js=true;"></script>
-</head>
 
 <body class="noselect">
   <!--  onload="toggleLoadCurtain()" -->

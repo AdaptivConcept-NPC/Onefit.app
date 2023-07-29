@@ -46,10 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // major_muscle_group	
                 // sub_muscle_group	
                 // position_definition
-                $muscle_group_id = $getData[0];
-                $major_muscle_group = $getData[1];
-                $sub_muscle_group = $getData[2];
-                $position_definition = $getData[3];
+                $muscle_group_id = sanitizeMySQL($dbconn, $getData[0]);
+                $major_muscle_group = sanitizeMySQL($dbconn, $getData[1]);
+                $sub_muscle_group = sanitizeMySQL($dbconn, $getData[2]);
+                $position_definition = sanitizeMySQL($dbconn, $getData[3]);
 
                 // mysql query to check If user an identifier exists in the database, in this case we want to query if there
                 // are records in the database that have the same muscle_group_id

@@ -163,11 +163,19 @@ echo <<<_END
             <tr class="comfortaa-font p-4" align="center" style="font-size: 30px">
                 <td class="p-4" colspan="7">
                     <div class="w-100 h-100 d-flex gap-4 justify-content-between">
-                        <button class="onefit-buttons-style-light p-3" onclick="navCalender('$prev_month','$prev_year','prev')"><i class="fas fa-chevron-left"></i> Last month.</button>
-                    
+                        <button class="onefit-buttons-style-light p-3" onclick="navCalender('$prev_month','$prev_year','prev')">
+                            <div class="d-flex gap-2 align-items-center">
+                                <i class="fas fa-chevron-left align-middle"></i> 
+                                <span class="align-middle" style="font-size:16px;">Last month.</span>
+                            </div>
+                        </button>
                         <div class="p-4" colspan="5" style="font-size:50px;cursor:pointer;" onclick="navCalender(null,null,'today')"><strong class="text-truncate"> $calenderHeading </strong></div>
-
-                        <button class="onefit-buttons-style-light p-3" onclick="navCalender('$next_month','$next_year','next')">Next month. <i class="fas fa-chevron-right"></i></button>
+                        <button class="onefit-buttons-style-light p-3" onclick="navCalender('$next_month','$next_year','next')">
+                            <div class="d-flex gap-2 align-items-center">
+                                <span class="align-middle" style="font-size:16px;">Next month.</span>
+                                <i class="fas fa-chevron-right align-middle"></i>
+                            </div>
+                        </button>
                     </div>
                 </td>
             </tr>
