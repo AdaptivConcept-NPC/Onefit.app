@@ -49,13 +49,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // sport_id	
                 // category	
                 // name
-                $sport_id = $getData[0];
-                $category = $getData[1];
-                $name = $getData[2];
+                $sport_id = sanitizeMySQL($dbconn, $getData[0]);
+                $category = sanitizeMySQL($dbconn, $getData[1]);
+                $name = sanitizeMySQL($dbconn, $getData[2]);
 
                 // mysql query to check If user an identifier exists in the database, in this case we want to query if there
                 // are records in the database that have the same sport_id
-                $query = "SELECT * FROM `sports_list` WHERE `sport_id` =  '$sport_id'";
+                $query = "SELECT * FROM `sports_list` WHERE `sport_id` = $sport_id";
                 // run the check in the db using the query string above
                 $check = mysqli_query($dbconn, $query);
 
@@ -64,18 +64,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $result = mysqli_query($dbconn, "UPDATE `sports_list` SET 
                     `category`='$category',
                     `name`='$name' 
-                    WHERE `muscle_group_id`='$muscle_group_id'");
+                    WHERE `sport_id`=$sport_id");
 
-                    if (!$result) die("An error occurred while trying to update the existing record [ sport_id: $sport_id | category: $category | name: $name ]: " . $dbconn->error . "]");
+                    if (!$result) die("An update error occurred while trying to update the existing record [ sport_id: $sport_id | category: $category | name: $name ]: " . $dbconn->error . "]");
                 } else {
                     // record does not exist, insert/create a new record 
                     $result = mysqli_query($dbconn, "INSERT INTO 
-                    `store_products`(`sport_id`, `category`, `name`, `administrators_username`) 
-                    VALUES (null,'$category','$name','$currentAdmin_Usrnm')");
+                    `sports_list`(`sport_id`, `category`, `name`, `administrators_username`) 
+                    VALUES ($sport_id,'$category','$name','$currentAdmin_Usrnm')");
 
                     // $result = $dbconn->query($query);
 
-                    if (!$result) die("An error occurred while trying to save the new record [ sport_id: $sport_id | category: $category | name: $name ]: " . $dbconn->error . "]");
+                    if (!$result) die("An insert error occurred while trying to save the new record [ sport_id: $sport_id | category: $category | name: $name ]: " . $dbconn->error . "]");
                 }
             }
 

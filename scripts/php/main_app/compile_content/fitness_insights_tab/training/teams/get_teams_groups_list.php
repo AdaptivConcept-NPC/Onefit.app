@@ -12,10 +12,11 @@ else die("Privacy request is not set");
 
 $current_user_username = sanitizeMySQL($dbconn, $_SESSION['currentUserUsername']);
 $compileList = <<<_END
-<option value="noselection" selected>⚽️ Switch Teams. 🏀</option>
+<option value="noselection" selected>🏅 Switch Teams.</option>
 _END;
 $group_ref_code
     = $group_name
+    = $group_category
     = $ucFirstStr = null;
 
 try {
@@ -24,7 +25,7 @@ try {
     switch ($get_privacy) {
         case 'teams':
             # sql query to get private sports team groups only 
-            $query = "SELECT DISTINCT grps.group_ref_code, grps.group_name FROM groups grps 
+            $query = "SELECT DISTINCT grps.group_ref_code, grps.group_name, grps.group_category FROM groups grps 
             LEFT JOIN teams_group_members tgm ON tgm.groups_group_ref_code = grps.group_ref_code
             LEFT JOIN administrators admn ON admn.username = grps.administrators_username
             WHERE (grps.group_category = 'teams' OR grps.group_privacy = 'private') AND grps.administrators_username = '$current_user_username' ORDER BY grps.group_name DESC";
@@ -32,7 +33,7 @@ try {
         case 'pro':
             # sql query to get private premium/pro groups only
             // get all groups for pro's and they should be the private ones
-            $query = "SELECT DISTINCT grps.group_ref_code, grps.group_name FROM groups grps 
+            $query = "SELECT DISTINCT grps.group_ref_code, grps.group_name, grps.group_category FROM groups grps 
             LEFT JOIN teams_group_members tgm ON tgm.groups_group_ref_code = grps.group_ref_code
             LEFT JOIN administrators admn ON admn.username = grps.administrators_username
             WHERE (grps.group_category = 'pro' OR grps.group_privacy = 'private') AND grps.administrators_username = '$current_user_username' ORDER BY grps.group_name DESC";
@@ -40,7 +41,7 @@ try {
         case 'indi':
             # sql query to get community indi groups only
             // use OR to get all indi groups or public groups
-            $query = "SELECT DISTINCT grps.group_ref_code, grps.group_name FROM groups grps 
+            $query = "SELECT DISTINCT grps.group_ref_code, grps.group_name, grps.group_category FROM groups grps 
             LEFT JOIN teams_group_members tgm ON tgm.groups_group_ref_code = grps.group_ref_code
             LEFT JOIN administrators admn ON admn.username = grps.administrators_username
             WHERE (grps.group_category = 'indi' OR grps.group_privacy = 'public') AND grps.administrators_username = '$current_user_username' ORDER BY grps.group_name DESC";
@@ -48,7 +49,7 @@ try {
 
         default:
             # die
-            die('Group requested is not supported.');
+            die("Group requested is not supported - ($get_privacy)");
             break;
     }
 
@@ -62,7 +63,7 @@ try {
         //there is no result echo the label
         $ucFirstStr = ucfirst($get_privacy);
         $compileList = <<<_END
-        <option value="noselection" selected>No $ucFirstStr groups found.</option>
+        <option value="error" selected>No $ucFirstStr groups found.</option>
         _END;
     } else {
         for ($j = 0; $j < $rows; ++$j) {
@@ -70,9 +71,10 @@ try {
 
             $group_ref_code = $row["group_ref_code"];
             $group_name = $row["group_name"];
+            $group_category = $row["group_category"];
 
             $compileList .= <<<_END
-            <option value="$group_ref_code"> $group_name </option>
+            <option value="$group_ref_code" grp-category="$group_category"> $group_name </option>
             _END;
         }
     }

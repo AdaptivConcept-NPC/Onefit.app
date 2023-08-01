@@ -145,6 +145,10 @@ if (isset($_SESSION["currentUserAuth"])) {
     <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
 
     <!-- Google Icons -->
+    <!-- source: https://stackoverflow.com/questions/50824181/preloading-google-fonts -->
+    <!-- <link rel='preconnect' href='https://fonts.googleapis.com' crossorigin> -->
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="preload" as="style" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" onload="coreScriptLoaded_googlefont_icons_css=true;" />
 
     <!-- Plyr.io Media Player -->
@@ -786,7 +790,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <!-- ./ Main App Content Refresh button -->
 
-                <button type="button" style="border-color:var(--tahitigold)!important" class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font show-side-panels border-topz border-bottom border-2" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
+                <button id="open-widgets-panel-btn" type="button" style="border-color:var(--tahitigold)!important" class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font show-side-panels border-topz border-bottom border-2" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> widgets </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Widgets</span>
@@ -920,7 +924,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 color: var(--white);
                 border-radius: 25px 0 0 25px;
                 border-color: var(--tahitigold) !important;
-                z-index: 10000;
+                z-index: 1000;
                 transition: all 200ms ease-in-out;
             }
 
@@ -975,12 +979,14 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                             <h5 class="align-middle text-center"><span class="material-icons material-icons-outlined align-middle">today</span><br> <?php echo date("l"); ?><br> <span style="color: #ffa500;">[</span> <?php echo date("d/m/Y"); ?> <span style="color: #ffa500;">]</span></h5>
                             <!-- Digital Clock -->
-                            <div id="clock" class="dark my-4 shadow">
-                                <div class="display no-scroller">
-                                    <div class="weekdays"></div>
-                                    <div class="ampm"></div>
-                                    <div class="alarm"></div>
-                                    <div class="digits"></div>
+                            <div id="dashboard-tab-clock">
+                                <div id="clock" class="dark my-4 shadow">
+                                    <div class="display no-scroller">
+                                        <div class="weekdays"></div>
+                                        <div class="ampm"></div>
+                                        <div class="alarm"></div>
+                                        <div class="digits"></div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- ./. Digital Clock -->
@@ -5096,30 +5102,61 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <!-- XXXXXX- removed indi-athletics tab here -XXXXXX -->
                                 <!-- *************************************************** -->
                                 <!-- Team Athletics Tab -->
-                                <div class="tab-pane fade w3-animate-bottom no-scroller p-2" id="v-sub-tab-pills-insights-teamathletics" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-teamathletics-tab">
+                                <div class="tab-pane fade w3-animate-bottom no-scroller p-2 pt-0" id="v-sub-tab-pills-insights-teamathletics" style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-teamathletics-tab">
+                                    <!-- default main team selection -->
+                                    <div class="d-grid py-4 justify-content-center top-down-grad-dark sticky-top" style="z-index:999;">
+                                        <!-- collapse team selection filters btn -->
+                                        <div class="w3-animate-left my-pulse-animation-dark w3-animate-left" style="position:absolute;bottom:0;left:10px;z-index:1021;margin-bottom:-60px; border-radius:25px;">
+                                            <button class="rounde-pill onefit-buttons-style-light p-2 shadow" data-bs-toggle="collapse" data-bs-target="#team-select-filters" aria-controls="team-select-filters" aria-expanded="false" aria-label="training: team selection filters">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">sync</span>
+                                                <span class="align-middle" style="font-size:8px;">Team Filters.</span>
+                                            </button>
+                                        </div>
+                                        <!-- ./ collapse team selection filters btn -->
+                                        
+                                        <!-- #team-select-filters -->
+                                        <div id="team-select-filters" class="collapse show w3-animate-left">
+                                            <p class="m-0 text-center" style="font-size:10px!important;">
+                                                <span class="material-icons material-icons-outlined align-middle" style="font-size: 8xp !important;">
+                                                    info
+                                                </span>
+                                                <span class="align-middle"> Please select a Team to view training data. </span>
+                                            </p>
+
+                                            <!-- team training filters -->
+                                            <div class="d-flex gap-2 align-items-start">
+                                                <div class="d-grid">
+                                                    <h5 class="fs-5 text-center">⚽️ Sports.</h5>
+                                                    <select id="trainingSubTabMainSportSelection" onchange="$.trainingSubTabMainTeamSelection(this.value)" class="form-select form-select-lg mb-3 sport-selection-list" style="max-width:260px;" aria-label=".form-select-lg example">
+                                                        <option value="noselection" selected="">⚽️ Select Sport. 🏀</option>
+                                                    </select>
+                                                    <div class="form-check form-switch d-flex gap-2 align-items-center justify-content-center">
+                                                        <input class="form-check-input" type="checkbox" role="switch" id="sortTeamsByCategory" style="height:15px;width:15px;">
+                                                        <label class="form-check-label poppins-font text-truncate" for="sortTeamsByCategory" style="font-size:10px;">Sort Teams by Category</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-grid">
+                                                    <h5 class="fs-5 text-center">🏅 Teams.</h5>
+                                                    <select id="trainingSubTabMainTeamSelection" onchange="$.trainingSubTabMainTeamSelection(this.value)" class="form-select form-select-lg mb-3 team-selection-list" style="max-width:260px;" aria-label=".form-select-lg example">
+                                                        <option value="noselection" selected="">🏅 Switch Teams.</option>
+                                                        <option value="tst_grp_0001"> Test Group - Teams </option>
+                                                        <option value="tst_grp_0003"> Test Group - Pro Community </option>
+                                                    </select>
+                                                    <div class="form-check form-switch d-flex gap-2 align-items-center justify-content-center">
+                                                        <input class="form-check-input" type="checkbox" role="switch" id="myTeamsOnlyCheckChecked_FixtureAdd" style="height:15px;width:15px;">
+                                                        <label class="form-check-label poppins-font text-truncate" for="myTeamsOnlyCheckChecked_FixtureAdd" style="font-size:10px;">My Teams only?</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- ./ team training filters -->
+                                        </div>
+                                        <!-- ./ end of #team-select-filters -->
+                                    </div>
+                                
                                     <div class="d-grid text-center mt-4">
                                         <span class="material-icons material-icons-round">diversity_2</span>
                                         <h5 class="fs-1">Team Athletics</h5>
-                                    </div>
-
-                                    <!-- default main team selection -->
-                                    <div class="d-grid gap-2 py-4 justify-content-center">
-                                        <h5 class="fs-3 text-center">⚽️ Teams. 🏀</h5>
-                                        <select id="trainingSubTabMainTeamSelection" onchange="$.trainingSubTabMainTeamSelection(this.value)" class="form-select form-select-lg mb-3 team-selection-list" aria-label=".form-select-lg example">
-                                            <option value="noselection" selected="">⚽️ Switch Teams. 🏀</option>
-                                            <option value="tst_grp_0001"> Test Group - Teams </option>
-                                            <option value="tst_grp_0003"> Test Group - Pro Community </option>
-                                        </select>
-                                        <p class="m-0" style="font-size:10px!important;">
-                                            <span class="material-icons material-icons-outlined align-middle" style="font-size: 12xp !important;">
-                                                info
-                                            </span>
-                                            <span class="align-middle"> Please select a Team to view their training data. </span>
-                                        </p>
-                                        <div class="form-check form-switch d-flex gap-2 align-items-center justify-content-center">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="myTeamsOnlyCheckChecked_FixtureAdd">
-                                            <label class="form-check-label poppins-font text-truncate" for="myTeamsOnlyCheckChecked_FixtureAdd">My Teams only?</label>
-                                        </div>
                                     </div>
 
                                     <hr class="text-white">
@@ -5229,7 +5266,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                                 <!-- formation offcanvas -->
                                                 <div class="offcanvas offcanvas-start w-100 formation-tactics-offcanvas-tray" style="background-color: var(--mineshaft);" tabindex="-1" id="offcanvasTeamFormation" aria-labelledby="offcanvasTeamFormationLabel">
-                                                    <div class="offcanvas-header top-down-grad-dark p-5">
+                                                    <div class="offcanvas-header top-down-grad-dark p-5 fixed-top">
                                                         <div class="d-grid me-4">
                                                             <div class="d-flex align-items-center gap-2 mb-2">
                                                                 <span class="material-icons material-icons-round align-middle p-2" style="color:var(--mineshaft); border-radius:15px;background-color:var(--white);">
@@ -5273,12 +5310,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             </span>
                                                         </button>
                                                     </div>
-                                                    <div class="offcanvas-body down-top-grad-dark light-scroller">
+                                                    <div class="offcanvas-body down-top-grad-white -darkz light-scroller" style="padding-top: 260px;">
                                                         <!-- <hr class="bg-dark shadow" style="height: 10px;"> -->
                                                         <div class="container -fluid">
 
                                                             <div id="formation-guidelines-container" class="bg-white text-dark p-4 mb-4 shadow" style="border-radius: 25px;">
-                                                                <h5 class="fs-3 text-center text-dark poppins-font">Tactical Guidelines.</h5>
+                                                                <h5 class="fs-3 text-center text-dark poppins-font fw-bold">Tactical Guidelines.</h5>
                                                                 <hr class="bg-dark shadow" style="height: 2px;">
                                                                 <p id="tactical-guidelines-container">
                                                                     This section is meant for displaying the coaches guidelines and instructions as a means of memorizing key tactics for the game.
@@ -5286,7 +5323,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             </div>
 
                                                             <div id="teamathletics-team-formation" class="py-4">
-                                                                <h5 id="formation-title" class="text-center text-white fs-3 mb-4 comfortaa-font fw-bold">Formation: <span class="poppins-font">2-5-3</span></h5>
+                                                                <h5 id="formation-title" class="text-center text-dark poppins-font fw-bold fs-3 mb-4 comfortaa-font fw-bold">Formation: <span class="poppins-font">2-5-3</span></h5>
                                                                 <div class="mb-4 d-flex justify-content-center shadow" id="soccerfield" style="overflow-x: auto;">
                                                                     <div class="d-flex justify-content-center p-5">
                                                                         <div class="spinner-grow text-white" style="width: 3rem; height: 3rem;" role="status">
@@ -5297,109 +5334,128 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                                                 <hr class="bg-dark shadow" style="height: 10px;">
 
-                                                                <!-- starting squad team list -->
-                                                                <h5 class="text-white">Starting lineup.</h5>
-                                                                <table class="table table-light table-striped table-hover table-bordered mb-4 align-middle">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col">Kit #</th>
-                                                                            <th scope="col">Player Pin</th>
-                                                                            <th scope="col">Name &amp; Surname</th>
-                                                                            <th scope="col">Field Position</th>
-                                                                            <th scope="col" class="text-center">
-                                                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">
-                                                                                    more_horiz
-                                                                                </span>
-                                                                            </th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody id="teams-formation-starting-lineup-table-list">
-                                                                        <tr>
-                                                                            <td class="text-center" colspan="5">
-                                                                                <div class="d-flex align-items-center p-4">
-                                                                                    <strong class="text-muted">Awaiting team selection...</strong>
-                                                                                    <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <!-- ./ starting squad team list -->
+                                                                <!-- #formation-tables-preview -->
+                                                                <div id="formation-tables-preview" class="row">
+                                                                    <!-- tables -->
+                                                                    <div class="col-md light-scroller" style="max-height:80vh;overflow-y:auto;">
+                                                                        <!-- starting squad team list -->
+                                                                        <h5 class="text-dark poppins-font fw-bold">Starting lineup.</h5>
+                                                                        <table class="table table-dark table-striped table-hover table-bordered mb-4 align-middle">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Kit #</th>
+                                                                                    <th scope="col">Player Pin</th>
+                                                                                    <th scope="col">Name &amp; Surname</th>
+                                                                                    <th scope="col">Field Position</th>
+                                                                                    <th scope="col" class="text-center">
+                                                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">
+                                                                                            more_horiz
+                                                                                        </span>
+                                                                                    </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody id="teams-formation-starting-lineup-table-list">
+                                                                                <tr>
+                                                                                    <td class="text-center" colspan="5">
+                                                                                        <div class="d-flex align-items-center p-4">
+                                                                                            <strong class="text-muted">Awaiting team selection...</strong>
+                                                                                            <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <!-- ./ starting squad team list -->
 
-                                                                <!-- Substitude list -->
-                                                                <h5 class="text-white">Substitues.</h5>
-                                                                <table class="table table-light table-striped table-hover table-bordered mb-4 align-middle">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col">Kit #</th>
-                                                                            <th scope="col">Player Pin</th>
-                                                                            <th scope="col">Name &amp; Surname</th>
-                                                                            <th scope="col">Field Position</th>
-                                                                            <th scope="col">More</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody id="teams-formation-substitutes-table-list">
-                                                                        <tr>
-                                                                            <td class="text-center" colspan="5">
-                                                                                <div class="d-flex align-items-center p-4">
-                                                                                    <strong class="text-muted">Awaiting team selection...</strong>
-                                                                                    <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <!-- ./ Substitude list -->
+                                                                        <!-- Substitude list -->
+                                                                        <h5 class="text-dark poppins-font fw-bold">Substitues.</h5>
+                                                                        <table class="table table-dark table-striped table-hover table-bordered mb-4 align-middle">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Kit #</th>
+                                                                                    <th scope="col">Player Pin</th>
+                                                                                    <th scope="col">Name &amp; Surname</th>
+                                                                                    <th scope="col">Field Position</th>
+                                                                                    <th scope="col">More</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody id="teams-formation-substitutes-table-list">
+                                                                                <tr>
+                                                                                    <td class="text-center" colspan="5">
+                                                                                        <div class="d-flex align-items-center p-4">
+                                                                                            <strong class="text-muted">Awaiting team selection...</strong>
+                                                                                            <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <!-- ./ Substitude list -->
 
-                                                                <!-- reserves list -->
-                                                                <h5 class="text-white">Researved.</h5>
-                                                                <table class="table table-light table-striped table-hover table-bordered mb-4 align-middle">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col">Kit #</th>
-                                                                            <th scope="col">Player Pin</th>
-                                                                            <th scope="col">Name &amp; Surname</th>
-                                                                            <th scope="col">Field Position</th>
-                                                                            <th scope="col">More</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody id="teams-formation-reserves-table-list">
-                                                                        <tr>
-                                                                            <td class="text-center" colspan="5">
-                                                                                <div class="d-flex align-items-center p-4">
-                                                                                    <strong class="text-muted">Awaiting team selection...</strong>
-                                                                                    <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <!-- ./ reserves list -->
+                                                                        <!-- reserves list -->
+                                                                        <h5 class="text-dark poppins-font fw-bold">Researved.</h5>
+                                                                        <table class="table table-dark table-striped table-hover table-bordered mb-4 align-middle">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Kit #</th>
+                                                                                    <th scope="col">Player Pin</th>
+                                                                                    <th scope="col">Name &amp; Surname</th>
+                                                                                    <th scope="col">Field Position</th>
+                                                                                    <th scope="col">More</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody id="teams-formation-reserves-table-list">
+                                                                                <tr>
+                                                                                    <td class="text-center" colspan="5">
+                                                                                        <div class="d-flex align-items-center p-4">
+                                                                                            <strong class="text-muted">Awaiting team selection...</strong>
+                                                                                            <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <!-- ./ reserves list -->
 
-                                                                <!-- technical team list -->
-                                                                <h5 class="text-white">Technical Team.</h5>
-                                                                <table class="table table-light table-striped table-hover table-bordered mb-4 align-middle">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col">Role</th>
-                                                                            <th scope="col">Member Pin</th>
-                                                                            <th scope="col">Name &amp; Surname</th>
-                                                                            <th scope="col">Field Position</th>
-                                                                            <th scope="col">More</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody id="teams-formation-technical-team-table-list">
-                                                                        <tr>
-                                                                            <td class="text-center" colspan="5">
-                                                                                <div class="d-flex align-items-center p-4">
-                                                                                    <strong class="text-muted">Awaiting team selection...</strong>
-                                                                                    <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <!-- ./ technical team list -->
+                                                                        <!-- technical team list -->
+                                                                        <h5 class="text-dark poppins-font fw-bold">Technical Team.</h5>
+                                                                        <table class="table table-dark table-striped table-hover table-bordered mb-4 align-middle">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Role</th>
+                                                                                    <th scope="col">Member Pin</th>
+                                                                                    <th scope="col">Name &amp; Surname</th>
+                                                                                    <th scope="col">Field Position</th>
+                                                                                    <th scope="col">More</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody id="teams-formation-technical-team-table-list">
+                                                                                <tr>
+                                                                                    <td class="text-center" colspan="5">
+                                                                                        <div class="d-flex align-items-center p-4">
+                                                                                            <strong class="text-muted">Awaiting team selection...</strong>
+                                                                                            <div class="spinner-border text-white ms-auto" role="status" aria-hidden="true"></div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <!-- ./ technical team list -->
+                                                                    </div>
+                                                                    <!-- preview panel -->
+                                                                    <div class="col-md-4 d-nonez">
+                                                                        <style>
+                                                                            .player-card-preview-window {
+                                                                                border-radius: 25px;
+                                                                                border: 5px solid var(--white);
+                                                                                background-color: var(--mineshaft);
+                                                                                max-height: 80vh;
+                                                                            }
+                                                                        </style>
+                                                                        <div id="select-preview-window" class="h-100 w-100 player-card-preview-window"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- ./ #formation-tables-preview -->
                                                             </div>
                                                         </div>
 
@@ -5425,7 +5481,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                                 <!-- add to fixture offcanvas -->
                                                 <div class="offcanvas offcanvas-end w-100 formation-tactics-offcanvas-tray" style="background-color: var(--mineshaft);" tabindex="-1" id="offcanvasAddToFixtureForm" aria-labelledby="offcanvasAddToFixtureFormLabel">
-                                                    <div class="offcanvas-header top-down-grad-dark p-5">
+                                                    <div class="offcanvas-header top-down-grad-dark p-5 fixed-top">
                                                         <div class="d-grid me-4">
                                                             <div class="d-flex align-items-center gap-2 mb-2">
                                                                 <span class="material-icons material-icons-round align-middle p-2" style="color:var(--mineshaft); border-radius:15px;background-color:var(--white);">
@@ -5439,6 +5495,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 </div>
                                                             </div>
                                                             <div class="d-grid gap-2">
+                                                                <!-- add to fixure form scripts -->
                                                                 <script>
                                                                     function updateSelectedTeam_Forms(inputElemID, pushValue, executingElem) {
                                                                         console.log("Changing the users selected team: " + pushValue);
@@ -5468,7 +5525,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                             document.getElementById("add-match-fixture-match-results-away-team").removeAttribute("readonly");
                                                                         }
                                                                     }
+
                                                                 </script>
+                                                                <!-- ./ add to fixure form scripts -->
                                                                 <select id="fixture-team-selection" onchange="updateSelectedTeam_Forms('add-match-fixture-group-selected', this.value, this)" class="form-select form-select-lg mb-3 team-selection-list" aria-label=".form-select-lg example">
                                                                     <option value="noselection" selected="">⚽️ Switch Teams. 🏀</option>
                                                                 </select>
@@ -5485,7 +5544,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             </span>
                                                         </button>
                                                     </div>
-                                                    <div class="offcanvas-body down-top-grad-dark light-scroller" id="add-match-fixture-body-container">
+                                                    <div id="add-match-fixture-body-container" class="offcanvas-body down-top-grad-dark light-scroller" style="padding-top: 260px;">
                                                         <div class="container p-4 top-down-grad-dark border-5 border-top border-white shadow" style="border-radius: 25px;">
                                                             <h1 class="fs-2 p-4 fw-bold text-center comfortaa-font shadow my-4 border-5 border-start border-end" style="border-radius:25px;">
                                                                 Add match to fixture.
@@ -5511,8 +5570,19 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 </div>
 
                                                                 <div class="form-group my-4">
-                                                                    <label for="add-match-fixture-match-title" class="poppins-font fs-4 mb-4" style="color: var(--white);">1. Match Title:</label>
+                                                                    <style>
+                                                                        .input-edit-btn {
+                                                                            position: absolute;
+                                                                            right: 0;
+                                                                            border-radius: 50rem;
+                                                                        }
+                                                                    </style>
+                                                                    <label for="add-match-fixture-match-title" class="poppins-font fs-4 mb-4" style="color: var(--white);">1. Match Title (Auto):</label>
                                                                     <input class="form-control-text-input p-4" type="text" name="add-match-fixture-match-title" id="add-match-fixture-match-title" placeholder="Match title" required="">
+                                                                        <button class="input-edit-btn d-nonez p-1"><span class="material-icons material-icons-round" style="font-size: 20px !important;"> edit </span></button>
+                                                                    </input>
+
+
                                                                 </div>
 
                                                                 <div class="row">
@@ -5551,12 +5621,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 </div>
 
                                                                 <div class="form-group my-4">
-                                                                    <label for="add-match-fixture-standard-match-duration" class="poppins-font fs-4 mb-4" style="color: var(--white);">7. SMD (Minutes):</label>
+                                                                    <label for="add-match-fixture-standard-match-duration" class="poppins-font fs-4 mb-4" style="color: var(--white);">7. Standard Match Duration (SMD in minutes):</label>
                                                                     <input oninput="validity.valid||(value='');" step="0" class="form-control-text-input p-4" type="number" name="add-match-fixture-standard-match-duration" id="add-match-fixture-standard-match-duration" value="90" placeholder="Standard match duration in minutes" required="">
                                                                 </div>
 
                                                                 <div class="form-group my-4">
-                                                                    <label for="add-match-fixture-observed-match-duration" class="poppins-font fs-4 mb-4" style="color: var(--white);">7. OMD (Minutes):</label>
+                                                                    <label for="add-match-fixture-observed-match-duration" class="poppins-font fs-4 mb-4" style="color: var(--white);">7. Observed Match Duration (OMD in minutes):</label>
                                                                     <input oninput="validity.valid||(value='');" step="0" class="form-control-text-input p-4" type="number" name="add-match-fixture-observed-match-duration" id="add-match-fixture-observed-match-duration" value="0" placeholder="Observed match duration in minutes" required="">
                                                                 </div>
 
@@ -6794,7 +6864,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <span class="align-middle">Widgets.</span>
                     </h1>
 
-                    <button type="button" class="onefit-buttons-style-danger p-2" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
+                    <button id="close-widgets-panel" type="button" class="onefit-buttons-style-danger p-2" data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container">
                         <span class="material-icons material-icons-round"> close </span>
                     </button>
                 </div>
@@ -6915,7 +6985,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                         <!-- Widget: Digital Clock -->
                         <!-- Digital Clock -->
-                        <div id="clock" class="dark my-4 shadow">
+                        <div id="widgets-panel-clock" class="dark my-4 shadow">
                             <div class="display no-scroller">
                                 <div class="weekdays"></div>
                                 <div class="ampm"></div>
@@ -7228,7 +7298,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- Modals ----------------------------------------------------------------------------------------- -->
     <!-- modal quick access button tray -->
     <!-- quick access tray collapse btn -->
-    <button type="button" class="onefit-buttons-style-light shadow collapsed" style="width:100px;height:100px;border-radius:25px 25px 25px 0;position:fixed;left:0;bottom:0;" data-bs-toggle="collapse" data-bs-target="#modal-btn-collapse-container" aria-controls="modal-btn-collapse-container" aria-expanded="false" aria-label="modal quick access.">
+    <button type="button" class="onefit-buttons-style-light shadow collapsed" style="width:100px;height:100px;border-radius:25px 25px 25px 0;position:fixed;left:0;bottom:0;z-index:1000;" data-bs-toggle="collapse" data-bs-target="#modal-btn-collapse-container" aria-controls="modal-btn-collapse-container" aria-expanded="false" aria-label="modal quick access.">
         <!-- position:fixed;left:0;bottom:0; -->
         <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important;">
             shortcut
@@ -8959,6 +9029,70 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <!-- A Lot of Javascript here!!! - should be in external js files -->
     <script>
+       // jquery evelnt listerner for #open-widgets-panel-btn click
+       $('#open-widgets-panel-btn').click(function () {
+            // transfer #clock html content into #widgets-panel-clock, 
+            var clockHtml = `
+            <div id="clock" class="dark my-4 shadow">
+                <div class="display no-scroller">
+                    <div class="weekdays"></div>
+                    <div class="ampm"></div>
+                    <div class="alarm"></div>
+                    <div class="digits"></div>
+                </div>
+            </div>`;
+
+            var widgetLocationIndicator = `<div class="text-center fs-5 text-muted comfortaa-font my-5 p-4 border-1 border" style="border-radius: 15px;"> <span class="material-icons material-icons-round" style="font-size: 24px !important"> widgets </span> Widgets panel. </div>`; 
+
+            $('#widgets-panel-clock').html(clockHtml);
+            // replace with "Check widgets panel"
+            $('#dashboard-tab-clock').html(widgetLocationIndicator);
+
+            // reload the digital clock script
+            //source: https://stackoverflow.com/questions/9642205/how-to-force-a-script-reload-and-re-execute
+            function reloadJs(src) {
+                src = $('script[src$="' + src + '"]').attr("src");
+                $('script[src$="' + src + '"]').remove();
+                $('<script/>').attr('src', src).appendTo('head');
+                //console log the script selector (test)
+                console.log('moving clock from Dashboard tab to Widgets panel | script[src$="' + src + '"]');
+            };
+
+            reloadJs('../scripts/js/digital-clock.js');
+        }); 
+
+        // jquery evelnt listerner for #close-widgets-panel  click
+        $('#close-widgets-panel').click(function () {
+            // transfer #clock html content from #widgets-panel-clock, back to #dashboard-tab-clock
+            var clockHtml = `
+            <div id="clock" class="dark my-4 shadow">
+                <div class="display no-scroller">
+                    <div class="weekdays"></div>
+                    <div class="ampm"></div>
+                    <div class="alarm"></div>
+                    <div class="digits"></div>
+                </div>
+            </div>`;
+
+            var widgetLocationIndicator = `<div class="text-center fs-5 text-muted comfortaa-font my-5 p-4 border-1 border" style="border-radius: 15px;"> <span class="material-icons material-icons-round" style="font-size: 24px !important"> dashboard </span> Dashboard tab. </div>`; 
+
+            $('#dashboard-tab-clock').html(clockHtml);
+            // replace with "Check widgets panel"
+            $('#widgets-panel-clock').html(widgetLocationIndicator);
+
+            // reload the digital clock script
+            //source: https://stackoverflow.com/questions/9642205/how-to-force-a-script-reload-and-re-execute
+            function reloadJs(src) {
+                src = $('script[src$="' + src + '"]').attr("src");
+                $('script[src$="' + src + '"]').remove();
+                $('<script/>').attr('src', src).appendTo('head');
+                //console log the script selector (test)
+                console.log('moving clock back to Dashboard tab | script[src$="' + src + '"]');
+            };
+
+            reloadJs('../scripts/js/digital-clock.js');
+        }); 
+
         // initialize global activity tracker chart objects
         // initialize activity tracking charts
         // Note: changes to the plugin code is not reflected to the chart, because the plugin is loaded at chart construction time and editor changes only trigger an chart.update().
@@ -9391,6 +9525,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             $.getIndiExercises('ui_data', '#add-to-calender-activity-selection');
             // $.getIndiExercises('ui_data', '.add-to-calender-activity-selection');
             $.getTeamsSelectInputList('teams');
+            $.getSportsSelectInputList('all');
             $.getUserChallenges(currentUser);
 
             // load fp widgets
@@ -11916,6 +12051,21 @@ if (isset($_SESSION["currentUserAuth"])) {
                 } else {
                     $('#formation-team-selection').html(data);
                     $('.team-selection-list').html(data);
+                }
+            });
+        }
+
+        // get sports information - select input list
+        $.getSportsSelectInputList = function(sportCategory) {
+            sportCategory = sportCategory || 'all';
+            // 
+            $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/training/teams/get_sports_list.php?sp-category=" + sportCategory, function(data, status) {
+
+                if (status != "success") {
+                    console.log("Get Req Failed -> $.getSportsSelectInputList returned: \n[Status]: " + status + "\n[Data]: " + data);
+                    alert("Get Req Failed -> $.getSportsSelectInputList returned: \n[Status]: " + status + "\n[Data]: " + data);
+                } else {
+                    $('.sport-selection-list').html(data);
                 }
             });
         }

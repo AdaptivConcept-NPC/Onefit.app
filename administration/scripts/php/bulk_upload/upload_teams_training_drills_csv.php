@@ -50,14 +50,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // target_area	
                 // benefits	
                 // instructions	
-                $exercise_drill_id = $getData[0];
-                $drill_title = $getData[1];
-                $thumbnail = $getData[2];
-                $drill_demo_vid = $getData[3];
-                $training_level = $getData[4];
-                $target_area = $getData[5];
-                $benefits = $getData[6];
-                $instructions = $getData[7];
+                $exercise_drill_id =    sanitizeMySQL($dbconn, $getData[0]);
+                $drill_title =          sanitizeMySQL($dbconn, $getData[1]);
+                $thumbnail =            sanitizeMySQL($dbconn, $getData[2]);
+                $drill_demo_vid =       sanitizeMySQL($dbconn, $getData[3]);
+                $training_level =       sanitizeMySQL($dbconn, $getData[4]);
+                $target_area =          sanitizeMySQL($dbconn, $getData[5]);
+                $benefits =             sanitizeMySQL($dbconn, $getData[6]);
+                $instructions =         sanitizeMySQL($dbconn, $getData[7]);
 
                 // mysql query to check If user an identifier exists in the database, in this case we want to query if there
                 // are records in the database that have the same inventory number

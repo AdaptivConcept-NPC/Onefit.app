@@ -54,19 +54,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // product_weight	
                 // inventory_status	
                 // product_tag	product_image
-                $product_id = $getData[0];
-                $inventory_number = $getData[1];
-                $product_name = $getData[2];
-                $product_brand = $getData[3];
-                $product_category = $getData[4];
-                $purchase_price_zar = $getData[5];
-                $selling_price_zar = $getData[6];
-                $product_description = $getData[7];
-                $product_specifications = $getData[8];
-                $product_weight = $getData[9];
-                $inventory_status = $getData[10];
-                $product_tag = $getData[11];
-                $product_image = $getData[12];
+                $product_id =               sanitizeMySQL($dbconn, $getData[0]);
+                $inventory_number =         sanitizeMySQL($dbconn, $getData[1]);
+                $product_name =             sanitizeMySQL($dbconn, $getData[2]);
+                $product_brand =            sanitizeMySQL($dbconn, $getData[3]);
+                $product_category =         sanitizeMySQL($dbconn, $getData[4]);
+                $purchase_price_zar =       sanitizeMySQL($dbconn, $getData[5]);
+                $selling_price_zar =        sanitizeMySQL($dbconn, $getData[6]);
+                $product_description =      sanitizeMySQL($dbconn, $getData[7]);
+                $product_specifications =   sanitizeMySQL($dbconn, $getData[8]);
+                $product_weight =           sanitizeMySQL($dbconn, $getData[9]);
+                $inventory_status =         sanitizeMySQL($dbconn, $getData[10]);
+                $product_tag =              sanitizeMySQL($dbconn, $getData[11]);
+                $product_image =            sanitizeMySQL($dbconn, $getData[12]);
 
                 // mysql query to check If user an identifier exists in the database, in this case we want to query if there
                 // are records in the database that have the same inventory number
