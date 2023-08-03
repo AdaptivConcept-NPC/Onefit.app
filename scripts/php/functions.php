@@ -1,4 +1,5 @@
 <?php
+
 //String Sanitization
 function sanitizeString($var)
 {

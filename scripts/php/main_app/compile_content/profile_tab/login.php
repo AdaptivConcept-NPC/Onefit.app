@@ -71,11 +71,11 @@ if ($rows == 0) {
     $submissionFlag = log_activity("user", "Signed in.", "$currentUserFName $currentUserLName ($currentUserUsername) signed into the app. <br/> <span data-barcode>[ $entry_ref ]</span>", "user_activity", "NULL", $currentUserUsername);
     if ($submissionFlag === true) {
       closeDBConnection();
-      header("Location: ../../../../../app/?userauth=true&logged=true");
+      header("Location: ../../../../../app/?userauth=true&logged=yes");
     } else {
       closeDBConnection();
       die($submissionFlag);
-      header("Location: ../../../../../app/?userauth=true&logged=false");
+      header("Location: ../../../../../app/?userauth=true&logged=no");
     }
   } else {
     closeDBConnection();

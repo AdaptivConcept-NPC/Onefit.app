@@ -3,3 +3,6 @@
 
 # ignore media folder as it is too big for upload to the server
 media/
+
+# ignore Googel OAuth folder
+scripts/php/api/OAuth/GoogleOAuth_CS

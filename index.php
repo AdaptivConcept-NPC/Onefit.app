@@ -94,6 +94,7 @@ rememberMe();
   <!-- Custom Site Scripts -->
   <script src="./scripts/js/script_jquery.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
   <script src="./scripts/js/script.js" onload="coreScriptLoaded_custom_script_js=true;"></script>
+</head>
 
 <body class="noselect">
   <!--  onload="toggleLoadCurtain()" -->
@@ -160,8 +161,10 @@ rememberMe();
       <button class="navbar-toggler shadow onefit-buttons-style-dark bg-transparent p-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <!--<span class="navbar-toggler-icon"></span>-->
         <!--<img src="./media/assets/One-Symbol-Logo-Two-Tone.svg" alt="" class="img-fluid logo-size-1" />-->
-        <span class="material-icons material-icons-round align-middle" style="font-size: 28px!important;"> public
-          <!-- menu_open --> </span>
+        <span class="material-icons material-icons-round align-middle" style="font-size: 28px!important;">
+          public
+          <!-- menu_open -->
+        </span>
       </button>
       <div class="offcanvas offcanvas-end offcanvas-menu-primary-style" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div id="offcanvas-menu" class="pb-4" style="border-radius: 0 0 25px 25px; overflow: hidden;">
@@ -180,11 +183,15 @@ rememberMe();
           <div class="offcanvas-body pb-4 top-down-grad-dark" style="max-height: 80vh;">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 comfortaa-font fs-3 h-100" style="overflow-y: auto;">
               <li class="nav-item d-grid">
-                <p class="text-white text-center" style="font-size:10px;">Get started with your fitness journey by
-                  signing up for a free community account or subscribe to our Premium offering to get access to
-                  Pro.Athlete level fitness tracking resources, guides, physical trainer and community support.</p>
+                <p class="text-white text-center" style="font-size:10px;">Get started with your fitness
+                  journey by
+                  signing up for a free community account or subscribe to our Premium offering to get
+                  access to
+                  Pro.Athlete level fitness tracking resources, guides, physical trainer and community
+                  support.</p>
                 <a class="onefit-buttons-style-light p-4 text-center text-decoration-none shadow fw-bold fs-5" href="registration/" style="border-radius: 25px !important; font-size: 20px !important;transform:scale(1)!important;color:var(--mineshaft)!important;">Register
-                  your account.<!-- <span class="material-icons material-icons-round align-middle"
+                  your account.
+                  <!-- <span class="material-icons material-icons-round align-middle"
                     style="font-size: 25px !important; color: #ffa500;">
                     login
                   </span> -->
@@ -241,39 +248,48 @@ rememberMe();
   <!-- <hr class="text-white m-0" /> -->
   <!-- Onefit.app Logo -->
 
-  <div class="text-center p-4" style="background-color: rgba(52, 52, 52, 0.8); margin: 40px 0;">
-    <span class="material-icons material-icons-round" style="font-size: 100px!important;color: #fff!important;">
-      fingerprint </span>
-
-    <h1 class="py-0 px-4 text-truncate" style="color: #fff; font-size: 40px; border-radius: 00 25px 25px !important;">Sign into your account<span style="color: #ffa500;">.</span></h1>
-  </div>
+  <div class="text-center p-4" style="background-color: rgba(52, 52, 52, 0.8); margin: 40px 0;"></div>
 
   <!-- User Sign in Section -->
   <div class="container-fluid m-0 down-top-grad-tahiti">
-    <div class="container text-center text-white mt-4" style="min-height: 100vh; padding-bottom: 40px;">
-      <div class="row align-items-center p-4" style="border-radius: 25px; background-color: rgba(52, 52, 52, 0.8)">
-        <div class="col-sm py-4">
-          <form class="text-center text-white comfortaa-font align-middle" method="post" action="./scripts/php/main_app/compile_content/profile_tab/login.php" autocomplete="off">
+    <div class="container text-center text-white mt-4 border-5z border-topz" style="min-height: 100vh; padding-bottom: 40px; border-radius:25px;">
+      <div class="row align-items-center p-0 darkpads-bg-container" style="border-radius: 25px; background-color: rgba(52, 52, 52, 0.8);border-radius:25px;">
+        <div class="col-xlg d-flex justify-content-center py-5 top-down-grad-dark" style="border-radius:25px!important;;">
+
+
+          <form class="text-center text-white comfortaa-font align-middle" method="post" action="./scripts/php/main_app/compile_content/profile_tab/login.php" autocomplete="off" style="max-width:50vw;">
+
+            <div id="sign-in-heading">
+
+              <span class="material-icons material-icons-round" style="font-size: 100px!important;color: #fff!important;">
+                fingerprint </span>
+
+              <h1 class="py-0 px-4 text-truncate" style="color: #fff; font-size: 40px; border-radius: 00 25px 25px !important;">Login<span style="color: #ffa500;">.</span></h1>
+              <!-- Sign into
+                                your account -->
+            </div>
+            <hr>
             <!--target="_blank"-->
             <div class="mb-4 p-4 text-white" id="error-output"></div>
             <div class="mb-3">
               <label for="onefitUserEmail" class="form-label fs-4">Email address</label>
-              <input type="email" class="form-controlz form-control-text-input shadow p-2" id="onefitUserEmail" name="onefitUserEmail" aria-describedby="emailHelp" />
+              <input type="email" class="form-controlz form-control-text-input shadow p-2" id="onefitUserEmail" name="onefitUserEmail" aria-describedby="emailHelp">
             </div>
             <div class="mb-4">
               <label for="onefitUserPassword" class="form-label fs-4">Password</label>
-              <input type="password" class="form-controlz form-control-text-input shadow text-center p-2" id="onefitUserPassword" name="onefitUserPassword" />
+              <input type="password" class="form-controlz form-control-text-input shadow text-center p-2" id="onefitUserPassword" name="onefitUserPassword">
               <div class="text-center mt-3">
                 <a href="" class="comfortaa-font fw-bold tahiti-links" style="font-size: 10px;">Forgot
                   Password?</a>
               </div>
             </div>
             <div class="my-4 form-check d-flex gap-2 text-center justify-content-center">
-              <input type="checkbox" class="form-check-input me-1" id="keep-me-signed-in" />
-              <label class="form-check-label text-center pt-2" for="keep-me-signed-in">Keep me signed in?</label>
+              <input type="checkbox" class="form-check-input me-1" id="keep-me-signed-in">
+              <label class="form-check-label text-center pt-2" for="keep-me-signed-in">Keep me signed
+                in?</label>
             </div>
             <div class="mt-4 d-grid gap-2">
-              <button type="submit" class="btn onefit-buttons-style-light shadow align-items-center p-4" onclick="toggleLoadCurtain()">
+              <button type="submit" class="tnz onefit-buttons-style-light shadow align-items-center p-4" onclick="toggleLoadCurtain()">
                 <span class="align-middle" style="font-size: 20px !important;">
                   <span class="align-middle">Sign in.</span>
 
@@ -286,30 +302,30 @@ rememberMe();
           </form>
         </div>
 
-        <div class="col-sm p-4 darkpads-bg-container shadow border-5 border-start border-end" style="border-radius: 25px; color: #fff">
-          <div class="d-grid gap-2">
-            <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Google API is not available at the moment. Please use your email to login.', 'alert_google', 'short_5000')">
-              <i class="fab fa-google"></i>
+        <div class="col-sm p-4 darkpads-bg-containerz shadow border-5z border-startz border-endz d-flex justify-content-center down-top-grad-dark" style="border-radius:25px;">
+          <div class="d-grid gap-2 justify-content-center" style="min-width: 50vw!important;">
+            <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="googleOAuth2()">
+              <i class="fab fa-google" aria-hidden="true"></i>
               Sign in with
               <strong class="fs-5 poppins-font">
                 <span style="color: #4285F4;">G</span><span style="color: #DB4437;">o</span><span style="color: #F4B400;">o</span><span style="color: #4285F4;">g</span><span style="color: #0F9D58;">l</span><span style="color: #DB4437;">e</span>
               </strong>
             </button>
-            <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Twitter API is not available at the moment. Please use your email to login.','alert_twitter', 'short_5000')">
+            <!-- <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Twitter API is not available at the moment. Please use your email to login.','alert_twitter', 'short_5000')">
               <i class="fab fa-twitter"></i>
               Sign in with
               <strong class="fs-5 poppins-font">
                 <span style="color: #1DA1F2;">Twitter</span>
               </strong>
-            </button>
-            <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Facebook API is not available at the moment. Please use your email to login.','alert_facebook', 'short_5000')">
+            </button> -->
+            <!-- <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Facebook API is not available at the moment. Please use your email to login.','alert_facebook', 'short_5000')">
               <i class="fab fa-facebook"></i> Sign in with
               <strong class="fs-5 poppins-font">
                 <span style="color: #4267B2;">Facebook</span>
               </strong>
-            </button>
+            </button> -->
 
-            <hr class="text-white" />
+            <hr class="text-white">
 
             <a href="registration/" class="onefit-buttons-style-dark fw-bold p-4 comfortaa-font align-end" style="text-decoration: none;">Or
               Create an Account.
@@ -327,7 +343,7 @@ rememberMe();
         <p style="font-size: 10px">Latest Training Programs | <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span></p>
 
         <div class="video-card-container border-white border border-5 bg-white">
-          <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="" class="img-fluid shadow" />
+          <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="" class="img-fluid shadow" style="filter: invert(0);">
           <button class="onefit-buttons-style-light shadow play-btn p-3" onclick="playVideo()">
             <span class="material-icons material-icons-round" style="font-size: 40px !important;">
               play_circle_outline
@@ -349,14 +365,21 @@ rememberMe();
           <div class="my-2 pt-4 site-description text-center">
             <h1>Welcome to the One<span style="color: #ffa500 !important">fit</span><span style="font-size: 10px">™</span> Community.</h1>
             <p class="mt-2 p-4 comfortaa-font">
-              One<span style="color: #ffa500 !important">fit</span><span style="font-size: 10px">™</span> is a
-              community based fitness, wellness and lifestyle platform. We aim to assist people from all backgrounds
-              find a better state of being by accessing inspirational and instructional resources, connecting trainers
-              with trainees and developing fitness groups in all spheres of physical activity and athletisism. We will
-              help you reach your fitness goals, find friends, obtain knowledge about uplifting yourself. Register an
-              account today to get a personalized training and eating plans from professional trainers and dieticians
+              One<span style="color: #ffa500 !important">fit</span><span style="font-size: 10px">™</span>
+              is a
+              community based fitness, wellness and lifestyle platform. We aim to assist people from all
+              backgrounds
+              find a better state of being by accessing inspirational and instructional resources,
+              connecting trainers
+              with trainees and developing fitness groups in all spheres of physical activity and
+              athletisism. We will
+              help you reach your fitness goals, find friends, obtain knowledge about uplifting yourself.
+              Register an
+              account today to get a personalized training and eating plans from professional trainers and
+              dieticians
               as
-              well as resources from health professionals. Proudly brought to you by AdaptivConcept (Media), LMM
+              well as resources from health professionals. Proudly brought to you by AdaptivConcept
+              (Media), LMM
               1-ON-1
               Trainer and One-On-One Fitness Network. © 2021
             </p>
@@ -401,7 +424,8 @@ rememberMe();
           <h5 class="mt-4 text-center"><i class="fab fa-twitter" aria-hidden="true"></i> Twitter Feed</h5>
 
           <div class="pb-4 no-scroller d-grid" style="border-radius: 25px !important; overflow-y: scroll; max-height: 90vh">
-            <div class="twitter-timeline twitter-timeline-rendered" style="display: flex; max-width: 100%; margin-top: 0px; margin-bottom: 0px;"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" style="position: static; visibility: visible; width: 334px; height: 7972px; display: block; flex-grow: 1;" title="Twitter Timeline" src="https://syndication.twitter.com/srv/timeline-profile/screen-name/OnefitNet?dnt=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=false&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;origin=http%3A%2F%2Flocalhost%3A8081%2FOnefit%2F%3Freturn%3Dsess_end&amp;sessionId=36bccd59108ca51751c04b11196860d0fbafdfd5&amp;showHeader=true&amp;showReplies=false&amp;transparent=false&amp;widgetsVersion=aaf4084522e3a%3A1674595607486"></iframe></div>
+            <div class="twitter-timeline twitter-timeline-rendered" style="display: flex; max-width: 100%; margin-top: 0px; margin-bottom: 0px;"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" style="position: static; visibility: visible; width: 334px; height: 7972px; display: block; flex-grow: 1;" title="Twitter Timeline" src="https://syndication.twitter.com/srv/timeline-profile/screen-name/OnefitNet?dnt=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=false&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;origin=http%3A%2F%2Flocalhost%3A8081%2FOnefit%2F%3Freturn%3Dsess_end&amp;sessionId=36bccd59108ca51751c04b11196860d0fbafdfd5&amp;showHeader=true&amp;showReplies=false&amp;transparent=false&amp;widgetsVersion=aaf4084522e3a%3A1674595607486"></iframe>
+            </div>
             <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             <div class="d-flex justify-content-center">
               <div class="spinner-border grow text-light my-4" style="width: 3rem; height: 3rem;" role="status">
@@ -746,7 +770,8 @@ rememberMe();
       <button class="navbar-toggler shadow onefit-buttons-style-dark p-3 ms-4z" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <!--<span class="navbar-toggler-icon"></span>-->
         <div class="d-grid gap-2">
-          <span class="material-icons material-icons-round" style="font-size: 40px !important"> widgets </span>
+          <span class="material-icons material-icons-round" style="font-size: 40px !important"> widgets
+          </span>
           <span style="font-size: 10px!important;">More stuff...</span>
           <!-- <span class="material-icons material-icons-round" style="font-size: 20px !important"> more_horiz </span> -->
         </div>
@@ -785,6 +810,20 @@ rememberMe();
       //   }
       // }
 
+      function googleOAuth2() {
+        var snackbarMsg = "";
+        // notify user that the api is being prepared
+        snackbarMsg = "Loading Google sign in...";
+        showSnackbar(snackbarMsg, 'alert_google', 'short_5000');
+
+        // call GoogleOAuth2 API after 3 seconds
+        setTimeout(function() {
+          // ajax request to local api - cant use ajax, must href to the api url
+          window.location.href = "./scripts/php/api/OAuth/GoogleOAuth2.php";
+        }, 300);
+
+      }
+
       function checkLoginReturnParams() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -797,7 +836,8 @@ rememberMe();
         if (returnStr == "mismatch") {
           // set the usrn value in the username/email address field
           usernameFld.value = usrnStr;
-          errorMsgOutput.innerText = "The email address or password you entered is incorrect. Please try again.";
+          errorMsgOutput.innerText =
+            "The email address or password you entered is incorrect. Please try again.";
           errorMsgOutput.style.display = "block";
         }
       }
