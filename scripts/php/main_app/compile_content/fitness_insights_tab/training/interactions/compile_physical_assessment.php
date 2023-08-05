@@ -20,7 +20,7 @@ if (isset($_GET['uid'])) {
     <div class="row align-items-start">
         <div class="col-md no-sroller" style="overflow-x:auto;">
             <h5>(Front)</h5>
-            <img src="../media/assets/body_charts/muscle-men-body-map-front.jpg" alt="male body map - front" class="img-fluidz map image-map-male-front" style="border-radius: 25px;" usemap="#image-map-male-front-indi">
+            <img onclick="createMarker()" src="../media/assets/body_charts/muscle-men-body-map-front.jpg" alt="male body map - front" class="img-fluidz map image-map-male-front" style="border-radius: 25px;cursor: pointer;" usemap="#image-map-male-front-indi">
             <map name="image-map-male-front-indi">
                 <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Head')" target="" alt="Male-Front-Head " title="Male-Front-Head " coords="249,98,221,109,218,145,210,143,212,156,220,166,221,177,232,190,241,230,246,232,250,237,255,232,258,225,265,192,276,178,279,165,286,156,286,143,280,138,280,122,270,105" shape="poly">
                 <area data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"00ff00","fillOpacity":0.6}' onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Left')" target="" alt="Male-Front-Pectoralis-Major-Left" title="Male-Front-Pectoralis-Major-Left" coords="253,305,254,256,265,235,289,236,302,241,317,244,325,257,328,270,319,269,315,282,309,300,295,311,272,314" shape="poly">
@@ -73,7 +73,7 @@ if (isset($_GET['uid'])) {
         </div>
         <div class="col-md no-sroller" style="overflow-x:auto;">
             <h5>(Back)</h5>
-            <img src="../media/assets/body_charts/muscle-men-body-map-back.jpg" alt="male body map - back" style="border-radius: 25px;" class="img-fluidz" usemap="#image-map-male-back-indi">
+            <img onclick="createMarker()" src="../media/assets/body_charts/muscle-men-body-map-back.jpg" alt="male body map - back" style="border-radius: 25px;cursor: pointer;" class="img-fluidz" usemap="#image-map-male-back-indi">
         </div>
         <div class="col-md-4">
             <h5>Muscles</h5>

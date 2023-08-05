@@ -92,7 +92,7 @@ rememberMe();
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script> -->
   <!-- ./ JQuery CDN -->
   <!-- Custom Site Scripts -->
-  <script src="./scripts/js/script_jquery.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
+  <!-- <script src="./scripts/js/script_jquery.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script> -->
   <script src="./scripts/js/script.js" onload="coreScriptLoaded_custom_script_js=true;"></script>
 </head>
 
@@ -789,6 +789,20 @@ rememberMe();
   <!-- ./ Footer -->
 
   <script>
+    function googleOAuth2() {
+      var snackbarMsg = "";
+      // notify user that the api is being prepared
+      snackbarMsg = "Loading Google sign in...";
+      showSnackbar(snackbarMsg, 'alert_google', 'short_5000');
+
+      // call GoogleOAuth2 API after 3 seconds
+      setTimeout(function() {
+        // ajax request to local api - cant use ajax, must href to the api url
+        window.location.href = "./scripts/php/api/OAuth/GoogleOAuth2.php";
+      }, 300);
+
+    }
+
     $(document).ready(function() {
       // jq function for checking if the core scripts were loaded, if not then the func will display the offline curtain
       // $.checkCoreScriptLoadState();
@@ -809,20 +823,6 @@ rememberMe();
       //     curtain.style.display = "none";
       //   }
       // }
-
-      function googleOAuth2() {
-        var snackbarMsg = "";
-        // notify user that the api is being prepared
-        snackbarMsg = "Loading Google sign in...";
-        showSnackbar(snackbarMsg, 'alert_google', 'short_5000');
-
-        // call GoogleOAuth2 API after 3 seconds
-        setTimeout(function() {
-          // ajax request to local api - cant use ajax, must href to the api url
-          window.location.href = "./scripts/php/api/OAuth/GoogleOAuth2.php";
-        }, 300);
-
-      }
 
       function checkLoginReturnParams() {
         const queryString = window.location.search;

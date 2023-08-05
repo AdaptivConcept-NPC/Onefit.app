@@ -147,7 +147,8 @@ if (isset($_SESSION["currentUserAuth"])) {
         coreScriptLoaded_custom_script_js = coreScriptLoaded_custom_api_req_js = coreScriptLoaded_jquery_local_js =
         coreScriptLoaded_custom_jquery_func_js = coreScriptLoaded_moment_js = coreScriptLoaded_googlefonts_fonts =
         coreScriptLoaded_googlefonts_css = coreScriptLoaded_soccerfield_css = coreScriptLoaded_soccerfield_css =
-        coreScriptLoaded_soccerfield_js = coreScriptLoaded_chartjs_js = false;
+        coreScriptLoaded_soccerfield_js = coreScriptLoaded_chartjs_js = coreScriptLoaded_markers_css =
+        coreScriptLoaded_markers_js = false;
     </script>
 
     <!--fontawesome-->
@@ -248,6 +249,11 @@ if (isset($_SESSION["currentUserAuth"])) {
         onload="coreScriptLoaded_soccerfield_css=true;" />
     <script src="../scripts/js/soccer-field-players-positions/jquery.soccerfield.min.js"
         onload="coreScriptLoaded_soccerfield_js=true;"></script>
+
+    <!-- marker css and js -->
+    <link rel="stylesheet" href="../css/markers.css" onload="coreScriptLoaded_markers_css=true;">
+    <script src="../scripts/js/floating-layer-at-cursor-position.js" onload="coreScriptLoaded_markers_js=true;">
+    </script>
 
 </head>
 
@@ -13783,7 +13789,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             case 'googleSurveys':
                 setCurrentAppSubTabID(
                     'v-sub-tab-pills-insights-googlesurveys'
-                    ); // button: nav-trainingProgramCategories-googleSurveys-tab
+                ); // button: nav-trainingProgramCategories-googleSurveys-tab
                 openLink(null, "InsightsTabGCS");
                 break;
             case 'InsightsTabIAT':
@@ -13792,7 +13798,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             case 'teamAthletics':
                 setCurrentAppSubTabID(
                     'v-sub-tab-pills-insights-teamathletics'
-                    ); // button: nav-trainingProgramCategories-teamAthletics-tab
+                ); // button: nav-trainingProgramCategories-teamAthletics-tab
                 openLink(null, "InsightsTabCTA");
                 break;
             case 'wellness':
@@ -13809,7 +13815,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             default:
                 setCurrentAppSubTabID(
                     'v-sub-tab-pills-insights-challenges'
-                    ); // button: nav-trainingProgramCategories-challenges-tab challenges tab is the default
+                ); // button: nav-trainingProgramCategories-challenges-tab challenges tab is the default
                 openLink(null, "InsightsTabChallenges");
                 break;
         }
@@ -14447,7 +14453,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         var days = [];
         for (var i = 1; i <=
             7; i++
-            ) { //start the iteration from 1 (monday) not 0 (sunday), add <= to make sure it iterates a total of 7 times
+        ) { //start the iteration from 1 (monday) not 0 (sunday), add <= to make sure it iterates a total of 7 times
             days.push(weekStart.clone().add(i, 'day').format('YYYY-MM-DD'));
         }
         return days;
@@ -14460,7 +14466,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         var days = [];
         for (var i = 1; i <=
             7; i++
-            ) { //start the iteration from 1 (monday) not 0 (sunday), add <= to make sure it iterates a total of 7 times
+        ) { //start the iteration from 1 (monday) not 0 (sunday), add <= to make sure it iterates a total of 7 times
             days.push(weekStart.clone().add(i, 'day').format('YYYY-MM-DD'));
         }
         return days;
@@ -16906,7 +16912,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     $.removeWeeklyTrainingActivity = function(day, groupRefCode, exerciseID) {
         alert(
             `Flag: $.removeWeeklyTrainingActivity \n day: ${day} | grcode: ${groupRefCode} | exerciseID: ${exerciseID}`
-            );
+        );
     }
     // <!-- ./ script for loading edit forms for weekly teams activities -->
 
@@ -17166,7 +17172,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         console.log("$(#add-selection-to-activities-textinput-btn) -> post fail error");
                         alert(
                             "Failure. \n$(#add-selection-to-activities-textinput-btn) -> post fail error"
-                            );
+                        );
                     });
             } catch (error) {
                 console.log("$(#add-selection-to-activities-textinput-btn) -> Exception error: \n" + error);

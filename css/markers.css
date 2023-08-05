@@ -1,0 +1,16 @@
+.indication-marker {
+	/* display: none; */
+	position: absolute;
+	border-style: solid;
+	background-color: red;
+
+	padding: 5px;
+	z-index: 10000;
+}
+.indication-marker::before {
+	content: "";
+	background-color: red;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+}

@@ -6,3 +6,5 @@ media/
 
 # ignore Googel OAuth folder
 scripts/php/api/OAuth/GoogleOAuth_CS
+
+# ignore google api services folder
