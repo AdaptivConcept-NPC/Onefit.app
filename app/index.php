@@ -6358,6 +6358,26 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <hr class="text-white" style="height: 5px;">
 
+                    <!-- moved training section to its own main-tab -->
+
+                    <!-- removed stream section here -->
+
+                    <!-- ads strip -->
+                    <div class="text-center d-grid justify-content-center align-items-center"
+                        style="max-height: 80vh; overflow-y: auto; min-height: 200px">
+                        <h5>Ads<span style="color: #ffa500;">.</span></h5>
+                        <div class="d-flex justify-content-center">
+                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./ ads strip -->
+
+                </div>
+                <div id="TabTraining" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
+                    style="display: none">
+
                     <!-- Training -->
                     <div id="training-header"
                         class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
@@ -8604,20 +8624,6 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
                     <!-- ./ Features: Tab structured -->
 
-                    <!-- removed stream section here -->
-
-                    <!-- ads strip -->
-                    <div class="text-center d-grid justify-content-center align-items-center"
-                        style="max-height: 80vh; overflow-y: auto; min-height: 200px">
-                        <h5>Ads<span style="color: #ffa500;">.</span></h5>
-                        <div class="d-flex justify-content-center">
-                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ./ ads strip -->
-
                 </div>
                 <div id="TabAchievements" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
@@ -10040,6 +10046,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round"> insights </span>
                                     <span style="color: #fff !important;">Fitness Insights</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="grid-tile modal-grid-tile-transform">
+                            <button class="onefit-buttons-style-dark-modal p-4" id="app-training-btn"
+                                data-bs-dismiss="modal" onclick="openLink(event, 'TabTraining')">
+                                <div class="d-grid gap-2">
+                                    <span class="material-icons material-icons-round"> sports </span>
+                                    <span style="color: #fff !important;">Training</span>
                                 </div>
                             </button>
                         </div>
@@ -13668,6 +13683,12 @@ if (isset($_SESSION["currentUserAuth"])) {
         } else if (tabName == "TabData") {
             tabBtnTxt.innerHTML = "Insights";
             tabBtnIco.innerHTML = " insights ";
+            tabContainer = document.getElementsByClassName("content-tab");
+            // tabContainer = document.getElementsById(tabName);
+            dispayTabContainer(tabContainer);
+        } else if (tabName == "TabTraining") {
+            tabBtnTxt.innerHTML = "Training";
+            tabBtnIco.innerHTML = " sports ";
             tabContainer = document.getElementsByClassName("content-tab");
             // tabContainer = document.getElementsById(tabName);
             dispayTabContainer(tabContainer);
