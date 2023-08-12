@@ -952,9 +952,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     style="max-width:87px;" data-bs-toggle="modal" data-bs-target="#tabNavModal">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important;"
-                            id="apps-tray-open-btn-icon"> play_circle_outline </span>
+                            id="apps-tray-open-btn-icon"> dashboard </span>
                         <span class="d-none d-lg-block text-truncate" id="apps-tray-open-btn-text"
-                            style="font-size: 10px;">.Studio</span>
+                            style="font-size: 10px;"> Dashboard.</span>
                     </div>
                 </button>
 
@@ -963,7 +963,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <button id="main-app-refresh-btn" style="border-color:var(--tahitigold)!important"
                         class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz border-start border-end border-2"
                         style="overflow: hidden; font-size: 10px;" type="button"
-                        onclick="initializeContent('1','KING_001')">
+                        onclick="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
                         <!--  data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal" -->
                         <div class="d-grid gap-2 text-center">
                             <!-- Profile Picture -->
@@ -1083,54 +1083,70 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
                         <!-- <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;"> -->
                         <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2"
-                            data-bs-dismiss="offcanvas" aria-label="Close">
+                            data-bs-dismiss="offcanvas" aria-label="Close"
+                            onclick="$.toggleNotificationIndicator(false, 'pending', false)">
                             <span class="material-icons material-icons-round align-middle"
                                 style="font-size:20px!important;"> close </span>
                         </button>
-                        <h5 class="offcanvas-title text-center" id="offcanvasNavbarLabel">
+                        <h5 class="offcanvas-title text-center text-truncate" id="offcanvasNavbarLabel">
                             <span class="material-icons material-icons-round align-middle"
                                 style="color: #ffa500; cursor: pointer;font-size:20px!important;">
                                 notifications
                             </span>
-                            Notifications.
+                            Alerts &amp; Notifications.
                         </h5>
-                        <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2"
-                            style="max-width:100px;">
+                        <img src="../media/assets/One-Logo.svg" alt="onefitnet logo"
+                            class="img-fluid logo-size-2 d-none" style="max-width:100px;">
                     </div>
                     <div class="offcanvas-body top-down-grad-dark">
                         <!-- style="background-color: rgba(255, 255, 255, 0.8);" -->
-                        <ul class="list-group list-group-flush shadow p-4z" id="notif-list"
-                            style="border-radius: 25px; max-height: 60vh;" hidden="">
-                            <li class="list-group-item border-dark">An item</li>
-                            <li class="list-group-item border-dark">A second item</li>
-                            <li class="list-group-item border-dark">A third item</li>
-                            <li class="list-group-item border-dark">A fourth item</li>
-                            <li class="list-group-item border-dark">And a fifth one</li>
-                        </ul>
+
+                        <h5 class="fs-5 text-white poppins-font">Notifications.</h5>
                         <div id="communicationUserNotifications">
-                            <div class="my-4 text-dark top-down-grad-tahiti p-4" style="border-radius: 25px;"><a
-                                    href="#" class="list-group-item list-group-item-action text-dark"
-                                    aria-current="true" id="notifcation-1" style="border-radius: 25px !important;">
+                            <?php echo $outputProfileUserNotifications; ?>
+                            <!-- <div class="my-4 text-dark top-down-grad-tahiti p-4" style="border-radius: 25px;">
+                                <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true"
+                                    id="notifcation-1" style="border-radius: 25px !important;">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1 fw-bold text-truncate"> Community Test Notification 1 </h5>
                                         <small class="text-end" style="font-size:10px;"> 2022-11-23 08:02:13<br>About 6
-                                            months ago</small>
+                                            months ago
+                                        </small>
                                     </div>
                                     <p class="mb-1 text-truncate" style="min-height:30px;max-height:100px;"> This is a
-                                        test notification. </p>
-                                </a></div>
+                                        test notification.
+                                    </p>
+                                </a>
+                            </div> -->
                         </div>
-                        <div class="my-4 text-dark top-down-grad-tahiti p-4" style="border-radius: 25px;"><a href="#"
-                                class="list-group-item list-group-item-action text-dark" aria-current="true"
-                                id="notifcation-1" style="border-radius: 25px !important;">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1 fw-bold text-truncate"> Community Test Notification 1 </h5>
-                                    <small class="text-end" style="font-size:10px;"> 2022-11-23 08:02:13<br>About 6
-                                        months ago</small>
+
+                        <hr class="text-white">
+
+                        <h5 class="fs-5 text-white poppins-font visually-hidden">Alerts. <span
+                                class="alert-count">0</span></h5>
+                        <ol class="list-group list-group-flush shadow light-scroller" id="alert-list"
+                            style="border-radius: 25px; max-height: 60vh;overflow-y:auto;">
+                            <li id="alert-settings-header" s
+                                class="list-group-item border-dark bg-darkz top-down-grad-dark sticky-top text-white py-4">
+                                <div class="d-flex gap-0 justify-content-between align-items-center w-100">
+                                    <div>
+                                        <span class="alert-count">0</span>
+                                        <span> alerts.</span>
+                                    </div>
+
+
+                                    <div class="d-flex gap-0 justify-content-end align-items-center">
+                                        <span style="font-size: 16px;">settings.</span>
+                                        <span class="material-icons material-icons-round p-2"
+                                            style="font-size:20px !important;">
+                                            tune
+                                        </span>
+                                    </div>
                                 </div>
-                                <p class="mb-1 text-truncate" style="min-height:30px;max-height:100px;"> This is a test
-                                    notification. </p>
-                            </a></div>
+                            </li>
+                            <li class="list-group-item border-dark noalert">No alerts.</li>
+                        </ol>
+
                     </div>
                 </div>
                 <!-- ./Notifocation List Offcanvas -->
@@ -2038,7 +2054,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         style="font-size: 40px !important;color: #ffa500;">
                                                                         post_add
                                                                     </span>
-                                                                    <span class="align-middle">Send.</span>
+                                                                    <span class="align-middle">Post.</span>
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -4531,7 +4547,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
 
                     <!-- Activity Calender -->
-                    <div id="activities-calender"></div>
+                    <div id="activities-calender-container">
+                        <div id="activities-calender"></div>
+                    </div>
                     <!-- ./ Activity Calender -->
 
                     <!-- Vertical Activity Timeline of user -->
@@ -6361,6 +6379,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- moved training section to its own main-tab -->
 
                     <!-- removed stream section here -->
+                    <!-- Training tab button -->
+                    <button id="goto-training-tab-btn"
+                        class="onefit-buttons-style-dark p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                        style="border-radius: 25px; border-color: #ffa500 !important;">
+                        <span class="material-icons material-icons-outlined">sports</span>
+                        <h5 class="mt-4 fs-1 text-center align-middle">Start Training.</h5>
+                        <!-- <span class="material-icons material-icons-round"
+                            style="color: #ffa500 !important">keyboard_arrow_down</span> -->
+                    </button>
 
                     <!-- ads strip -->
                     <div class="text-center d-grid justify-content-center align-items-center"
@@ -6388,9 +6415,17 @@ if (isset($_SESSION["currentUserAuth"])) {
                             style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
 
+                    <!-- training tab calender container -->
+                    <div id="training-tab-calender-container">
+                        <div class="text-center fs-5 text-muted comfortaa-font my-5 p-4 border-1 border"
+                            style="border-radius: 15px;"> <span class="material-icons material-icons-round"
+                                style="font-size: 24px !important"> insights </span> Insights tab. </div>
+                    </div>
+
                     <!-- Features: Tab structured -->
                     <div id="insignts-training-section-container" class="row mt-4 py-4 content-panel-border-style"
                         style="background-color: #333; border-radius: 25px;">
+
                         <!-- insight catgories tab panels -->
                         <div class="col -md-9 my-4">
                             <div class="mini-fpwidget">
@@ -6872,7 +6907,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         style="z-index:999;">
                                         <!-- collapse team selection filters btn -->
                                         <div class="w3-animate-left my-pulse-animation-dark w3-animate-left"
-                                            style="position:absolute;bottom:0;left:10px;z-index:1021;margin-bottom:-60px; border-radius:25px;">
+                                            style="position:absolute;bottom:0;right:10px;z-index:1021;margin-bottom:-60px; border-radius:25px;">
                                             <button class="rounde-pill onefit-buttons-style-light p-2 shadow"
                                                 data-bs-toggle="collapse" data-bs-target="#team-select-filters"
                                                 aria-controls="team-select-filters" aria-expanded="false"
@@ -6884,8 +6919,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         </div>
                                         <!-- ./ collapse team selection filters btn -->
 
-                                        <!-- #team-select-filters -->
-                                        <div id="team-select-filters" class="collapse show w3-animate-left">
+                                        <!-- #team-select-filters - starts hidden -->
+                                        <div id="team-select-filters" class="collapse w3-animate-left">
                                             <p class="m-0 text-center" style="font-size:10px!important;">
                                                 <span class="material-icons material-icons-outlined align-middle"
                                                     style="font-size: 8xp !important;">
@@ -6900,7 +6935,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 <div class="d-grid">
                                                     <h5 class="fs-5 text-center">⚽️ Sports.</h5>
                                                     <select id="trainingSubTabMainSportSelection"
-                                                        onchange="$.trainingSubTabMainTeamSelection(this.value)"
+                                                        onchange="$.trainingSubTabMainSportsSelection(this.value)"
                                                         class="form-select form-select-lg mb-3 sport-selection-list"
                                                         style="max-width:260px;" aria-label=".form-select-lg example">
                                                         <option value="noselection" selected="">⚽️ Select Sport. 🏀
@@ -9381,6 +9416,24 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         Message
                                     </span>
                                 </button>
+                                <!-- visual divide -->
+                                <div>
+                                    <span class="material-icons material-icons-round align-middle"
+                                        style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
+                                        horizontal_rule
+                                    </span>
+                                </div>
+                                <!-- ./ visual divide -->
+                                <!-- settings -->
+                                <button type="button"
+                                    class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
+                                    <span class="material-icons material-icons-round align-middle"
+                                        style="font-size: 20px !important"> 3p </span>
+                                    <span class="align-middle d-none d-lg-block" style="font-size: 10px;">
+                                        <!-- <span style="color: #ffa500 !important;">+</span> -->
+                                        settings_accessibility
+                                    </span>
+                                </button>
                             </div>
                             <!-- ./ main buttons for interacting with user post -->
                         </div>
@@ -10185,7 +10238,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <span class="material-icons material-icons-round align-middle"
                                             style="font-size: 40px !important;color: #ffa500;"> post_add
                                         </span>
-                                        <span class="align-middle">Send.</span>
+                                        <span class="align-middle">Post.</span>
                                     </button>
                                 </div>
                             </div>
@@ -11258,13 +11311,23 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <div class="accordion accordion-flush" id="accordionFlushCalenderActivityViewer">
                         <div class="accordion-item p-2 my-2 border-0 shadow">
                             <h2 class="accordion-header m-0" id="cav-flush-header-activity_lineup">
-                                <button class="accordion-button fs-5 fw-bold text-truncate gap-2" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-activity_lineup"
-                                    aria-expanded="true" aria-controls="cav-flush-panel-activity_lineup">
-                                    <span class="material-icons material-icons-round align-middle">timeline</span>
-                                    <span class="align-middle">Activity Lineup
-                                        <!-- (<span class="calender-date-selected-label">Date</span>) -->
-                                    </span>
+                                <button
+                                    class="accordion-button fs-5 fw-bold text-truncate gap-2 d-grid align-items-center collapsed"
+                                    type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#cav-flush-panel-activity_lineup" aria-expanded="false"
+                                    aria-controls="cav-flush-panel-activity_lineup">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex gap-2 justify-content-start align-items-center">
+                                            <span
+                                                class="material-icons material-icons-round align-middle">timeline</span>
+                                            <span class="align-middle">Activity Lineup</span>
+                                        </div>
+
+                                        <div class="pin-item-icon shadow p-2" style="border-radius:15px;">
+                                            <span class="material-icons material-icons-round align-middle"
+                                                style="font-size:30px !important;">push_pin</span>
+                                        </div>
+                                    </div>
                                 </button>
                             </h2>
                             <div id="cav-flush-panel-activity_lineup"
@@ -11291,14 +11354,22 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <div class="accordion-item p-2 my-2 border-0 shadow">
                             <h2 class="accordion-header m-0" id="cav-flush-header-diary_notes">
-                                <button class="accordion-button fs-5 fw-bold text-truncate gap-2 collapsed"
+                                <button
+                                    class="accordion-button fs-5 fw-bold text-truncate gap-2 d-grid align-items-center collapsed"
                                     type="button" data-bs-toggle="collapse"
                                     data-bs-target="#cav-flush-panel-diary_notes" aria-expanded="false"
                                     aria-controls="cav-flush-panel-diary_notes">
-                                    <span class="material-icons material-icons-round align-middle">book</span>
-                                    <span class="align-middle">Diary &amp; Trainer Notes
-                                        <!-- (<span class="calender-date-selected-label">Date</span>) -->
-                                    </span>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex gap-2 justify-content-start align-items-center">
+                                            <span class="material-icons material-icons-round align-middle">book</span>
+                                            <span class="align-middle">Diary &amp; Trainer Notes</span>
+                                        </div>
+
+                                        <div class="pin-item-icon shadow p-2" style="border-radius:15px;">
+                                            <span class="material-icons material-icons-round align-middle"
+                                                style="font-size:30px !important;">push_pin</span>
+                                        </div>
+                                    </div>
                                 </button>
                             </h2>
                             <div id="cav-flush-panel-diary_notes" class="accordion-collapse w3-animate-bottom collapse"
@@ -11384,14 +11455,23 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <div class="accordion-item p-2 my-2 border-0 shadow">
                             <h2 class="accordion-header m-0" id="cav-flush-header-new_activities">
-                                <button class="accordion-button fs-5 fw-bold text-truncate gap-2 collapsed"
+                                <button
+                                    class="accordion-button fs-5 fw-bold text-truncate gap-2 d-grid align-items-center collapsed"
                                     type="button" data-bs-toggle="collapse"
                                     data-bs-target="#cav-flush-panel-new_activities" aria-expanded="false"
                                     aria-controls="cav-flush-panel-new_activities">
-                                    <span class="material-icons material-icons-round align-middle">add_task</span>
-                                    <span class="align-middle">(Admin) New Activities
-                                        <!-- (<span class="calender-date-selected-label">Date</span>) -->
-                                    </span>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex gap-2 justify-content-start align-items-center">
+                                            <span
+                                                class="material-icons material-icons-round align-middle">add_task</span>
+                                            <span class="align-middle">(Admin) New Activities</span>
+                                        </div>
+
+                                        <div class="pin-item-icon shadow p-2" style="border-radius:15px;">
+                                            <span class="material-icons material-icons-round align-middle"
+                                                style="font-size:30px !important;">push_pin</span>
+                                        </div>
+                                    </div>
                                 </button>
                             </h2>
                             <div id="cav-flush-panel-new_activities"
@@ -12139,8 +12219,69 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <!-- ./ Modals ----------------------------------------------------------------------------------------- -->
 
+    <div id="notification-indicator" class="notification-indicator p-3 w3-animate-left left-right-grad-mineshaft shadow"
+        onclick="$('#app-notifications-btn').click()">
+        <span class="material-icons material-icons-round p-1" id="notification-indicator-icon">
+            pending
+        </span>
+    </div>
+
     <!-- A Lot of Javascript here!!! - should be in external js files -->
     <script>
+    // toggle notification indicator
+    // state is a bool, icon is a string, priority is a bool
+    $.toggleNotificationIndicator = function(state, icon, priority) {
+
+        priority = priority || false;
+        if (state === true) {
+            $('#notification-indicator').show();
+            $('#notification-indicator-icon').html(icon);
+
+            if (priority === true) {
+                document.getElementById('notification-indicator-icon').classList.add("my-pulse-animation-tahiti");
+            }
+        } else {
+            $('#notification-indicator').hide();
+            $('#notification-indicator-icon').html('pending');
+            document.getElementById('notification-indicator-icon').classList.remove("my-pulse-animation-tahiti");
+        }
+    }
+
+    // transfer activity calender html to #activities-calender-container
+    $('#app-insights-btn').click(function() {
+        // if #activities-calender-container is empty, move calender from training to ##activities-calender-container, else do nothing
+        // !$.trim( $('#leftmenu').html() ).length src: http://stackoverflow.com/questions/4665466/ddg#4665468
+        if ($.trim($('#activities-calender-container').html()).length) {
+            var calenderLocationIndicator =
+                `<div class="text-center fs-5 text-muted comfortaa-font my-5 p-4 border-1 border" style="border-radius: 15px;"> <span class="material-icons material-icons-round" style="font-size: 24px !important"> sports </span> Training tab. </div>`;
+
+            var calenderHTML = localStorage.getItem(
+                'activity_calender_output'); // $('#training-tab-calender-container').html();
+
+            $('#activities-calender-container').html(`<div id="activities-calender">${calenderHTML}</div>`);
+            // replace with "Check widgets panel"
+            $('#training-tab-calender-container').html(calenderLocationIndicator);
+        }
+
+    });
+
+    // transfer activity calender html to #training-tab-calender-container
+    $('#app-training-btn').click(function() {
+        // if #activities-calender-container is empty, move calender from training to ##activities-calender-container, else do nothing
+        // !$.trim( $('#leftmenu').html() ).length src: http://stackoverflow.com/questions/4665466/ddg#4665468
+        if ($.trim($('#activities-calender-container').html()).length) {
+            var calenderLocationIndicator =
+                `<div class="text-center fs-5 text-muted comfortaa-font my-5 p-4 border-1 border" style="border-radius: 15px;"> <span class="material-icons material-icons-round" style="font-size: 24px !important"> sports </span> Training tab. </div>`;
+
+            var calenderHTML = localStorage.getItem(
+                'activity_calender_output'); //$('#activities-calender-container').html();
+
+            $('#training-tab-calender-container').html(`<div id="activities-calender">${calenderHTML}</div>`);
+            // replace with "Check widgets panel"
+            $('#activities-calender-container').html(calenderLocationIndicator);
+        }
+    });
+
     // jquery evelnt listerner for #open-widgets-panel-btn click
     $('#open-widgets-panel-btn').click(function() {
         // transfer #clock html content into #widgets-panel-clock, 
@@ -13197,7 +13338,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             chartObj.data.datasets[0].data = bpm;
                             chartObj.update();
                             // snackbar message output
-                            msg = capitalizeFirstLetter(chartName.split("_").pop(" ")) + " has been updated.";
+                            msg = capitalizeFirstLetter(chartName.split("_").join(" ")) + " has been updated.";
                             showSnackbar(msg);
                             break;
                         case "body_temp_monitor_chart":
@@ -13223,7 +13364,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             chartObj.data.datasets[0].data = temperature;
                             chartObj.update();
                             // snackbar message output
-                            msg = capitalizeFirstLetter(chartName.split("_").pop(" ")) + " has been updated.";
+                            msg = capitalizeFirstLetter(chartName.split("_").join(" ")) + " has been updated.";
                             showSnackbar(msg);
                             break;
                         case "speed_monitor_chart":
@@ -13250,7 +13391,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             chartObj.data.datasets[0].data = speed;
                             chartObj.update();
                             // snackbar message output
-                            msg = capitalizeFirstLetter(chartName.split("_").pop(" ")) + " has been updated.";
+                            msg = capitalizeFirstLetter(chartName.split("_").join(" ")) + " has been updated.";
                             showSnackbar(msg);
                             break;
                         case "step_counter_monitor_chart":
@@ -13277,7 +13418,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             chartObj.data.datasets[0].data = steps;
                             chartObj.update();
                             // snackbar message output
-                            msg = capitalizeFirstLetter(chartName.split("_").pop(" ")) + " has been updated.";
+                            msg = capitalizeFirstLetter(chartName.split("_").join(" ")) + " has been updated.";
                             showSnackbar(msg);
                             break;
                         case "bmi_weight_monitor_chart":
@@ -13318,7 +13459,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             chartObj.data.datasets[0].data = bmi;
                             chartObj.update();
                             // snackbar message output
-                            msg = capitalizeFirstLetter(chartName.split("_").pop(" ")) + " has been updated.";
+                            msg = capitalizeFirstLetter(chartName.split("_").join(" ")) + " has been updated.";
                             showSnackbar(msg);
                             break;
 
@@ -13524,21 +13665,21 @@ if (isset($_SESSION["currentUserAuth"])) {
     function getLastWeeksDate() {
         const now = new Date();
 
-        return new Date(now.getFullYear(), now.getMonth(), now.getDate() - 7);
+        return new Date(now.getFullYear(), now.getMonth() + 1, now.getDate() - 7);
         // return getWeekRange(-2);
     }
 
     function getNextWeeksDate() {
         const now = new Date();
 
-        return new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7);
+        return new Date(now.getFullYear(), now.getMonth() + 1, now.getDate() + 7);
         // return getWeekRange(0);
     }
 
     function getThisWeeksDate() {
         const now = new Date();
 
-        return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        return new Date(now.getFullYear(), now.getMonth() + 1, now.getDate());
         // return getWeekRange(0);
     }
 
@@ -13998,6 +14139,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     });
                 } else {
                     //alert(output);
+                    // store calender output in local storage
+                    localStorage.setItem('activity_calender_output', output);
                     document.getElementById('activities-calender').innerHTML = output;
                 }
             }
@@ -14024,6 +14167,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     alert(output);
                 } else {
                     //alert(output);
+                    // store calender output in local storage
+                    localStorage.setItem('activity_calender_output', output);
                     document.getElementById('activities-calender').innerHTML = output;
                 }
             }
@@ -14040,7 +14185,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         if (cmd === "today") {
             var date = new Date();
             // get this month number
-            nMonth = date.getMonth();
+            nMonth = date.getMonth() + 1;
             // get this years number
             nYear = date.getFullYear();
         }
@@ -14573,20 +14718,69 @@ if (isset($_SESSION["currentUserAuth"])) {
             case 'alert_general':
                 console.log('snackbar alert: ' + alert_type);
                 alert_class = "snackbar-alert-general";
+
+                // remove .noalert if in the list
+                $(".noalert").remove();
+
+                // count the number of alerts, except for the alert settings header
+                var alertCount = $("#alert-list li:not('#alert-settings-header')").length;
+                $('.alert-count').html(alertCount + 1);
+
+                // create a new alert item in the alerts list, X use .prepend to append at the start of the list X, X use .after to append after > #alert-settings-header X
+
+                $('#alert-list').append(
+                    `<li id="alert-${alertCount + 1}" class="list-group-item border-dark bg-successz text-darkz d-flex gap-2" style="background-color:var(--mineshaft)!important;color:var(--white)!important;border-radius: 15px;"><span class="material-icons material-icons-round align-middle" style="font-size:40px!important;color:var(--tahitigold);"> feedback </span> ${(alertCount + 1) + ". " + message}</li>`
+                );
+
+                // state is a bool, icon is a string, priority is a bool - feedback
+                $.toggleNotificationIndicator(true, 'circle_notifications', true);
                 break;
             case 'alert_error':
                 console.log('snackbar alert: ' + alert_type);
                 alert_class = "snackbar-alert-error";
+
+                // remove .noalert if in the list
+                $(".noalert").remove();
+
+                // count the number of alerts, except for the alert settings header
+                var alertCount = $("#alert-list li").length;
+                $('.alert-count').html(alertCount + 1);
+
+                // create a new alert item in the alerts list, X use .prepend to append at the start of the list X, X use .after to append after > #alert-settings-header X
+                $('#alert-list').append(
+                    `<li id="alert-${alertCount + 1}" class="list-group-item border-dark bg-successz text-darkz d-flex gap-2" style="background-color:var(--red)!important;color:var(--white)!important;border-radius: 15px;"><span class="material-icons material-icons-round align-middle" style="font-size:40px!important;color:var(--white);"> error </span> ${(alertCount + 1) + ". " + message}</li>`
+                );
+
+                // state is a bool, icon is a string, priority is a bool
+                $.toggleNotificationIndicator(true, 'error', true);
                 break;
             case 'alert_success':
                 console.log('snackbar alert: ' + alert_type);
                 alert_class = "snackbar-alert-success";
+
+                // remove .noalert if in the list
+                $(".noalert").remove();
+
+                // count the number of alerts, except for the alert settings header
+                var alertCount = $("#alert-list li").length;
+                $('.alert-count').html(alertCount + 1);
+
+                // create a new alert item in the alerts list, X use .prepend to append at the start of the list X, X use .after to append after > #alert-settings-header X
+                $('#alert-list').append(
+                    `<li id="alert-${alertCount + 1}" class="list-group-item border-dark bg-successz text-darkz d-flex gap-2" style="background-color:var(--green)!important;color:var(--white)!important;border-radius: 15px;"><span class="material-icons material-icons-round align-middle" style="font-size:40px!important;color:var(--white);"> check_circle </span> ${(alertCount + 1) + ". " + message}</li>`
+                );
+
+                // state is a bool, icon is a string, priority is a bool
+                $.toggleNotificationIndicator(true, 'check_circle', true);
                 break;
 
             default:
                 console.log('snackbar alert: default - alert type unrecognized [' + alert_type + ']');
                 break;
         }
+
+        // scroll to end of list
+        $.smoothScroll('#alert-list', `#alert-${alertCount + 1}`, 0);
 
         var displayLength;
         switch (display_length) {
@@ -15758,6 +15952,8 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         if (mainTeamSelectionGRCode == 'noselection') {
             alert('Please select a team from the Switch Team Selection.');
+            // console.log focus event
+            console.log('[$.trainingSubTabMainTeamSelection] focus event: #trainingSubTabMainTeamSelection')
             $('#trainingSubTabMainTeamSelection').focus();
         } else {
             // store grpRefcode locally so we can access it later
@@ -15782,7 +15978,10 @@ if (isset($_SESSION["currentUserAuth"])) {
             alert('Please select a team from the Switch Team Selection and try again.');
             // smooth scroll
             $.smoothScroll('#v-sub-tab-pills-insights-teamathletics', '#trainingSubTabMainTeamSelection');
-            $('#trainingSubTabMainTeamSelection').focus(); // set focus
+            // console.log focus event
+            console.log('[$.loadTeamsActivityCaptureForm] focus event: #trainingSubTabMainTeamSelection')
+            // set focus
+            $('#trainingSubTabMainTeamSelection').focus();
         } else {
             // store grpRefcode locally so we can access it later
             grpRefcode = mainTeamSelectionGRCode;
@@ -15930,15 +16129,15 @@ if (isset($_SESSION["currentUserAuth"])) {
         var weekDatesArray = [];
         switch (when) {
             case "last":
-                weekDatesArray = getWeekRange(-2);
-                snackbarOutput = `${capitalizeFirstLetter(when)} weeks actvities bar chart has been loaded.`;
-                break;
-            case "this":
                 weekDatesArray = getWeekRange(-1);
                 snackbarOutput = `${capitalizeFirstLetter(when)} weeks actvities bar chart has been loaded.`;
                 break;
-            case "next":
+            case "this":
                 weekDatesArray = getWeekRange(0);
+                snackbarOutput = `${capitalizeFirstLetter(when)} weeks actvities bar chart has been loaded.`;
+                break;
+            case "next":
+                weekDatesArray = getWeekRange(1);
                 snackbarOutput = `${capitalizeFirstLetter(when)} weeks actvities bar chart has been loaded.`;
                 break;
             case "specific_range":
@@ -16657,8 +16856,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                     console.log(
                         'beforeSend: submitting add new activity data form on the calender view modal'
                     );
+
                     // show #load-wait-screen-curtain 
                     $('#load-wait-screen-curtain').show();
+
+                    // check if team has been selected from #add-to-calender-team-select
+                    if ($('#add-to-calender-team-select').val() == "noselection") {
+                        alert('Please select a team to assign this schedule to.');
+                        $('#add-to-calender-team-select').focus();
+                        // hide #load-wait-screen-curtain 
+                        $('#load-wait-screen-curtain').hide();
+                        return false;
+                    }
                 },
                 success: function(response) {
                     if (response.startsWith("success")) {
@@ -16667,27 +16876,31 @@ if (isset($_SESSION["currentUserAuth"])) {
                         );
                         console.log("Response: " + response);
 
+                        showSnackbar('Schedule created successfully.', 'alert_success');
+
                         // test output
                         // alert("Success: returning response - added new activity data form on the calender view modal \nResponse: " + response);
                         // 
                         $('#add-new-schedule-form > #output-container').html(`<div class="alert alert-success p-4 text-center" style="border-radius:25px;">
-                            <span class="material-icons material-icons-round align-middle" style="color:var(--mineshaft);font-size:48px!important;">
+                            <span class="material-icons material-icons-round align-middle text-success" style="color:var(--mineshaft);font-size:48px!important;">
                             check_circle
                             </span> 
-                            Data saved successfully.
+                            Schedule created  successfully.
                             </div>`);
 
-                        // scroll to the output-container for the form - params (containerElemID, scrollToElemID, scrollSpeed)
-                        $.smoothScroll('#CalenderActivityFormeModal_body',
-                            '#output-container', 1000);
 
                         // reset the form
+                        // click the "Remove all selected" btn #remove-all-from-selected-activities-list-btn
+                        $('remove-all-from-selected-activities-list-btn').click();
+                        // reset the form using .trigger("change"): $('form#myform select, form input[type=checkbox]') | source: https://stackoverflow.com/questions/16452699/how-to-reset-a-form-using-jquery-with-reset-method
+                        $('form #add-new-activity-form select:not("#add-to-calender-team-select"), form input[type=checkbox], *')
+                            .trigger("change");
+
                         // loop through this form and clear all inputs / reset them to default values
-                        $('#add-new-activity-form *').filter(':input').each(function(key,
-                            value) {
-                            //set each input value to ''
-                            $(this).val('');
-                        });
+                        // $('#add-new-activity-form *').filter(':input').each(function(this) {
+                        //     //set each input value to ''
+                        //     $(this).val('');
+                        // });
                         // $('#id="add-new-schedule-form :input').val(''); // alternative one-liner
                         // $('#id="add-new-schedule-form[name=checkListItem]').val(''); // alternative one-liner
                     } else {
@@ -16696,28 +16909,51 @@ if (isset($_SESSION["currentUserAuth"])) {
                         );
                         console.log("Response: " + response);
                         $('#add-new-schedule-form > #output-container').html(`<div class="alert alert-danger p-4 text-center" style="border-radius:25px;">
-                            <span class="material-icons material-icons-round align-middle" style="color:var(--white);font-size:48px!important;">
+                            <span class="material-icons material-icons-round align-middle text-danger" style="color:var(--white);font-size:48px!important;">
                             error_outline
                             </span> 
                             ${response}
                             </div>`);
 
-                        // scroll to the output-container for the form - params (containerElemID, scrollToElemID, scrollSpeed - ms)
-                        $.smoothScroll('#CalenderActivityFormeModal_body',
-                            '#output-container', 1000);
-
                         // test output
                         // alert("Failure: returning response - failed to add new activity data form on the calender view modal \nResponse: " + response);
                     }
 
-                    // hide #load-wait-screen-curtain
-                    $('#load-wait-screen-curtain').hide();
+                    // set 2 second timeout to hide the loading indicator curtain
+                    setTimeout(function() {
+                        // scroll to the output-container for the form - params (containerElemID, scrollToElemID, scrollSpeed)
+                        $.smoothScroll('#CalenderActivityFormeModal_body',
+                            '#output-container',
+                            1000);
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
+                    }, 2000);
+
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
-                    console.log("exception error: " + thrownError + "\r\n" + xhr
-                        .statusText + "\r\n" + xhr.responseText);
-                    // hide #load-wait-screen-curtain
-                    $('#load-wait-screen-curtain').hide();
+                    var errorMsg = "exception error: " + thrownError + "\r\n" + xhr
+                        .statusText + "\r\n" + xhr.responseText
+                    console.log(errorMsg);
+
+                    // output error message on form
+                    $('#add-new-schedule-form > #output-container').html(`<div class="alert alert-danger p-4 text-center" style="border-radius:25px;">
+                            <span class="material-icons material-icons-round align-middle text-danger" style="color:var(--white);font-size:48px!important;">
+                            error_outline
+                            </span> 
+                            An error has occurred. Please contact <a href="#">support.</a>.
+                            </div>`);
+
+                    // show error snackbar to notify the user
+                    showSnackbar(errorMsg, 'alert_error', 'medium_10000');
+
+                    // set 2 second timeout to hide the loading indicator curtain
+                    setTimeout(function() {
+                        // scroll to the output-container for the form - params (containerElemID, scrollToElemID, scrollSpeed)
+                        $.smoothScroll('#CalenderActivityFormeModal_body',
+                            '#output-container', 1000);
+                        // hide #load-wait-screen-curtain
+                        $('#load-wait-screen-curtain').hide();
+                    }, 2000);
                 }
             });
         }, 1000);

@@ -22,7 +22,7 @@ function getActivitiesCount($Year, $Month, $Day)
         LEFT JOIN groups grps ON tws.groups_group_ref_code = grps.group_ref_code
         WHERE tws.schedule_date = '$Year-$Month-$Day'";
         $result = $dbconn->query($query);
-        $result = mysqli_query($dbconn, $query);
+        // $result = mysqli_query($dbconn, $query);
         if (!$result) die("Fatal error [2]: " . $dbconn->error);
 
         $rows = $result->num_rows;
@@ -166,13 +166,16 @@ echo <<<_END
                         <button class="onefit-buttons-style-light p-3" onclick="navCalender('$prev_month','$prev_year','prev')">
                             <div class="d-flex gap-2 align-items-center">
                                 <i class="fas fa-chevron-left align-middle"></i> 
-                                <span class="align-middle" style="font-size:16px;">Last month.</span>
+                                <span class="align-middle text-start" style="font-size:16px;">Last month.</span>
                             </div>
                         </button>
-                        <div class="p-4" colspan="5" style="font-size:50px;cursor:pointer;" onclick="navCalender(null,null,'today')"><strong class="text-truncate"> $calenderHeading </strong></div>
+                        <div class="p-4 d-grid gap-2" colspan="5" style="font-size:50px;cursor:pointer;" onclick="navCalender(null,null,'today')">
+                            <strong class="text-truncate"> $calenderHeading </strong>
+                            <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                        </div>
                         <button class="onefit-buttons-style-light p-3" onclick="navCalender('$next_month','$next_year','next')">
                             <div class="d-flex gap-2 align-items-center">
-                                <span class="align-middle" style="font-size:16px;">Next month.</span>
+                                <span class="align-middle text-end" style="font-size:16px;">Next month.</span>
                                 <i class="fas fa-chevron-right align-middle"></i>
                             </div>
                         </button>

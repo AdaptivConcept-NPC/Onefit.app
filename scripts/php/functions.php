@@ -372,7 +372,7 @@ function newExercise($exercisetitle, $exercisedescription, $exerciseguidelines, 
         (null,'$exercisetitle','$exercisedescription','$exerciseguidelines',$exerciseSets,$exerciseReps,$exerciseRests,$xp_points,'$trainingPhase')";
 
         $result = $dbconn->query($query);
-        $result = mysqli_query($dbconn, $query);
+        // $result = mysqli_query($dbconn, $query);
         if (!$result) die("Fatal error: " . $dbconn->error);
         else return true;
     } catch (\Throwable $th) {
@@ -450,7 +450,7 @@ function getScheduledTrainingDayActivities($Year, $Month, $Day, $grcode)
         WHERE tws.schedule_date = '$Year-$Month-$Day'";
         // AND grps.group_ref_code = '$grcode'
         $result = $dbconn->query($query);
-        $result = mysqli_query($dbconn, $query);
+        // $result = mysqli_query($dbconn, $query);
         if (!$result) die("Fatal error [2]: " . $dbconn->error);
 
         $rows = $result->num_rows;
@@ -920,7 +920,7 @@ function getUserNotifications()
 
     if ($result = mysqli_query($dbconn, $sql)) {
         $communicationUserNotifications = <<<_END
-        <div class="my-4 text-dark top-down-grad-tahiti p-4"
+        <div class="my-4 text-dark top-down-grad-dark p-4 border-5 border-top"
         style="border-radius: 25px;">
         _END;
         while ($row = mysqli_fetch_assoc($result)) {
@@ -937,7 +937,7 @@ function getUserNotifications()
             <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-$notif_id" style="border-radius: 25px !important;">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1 fw-bold text-truncate"> $notif_title </h5>
-                    <small class="text-end" style="font-size:10px;"> $notif_date<br/>$time_ago</small>
+                    <small class="text-end" style="font-size:10px;"> $notif_date<br/>$time_ago </small>
                 </div>
                 <p class="mb-1 text-truncate" style="min-height:30px;max-height:100px;"> $notif_message </p>
             </a>

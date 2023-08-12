@@ -97,8 +97,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         (`workout_id`, `workout_name`, `workout_description`, `goal_definition`, `total_xp_points`, `premium`, `category_class_category_class_code`) 
         VALUES (null,'$workout_name','$workout_description','$workout_goal_definition',$workout_xp,$workout_premium,'$workout_category')";
 
-        // $result = $dbconn->query($query);
-        $result = mysqli_query($dbconn, $query);
+        $result = $dbconn->query($query);
+        // $result = mysqli_query($dbconn, $query);
         if (!$result) die("Fatal error [1]: " . $dbconn->error);
 
         // get the last insert_id (workout_id) from record created in the workouts table

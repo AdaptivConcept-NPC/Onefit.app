@@ -371,7 +371,7 @@ function newExercise($exercisetitle, $exercisedescription, $exerciseguidelines, 
         (null,'$exercisetitle','$exercisedescription','$exerciseguidelines',$exerciseSets,$exerciseReps,$exerciseRests,$xp_points,'$trainingPhase')";
 
         $result = $dbconn->query($query);
-        $result = mysqli_query($dbconn, $query);
+        // $result = mysqli_query($dbconn, $query);
         if (!$result) die("Fatal error: " . $dbconn->error);
         else return true;
     } catch (\Throwable $th) {
@@ -449,7 +449,7 @@ function getScheduledTrainingDayActivities($Year, $Month, $Day, $grcode)
         WHERE tws.schedule_date = '$Year-$Month-$Day'";
         // AND grps.group_ref_code = '$grcode'
         $result = $dbconn->query($query);
-        $result = mysqli_query($dbconn, $query);
+        // $result = mysqli_query($dbconn, $query);
         if (!$result) die("Fatal error [2]: " . $dbconn->error);
 
         $rows = $result->num_rows;
@@ -919,7 +919,7 @@ function getUserNotifications()
 
     if ($result = mysqli_query($dbconn, $sql)) {
         $communicationUserNotifications = <<<_END
-        <div class="my-4 text-dark top-down-grad-tahiti p-4"
+        <div class="my-4 text-dark top-down-grad-dark p-4 border-5 border-top"
         style="border-radius: 25px;">
         _END;
         while ($row = mysqli_fetch_assoc($result)) {

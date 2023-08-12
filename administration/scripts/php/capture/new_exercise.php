@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $query = "SELECT exercise_name, instructions FROM exercises WHERE exercise_name = '$exercisetitle' AND instructions = '$exercisedescription'";
 
         $result = $dbconn->query($query);
-        $result = mysqli_query($dbconn, $query);
+        // $result = mysqli_query($dbconn, $query);
         if (!$result) {
             // die("Fatal error [1]: " . $dbconn->error);
             # insert 

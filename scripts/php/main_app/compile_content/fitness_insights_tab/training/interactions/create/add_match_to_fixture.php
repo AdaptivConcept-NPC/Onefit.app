@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         '$addToFixture_match_results_home_team - $addToFixture_match_results_away_team', '$addToFixture_user_grcode')";
 
         $result = $dbconn->query($query);
-        $result = mysqli_query($dbconn, $query);
+        // $result = mysqli_query($dbconn, $query);
 
         if (!$result) die("Fatal error: " . $dbconn->error);
 

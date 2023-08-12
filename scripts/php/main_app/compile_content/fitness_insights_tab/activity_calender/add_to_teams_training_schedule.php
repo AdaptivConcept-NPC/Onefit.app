@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $exercise_activity_id)";
 
         $result = $dbconn->query($query);
-        $result = mysqli_query($dbconn, $query);
+        // $result = mysqli_query($dbconn, $query); // THIS IS THE PROBLEM!!!
         if (!$result) {
             $result = null;
             die("Fatal error [2 - iterations: $i_count - activityid/exerciseid: $exercise_activity_id]: (Query: $query) " . $dbconn->error);
@@ -121,7 +121,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // get submitted_by username from get parameter
     $is_Admin = false;
     if (!isset($_GET['submitted_by'])) {
-        $submitted_by_username = $_SESSION['currentUserUsername'];
+        if (!isset($_SESSION['currentUserUsername'])) $submitted_by_username = $_SESSION['currentUserUsername'];
+        else die("No user identity found");
     } else {
         $submitted_by_username = sanitizeMySQL($dbconn, $_GET['submitted_by']);
     }
@@ -168,6 +169,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // print_r($activitiesArray); //test
         // echo "<br/>";
 
+        // check if schedule record exists, if ye then update schedule record else insert new record
+        $query = "SELECT teams_weekly_schedule_id FROM teams_weekly_schedules` 
+        WHERE `schedule_title` = '$activity_title', `schedule_rpe` = '$activity_rpe', `schedule_day` = '$activity_day', `schedule_date` = '$activity_date', `color_code` = '$activity_colorcode', `groups_group_ref_code` = '$gr_code'";
+
         // create a new team schedule record
         $query = "INSERT INTO `teams_weekly_schedules` 
         (`teams_weekly_schedule_id`, `schedule_title`, `schedule_rpe`, `schedule_day`, `schedule_date`, `color_code`, `groups_group_ref_code`) 
@@ -175,7 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         (null,'$activity_title','$activity_rpe','$activity_day','$activity_date','$activity_colorcode','$gr_code')";
 
         $result = $dbconn->query($query);
-        $result = mysqli_query($dbconn, $query);
+        // $result = mysqli_query($dbconn, $query); // THIS IS THE PROBLEM!!!!
         if (!$result) die("Fatal error [1]: " . $dbconn->error);
 
         // get the last insert_id (teams_weekly_schedule_id) from record created in the workouts table

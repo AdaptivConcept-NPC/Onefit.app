@@ -291,7 +291,7 @@ try {
                     Trainer Support
                 </span>
                 <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill text-dark p-2 px-3 poppins-font fs-5z shadow" style="background-color:var(--tahitigold)!important;">
-                    12 <span class="visually-hidden">support requests</span>
+                    12 interactions <span class="visually-hidden">support requests</span>
                 </span>
             </button>
             <!-- visual divide -->

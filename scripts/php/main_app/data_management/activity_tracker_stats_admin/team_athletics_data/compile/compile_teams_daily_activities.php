@@ -54,9 +54,6 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
         INNER JOIN team_weekly_activities twa ON twa.teams_weekly_schedules_teams_weekly_schedule_id = tws.teams_weekly_schedule_id 
         WHERE $grcodeReqStatement tws.schedule_date = '$dayDateThisWeek'";
 
-        echo $query;
-        echo "<br>";
-
         // $query = "SELECT DISTINCT(tws.schedule_title), tws.color_code, tws.groups_group_ref_code, twa.* , grps.group_name
         // FROM teams_weekly_schedules tws 
         // LEFT JOIN team_weekly_activities twa ON twa.teams_weekly_schedules_teams_weekly_schedule_id = tws.teams_weekly_schedule_id 
@@ -76,12 +73,11 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
             //there is no result so notify user that the account cannot be found
             // echo "possible error: No schedule and activities found.";
             $activities_bar_content = <<<_END
-            <p id="bar-title-day$dayNum" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
-                No activities (F)
+            <!-- test: query string -->
+            <div class="d-none"> $query </div>
+            <p id="bar-title-day$dayNum" class="fw-bold poppins-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;font-size:18px!important;">
+                No activities
             </p>
-            <!--<p id="bar-rpe-day$dayNum" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
-                RPE $schedule_rpe
-            </p>-->
             <div id="teams-weekly-activity-barchart-bar-day$dayNum" class="chart-col-bar p-2 shadow down-top-grad-tahiti d-grid text-center pt-4">
                 <span class="material-icons material-icons-round align-middle"> bed </span>
                 <p>Rest.</p>
@@ -94,8 +90,8 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
                     </span>
                 </button>
             </div>
-            <p class="text-center fs-5 fw-bold comfortaa-font">$paramDayName</p>
-            <p class="text-center fs-5 fw-bold comfortaa-font">$dayDateThisWeek</p>
+            <p class="text-center fs-5 fw-bold poppins-font">$paramDayName</p>
+            <p class="text-center fs-5 fw-bold poppins-font">$dayDateThisWeek</p>
             _END;
             echo $activities_bar_content;
         } else {
@@ -118,8 +114,25 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
                 $teams_weekly_schedules_teams_weekly_schedule_id = $row["teams_weekly_schedules_teams_weekly_schedule_id"];
                 $exercises_exercise_id = $row["exercises_exercise_id"];
 
+                // echo "<hr />";
+
+                // echo "teams weekly schedules data: <br/>";
+                // echo $teams_weekly_schedule_id . "<br/>";
+                // echo $schedule_title . "<br/>";
+                // echo $schedule_rpe . "<br/>";
+                // echo $schedule_day . "<br/>";
+                // echo $groups_group_ref_code . "<br/>";
+
+                // echo "teams weekly activities <br/>";
+                // echo $teams_activity_id . "<br/>";
+                // echo $activity_title . "<br/>";
+                // echo $activity_description . "<br/>";
+                // echo $activity_icon . "<br/>";
+                // echo $teams_weekly_schedules_teams_weekly_schedule_id . "<br/>";
+                // echo $exercises_exercise_id . "<br/>";
+
                 $inner_activities_bar_content .= <<<_END
-                <div class="chart-col-bar-item text-center position-relative">
+                <div class="chart-col-bar-item text-center position-relativez">
                     <p>$activity_title</p>
                     <img src="$activity_icon" alt="../media/assets/icons/icon.png" class="img-fluid">
                     <div class="collapse multi-collapse w3-animate-bottom" id="remove-weekly-activity-btn-bar$dayNum">
@@ -144,15 +157,15 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
                 </button>
             </div>
             <!-- ./ Edit training day bar - Day $dayNum -->
-            <!--<p id="bar-title-day$dayNum" class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
+            <p id="bar-title-day$dayNum" class="fw-bold poppins-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;font-size:18px!important;">
                 $schedule_title
             </p>
-            <p id="bar-rpe-day$dayNum" class="comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
-                RPE $schedule_rpe
+            <p id="bar-rpe-day$dayNum" class="poppins-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
+                Exercise Intensity (RPE): <br> $schedule_rpe / 10
             </p>
             <div id="teams-weekly-activity-barchart-bar-day$dayNum" class="chart-col-bar p-2 shadow down-top-intensity-bar-bg-grad">
                 $inner_activities_bar_content
-            </div>-->
+            </div>
             <hr class="text-dark">
             <div class="collapse multi-collapse w3-animate-top" id="add-weekly-activity-btn">
                 <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2" onclick="$.loadTeamsActivityCaptureForm('$schedule_day','$grcode')">
@@ -161,8 +174,8 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
                     </span>
                 </button>
             </div>
-            <p class="text-center fs-5 fw-bold comfortaa-font">$schedule_day</p>
-            <p class="text-center fs-5 fw-bold comfortaa-font">$schedule_date</p>
+            <p class="text-center fs-5 fw-bold poppins-font">$schedule_day</p>
+            <p class="text-center fs-5 fw-bold poppins-font">$schedule_date</p>
             _END;
 
             echo $activities_bar_content;

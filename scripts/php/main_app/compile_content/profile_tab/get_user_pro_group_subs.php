@@ -106,10 +106,13 @@ function getUserProGroupSubs()
       }
       $output = $proSubsGroupsList . <<<_END
       <br/>
-      <div class="grid-tile p-2" id="adjust-grp-prefs-$grps_groupid-$grps_refcode">
+      <div class="grid-tile p-2 d-grid justify-content-center" id="adjust-grp-prefs-$grps_groupid-$grps_refcode">
         <button class="my-2 onefit-buttons-style-dark p-4" onclick="alert('Adjust Pro Group Preferences')">
           <span class="material-icons material-icons-round">
             adjust
+          </span>
+          <span class="align-middle" style="font-size: 12px;">
+            Pro Settings
           </span>
         </button>
       </div>
