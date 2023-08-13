@@ -415,7 +415,11 @@ body {
 	);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#343434", endColorstr="#c20000", GradientType=1); */
 	background: rgb(52, 52, 52);
-	background: -moz-linear-gradient(180deg, var(--tahitigold) 0%, var(--red) 100%);
+	background: -moz-linear-gradient(
+		180deg,
+		var(--tahitigold) 0%,
+		var(--red) 100%
+	);
 	background: -webkit-linear-gradient(
 		180deg,
 		var(--tahitigold) 0%,
@@ -1621,6 +1625,113 @@ h6 {
 	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 	grid-column-gap: 1.5rem;
 	grid-row-gap: 2rem;
+}
+
+.drills-tile {
+	border-radius: 0 0 25px 25px;
+	border-color: var(--tahitigold) !important;
+	color: var(--tahitigold) !important;
+
+	background: rgb(0, 0, 0);
+	background: -moz-linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	background: -webkit-linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	background: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#ffffff", GradientType=1);
+
+	transition: 0.2s;
+}
+
+.drills-tile:hover {
+	border-color: var(--white) !important;
+	color: var(--white) !important;
+
+	background: rgb(255, 255, 255);
+	background: -moz-linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0) 0%,
+		rgba(232, 138, 4, 1) 100%
+	);
+	background: -webkit-linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0) 0%,
+		rgba(232, 138, 4, 1) 100%
+	);
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0) 0%,
+		rgba(232, 138, 4, 1) 100%
+	);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#ffa500", GradientType=1);
+}
+
+.workouts-tile-premium-light {
+	background-color: var(--mineshaft);
+	border-color: var(--tahitigold) !important;
+	color: var(--mineshaft) !important;
+
+	/* grad */
+	background: rgb(0, 0, 0);
+	background: -moz-linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	background: -webkit-linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	background: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#ffffff", GradientType=1);
+}
+
+.workouts-tile-premium-tahiti {
+	background-color: var(--tahitigold);
+	border-color: var(--white) !important;
+	color: var(--white) !important;
+
+	/* grad */
+	background: rgb(255, 255, 255);
+	background: -moz-linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0) 0%,
+		rgba(232, 138, 4, 1) 100%
+	);
+	background: -webkit-linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0) 0%,
+		rgba(232, 138, 4, 1) 100%
+	);
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0) 0%,
+		rgba(232, 138, 4, 1) 100%
+	);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#ffa500", GradientType=1);
+}
+
+.workouts-tile-community-light {
+	background-color: var(--mineshaft);
+	border-color: var(--tahitigold) !important;
+	color: var(--white) !important;
+	/* solid color */
+	background-color: var(--white) !important;
 }
 
 .media-item-tile {

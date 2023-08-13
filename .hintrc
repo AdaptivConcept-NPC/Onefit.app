@@ -10,6 +10,14 @@
           "overflow-anchor"
         ]
       }
+    ],
+    "no-inline-styles": "off",
+    "axe/forms": "off",
+    "axe/aria": [
+      "default",
+      {
+        "aria-required-children": "off"
+      }
     ]
   }
 }

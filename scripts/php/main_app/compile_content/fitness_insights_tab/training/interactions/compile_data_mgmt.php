@@ -13,7 +13,7 @@ if (isset($_GET['uid'])) {
     // output
     echo <<<_END
     <!-- Administration Portal. -->
-    <div class="container h-100 w-100">
+    <div class="container-fluid h-100 w-100">
         <iframe id="admin-portal-frame" class="h-100 w-100 light-scroller" src="../administration/?admin=$user_id" style="min-height:10vh;">
         </iframe>
     </div>

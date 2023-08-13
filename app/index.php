@@ -1195,8 +1195,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 style="color: #ffa500 !important; font-size: 40px;">dashboard</span> <span
                                 class="align-middle">Dashboard</span></h5>
 
-                        <span class="material-icons material-icons-round"
-                            style="color: #ffa500 !important">keyboard_arrow_down</span>
+                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(dahsboard)');">
+                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                            </span>
+                        </button>
                     </div>
 
                     <h5 class="text-center">Hi <?php echo $usrprof_name; ?>.</h5>
@@ -3245,8 +3247,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="align-middle">Discovery</span></h5>
                         <p class="text-center" style="font-size: 10px">powered by AdaptEngine™</p>
 
-                        <span class="material-icons material-icons-round"
-                            style="color: #ffa500 !important">keyboard_arrow_down</span>
+                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(discovery)');">
+                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                            </span>
+                        </button>
                     </div>
 
                     <div class="row align-items-center my-4">
@@ -3405,8 +3409,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 style="color: #fff !important"> <span class="align-middle"><span
                                         style="color: #fff !important">One</span><span
                                         style="color: #ffa500 !important">fit</span>.Studio</span></h5>
-                        <span class="material-icons material-icons-round"
-                            style="color: #ffa500 !important">keyboard_arrow_down</span>
+
+                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(studio)');">
+                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                            </span>
+                        </button>
                     </div>
                     <!-- <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Studio
                     </h1>
@@ -3516,8 +3523,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 style="color: #ffa500 !important; font-size: 40px;">storefront</span> <span
                                 class="align-middle"><span style="color: #fff !important">One</span><span
                                     style="color: #ffa500 !important">fit</span>.Store</span></h5>
-                        <span class="material-icons material-icons-round"
-                            style="color: #ffa500 !important">keyboard_arrow_down</span>
+
+                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(store)');">
+                            <span class="material-icons material-icons-round"
+                                style="color: #ffa500 !important">keyboard_arrow_down</span>
+                        </button>
                     </div>
                     <!-- <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Store
                     </h1>
@@ -4532,6 +4542,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </h1>
                         <p class="text-center my-4 comfortaa-font">Use the Fitness Insights page to track your Training
                             progression and workout activities.</p>
+                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(insights)');">
+                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                            </span>
+                        </button>
                     </div>
 
                     <hr class="text-white" style="height: 5px;">
@@ -6380,14 +6394,14 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <!-- removed stream section here -->
                     <!-- Training tab button -->
-                    <button id="goto-training-tab-btn"
-                        class="onefit-buttons-style-dark p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <span class="material-icons material-icons-outlined">sports</span>
-                        <h5 class="mt-4 fs-1 text-center align-middle">Start Training.</h5>
-                        <!-- <span class="material-icons material-icons-round"
-                            style="color: #ffa500 !important">keyboard_arrow_down</span> -->
-                    </button>
+                    <div class="d-grid">
+                        <button id="goto-training-tab-btn"
+                            class="onefit-buttons-style-dark p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                            style="border-radius: 25px; border-color: #ffa500 !important;">
+                            <h5 class="mt-4 fs-1 text-center align-middle">Go to Training. <span
+                                    class="material-icons material-icons-rounded align-middle">sports</span></h5>
+                        </button>
+                    </div>
 
                     <!-- ads strip -->
                     <div class="text-center d-grid justify-content-center align-items-center"
@@ -6411,8 +6425,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                         style="border-radius: 25px; border-color: #ffa500 !important;">
                         <span class="material-icons material-icons-outlined">sports</span>
                         <h5 class="mt-4 fs-1 text-center align-middle">Training.</h5>
-                        <span class="material-icons material-icons-round"
-                            style="color: #ffa500 !important">keyboard_arrow_down</span>
+                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(training)');">
+                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                            </span>
+                        </button>
                     </div>
 
                     <!-- training tab calender container -->
@@ -6923,7 +6939,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div id="team-select-filters" class="collapse w3-animate-left">
                                             <p class="m-0 text-center" style="font-size:10px!important;">
                                                 <span class="material-icons material-icons-outlined align-middle"
-                                                    style="font-size: 8xp !important;">
+                                                    style="font-size: 8px !important;">
                                                     info
                                                 </span>
                                                 <span class="align-middle"> Please select a Team to view training data.
@@ -8668,8 +8684,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">emoji_events</span> <span
                                 class="align-middle">Achievements</span></h5>
-                        <span class="material-icons material-icons-round"
-                            style="color: #ffa500 !important">keyboard_arrow_down</span>
+                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(achievements)');">
+                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                            </span>
+                        </button>
                     </div>
 
                     <hr class="text-white" />
@@ -8863,8 +8881,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">perm_media</span> <span
                                 class="align-middle">Media</span></h5>
-                        <span class="material-icons material-icons-round"
-                            style="color: #ffa500 !important">keyboard_arrow_down</span>
+                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(media)');">
+                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                            </span>
+                        </button>
                     </div>
                     <!-- <h1 class="text-center">Media</h1>
                     <hr class="text-white" /> -->
@@ -9154,8 +9174,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">forum</span> <span
                                 class="align-middle">Communications</span></h5>
-                        <span class="material-icons material-icons-round"
-                            style="color: #ffa500 !important">keyboard_arrow_down</span>
+                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(communications)');">
+                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                            </span>
+                        </button>
                     </div>
 
                     <!-- Twitter social buttons / section -->
@@ -9291,8 +9313,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">settings_accessibility</span> <span
                                 class="align-middle">Preferences</span></h5>
-                        <span class="material-icons material-icons-round"
-                            style="color: #ffa500 !important">keyboard_arrow_down</span>
+                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(preferences)');">
+                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                            </span>
+                        </button>
                     </div>
                     <!-- <h1 class="text-center">Preferences</h1>
                     <hr class="text-white" /> -->
@@ -9302,6 +9326,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     Privacy<br>
                     Referencing<br>
                     About Us<br>
+                    App version:
 
                     <div id="userPrefContainer">
                         <?php echo $profileUserPref; ?>
@@ -9424,14 +9449,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </span>
                                 </div>
                                 <!-- ./ visual divide -->
-                                <!-- settings -->
+                                <!-- live streaming -->
                                 <button type="button"
                                     class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid">
                                     <span class="material-icons material-icons-round align-middle"
-                                        style="font-size: 20px !important"> 3p </span>
+                                        style="font-size: 20px !important"> live_tv </span>
                                     <span class="align-middle d-none d-lg-block" style="font-size: 10px;">
                                         <!-- <span style="color: #ffa500 !important;">+</span> -->
-                                        settings_accessibility
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="font-size: 12px !important; color: var(--red);"> radio_button_checked
+                                        </span> Go Live
                                     </span>
                                 </button>
                             </div>
@@ -9545,7 +9572,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <div class="row align-items-center">
                                     <div class="col-md -4 text-center">
                                         <!--Thumbnail-->
-                                        <div class="p-0 shadow border-bottom"
+                                        <div id="media-player-thumbnail" class="p-0 shadow border-bottom"
                                             style="min-height: 20vh; border-radius: 25px; color: #fff; background-color: #343434; border-color: #ffa500 !important; border-width: 5px !important; overflow: hidden;">
                                             <div class="card bg-dark text-white border-0">
                                                 <!-- style="border-radius: 25px !important;" -->
@@ -12801,6 +12828,22 @@ if (isset($_SESSION["currentUserAuth"])) {
         // call to function for checking localstorage values and either show or hide side panels
         $.checkSidePanelVisibility();
 
+        // load the media player
+        // store the default no media playing thumbnail html
+        var noMediaPlayingThumb = $('#media-player-thumbnail').html();
+        $.get("../scripts/php/media_player.php",
+            function(data, status) {
+                if (status != "success") {
+                    console.log("Get Req Failed -> error: media player not loaded: \n[Status]: " +
+                        status + "\n[Data]: " + data
+                    );
+                } else {
+                    $("#media-player-thumbnail").html(data);
+                    console.log('Media player loaded.');
+                }
+            }
+        );
+
         /* move the progress bar forward */
         updateLoadProgressBar(1);
         console.log("loadGlobalUI");
@@ -13569,6 +13612,8 @@ if (isset($_SESSION["currentUserAuth"])) {
             // } 
             else if (tabName == "TabData") {
                 document.getElementById("app-insights-btn").click();
+            } else if (tabName == "TabTraining") {
+                document.getElementById("app-training-btn").click();
             } else if (tabName == "TabAchievements") {
                 document.getElementById("app-achievements-btn").click();
             } else if (tabName == "TabMedia") {
@@ -13580,7 +13625,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             }
 
         } else {
-            console.log('Current App Tab not set.');
+            console.log('Current App Tab not detected.');
             // set default value: TabHome
             localStorage.setItem("current_app_tab", "TabHome");
         }
@@ -13605,7 +13650,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             }
 
         } else {
-            console.log('Current App Insights Sub-Tab not set.');
+            console.log('Current App Insights Sub-Tab not detected.');
             // set default value: TabHome
             localStorage.setItem("current_app_subtab", "nav-trainingProgramCategories-challenges-tab");
         }
