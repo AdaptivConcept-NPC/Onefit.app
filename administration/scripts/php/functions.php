@@ -578,15 +578,18 @@ function getUserChatConversations()
 {
     global $convo_conversationid, $convo_secondaryuser, $secondaryuser_name, $secondaryuser_surname, $communicationUserMessages, $dbconn, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
 
-    //messages
-    //$sql = "SELECT * FROM messages msg INNER JOIN users u ON msg.receiver = u.username WHERE msg.sender = '$currentUser_Usrnm';";
-    /*$sql = "SELECT * FROM ((user_conversations uc 
-    INNER JOIN users u ON uc.secondary_user = u.username) 
-    INNER JOIN user_conversation_messages ucm  ON ucm.conversation_id = uc.conversation_id) 
-    WHERE uc.primary_user = '$currentUser_Usrnm' ORDER BY ucm.send_date DESC LIMIT 1;";*/
-    $sql = "SELECT * FROM user_conversations uc 
-    INNER JOIN users u ON uc.secondary_user = u.username
-    WHERE uc.primary_user = '$currentUser_Usrnm' ORDER BY uc.conversation_id DESC;";
+    $currentUser_Usrnm = sanitizeString($_SESSION["currentUserUsername"]);
+    $default_image_url = "../media/profiles/0_default/default_profile_pic.svg";
+
+    $sql = "SELECT DISTINCT(uc.conversations_reference), uc.conversation_id, ucm.message_id, ucm.send_message_to, ucm.message, ucm.message_read, ucm.send_date, usrs.user_name, usrs.user_surname 
+    FROM user_conversation_messages ucm 
+    LEFT JOIN user_conversations uc ON uc.conversation_id = ucm.user_conversations_conversation_id 
+    LEFT JOIN user_conversation_users ucu ON ucu.user_conversations_conversation_id = uc.conversation_id 
+    LEFT JOIN users usrs ON usrs.username = ucm.send_message_to 
+    WHERE ucm.users_username = '$currentUser_Usrnm' AND ucm.message_deleted = 0 
+    ORDER BY ucm.send_date DESC";
+
+    return $sql;
 
     //LEFT OUTER JOIN user_conversation_messages ucm  ON ucm.conversation_id = uc.conversation_id) 
 
@@ -596,35 +599,45 @@ function getUserChatConversations()
             //ucm: `message_id`, `conversation_id`, `message`, `sender`, `receiver`, `send_date`, `message_read`
             //uc: `conversation_id`, `primary_user`, `secondary_user`, `conversation_start_date`
             //$msg_id = $row["message_id"];
+            $unread_alert_display_state = ""; // initialize alert display state
 
             $convo_conversationid = $row["conversation_id"];
-            //$convo_lastmsg = $row["message"];
-            $convo_secondaryuser = $row["secondary_user"];
-            //$convo_lastmsgdate = $row["send_date"];
-            //$convo_msgread = $row["message_read"];
+            $convo_lastmsg = $row["message"];
+            $convo_secondaryuser = $row["send_message_to"];
+            $convo_lastmsgdate = $row["send_date"];
+            $convo_msgread = $row["message_read"];
 
             $secondaryuser_name = $row["user_name"];
             $secondaryuser_surname = $row["user_surname"];
 
-            $communicationUserMessages .= '
-            <li class="list-group-item bg-transparent text-white" id="conversation-' . $convo_conversationid . '">
+            if ($convo_msgread) {
+                $unread_alert_display_state = "d-none";
+            }
+
+            $communicationUserMessages .= <<<_END
+            <li class="list-group-item bg-transparent text-white border-1 border-bottom" id="conversation-$convo_conversationid" style="cursor:pointer;border-radius:25px;border-color:var(--tahitigold)!important;" onclick="loadChatConversation('$convo_conversationid', '$currentUser_Usrnm', '$convo_secondaryuser')">
                 <div class="row align-items-center" style="min-height: 100px;">
                     <div class="col-sm-3 text-center">
-                        <img src="../media/profiles/0_default/default_profile_pic.svg" class="rounded-circle shadow" style="height: 50px; width: 50px;" alt="placeholder profile pic">
+                        <img src="$default_image_url" class="rounded-circle shadow bg-white p-1" style="height: 50px; width: 50px; filter: invert(0);" alt="placeholder profile pic">
                     </div>
-                    <div class="col-sm text-center">
-                        <p class="fs-5 my-0 text-truncate">' . $secondaryuser_name . ' ' . $secondaryuser_surname . ' </p>
+                    <div class="col-sm text-center text-truncate">
+                        <p class="fs-5 my-0 text-start"> $secondaryuser_name $secondaryuser_surname </p>
+                        <p class="fs-5z my-0 text-truncate text-break text-start w-100" style="min-height:30px;"> $convo_lastmsg </p>
                     </div>
-                    <div class="col-sm-3 text-center d-grid py-2">
-                        <button type="button" class="onefit-buttons-style-dark p-4 position-relative" onclick="openMessenger(' . "'" . $convo_conversationid . "'" . ', ' . "'" . $currentUser_Usrnm . "'" . ', ' . "'" . $convo_secondaryuser . "'" . ')">
-                            Open
-                            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-dangerz border border-light rounded-circle my-pulse-animation-tahiti" style="background-color: #ffa500 !important;">
-                                <span class="visually-hidden">New Message</span>
+                    <div class="col-sm-3 text-center d-grid py-2 chat-notification-flag-alert w3-animate-top $unread_alert_display_state">
+                        <button type="button" class="onefit-buttons-style-dark p-4 position-relative border-0 w3-animate-left" onclick="loadChatConversation('$convo_conversationid', '$currentUser_Usrnm', '$convo_secondaryuser')">
+                            <span class="material-icons material-icons-round align-middle w3-animate-fadingz" style="font-size: 40px !important">announcement</span>
+                            <span class="position-absolute top-50 start-0 translate-middle p-2 bg-dangerz border-0 border-light rounded-circle w3-animate-fading" style="background-color: #ffa500 !important;">
+                                <span class="visually-hidden">open conversation</span>
                             </span>
                         </button>
                     </div>
                 </div>
-            </li>';
+                <p class="text-center d-none">
+                    $convo_lastmsgdate
+                </p>
+            </li>
+            _END;
 
             $output = $communicationUserMessages;
         }

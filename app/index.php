@@ -148,7 +148,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         coreScriptLoaded_custom_jquery_func_js = coreScriptLoaded_moment_js = coreScriptLoaded_googlefonts_fonts =
         coreScriptLoaded_googlefonts_css = coreScriptLoaded_soccerfield_css = coreScriptLoaded_soccerfield_css =
         coreScriptLoaded_soccerfield_js = coreScriptLoaded_chartjs_js = coreScriptLoaded_markers_css =
-        coreScriptLoaded_markers_js = false;
+        coreScriptLoaded_markers_js = coreScriptLoaded_chat_css = false;
     </script>
 
     <!--fontawesome-->
@@ -184,6 +184,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <link rel="stylesheet" href="../css/media_gallery.css" onload="coreScriptLoaded_custom_styles_css=true;" />
     <link rel="stylesheet" href="../css/digital-clock.css" onload="coreScriptLoaded_digiclock_css=true;" />
     <link rel="stylesheet" href="../css/timeline-styles.css" onload="coreScriptLoaded_timeline_css=true;" />
+    <link rel="stylesheet" href="../css/chat.css" onload="coreScriptLoaded_chat_css=true;" />
 
 
 
@@ -318,9 +319,9 @@ if (isset($_SESSION["currentUserAuth"])) {
             <div class="pb-4 no-scroller"
                 style="border-radius: 25px !important; overflow-y: auto; max-height: 90vh; min-width: 500px;">
                 <!-- twitter api -->
-                <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">
+                <!-- <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">
                     Tweets by <span style="color: var(--tahitigold)!important;">@OnefitNet</span>
-                </a>
+                </a> -->
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 <div class="d-flex justify-content-center">
                     <div class="spinner-border grow text-light my-4" style="width: 3rem; height: 3rem;" role="status">
@@ -6923,7 +6924,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         style="z-index:999;">
                                         <!-- collapse team selection filters btn -->
                                         <div class="w3-animate-left my-pulse-animation-dark w3-animate-left"
-                                            style="position:absolute;bottom:0;right:10px;z-index:1021;margin-bottom:-60px; border-radius:25px;">
+                                            style="position:absolute;bottom:0;right:10px;z-index:1021;margin-bottom:-20px; border-radius:25px;">
                                             <button class="rounde-pill onefit-buttons-style-light p-2 shadow"
                                                 data-bs-toggle="collapse" data-bs-target="#team-select-filters"
                                                 aria-controls="team-select-filters" aria-expanded="false"
@@ -9204,10 +9205,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <div class="pb-4 no-scroller"
                                 style="border-radius: 25px !important; overflow-y: auto; max-height: 90vh; min-width: 500px;">
                                 <!-- twitter api -->
-                                <a class="twitter-timeline comfortaa-font"
+                                <!-- <a class="twitter-timeline comfortaa-font"
                                     href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">
                                     Tweets by <span style="color: var(--tahitigold)!important;">@OnefitNet</span>
-                                </a>
+                                </a> -->
                                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                                 <div class="d-flex justify-content-center">
                                     <div class="spinner-border grow text-light my-4" style="width: 3rem; height: 3rem;"
@@ -9840,14 +9841,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <!-- Twitter feed -->
                                     <div class="m-4 no-scroller"
                                         style="border-radius: 25px !important; overflow-y: scroll;">
-                                        <div class="twitter-timeline twitter-timeline-rendered"
+                                        <!-- <div class="twitter-timeline twitter-timeline-rendered"
                                             style="display: flex; max-width: 100%; margin-top: 0px; margin-bottom: 0px;">
                                             <iframe id="twitter-widget-2" scrolling="no" frameborder="0"
                                                 allowtransparency="true" allowfullscreen="true" class=""
                                                 title="Twitter Timeline"
                                                 src="https://syndication.twitter.com/srv/timeline-profile/screen-name/OnefitNet?dnt=false&amp;embedId=twitter-widget-2&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfbWl4ZWRfbWVkaWFfMTU4OTciOnsiYnVja2V0IjoidHJlYXRtZW50IiwidmVyc2lvbiI6bnVsbH0sInRmd19leHBlcmltZW50c19jb29raWVfZXhwaXJhdGlvbiI6eyJidWNrZXQiOjEyMDk2MDAsInZlcnNpb24iOm51bGx9LCJ0ZndfZHVwbGljYXRlX3NjcmliZXNfdG9fc2V0dGluZ3MiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3ZpZGVvX2hsc19keW5hbWljX21hbmlmZXN0c18xNTA4MiI6eyJidWNrZXQiOiJ0cnVlX2JpdHJhdGUiLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2xlZ2FjeV90aW1lbGluZV9zdW5zZXQiOnsiYnVja2V0Ijp0cnVlLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3R3ZWV0X2VkaXRfZnJvbnRlbmQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfX0%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=false&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;origin=http%3A%2F%2Flocalhost%3A8081%2FOnefit%2Fapp%2F%3Fuserauth%3Dtrue%23&amp;sessionId=1ae8dbda0e6d075a1f5c9f66a57321608e30bc78&amp;showHeader=true&amp;showReplies=false&amp;transparent=false&amp;widgetsVersion=aaf4084522e3a%3A1674595607486"
                                                 style="position: static; visibility: visible; width: 305px; height: 7866px; display: block; flex-grow: 1;"></iframe>
-                                        </div>
+                                        </div> -->
                                         <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8">
                                         </script>
                                     </div>
@@ -10414,11 +10415,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="m-4 no-scroller"
                                         style="border-radius: 25px !important; overflow-y: scroll;">
                                         <!-- twitter api -->
-                                        <a class="twitter-timeline comfortaa-font"
+                                        <!-- <a class="twitter-timeline comfortaa-font"
                                             href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">
                                             Tweets by <span
                                                 style="color: var(--tahitigold)!important;">@OnefitNet</span>
-                                        </a>
+                                        </a> -->
                                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
                                         </script>
                                         <div class="d-flex justify-content-center">
@@ -10551,22 +10552,23 @@ if (isset($_SESSION["currentUserAuth"])) {
         id="offcanvasBottomOnefitChat" aria-labelledby="offcanvasBottomOnefitChatLabel" aria-modal="true" role="dialog">
         <div class="offcanvas-body small p-0 no-scroller" style="overflow-x: hidden;">
             <div class="card text-center m-0 border-0" style="height:100vh">
-                <div class="card-header bg-transparentz border-0 shadow sticky-top"
-                    style="background-color: rgb(52, 52, 52) !important; color: rgb(255, 255, 255) !important; padding-right: 25px; margin-right: -10px;">
+                <div class="card-header bg-transparentz border-0 shadowz fixed-top top-down-grad-dark"
+                    style="color: rgb(255, 255, 255) !important; padding-right: 25px; margin-right: -10px;">
                     <div class="offcanvas-header">
-                        <button class="onefit-buttons-style-dark p-4 shadow d-grid text-center" type="button"
+                        <button class="onefit-buttons-style-dark p-4 shadow d-flex gap-2 text-center" type="button"
                             data-bs-toggle="collapse" data-bs-target="#collapseMyUserChats" aria-expanded="true"
-                            aria-controls="collapseMyUserChats">
-                            <span class="material-icons material-icons-round">
+                            aria-controls="collapseMyUserChats"
+                            onclick="$('div#message-input-main').toggleClass('d-none');$('#main-chat-window').toggleClass('pb-2');">
+                            <span class="material-icons material-icons-round" style="font-size:20px !important;">
                                 3p
                             </span>
                             <span class="align-middle text-truncate d-none d-lg-block"
-                                style="font-size: 10px;">Conversations.</span>
+                                style="font-size: 10px;">Chats.</span>
                         </button>
 
                         <div class="text-center">
-                            <h1 class="offcanvas-title" id="offcanvasBottomOnefitChatLabel">
-                                Messages
+                            <h1 class="offcanvas-title fs-5" id="offcanvasBottomOnefitChatLabel">
+                                Messanger.
                             </h1>
                         </div>
 
@@ -10584,117 +10586,239 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <div class="card-body py-0 px-4 darkpads-bg-container h-100">
                     <div class="row h-100 px-0 no-scroller" style="max-height: 70vh; overflow-y: auto !important;">
-                        <div class="col-md-4 w3-animate-top collapse show" id="collapseMyUserChats">
+                        <div class="col-md-4 w3-animate-top down-top-grad-darkz collapse show" id="collapseMyUserChats">
                             <!--Users Chats List-->
                             <ul class="list-group list-group-flush text-start top-down-grad-dark"
-                                style="padding-bottom: 100px !important;">
+                                style="padding-bottom: 40px !important;padding-top:100px;">
                                 <?php echo $outputProfileUserChats; ?>
                             </ul>
                             <!-- ./ Users Chats List-->
                         </div>
-                        <div class="col-md shadow no-scroller my-0 p-2 text-white down-top-grad-dark"
-                            style="border-radius: 25px; overflow-y: auto; overflow-x: hidden; max-height: 70vh !important;margin-bottom: 0px !important;">
-                            <div class="row align-items-center d-none"
-                                style="border-radius: 25px; background-color: #343434;">
-                                <div class="col-4 d-grid gap-2">
-                                    <!-- Selected Users Friend Chat Profile Strip -->
-                                    <button type="button" class="onefit-buttons-style-dark p-2 my-4 position-relative">
-                                        <div class="container">
-                                            <div class="row align-items-center" style="min-height: 100px;">
-                                                <div class="col -3 text-center">
-                                                    <img src="../media/profiles/0_default/default_profile_pic.svg"
-                                                        class="rounded-circle shadow" style="height: 50px; width: 50px;"
-                                                        alt="placeholder profile pic">
+                        <div class="col-md shadow no-scroller my-0 px-0 text-white"
+                            style="border-radius: 25px; overflow-y: auto; overflow-x: hidden; margin-bottom: 0px !important;max-height: 100vh !important;border-radius:25px;">
+
+                            <div class="card border-0 h-100z down-top-grad-dark h-100 gap-2"
+                                style="max-height:100vh!important;border-radius:25px;">
+                                <div id="main-chat-window"
+                                    class="card-body border-0 bg-transparent px-2 pt-0 down-top-grad-tahiti border-5 border-bottom pb-2"
+                                    style="border-radius:25px!important;overflow:hidden;border-color:var(--tahitigold)!important;padding-bottom:240px;">
+                                    <div id="chat-message-container" class="no-scrollerz px-0 pb-0 light-scroller"
+                                        style="border-radius: 25px;width: 100%; height: 100%; background-color: rgba(52, 52, 52, 0) !important; overflow-y: auto !important; overflow-x: hidden !important;padding-top:140px;">
+                                        <!-- User Chat Bubble - Left (Users Friend) -->
+                                        <div class="row align-items-center">
+                                            <div class="col-sm text-start w3-animate-left p-0 ps-4">
+                                                <div class="d-flex gap-2">
+                                                    <div class="text-start d-none">
+                                                        <img src="../media/profiles/0_default/default_profile_pic.svg"
+                                                            class="rounded-5 shadow"
+                                                            style="height: 100px;width: 100px;filter: invert(0);z-index:2;position: relative;"
+                                                            alt="placeholder profile pic">
+                                                    </div>
+
+                                                    <div class="talk-bubble shadow tri-right shadow left-top border border-5"
+                                                        style="border-radius: 0 25px 25px 25px !important;border-color:var(--mineshaft)!important;">
+                                                        <div class="talktext">
+                                                            <small
+                                                                class="text-white text-end d-flex gap-3 align-items-center justify-content-between mb-3">
+                                                                <div class="d-flex gap-2 align-items-center">
+                                                                    <img src="../media/profiles/0_default/default_profile_pic.svg"
+                                                                        class="rounded-circle p-1 shadow bg-white"
+                                                                        style="height: 50px; width: 50px; filter: invert(0);"
+                                                                        alt="placeholder profile pic">
+                                                                    <span class="text-start">Name Surname</span>
+                                                                </div>
+                                                                <button
+                                                                    class="onefit-buttons-style-dark py-2 px-4 border-0"
+                                                                    style="margin-right:-20px;">
+                                                                    <span
+                                                                        class="material-icons material-icons-rounded text-mutedz"
+                                                                        style="font-size:20px!important;">
+                                                                        more_horiz
+                                                                    </span>
+                                                                </button>
+                                                            </small>
+                                                            <p class="mb-3">And now using .round we can smooth the sides
+                                                                down. Also
+                                                                uses
+                                                                .btm-left to show a triangle at the bottom flush to the
+                                                                left.
+                                                            </p>
+                                                            <div
+                                                                class="d-flex gap-2 justify-content-start align-items-center chat-bubble-footer">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size:20px!important;color:var(--tahitigold);">
+                                                                    mark_chat_read
+                                                                </span>
+
+                                                                <p class="text-muted text-end align-middle"
+                                                                    style="color:var(--white)!important;font-size:12px;"
+                                                                    data-msg-datetime="creation datetime str of this message here">
+                                                                    Sent 1 minute ago.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col text-center">
-                                                    <p class="fs-5 my-0 text-truncate">Visit Profile</p>
+                                            </div>
+                                            <div class="col-sm-3 text-start border-5z border-bottomz"></div>
+                                        </div>
+
+                                        <hr class="text-white m-0 d-none" style="height:5px;">
+                                        <!-- ./ User Chat Bubble - Left (Users Friend) -->
+
+                                        <!-- User Chat Bubble - Right (User) -->
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-3 border-5z border-bottomz"></div>
+                                            <div class="col-sm text-end w3-animate-right p-0 pe-4">
+                                                <div class="d-flex gap-2">
+                                                    <div class="talk-bubble shadow tri-right shadow right-top border border-5"
+                                                        style="border-radius: 25px 0 25px 25px !important;border-color:var(--mineshaft)!important;">
+                                                        <div class="talktext">
+                                                            <small
+                                                                class="text-white text-end d-flex gap-3 align-items-center justify-content-between mb-3">
+                                                                <button
+                                                                    class="onefit-buttons-style-dark py-2 px-4 border-0"
+                                                                    style="margin-left:-20px;">
+                                                                    <span
+                                                                        class="material-icons material-icons-rounded text-mutedz"
+                                                                        style="font-size:20px!important;">
+                                                                        more_horiz
+                                                                    </span>
+                                                                </button>
+                                                                <div class="d-flex gap-2 align-items-center">
+                                                                    <span class="text-end">Name Surname</span>
+                                                                    <img src="../media/profiles/0_default/default_profile_pic.svg"
+                                                                        class="rounded-circle p-1 shadow bg-white"
+                                                                        style="height: 50px; width: 50px; filter: invert(0);"
+                                                                        alt="placeholder profile pic">
+                                                                </div>
+                                                            </small>
+                                                            <p class="mb-3">And now using .round we can smooth the sides
+                                                                down. Also
+                                                                uses
+                                                                .btm-left to show a triangle at the bottom flush to the
+                                                                left.
+                                                            </p>
+                                                            <div
+                                                                class="d-flex gap-2 justify-content-start align-items-center chat-bubble-footer">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size:20px!important;color:var(--tahitigold);">
+                                                                    mark_chat_read
+                                                                </span>
+
+                                                                <p class="text-muted text-end align-middle"
+                                                                    style="color:var(--white)!important;font-size:12px;"
+                                                                    data-msg-datetime="creation datetime str of this message here">
+                                                                    Sent 1 minute ago.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="text-end d-none">
+                                                        <img src="../media/profiles/0_default/default_profile_pic.svg"
+                                                            class="rounded-5 shadow"
+                                                            style="height: 100px; width: 100px; filter: invert(0);"
+                                                            alt="placeholder profile pic">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- ./ User Chat Bubble - Right (User) -->
 
-                                        <span
-                                            class="position-absolute top-0 start-100 translate-middle p-2 bg-dangerz border border-light rounded-circle my-pulse-animation-tahiti"
-                                            style="background-color: #ffa500 !important;">
-                                            <span class="visually-hidden">New Message Alert</span>
-                                        </span>
-                                    </button>
-                                    <!-- ./ Selected Users Friend Chat Profile Strip -->
-                                </div>
-                                <div class="col text-dark">
-                                    <h1>Stuff</h1>
-                                </div>
-                            </div>
+                                        <!--Users Chat Conversation Panel-->
 
-                            <div class="no-scrollerz p-4 shadow"
-                                style="border-radius: 25px;width: 100%; height: 100%; background-color: rgba(52, 52, 52, 0.8) !important; overflow-y: auto !important; overflow-x: hidden !important;">
-                                <!-- User Chat Bubble - Left (Users Friend) -->
-                                <div class="row align-items-center">
-                                    <div class="col-sm text-start">
-                                        <div class="d-flex gap-2">
-                                            <div class="text-start">
-                                                <img src="../media/profiles/0_default/default_profile_pic.svg"
-                                                    class="rounded-circle shadow" style="height: 50px; width: 50px;"
-                                                    alt="placeholder profile pic">
+                                    </div>
+                                </div>
+
+                                <div class="card-footer bg-transparent border-0 fixed-bottom down-top-grad-dark p-0"
+                                    data-bs-padding-right="25px">
+                                    <div id="message-input-main"
+                                        class="border-5 border-top px-4 pt-2 pb-4 top-down-grad-tahiti w3-animate-bottom d-none"
+                                        style="border-radius:25px;border-color:var(--tahitigold)!important;">
+                                        <div class="row align-items-center">
+                                            <div class="col p-3">
+                                                <textarea name="" class="w-100 quick-post-input p-2 shadow text-white"
+                                                    id="post-message-community" cols="30" rows="5"
+                                                    placeholder="Message." style="
+                                                    border-radius: 15px;
+                                                    border: 5px solid var(--mineshaft);
+                                                    min-height: 100px !important;
+                                                    max-height: 500px !important;
+                                                background-color:var(--mineshaft);"></textarea>
+
                                             </div>
+                                            <div class="col-4 d-grid gap-2 p-0">
 
-                                            <div class="talk-bubble shadow tri-right shadow btm-leftz left-top border-5 border-end border-bottom"
-                                                style="border-radius: 0 25px 25px 25px !important;">
-                                                <div class="talktext">
-                                                    <p>And now using .round we can smooth the sides down. Also uses
-                                                        .btm-left to show a triangle at the bottom flush to the left.
-                                                    </p>
-                                                </div>
+
+                                                <!-- function buttons horiz-list -->
+                                                <ul id="message-function-horiz-btn-list"
+                                                    class="list-group list-group-horizontal justify-content-betweenz border-0 bg-transparent">
+                                                    <li
+                                                        class="list-group-item border-0 p-0 bg-transparent flex-fill d-grid">
+                                                        <!-- + feelings / emoji / reaction -->
+                                                        <button type="button"
+                                                            class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-grid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 20px !important">add_reaction</span>
+                                                            <span class="align-middle d-none d-lg-block"
+                                                                style="font-size: 10px">
+                                                                <span style="color: #ffa500 !important">+</span>
+                                                                feeling</span>
+                                                        </button>
+                                                    </li>
+                                                    <li
+                                                        class="list-group-item border-0 p-0 bg-transparent flex-fill d-grid">
+                                                        <!-- + resource (share media: pdf/img/mp4/mp3) -->
+                                                        <button type="button"
+                                                            class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-grid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 20px !important">attach_file
+                                                            </span>
+                                                            <span class="align-middle d-none d-lg-block"
+                                                                style="font-size: 10px">
+                                                                <span style="color: #ffa500 !important">+</span>
+                                                                resource</span>
+                                                        </button>
+                                                    </li>
+                                                    <li
+                                                        class="list-group-item border-0 p-0 bg-transparent flex-fill d-grid">
+                                                        <!-- + web web links -->
+                                                        <button type="button"
+                                                            class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-grid">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 20px !important">link</span>
+                                                            <span class="align-middle d-none d-lg-block"
+                                                                style="font-size: 10px">
+                                                                <span style="color: #ffa500 !important">+</span>
+                                                                web</span>
+                                                        </button>
+                                                    </li>
+                                                </ul><!-- send message btn -->
+
+
+                                                <button type="button"
+                                                    class="onefit-buttons-style-dark p-3 m-1 border-1">
+                                                    <!-- <i class="fas fa-paper-plane" style="font-size: 38px !important"></i> -->
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="
+                                                        font-size: 40px !important;
+                                                        color: #ffa500;
+                                                    ">
+                                                        post_add
+                                                    </span>
+                                                    <span class="align-middle">Send.</span>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-3 text-start"></div>
                                 </div>
-                                <!-- ./ User Chat Bubble - Left (Users Friend) -->
-
-                                <!-- User Chat Bubble - Right (User) -->
-                                <div class="row align-items-start">
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm text-end">
-                                        <div class="d-flex gap-2">
-                                            <div class="talk-bubble shadow tri-right shadow btm-rightz right-top border-5 border-start border-bottom"
-                                                style="border-radius: 25px 0 25px 25px !important;">
-                                                <div class="talktext">
-                                                    <p>And now using .round we can smooth the sides down. Also uses
-                                                        .btm-left to show a triangle at the bottom flush to the left.
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-end">
-                                                <img src="../media/profiles/0_default/default_profile_pic.svg"
-                                                    class="rounded-circle shadow" style="height: 50px; width: 50px;"
-                                                    alt="placeholder profile pic">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- ./ User Chat Bubble - Right (User) -->
-
-                                <!--Users Chat Conversation Panel-->
-
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="card-footer bg-transparent border-0 fixed-bottom down-top-grad-dark"
-                    style="padding-right: 25px;">
-                    <div class="row py-4 align-items-end">
-                        <div class="col-sm">
-                            <textarea class="onefit-inputs-style p-4 shadow" style="border-radius: 25px !important;"
-                                name="" id="" cols="30" rows="3">Wassup, Dude?</textarea>
-                        </div>
-                        <div class="col-sm-2 d-grid gap-2">
-                            <button class="onefit-buttons-style-dark p-4 shadow">
-                                <span class="material-icons material-icons-round">
-                                    try
-                                </span>
-                            </button>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -12255,6 +12379,76 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <!-- A Lot of Javascript here!!! - should be in external js files -->
     <script>
+    // 
+    $.loadChatConversation = function(conversationId, currentUserUsrnm, conversationRef) {
+        // show #load-wait-screen-curtain 
+        $('#load-wait-screen-curtain').show();
+        $.get("../scripts/php/main_app/compile_content/communications_tab/get_user_chats.php?cref=" +
+            conversationRef + "&cid=" +
+            conversationId,
+            function(data, status) {
+                if (status != "success") {
+                    console.log("Get Req Failed -> $.loadChatConversation returned: \n[Status]: " + status +
+                        "\n[Data]: " + data);
+                    // alert("Get Req Failed -> $.loadChatConversation returned: \n[Status]: " + status + "\n[Data]: " + data);
+                } else {
+                    // pass returned data to #chat-message-container
+                    $('#chat-message-container').html(data);
+                    // smooth scroll to the last .row div in #chat-message-container
+                    $('#chat-message-container').animate({
+                        scrollTop: $('#chat-message-container').prop("scrollHeight")
+                    }, 1000);
+                }
+                setTimeout(() => {
+                    // hide #load-wait-screen-curtain 
+                    $('#load-wait-screen-curtain').hide();
+                }, 2000);
+            }
+        );
+        // post request for the chat conversation
+        // $.ajax({
+        //     url: '../scripts/php/main_app/data_management/chat_data/get_chat_conversation.php',
+        //     type: 'POST',
+        //     data: {
+        //         conversationId: conversationId,
+        //         currentUserUsrnm: currentUserUsrnm,
+        //         conversationRef: conversationRef
+        //     },
+        //     success: function(data) {
+        //         //console.log(data);
+        //         // parse the json data
+        //         var chatConversation = JSON.parse(data);
+        //         //console.log(chatConversation);
+        //         //console.log(chatConversation[0].conversation_id);
+        //         //console.log(chatConversation[0].conversation_title);
+        //         //console.log(chatConversation[0].conversation_description);
+        //         //console.log(chatConversation[0].conversation_created_by);
+        //         //console.log(chatConversation[0].conversation_created_on);
+        //         //console.log(chatConversation[0].conversation_last_updated);
+        //         //console.log(chatConversation[0].conversation_last_updated_by);
+        //         //console.log(chatConversation[0].conversation_last_updated_on);
+        //         //console.log(chatConversation[0].conversation_status);
+        //         //console.log(chatConversation[0].conversation_type);
+        //         //console.log(chatConversation[0].conversation_members);
+        //         //console.log(chatConversation[0].conversation_messages);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_id);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_content);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_created_by);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_created_on);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_status);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_type);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_attachments);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[0].attachment_id);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[0].attachment_name);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[0].attachment_type);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[0].attachment_size);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[0].attachment_url);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[0].attachment_created_by);
+        //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[
+        //     }
+        // });
+    }
+
     // toggle notification indicator
     // state is a bool, icon is a string, priority is a bool
     $.toggleNotificationIndicator = function(state, icon, priority) {
@@ -15153,7 +15347,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 // alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
             } else {
                 // console log if json was requested
-                if (request == 'json') console.log('Store Products Json: \n'.data);
+                if (request == 'json') console.log('Store Products Json: \n' + data);
                 else $(elemid).html(data); // '#store-products-list'
             }
         });
@@ -17521,7 +17715,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 // alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
             } else {
                 if (request == 'json') {
-                    console.log('Indi Exercises Json: \n'.data);
+                    console.log('Indi Exercises Json: \n' + data);
                 } else {
                     $(elemid).html(data); // '#add-to-calender-activity-selection'
                 }

@@ -25,10 +25,10 @@ if (isset($_GET['uid'])) {
     _END;
 
     $workoutcardtheme_1 = <<<_END
-    class="grid-tile p-4 shadow text-center border-5 border position-relative down-top-grad-tahitiz workouts-tile-premium-tahiti"
+    class="grid-tile p-4 shadow text-center border-5 border-bottom position-relative down-top-grad-tahitiz workouts-tile-premium-tahiti"
     _END; // tahiti
     $workoutcardtheme_2 = <<<_END
-    class="grid-tile p-4 shadow text-center border-5 border position-relative down-top-grad-whitez workouts-tile-premium-light"
+    class="grid-tile p-4 shadow text-center border-5 border-bottom position-relative down-top-grad-whitez workouts-tile-premium-light"
     _END; // light/white
     $workoutcardtheme_3 = <<<_END
     class="grid-tile p-4 shadow text-center border-5 border position-relative workouts-tile-community-light"
@@ -145,11 +145,11 @@ if (isset($_GET['uid'])) {
                     $drillsList = <<<_END
                         <div id="training-drill-card-$exercise_drill_id" class="grid-tile p-4 down-top-grad-white shadow border-5 text-center border-bottom drills-tile d-grid justify-content-centerz">
                             <!-- row-body --> 
-                            <div class="row justify-content-center">
-                                <div class="col-sm-4 text-center">
-                                    <img src="$thumbnail" class="img-fluid shadow m-4" style="border-radius: 15px; max-width: 50%;" alt="$drill_title @ $training_level">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-sm-6 text-center">
+                                    <img src="$thumbnail" class="img-fluid shadow m-4" style="border-radius: 15px;" alt="$drill_title @ $training_level">
                                 </div>
-                                <div class="col-sm-8 text-center">
+                                <div class="col-sm-6 text-center">
                                     <h5 class="fs-2 comfortaa-font"> $drill_title </h5>
                                     <p class="mb-4">
                                         <strong>Benefits:</strong> $benefits <br>
@@ -334,18 +334,20 @@ if (isset($_GET['uid'])) {
                             <div class="card bg-transparent border-0 h-100">
                                 <div class="card-body bg-transparent border-0">
                                     <img src="$thumbnail" class="img-fluid shadow mb-4" style="border-radius: 25px; max-height: 300px;" alt="$workout_name">
-                                    <p class="fs-2 comfortaa-font"> $workout_name </p>
-                                    <p class="mb-4"> 
-                                        <strong>Guideline:</strong> <br> $guidelines <br>
-                                        <strong>Goal:</strong> $goal_definition <br>
-                                        <strong>Intensity (RPE):</strong> $rpe / 10 <br>
-                                    </p>
-                                    <p class="mt-4 text-mutedz text-white"><span class="material-icons material-icons-round align-middle" style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
-                                        <strong>Avg. Workout Duration:</strong> *? mins / day <br>
-                                        <strong>Category/Class:</strong> $category_class_name <br>
-                                        <strong>Activities:</strong> $exercise_count_str <br>
-                                        <strong>Workout XP:</strong> $total_xp_points <br>
-                                    </p>
+                                    <div class="workout-card-info-content no-scroller">
+                                        <p class="fs-2 comfortaa-font"> $workout_name </p>
+                                        <p class="mb-4"> 
+                                            <strong>Guideline:</strong> <br> $guidelines <br>
+                                            <strong>Goal:</strong> $goal_definition <br>
+                                            <strong>Intensity (RPE):</strong> $rpe / 10 <br>
+                                        </p>
+                                        <p class="mt-4 text-mutedz text-whitez"><span class="material-icons material-icons-round align-middle" style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
+                                            <strong>Avg. Workout Duration:</strong> *? mins / day <br>
+                                            <strong>Category/Class:</strong> $category_class_name <br>
+                                            <strong>Activities:</strong> $exercise_count_str <br>
+                                            <strong>Workout XP:</strong> $total_xp_points <br>
+                                        </p>
+                                    </div>
                                 </div>
                                 <div class="card-footer bg-transparent border-0 d-grid">
                                 <hr/>

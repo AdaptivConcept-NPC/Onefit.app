@@ -1629,31 +1629,7 @@ h6 {
 
 .drills-tile {
 	border-radius: 0 0 25px 25px;
-	border-color: var(--tahitigold) !important;
-	color: var(--tahitigold) !important;
 
-	background: rgb(0, 0, 0);
-	background: -moz-linear-gradient(
-		180deg,
-		rgba(0, 0, 0, 0) 0%,
-		rgba(255, 255, 255, 1) 100%
-	);
-	background: -webkit-linear-gradient(
-		180deg,
-		rgba(0, 0, 0, 0) 0%,
-		rgba(255, 255, 255, 1) 100%
-	);
-	background: linear-gradient(
-		180deg,
-		rgba(0, 0, 0, 0) 0%,
-		rgba(255, 255, 255, 1) 100%
-	);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#ffffff", GradientType=1);
-
-	transition: 0.2s;
-}
-
-.drills-tile:hover {
 	border-color: var(--white) !important;
 	color: var(--white) !important;
 
@@ -1674,10 +1650,36 @@ h6 {
 		rgba(232, 138, 4, 1) 100%
 	);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#ffa500", GradientType=1);
+
+	transition: 0.2s;
+}
+
+.drills-tile:hover {
+	border-color: var(--tahitigold) !important;
+	color: var(--mineshaft) !important;
+
+	background: rgb(0, 0, 0);
+	background: -moz-linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	background: -webkit-linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	background: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#ffffff", GradientType=1);
 }
 
 .workouts-tile-premium-light {
 	background-color: var(--mineshaft);
+
 	border-color: var(--tahitigold) !important;
 	color: var(--mineshaft) !important;
 
@@ -1726,12 +1728,40 @@ h6 {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#ffa500", GradientType=1);
 }
 
+.workouts-tile-premium-tahiti:hover {
+	border-color: var(--tahitigold) !important;
+	color: var(--mineshaft) !important;
+
+	background: rgb(0, 0, 0);
+	background: -moz-linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	background: -webkit-linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	background: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#ffffff", GradientType=1);
+}
+
 .workouts-tile-community-light {
 	background-color: var(--mineshaft);
 	border-color: var(--tahitigold) !important;
 	color: var(--white) !important;
 	/* solid color */
 	background-color: var(--white) !important;
+}
+
+.workout-card-info-content {
+	max-height: 80vh !important;
+	overflow-y: auto;
 }
 
 .media-item-tile {
@@ -1991,269 +2021,6 @@ div.horizontal-scroll-card-nav {
 	background-color: var(--mineshaft);
 	border-radius: 25px !important;
 	overflow: hidden;
-}
-
-/* CSS talk bubble */
-.talk-bubble {
-	margin: 20px;
-	display: inline-block;
-	position: relative;
-	width: auto !important;
-	/*min-width: 200px;*/
-	max-width: 100%;
-	height: auto;
-	background-color: var(--mineshaft);
-	color: var(--white);
-	font-size: 20px;
-}
-
-.border {
-	border: 8px solid var(--mineshaft);
-}
-
-.round {
-	-webkit-border-radius: 30px;
-	-moz-border-radius: 30px;
-	border-radius: 30px;
-}
-
-/* Right triangle placed top left flush. */
-.tri-right.border.left-top:before {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: -40px;
-	right: auto;
-	top: -8px;
-	bottom: auto;
-	border: 32px solid;
-	border-color: var(--mineshaft) transparent transparent transparent;
-}
-
-.tri-right.left-top:after {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: -20px;
-	right: auto;
-	top: 0px;
-	bottom: auto;
-	border: 22px solid;
-	border-color: var(--mineshaft) transparent transparent transparent;
-}
-
-/* Right triangle, left side slightly down */
-.tri-right.border.left-in:before {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: -40px;
-	right: auto;
-	top: 30px;
-	bottom: auto;
-	border: 20px solid;
-	border-color: var(--mineshaft) var(--mineshaft) transparent transparent;
-}
-
-.tri-right.left-in:after {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: -20px;
-	right: auto;
-	top: 38px;
-	bottom: auto;
-	border: 12px solid;
-	border-color: var(--mineshaft) var(--mineshaft) transparent transparent;
-}
-
-/*Right triangle, placed bottom left side slightly in*/
-.tri-right.border.btm-left:before {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: -8px;
-	right: auto;
-	top: auto;
-	bottom: -40px;
-	border: 32px solid;
-	border-color: transparent transparent transparent var(--mineshaft);
-}
-
-.tri-right.btm-left:after {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: 0px;
-	right: auto;
-	top: auto;
-	bottom: -20px;
-	border: 22px solid;
-	border-color: transparent transparent transparent var(--mineshaft);
-}
-
-/*Right triangle, placed bottom left side slightly in*/
-.tri-right.border.btm-left-in:before {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: 30px;
-	right: auto;
-	top: auto;
-	bottom: -40px;
-	border: 20px solid;
-	border-color: var(--mineshaft) transparent transparent var(--mineshaft);
-}
-
-.tri-right.btm-left-in:after {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: 38px;
-	right: auto;
-	top: auto;
-	bottom: -20px;
-	border: 12px solid;
-	border-color: var(--mineshaft) transparent transparent var(--mineshaft);
-}
-
-/*Right triangle, placed bottom right side slightly in*/
-.tri-right.border.btm-right-in:before {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: auto;
-	right: 30px;
-	bottom: -40px;
-	border: 20px solid;
-	border-color: var(--mineshaft) var(--mineshaft) transparent transparent;
-}
-
-.tri-right.btm-right-in:after {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: auto;
-	right: 38px;
-	bottom: -20px;
-	border: 12px solid;
-	border-color: var(--mineshaft) var(--mineshaft) transparent transparent;
-}
-
-/*
-	left: -8px;
-  right: auto;
-  top: auto;
-	bottom: -40px;
-	border: 32px solid;
-	border-color: transparent transparent transparent var(--mineshaft);
-	left: 0px;
-  right: auto;
-  top: auto;
-	bottom: -20px;
-	border: 22px solid;
-	border-color: transparent transparent transparent var(--white);
-
-/*Right triangle, placed bottom right side slightly in*/
-.tri-right.border.btm-right:before {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: auto;
-	right: -8px;
-	bottom: -40px;
-	border: 20px solid;
-	border-color: var(--mineshaft) var(--mineshaft) transparent transparent;
-}
-
-.tri-right.btm-right:after {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: auto;
-	right: 0px;
-	bottom: -20px;
-	border: 12px solid;
-	border-color: var(--mineshaft) var(--mineshaft) transparent transparent;
-}
-
-/* Right triangle, right side slightly down*/
-.tri-right.border.right-in:before {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: auto;
-	right: -40px;
-	top: 30px;
-	bottom: auto;
-	border: 20px solid;
-	border-color: var(--mineshaft) transparent transparent var(--mineshaft);
-}
-
-.tri-right.right-in:after {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: auto;
-	right: -20px;
-	top: 38px;
-	bottom: auto;
-	border: 12px solid;
-	border-color: var(--mineshaft) transparent transparent var(--mineshaft);
-}
-
-/* Right triangle placed top right flush. */
-.tri-right.border.right-top:before {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: auto;
-	right: -40px;
-	top: -8px;
-	bottom: auto;
-	border: 32px solid;
-	border-color: var(--mineshaft) transparent transparent transparent;
-}
-
-.tri-right.right-top:after {
-	content: " ";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: auto;
-	right: -20px;
-	top: 0px;
-	bottom: auto;
-	border: 20px solid;
-	border-color: var(--mineshaft) transparent transparent transparent;
-}
-
-/* talk bubble contents */
-.talktext {
-	padding: 1em;
-	text-align: left;
-	line-height: 1.5em;
-}
-
-.talktext p {
-	/* remove webkit p margins */
-	-webkit-margin-before: 0em;
-	-webkit-margin-after: 0em;
 }
 
 /*Create button */
