@@ -372,7 +372,7 @@ try {
       // #eu-agreements-next-panel-btn => #category-eu-agreements-tab-pane => #category-eula-tab-questions-pane
 
       // profile images upload ajax jquery
-      $("#uploadProfileImgForm").submit(function(e) {
+      $("#uploadProfileImgForm").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -420,7 +420,7 @@ try {
       });
 
       // banner images upload ajax jquery
-      $("#uploadBannerImgForm").submit(function(e) {
+      $("#uploadBannerImgForm").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -470,7 +470,7 @@ try {
 
 
       // ajax: submit aboutyou data
-      $("#aboutyou-info-form").submit(function(e) {
+      $("#aboutyou-info-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -551,7 +551,7 @@ try {
       });
 
       // ajax: submit goalsetting data
-      $("#goalsetting-info-form").submit(function(e) {
+      $("#goalsetting-info-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -640,7 +640,7 @@ try {
       });
 
       // ajax: submit fitprefs data
-      $("#fitprefs-info-form").submit(function(e) {
+      $("#fitprefs-info-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -722,7 +722,7 @@ try {
       });
 
       // ajax: submit user eula policy acceptance data
-      $("#eula-policy-info-form").submit(function(e) {
+      $("#eula-policy-info-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -786,7 +786,7 @@ try {
       });
 
       // ajax: submit user tou policy acceptance data
-      $("#tou-policy-info-form").submit(function(e) {
+      $("#tou-policy-info-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -985,7 +985,7 @@ try {
       //     //   showSnackbar("We are submitting your information. Please wait.", "alert_general");
       //     //   // submit all forms
       //     //   formsArray.forEach(formid => {
-      //     //     // $(formid).submit();
+      //     //     // $(formid).on("submit", );
       //     //     switch (formid) {
       //     //       case "#eula-policy-info-form":
       //     //         // click the form submit button

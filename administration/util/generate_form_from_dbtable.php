@@ -105,7 +105,7 @@ foreach ($fields as $key => $field) {
 
     $jquery_submit = <<<_JQuery
     <script>
-        $("#$tblname-form").submit(function (e) {
+        $("#$tblname-form").on("submit", function (e) {
             e = e || window.event;
             e.preventDefault();
             e.stopImmediatePropagation();
@@ -169,7 +169,7 @@ foreach ($fields as $key => $field) {
 <!-- custom css -->
 <link rel="stylesheet" href="../css/form_style.css">
 
-<?php echo $jquery_submit; ?>
+
 <form id="<?php echo $tblname; ?>-form" method="post" class="container p-4 gap-2">
     <div id="form-output-message"></div>
     <?php echo $compile; ?>

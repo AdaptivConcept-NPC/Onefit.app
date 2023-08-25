@@ -611,16 +611,16 @@ function getUserChatConversations()
             }
 
             $communicationUserMessages .= <<<_END
-            <li class="list-group-item bg-transparent text-white border-5 border-bottom" id="conversation-$convo_conversationid" style="cursor:pointer;border-radius:25px;border-color:var(--tahitigold)!important;" onclick="$.loadChatConversation('$convo_conversationid', '$currentUser_Usrnm', '$convo_conversationref')">
+            <li class="list-group-item bg-transparent text-white border-5 border-bottom" id="conversation-$convo_conversationid" style="cursor:pointer;border-radius:25px;border-color:var(--tahitigold)!important;" onclick="$.loadChatConversation('$convo_conversationid', '$currentUser_Usrnm', '$convo_conversationref');$('#toggle-chats-list-btn').click();">
                 <div class="row align-items-center" style="min-height: 100px;">
-                    <div class="col-sm-3 text-start">
+                    <div class="col-sm-3 text-md-center">
                         <img src="$default_image_url" class="rounded-circle shadow bg-white p-1" style="height: 50px; width: 50px; filter: invert(0);" alt="placeholder profile pic">
                     </div>
                     <div class="col-sm text-center text-truncate gap-2">
                         <p class="fs-5 fw-bold my-0 text-start"> $secondaryuser_name $secondaryuser_surname </p>
                         <p class="fs-5z my-0 text-truncate text-break text-start w-100" style="min-height:30px;color:var(--tahitigold);"> $convo_lastmsg </p>
                     </div>
-                    <div class="col-sm-3 text-center d-grid justify-content-end py-2 chat-notification-flag-alert w3-animate-top $unread_alert_display_state">
+                    <div class="col-sm-2 text-center d-grid justify-content-end py-2 chat-notification-flag-alert w3-animate-left $unread_alert_display_state">
                         <button type="button" class="onefit-buttons-style-dark p-2 position-relative border-0 w3-animate-left" style="margin-top:-40px;" onclick="$.loadChatConversation('$convo_conversationid', '$currentUser_Usrnm', '$convo_conversationref')">
                             <span class="material-icons material-icons-round align-middle w3-animate-fadingz" style="font-size: 30px !important">announcement</span>
                             <span class="position-absolute top-0 start-0 translate-middle p-2 bg-dangerz border-0 border-light rounded-circle w3-animate-fading" style="background-color: #ffa500 !important;">

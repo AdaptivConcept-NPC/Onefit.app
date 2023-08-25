@@ -33,8 +33,9 @@ function AssignPosition(d) {
 		cX += rX;
 		cY += rY;
 	}
-	d.style.left = cX + 10 + "px";
-	d.style.top = cY + 10 + "px";
+	var newElem = document.getElementById(d);
+	newElem.style.left = cX + 10 + "px";
+	newElem.style.top = cY + 10 + "px";
 }
 function HideContent(d) {
 	if (d.length < 1) {

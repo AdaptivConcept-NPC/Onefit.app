@@ -8,7 +8,8 @@
         "phpunit/phpunit": "9.6"
     },
     "scripts": {
-        "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
+        "pre-autoload-dump": "Google\\Task\\Composer::cleanup",
+        "test": "vendor/bin/phpunit"
     },
     "extra": {
         "google/apiclient-services": [

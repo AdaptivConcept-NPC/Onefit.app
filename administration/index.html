@@ -65,1053 +65,1041 @@
 		<!-- ./ JQuery CDN -->
 
 		<!-- custom js -->
-		<script src="../scripts/js/script.js"></script>
+		<script src="./scripts/js/script.js"></script>
 
-		<!-- JQuery Scripts -->
 		<script>
 			//jQuery Code Only
-			//$.noConflict();
-			$(document).ready(function () {
-				// ajax jquery - submit CSV bulk file [user_accounts]
-				$("#users-csv-bulk-upload-form").submit(function (e) {
-					e = e || window.event;
-					e.preventDefault();
+			// ajax jquery - submit CSV bulk file [user_accounts]
+			$("#users-csv-bulk-upload-form").on("submit", function (e) {
+				e = e || window.event;
+				e.preventDefault();
 
-					alert("User Management - This fuction is unavailable.");
+				alert("User Management - This fuction is unavailable.");
 
-					// var form_data = new FormData($('#store-csv-bulk-upload-form')[0]);
-					// setTimeout(function () {
-					//     $.ajax({
-					//         type: 'POST',
-					//         url: 'scripts/php/bulk_upload/upload_user_accounts_csv.php',
-					//         processData: false,
-					//         contentType: false,
-					//         async: false,
-					//         cache: false,
-					//         data: form_data,
-					//         contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
-					//         beforeSend: function () {
-					//             console.log('beforeSend: submitting user_accounts bulk CSV file');
-					//         },
-					//         success: function (response) {
+				// var form_data = new FormData($('#store-csv-bulk-upload-form')[0]);
+				// setTimeout(function () {
+				//     $.ajax({
+				//         type: 'POST',
+				//         url: 'scripts/php/bulk_upload/upload_user_accounts_csv.php',
+				//         processData: false,
+				//         contentType: false,
+				//         async: false,
+				//         cache: false,
+				//         data: form_data,
+				//         contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+				//         beforeSend: function () {
+				//             console.log('beforeSend: submitting user_accounts bulk CSV file');
+				//         },
+				//         success: function (response) {
 
-					//             if (response.startsWith("success")) {
-					//                 console.log('success: returning response - submitting user_accounts bulk CSV file successfully');
-					//                 console.log("Response: \n" + response);
-					//                 // pass success message output to ui
-					//                 $("#form-output-categories").html("Bulk data submitted successfully.");
-					//                 // toggle alert classes
-					//                 $("#form-output-categories").toggleClass("alert-info");
-					//                 $("#form-output-categories").toggleClass("alert-success");
-					//             } else {
-					//                 console.log("error: returning response - an error occurred");
-					//                 console.log("Response: \n" + response);
-					//                 // pass error message output to ui
-					//                 $("#form-output-categories").html("An error occured whilst processing your request. \n\n" + response);
-					//                 // toggle alert classes
-					//                 $("#form-output-categories").toggleClass("alert-info");
-					//                 $("#form-output-categories").toggleClass("alert-danger");
-					//             }
-					//         },
-					//         error: function (xhr, ajaxOptions, thrownError) {
-					//             console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-					//         }
-					//     });
-					// }, 1000);
+				//             if (response.startsWith("success")) {
+				//                 console.log('success: returning response - submitting user_accounts bulk CSV file successfully');
+				//                 console.log("Response: \n" + response);
+				//                 // pass success message output to ui
+				//                 $("#form-output-categories").html("Bulk data submitted successfully.");
+				//                 // toggle alert classes
+				//                 $("#form-output-categories").toggleClass("alert-info");
+				//                 $("#form-output-categories").toggleClass("alert-success");
+				//             } else {
+				//                 console.log("error: returning response - an error occurred");
+				//                 console.log("Response: \n" + response);
+				//                 // pass error message output to ui
+				//                 $("#form-output-categories").html("An error occured whilst processing your request. \n\n" + response);
+				//                 // toggle alert classes
+				//                 $("#form-output-categories").toggleClass("alert-info");
+				//                 $("#form-output-categories").toggleClass("alert-danger");
+				//             }
+				//         },
+				//         error: function (xhr, ajaxOptions, thrownError) {
+				//             console.log("exception error: " + thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				//         }
+				//     });
+				// }, 1000);
 
-					e.stopImmediatePropagation();
-					return false;
-				});
-				// ./ ajax jquery - submit CSV bulk file [user_accounts]
+				e.stopImmediatePropagation();
+				return false;
+			});
+			// ./ ajax jquery - submit CSV bulk file [user_accounts]
 
-				// ajax jquery - submit classes/categories CSV bulk file [categories_classes]
-				$("#workout-categories-csv-bulk-upload-form").submit(function (e) {
-					e = e || window.event;
-					e.preventDefault();
+			// ajax jquery - submit classes/categories CSV bulk file [categories_classes]
+			$("#workout-categories-csv-bulk-upload-form").on("submit", function (e) {
+				e = e || window.event;
+				e.preventDefault();
 
-					var form_data = new FormData(
-						$("#workout-categories-csv-bulk-upload-form")[0]
-					);
-					setTimeout(function () {
-						$.ajax({
-							type: "POST",
-							url: "scripts/php/workout_categories_bulk_upload/upload_csv_data.php",
-							processData: false,
-							contentType: false,
-							async: false,
-							cache: false,
-							data: form_data,
-							contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
-							beforeSend: function () {
-								console.log(
-									"beforeSend: submitting categories/classes bulk CSV file"
-								);
-							},
-							success: function (response) {
-								if (response.startsWith("success")) {
-									console.log(
-										"success: returning response - submitting bulk CSV file successfully"
-									);
-									console.log("Response: \n" + response);
-									// pass success message output to ui
-									$("#form-output-categories").html(
-										"Bulk data submitted successfully."
-									);
-									// toggle alert classes
-									$("#form-output-categories").show();
-									$("#form-output-categories").removeClass("alert-info");
-									$("#form-output-categories").addClass("alert-success");
-								} else {
-									console.log("error: returning response - an error occurred");
-									console.log("Response: \n" + response);
-									// pass error message output to ui
-									$("#form-output-categories").html(
-										"An error occured whilst processing your request. \n\n" +
-											response
-									);
-									// toggle alert classes
-									$("#form-output-categories").show();
-									$("#form-output-categories").removeClass("alert-info");
-									$("#form-output-categories").addClass("alert-danger");
-								}
-							},
-							error: function (xhr, ajaxOptions, thrownError) {
-								console.log(
-									"exception error: " +
-										thrownError +
-										"\r\n" +
-										xhr.statusText +
-										"\r\n" +
-										xhr.responseText
-								);
-							},
-						});
-					}, 1000);
-
-					e.stopImmediatePropagation();
-					return false;
-				});
-				// ./ ajax jquery - submit classes/categories  CSV bulk file [categories_classes]
-
-				// *** must insert ajax function for uploading complete workout bulk data - csv file still in the works
-				$("#capture-workout-form").submit(function (e) {
-					e = e || window.event;
-					e.preventDefault();
-
-					// alert("Capture Workout (Single) - This fuction is unavailable.");
-					var form_data = new FormData($("#capture-workout-form")[0]);
-					setTimeout(function () {
-						$.ajax({
-							type: "POST",
-							url: "scripts/php/capture/new_workout.php",
-							processData: false,
-							contentType: false,
-							async: false,
-							cache: false,
-							data: form_data,
-							contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
-							beforeSend: function () {
-								console.log("beforeSend: submitting new workout");
-							},
-							success: function (response) {
-								if (response.startsWith("success")) {
-									console.log(
-										"success: returning response - submitting indi exercises bulk CSV file successfully"
-									);
-									console.log("Response: \n" + response);
-									// pass success message output to ui
-									$("#form-output-single-workout").html(
-										"New workout was created successfully."
-									);
-									// toggle alert classes
-									$("#form-output-single-workout").show();
-									$("#form-output-single-workout").removeClass("alert-info");
-									$("#form-output-single-workout").addClass("alert-success");
-								} else {
-									console.log("error: returning response - an error occurred");
-									console.log("Response: \n" + response);
-									// pass error message output to ui
-									$("#form-output-single-workout").html(
-										"An error occured whilst processing your request. \n\n" +
-											response
-									);
-									// toggle alert classes
-									$("#form-output-single-workout").show();
-									$("#form-output-single-workout").removeClass("alert-info");
-									$("#form-output-single-workout").addClass("alert-danger");
-								}
-							},
-							error: function (xhr, ajaxOptions, thrownError) {
-								console.log(
-									"exception error: " +
-										thrownError +
-										"\r\n" +
-										xhr.statusText +
-										"\r\n" +
-										xhr.responseText
-								);
-							},
-						});
-					}, 1000);
-
-					e.stopImmediatePropagation();
-					return false;
-				});
-
-				// ajax jquery - submit CSV bulk file [indi_exercises]
-				$("#indi-exercises-csv-bulk-upload-form").submit(function (e) {
-					e = e || window.event;
-					e.preventDefault();
-
-					var form_data = new FormData(
-						$("#indi-exercises-csv-bulk-upload-form")[0]
-					);
-					setTimeout(function () {
-						$.ajax({
-							type: "POST",
-							url: "scripts/php/bulk_upload/upload_indi_exercises_csv.php",
-							processData: false,
-							contentType: false,
-							async: false,
-							cache: false,
-							data: form_data,
-							contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
-							beforeSend: function () {
-								console.log(
-									"beforeSend: submitting indi exercises bulk CSV file"
-								);
-							},
-							success: function (response) {
-								if (response.startsWith("success")) {
-									console.log(
-										"success: returning response - submitting indi exercises bulk CSV file successfully"
-									);
-									console.log("Response: \n" + response);
-									// pass success message output to ui
-									$("#form-output-exercises").html(
-										"Bulk data submitted successfully."
-									);
-									// toggle alert classes
-									$("#form-output-exercises").show();
-									$("#form-output-exercises").removeClass("alert-info");
-									$("#form-output-exercises").addClass("alert-success");
-								} else {
-									console.log("error: returning response - an error occurred");
-									console.log("Response: \n" + response);
-									// pass error message output to ui
-									$("#form-output-exercises").html(
-										"An error occured whilst processing your request. \n\n" +
-											response
-									);
-									// toggle alert classes
-									$("#form-output-exercises").show();
-									$("#form-output-exercises").removeClass("alert-info");
-									$("#form-output-exercises").addClass("alert-danger");
-								}
-							},
-							error: function (xhr, ajaxOptions, thrownError) {
-								console.log(
-									"exception error: " +
-										thrownError +
-										"\r\n" +
-										xhr.statusText +
-										"\r\n" +
-										xhr.responseText
-								);
-							},
-						});
-					}, 1000);
-
-					e.stopImmediatePropagation();
-					return false;
-				});
-				// ./ ajax jquery - submit CSV bulk file [indi_exercises]
-
-				// ajax jquery - submit CSV bulk file [training_drills]
-				$("#training-drills-csv-bulk-upload-form").submit(function (e) {
-					e = e || window.event;
-					e.preventDefault();
-
-					var form_data = new FormData(
-						$("#training-drills-csv-bulk-upload-form")[0]
-					);
-					setTimeout(function () {
-						$.ajax({
-							type: "POST",
-							url: "scripts/php/bulk_upload/upload_training_drills_csv.php",
-							processData: false,
-							contentType: false,
-							async: false,
-							cache: false,
-							data: form_data,
-							contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
-							beforeSend: function () {
-								console.log(
-									"beforeSend: submitting training_drills bulk CSV file"
-								);
-							},
-							success: function (response) {
-								if (response.startsWith("success")) {
-									console.log(
-										"success: returning response - submitting training_drills bulk CSV file successfully"
-									);
-									console.log("Response: \n" + response);
-									// pass success message output to ui
-									$("#form-output-drills").html(
-										"Bulk data submitted successfully."
-									);
-									// toggle alert classes
-									$("#form-output-drills").show();
-									$("#form-output-drills").removeClass("alert-info");
-									$("#form-output-drills").addClass("alert-success");
-								} else {
-									console.log("error: returning response - an error occurred");
-									console.log("Response: \n" + response);
-									// pass error message output to ui
-									$("#form-output-drills").html(
-										"An error occured whilst processing your request. \n\n" +
-											response
-									);
-									// toggle alert classes
-									$("#form-output-drills").show();
-									$("#form-output-drills").removeClass("alert-info");
-									$("#form-output-drills").addClass("alert-danger");
-								}
-							},
-							error: function (xhr, ajaxOptions, thrownError) {
-								console.log(
-									"exception error: " +
-										thrownError +
-										"\r\n" +
-										xhr.statusText +
-										"\r\n" +
-										xhr.responseText
-								);
-							},
-						});
-					}, 1000);
-
-					e.stopImmediatePropagation();
-					return false;
-				});
-				// ./ ajax jquery - submit CSV bulk file [training_drills]
-
-				// ajax jquery - submit CSV bulk file [supplements]
-				$("#supplements-csv-bulk-upload-form").submit(function (e) {
-					e = e || window.event;
-					e.preventDefault();
-
-					var form_data = new FormData(
-						$("#supplements-csv-bulk-upload-form")[0]
-					);
-					setTimeout(function () {
-						$.ajax({
-							type: "POST",
-							url: "scripts/php/bulk_upload/upload_supplements_csv.php",
-							processData: false,
-							contentType: false,
-							async: false,
-							cache: false,
-							data: form_data,
-							contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
-							beforeSend: function () {
-								console.log("beforeSend: submitting supplements bulk CSV file");
-							},
-							success: function (response) {
-								if (response.startsWith("success")) {
-									console.log(
-										"success: returning response - submitting supplements bulk CSV file successfully"
-									);
-									console.log("Response: \n" + response);
-									// pass success message output to ui
-									$("#form-output-supplements").html(
-										"Bulk data submitted successfully."
-									);
-									// toggle alert classes
-									$("#form-output-supplements").show();
-									$("#form-output-supplements").removeClass("alert-info");
-									$("#form-output-supplements").addClass("alert-success");
-								} else {
-									console.log("error: returning response - an error occurred");
-									console.log("Response: \n" + response);
-									// pass error message output to ui
-									$("#form-output-supplements").html(
-										"An error occured whilst processing your request. \n\n" +
-											response
-									);
-									// toggle alert classes
-									$("#form-output-supplements").show();
-									$("#form-output-supplements").removeClass("alert-info");
-									$("#form-output-supplements").addClass("alert-danger");
-								}
-							},
-							error: function (xhr, ajaxOptions, thrownError) {
-								console.log(
-									"exception error: " +
-										thrownError +
-										"\r\n" +
-										xhr.statusText +
-										"\r\n" +
-										xhr.responseText
-								);
-							},
-						});
-					}, 1000);
-
-					e.stopImmediatePropagation();
-					return false;
-				});
-				// ./ ajax jquery - submit CSV bulk file [supplements]
-
-				// ajax jquery - submit CSV bulk file [sports_list]
-				$("#sports-list-csv-bulk-upload-form").submit(function (e) {
-					e = e || window.event;
-					e.preventDefault();
-
-					var form_data = new FormData(
-						$("#sports-list-csv-bulk-upload-form")[0]
-					);
-					setTimeout(function () {
-						$.ajax({
-							type: "POST",
-							url: "scripts/php/bulk_upload/upload_sports_list_csv.php",
-							processData: false,
-							contentType: false,
-							async: false,
-							cache: false,
-							data: form_data,
-							contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
-							beforeSend: function () {
-								console.log("beforeSend: submitting supplements bulk CSV file");
-							},
-							success: function (response) {
-								if (response.startsWith("success")) {
-									console.log(
-										"success: returning response - submitting sports_list bulk CSV file successfully"
-									);
-									console.log("Response: \n" + response);
-									// pass success message output to ui
-									$("#form-output-sports").html(
-										"Bulk data submitted successfully."
-									);
-									// toggle alert classes
-									$("#form-output-sports").show();
-									$("#form-output-sports").removeClass("alert-info");
-									$("#form-output-sports").addClass("alert-success");
-								} else {
-									console.log("error: returning response - an error occurred");
-									console.log("Response: \n" + response);
-									// pass error message output to ui
-									$("#form-output-sports").html(
-										"An error occured whilst processing your request. \n\n" +
-											response
-									);
-									// toggle alert classes
-									$("#form-output-sports").show();
-									$("#form-output-sports").removeClass("alert-info");
-									$("#form-output-sports").addClass("alert-danger");
-								}
-							},
-							error: function (xhr, ajaxOptions, thrownError) {
-								console.log(
-									"exception error: " +
-										thrownError +
-										"\r\n" +
-										xhr.statusText +
-										"\r\n" +
-										xhr.responseText
-								);
-							},
-						});
-					}, 1000);
-
-					e.stopImmediatePropagation();
-					return false;
-				});
-				// ./ ajax jquery - submit CSV bulk file [sports]
-
-				// ajax jquery - submit CSV bulk file [sports_list]
-				$("#muscles-list-csv-bulk-upload-form").submit(function (e) {
-					e = e || window.event;
-					e.preventDefault();
-
-					var form_data = new FormData(
-						$("#muscles-list-csv-bulk-upload-form")[0]
-					);
-					setTimeout(function () {
-						$.ajax({
-							type: "POST",
-							url: "scripts/php/bulk_upload/upload_muscle_groups_csv.php",
-							processData: false,
-							contentType: false,
-							async: false,
-							cache: false,
-							data: form_data,
-							contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
-							beforeSend: function () {
-								console.log(
-									"beforeSend: submitting muscle_groups bulk CSV file"
-								);
-							},
-							success: function (response) {
-								if (response.startsWith("success")) {
-									console.log(
-										"success: returning response - submitting muscle_groups bulk CSV file successfully"
-									);
-									console.log("Response: \n" + response);
-									// pass success message output to ui
-									$("#form-output-muscles").html(
-										"Bulk data submitted successfully."
-									);
-									// toggle alert classes
-									$("#form-output-muscles").show();
-									$("#form-output-muscles").removeClass("alert-info");
-									$("#form-output-muscles").addClass("alert-success");
-								} else {
-									console.log("error: returning response - an error occurred");
-									console.log("Response: \n" + response);
-									// pass error message output to ui
-									$("#form-output-muscles").html(
-										"An error occured whilst processing your request. \n\n" +
-											response
-									);
-									// toggle alert classes
-									$("#form-output-muscles").show();
-									$("#form-output-muscles").removeClass("alert-info");
-									$("#form-output-muscles").addClass("alert-danger");
-								}
-							},
-							error: function (xhr, ajaxOptions, thrownError) {
-								console.log(
-									"exception error: " +
-										thrownError +
-										"\r\n" +
-										xhr.statusText +
-										"\r\n" +
-										xhr.responseText
-								);
-							},
-						});
-					}, 1000);
-
-					e.stopImmediatePropagation();
-					return false;
-				});
-				// ./ ajax jquery - submit CSV bulk file [sports]
-
-				// ajax jquery - submit CSV bulk file [store_products]
-				$("#store-csv-bulk-upload-form").submit(function (e) {
-					e = e || window.event;
-					e.preventDefault();
-
-					var form_data = new FormData($("#store-csv-bulk-upload-form")[0]);
-					setTimeout(function () {
-						$.ajax({
-							type: "POST",
-							url: "scripts/php/bulk_upload/upload_store_products_csv.php",
-							processData: false,
-							contentType: false,
-							async: false,
-							cache: false,
-							data: form_data,
-							contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
-							beforeSend: function () {
-								console.log(
-									"beforeSend: submitting store products bulk CSV file"
-								);
-							},
-							success: function (response) {
-								if (response.startsWith("success")) {
-									console.log(
-										"success: returning response - submitting store products bulk CSV file successfully"
-									);
-									console.log("Response: \n" + response);
-									// pass success message output to ui
-									$("#form-output-categories").html(
-										"Bulk data submitted successfully."
-									);
-									// toggle alert classes
-									$("#form-output-categories").show();
-									$("#form-output-categories").removeClass("alert-info");
-									$("#form-output-categories").addClass("alert-success");
-								} else {
-									console.log("error: returning response - an error occurred");
-									console.log("Response: \n" + response);
-									// pass error message output to ui
-									$("#form-output-categories").html(
-										"An error occured whilst processing your request. \n\n" +
-											response
-									);
-									// toggle alert classes
-									$("#form-output-categories").show();
-									$("#form-output-categories").removeClass("alert-info");
-									$("#form-output-categories").addClass("alert-danger");
-								}
-							},
-							error: function (xhr, ajaxOptions, thrownError) {
-								console.log(
-									"exception error: " +
-										thrownError +
-										"\r\n" +
-										xhr.statusText +
-										"\r\n" +
-										xhr.responseText
-								);
-							},
-						});
-					}, 1000);
-
-					e.stopImmediatePropagation();
-					return false;
-				});
-				// ./ ajax jquery - submit CSV bulk file [store_products]
-
-				// move multiple list items between two multi-select elements
-				function moveItems(origin, dest) {
-					$(origin).find(":selected").appendTo(dest);
-				}
-
-				function moveAllItems(origin, dest) {
-					$(origin).children().appendTo(dest);
-				}
-
-				function calculateWorkoutTotalXP() {
-					// reinitialize the sumXP
-					var sumXP = 0;
-					$("#select-workout-exercises-selected > option").each(function () {
-						// console.log(this.text + ' ' + this.value);
-						// extract the exercise xp value from this.text
-						var selectedExerciseText = this.text;
-
-						sumXP += parseInt(
-							selectedExerciseText.split("X[").pop().split("]P")[0]
-						);
-					});
-
-					// update #input-workout-xp field with sumXP value
-					$("#input-workout-xp").val(sumXP);
-				}
-
-				$("#move-items-selected-btn").on("click", function () {
-					moveItems(
-						"#select-workout-exercises",
-						"#select-workout-exercises-selected"
-					);
-					// re-calculate the sum of exercise xp and pass it to the #input-workout-xp input field
-					calculateWorkoutTotalXP();
-				});
-
-				$("#remove-items-selected-btn").on("click", function () {
-					moveItems(
-						"#select-workout-exercises-selected",
-						"#select-workout-exercises"
-					);
-					// re-calculate the sum of exercise xp and pass it to the #input-workout-xp input field
-					calculateWorkoutTotalXP();
-				});
-
-				$("#remove-all-items-selected-btn").on("click", function () {
-					moveAllItems(
-						"#select-workout-exercises-selected",
-						"#select-workout-exercises"
-					);
-					// re-calculate the sum of exercise xp and pass it to the #input-workout-xp input field
-					calculateWorkoutTotalXP();
-				});
-
-				// *** get select element items
-				// get users items
-				$.getUserAccounts = function (request, elemid) {
-					var elemid = elemid || "#user-account-list"; // initialize output elemid if it was not passed through params
-					$.get(
-						"./scripts/php/get_items/get_users.php?giveme=" + request,
-						function (data, status) {
-							if (status != "success") {
-								console.log(
-									"Get Req Failed -> $.getUserAccounts returned: \n[Status]: " +
-										status +
-										"\n[Data]: " +
-										data
-								);
-								// alert("Get Req Failed -> $.getUserAccounts returned: \n[Status]: " + status + "\n[Data]: " + data);
-							} else {
-								if (request == "json")
-									console.log("User Accounts Json: \n".data);
-								else $(elemid).html(data); // '#user-account-list'
-							}
-						}
-					);
-				};
-
-				$.getAdminAccounts = function (request, elemid) {
-					var elemid = elemid || "#admin-account-list"; // initialize output elemid if it was not passed through params
-					$.get(
-						"./scripts/php/get_items/get_administrators.php?giveme=" + request,
-						function (data, status) {
-							if (status != "success") {
-								console.log(
-									"Get Req Failed -> $.getAdminAccounts returned: \n[Status]: " +
-										status +
-										"\n[Data]: " +
-										data
-								);
-								// alert("Get Req Failed -> $.getAdminAccounts returned: \n[Status]: " + status + "\n[Data]: " + data);
-							} else {
-								if (request == "json")
-									console.log("Admin Accounts Json: \n".data);
-								else $(elemid).html(data); // '#admin-account-list'
-							}
-						}
-					);
-				};
-
-				$.getTeamsProGroups = function (request, elemid) {
-					var elemid = elemid || "#teams-group-list"; // initialize output elemid if it was not passed through params
-					$.get(
-						"./scripts/php/get_items/get_teams_and_pro_groups.php?giveme=" +
-							request,
-						function (data, status) {
-							if (status != "success") {
-								console.log(
-									"Get Req Failed -> $.getTeamsProGroups returned: \n[Status]: " +
-										status +
-										"\n[Data]: " +
-										data
-								);
-								// alert("Get Req Failed -> $.getTeamsProGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-							} else {
-								if (request == "json")
-									console.log("Teams and Pro Groups Json: \n".data);
-								else $(elemid).html(data); // '#teams-group-list'
-							}
-						}
-					);
-				};
-
-				$.getCommunityGroups = function (request, elemid) {
-					var elemid = elemid || "#community-group-list"; // initialize output elemid if it was not passed through params
-					$.get(
-						"./scripts/php/get_items/get_indi_groups.php?giveme=" + request,
-						function (data, status) {
-							if (status != "success") {
-								console.log(
-									"Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " +
-										status +
-										"\n[Data]: " +
-										data
-								);
-								// alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-							} else {
-								if (request == "json")
-									console.log("Community Groups (Indi) Json: \n".data);
-								else $(elemid).html(data); // '#community-group-list'
-							}
-						}
-					);
-				};
-
-				$.getPreviewTables = function (request) {
-					const contentTypesArray = [
-						"fitness_categies",
-						"workouts",
-						"exercises",
-						"training_drills",
-						"supplements",
-						"sports",
-						"muscle_groups",
-					];
-
-					function getContentType(request, contentType) {
-						var elemid;
-						switch (contentType) {
-							case "fitness_categies":
-								//
-								elemid = "#category_class-list";
-								break;
-							case "workouts":
-								//
-								elemid = "#workouts-list";
-								break;
-							case "exercises":
-								//
-								elemid = "#indi_exercise-list";
-								break;
-							case "training_drills":
-								//
-								elemid = "#training_drills-list";
-								break;
-							case "supplements":
-								//
-								elemid = "#supplements-list";
-								break;
-							case "sports":
-								//
-								elemid = "#sports_list-list";
-								break;
-							case "muscle_groups":
-								//
-								elemid = "#muscle_groups-list";
-								break;
-
-							default:
-								return false;
-								break;
-						}
-
-						$.get(
-							"./scripts/php/get_items/get_preview_tables.php?giveme=" +
-								request +
-								"&content=" +
-								contentType,
-							function (data, status) {
-								if (status != "success") {
-									console.log(
-										"Get Req Failed -> function getContentType() returned: \n[Status]: " +
-											status +
-											"\n[Data]: " +
-											data
-									);
-									// alert("Get Req Failed -> function getContentType() returned: \n[Status]: " + status + "\n[Data]: " + data);
-									return false;
-								} else {
-									if (request == "json")
-										console.log("Community Groups (Indi) Json: \n".data);
-									else $(elemid).html(data);
-
-									return true;
-								}
-							}
-						);
-					}
-
-					var returnStatus;
-					contentTypesArray.forEach((contentType) => {
-						// call get function
-						returnStatus = getContentType(request, contentType);
-						if (returnStatus === true) {
+				var form_data = new FormData(
+					$("#workout-categories-csv-bulk-upload-form")[0]
+				);
+				setTimeout(function () {
+					$.ajax({
+						type: "POST",
+						url: "scripts/php/workout_categories_bulk_upload/upload_csv_data.php",
+						processData: false,
+						contentType: false,
+						async: false,
+						cache: false,
+						data: form_data,
+						contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+						beforeSend: function () {
 							console.log(
-								`Success: ${contentType} has been successfully loaded.`
+								"beforeSend: submitting categories/classes bulk CSV file"
 							);
-						} else {
-							console.log(`Failure: ${contentType} data could not be loaded.`);
-						}
+						},
+						success: function (response) {
+							if (response.startsWith("success")) {
+								console.log(
+									"success: returning response - submitting bulk CSV file successfully"
+								);
+								console.log("Response: \n" + response);
+								// pass success message output to ui
+								$("#form-output-categories").html(
+									"Bulk data submitted successfully."
+								);
+								// toggle alert classes
+								$("#form-output-categories").show();
+								$("#form-output-categories").removeClass("alert-info");
+								$("#form-output-categories").addClass("alert-success");
+							} else {
+								console.log("error: returning response - an error occurred");
+								console.log("Response: \n" + response);
+								// pass error message output to ui
+								$("#form-output-categories").html(
+									"An error occured whilst processing your request. \n\n" +
+										response
+								);
+								// toggle alert classes
+								$("#form-output-categories").show();
+								$("#form-output-categories").removeClass("alert-info");
+								$("#form-output-categories").addClass("alert-danger");
+							}
+						},
+						error: function (xhr, ajaxOptions, thrownError) {
+							console.log(
+								"exception error: " +
+									thrownError +
+									"\r\n" +
+									xhr.statusText +
+									"\r\n" +
+									xhr.responseText
+							);
+						},
 					});
-				};
+				}, 1000);
 
-				// get classes/categories items
-				$.getCategoriesClasses = function (request, elemid) {
-					var elemid = elemid || "#select-workout-category"; // initialize output elemid if it was not passed through params
-					$.get(
-						"./scripts/php/get_items/get_classes.php?giveme=" + request,
-						function (data, status) {
-							if (status != "success") {
+				e.stopImmediatePropagation();
+				return false;
+			});
+			// ./ ajax jquery - submit classes/categories  CSV bulk file [categories_classes]
+
+			// *** must insert ajax function for uploading complete workout bulk data - csv file still in the works
+			$("#capture-workout-form").on("submit", function (e) {
+				e = e || window.event;
+				e.preventDefault();
+
+				// alert("Capture Workout (Single) - This fuction is unavailable.");
+				var form_data = new FormData($("#capture-workout-form")[0]);
+				setTimeout(function () {
+					$.ajax({
+						type: "POST",
+						url: "scripts/php/capture/new_workout.php",
+						processData: false,
+						contentType: false,
+						async: false,
+						cache: false,
+						data: form_data,
+						contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+						beforeSend: function () {
+							console.log("beforeSend: submitting new workout");
+						},
+						success: function (response) {
+							if (response.startsWith("success")) {
 								console.log(
-									"Get Req Failed -> $.getCategoriesClasses returned: \n[Status]: " +
-										status +
-										"\n[Data]: " +
-										data
+									"success: returning response - submitting indi exercises bulk CSV file successfully"
 								);
-								// alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-							} else {
-								$(elemid).html(data); // '#select-workout-category'
-								if (request == "json")
-									console.log("Categories & Classes Json: \n".data);
-							}
-						}
-					);
-				};
-				// get indi exercises items
-				$.getIndiExercises = function (request, elemid) {
-					var elemid = elemid || "#select-workout-exercises"; // initialize output elemid if it was not passed through params
-					$.get(
-						"./scripts/php/get_items/get_indi_exercises.php?giveme=" + request,
-						function (data, status) {
-							if (status != "success") {
-								console.log(
-									"Get Req Failed -> $.getIndiExercises returned: \n[Status]: " +
-										status +
-										"\n[Data]: " +
-										data
+								console.log("Response: \n" + response);
+								// pass success message output to ui
+								$("#form-output-single-workout").html(
+									"New workout was created successfully."
 								);
-								// alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+								// toggle alert classes
+								$("#form-output-single-workout").show();
+								$("#form-output-single-workout").removeClass("alert-info");
+								$("#form-output-single-workout").addClass("alert-success");
 							} else {
-								$(elemid).html(data); // '#select-workout-exercises'
-								if (request == "json")
-									console.log("Indi Exercises Json: \n".data);
-							}
-						}
-					);
-				};
-				// get supplements list items
-				$.getSupplementsList = function (request, elemid) {
-					var elemid = elemid || "#select-workout-recommeded-supplements"; // initialize output elemid if it was not passed through params
-					$.get(
-						"./scripts/php/get_items/get_supplements.php?giveme=" + request,
-						function (data, status) {
-							if (status != "success") {
-								console.log(
-									"Get Req Failed -> $.getSupplementsList returned: \n[Status]: " +
-										status +
-										"\n[Data]: " +
-										data
+								console.log("error: returning response - an error occurred");
+								console.log("Response: \n" + response);
+								// pass error message output to ui
+								$("#form-output-single-workout").html(
+									"An error occured whilst processing your request. \n\n" +
+										response
 								);
-								// alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-							} else {
-								$(elemid).html(data); // '#select-workout-recommeded-supplements'
-								if (request == "json")
-									console.log("Supplements List Json: \n".data);
+								// toggle alert classes
+								$("#form-output-single-workout").show();
+								$("#form-output-single-workout").removeClass("alert-info");
+								$("#form-output-single-workout").addClass("alert-danger");
 							}
-						}
-					);
-				};
-
-				// get store product items
-				$.getStoreProducts = function (request, elemid) {
-					var elemid = elemid || "#store-products-list"; // initialize output elemid if it was not passed through params
-					$.get(
-						"./scripts/php/get_items/get_store_products.php?giveme=" + request,
-						function (data, status) {
-							if (status != "success") {
-								console.log(
-									"Get Req Failed -> $.getStoreProducts returned: \n[Status]: " +
-										status +
-										"\n[Data]: " +
-										data
-								);
-								// alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-							} else {
-								$(elemid).html(data); // '#store-products-list'
-								// console log if json was requested
-								if (request == "json")
-									console.log("Store Products Json: \n".data);
-							}
-						}
-					);
-				};
-
-				// *** compile data tables ***
-
-				// generate input data form
-				$.loadForm = function (command, optTblName) {
-					optTblName = optTblName || null;
-					// new_user, new_admin, new_teams_pro_group, new_community_group,
-
-					function generateForm(tblname, elemid) {
-						// administration\util\generate_form_from_dbtable.php
-						$.get(
-							"./util/generate_form_from_dbtable.php?tblname=" + tblname,
-							function (data, status) {
-								if (status != "success") {
-									console.log(
-										"Get Req Failed -> generateForm() returned: \n[Status]: " +
-											status +
-											"\n[Data]: " +
-											data
-									);
-									// alert("Get Req Failed -> generateForm() returned: \n[Status]: " + status + "\n[Data]: " + data);
-								} else {
-									$(elemid).html(data);
-								}
-							}
-						);
-					}
-
-					switch (command) {
-						case "new_user":
-							// call $.generateForm(tblname)
-							generateForm("users", "#command-model-body");
-							$("#tabCommandModalLabel").html("Create a new User account");
-							break;
-						case "new_admin":
-							// call $.generateForm(tblname)
-							generateForm("administrators", "#command-model-body");
-							$("#tabCommandModalLabel").html(
-								"Create a new Administrator account"
+						},
+						error: function (xhr, ajaxOptions, thrownError) {
+							console.log(
+								"exception error: " +
+									thrownError +
+									"\r\n" +
+									xhr.statusText +
+									"\r\n" +
+									xhr.responseText
 							);
-							break;
-						case "new_teams_pro_group":
-							// call $.generateForm(tblname)
-							generateForm("groups", "#command-model-body");
-							$("#tabCommandModalLabel").html("Create a new Teams / Pro Group");
-							break;
-						case "new_community_group":
-							// call $.generateForm(tblname)
-							generateForm("groups", "#command-model-body");
-							$("#tabCommandModalLabel").html(
-								"Create a new Community/Indi Group"
+						},
+					});
+				}, 1000);
+
+				e.stopImmediatePropagation();
+				return false;
+			});
+
+			// ajax jquery - submit CSV bulk file [indi_exercises]
+			$("#indi-exercises-csv-bulk-upload-form").on("submit", function (e) {
+				e = e || window.event;
+				e.preventDefault();
+
+				var form_data = new FormData(
+					$("#indi-exercises-csv-bulk-upload-form")[0]
+				);
+				setTimeout(function () {
+					$.ajax({
+						type: "POST",
+						url: "scripts/php/bulk_upload/upload_indi_exercises_csv.php",
+						processData: false,
+						contentType: false,
+						async: false,
+						cache: false,
+						data: form_data,
+						contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+						beforeSend: function () {
+							console.log(
+								"beforeSend: submitting indi exercises bulk CSV file"
 							);
-							break;
-						case "table_select":
-							// means that user has selected to view specific table,  optTblName must not be null but must have the value of a table name
-							if (optTblName != null || optTblName != "") {
-								generateForm(optTblName, "#command-model-body");
-								$("#tabCommandModalLabel").html(
-									`Capture new ${optTblName} record`
+						},
+						success: function (response) {
+							if (response.startsWith("success")) {
+								console.log(
+									"success: returning response - submitting indi exercises bulk CSV file successfully"
 								);
+								console.log("Response: \n" + response);
+								// pass success message output to ui
+								$("#form-output-exercises").html(
+									"Bulk data submitted successfully."
+								);
+								// toggle alert classes
+								$("#form-output-exercises").show();
+								$("#form-output-exercises").removeClass("alert-info");
+								$("#form-output-exercises").addClass("alert-success");
 							} else {
-								$("#command-model-body").html(
-									`Table name has not been provided: ${optTblName}`
+								console.log("error: returning response - an error occurred");
+								console.log("Response: \n" + response);
+								// pass error message output to ui
+								$("#form-output-exercises").html(
+									"An error occured whilst processing your request. \n\n" +
+										response
 								);
-								$("#tabCommandModalLabel").html(
-									"Error: no table name selected"
-								);
+								// toggle alert classes
+								$("#form-output-exercises").show();
+								$("#form-output-exercises").removeClass("alert-info");
+								$("#form-output-exercises").addClass("alert-danger");
 							}
-
-							break;
-
-						default:
-							$("#command-model-body").html(
-								`Command is not recognized: ${command}`
+						},
+						error: function (xhr, ajaxOptions, thrownError) {
+							console.log(
+								"exception error: " +
+									thrownError +
+									"\r\n" +
+									xhr.statusText +
+									"\r\n" +
+									xhr.responseText
 							);
-							$("#tabCommandModalLabel").html("Error: Unknown command");
-							break;
-					}
-				};
+						},
+					});
+				}, 1000);
 
-				// get select list of db tables from our db
-				$.getDBTables = function (list_format) {
-					// formats: default, table, options, json
-					// administration/scripts/php/database/get_db_tables.php
+				e.stopImmediatePropagation();
+				return false;
+			});
+			// ./ ajax jquery - submit CSV bulk file [indi_exercises]
 
-					switch (list_format) {
-						case "table":
-							get_link =
-								"./scripts/php/database/get_db_tables.php?format=" +
-								list_format;
-							break;
-						case "options":
-							get_link =
-								"./scripts/php/database/get_db_tables.php?format=" +
-								list_format;
-							break;
-						case "json":
-							get_link =
-								"./scripts/php/database/get_db_tables.php?format=" +
-								list_format;
-							break;
+			// ajax jquery - submit CSV bulk file [training_drills]
+			$("#training-drills-csv-bulk-upload-form").on("submit", function (e) {
+				e = e || window.event;
+				e.preventDefault();
 
-						default:
-							alert("Unknown list format: " + format);
-							return false;
-							break;
-					}
+				var form_data = new FormData(
+					$("#training-drills-csv-bulk-upload-form")[0]
+				);
+				setTimeout(function () {
+					$.ajax({
+						type: "POST",
+						url: "scripts/php/bulk_upload/upload_training_drills_csv.php",
+						processData: false,
+						contentType: false,
+						async: false,
+						cache: false,
+						data: form_data,
+						contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+						beforeSend: function () {
+							console.log(
+								"beforeSend: submitting training_drills bulk CSV file"
+							);
+						},
+						success: function (response) {
+							if (response.startsWith("success")) {
+								console.log(
+									"success: returning response - submitting training_drills bulk CSV file successfully"
+								);
+								console.log("Response: \n" + response);
+								// pass success message output to ui
+								$("#form-output-drills").html(
+									"Bulk data submitted successfully."
+								);
+								// toggle alert classes
+								$("#form-output-drills").show();
+								$("#form-output-drills").removeClass("alert-info");
+								$("#form-output-drills").addClass("alert-success");
+							} else {
+								console.log("error: returning response - an error occurred");
+								console.log("Response: \n" + response);
+								// pass error message output to ui
+								$("#form-output-drills").html(
+									"An error occured whilst processing your request. \n\n" +
+										response
+								);
+								// toggle alert classes
+								$("#form-output-drills").show();
+								$("#form-output-drills").removeClass("alert-info");
+								$("#form-output-drills").addClass("alert-danger");
+							}
+						},
+						error: function (xhr, ajaxOptions, thrownError) {
+							console.log(
+								"exception error: " +
+									thrownError +
+									"\r\n" +
+									xhr.statusText +
+									"\r\n" +
+									xhr.responseText
+							);
+						},
+					});
+				}, 1000);
 
-					$.get(get_link, function (data, status) {
+				e.stopImmediatePropagation();
+				return false;
+			});
+			// ./ ajax jquery - submit CSV bulk file [training_drills]
+
+			// ajax jquery - submit CSV bulk file [supplements]
+			$("#supplements-csv-bulk-upload-form").on("submit", function (e) {
+				e = e || window.event;
+				e.preventDefault();
+
+				var form_data = new FormData($("#supplements-csv-bulk-upload-form")[0]);
+				setTimeout(function () {
+					$.ajax({
+						type: "POST",
+						url: "scripts/php/bulk_upload/upload_supplements_csv.php",
+						processData: false,
+						contentType: false,
+						async: false,
+						cache: false,
+						data: form_data,
+						contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+						beforeSend: function () {
+							console.log("beforeSend: submitting supplements bulk CSV file");
+						},
+						success: function (response) {
+							if (response.startsWith("success")) {
+								console.log(
+									"success: returning response - submitting supplements bulk CSV file successfully"
+								);
+								console.log("Response: \n" + response);
+								// pass success message output to ui
+								$("#form-output-supplements").html(
+									"Bulk data submitted successfully."
+								);
+								// toggle alert classes
+								$("#form-output-supplements").show();
+								$("#form-output-supplements").removeClass("alert-info");
+								$("#form-output-supplements").addClass("alert-success");
+							} else {
+								console.log("error: returning response - an error occurred");
+								console.log("Response: \n" + response);
+								// pass error message output to ui
+								$("#form-output-supplements").html(
+									"An error occured whilst processing your request. \n\n" +
+										response
+								);
+								// toggle alert classes
+								$("#form-output-supplements").show();
+								$("#form-output-supplements").removeClass("alert-info");
+								$("#form-output-supplements").addClass("alert-danger");
+							}
+						},
+						error: function (xhr, ajaxOptions, thrownError) {
+							console.log(
+								"exception error: " +
+									thrownError +
+									"\r\n" +
+									xhr.statusText +
+									"\r\n" +
+									xhr.responseText
+							);
+						},
+					});
+				}, 1000);
+
+				e.stopImmediatePropagation();
+				return false;
+			});
+			// ./ ajax jquery - submit CSV bulk file [supplements]
+
+			// ajax jquery - submit CSV bulk file [sports_list]
+			$("#sports-list-csv-bulk-upload-form").on("submit", function (e) {
+				e = e || window.event;
+				e.preventDefault();
+
+				var form_data = new FormData($("#sports-list-csv-bulk-upload-form")[0]);
+				setTimeout(function () {
+					$.ajax({
+						type: "POST",
+						url: "scripts/php/bulk_upload/upload_sports_list_csv.php",
+						processData: false,
+						contentType: false,
+						async: false,
+						cache: false,
+						data: form_data,
+						contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+						beforeSend: function () {
+							console.log("beforeSend: submitting supplements bulk CSV file");
+						},
+						success: function (response) {
+							if (response.startsWith("success")) {
+								console.log(
+									"success: returning response - submitting sports_list bulk CSV file successfully"
+								);
+								console.log("Response: \n" + response);
+								// pass success message output to ui
+								$("#form-output-sports").html(
+									"Bulk data submitted successfully."
+								);
+								// toggle alert classes
+								$("#form-output-sports").show();
+								$("#form-output-sports").removeClass("alert-info");
+								$("#form-output-sports").addClass("alert-success");
+							} else {
+								console.log("error: returning response - an error occurred");
+								console.log("Response: \n" + response);
+								// pass error message output to ui
+								$("#form-output-sports").html(
+									"An error occured whilst processing your request. \n\n" +
+										response
+								);
+								// toggle alert classes
+								$("#form-output-sports").show();
+								$("#form-output-sports").removeClass("alert-info");
+								$("#form-output-sports").addClass("alert-danger");
+							}
+						},
+						error: function (xhr, ajaxOptions, thrownError) {
+							console.log(
+								"exception error: " +
+									thrownError +
+									"\r\n" +
+									xhr.statusText +
+									"\r\n" +
+									xhr.responseText
+							);
+						},
+					});
+				}, 1000);
+
+				e.stopImmediatePropagation();
+				return false;
+			});
+			// ./ ajax jquery - submit CSV bulk file [sports]
+
+			// ajax jquery - submit CSV bulk file [sports_list]
+			$("#muscles-list-csv-bulk-upload-form").on("submit", function (e) {
+				e = e || window.event;
+				e.preventDefault();
+
+				var form_data = new FormData(
+					$("#muscles-list-csv-bulk-upload-form")[0]
+				);
+				setTimeout(function () {
+					$.ajax({
+						type: "POST",
+						url: "scripts/php/bulk_upload/upload_muscle_groups_csv.php",
+						processData: false,
+						contentType: false,
+						async: false,
+						cache: false,
+						data: form_data,
+						contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+						beforeSend: function () {
+							console.log("beforeSend: submitting muscle_groups bulk CSV file");
+						},
+						success: function (response) {
+							if (response.startsWith("success")) {
+								console.log(
+									"success: returning response - submitting muscle_groups bulk CSV file successfully"
+								);
+								console.log("Response: \n" + response);
+								// pass success message output to ui
+								$("#form-output-muscles").html(
+									"Bulk data submitted successfully."
+								);
+								// toggle alert classes
+								$("#form-output-muscles").show();
+								$("#form-output-muscles").removeClass("alert-info");
+								$("#form-output-muscles").addClass("alert-success");
+							} else {
+								console.log("error: returning response - an error occurred");
+								console.log("Response: \n" + response);
+								// pass error message output to ui
+								$("#form-output-muscles").html(
+									"An error occured whilst processing your request. \n\n" +
+										response
+								);
+								// toggle alert classes
+								$("#form-output-muscles").show();
+								$("#form-output-muscles").removeClass("alert-info");
+								$("#form-output-muscles").addClass("alert-danger");
+							}
+						},
+						error: function (xhr, ajaxOptions, thrownError) {
+							console.log(
+								"exception error: " +
+									thrownError +
+									"\r\n" +
+									xhr.statusText +
+									"\r\n" +
+									xhr.responseText
+							);
+						},
+					});
+				}, 1000);
+
+				e.stopImmediatePropagation();
+				return false;
+			});
+			// ./ ajax jquery - submit CSV bulk file [sports]
+
+			// ajax jquery - submit CSV bulk file [store_products]
+			$("#store-csv-bulk-upload-form").on("submit", function (e) {
+				e = e || window.event;
+				e.preventDefault();
+
+				var form_data = new FormData($("#store-csv-bulk-upload-form")[0]);
+				setTimeout(function () {
+					$.ajax({
+						type: "POST",
+						url: "scripts/php/bulk_upload/upload_store_products_csv.php",
+						processData: false,
+						contentType: false,
+						async: false,
+						cache: false,
+						data: form_data,
+						contentType: false /* "multipart/form-data" */ /* "application/json; charset=utf-8" */,
+						beforeSend: function () {
+							console.log(
+								"beforeSend: submitting store products bulk CSV file"
+							);
+						},
+						success: function (response) {
+							if (response.startsWith("success")) {
+								console.log(
+									"success: returning response - submitting store products bulk CSV file successfully"
+								);
+								console.log("Response: \n" + response);
+								// pass success message output to ui
+								$("#form-output-categories").html(
+									"Bulk data submitted successfully."
+								);
+								// toggle alert classes
+								$("#form-output-categories").show();
+								$("#form-output-categories").removeClass("alert-info");
+								$("#form-output-categories").addClass("alert-success");
+							} else {
+								console.log("error: returning response - an error occurred");
+								console.log("Response: \n" + response);
+								// pass error message output to ui
+								$("#form-output-categories").html(
+									"An error occured whilst processing your request. \n\n" +
+										response
+								);
+								// toggle alert classes
+								$("#form-output-categories").show();
+								$("#form-output-categories").removeClass("alert-info");
+								$("#form-output-categories").addClass("alert-danger");
+							}
+						},
+						error: function (xhr, ajaxOptions, thrownError) {
+							console.log(
+								"exception error: " +
+									thrownError +
+									"\r\n" +
+									xhr.statusText +
+									"\r\n" +
+									xhr.responseText
+							);
+						},
+					});
+				}, 1000);
+
+				e.stopImmediatePropagation();
+				return false;
+			});
+			// ./ ajax jquery - submit CSV bulk file [store_products]
+
+			// move multiple list items between two multi-select elements
+			function moveItems(origin, dest) {
+				$(origin).find(":selected").appendTo(dest);
+			}
+
+			function moveAllItems(origin, dest) {
+				$(origin).children().appendTo(dest);
+			}
+
+			function calculateWorkoutTotalXP() {
+				// reinitialize the sumXP
+				var sumXP = 0;
+				$("#select-workout-exercises-selected > option").each(function () {
+					// console.log(this.text + ' ' + this.value);
+					// extract the exercise xp value from this.text
+					var selectedExerciseText = this.text;
+
+					sumXP += parseInt(
+						selectedExerciseText.split("X[").pop().split("]P")[0]
+					);
+				});
+
+				// update #input-workout-xp field with sumXP value
+				$("#input-workout-xp").val(sumXP);
+			}
+
+			$("#move-items-selected-btn").on("click", function () {
+				moveItems(
+					"#select-workout-exercises",
+					"#select-workout-exercises-selected"
+				);
+				// re-calculate the sum of exercise xp and pass it to the #input-workout-xp input field
+				calculateWorkoutTotalXP();
+			});
+
+			$("#remove-items-selected-btn").on("click", function () {
+				moveItems(
+					"#select-workout-exercises-selected",
+					"#select-workout-exercises"
+				);
+				// re-calculate the sum of exercise xp and pass it to the #input-workout-xp input field
+				calculateWorkoutTotalXP();
+			});
+
+			$("#remove-all-items-selected-btn").on("click", function () {
+				moveAllItems(
+					"#select-workout-exercises-selected",
+					"#select-workout-exercises"
+				);
+				// re-calculate the sum of exercise xp and pass it to the #input-workout-xp input field
+				calculateWorkoutTotalXP();
+			});
+
+			// *** get select element items
+			// get users items
+			$.getUserAccounts = function (request, elemid) {
+				var elemid = elemid || "#user-account-list"; // initialize output elemid if it was not passed through params
+				$.get(
+					"./scripts/php/get_items/get_users.php?giveme=" + request,
+					function (data, status) {
 						if (status != "success") {
 							console.log(
-								"Get Req Failed -> $.getDBTables returned: \n[Status]: " +
+								"Get Req Failed -> $.getUserAccounts returned: \n[Status]: " +
 									status +
 									"\n[Data]: " +
 									data
 							);
-							// alert("Get Req Failed -> $.getDBTables returned: \n[Status]: " + status + "\n[Data]: " + data);
+							// alert("Get Req Failed -> $.getUserAccounts returned: \n[Status]: " + status + "\n[Data]: " + data);
 						} else {
-							$(".db-tables-list").html(data);
+							if (request == "json") console.log("User Accounts Json: \n".data);
+							else $(elemid).html(data); // '#user-account-list'
 						}
-					});
-				};
-			});
+					}
+				);
+			};
+
+			$.getAdminAccounts = function (request, elemid) {
+				var elemid = elemid || "#admin-account-list"; // initialize output elemid if it was not passed through params
+				$.get(
+					"./scripts/php/get_items/get_administrators.php?giveme=" + request,
+					function (data, status) {
+						if (status != "success") {
+							console.log(
+								"Get Req Failed -> $.getAdminAccounts returned: \n[Status]: " +
+									status +
+									"\n[Data]: " +
+									data
+							);
+							// alert("Get Req Failed -> $.getAdminAccounts returned: \n[Status]: " + status + "\n[Data]: " + data);
+						} else {
+							if (request == "json")
+								console.log("Admin Accounts Json: \n".data);
+							else $(elemid).html(data); // '#admin-account-list'
+						}
+					}
+				);
+			};
+
+			$.getTeamsProGroups = function (request, elemid) {
+				var elemid = elemid || "#teams-group-list"; // initialize output elemid if it was not passed through params
+				$.get(
+					"./scripts/php/get_items/get_teams_and_pro_groups.php?giveme=" +
+						request,
+					function (data, status) {
+						if (status != "success") {
+							console.log(
+								"Get Req Failed -> $.getTeamsProGroups returned: \n[Status]: " +
+									status +
+									"\n[Data]: " +
+									data
+							);
+							// alert("Get Req Failed -> $.getTeamsProGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+						} else {
+							if (request == "json")
+								console.log("Teams and Pro Groups Json: \n".data);
+							else $(elemid).html(data); // '#teams-group-list'
+						}
+					}
+				);
+			};
+
+			$.getCommunityGroups = function (request, elemid) {
+				var elemid = elemid || "#community-group-list"; // initialize output elemid if it was not passed through params
+				$.get(
+					"./scripts/php/get_items/get_indi_groups.php?giveme=" + request,
+					function (data, status) {
+						if (status != "success") {
+							console.log(
+								"Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " +
+									status +
+									"\n[Data]: " +
+									data
+							);
+							// alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+						} else {
+							if (request == "json")
+								console.log("Community Groups (Indi) Json: \n".data);
+							else $(elemid).html(data); // '#community-group-list'
+						}
+					}
+				);
+			};
+
+			$.getPreviewTables = function (request) {
+				const contentTypesArray = [
+					"fitness_categies",
+					"workouts",
+					"exercises",
+					"training_drills",
+					"supplements",
+					"sports",
+					"muscle_groups",
+				];
+
+				function getContentType(request, contentType) {
+					var elemid;
+					switch (contentType) {
+						case "fitness_categies":
+							//
+							elemid = "#category_class-list";
+							break;
+						case "workouts":
+							//
+							elemid = "#workouts-list";
+							break;
+						case "exercises":
+							//
+							elemid = "#indi_exercise-list";
+							break;
+						case "training_drills":
+							//
+							elemid = "#training_drills-list";
+							break;
+						case "supplements":
+							//
+							elemid = "#supplements-list";
+							break;
+						case "sports":
+							//
+							elemid = "#sports_list-list";
+							break;
+						case "muscle_groups":
+							//
+							elemid = "#muscle_groups-list";
+							break;
+
+						default:
+							return false;
+							break;
+					}
+
+					$.get(
+						"./scripts/php/get_items/get_preview_tables.php?giveme=" +
+							request +
+							"&content=" +
+							contentType,
+						function (data, status) {
+							if (status != "success") {
+								console.log(
+									"Get Req Failed -> function getContentType() returned: \n[Status]: " +
+										status +
+										"\n[Data]: " +
+										data
+								);
+								// alert("Get Req Failed -> function getContentType() returned: \n[Status]: " + status + "\n[Data]: " + data);
+								return false;
+							} else {
+								if (request == "json")
+									console.log("Community Groups (Indi) Json: \n".data);
+								else $(elemid).html(data);
+
+								return true;
+							}
+						}
+					);
+				}
+
+				var returnStatus;
+				contentTypesArray.forEach((contentType) => {
+					// call get function
+					returnStatus = getContentType(request, contentType);
+					if (returnStatus === true) {
+						console.log(
+							`Success: ${contentType} has been successfully loaded.`
+						);
+					} else {
+						console.log(`Failure: ${contentType} data could not be loaded.`);
+					}
+				});
+			};
+
+			// get classes/categories items
+			$.getCategoriesClasses = function (request, elemid) {
+				var elemid = elemid || "#select-workout-category"; // initialize output elemid if it was not passed through params
+				$.get(
+					"./scripts/php/get_items/get_classes.php?giveme=" + request,
+					function (data, status) {
+						if (status != "success") {
+							console.log(
+								"Get Req Failed -> $.getCategoriesClasses returned: \n[Status]: " +
+									status +
+									"\n[Data]: " +
+									data
+							);
+							// alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+						} else {
+							$(elemid).html(data); // '#select-workout-category'
+							if (request == "json")
+								console.log("Categories & Classes Json: \n".data);
+						}
+					}
+				);
+			};
+			// get indi exercises items
+			$.getIndiExercises = function (request, elemid) {
+				var elemid = elemid || "#select-workout-exercises"; // initialize output elemid if it was not passed through params
+				$.get(
+					"./scripts/php/get_items/get_indi_exercises.php?giveme=" + request,
+					function (data, status) {
+						if (status != "success") {
+							console.log(
+								"Get Req Failed -> $.getIndiExercises returned: \n[Status]: " +
+									status +
+									"\n[Data]: " +
+									data
+							);
+							// alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+						} else {
+							$(elemid).html(data); // '#select-workout-exercises'
+							if (request == "json")
+								console.log("Indi Exercises Json: \n".data);
+						}
+					}
+				);
+			};
+			// get supplements list items
+			$.getSupplementsList = function (request, elemid) {
+				var elemid = elemid || "#select-workout-recommeded-supplements"; // initialize output elemid if it was not passed through params
+				$.get(
+					"./scripts/php/get_items/get_supplements.php?giveme=" + request,
+					function (data, status) {
+						if (status != "success") {
+							console.log(
+								"Get Req Failed -> $.getSupplementsList returned: \n[Status]: " +
+									status +
+									"\n[Data]: " +
+									data
+							);
+							// alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+						} else {
+							$(elemid).html(data); // '#select-workout-recommeded-supplements'
+							if (request == "json")
+								console.log("Supplements List Json: \n".data);
+						}
+					}
+				);
+			};
+
+			// get store product items
+			$.getStoreProducts = function (request, elemid) {
+				var elemid = elemid || "#store-products-list"; // initialize output elemid if it was not passed through params
+				$.get(
+					"./scripts/php/get_items/get_store_products.php?giveme=" + request,
+					function (data, status) {
+						if (status != "success") {
+							console.log(
+								"Get Req Failed -> $.getStoreProducts returned: \n[Status]: " +
+									status +
+									"\n[Data]: " +
+									data
+							);
+							// alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
+						} else {
+							$(elemid).html(data); // '#store-products-list'
+							// console log if json was requested
+							if (request == "json")
+								console.log("Store Products Json: \n".data);
+						}
+					}
+				);
+			};
+
+			// *** compile data tables ***
+
+			// generate input data form
+			$.loadForm = function (command, optTblName) {
+				optTblName = optTblName || null;
+				// new_user, new_admin, new_teams_pro_group, new_community_group,
+
+				function generateForm(tblname, elemid) {
+					// administration\util\generate_form_from_dbtable.php
+					$.get(
+						"./util/generate_form_from_dbtable.php?tblname=" + tblname,
+						function (data, status) {
+							if (status != "success") {
+								console.log(
+									"Get Req Failed -> generateForm() returned: \n[Status]: " +
+										status +
+										"\n[Data]: " +
+										data
+								);
+								// alert("Get Req Failed -> generateForm() returned: \n[Status]: " + status + "\n[Data]: " + data);
+							} else {
+								$(elemid).html(data);
+							}
+						}
+					);
+				}
+
+				switch (command) {
+					case "new_user":
+						// call $.generateForm(tblname)
+						generateForm("users", "#command-model-body");
+						$("#tabCommandModalLabel").html("Create a new User account");
+						break;
+					case "new_admin":
+						// call $.generateForm(tblname)
+						generateForm("administrators", "#command-model-body");
+						$("#tabCommandModalLabel").html(
+							"Create a new Administrator account"
+						);
+						break;
+					case "new_teams_pro_group":
+						// call $.generateForm(tblname)
+						generateForm("groups", "#command-model-body");
+						$("#tabCommandModalLabel").html("Create a new Teams / Pro Group");
+						break;
+					case "new_community_group":
+						// call $.generateForm(tblname)
+						generateForm("groups", "#command-model-body");
+						$("#tabCommandModalLabel").html(
+							"Create a new Community/Indi Group"
+						);
+						break;
+					case "table_select":
+						// means that user has selected to view specific table,  optTblName must not be null but must have the value of a table name
+						if (optTblName != null || optTblName != "") {
+							generateForm(optTblName, "#command-model-body");
+							$("#tabCommandModalLabel").html(
+								`Capture new ${optTblName} record`
+							);
+						} else {
+							$("#command-model-body").html(
+								`Table name has not been provided: ${optTblName}`
+							);
+							$("#tabCommandModalLabel").html("Error: no table name selected");
+						}
+
+						break;
+
+					default:
+						$("#command-model-body").html(
+							`Command is not recognized: ${command}`
+						);
+						$("#tabCommandModalLabel").html("Error: Unknown command");
+						break;
+				}
+			};
+
+			// get select list of db tables from our db
+			$.getDBTables = function (list_format) {
+				// formats: default, table, options, json
+				// administration/scripts/php/database/get_db_tables.php
+
+				switch (list_format) {
+					case "table":
+						get_link =
+							"./scripts/php/database/get_db_tables.php?format=" + list_format;
+						break;
+					case "options":
+						get_link =
+							"./scripts/php/database/get_db_tables.php?format=" + list_format;
+						break;
+					case "json":
+						get_link =
+							"./scripts/php/database/get_db_tables.php?format=" + list_format;
+						break;
+
+					default:
+						alert("Unknown list format: " + format);
+						return false;
+						break;
+				}
+
+				$.get(get_link, function (data, status) {
+					if (status != "success") {
+						console.log(
+							"Get Req Failed -> $.getDBTables returned: \n[Status]: " +
+								status +
+								"\n[Data]: " +
+								data
+						);
+						// alert("Get Req Failed -> $.getDBTables returned: \n[Status]: " + status + "\n[Data]: " + data);
+					} else {
+						$(".db-tables-list").html(data);
+					}
+				});
+			};
 		</script>
+
+		<!-- JQuery Scripts -->
+		<script src="./scripts/js/db_forms_jquery.js"></script>
+
 		<!-- ./ JQuery Scripts -->
 
 		<style>
@@ -1223,7 +1211,7 @@
 		<link rel="stylesheet" href="./css/chat.css" />
 	</head>
 
-	<body onload="initializeContent()">
+	<body onload="initializeContent()" class="down-top-grad-dark">
 		<!-- Notification Snackbar (mini) -->
 		<!-- <button class="btn btn-primary btn-lg" onclick="showSnackbar('notification message here...')">Show Snackbar</button> -->
 		<!-- The actual snackbar -->
@@ -1687,7 +1675,7 @@
 			</div>
 		</header>
 
-		<main class="container">
+		<main class="container top-down-grad-dark rounded-5 p-4">
 			<div class="tab-content" id="pills-tabContent">
 				<div
 					class="tab-pane fade show active"
@@ -1696,10 +1684,16 @@
 					aria-labelledby="pills-usermgmt-tab"
 					tabindex="0"
 				>
-					<h1 class="text-center text-white">
+					<h1
+						class="comfortaa-font fw-bold text-center text-white down-top-grad-dark p-4 rounded-5 shadow"
+					>
 						<span
-							class="material-icons material-icons-round align-middle"
-							style="font-size: 50px !important; color: var(--tahitigold)"
+							class="material-icons material-icons-round align-middle p-2 rounded-circle text-dark"
+							style="
+								font-size: 50px !important;
+								color: var(--tahitigold);
+								background-color: var(--tahitigold);
+							"
 						>
 							people_alt
 						</span>
@@ -1818,33 +1812,35 @@
 					<hr />
 
 					<div class="container-card">
-						<h5>Administrator Accounts</h5>
+						<div class="d-flex justify-content-between">
+							<h5>Administrator Accounts</h5>
 
-						<div class="command-btns-container">
-							<!-- insert data to table button - Users -->
-							<button
-								onclick="$.loadForm('new_admin')"
-								class="onefit-buttons-style-light p-2 my-2 text-center shadow hide-side-panels"
-								type="button"
-								data-bs-toggle="modal"
-								data-bs-target="#tabCommandModal"
-								aria-controls="tabCommandModal"
-							>
-								<div class="d-flex gap-2 align-items-center">
-									<span
-										class="material-icons material-icons-round align-middle"
-									>
-										add_circle
-									</span>
-									<span
-										class="align-middle poppins-font text-truncate"
-										style="font-size: 12px !important"
-									>
-										New Administrator
-									</span>
-								</div>
-							</button>
-							<!-- insert data to table button - Users -->
+							<div class="command-btns-container">
+								<!-- insert data to table button - Users -->
+								<button
+									onclick="$.loadForm('new_admin')"
+									class="onefit-buttons-style-light p-2 my-2 text-center shadow hide-side-panels"
+									type="button"
+									data-bs-toggle="modal"
+									data-bs-target="#tabCommandModal"
+									aria-controls="tabCommandModal"
+								>
+									<div class="d-flex gap-2 align-items-center">
+										<span
+											class="material-icons material-icons-round align-middle"
+										>
+											add_circle
+										</span>
+										<span
+											class="align-middle poppins-font text-truncate"
+											style="font-size: 12px !important"
+										>
+											New Administrator
+										</span>
+									</div>
+								</button>
+								<!-- insert data to table button - Users -->
+							</div>
 						</div>
 
 						<hr />
@@ -1925,33 +1921,35 @@
 					<hr />
 
 					<div class="container-card">
-						<h5>Teams (Teams &amp; Pro)</h5>
+						<div class="d-flex justify-content-between">
+							<h5>Teams (Teams &amp; Pro)</h5>
 
-						<div class="command-btns-container">
-							<!-- insert data to table button - Users -->
-							<button
-								onclick="$.loadForm('new_teams_pro_group')"
-								class="onefit-buttons-style-light p-2 my-2 text-center shadow hide-side-panels"
-								type="button"
-								data-bs-toggle="modal"
-								data-bs-target="#tabCommandModal"
-								aria-controls="tabCommandModal"
-							>
-								<div class="d-flex gap-2 align-items-center">
-									<span
-										class="material-icons material-icons-round align-middle"
-									>
-										add_circle
-									</span>
-									<span
-										class="align-middle poppins-font text-truncate"
-										style="font-size: 12px !important"
-									>
-										New Team / Pro Group
-									</span>
-								</div>
-							</button>
-							<!-- insert data to table button - Users -->
+							<div class="command-btns-container">
+								<!-- insert data to table button - Users -->
+								<button
+									onclick="$.loadForm('new_teams_pro_group')"
+									class="onefit-buttons-style-light p-2 my-2 text-center shadow hide-side-panels"
+									type="button"
+									data-bs-toggle="modal"
+									data-bs-target="#tabCommandModal"
+									aria-controls="tabCommandModal"
+								>
+									<div class="d-flex gap-2 align-items-center">
+										<span
+											class="material-icons material-icons-round align-middle"
+										>
+											add_circle
+										</span>
+										<span
+											class="align-middle poppins-font text-truncate"
+											style="font-size: 12px !important"
+										>
+											New Team / Pro Group
+										</span>
+									</div>
+								</button>
+								<!-- insert data to table button - Users -->
+							</div>
 						</div>
 
 						<hr />
@@ -2018,33 +2016,35 @@
 					<hr />
 
 					<div class="container-card">
-						<h5>Community Groups (Indi)</h5>
+						<div class="d-flex justify-content-between">
+							<h5>Community Groups (Indi)</h5>
 
-						<div class="command-btns-container">
-							<!-- insert data to table button - Users -->
-							<button
-								onclick="$.loadForm('new_community_group')"
-								class="onefit-buttons-style-light p-2 my-2 text-center shadow hide-side-panels"
-								type="button"
-								data-bs-toggle="modal"
-								data-bs-target="#tabCommandModal"
-								aria-controls="tabCommandModal"
-							>
-								<div class="d-flex gap-2 align-items-center">
-									<span
-										class="material-icons material-icons-round align-middle"
-									>
-										add_circle
-									</span>
-									<span
-										class="align-middle poppins-font text-truncate"
-										style="font-size: 12px !important"
-									>
-										New Community Group (Indi)
-									</span>
-								</div>
-							</button>
-							<!-- insert data to table button - Users -->
+							<div class="command-btns-container">
+								<!-- insert data to table button - Users -->
+								<button
+									onclick="$.loadForm('new_community_group')"
+									class="onefit-buttons-style-light p-2 my-2 text-center shadow hide-side-panels"
+									type="button"
+									data-bs-toggle="modal"
+									data-bs-target="#tabCommandModal"
+									aria-controls="tabCommandModal"
+								>
+									<div class="d-flex gap-2 align-items-center">
+										<span
+											class="material-icons material-icons-round align-middle"
+										>
+											add_circle
+										</span>
+										<span
+											class="align-middle poppins-font text-truncate"
+											style="font-size: 12px !important"
+										>
+											New Community Group (Indi)
+										</span>
+									</div>
+								</button>
+								<!-- insert data to table button - Users -->
+							</div>
 						</div>
 
 						<hr />
@@ -2115,10 +2115,16 @@
 					aria-labelledby="pills-trainingmgmt-tab"
 					tabindex="0"
 				>
-					<h1 class="text-center text-white">
+					<h1
+						class="comfortaa-font fw-bold text-center text-white down-top-grad-dark p-4 rounded-5 shadow"
+					>
 						<span
-							class="material-icons material-icons-round align-middle"
-							style="font-size: 50px !important; color: var(--tahitigold)"
+							class="material-icons material-icons-round align-middle p-2 rounded-circle text-dark"
+							style="
+								font-size: 50px !important;
+								color: var(--tahitigold);
+								background-color: var(--tahitigold);
+							"
 						>
 							sports
 						</span>
@@ -2128,10 +2134,10 @@
 					<hr />
 
 					<div id="bulk-upload-section">
-						<div class="row my-4 gap-4">
-							<div class="col-md">
+						<div class="row my-4 gap-4z">
+							<div class="col-md-4">
 								<!-- bulk upload -->
-								<div class="container-card mb-4">
+								<div class="container-card mb-4 p-4">
 									<h5>Bulk Upload</h5>
 
 									<hr />
@@ -2158,7 +2164,9 @@
 											Output Alert
 										</div>
 
-										<div class="input-group">
+										<div
+											class="input-group d-grid justify-content-start align-items-center"
+										>
 											<div class="custom-file">
 												<input
 													type="file"
@@ -2209,7 +2217,9 @@
 											Output Alert
 										</div>
 
-										<div class="input-group">
+										<div
+											class="input-group d-grid justify-content-start align-items-center"
+										>
 											<div class="custom-file">
 												<input
 													type="file"
@@ -2262,7 +2272,9 @@
 											Output Alert
 										</div>
 
-										<div class="input-group">
+										<div
+											class="input-group d-grid justify-content-start align-items-center"
+										>
 											<div class="custom-file">
 												<input
 													type="file"
@@ -2313,7 +2325,9 @@
 											Output Alert
 										</div>
 
-										<div class="input-group">
+										<div
+											class="input-group d-grid justify-content-start align-items-center"
+										>
 											<div class="custom-file">
 												<input
 													type="file"
@@ -2364,7 +2378,9 @@
 											Output Alert
 										</div>
 
-										<div class="input-group">
+										<div
+											class="input-group d-grid justify-content-start align-items-center"
+										>
 											<div class="custom-file">
 												<input
 													type="file"
@@ -2415,7 +2431,9 @@
 											Output Alert
 										</div>
 
-										<div class="input-group">
+										<div
+											class="input-group d-grid justify-content-start align-items-center"
+										>
 											<div class="custom-file">
 												<input
 													type="file"
@@ -2466,7 +2484,9 @@
 											Output Alert
 										</div>
 
-										<div class="input-group">
+										<div
+											class="input-group d-grid justify-content-start align-items-center"
+										>
 											<div class="custom-file">
 												<input
 													type="file"
@@ -3491,10 +3511,16 @@
 					aria-labelledby="pills-storemgmt-tab"
 					tabindex="0"
 				>
-					<h1 class="text-center text-white">
+					<h1
+						class="comfortaa-font fw-bold text-center text-white down-top-grad-dark p-4 rounded-5 shadow"
+					>
 						<span
-							class="material-icons material-icons-round align-middle"
-							style="font-size: 50px !important; color: var(--tahitigold)"
+							class="material-icons material-icons-round align-middle p-2 rounded-circle text-dark"
+							style="
+								font-size: 50px !important;
+								color: var(--tahitigold);
+								background-color: var(--tahitigold);
+							"
 						>
 							monetization_on
 						</span>
@@ -3925,10 +3951,16 @@
 					aria-labelledby="pills-communications-tab"
 					tabindex="0"
 				>
-					<h1 class="text-center text-white">
+					<h1
+						class="comfortaa-font fw-bold text-center text-white down-top-grad-dark p-4 rounded-5 shadow"
+					>
 						<span
-							class="material-icons material-icons-round align-middle"
-							style="font-size: 50px !important; color: var(--tahitigold)"
+							class="material-icons material-icons-round align-middle p-2 rounded-circle text-dark"
+							style="
+								font-size: 50px !important;
+								color: var(--tahitigold);
+								background-color: var(--tahitigold);
+							"
 						>
 							connect_without_contact
 						</span>
@@ -4621,10 +4653,16 @@
 					aria-labelledby="pills-disabled-tab"
 					tabindex="0"
 				>
-					<h1 class="text-center text-white">
+					<h1
+						class="comfortaa-font fw-bold text-center text-white down-top-grad-dark p-4 rounded-5 shadow"
+					>
 						<span
-							class="material-icons material-icons-round align-middle"
-							style="font-size: 50px !important; color: var(--tahitigold)"
+							class="material-icons material-icons-round align-middle p-2 rounded-circle text-dark"
+							style="
+								font-size: 50px !important;
+								color: var(--tahitigold);
+								background-color: var(--tahitigold);
+							"
 						>
 							architecture
 						</span>

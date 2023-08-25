@@ -1111,7 +1111,7 @@ $.populateWeeklyAssessmentsHorizCardContainer = function (when, grcode) {
 
 // ***** Locaion: Modal
 // ajax jquery - submit activity tracking data [Heart Rate]
-$("#modal-heartrate-insights-activitytracker-data-form").submit(function (e) {
+$("#modal-heartrate-insights-activitytracker-data-form").on("submit", function (e) {
     e = e || window.event;
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -1158,7 +1158,7 @@ $("#modal-heartrate-insights-activitytracker-data-form").submit(function (e) {
 // ./ ajax jquery - submit activity tracking data [Heart Rate]
 
 // ajax jquery - submit activity tracking data [Body Temp]
-$("#modal-bodytemp-insights-activitytracker-data-form").submit(function (e) {
+$("#modal-bodytemp-insights-activitytracker-data-form").on("submit", function (e) {
     e = e || window.event;
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -1201,7 +1201,7 @@ $("#modal-bodytemp-insights-activitytracker-data-form").submit(function (e) {
 // ./ ajax jquery - submit activity tracking data [Body Temp]
 
 // ajax jquery - submit activity tracking data [Speed]
-$("#modal-speed-insights-activitytracker-data-form").submit(function (e) {
+$("#modal-speed-insights-activitytracker-data-form").on("submit", function (e) {
     e = e || window.event;
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -1244,7 +1244,7 @@ $("#modal-speed-insights-activitytracker-data-form").submit(function (e) {
 // ./ ajax jquery - submit activity tracking data [Speed]
 
 // ajax jquery - submit activity tracking data [BMI Weight]
-$("#modal-weight-insights-activitytracker-data-form").submit(function (e) {
+$("#modal-weight-insights-activitytracker-data-form").on("submit", function (e) {
     e = e || window.event;
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -1288,7 +1288,7 @@ $("#modal-weight-insights-activitytracker-data-form").submit(function (e) {
 
 // ***** Locaion: Single
 // ajax jquery - submit activity tracking data [Heart Rate]
-$("#single-heartrate-insights-activitytracker-data-form").submit(function (e) {
+$("#single-heartrate-insights-activitytracker-data-form").on("submit", function (e) {
     e = e || window.event;
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -1335,7 +1335,7 @@ $("#single-heartrate-insights-activitytracker-data-form").submit(function (e) {
 // ./ ajax jquery - submit activity tracking data [Heart Rate]
 
 // ajax jquery - submit activity tracking data [Body Temp]
-$("#single-bodytemp-insights-activitytracker-data-form").submit(function (e) {
+$("#single-bodytemp-insights-activitytracker-data-form").on("submit", function (e) {
     e = e || window.event;
     e.preventDefault();
 
@@ -1380,7 +1380,7 @@ $("#single-bodytemp-insights-activitytracker-data-form").submit(function (e) {
 // ./ ajax jquery - submit activity tracking data [Body Temp]
 
 // ajax jquery - submit activity tracking data [Speed]
-$("#single-speed-insights-activitytracker-data-form").submit(function (e) {
+$("#single-speed-insights-activitytracker-data-form").on("submit", function (e) {
     e = e || window.event;
     e.preventDefault();
 
@@ -1425,7 +1425,7 @@ $("#single-speed-insights-activitytracker-data-form").submit(function (e) {
 // ./ ajax jquery - submit activity tracking data [Speed]
 
 // ajax jquery - submit activity tracking data [BMI Weight]
-$("#single-weight-insights-activitytracker-data-form").submit(function (e) {
+$("#single-weight-insights-activitytracker-data-form").on("submit", function (e) {
     e = e || window.event;
     e.preventDefault();
 
@@ -1476,7 +1476,7 @@ $("#single-weight-insights-activitytracker-data-form").submit(function (e) {
 
 
 // ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
-$("#teams-add-new-day-activity-data-form").submit(function (e) {
+$("#teams-add-new-day-activity-data-form").on("submit", function (e) {
     e = e || window.event;
     e.preventDefault();
 

@@ -214,10 +214,9 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
     $dbconn->close();
 
     $weekdayCardOutput = <<<_END
-    <h3 class="my-4">$paramDayName</h3>
-    <h5 class="my-4 text-muted">$dayDateThisWeek</h5>
+    <h3 class="mt-0 mb-2 poppins-font fs-3">$paramDayName.</h3>
+    <p class="mb-4 text-mutedz poppins-font" style="color:var(--tahitigold);">$dayDateThisWeek</p>
     <hr class="text-white" style="height: 5px;">
-    <h5 class="">Assessments</h5>
     <!-- assessments list -->
     <ol class="list-group list-group-flush border-0 my-4">
         <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important;border-radius: 15px;">
@@ -240,45 +239,25 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
                 <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important">assignment_late</span> Required: Optional
             </div>
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important;border-radius: 15px;">
-            <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
-                <span class="material-icons material-icons-round" style="font-size: 48px !important">
-                    pending_actions </span>
-            </span>
-            <div class="ms-2 me-auto text-start">
-                <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
-                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important">recycling</span> Frequency: Daily<br />
-                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important">assignment_late</span> Required: Optional
-            </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important;border-radius: 15px;">
-            <span class="badge bg-primary rounded-pillz p-4" style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
-                <span class="material-icons material-icons-round" style="font-size: 48px !important">
-                    pending_actions </span>
-            </span>
-            <div class="ms-2 me-auto text-start">
-                <div class="fw-bold" style="color: #ffa500">Athlete Wellness Survey</div>
-                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important">recycling</span> Frequency: Daily<br />
-                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important">assignment_late</span> Required: Optional
-            </div>
-        </li>
     </ol>
     <!-- ./ assessments list -->
-    <hr class="text-white" style="height: 5px;">
-    <h5 class="">Indi-fitness activities</h5>
-    <!-- indi-athletics activities list -->
-    <ol class="list-group list-group-flush border-0 my-4">
-        $inner_activities_hscroll_card_content_indi
-    </ol>
-    <!-- ./ indi-athletics activities list -->
-    <hr class="text-white" style="height: 5px;">
-    <h5 class="">Group activities (Teams)</h5>
-    <!-- team-athletics / group activities list -->
-    <ol class="list-group list-group-flush border-0 my-4">
-        $inner_activities_hscroll_card_content_teams
-    </ol>
-    <!-- ./ team-athletics / group activities list -->
-    <span class="material-icons material-icons-round mb-4">horizontal_rule</span>
+    <div class="d-none">
+        <hr class="text-white" style="height: 5px;">
+        <h5 class="">Indi-fitness activities</h5>
+        <!-- indi-athletics activities list -->
+        <ol class="list-group list-group-flush border-0 my-4">
+            $inner_activities_hscroll_card_content_indi
+        </ol>
+        <!-- ./ indi-athletics activities list -->
+        <hr class="text-white" style="height: 5px;">
+        <h5 class="">Group activities (Teams)</h5>
+        <!-- team-athletics / group activities list -->
+        <ol class="list-group list-group-flush border-0 my-4">
+            $inner_activities_hscroll_card_content_teams
+        </ol>
+        <!-- ./ team-athletics / group activities list -->
+        <span class="material-icons material-icons-round mb-4">horizontal_rule</span>
+    </div>
     _END;
 
     echo $weekdayCardOutput;

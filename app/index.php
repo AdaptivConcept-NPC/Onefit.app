@@ -1043,27 +1043,153 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </button>
                                 </li>
                                 <hr class="text-dark" style="height: 5px;">
-                                <li class="nav-item">
-                                    <a class="nav-link p-4" style="border-radius: 25px !important;"
-                                        href="#">Dashboard</a>
+                                <li class="nav-item text-center">
+                                    <div class="d-grid mb-2 w3-animate-top">
+                                        <p class="text-white comfortaa-font fs-4 mb-0 fw-bold"> Presented by </p>
+                                        <p class="text-white audiowide-font mt-1 mb-0 fw-bold"
+                                            style="font-size: 8px !important;">
+                                            <span style="color: #ffa500;">
+                                                One</span>-On-<span style="color: #ffa500;">One</span> Fitness
+                                            Network<sup style="color: #ffa500;">®</sup>
+                                        </p>
+                                        <span class="material-icons material-icons-round d-none"
+                                            style="color: #ffa500; cursor: pointer;">
+                                            public
+                                        </span>
+                                        <img src="../media/assets/One-Logo.png" class="img-fluid px-4"
+                                            alt="onefitnet logo">
+                                    </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4" style="border-radius: 25px !important;"
-                                        href="#">Services</a>
+                                    <a class="nav-link p-4 text-center"
+                                        style="border-radius: 25px !important;font-size:16px;" href="#"
+                                        target="_blank">One-On-One
+                                        Fitness Network<span style="color:var(--tahitigold);">™</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">About</a>
+                                    <a class="nav-link p-4 text-center"
+                                        style="border-radius: 25px !important;font-size:16px;" href="#"
+                                        target="_blank">LMM 1-On-1
+                                        Trainer<span style="color:var(--tahitigold);">™</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Contact</a>
+                                    <a class="nav-link p-4 text-center"
+                                        style="border-radius: 25px !important;font-size:16px;" href="#"
+                                        target="_blank">AdaptivConcept<span style="color:var(--tahitigold);">™</span>
+                                        FL</a>
+                                </li>
+                                <hr>
+                                <h5 class="text-center fs-1 fw-bold text-white d-grid gap-2">
+                                    <span class="material-icons material-icons-round align-middle"
+                                        style="color:var(--tahitigold);">fitness_center</span>
+                                    <span class="align-middle">Join a gym.</span>
+                                </h5>
+                                <!-- affiliate links -->
+                                <p class="text-mutedz fw-bold text-center mb-4"
+                                    style="font-size:10px;color:var(--red);">
+                                    <span class="material-icons material-icons-round align-middle"
+                                        style="font-size:20px!important;">
+                                        warning
+                                    </span>
+                                    The links below are intended for demonstration purposed only.
+                                    <span class="material-icons material-icons-round align-middle"
+                                        style="font-size:20px!important;">
+                                        warning
+                                    </span>
+                                </p>
+                                <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="../administration/media/affiliate/logos/gym_company_logo.png"
+                                                class="img-fluid rounded-4 shadow"
+                                                style="/* width:200px;height:100px; */filter: invert(0);"
+                                                alt="Gym Company logo - not affiliated">
+                                        </div>
+                                        <div class="col-md poppins-font d-grid gap-1">
+                                            <p style="font-size:16px;" class="text-white text-start">gym4free is a
+                                                rewards programme exclusive to Gym Company members.</p>
+                                            <a class="nav-link p-0 text-start"
+                                                style="border-radius: 25px !important;font-size:8px;"
+                                                href="https://www.gymcompany.co.za/" target="_blank">Visit
+                                                gymcompany.co.za for more info.</a>
+                                        </div>
+                                    </div>
+
+
+                                </li>
+                                <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="../administration/media/affiliate/logos/planet_fitness_logo.png"
+                                                class="img-fluid rounded-4 shadow"
+                                                style="/* width:200px;height:100px; */filter: invert(0);"
+                                                alt="Planet Fitness logo - not affiliated">
+                                        </div>
+                                        <div class="col-md poppins-font d-grid gap-1">
+                                            <p style="font-size:16px;" class="text-white text-start">Get your one week
+                                                free trial at your nearest PlanetFitness.</p>
+                                            <a class="nav-link p-0 poppins-font text-start"
+                                                style="border-radius: 25px !important;font-size:10px;"
+                                                href="https://www.planetfitness.co.za/" target="_blank">Visit
+                                                planetfitness.co.za for more info.</a>
+                                        </div>
+                                    </div>
+
+
+                                </li>
+                                <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="../administration/media/affiliate/logos/virgin_active_logo.png"
+                                                class="img-fluid rounded-4 shadow"
+                                                style="/* width:100px;height:100px; */filter: invert(0);"
+                                                alt="Virgin Active logo - not affiliated">
+                                        </div>
+                                        <div class="col-md poppins-font d-grid gap-1">
+                                            <p style="font-size:16px;" class="text-white text-start">Virgin Active
+                                                Rewards.</p>
+                                            <a class="nav-link p-0 text-start"
+                                                style="border-radius: 25px !important;font-size:10px;"
+                                                href="https://www.virginactive.co.za/club-loyalty-benefits"
+                                                target="_blank">Visit
+                                                virginactive.co.za for more info.</a>
+                                        </div>
+                                    </div>
+
+
+                                </li>
+                                <h5 class="text-center fs-5 fw-bold text-white d-grid gap-2">
+                                    <span class="material-icons material-icons-round align-middle"
+                                        style="color:var(--tahitigold);">card_membership</span>
+                                    <span class="align-middle">Earn, Learn and Gear up!</span>
+                                </h5>
+                                <p class="fs-5z mb-4 text-center" style="font-size:12px;color:var(--white);">OneFitNet
+                                    offers members
+                                    the chance to earn essential training
+                                    equipement and vouchers. Commit to your fitness journey with us and be rewarded.
+                                    <br><span style="color:var(--tahitigold);" class="fw-bold">OneFitNet Community
+                                        Rewards Program</span>
+                                </p>
+                                <li class="nav-item">
+                                    <a class="nav-link p-4 text-center"
+                                        style="border-radius: 25px !important;font-size:16px;" href="#">
+                                        <span
+                                            class="material-icons material-icons-round align-middle">card_giftcard</span>
+                                        OnefitNet CRP<sub
+                                            style="color:var(--tahitigold);font-size:8px!important;">Alpha</sub></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4" style="border-radius: 25px !important;" href="#">Onefit.Edu™
-                                        (Blog)</a>
+                                    <a class="nav-link p-4 text-center"
+                                        style="border-radius: 25px !important;font-size:16px;" href="#">
+                                        <span
+                                            class="material-icons material-icons-round align-middle">auto_stories</span>
+                                        Onefit.blog<span style="color:var(--tahitigold);">™</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4" style="border-radius: 25px !important;"
-                                        href="#">Onefit.Shop™</a>
+                                    <a class="nav-link p-4 text-center"
+                                        style="border-radius: 25px !important;font-size:16px;" href="#">
+                                        <span class="material-icons material-icons-round align-middle">storefront</span>
+                                        Onefit.Shop<span style="color:var(--tahitigold);">™</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -1195,10 +1321,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">dashboard</span> <span
                                 class="align-middle">Dashboard</span></h5>
-
-                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(dahsboard)');">
-                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(dashboard)');">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
+                            <span class="align-middle">Sync.</span>
                         </button>
                     </div>
 
@@ -3216,8 +3343,8 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                         <!-- rss feeds -->
                                         <div id="profile-social-post-update-container"
-                                            class="container-fluid shadow my-4 py-4 content-panel-border-style-dark-bg w3-animate-bottom"
-                                            style="border-radius: 25px;">
+                                            class="container-fluid shadow my-4 py-4 content-panel-border-style-dark-bg w3-animate-bottom border-5 border"
+                                            style="border-radius: 25px;border-color:var(--tahitigold)!important;">
                                             <h5 class="text-center"><span
                                                     class="material-icons material-icons-outlined align-middle"
                                                     style="color: #ffa500;">
@@ -3247,10 +3374,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 style="color: #ffa500 !important; font-size: 40px;">travel_explore</span> <span
                                 class="align-middle">Discovery</span></h5>
                         <p class="text-center" style="font-size: 10px">powered by AdaptEngine™</p>
-
-                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(discovery)');">
-                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(discovery)');">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
+                            <span class="align-middle">Sync.</span>
                         </button>
                     </div>
 
@@ -3404,16 +3532,19 @@ if (isset($_SESSION["currentUserAuth"])) {
                     style="display: none">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
                         style="border-radius: 25px; border-color: #ffa500 !important;">
-                        <h5 class="mt-4 fs-1 text-center align-middle"><span
-                                class="material-icons material-icons-outlined align-middle"
-                                style="color: #ffa500 !important; font-size: 40px;">play_circle_outline</span> <span
-                                style="color: #fff !important"> <span class="align-middle"><span
-                                        style="color: #fff !important">One</span><span
-                                        style="color: #ffa500 !important">fit</span>.Studio</span></h5>
-
-                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(studio)');">
-                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                        <h5 class="mt-4 fs-1 text-center align-middle">
+                            <span class="material-icons material-icons-outlined align-middle"
+                                style="color: #ffa500 !important; font-size: 40px;">play_circle_outline</span>
+                            <span style="color: #fff !important">
+                                <span class="align-middle">
+                                    <span style="color: #fff !important">One</span>
+                                    <span style="color: #ffa500 !important">fit</span>.Studio</span>
+                        </h5>
+                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(studio)');">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
+                            <span class="align-middle">Sync.</span>
                         </button>
                     </div>
                     <!-- <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Studio
@@ -3521,13 +3652,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                         style="border-radius: 25px; border-color: #ffa500 !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
-                                style="color: #ffa500 !important; font-size: 40px;">storefront</span> <span
-                                class="align-middle"><span style="color: #fff !important">One</span><span
-                                    style="color: #ffa500 !important">fit</span>.Store</span></h5>
-
-                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(store)');">
-                            <span class="material-icons material-icons-round"
-                                style="color: #ffa500 !important">keyboard_arrow_down</span>
+                                style="color: #ffa500 !important; font-size: 40px;">storefront</span>
+                            <span class="align-middle"><span style="color: #fff !important">One</span>
+                                <span style="color: #ffa500 !important">fit</span>.Store</span>
+                        </h5>
+                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(store)');">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
+                            </span>
+                            <span class="align-middle">Sync.</span>
                         </button>
                     </div>
                     <!-- <h1 class="text-center"><span style="color: #fff !important">One</span><span style="color: #ffa500 !important">fit</span>.Store
@@ -4499,35 +4632,34 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- tab section navigation -->
                     <!-- containerElemID, scrollToElemID, scrollSpeed -->
                     <div id="insights-tab-quick-nav"
-                        class="tab-quick-nav p-4 d-grid align-items-center justify-content-start right-left-grad-tahiti-mineshaftz left-right-grad-mineshaft position-fixed border-5 border-top border-bottom">
+                        class="tab-quick-nav p-4 d-grid align-items-center justify-content-start right-left-grad-tahiti-mineshaftz left-right-grad-mineshaft position-fixed border-5 border-top border-bottom w3-animate-right">
                         <p class="m-0 text-white quick-nav-heading pb-4" style="font-size: 10px !important;">Section
                             <span style="color:var(--tahitigold) !important;">nav.</span>
                         </p>
                         <ol class="m-0 quick-nav-secionline" style="list-style: none;">
                             <li class="quick-nav-container section-btn right"
-                                onclick="$.smoothScroll('#ohtml', '#fitness-calender-header', 100);">
-                                <span class="text-truncate">Fitness Calender</span>
+                                onclick="$.smoothScroll('#ohtml', '#training-calender-header', 100);">
+                                <span class="material-icons material-icons-sharp align-middle">calendar_month</span>
+                                <span class="text-truncate" style="font-size:12px;">Training Calender</span>
                             </li>
                             <li class="quick-nav-container section-btn right"
                                 onclick="$.smoothScroll('#ohtml', '#activity-timeline-header', 100);">
-                                <span class="text-truncate">Activity Timeline</span>
+                                <span class="text-truncate" style="font-size:12px;">Activity Timeline</span>
                             </li>
                             <li class="quick-nav-container section-btn right"
                                 onclick="$.smoothScroll('#ohtml', '#activity-tracking-header', 100);">
-                                <span class="text-truncate">Activity Tracking</span>
+                                <span class="text-truncate" style="font-size:12px;">Activity Tracking</span>
                             </li>
                             <li class="quick-nav-container section-btn right"
                                 onclick="$.smoothScroll('#ohtml', '#weekly-assessments-header', 100);">
-                                <span class="text-truncate">Weekly Assess</span>
+                                <span class="text-truncate" style="font-size:12px;">Weekly Assess</span>
                             </li>
                             <li class="quick-nav-container section-btn right"
-                                onclick="$.smoothScroll('#ohtml', '#training-header', 100);">
-                                <span class="text-truncate">Training</span>
+                                onclick="$.smoothScroll('#ohtml', '#start-training-btn-container', 100);">
+                                <span class="text-truncate align-middle">Start Training</span>
+                                <span class="material-icons material-icons-sharp align-middle"
+                                    style="font-size:20px !important;">chevron_right</span>
                             </li>
-                            <!-- <li class="quick-nav-container section-btn right" onclick="$.smoothScroll('#main-content-container', '#insights-tab-quick-nav', 100);">
-                                <span class="material-icons material-icons-round align-middle">arrow_upward</span> 
-                                <span class="align-middle">Start</span>
-                            </li> -->
                         </ol>
                     </div>
                     <!-- ./ tab section navigation -->
@@ -4543,20 +4675,22 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </h1>
                         <p class="text-center my-4 comfortaa-font">Use the Fitness Insights page to track your Training
                             progression and workout activities.</p>
-                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(insights)');">
-                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(insights)');">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
+                            <span class="align-middle">Sync.</span>
                         </button>
                     </div>
 
                     <hr class="text-white" style="height: 5px;">
 
                     <!-- Timelines and Calender -->
-                    <div id="fitness-calender-header"
+                    <div id="training-calender-header"
                         class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
                         style="border-radius: 25px; border-color: #ffa500 !important;">
                         <span class="material-icons material-icons-round">calendar_month</span>
-                        <h5 class="my-4 fs-1 text-center">Fitness Calender</h5>
+                        <h5 class="my-4 fs-1 text-center">Training Calender</h5>
                         <span class="material-icons material-icons-round"
                             style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
@@ -4745,7 +4879,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
                         style="border-radius: 25px; border-color: #ffa500 !important;">
                         <span class="material-icons material-icons-round">track_changes</span>
-                        <h5 class="mt-4 fs-1 text-center">Activity Tracking</h5>
+                        <h5 class="mt-4 fs-1 text-center">Vitals and Activity Tracking</h5>
                         <span class="material-icons material-icons-round"
                             style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
@@ -5371,7 +5505,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                         <img src="../media/assets/smartwatches/branding/fitbit-png-logo-white.png"
                                             class="img-fluid mt-4 mb-2" style="max-width: 200px;" alt="fitbit logo">
-                                        <p class="comfortaa-font">Connect your Fitbit activity tracker / smartwatch</p>
+                                        <p class="comfortaa-font" style="color:var(--fitbit-light-blue);">Connect your
+                                            Fitbit
+                                            activity tracker / smartwatch</p>
                                     </div>
                                     <div class="col-md -8 py-4 d-flex justify-content-center no-scroller d-none"
                                         style="overflow-x: auto;">
@@ -5615,10 +5751,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </div>
 
                         </div>
-                        <div class="row align-items-middle justify-content-between">
+                        <div class="row align-items-middle justify-content-between mt-4">
                             <div class="col-md d-grid align-items-center justify-content-center">
                                 <button id="prev-week-btn-weekly-assessments"
-                                    class="btn p-2 onefit-buttons-style-transp-leftdir comfortaa-font"
+                                    class="btn p-2 onefit-buttons-style-transp-leftdir comfortaa-font shadow"
                                     onclick="$.switchWeeklyActivityView('last')">
                                     <span class="material-icons material-icons-round align-middle"
                                         style="color: #ffa500 !important">keyboard_arrow_left</span>
@@ -5627,7 +5763,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </div>
                             <div class="col-md-8 d-grid align-items-center justify-content-center">
                                 <button id="this-week-btn-weekly-assessments"
-                                    class="btn p-2 onefit-buttons-style-dark bg-transparent comfortaa-font d-grid p-4"
+                                    class="btn p-2 onefit-buttons-style-dark bg-transparent comfortaa-font d-grid p-4 shadow"
                                     onclick="$.switchWeeklyActivityView('this')">
                                     <span class="material-icons material-icons-round"
                                         style="color: #ffa500 !important">keyboard_arrow_down</span>
@@ -5636,7 +5772,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </div>
                             <div class="col-md d-grid align-items-center justify-content-center">
                                 <button id="prev-week-btn-weekly-assessments"
-                                    class="btn p-2 onefit-buttons-style-transp-rightdir comfortaa-font"
+                                    class="btn p-2 onefit-buttons-style-transp-rightdir comfortaa-font shadow"
                                     onclick="$.switchWeeklyActivityView('next')">
                                     <span class="align-middle text-truncate" style="font-size: 10px;">Next Week</span>
                                     <span class="material-icons material-icons-round align-middle"
@@ -6395,12 +6531,14 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <!-- removed stream section here -->
                     <!-- Training tab button -->
-                    <div class="d-grid">
-                        <button id="goto-training-tab-btn"
-                            class="onefit-buttons-style-dark p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
-                            style="border-radius: 25px; border-color: #ffa500 !important;">
-                            <h5 class="mt-4 fs-1 text-center align-middle">Go to Training. <span
-                                    class="material-icons material-icons-rounded align-middle">sports</span></h5>
+                    <div id="start-training-btn-container" class="d-grid">
+                        <button id="start-training-tab-btn" onclick="$('#app-training-btn').click();"
+                            class="onefit-buttons-style-light p-4 my-4 d-grid text-center"
+                            style="border-radius: 25px; border-color: var(--white) !important;">
+                            <h5 class="mt-4 fs-1 text-center align-middle">
+                                <span class="align-middle">Start Training. </span>
+                                <span class="material-icons material-icons-rounded align-middle">sports</span>
+                            </h5>
                         </button>
                     </div>
 
@@ -6426,9 +6564,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                         style="border-radius: 25px; border-color: #ffa500 !important;">
                         <span class="material-icons material-icons-outlined">sports</span>
                         <h5 class="mt-4 fs-1 text-center align-middle">Training.</h5>
-                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(training)');">
-                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(training)');">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
+                            <span class="align-middle">Sync.</span>
                         </button>
                     </div>
 
@@ -6486,13 +6626,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         aria-controls="more-insights-inline-nav-container">
                                         <div class="d-grid gap-2">
                                             <span class="material-icons material-icons-round"> menu </span>
-                                            <p class="m-0" style="font-size: 8px;">More insights.</p>
+                                            <p class="m-0" style="font-size: 8px;">Training focus.</p>
                                         </div>
                                     </button>
                                 </div>
 
                                 <div id="more-insights-inline-nav-container"
-                                    class="w3-animate-bottom horizontal-scroll no-scroller px-4 py-0 my-0 collapse"
+                                    class="w3-animate-bottom horizontal-scroll no-scroller px-4 py-0 my-0 collapse show"
                                     style="overflow-y: hidden;">
                                     <nav class="mt-0 mx-0 mb-4">
                                         <div class="nav force-inline-nav nav-tabs border-0 d-flex justify-content-between"
@@ -6919,25 +7059,74 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     id="v-sub-tab-pills-insights-teamathletics"
                                     style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;"
                                     role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-teamathletics-tab">
+                                    <!-- sub-tab section navigation -->
+                                    <!-- containerElemID, scrollToElemID, scrollSpeed -->
+                                    <div id="training-tab-quick-nav"
+                                        class="tab-quick-nav p-4 d-grid align-items-center justify-content-start right-left-grad-tahiti-mineshaftz left-right-grad-mineshaft position-fixed border-5 border-top border-bottom w3-animate-right">
+                                        <p class="m-0 text-white quick-nav-heading pb-4"
+                                            style="font-size: 10px !important;">Section
+                                            <span style="color:var(--tahitigold) !important;">nav.</span>
+                                        </p>
+                                        <ol class="m-0 quick-nav-secionline" style="list-style: none;">
+                                            <li class="quick-nav-container section-btn right"
+                                                onclick="$.smoothScroll('#ohtml', '#training-header', 100);">
+                                                <span
+                                                    class="material-icons material-icons-sharp align-middle">calendar_month</span>
+                                                <span class="text-truncate align-middle"
+                                                    style="font-size:12px;">Training
+                                                    Calender</span>
+                                            </li>
+                                            <!-- #v-sub-tab-pills-insights-teamathletics -->
+                                            <li class="quick-nav-container section-btn right"
+                                                onclick="$.smoothScroll('#v-sub-tab-pills-insights-teamathletics', '#team-athletics-container', 300);$.smoothScroll('#ohtml', '#inline-more-insights-tab-btns');">
+                                                <span class="text-truncate" style="font-size:12px;">Match
+                                                    Fixtures</span>
+                                            </li>
+                                            <li class="quick-nav-container section-btn right"
+                                                onclick="$.smoothScroll('#v-sub-tab-pills-insights-teamathletics', '#weekly-training-schedule-header', 300);$.smoothScroll('#ohtml', '#inline-more-insights-tab-btns');">
+                                                <span class="text-truncate" style="font-size:12px;">Training
+                                                    Schedule</span>
+                                            </li>
+                                            <li class="quick-nav-container section-btn right"
+                                                onclick="$.smoothScroll('#v-sub-tab-pills-insights-teamathletics', '#interactions-section', 300);$.smoothScroll('#ohtml', '#inline-more-insights-tab-btns');">
+                                                <span class="text-truncate" style="font-size:12px;">Interactions</span>
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <!-- ./ sub-tab section navigation -->
+
                                     <!-- default main team selection -->
-                                    <div class="d-grid py-4 justify-content-center top-down-grad-dark sticky-top"
+                                    <div class="d-grid py-0 justify-content-center top-down-grad-dark sticky-top"
                                         style="z-index:999;">
+
+                                        <!-- date selected in Training Calender display label -->
+                                        <!-- showSnackbar('Please select a Day on the Calender to Focus that Weeks Training Guides.','alert_general','short_500'); -->
+                                        <div class="w3-animate-left my-pulse-animation-darkz w3-animate-left d-flex gap-2 just"
+                                            onclick="$.smoothScroll('#ohtml', '#training-header', 100);"
+                                            style="position:absolute;bottom:0;left:10px;z-index:1021;margin-bottom:-40px; border-radius:25px;cursor:pointer;">
+                                            <div id="selected-calender-date-display-lbl"
+                                                class="onefit-buttons-style-dark p-2 shadow">
+                                                Date today / selected
+                                            </div>
+                                        </div>
+                                        <!-- ./ date selected in Training Calender display label -->
+
                                         <!-- collapse team selection filters btn -->
-                                        <div class="w3-animate-left my-pulse-animation-dark w3-animate-left"
-                                            style="position:absolute;bottom:0;right:10px;z-index:1021;margin-bottom:-20px; border-radius:25px;">
-                                            <button class="rounde-pill onefit-buttons-style-light p-2 shadow"
+                                        <div class="w3-animate-left my-pulse-animation-dark w3-animate-left d-flex gap-2 just"
+                                            style="position:absolute;bottom:0;right:10px;z-index:1021;margin-bottom:-40px; border-radius:25px;">
+                                            <button class="onefit-buttons-style-dark p-2 shadow"
                                                 data-bs-toggle="collapse" data-bs-target="#team-select-filters"
                                                 aria-controls="team-select-filters" aria-expanded="false"
                                                 aria-label="training: team selection filters">
                                                 <span class="material-icons material-icons-round align-middle"
-                                                    style="font-size: 20px !important;">sync</span>
-                                                <span class="align-middle" style="font-size:8px;">Team Filters.</span>
+                                                    style="font-size: 20px !important;color:var(--tahitigold)!important;">change_circle</span>
+                                                <span class="align-middle" style="font-size:8px;">Switch Team.</span>
                                             </button>
                                         </div>
                                         <!-- ./ collapse team selection filters btn -->
 
                                         <!-- #team-select-filters - starts hidden -->
-                                        <div id="team-select-filters" class="collapse w3-animate-left">
+                                        <div id="team-select-filters" class="collapse w3-animate-left py-4">
                                             <p class="m-0 text-center" style="font-size:10px!important;">
                                                 <span class="material-icons material-icons-outlined align-middle"
                                                     style="font-size: 8px !important;">
@@ -6994,6 +7183,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <!-- ./ team training filters -->
                                         </div>
                                         <!-- ./ end of #team-select-filters -->
+                                        <hr class="w3-animate-top mt-0">
                                     </div>
 
                                     <div class="d-grid text-center mt-4">
@@ -7009,7 +7199,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="mt-4" id="team-athletics-container">
                                         <!-- weekly training schedule and summaries -->
                                         <!-- upcoming match fixtures/schedule header -->
-                                        <div class="row align-items-center">
+                                        <div id="match-fixtures-header" class="row align-items-center">
+                                            <!-- formations btn and offcanvas menu -->
                                             <div class="col-md-2 d-grid">
                                                 <button
                                                     class="onefit-buttons-style-light p-4 my-2 text-center shadow hide-side-panels"
@@ -7229,8 +7420,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         <div class="container -fluid">
 
                                                             <div id="formation-guidelines-container"
-                                                                class="bg-white text-dark p-4 mb-4 shadow"
-                                                                style="border-radius: 25px;">
+                                                                class="bg-white text-dark p-4 mb-4 shadow w3-animate-top"
+                                                                style="border-radius: 25px;display:none;">
                                                                 <h5
                                                                     class="fs-3 text-center text-dark poppins-font fw-bold">
                                                                     Tactical Guidelines.</h5>
@@ -7244,7 +7435,8 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                                             <div id="teamathletics-team-formation" class="py-4">
                                                                 <h5 id="formation-title"
-                                                                    class="text-center text-dark poppins-font fw-bold fs-3 mb-4 comfortaa-font fw-bold">
+                                                                    class="text-center text-dark poppins-font fw-bold fs-3 mb-4 comfortaa-font fw-bold w3-animate-bottom"
+                                                                    style="display:none;">
                                                                     Formation: <span class="poppins-font">2-5-3</span>
                                                                 </h5>
                                                                 <div class="mb-4 d-flex justify-content-center shadow"
@@ -7417,7 +7609,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         <!-- ./ technical team list -->
                                                                     </div>
                                                                     <!-- preview panel -->
-                                                                    <div class="col-md-4 d-nonez">
+                                                                    <div id="preview-window-container"
+                                                                        class="col-md-4 d-nonez" style="display: none;">
                                                                         <style>
                                                                         .player-card-preview-window {
                                                                             border-radius: 25px;
@@ -7438,12 +7631,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- ./ formations btn and offcanvas menu -->
                                             <div class="col-md">
                                                 <h5 class="fs-2 p-5 fw-bold rounded-pill text-center comfortaa-font shadow my-4 bg-white text-dark"
                                                     style="border-radius:25px !important;">
                                                     Match Fixtures.
                                                 </h5>
                                             </div>
+                                            <!-- add match to fixture btn and offcanvas modal -->
                                             <div class="col-md-2 d-grid">
                                                 <button
                                                     class="onefit-buttons-style-light p-4 my-2 text-center shadow hide-side-panels"
@@ -7818,6 +8013,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </div>
                                                 <!-- ./ add to fixture offcanvas -->
                                             </div>
+                                            <!-- ./ add match to fixture btn and offcanvas modal -->
                                         </div>
                                         <!-- ./ upcoming match fixtures/schedule header -->
 
@@ -7902,7 +8098,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <hr class="text-white">
 
                                         <!-- weekly training schedule header -->
-                                        <div class="d-grid">
+                                        <div id="weekly-training-schedule-header" class="d-grid">
                                             <div class="row align-items-center mb-2">
                                                 <div class="col-md">
                                                     <div class="p-4 rounded-pill text-center shadow bg-white text-dark"
@@ -8445,7 +8641,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- Section: Interaction buttons (incl: Drills, Physical Assessment, Nutrition board, Program Administration) -->
                                         <section id="interactions-section" class="p-4 pt-0">
                                             <!-- class="fs-1 comfortaa-font my-5 text-center"  -->
-                                            <h1 class="fs-2 p-5 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-whitez"
+                                            <h1 class="fs-2 p-5 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-whitez border-5 border-start border-end"
                                                 style="border-radius:25px !important;">
                                                 <span class="material-icons material-icons-round align-middle"
                                                     style="color:var(--tahitigold)!important;">touch_app</span>
@@ -8685,9 +8881,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">emoji_events</span> <span
                                 class="align-middle">Achievements</span></h5>
-                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(achievements)');">
-                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                        <button class="onefit-buttons-style-tahiti p-4 d-grid"
+                            onclick="alert('reloadTab(achievements)');">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
+                            <span class="align-middle">Sync.</span>
                         </button>
                     </div>
 
@@ -8882,9 +9081,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">perm_media</span> <span
                                 class="align-middle">Media</span></h5>
-                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(media)');">
-                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(media)');">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
+                            <span class="align-middle">Sync.</span>
                         </button>
                     </div>
                     <!-- <h1 class="text-center">Media</h1>
@@ -9175,9 +9376,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">forum</span> <span
                                 class="align-middle">Communications</span></h5>
-                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(communications)');">
-                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                        <button class="onefit-buttons-style-tahiti p-4 d-grid"
+                            onclick="alert('reloadTab(communications)');">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
+                            <span class="align-middle">Sync.</span>
                         </button>
                     </div>
 
@@ -9314,9 +9518,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">settings_accessibility</span> <span
                                 class="align-middle">Preferences</span></h5>
-                        <button class="onefit-buttons-style-dark p-4" onclick="alert('reloadTab(preferences)');">
-                            <span class="material-icons material-icons-round" style="color: #ffa500 !important"> sync
+                        <button class="onefit-buttons-style-tahiti p-4 d-grid"
+                            onclick="alert('reloadTab(preferences)');">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
+                            <span class="align-middle">Sync.</span>
                         </button>
                     </div>
                     <!-- <h1 class="text-center">Preferences</h1>
@@ -10555,7 +10762,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div class="card-header bg-transparentz border-0 shadowz fixed-top top-down-grad-dark"
                     style="color: rgb(255, 255, 255) !important; padding-right: 25px; margin-right: -10px;">
                     <div class="offcanvas-header">
-                        <button class="onefit-buttons-style-dark p-4 shadow d-flex gap-2 text-center" type="button"
+                        <button id="toggle-chats-list-btn"
+                            class="onefit-buttons-style-dark p-4 shadow d-flex gap-2 text-center" type="button"
                             data-bs-toggle="collapse" data-bs-target="#collapseMyUserChats" aria-expanded="true"
                             aria-controls="collapseMyUserChats"
                             onclick="$('div#message-input-main').toggleClass('d-none');$('#main-chat-window').toggleClass('pb-2');">
@@ -10586,10 +10794,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <div class="card-body py-0 px-4 darkpads-bg-container h-100">
                     <div class="row h-100 px-0 no-scroller" style="max-height: 70vh; overflow-y: auto !important;">
-                        <div class="col-md-4 w3-animate-top down-top-grad-darkz collapse show" id="collapseMyUserChats">
+                        <div class="col-md-4 w3-animate-top down-top-grad-darkz collapse collapse-horizontal show"
+                            style="overflow-x:hidden;" id="collapseMyUserChats">
                             <!--Users Chats List-->
-                            <ul class="list-group list-group-flush text-start top-down-grad-dark"
-                                style="padding-bottom: 40px !important;padding-top:100px;">
+                            <ul class="list-group list-group-flush text-start top-down-grad-dark h-100 light-scroller"
+                                style="padding-bottom: 40px !important;padding-top:100px;min-width:200px!important;">
                                 <?php echo $outputProfileUserChats; ?>
                             </ul>
                             <!-- ./ Users Chats List-->
@@ -10603,9 +10812,21 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     class="card-body border-0 bg-transparent px-2 pt-0 down-top-grad-tahiti border-5 border-bottom pb-2"
                                     style="border-radius:25px!important;overflow:hidden;border-color:var(--tahitigold)!important;padding-bottom:240px;">
                                     <div id="chat-message-container" class="no-scrollerz px-0 pb-0 light-scroller"
-                                        style="border-radius: 25px;width: 100%; height: 100%; background-color: rgba(52, 52, 52, 0) !important; overflow-y: auto !important; overflow-x: hidden !important;padding-top:140px;">
+                                        style="border-radius: 25px;width: 100%; height: 100%; background-color: rgba(52, 52, 52, 0) !important; 
+                                        overflow-y: auto !important; overflow-x: hidden !important;padding-top:140px;
+                                        /*inset box shadow grad*/
+                                        box-shadow: 0px -140px 80px -74px rgba(0,0,0,0.5) inset;
+                                        -webkit-box-shadow: 0px -140px 80px -74px rgba(0,0,0,0.5) inset;
+                                        -moz-box-shadow: 0px -140px 80px -74px rgba(0,0,0,0.5) inset;">
+                                        <div class="row align-items-center h-100 d-grid align-items-center">
+                                            <div class="col">
+                                                <h1 class="fw-bold fs-1 text-white">
+                                                    One<span style="color:var(--tahitigold)!important;">fit</span>.app
+                                                </h1>
+                                            </div>
+                                        </div>
                                         <!-- User Chat Bubble - Left (Users Friend) -->
-                                        <div class="row align-items-center">
+                                        <!-- <div class="row align-items-center">
                                             <div class="col-sm text-start w3-animate-left p-0 ps-4">
                                                 <div class="d-flex gap-2">
                                                     <div class="text-start d-none">
@@ -10661,13 +10882,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </div>
                                             </div>
                                             <div class="col-sm-3 text-start border-5z border-bottomz"></div>
-                                        </div>
+                                        </div> -->
 
-                                        <hr class="text-white m-0 d-none" style="height:5px;">
+                                        <!-- <hr class="text-white m-0 d-none" style="height:5px;"> -->
                                         <!-- ./ User Chat Bubble - Left (Users Friend) -->
 
                                         <!-- User Chat Bubble - Right (User) -->
-                                        <div class="row align-items-center">
+                                        <!-- <div class="row align-items-center">
                                             <div class="col-sm-3 border-5z border-bottomz"></div>
                                             <div class="col-sm text-end w3-animate-right p-0 pe-4">
                                                 <div class="d-flex gap-2">
@@ -10723,10 +10944,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- ./ User Chat Bubble - Right (User) -->
-
-                                        <!--Users Chat Conversation Panel-->
 
                                     </div>
                                 </div>
@@ -10737,9 +10956,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         class="border-5 border-top px-4 pt-2 pb-4 top-down-grad-tahiti w3-animate-bottom d-none"
                                         style="border-radius:25px;border-color:var(--tahitigold)!important;">
                                         <div class="row align-items-center">
-                                            <div class="col p-3">
+                                            <div class="col p-3 pb-0">
                                                 <textarea name="" class="w-100 quick-post-input p-2 shadow text-white"
-                                                    id="post-message-community" cols="30" rows="5"
+                                                    id="post-message-community" cols="30" rows="2"
                                                     placeholder="Message." style="
                                                     border-radius: 15px;
                                                     border: 5px solid var(--mineshaft);
@@ -10747,72 +10966,70 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     max-height: 500px !important;
                                                 background-color:var(--mineshaft);"></textarea>
 
+                                                <div class="d-flex justify-content-between gap-2 p-0">
+                                                    <!-- function buttons horiz-list -->
+                                                    <ul id="message-function-horiz-btn-list"
+                                                        class="list-group list-group-horizontal justify-content-betweenz border-0 bg-transparent">
+                                                        <li
+                                                            class="list-group-item border-0 p-0 bg-transparent flex-fill d-grid">
+                                                            <!-- + feelings / emoji / reaction -->
+                                                            <button type="button"
+                                                                class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-grid">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 20px !important">add_reaction</span>
+                                                                <span class="align-middle d-none d-lg-block"
+                                                                    style="font-size: 10px">
+                                                                    <span style="color: #ffa500 !important">+</span>
+                                                                    feeling</span>
+                                                            </button>
+                                                        </li>
+                                                        <li
+                                                            class="list-group-item border-0 p-0 bg-transparent flex-fill d-grid">
+                                                            <!-- + resource (share media: pdf/img/mp4/mp3) -->
+                                                            <button type="button"
+                                                                class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-grid">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 20px !important">attach_file
+                                                                </span>
+                                                                <span class="align-middle d-none d-lg-block"
+                                                                    style="font-size: 10px">
+                                                                    <span style="color: #ffa500 !important">+</span>
+                                                                    resource</span>
+                                                            </button>
+                                                        </li>
+                                                        <li
+                                                            class="list-group-item border-0 p-0 bg-transparent flex-fill d-grid">
+                                                            <!-- + web web links -->
+                                                            <button type="button"
+                                                                class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-grid">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 20px !important">link</span>
+                                                                <span class="align-middle d-none d-lg-block"
+                                                                    style="font-size: 10px">
+                                                                    <span style="color: #ffa500 !important">+</span>
+                                                                    web</span>
+                                                            </button>
+                                                        </li>
+                                                    </ul><!-- send message btn -->
+
+
+                                                    <button type="button"
+                                                        class="onefit-buttons-style-dark p-3 m-1 border-1">
+                                                        <!-- <i class="fas fa-paper-plane" style="font-size: 38px !important"></i> -->
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="
+                                                            font-size: 40px !important;
+                                                            color: #ffa500;">
+                                                            send
+                                                        </span>
+                                                        <span class="align-middle">Send.</span>
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div class="col-4 d-grid gap-2 p-0">
 
-
-                                                <!-- function buttons horiz-list -->
-                                                <ul id="message-function-horiz-btn-list"
-                                                    class="list-group list-group-horizontal justify-content-betweenz border-0 bg-transparent">
-                                                    <li
-                                                        class="list-group-item border-0 p-0 bg-transparent flex-fill d-grid">
-                                                        <!-- + feelings / emoji / reaction -->
-                                                        <button type="button"
-                                                            class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-grid">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle"
-                                                                style="font-size: 20px !important">add_reaction</span>
-                                                            <span class="align-middle d-none d-lg-block"
-                                                                style="font-size: 10px">
-                                                                <span style="color: #ffa500 !important">+</span>
-                                                                feeling</span>
-                                                        </button>
-                                                    </li>
-                                                    <li
-                                                        class="list-group-item border-0 p-0 bg-transparent flex-fill d-grid">
-                                                        <!-- + resource (share media: pdf/img/mp4/mp3) -->
-                                                        <button type="button"
-                                                            class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-grid">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle"
-                                                                style="font-size: 20px !important">attach_file
-                                                            </span>
-                                                            <span class="align-middle d-none d-lg-block"
-                                                                style="font-size: 10px">
-                                                                <span style="color: #ffa500 !important">+</span>
-                                                                resource</span>
-                                                        </button>
-                                                    </li>
-                                                    <li
-                                                        class="list-group-item border-0 p-0 bg-transparent flex-fill d-grid">
-                                                        <!-- + web web links -->
-                                                        <button type="button"
-                                                            class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-grid">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle"
-                                                                style="font-size: 20px !important">link</span>
-                                                            <span class="align-middle d-none d-lg-block"
-                                                                style="font-size: 10px">
-                                                                <span style="color: #ffa500 !important">+</span>
-                                                                web</span>
-                                                        </button>
-                                                    </li>
-                                                </ul><!-- send message btn -->
-
-
-                                                <button type="button"
-                                                    class="onefit-buttons-style-dark p-3 m-1 border-1">
-                                                    <!-- <i class="fas fa-paper-plane" style="font-size: 38px !important"></i> -->
-                                                    <span class="material-icons material-icons-round align-middle"
-                                                        style="
-                                                        font-size: 40px !important;
-                                                        color: #ffa500;
-                                                    ">
-                                                        post_add
-                                                    </span>
-                                                    <span class="align-middle">Send.</span>
-                                                </button>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -11471,12 +11688,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div class="d-flex gap-2 justify-content-start align-items-center">
                                             <span
                                                 class="material-icons material-icons-round align-middle">timeline</span>
-                                            <span class="align-middle">Activity Lineup</span>
+                                            <span class="align-middle">Exercise lineup.</span>
                                         </div>
 
-                                        <div class="pin-item-icon shadow p-2" style="border-radius:15px;">
-                                            <span class="material-icons material-icons-round align-middle"
-                                                style="font-size:30px !important;">push_pin</span>
+                                        <div class="pin-item-icon shadow p-2"
+                                            style="border-radius:15px;font-size:10px!important;">
+                                            <span class="material-icons material-icons-round align-middle d-nones"
+                                                style="font-size:30px !important;">stadium</span>
+                                            <span class="poppins-font">0 activities.</span>
                                         </div>
                                     </div>
                                 </button>
@@ -11513,12 +11732,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="d-flex gap-2 justify-content-start align-items-center">
                                             <span class="material-icons material-icons-round align-middle">book</span>
-                                            <span class="align-middle">Diary &amp; Trainer Notes</span>
+                                            <span class="align-middle">Trainer guides.</span>
                                         </div>
 
-                                        <div class="pin-item-icon shadow p-2" style="border-radius:15px;">
+                                        <div class="pin-item-icon shadow p-2"
+                                            style="border-radius:15px;font-size:10px!important;">
                                             <span class="material-icons material-icons-round align-middle"
-                                                style="font-size:30px !important;">push_pin</span>
+                                                style="font-size:30px !important;">layers</span>
+                                            <span class="poppins-font">No new entries</span>
                                         </div>
                                     </div>
                                 </button>
@@ -11615,12 +11836,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div class="d-flex gap-2 justify-content-start align-items-center">
                                             <span
                                                 class="material-icons material-icons-round align-middle">add_task</span>
-                                            <span class="align-middle">(Admin) New Activities</span>
+                                            <span class="align-middle">Activity scheduling.</span>
                                         </div>
 
-                                        <div class="pin-item-icon shadow p-2" style="border-radius:15px;">
+                                        <div class="pin-item-icon shadow p-2"
+                                            style="border-radius:15px;font-size:10px!important;">
                                             <span class="material-icons material-icons-round align-middle"
-                                                style="font-size:30px !important;">push_pin</span>
+                                                style="font-size:30px !important;">local_police</span>
+                                            <span class="poppins-font d-nonez">Verified admin.</span>
                                         </div>
                                     </div>
                                 </button>
@@ -13442,6 +13665,11 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         const calenderActivityFormModalBtn = document.getElementById('toggleCalenderActivityFormeModalBtn');
         calenderActivityFormModalBtn.click();
+
+        // update the date displayed in #selected-calender-date-display-lbl and sync training data to the selected date
+        $('#selected-calender-date-display-lbl').html(
+            `<span class="material-icons material-icons-sharp align-middle" style="font-size:20px!important;color:var(--tahitigold)!important;">calendar_month</span> <span class="align-middle" style="font-size:8px;">` +
+            dateQueried.toDateString() + `</span>`); // or toLocalDateString() for dd/mm/yyyy format
     }
     // sync data stored in local storage with remote storage for specified chartObj
     function syncUserActivityTrackerChart(chartObj, usernm, chartName, data, rangeDate) {
@@ -14346,7 +14574,8 @@ if (isset($_SESSION["currentUserAuth"])) {
     function loadActivityCalender(monthName) {
         //load the activities calender
         //?month='.$prev_month.'&year='.$prev_year."'
-        //get current month
+        // current month name
+        monthName = monthName || "current";
 
         var dateNow = new Date();
         var currMonth = dateNow.getMonth() + 1;
@@ -14388,6 +14617,11 @@ if (isset($_SESSION["currentUserAuth"])) {
             "../scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/calender.php?month=" +
             currMonth + "&year=" + currYear, true);
         xhttp.send();
+
+        // assign current date to #selected-calender-date-display-lbl innerhtml
+        document.getElementById('selected-calender-date-display-lbl').innerHTML =
+            `<span class="material-icons material-icons-sharp align-middle" style="font-size:20px!important;color:var(--tahitigold)!important;">calendar_month</span>  <span class="align-middle" style="font-size:8px;">` +
+            dateNow.toDateString() + `</span>`; // or toLocalDateString() for dd/mm/yyyy format
     }
 
     function reloadActivityCalender(nMonth, nYear) {
@@ -15152,8 +15386,6 @@ if (isset($_SESSION["currentUserAuth"])) {
                 scrollTop: $(scrollToElemID).offset().top // "#user-welcome-header"
             }, scrollSpeed);
         console.log("smoothScroll: window.offset().top => " + $(scrollToElemID).offset().top);
-
-
     }
 
     // run function when scrolled to #main-content-container
@@ -16005,6 +16237,11 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         var panelHeaderText = getSelectedText('formation-team-selection');
 
+        // show #formation-guidelines-container
+        $('#formation-guidelines-container').show();
+        // show #formation-title
+        $('#formation-title').show();
+
         $('#offcanvasTeamFormationLabel').text(panelHeaderText);
 
         $('#loading-formation-data-spinner').show();
@@ -16530,7 +16767,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     // ***** Locaion: Modal
     // ajax jquery - submit activity tracking data [Heart Rate]
-    $("#modal-heartrate-insights-activitytracker-data-form").submit(function(e) {
+    $("#modal-heartrate-insights-activitytracker-data-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -16600,7 +16837,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     // ./ ajax jquery - submit activity tracking data [Heart Rate]
 
     // ajax jquery - submit activity tracking data [Body Temp]
-    $("#modal-bodytemp-insights-activitytracker-data-form").submit(function(e) {
+    $("#modal-bodytemp-insights-activitytracker-data-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -16657,7 +16894,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     // ./ ajax jquery - submit activity tracking data [Body Temp]
 
     // ajax jquery - submit activity tracking data [Speed]
-    $("#modal-speed-insights-activitytracker-data-form").submit(function(e) {
+    $("#modal-speed-insights-activitytracker-data-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -16713,7 +16950,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     // ./ ajax jquery - submit activity tracking data [Speed]
 
     // ajax jquery - submit activity tracking data [BMI Weight]
-    $("#modal-weight-insights-activitytracker-data-form").submit(function(e) {
+    $("#modal-weight-insights-activitytracker-data-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -16771,7 +17008,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     // ***** Locaion: Single
     // ajax jquery - submit activity tracking data [Heart Rate]
-    $("#single-heartrate-insights-activitytracker-data-form").submit(function(e) {
+    $("#single-heartrate-insights-activitytracker-data-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -16835,7 +17072,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     // ./ ajax jquery - submit activity tracking data [Heart Rate]
 
     // ajax jquery - submit activity tracking data [Body Temp]
-    $("#single-bodytemp-insights-activitytracker-data-form").submit(function(e) {
+    $("#single-bodytemp-insights-activitytracker-data-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -16893,7 +17130,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     // ./ ajax jquery - submit activity tracking data [Body Temp]
 
     // ajax jquery - submit activity tracking data [Speed]
-    $("#single-speed-insights-activitytracker-data-form").submit(function(e) {
+    $("#single-speed-insights-activitytracker-data-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -16949,7 +17186,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     // ./ ajax jquery - submit activity tracking data [Speed]
 
     // ajax jquery - submit activity tracking data [BMI Weight]
-    $("#single-weight-insights-activitytracker-data-form").submit(function(e) {
+    $("#single-weight-insights-activitytracker-data-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -17014,7 +17251,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
 
     // ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
-    $("#teams-add-new-day-activity-data-form").submit(function(e) {
+    $("#teams-add-new-day-activity-data-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -17073,7 +17310,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     // ./ ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
 
     // ajax jquery - submit add new activity data form on the calender view modal
-    $("#add-new-schedule-form").submit(function(e) {
+    $("#add-new-schedule-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 
@@ -17203,7 +17440,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     // ./ ajax jquery - submit add new activity data form on the calender view modal
 
     // ajax jquery - submit add match to fixture data form
-    $("#add-match-fixture-form").submit(function(e) {
+    $("#add-match-fixture-form").on("submit", function(e) {
         e = e || window.event;
         e.preventDefault();
 

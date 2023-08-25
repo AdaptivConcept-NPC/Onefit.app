@@ -2178,6 +2178,7 @@ div.horizontal-scroll-card-nav {
 	/* 30px from the bottom */
 	border-radius: 15px;
 	border-bottom: 5px solid var(--tahitigold);
+	font-size: 12px !important;
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
