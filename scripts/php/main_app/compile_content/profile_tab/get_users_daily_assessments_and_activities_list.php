@@ -264,3 +264,6 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
 } else {
     die("No request parameters were provided.");
 }
+
+// phpunit unit testing
+// require_once("../../../tests/unit_tests/phpunit.php");

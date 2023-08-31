@@ -160,6 +160,11 @@ echo <<<_END
 <div class="table-responsive pb-4" style="border-radius: 25px;">
     <table class="table table-hover mb-0" style="background: var(--mineshaft);">
         <thead style="background: #fff; color: #343434;">
+            <tr>
+                <td class="px-4 py-2 text-center" colspan="7">
+                    Training calender.
+                </td>
+            </tr>
             <tr class="comfortaa-font p-4" align="center" style="font-size: 30px">
                 <td class="p-4" colspan="7">
                     <div class="w-100 h-100 d-flex gap-4 justify-content-between">

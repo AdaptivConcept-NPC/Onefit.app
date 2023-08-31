@@ -4879,7 +4879,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
                         style="border-radius: 25px; border-color: #ffa500 !important;">
                         <span class="material-icons material-icons-round">track_changes</span>
-                        <h5 class="mt-4 fs-1 text-center">Vitals and Activity Tracking</h5>
+                        <h5 class="mt-4 fs-1 text-center">Vitals Tracking</h5>
                         <span class="material-icons material-icons-round"
                             style="color: #ffa500 !important">keyboard_arrow_down</span>
                     </div>
@@ -7101,18 +7101,19 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                         <!-- date selected in Training Calender display label -->
                                         <!-- showSnackbar('Please select a Day on the Calender to Focus that Weeks Training Guides.','alert_general','short_500'); -->
-                                        <div class="w3-animate-left my-pulse-animation-darkz w3-animate-left d-flex gap-2 just"
+                                        <div class="w3-animate-left my-pulse-animation-darkz d-flex gap-2 just"
                                             onclick="$.smoothScroll('#ohtml', '#training-header', 100);"
                                             style="position:absolute;bottom:0;left:10px;z-index:1021;margin-bottom:-40px; border-radius:25px;cursor:pointer;">
                                             <div id="selected-calender-date-display-lbl"
-                                                class="onefit-buttons-style-dark p-2 shadow">
+                                                class="onefit-buttons-style-dark p-2 shadow"
+                                                style="font-size:12px!important;">
                                                 Date today / selected
                                             </div>
                                         </div>
                                         <!-- ./ date selected in Training Calender display label -->
 
                                         <!-- collapse team selection filters btn -->
-                                        <div class="w3-animate-left my-pulse-animation-dark w3-animate-left d-flex gap-2 just"
+                                        <div class="w3-animate-right my-pulse-animation-dark d-flex gap-2 just"
                                             style="position:absolute;bottom:0;right:10px;z-index:1021;margin-bottom:-40px; border-radius:25px;">
                                             <button class="onefit-buttons-style-dark p-2 shadow"
                                                 data-bs-toggle="collapse" data-bs-target="#team-select-filters"
@@ -8018,7 +8019,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- ./ upcoming match fixtures/schedule header -->
 
                                         <!-- match fixtures / upcoming matches table -->
-                                        <h5>Upcoming matches.</h5>
+                                        <h5 class="text-center">Upcoming matches.</h5>
                                         <div class="table-responsive mb-4">
                                             <table class="table table-bordered table-light table-striped my-4 shadow"
                                                 style="border-radius: 25px !important; overflow: hidden;">
@@ -8057,7 +8058,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- ./ match fixtures / upcoming matches table -->
 
                                         <!-- match fixtures / match history table -->
-                                        <h5>Match history.</h5>
+                                        <h5 class="text-center">Match history.</h5>
                                         <div class="table-responsive mb-4">
                                             <table class="table table-bordered table-light table-striped my-4 shadow"
                                                 style="border-radius: 25px !important; overflow: hidden;">

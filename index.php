@@ -276,7 +276,12 @@ rememberMe();
     <!-- <hr class="text-white m-0" /> -->
     <!-- Onefit.app Logo -->
 
-    <div class="text-center p-4" style="background-color: rgba(52, 52, 52, 0.8); margin: 40px 0;"></div>
+    <div class="text-center p-4 comfortaa-font fw-bold fs-1"
+        style="color: var(--mineshaft);background-color: rgba(255, 255, 255, 0.8); margin: 40px 0;">
+        <span style="color:var(--mineshaft);">
+            #One<span style="color:var(--tahitigold);">fitness</span>ForAll
+        </span>
+    </div>
 
     <!-- User Sign in Section -->
     <div class="container-fluid m-0 down-top-grad-tahiti">

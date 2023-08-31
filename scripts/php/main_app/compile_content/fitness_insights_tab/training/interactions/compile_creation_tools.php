@@ -10,9 +10,25 @@ if (isset($_GET['uid'])) {
     echo <<<_END
     <div class="row">
         <div class="col-md-4">
-            <div class="create-btn-container-static comfortaa-font d-grid gap-2 d-none d-lg-block">
+            <div class="create-btn-container-static comfortaa-font d-grid gap-2">
                 <div class="p-4 w3-animate-bottom d-grid" id="staticCreateCommandList">
-                    <ul class="list-groupz list-group-flush list-group border-0 text-white fw-bold text-center comfortaa-font" style="overflow: initial !important;">
+                    <!-- toggle button -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <button class="onefit-buttons-style-dark p-4 border-5 border-bottom border-white d-lg-none" type="button" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#create-functions-tab-btn" 
+                            aria-expanded="true" 
+                            aria-controls="create-functions-tab-btn">
+                            <div class="d-grid gap-2">
+                                <span class="material-icons material-icons-round"> menu </span>
+                                <p class="m-0" style="font-size: 8px;">Functions.</p>
+                            </div>
+                        </button>
+                        <div class="d-grid w-100">
+                            <h1 class="fs-5 comfortaa-font my-4 text-md-end text-sm-end text-lg-center" style="color:var(--tahitigold);"><span style="color:var(--white);">Onefit.</span>Create.</h1>
+                        </div>
+                    </div>
+                    <ul id="create-functions-tab-btn" class="list-groupz list-group-flush list-group border-0 text-white fw-bold text-center comfortaa-font collapse show" style="overflow-y: auto !important;overflow-x:hidden;">
                         <li class="list-group-item bg-transparent d-grid visually-hidden">
                             <button id="v-pills-creation-start-tab" type="button" class="onefit-buttons-style-dark text-white p-5 fs-3 shadow border-5 border-start border-end d-flex gap-2 justify-content-between align-items-center"
                             data-bs-toggle="pill" data-bs-target="#v-pills-creation-start" type="button" role="tab" aria-controls="v-pills-creation-start" aria-selected="true">
@@ -20,8 +36,10 @@ if (isset($_GET['uid'])) {
                             </button>
                         </li>
                         <li class="list-group-item bg-transparent d-grid">
-                            <button id="v-pills-creation-commfeed-tab" type="button" class="onefit-buttons-style-dark text-white p-5 fs-3 shadow border-5 border-start border-end d-flex gap-2 justify-content-between align-items-center"
-                            data-bs-toggle="pill" data-bs-target="#v-pills-creation-commfeed" type="button" role="tab" aria-controls="v-pills-creation-commfeed" aria-selected="false">
+                            <button id="v-pills-creation-commfeed-tab"
+                                onclick="$('#v-pills-creation-start').removeClass('active show');"
+                                type="button" class="onefit-buttons-style-dark text-white p-5 fs-3 shadow border-5 border-start border-end d-flex gap-2 justify-content-between align-items-center"
+                                data-bs-toggle="pill" data-bs-target="#v-pills-creation-commfeed" type="button" role="tab" aria-controls="v-pills-creation-commfeed" aria-selected="false">
                                 <span class="material-icons material-icons-round align-middle">
                                     post_add
                                 </span> 
@@ -30,8 +48,10 @@ if (isset($_GET['uid'])) {
                             </button>
                         </li>
                         <li class="list-group-item bg-transparent d-grid">
-                            <button id="v-pills-creation-grpshare-tab" type="button" class="onefit-buttons-style-dark text-white p-5 fs-3 shadow border-5 border-top border-bottom d-flex gap-4 justify-content-between align-items-center"
-                            data-bs-toggle="pill" data-bs-target="#v-pills-creation-grpshare" type="button" role="tab" aria-controls="v-pills-creation-grpshare" aria-selected="false">
+                            <button id="v-pills-creation-grpshare-tab" 
+                                onclick="$('#v-pills-creation-start').removeClass('active show');"
+                                type="button" class="onefit-buttons-style-dark text-white p-5 fs-3 shadow border-5 border-top border-bottom d-flex gap-4 justify-content-between align-items-center"
+                                data-bs-toggle="pill" data-bs-target="#v-pills-creation-grpshare" type="button" role="tab" aria-controls="v-pills-creation-grpshare" aria-selected="false">
                                 <span class="material-icons material-icons-round align-middle">
                                     volunteer_activism
                                 </span> 
@@ -40,18 +60,28 @@ if (isset($_GET['uid'])) {
                             </button>
                         </li>
                         <li class="list-group-item bg-transparent d-grid">
-                            <button id="v-pills-creation-stream-tab" type="button" class="onefit-buttons-style-dark text-white p-5 fs-3 shadow border-5 border-start border-end d-flex gap-4 justify-content-between align-items-center"
-                            data-bs-toggle="pill" data-bs-target="#v-pills-creation-stream" type="button" role="tab" aria-controls="v-pills-creation-stream" aria-selected="false">
+                            <button id="v-pills-creation-stream-tab" 
+                                onclick="$('#v-pills-creation-start').removeClass('active show');"
+                                type="button" class="onefit-buttons-style-dark text-white p-5 fs-3 shadow border-5 border-start border-end d-flex gap-4 justify-content-between align-items-center"
+                                data-bs-toggle="pill" data-bs-target="#v-pills-creation-stream" type="button" role="tab" aria-controls="v-pills-creation-stream" aria-selected="false">
                                 <span class="material-icons material-icons-round align-middle">
                                     live_tv
                                 </span> 
                                 <span style="color:var(--tahitigold);">|</span> 
-                                Onefit.Stream.
+                                Onefit.Stream
                             </button>
                         </li>
                         <li class="list-group-item bg-transparent d-grid">
-                            <button id="v-pills-creation-mdupload-tab" type="button" class="onefit-buttons-style-dark text-white p-5 fs-3 shadow border-5 border-bottom border-top d-flex gap-4 justify-content-between align-items-center"
-                            data-bs-toggle="pill" data-bs-target="#v-pills-creation-mdupload" type="button" role="tab" aria-controls="v-pills-creation-mdupload" aria-selected="false">
+                            <button id="v-pills-creation-mdupload-tab" 
+                                onclick="$('#v-pills-creation-start').removeClass('active show');"
+                                type="button" 
+                                class="onefit-buttons-style-dark text-white p-5 fs-3 shadow border-5 border-bottom border-top d-flex gap-4 justify-content-between align-items-center"
+                                data-bs-toggle="pill" 
+                                data-bs-target="#v-pills-creation-mdupload" 
+                                type="button" 
+                                role="tab" 
+                                aria-controls="v-pills-creation-mdupload" 
+                                aria-selected="false">
                                 <span class="material-icons material-icons-round align-middle">
                                     perm_media
                                 </span> 
@@ -60,8 +90,16 @@ if (isset($_GET['uid'])) {
                             </button>
                         </li>
                         <li class="list-group-item bg-transparent d-grid">
-                            <button id="v-pills-creation-messenger-tab" type="button" class="onefit-buttons-style-dark text-white p-5 fs-3 shadow border-5 border-start border-end d-flex gap-4 justify-content-between align-items-center"
-                            data-bs-toggle="pill" data-bs-target="#v-pills-creation-messenger" type="button" role="tab" aria-controls="v-pills-creation-messenger" aria-selected="false">
+                            <button id="v-pills-creation-messenger-tab" 
+                                onclick="$('#v-pills-creation-start').removeClass('active show');"
+                                type="button" 
+                                class="onefit-buttons-style-dark text-white p-5 fs-3 shadow border-5 border-start border-end d-flex gap-4 justify-content-between align-items-center"
+                                data-bs-toggle="pill" 
+                                data-bs-target="#v-pills-creation-messenger" 
+                                type="button" 
+                                role="tab" 
+                                aria-controls="v-pills-creation-messenger" 
+                                aria-selected="false">
                                 <span class="material-icons material-icons-round align-middle">
                                     forum
                                 </span> 
@@ -73,29 +111,30 @@ if (isset($_GET['uid'])) {
                 </div>
             </div>
         </div>
-        <div class="col-md d-nonez light-scroller" style="overflow-y:auto">
-            <div class="w3-animate-right top-down-grad-tahiti" style="border-radius:25px;" id="v-pills-creation-start">
-                <div class="w-100 h-100 d-grid gap-4 justify-content-center align-items-center text-center">
-                    <img src="../media/assets/icons/brush_white_24dp.svg" class="img-fluid" style="height: 50vh; filter: invert(0);" alt="creation tools icon">
-                    <span class="mb-5">Start creating...</span>
-                </div>
-            </div>
-            <hr/>
+        <div class="col-md -8 light-scroller" style="overflow-y:auto;background-color:rgba(52,52,52,0.8)!important;z-index:1">
             <div class="tab-content h-100" id="v-pills-tabCreationContent">
-                <div class="tab-pane fadez w3-animate-right" id="v-pills-creation-commfeed" role="tabpanel" aria-labelledby="v-pills-creation-commfeed-tab" tabindex="0">
-                    Social community feed.
+                <div class="tab-pane fadez w3-animate-left active show" id="v-pills-creation-start" role="tabpanel" aria-labelledby="v-pills-creation-start-tab" tabindex="0">
+                    <div class="top-down-grad-tahiti d-grid justify-content-center align-items-center" style="border-radius:25px;min-height:90vh;">
+                        <div class="w-100 h-100 d-grid gap-4 justify-content-center align-items-center text-center">
+                            <img src="../media/assets/icons/brush_white_24dp.svg" class="img-fluid" style="height: 25vh; filter: invert(0);" alt="creation tools icon">
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-pane fadez w3-animate-right" id="v-pills-creation-grpshare" role="tabpanel" aria-labelledby="v-pills-creation-grpshare-tab" tabindex="0">
-                    Group sharing.
+                <!-- <hr/> -->
+                <div class="tab-pane p-4 fadez w3-animate-left" id="v-pills-creation-commfeed" role="tabpanel" aria-labelledby="v-pills-creation-commfeed-tab" tabindex="0">
+                   <h1 class="mb-4 fs-5"> Social community feed.</h1>
                 </div>
-                <div class="tab-pane fadez w3-animate-right" id="v-pills-creation-stream" role="tabpanel" aria-labelledby="v-pills-creation-stream-tab" tabindex="0">
-                    Stream.
+                <div class="tab-pane p-4 fadez w3-animate-left" id="v-pills-creation-grpshare" role="tabpanel" aria-labelledby="v-pills-creation-grpshare-tab" tabindex="0">
+                    <h1 class="mb-4 fs-5"> Group sharing.</h1>
                 </div>
-                <div class="tab-pane fadez w3-animate-right" id="v-pills-creation-mdupload" role="tabpanel" aria-labelledby="v-pills-creation-mdupload-tab" tabindex="0">
-                    Media centre.
+                <div class="tab-pane p-4 fadez w3-animate-left" id="v-pills-creation-stream" role="tabpanel" aria-labelledby="v-pills-creation-stream-tab" tabindex="0">
+                    <h1 class="mb-4 fs-5"> Stream.</h1>
                 </div>
-                <div class="tab-pane fadez w3-animate-right" id="v-pills-creation-messenger" role="tabpanel" aria-labelledby="v-pills-creation-messenger-tab" tabindex="0">
-                    Messenger.
+                <div class="tab-pane p-4 fadez w3-animate-left" id="v-pills-creation-mdupload" role="tabpanel" aria-labelledby="v-pills-creation-mdupload-tab" tabindex="0">
+                    <h1 class="mb-4 fs-5"> Media upload.</h1>
+                </div>
+                <div class="tab-pane p-4 fadez w3-animate-left" id="v-pills-creation-messenger" role="tabpanel" aria-labelledby="v-pills-creation-messenger-tab" tabindex="0">
+                    <h1 class="mb-4 fs-5"> Messenger.</h1>
                 </div>
             </div>
         </div>
