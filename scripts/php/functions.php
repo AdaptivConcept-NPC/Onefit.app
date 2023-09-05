@@ -1,5 +1,20 @@
 <?php
 
+// namespace App;
+
+// use DateTime;
+// use DateTimeZone;
+
+// // sample class for testing
+// class global_functions
+// {
+//     public function __construct()
+//     {
+//         # code...
+//     }
+// }
+
+
 //String Sanitization
 function sanitizeString($var)
 {
@@ -17,9 +32,9 @@ function sanitizeMySQL($connection, $var)
     return $var;
 }
 /* function mysql_fix_string($dbconn, $string) {
-        if(get_magic_quotes_gpc()) $string = stripslashes($string);
-        return $dbconn->real_escape_string($string);
-    } */
+            if(get_magic_quotes_gpc()) $string = stripslashes($string);
+            return $dbconn->real_escape_string($string);
+        } */
 function generateAlphaNumericRandomString($length)
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -60,6 +75,7 @@ function generatePasswordRandomString($length)
     }
     return $randomString;
 }
+
 // cryptographically accurate
 function generateRandomBytes($length)
 {
@@ -918,19 +934,44 @@ function get_time_ago($time)
         }
     }
 }
-function getUserNotifications()
+function getUserNotifications($listType)
 {
+    // $listType determines the type of list - div / ul / accordion. If not set then default to div
+    $listType = $listType ?? "div";
+
     global $notif_id, $notif_title, $notif_message, $notif_date, $communicationUserNotifications, $grps_category, $dbconn, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
     $time_ago = null;
+
+    // declaring opening and closing tab for list content
+    $openingElem = $closingElem = null;
+
+    // switch $listType
+    switch ($listType) {
+        case "div":
+            $openingElem = '<div id="notifcation-list" class="my-4 text-dark top-down-grad-dark p-4 border-5 border-top" style="border-radius: 25px;">';
+            $closingElem = '</div>';
+            break;
+        case "ul":
+            $openingElem = '<ul class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-list" style="border-radius: 25px !important;">';
+            $closingElem = '</ul>';
+            break;
+        case "accordion":
+            $openingElem = '<div class="accordion accordion-flush" id="notificationsAccordion">';
+            $closingElem = '</div>';
+            break;
+        default:
+            $openingElem = '<div id="notifcation-list" class="my-4 text-dark top-down-grad-dark p-4 border-5 border-top" style="border-radius: 25px;">';
+            $closingElem = '</div>';
+            break;
+    }
 
     //notifications
     $sql = "SELECT * FROM notifications WHERE users_username = '$currentUser_Usrnm' ORDER BY notification_date DESC";
 
     if ($result = mysqli_query($dbconn, $sql)) {
-        $communicationUserNotifications = <<<_END
-        <div class="my-4 text-dark top-down-grad-dark p-4 border-5 border-top"
-        style="border-radius: 25px;">
-        _END;
+        // assign opening elem / tag
+        $communicationUserNotifications = $openingElem;
+
         while ($row = mysqli_fetch_assoc($result)) {
             //`notification_id`, `notification_title`, `notification_message`, `notify_user`, `users_username`, `notification_date`, `notification_read`
 
@@ -941,17 +982,81 @@ function getUserNotifications()
 
             $time_ago = get_time_ago($notif_date);
 
-            $communicationUserNotifications .= <<<_END
-            <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-$notif_id" style="border-radius: 25px !important;">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1 fw-bold text-truncate"> $notif_title </h5>
-                    <small class="text-end" style="font-size:10px;"> $notif_date<br/>$time_ago </small>
-                </div>
-                <p class="mb-1 text-truncate" style="min-height:30px;max-height:100px;"> $notif_message </p>
-            </a>
-            _END;
+            // switch $listType
+            switch ($listType) {
+                case "div":
+                    $communicationUserNotifications .= <<<_END
+                    <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-$notif_id" style="border-radius: 25px !important;">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1 fw-bold text-truncate"> $notif_title </h5>
+                            <small class="text-end" style="font-size:10px;"> $notif_date<br/>$time_ago </small>
+                        </div>
+                        <p class="mb-1 text-truncate" style="min-height:30px;max-height:100px;"> $notif_message </p>
+                    </a>
+                    _END;
+                    break;
+                case "li":
+                    $communicationUserNotifications .= <<<_END
+                    <li class="list-item">
+                        <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-$notif_id" style="border-radius: 25px !important;">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 fw-bold text-truncate"> $notif_title </h5>
+                                <small class="text-end" style="font-size:10px;"> $notif_date<br/>$time_ago </small>
+                            </div>
+                            <p class="mb-1 text-truncate" style="min-height:30px;max-height:100px;"> $notif_message </p>
+                        </a>
+                    </li
+                    _END;
+                    break;
+                case "accordion":
+                    $communicationUserNotifications .= <<<_END
+                    <div class="accordion-item d-grid gap-2 p-0 my-2 border-0 shadow down-top-grad-dark">
+                        <h2 class="accordion-header m-0 p-0" id="cav-flush-header-notifcation-$notif_id">
+                            <button class="accordion-button fs-5 fw-bold text-truncate gap-2 d-grid align-items-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-notifcation-$notif_id" aria-expanded="false" aria-controls="cav-flush-panel-notifcation-$notif_id">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex gap-2 justify-content-start align-items-center" style="color:var(--mineshaft)!important;">
+                                        <span class="material-icons material-icons-round align-middle d-none"> notifications </span>
+                                        <span class="align-middle fw-bold fs-5 poppins-font">  $notif_title </span>
+                                    </div>
+                                    <div class="pin-item-icon shadow p-2" style="border-radius:15px;font-size:10px!important;color:var(--mineshaft)!important;">
+                                        <span class="material-icons material-icons-round align-middle d-nones" style="font-size:30px !important;"> visibility_off </span>
+                                        <span class="poppins-font">Unread.</span>
+                                    </div>
+                                </div>
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse w3-animate-bottom collapse show" id="cav-flush-panel-notifcation-$notif_id" aria-labelledby="cav-flush-header-notifcation-$notif_id" data-bs-parent="#notificationsAccordion">
+                            <div class="accordion-body bg-transparent top-down-grad-dark rounded-4">
+                                <div id="notification-message-$notif_id" class="text-start" style="min-height: 100px;">
+                                    <p class="poppins-font text-start" style="cursor: pointer;">
+                                        $notif_message
+                                    </p>
+                                    <p class="text-end d-grid mb-0">
+                                        <span>$time_ago</span>
+                                        <span style="font-size:10px;">$notif_date</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    _END;
+                    break;
+                default:
+                    $communicationUserNotifications .= <<<_END
+                    <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-$notif_id" style="border-radius: 25px !important;">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1 fw-bold text-truncate"> $notif_title </h5>
+                            <small class="text-end" style="font-size:10px;"> $notif_date<br/>$time_ago </small>
+                        </div>
+                        <p class="mb-1 text-truncate" style="min-height:30px;max-height:100px;"> $notif_message </p>
+                    </a>
+                    _END;
+                    break;
+            }
         }
-        $communicationUserNotifications .= '</div>';
+
+        // assign closing elem / tag
+        $communicationUserNotifications .= $closingElem;
 
         $output = $communicationUserNotifications;
     } else {
@@ -2055,88 +2160,94 @@ function getAllTrainees()
 }
 function getAllTrainers()
 {
-    global $dbconn, $usrs_userid, $usrs_username, $usrs_name, $usrs_surname, $usrs_idnumber, $usrs_email, $usrs_contact, $usrs_dob, $usrs_gender, $usrs_race, $usrs_nationality, $usrs_acc_active, $activitiesTrainersList, $usrs_prof_acctype, $currentUser_Usrnm, $output, $output_msg, $app_err_msg, $usr_profileid, $usr_about, $usr_profiletype, $usr_profilepicurl, $usr_verification;
+    global $dbconn, $activitiesTrainersList, $currentUser_Usrnm, $output, $output_msg, $app_err_msg;
 
-    $trainer_userid = null;
+    $trainer_adminid = $trainer_profileid = null;
     $trainer_username = $trainer_name = $trainer_surname = $trainer_idnumber = $trainer_email = $trainer_contact = $trainer_dob = $trainer_gender = $trainer_race = $trainer_nationality = $trainer_acc_active = $trainer_prof_acctype = "";
 
-    $trainer_profileid = null;
-    $trainer_about = $trainer_profiletype = $trainer_profilepicurl = $trainer_verification = $trainer_img_url = $trainer_account_prod_img = "";
+    $trainer_about = $trainer_profiletype = $trainer_profileURL = $trainer_profilepicurl = $trainer_verification = $trainer_img_url = $trainer_account_prod_img = "";
 
     //loading: Discover (load max of 50 records)
     //People
-    $sql = "SELECT * FROM users u INNER JOIN general_user_profiles gup ON u.username = gup.users_username;";
+    $sql = "SELECT adm.admin_id, adm.username, adm.admin_name, adm.admin_surname, adm.contact_number,adm.admin_email, adm.date_of_birth, adm.admin_gender,
+    adm_prof.about, adm_prof.profile_type, adm_prof.profile_url, adm_prof.profile_image_url
+    FROM administrators adm LEFT JOIN admin_user_profiles adm_prof ON adm_prof.administrators_username = adm.username
+    WHERE ADM.account_active = 1 AND adm_prof.verification = 'verif'
+    LIMIT 50;";
 
     if ($result = mysqli_query($dbconn, $sql)) {
 
         while ($row = mysqli_fetch_assoc($result)) {
 
-            $trainer_userid = $row["user_id"];
+            $trainer_adminid = $row["admin_id"];
             $trainer_username = $row["username"];
-            $trainer_name = $row["user_name"];
-            $trainer_surname = $row["user_surname"];
-            $trainer_idnumber = $row["id_number"];
-            $trainer_email = $row["user_email"];
+            $trainer_name = $row["admin_name"];
+            $trainer_surname = $row["admin_surname"];
+            $trainer_email = $row["admin_email"];
             $trainer_contact = $row["contact_number"];
             $trainer_dob = $row["date_of_birth"];
-            $trainer_gender = $row["user_gender"];
-            $trainer_race = $row["user_race"];
-            $trainer_nationality = $row["user_nationality"];
-            $trainer_acc_active = $row["account_active"];
+            $trainer_gender = $row["admin_gender"];
 
-            $trainer_profileid = $row["user_profile_id"];
             $trainer_about = $row["about"];
-            $trainer_prof_acctype = $row["profile_type"];
-            $trainer_profilepicurl = $row["profile_url"];
-            $trainer_verification = $row["verification"];
+            $trainer_profiletype = $row["profile_type"];
+            $trainer_profileURL = $row["profile_url"];
+            $trainer_profilepicurl = $row["profile_image_url"];
+
 
             // verification icon
-            if ($trainer_verification == "verified") {
+            if ($trainer_verification == "verif") {
                 $trainer_verification_output = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> verified_user </span>';
             } else {
                 $trainer_verification_output = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> public </span>';
             }
 
             //profile picture
-            if ($trainer_profilepicurl == "default" || $trainer_profilepicurl == null || $trainer_profilepicurl == "") {
+            if ($trainer_profilepicurl == "default" || $trainer_profilepicurl == null || $trainer_profilepicurl == "url" || $trainer_profilepicurl == "") {
                 $trainer_img_url = "../media/profiles/0_default/default_profile_pic.svg";
             } else {
                 $trainer_img_url = "../media/profiles/$trainer_username/$trainer_profilepicurl";
             }
 
-            $trainer_account_prod_img = '<div class="social-update-profile-pic shadow" style="background-position: center !important; background-size: cover !important; background-repeat: no-repeat !important; background-attachment: local !important; height: 150px !important; width:  150px !important; background: url(' . $trainer_img_url . ') !important;"></div>';
+            $trainer_account_prod_img = <<<_END
+            <div class="social-update-profile-pic shadow" 
+                style="background-position: center !important; background-size: cover !important; 
+                background-repeat: no-repeat !important; background-attachment: local !important; 
+                height: 150px !important; width:  150px !important; 
+                background: url($trainer_img_url) !important;">
+            </div>
+            _END;
 
             //compile list of trainers
             if ($trainer_prof_acctype == "trainer") {
-                $activitiesTrainersList .= '
+                $activitiesTrainersList .= <<<_END
                 <!-- All Trainers Card - dark Grad -->
                 <div class="grid-tile">
-                  <div class="my-4 container-fluid darkpads-bg-container" id="discover_trainer-' . $trainer_userid . '-' . $trainer_username . '"
+                  <div class="my-4 container-fluid darkpads-bg-container" id="discover_trainer-$trainer_adminid-$trainer_username"
                     style="border-radius: 25px;">
                     <div class="top-down-grad-light" style="border-radius: 25px;">
                       <div
                         class="row align-items-center content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaftz left-right-grad-mineshaft">
                         <div class="col-xlg-2 text-center p-4">
-                          <img src="' . $trainer_img_url . '" class="img-fluid rounded-circle shadow" style="border-radius: 25px;" alt="prof thumbnail" hidden>
-                          ' . $trainer_account_prod_img . '
+                          <img src="$trainer_img_url" class="img-fluid rounded-circle shadow" style="border-radius: 25px;" alt="prof thumbnail" hidden>
+                          $trainer_account_prod_img
                         </div>
                         <div class="col-xlg-6 text-center p-4">
-                          <h3 class="text-white">' . $trainer_name . ' ' . $trainer_surname . '</h3>
-                          <p style="font-size: 10px">@' . $trainer_username . '</p>
-                          <p style="font-size: 10px">Level.: 1</p>
-                          ' . $trainer_verification_output . '
+                          <h3 class="text-white">$trainer_name $trainer_surname</h3>
+                          <p style="font-size: 10px">@$trainer_username</p>
+                          <p style="font-size: 10px">Level.: 1*</p>
+                          $trainer_verification_output
                         </div>
                         <div class="col-xlg-4 text-center p-4">
-                          <button class="onefit-buttons-style-light p-4 my-4 shadow" onclick="openProfiler(' . "'" . $trainer_username . "'" . ')">
-                                View profile <i class=" fas fa-chevron-circle-right"></i>
+                          <button class="onefit-buttons-style-light p-4 my-4 shadow" onclick="openProfiler('$trainer_username')">
+                                View profile. <i class=" fas fa-chevron-circle-right"></i>
                           </button>
                         </div>
                       </div>
                     </div>
-              
                   </div>
                 </div>
-                <!-- ./ All Trainers Card - dark Grad -->';
+                <!-- ./ All Trainers Card - dark Grad -->
+                _END;
             }
         }
         //echo $discoverPeopleList;
@@ -2326,6 +2437,10 @@ function rememberMe()
         // }
     }
 }
+
+
+
+
 
 // ****************************************************************************************************************************************************
 // END OF FILE ********************************

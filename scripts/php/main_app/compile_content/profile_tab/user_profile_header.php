@@ -102,10 +102,41 @@ try {
     }
 
     // verification icon
-    if ($usrdetails_verification == true) {
-        $verif_icon = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> verified_user </span>';
+    if ($usrdetails_verification == "verified") {
+        $verif_icon = '<span class="material-icons material-icons-round align-middle" style="font-size: 80px !important;color:var(--tahitigold);"> verified_user </span>';
+        $verif_label = "Verified.";
     } else {
-        $verif_icon = '<span class="material-icons material-icons-round" style="font-size: 40px !important"> groups </span>';
+        $verif_icon = '<span class="material-icons material-icons-round align-middle" style="font-size: 80px !important;color:var(--tahitigold);"> groups </span>';
+        $verif_label = "Community.";
+    }
+
+    // switch $usrdetails_profiletype
+    switch ($usrdetails_profiletype) {
+        case "private":
+            $usrdetails_profiletype = ".Premiere";
+            break;
+        case "trainer":
+            $usrdetails_profiletype = ".Trainer";
+            break;
+        case "community_trainer":
+            $usrdetails_profiletype = ".CommTrainer";
+            break;
+        case "trainee":
+            $usrdetails_profiletype = ".Pro";
+            break;
+        case "admin":
+            $usrdetails_profiletype = ".Administrator";
+            break;
+        case "community":
+            $usrdetails_profiletype = ".CommTrainee";
+            break;
+        case "community_trainee":
+            $usrdetails_profiletype = ".CommTrainee";
+            break;
+        default:
+            // public: community members
+            $usrdetails_profiletype = "Guest.";
+            break;
     }
 
     // get count of users friends
@@ -241,15 +272,25 @@ try {
             </div>
             <!-- ./ Profile Picture -->
             <div id="profile-verification-strip" class="p-4" style="background:#343434;">
-                <p class="poppins-font p-4 m-0 fs-1">$usrdetails_name $usrdetails_surname</p>
-                <div class="d-grid justify-content-center">
-                    <span class="comfortaa-font" style="font-size:8px;color:var(--tahitigold);">@$user_loggedin_username</span>
-                    <div class="col-sm border-start border-end border-light p-4" style="border-radius:15px;">
-                        <span class="material-icons material-icons-round align-middle" style="font-size: 50px !important;">
-                            verified_user
-                        </span>
+                <p class="poppins-font p-4 pb-0 m-0 fs-1">$usrdetails_name $usrdetails_surname</p>
+                <div class="d-grid gap-2">
+                    <div class="text-center mb-3">
+                        <span class="comfortaa-font" style="font-size:12px;color:var(--tahitigold);">@$user_loggedin_username</span>
                     </div>
-                    <span class="comfortaa-font" style="font-size:8px;color:var(--tahitigold);">verified.</span>
+                    <div class="row gap-4 align-items-end">
+                        <div class="col-sm-5 text-sm-end">
+                            <span class="comfortaa-font mb-2" style="font-size:14px;color:var(--tahitigold);"> $verif_label </span>
+                        </div>
+                        <div class="col-sm d-grid justify-content-center">
+                            <div class="border-start border-end border-light border-5 p-4" style="border-radius:15px;">
+                                $verif_icon
+                            </div>
+                        </div>
+                        <div class="col-sm-5 text-sm-start">
+                            <span class="comfortaa-font mb-2" style="font-size:14px;color:var(--tahitigold);"> $usrdetails_profiletype </span>
+                        </div>
+                    </div>
+                    <!--<div class="d-flex gap-4 justify-content-center align-items-end"></div>-->
                 </div>
             </div>
         </div>

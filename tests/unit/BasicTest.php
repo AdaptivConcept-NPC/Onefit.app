@@ -1,9 +1,14 @@
 <?php
 
-class BasicTest extends \PHPUnit\Framework\TestCase
+use \PHPUnit\Framework\TestCase;
+
+class BasicTest extends TestCase
 {
     public function testBasicTest()
     {
-        $this->assertTrue(true);
+        $expected = true;
+        $actual = true;
+
+        $this->assertEquals($expected, $actual);
     }
 }

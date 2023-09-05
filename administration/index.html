@@ -1102,6 +1102,10 @@
 
 		<!-- ./ JQuery Scripts -->
 
+		<!-- custom css -->
+		<link rel="stylesheet" href="./css/styles.css" />
+		<link rel="stylesheet" href="./css/chat.css" />
+
 		<style>
 			@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Comfortaa:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap&family=Libre+Barcode+128&display=swap&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
@@ -1204,27 +1208,7 @@
 				--bs-btn-disabled-bg: #e88a04;
 				--bs-btn-disabled-border-color: #e88a04;
 			}
-		</style>
 
-		<!-- custom css -->
-		<link rel="stylesheet" href="./css/styles.css" />
-		<link rel="stylesheet" href="./css/chat.css" />
-	</head>
-
-	<body onload="initializeContent()" class="down-top-grad-dark">
-		<!-- Notification Snackbar (mini) -->
-		<!-- <button class="btn btn-primary btn-lg" onclick="showSnackbar('notification message here...')">Show Snackbar</button> -->
-		<!-- The actual snackbar -->
-		<div id="snackbar" class="position-relative w3-animate-bottom">
-			No notification.
-			<span
-				class="position-absolute top-0 start-0 translate-middle p-2 bg-warning border border-light rounded-circle"
-			>
-				<span class="">New alerts</span>
-			</span>
-		</div>
-
-		<style>
 			.onefitnet-banner-court-1-bg {
 				background: url("../media/assets/bg_grunge_1.JPG");
 				background-position: center;
@@ -1241,44 +1225,46 @@
 				background-attachment: fixed;
 			}
 
-			.onefitnet-banner-lmm-bo-bg {
-				background: url("../media/assets/lmm_logo_pattern_blackorange.png");
-				background-position: center;
+			.onefitnet-banner-lmm-color-stripes-bg {
+				background: url("../media/assets/lmm_logo_color_strip.svg");
+				background-position-x: center;
+				background-position-y: bottom;
 				background-repeat: no-repeat;
 				background-size: cover;
 				background-attachment: fixed;
 			}
 
 			.onefitnet-banner-lmm-white-stripes-bg {
-				background: url("../media/assets/lmm-logo-white-quality-2_5.png");
-				background-position: center;
+				background: url("../media/assets/lmm_logo_white_strip.svg");
+				background-position-x: center;
+				background-position-y: bottom;
 				background-repeat: no-repeat;
 				background-size: cover;
 				background-attachment: fixed;
 			}
 		</style>
+	</head>
+
+	<body
+		onload="initializeContent()"
+		class="top-down-grad-whitez onefitnet-banner-lmm-white-stripes-bg"
+	>
+		<!-- Notification Snackbar (mini) -->
+		<!-- <button class="btn btn-primary btn-lg" onclick="showSnackbar('notification message here...')">Show Snackbar</button> -->
+		<!-- The actual snackbar -->
+		<div id="snackbar" class="position-relative w3-animate-bottom">
+			No notification.
+			<span
+				class="position-absolute top-0 start-0 translate-middle p-2 bg-warning border border-light rounded-circle"
+			>
+				<span class="">New alerts</span>
+			</span>
+		</div>
 
 		<header
-			class="navbar sticky-top bg-body-tertiary bg-darkz top-down-grad-dark pt-4 pb-5"
+			class="navbar fixed-top bg-body-tertiary bg-darkz top-down-grad-dark pt-4 pb-5"
 		>
-			<div class="container-fluid">
-				<button
-					class="navbar-toggler onefit-buttons-style-light p-4 d-grid shadow"
-					type="button"
-					data-bs-toggle="offcanvas"
-					data-bs-target="#offcanvasLeft"
-					aria-controls="offcanvasLeft"
-					aria-label="Toggle navigation"
-				>
-					<!-- <span class="navbar-toggler-icon"></span> -->
-					<span class="material-icons material-icons-round">
-						account_circle
-					</span>
-					<span class="comfortaa-font" style="font-size: 10px !important">
-						profile.
-					</span>
-				</button>
-
+			<div class="container-fluid d-flex gap-4 justify-content-between">
 				<!-- profile offcanvas -->
 				<div
 					class="offcanvas offcanvas-start text- bg-dark"
@@ -1447,12 +1433,24 @@
 				</div>
 				<!-- ./ profile offcanvas -->
 
-				<div class="d-grid justify-content-center">
-					<!-- <a class="navbar-brand d-flex justify-content-center py-4 m-0" href="#">
-                    <img src="../media/assets/One-Logo.svg" alt="onefit.app logo" class="img-fluid p-4z px-0"
-                        style="height: 80px;">
-                </a> -->
+				<button
+					class="navbar-toggler onefit-buttons-style-dark p-4 d-grid shadow"
+					type="button"
+					data-bs-toggle="offcanvas"
+					data-bs-target="#offcanvasLeft"
+					aria-controls="offcanvasLeft"
+					aria-label="Toggle navigation"
+				>
+					<!-- <span class="navbar-toggler-icon"></span> -->
+					<span class="material-icons material-icons-round">
+						account_circle
+					</span>
+					<span class="comfortaa-font" style="font-size: 10px !important">
+						profile.
+					</span>
+				</button>
 
+				<div class="d-grid justify-content-center d-none">
 					<h1 class="fs-4 text-white text-center my-0 py-0">
 						<!--  d-none d-lg-block text-center -->
 						<span class="comfortaa-font text-darkz"
@@ -1473,7 +1471,7 @@
 
 				<button
 					id="toggle-menu-btn"
-					class="navbar-toggler onefit-buttons-style-light p-4 d-grid shadow"
+					class="navbar-toggler onefit-buttons-style-dark p-4 d-grid shadow"
 					type="button"
 					data-bs-toggle="collapse"
 					data-bs-target="#navbarSupportedContent"
@@ -1676,6 +1674,16 @@
 		</header>
 
 		<main class="container top-down-grad-dark rounded-5 p-4">
+			<!-- onefitnet logo -->
+			<div class="p-4 mb-2 text-center" style="min-height: 80px">
+				<img
+					src="../media/assets/One-Logo.svg"
+					class="img-fluid"
+					style="max-height: 80px"
+					alt="onefitnet logo"
+				/>
+			</div>
+
 			<div class="tab-content" id="pills-tabContent">
 				<div
 					class="tab-pane fade show active"
@@ -3992,8 +4000,24 @@
 							style="overflow: hidden"
 						>
 							<div class="row">
-								<!--  style="height: 80vh;" -->
-								<div class="col-sm-4 m-0 p-0 h-100">
+								<!-- <div
+									id="push-notif-window"
+									class="col-sm-8 p-0 m-0 h-100 w3-animate-right"
+								>
+									<div style="overflow-y: auto; max-height: 80vh"></div>
+									<div
+										class="d-flex gap-4 justify-content-center align-items-center d-nonez sticky-top top-down-grad-dark p-4"
+									>
+										<div class="spinner-border align-middle" role="status">
+											<span class="visually-hidden">Loading Chat List...</span>
+										</div>
+										<span class="comfortaa-font align-middle">
+											Push notifications</span
+										>
+									</div>
+								</div> -->
+								<!-- #chats-list-container -->
+								<div id="chats-list-container" class="col-sm m-0 p-0 h-100">
 									<div
 										class="chat-list d-gridz border-5 border-white border-endz w-100 h-100"
 									>
@@ -4005,23 +4029,70 @@
 												</div>
 												<div
 													id="chat-list"
-													class="card-body border-0 ps-5 pt-4 p-0"
+													class="card-body border-0 ps-5 p-0 d-grid justify-content-end mt-0"
 													style="overflow-y: auto; max-height: 80vh"
 												>
 													<!-- placeholder - default spinner -->
-													<div class="d-flex justify-content-center d-none">
-														<div class="spinner-border" role="status">
+													<div
+														class="d-flex gap-4 justify-content-center align-items-center d-nonez sticky-top top-down-grad-dark p-4"
+													>
+														<div
+															class="spinner-border align-middle"
+															role="status"
+														>
 															<span class="visually-hidden"
 																>Loading Chat List...</span
 															>
 														</div>
-														<span class="comfortaa-font ms-4"> chats.</span>
+														<span class="comfortaa-font align-middle">
+															Messanger chats.</span
+														>
 													</div>
 													<!-- ./ placeholder - default spinner -->
 
 													<!-- placeholder - default ui list -->
 
-													<ul class="list-group list-group-flush bg-dark gap-2">
+													<ul
+														class="list-group list-group-flush bg-dark gap-2 col-4 pyb-4"
+														style="min-width: 400px"
+													>
+														<li
+															class="list-group-item select-chat-strip shadow right-left-grad-white-mineshaft text-truncate"
+														>
+															<div
+																class="d-flex gap-4 justify-content-betweenz align-items-center gap-1"
+															>
+																<!-- profile img thumbnail -->
+																<div class="thumbnail">
+																	<img
+																		src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
+																		alt="logo placeholder - profile image thumbnail"
+																		style="filter: invert(0)"
+																	/>
+																</div>
+
+																<!-- Users names -->
+																<div class="d-grid gap-1 text-start">
+																	<span
+																		class="m-0 align-middle text-truncate fw-bold"
+																	>
+																		Users Name
+																	</span>
+																	<span
+																		class="m-0 align-middle fw-bold"
+																		style="font-size: 10px"
+																	>
+																		@username | Email
+																	</span>
+																	<span
+																		class="m-0 align-middle fw-bold"
+																		style="font-size: 10px"
+																	>
+																		+27 ...
+																	</span>
+																</div>
+															</div>
+														</li>
 														<li
 															class="list-group-item select-chat-strip shadow right-left-grad-white-mineshaft text-truncate"
 														>
@@ -4033,6 +4104,7 @@
 																	<img
 																		src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
 																		alt="logo placeholder - profile image thumbnail"
+																		style="filter: invert(0)"
 																	/>
 																</div>
 
@@ -4069,6 +4141,7 @@
 																	<img
 																		src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
 																		alt="logo placeholder - profile image thumbnail"
+																		style="filter: invert(0)"
 																	/>
 																</div>
 
@@ -4105,6 +4178,7 @@
 																	<img
 																		src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
 																		alt="logo placeholder - profile image thumbnail"
+																		style="filter: invert(0)"
 																	/>
 																</div>
 
@@ -4141,6 +4215,7 @@
 																	<img
 																		src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
 																		alt="logo placeholder - profile image thumbnail"
+																		style="filter: invert(0)"
 																	/>
 																</div>
 
@@ -4177,42 +4252,7 @@
 																	<img
 																		src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
 																		alt="logo placeholder - profile image thumbnail"
-																	/>
-																</div>
-
-																<!-- Users names -->
-																<div class="d-grid gap-1 text-end">
-																	<span
-																		class="m-0 align-middle text-truncate fw-bold"
-																	>
-																		Users Name
-																	</span>
-																	<span
-																		class="m-0 align-middle fw-bold"
-																		style="font-size: 10px"
-																	>
-																		@username | Email
-																	</span>
-																	<span
-																		class="m-0 align-middle fw-bold"
-																		style="font-size: 10px"
-																	>
-																		+27 ...
-																	</span>
-																</div>
-															</div>
-														</li>
-														<li
-															class="list-group-item select-chat-strip shadow right-left-grad-white-mineshaft text-truncate"
-														>
-															<div
-																class="d-flex justify-content-between align-items-center gap-1"
-															>
-																<!-- profile img thumbnail -->
-																<div class="thumbnail">
-																	<img
-																		src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
-																		alt="logo placeholder - profile image thumbnail"
+																		style="filter: invert(0)"
 																	/>
 																</div>
 																<!-- Users names -->
@@ -4248,6 +4288,7 @@
 																	<img
 																		src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
 																		alt="logo placeholder - profile image thumbnail"
+																		style="filter: invert(0)"
 																	/>
 																</div>
 																<!-- Users names -->
@@ -4283,6 +4324,7 @@
 																	<img
 																		src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
 																		alt="logo placeholder - profile image thumbnail"
+																		style="filter: invert(0)"
 																	/>
 																</div>
 																<!-- Users names -->
@@ -4318,6 +4360,7 @@
 																	<img
 																		src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
 																		alt="logo placeholder - profile image thumbnail"
+																		style="filter: invert(0)"
 																	/>
 																</div>
 																<!-- Users names -->
@@ -4353,7 +4396,12 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-sm p-0 m-0 h-100">
+								<!-- ./ #chats-list-container -->
+								<!-- #chat-message-window -->
+								<div
+									id="chat-message-window"
+									class="col-sm-8 p-0 m-0 h-100 w3-animate-right"
+								>
 									<div
 										class="chat-view d-flex justify-content-center align-items-center border-5 border-white border-start w-100 h-100"
 									>
@@ -4642,6 +4690,7 @@
 										<!-- ./ container for chat messages and chat input section -->
 									</div>
 								</div>
+								<!-- ./ #chat-message-window -->
 							</div>
 						</div>
 					</div>
@@ -4676,49 +4725,68 @@
 
 		<footer class="d-grid mt-5" style="background: var(--mineshaft)">
 			<div
-				class="p-4 d-flex justify-content-center align-items-center w-100 h-100 onefitnet-banner-lmm-white-stripes-bg"
+				class="p-0 d-grid w-100 h-100 onefitnet-banner-lmm-white-stripes-bgz"
+				style="
+					background: url(../media/assets/lmm_logo_color_strip.svg);
+					.onefitnet-banner-lmm-white-stripes-bg {
+						background: url('../media/assets/lmm-logo-white-quality-2_5.png');
+						background-position: center;
+						background-repeat: no-repeat;
+						background-size: cover;
+						background-attachment: fixed;
+					}
+					background-position: center;
+					background-attachment: fixed;
+					background-clip: border-box;
+					background-repeat: no-repeat;
+					background-size: cover;
+				"
 			>
-				<!-- style="background-color: rgb(52, 52, 52, 0.8);" -->
-				<!--rgb(255, 165, 0, 0.8) 
-                <h1 class="fs-4 text-white my-0 py-0 d-none d-lg-block text-center">
-            <span class="comfortaa-font text-dark">One<span class="text-white">fit</span>.app</span>
-
-            </h1>
-            <p class="m-0 text-center text-dark" style="font-size: 12px!important;">
-                <span class="text-dark">|</span>
-                <span class="poppins-font" style="color: var(--white);"> Administration Platform </span>
-                <span class="text-dark">|</span>
-            </p> -->
 				<div
-					class="navbar-brand d-grid gap-2 justify-content-center p-4 m-0 shadow bg-dark text-white"
-					style="border-radius: 25px"
-					href="#"
+					class="down-top-grad-dark p-4 d-flex justify-content-center align-items-center"
 				>
-					<div class="text-center">
-						<img
-							src="../media/assets/flat-logo-colour.png"
-							alt="llm 1on1 logo"
-							class="img-fluid"
-							style="height: 200px; filter: invert(0)"
-						/>
+					<!-- style="background-color: rgb(52, 52, 52, 0.8);" -->
+					<!--rgb(255, 165, 0, 0.8) 
+						<h1 class="fs-4 text-white my-0 py-0 d-none d-lg-block text-center">
+					<span class="comfortaa-font text-dark">One<span class="text-white">fit</span>.app</span>
+
+					</h1>
+					<p class="m-0 text-center text-dark" style="font-size: 12px!important;">
+						<span class="text-dark">|</span>
+						<span class="poppins-font" style="color: var(--white);"> Administration Platform </span>
+						<span class="text-dark">|</span>
+					</p> -->
+					<div
+						class="navbar-brand d-grid gap-2 justify-content-center p-4 m-0 shadow bg-dark text-white"
+						style="border-radius: 25px"
+						href="#"
+					>
+						<div class="text-center">
+							<img
+								src="../media/assets/flat-logo-colour.png"
+								alt="llm 1on1 logo"
+								class="img-fluid"
+								style="height: 200px; filter: invert(0)"
+							/>
+						</div>
+
+						<h5 class="fs-5 d-grid text-center m-0">
+							<span style="font-size: 12px !important"
+								>Training &amp; Content Curated by</span
+							>
+							<span class="audiowide-font">LLM 1-ON-1 Trainer.</span>
+						</h5>
 					</div>
 
-					<h5 class="fs-5 d-grid text-center m-0">
-						<span style="font-size: 12px !important"
-							>Training &amp; Content Curated by</span
-						>
-						<span class="audiowide-font">LLM 1-ON-1 Trainer.</span>
-					</h5>
+					<!-- <span class="material-icons material-icons-round" style="font-size: 60px !important;color: var(--white);">
+						add
+					</span>
+
+					<a class="navbar-brand d-flex justify-content-center py-4 m-0" href="#">
+						<img src="../media/assets/lmm-logo-white-quality-5.png" alt="onefit.app logo"
+							class="img-fluid p-4z px-0 shadow" style="height: 120px;">
+					</a> -->
 				</div>
-
-				<!-- <span class="material-icons material-icons-round" style="font-size: 60px !important;color: var(--white);">
-                add
-            </span>
-
-            <a class="navbar-brand d-flex justify-content-center py-4 m-0" href="#">
-                <img src="../media/assets/lmm-logo-white-quality-5.png" alt="onefit.app logo"
-                    class="img-fluid p-4z px-0 shadow" style="height: 120px;">
-            </a> -->
 			</div>
 		</footer>
 

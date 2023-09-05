@@ -12,7 +12,7 @@ $userAuth = false;
 $currentUser_Usrnm = "";
 
 //output/display variables
-$outputSocialItems = $outputProfileUserSubsGroupsList = $outputProfileUsersPostsList = $outputProfileUsersResourcesList = $outputProfileUsersProgramsList = $outputProfileUserFriendsList = $outputProfileUsersFavesList = $outputProfileUserMediaList = $outputProfileUserNotifications = $outputProfileUserChats = $outputProfileUserPref = $outputProfileUserChallenges = null;
+$outputSocialItems = $outputProfileUserSubsGroupsList = $outputProfileUsersPostsList = $outputProfileUsersResourcesList = $outputProfileUsersProgramsList = $outputProfileUserFriendsList = $outputProfileUsersFavesList = $outputProfileUserMediaList = $outputProfileUserNotifications = $outputProfileUserNotificationsAccordion = $outputProfileUserChats = $outputProfileUserPref = $outputProfileUserChallenges = null;
 
 // misc
 $currentuser_img_url = $otheruser_img_url = $verifIcon = $otherUserverifIcon = $output_msg = $app_err_msg = $output = null;
@@ -80,7 +80,8 @@ if (isset($_SESSION["currentUserAuth"])) {
         $outputProfileUserFriendsList = getUserFriends();
         $outputProfileUsersFavesList = getUserSaves();
         $outputProfileUserMediaList = getUserMedia();
-        $outputProfileUserNotifications = getUserNotifications();
+        $outputProfileUserNotifications = getUserNotifications("div");
+        $outputProfileUserNotificationsAccordion = getUserNotifications("accordion");
         $outputProfileUserChats = getUserChatConversations();
         $outputProfileUserPref = getUserPref();
         $outputProfileUserChallenges = getUserChallenges();
@@ -938,7 +939,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             <div class="container d-flex gap-1 align-items-center w3-animate-top">
                 <button id="app-notifications-btn" main-data-bs-target="#tabLatestSonav-notifications-btn"
                     style="border-color:var(--tahitigold)!important"
-                    class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels d-none d-sm-block border-bottom border-2"
+                    class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels d-none d-sm-block border-bottom border-5"
                     type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications"
                     aria-controls="offcanvasNotifications">
                     <div class="d-grid gap-2">
@@ -949,7 +950,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </button>
 
                 <button type="button" id="apps-tray-open-btn" style="border-color:var(--tahitigold)!important"
-                    class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font hide-side-panels border-topz border-bottom border-2"
+                    class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font hide-side-panels border-topz border-bottom border-5"
                     style="max-width:87px;" data-bs-toggle="modal" data-bs-target="#tabNavModal">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important;"
@@ -962,7 +963,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <!-- Main App Content Refresh button -->
                 <div class="d-inline gap-2">
                     <button id="main-app-refresh-btn" style="border-color:var(--tahitigold)!important"
-                        class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz border-start border-end border-2"
+                        class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz border-start border-end border-5"
                         style="overflow: hidden; font-size: 10px;" type="button"
                         onclick="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
                         <!--  data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal" -->
@@ -979,11 +980,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <!-- ./ Main App Content Refresh button -->
 
                 <button id="open-widgets-panel-btn" type="button" style="border-color:var(--tahitigold)!important"
-                    class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font show-side-panels border-topz border-bottom border-2"
+                    class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font show-side-panels border-topz border-bottom border-5"
                     data-bs-toggle="collapse" data-bs-target="#widget-rows-container"
                     aria-controls="widget-rows-container">
                     <div class="d-grid gap-2">
-                        <span class="material-icons material-icons-round" style="font-size: 24px !important"> widgets
+                        <span class="material-icons material-icons-round" style="font-size: 24px !important"> interests
                         </span>
                         <span class="d-none d-lg-block" style="font-size: 10px;">Widgets</span>
                     </div>
@@ -991,7 +992,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </button>
 
                 <button id="main-nav-ext-links-btn" style="border-color:var(--tahitigold)!important"
-                    class="navbar-toggler shadow onefit-buttons-style-dark p-3 hide-right-side-panels d-none d-sm-block border-topz border-bottom border-2"
+                    class="navbar-toggler shadow onefit-buttons-style-dark p-3 hide-right-side-panels d-none d-sm-block border-topz border-bottom border-5"
                     type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                     aria-controls="offcanvasNavbar">
                     <div class="d-grid gap-2">
@@ -999,7 +1000,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             style="font-size: 28px !important"> public
                             <!-- menu_open -->
                         </span>
-                        <span class="d-none d-lg-block" id="" style="font-size: 10px;">Navigation</span>
+                        <span class="d-none d-lg-block" id="" style="font-size: 10px;">Web.nav</span>
                     </div>
                 </button>
 
@@ -1015,7 +1016,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     style="color: #ffa500; cursor: pointer;font-size:20px!important;">
                                     public
                                 </span>
-                                Web.
+                                Web.nav
                             </h5>
                             <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2"
                                 data-bs-dismiss="offcanvas" aria-label="Close">
@@ -3382,12 +3383,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </button>
                     </div>
 
-                    <div class="row align-items-center my-4">
-                        <div class="col-md-10">
-                            <input type="search" class="onefit-inputs-style" id="discover-search-input"
-                                placeholder="Search" />
+                    <div class="d-flex gap-2 align-items-center justify-content-center my-4">
+                        <div class="discovery-search-input-container">
+                            <input type="search" class="onefit-inputs-style rounded-4" id="discover-search-input"
+                                placeholder="Search Trainers." />
                         </div>
-                        <div class="col-md-2 text-left">
+                        <div class="discovery-search-searchbtn-container text-leftz">
                             <button class="onefit-buttons-style-light my-4" id="search-discover">
                                 <i class="fas fa-search m-4"></i>
                             </button>
@@ -3411,15 +3412,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                             style="border-color: #ffa500 !important">
                             <button class="nav-link p-4 active" id="nav-discovery-trainers-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-discovery-trainers" type="button" role="tab"
-                                aria-controls="nav-discovery-trainers" aria-selected="true">Trainers</button>
+                                aria-controls="nav-discovery-trainers" aria-selected="true"
+                                onclick="$('#discover-search-input').attr('placeholder','Search Trainers.')">Trainers</button>
 
                             <button class="nav-link p-4" id="nav-discovery-trainees-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-discovery-trainees" type="button" role="tab"
-                                aria-controls="nav-discovery-trainees" aria-selected="false">Trainees</button>
+                                aria-controls="nav-discovery-trainees" aria-selected="false"
+                                onclick="$('#discover-search-input').attr('placeholder','Search Trainees.')">Trainees</button>
 
                             <button class="nav-link p-4" id="nav-discovery-groups-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-discovery-groups" type="button" role="tab"
-                                aria-controls="nav-discovery-groups" aria-selected="false">Groups</button>
+                                aria-controls="nav-discovery-groups" aria-selected="false"
+                                onclick="$('#discover-search-input').attr('placeholder','Search Groups.')">Groups</button>
 
                             <!-- <button class="nav-link p-4" id="nav-discovery-posts-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-posts" type="button" role="tab" aria-controls="nav-discovery-posts" aria-selected="false">Community Updates</button> -->
 
@@ -3427,16 +3431,20 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                             <button class="nav-link p-4" id="nav-discovery-fit-progs-team-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-discovery-fit-progs-team" type="button" role="tab"
-                                aria-controls="nav-discovery-fit-progs-team" aria-selected="false">Team-Fitness</button>
+                                aria-controls="nav-discovery-fit-progs-team" aria-selected="false"
+                                onclick="$('#discover-search-input').attr('placeholder','Search Training programs.')">
+                                Teams Training
+                            </button>
 
                             <button class="nav-link p-4" id="nav-discovery-well-progs-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-discovery-well-progs" type="button" role="tab"
-                                aria-controls="nav-discovery-well-progs" aria-selected="false">Wellness
-                                Programs</button>
+                                aria-controls="nav-discovery-well-progs" aria-selected="false"
+                                onclick="$('#discover-search-input').attr('placeholder','Search Wellness programs.')">Wellness.</button>
 
                             <button class="nav-link p-4" id="nav-discovery-nutrition-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-discovery-nutrition" type="button" role="tab"
-                                aria-controls="nav-discovery-nutrition" aria-selected="false">Nutrition</button>
+                                aria-controls="nav-discovery-nutrition" aria-selected="false"
+                                onclick="$('#discover-search-input').attr('placeholder','Search Nutrition guides.')">Nutrition.</button>
 
                             <button class="nav-link p-4" id="nav-discovery-fitengine-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-discovery-fitengine" type="button" role="tab"
@@ -3446,7 +3454,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <div class="tab-content" id="nav-tab-DiscoveryContent">
                         <div class="tab-pane fade show active" id="nav-discovery-trainers" role="tabpanel"
                             aria-labelledby="nav-discovery-trainers-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">Onefit.Net - Trainers</h1>
+                            <h1 class="text-center p-4 shadow rounded-pill">OnefitNet trainers.</h1>
 
                             <div class="grid-container">
                                 <?php echo $discoveryAllTrainers; ?>
@@ -3454,7 +3462,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <div class="tab-pane fade" id="nav-discovery-trainees" role="tabpanel"
                             aria-labelledby="nav-discovery-trainees-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">Onefit.Net - Trainees</h1>
+                            <h1 class="text-center p-4 shadow rounded-pill">OnefitNet trainees.</h1>
 
                             <div class="grid-container">
                                 <?php echo $discoveryAllTrainees; ?>
@@ -3462,7 +3470,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <div class="tab-pane fade show" id="nav-discovery-groups" role="tabpanel"
                             aria-labelledby="nav-discovery-groups-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">Onefit.Net - Groups</h1>
+                            <h1 class="text-center p-4 shadow rounded-pill">OnefitNet groups.</h1>
 
                             <div class="grid-container">
                                 <?php echo $outputCommunityGroups; ?>
@@ -3470,7 +3478,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <div class="tab-pane fade" id="nav-discovery-posts" role="tabpanel"
                             aria-labelledby="nav-discovery-posts-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">Onefit.Net - Community Updates</h1>
+                            <h1 class="text-center p-4 shadow rounded-pill">OnefitNet community updates.</h1>
 
                             <div class="text-center" id="comm-updates-search-container">
                                 <?php echo $outputCommunityUpdates; ?>
@@ -3485,14 +3493,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div> -->
                         <div class="tab-pane fade" id="nav-discovery-fit-progs-team" role="tabpanel"
                             aria-labelledby="nav-discovery-fit-progs-team-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">Team-Athletics Training Programs</h1>
+                            <h1 class="text-center p-4 shadow rounded-pill">Teams training.</h1>
                             <div class="grid-container">
                                 <?php echo $discoveryFitProgsTeams; ?>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="nav-discovery-nutrition" role="tabpanel"
                             aria-labelledby="nav-discovery-nutrition-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">Nutrition</h1>
+                            <h1 class="text-center p-4 shadow rounded-pill">Nutrition guides</h1>
 
                             <div class="d-flex justify-content-center my-4">
                                 <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
@@ -3502,7 +3510,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <div class="tab-pane fade" id="nav-discovery-well-progs" role="tabpanel"
                             aria-labelledby="nav-discovery-well-progs-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">Wellness</h1>
+                            <h1 class="text-center p-4 shadow rounded-pill">Wellness resources</h1>
 
                             <div class="d-flex justify-content-center my-4">
                                 <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
@@ -4709,8 +4717,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <h5 id="activity-timeline-header" class="my-4 fs-1 text-center align-middle"><span
                                     class="material-icons material-icons-outlined align-middle"
                                     style="color: #ffa500 !important; font-size: 40px;">
-                                    view_timeline
-                                </span> Activity Timeline
+                                    timeline
+                                </span> Activity Timeline.
                             </h5>
                         </div>
 
@@ -6545,7 +6553,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- ads strip -->
                     <div class="text-center d-grid justify-content-center align-items-center"
                         style="max-height: 80vh; overflow-y: auto; min-height: 200px">
-                        <h5>Ads<span style="color: #ffa500;">.</span></h5>
+                        <h5>
+                            <span class="material-icons material-icons-round align-middle"
+                                style="color: #ffa500;font-size:30px!important;">campaign</span>
+                            AdMarket<span style="color: #ffa500;">.</span>
+                        </h5>
                         <div class="d-flex justify-content-center">
                             <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
                                 <span class="visually-hidden">Loading...</span>
@@ -7101,27 +7113,28 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                         <!-- date selected in Training Calender display label -->
                                         <!-- showSnackbar('Please select a Day on the Calender to Focus that Weeks Training Guides.','alert_general','short_500'); -->
-                                        <div class="w3-animate-left my-pulse-animation-darkz d-flex gap-2 just"
+                                        <div class="w3-animate-right my-pulse-animation-darkz d-flex gap-2"
                                             onclick="$.smoothScroll('#ohtml', '#training-header', 100);"
                                             style="position:absolute;bottom:0;left:10px;z-index:1021;margin-bottom:-40px; border-radius:25px;cursor:pointer;">
                                             <div id="selected-calender-date-display-lbl"
-                                                class="onefit-buttons-style-dark p-2 shadow"
-                                                style="font-size:12px!important;">
+                                                class="onefit-buttons-style-dark p-4 shadow w3-animate-right"
+                                                style="font-size:14px!important;">
                                                 Date today / selected
                                             </div>
                                         </div>
                                         <!-- ./ date selected in Training Calender display label -->
 
                                         <!-- collapse team selection filters btn -->
-                                        <div class="w3-animate-right my-pulse-animation-dark d-flex gap-2 just"
+                                        <div class="w3-animate-left my-pulse-animation-dark d-flex gap-2"
                                             style="position:absolute;bottom:0;right:10px;z-index:1021;margin-bottom:-40px; border-radius:25px;">
-                                            <button class="onefit-buttons-style-dark p-2 shadow"
+                                            <button id="collapseTeamSelectBtn"
+                                                class="onefit-buttons-style-dark p-4 shadow w3-animate-left"
                                                 data-bs-toggle="collapse" data-bs-target="#team-select-filters"
                                                 aria-controls="team-select-filters" aria-expanded="false"
                                                 aria-label="training: team selection filters">
                                                 <span class="material-icons material-icons-round align-middle"
                                                     style="font-size: 20px !important;color:var(--tahitigold)!important;">change_circle</span>
-                                                <span class="align-middle" style="font-size:8px;">Switch Team.</span>
+                                                <span class="align-middle" style="font-size:14px;">Switch Team.</span>
                                             </button>
                                         </div>
                                         <!-- ./ collapse team selection filters btn -->
@@ -9430,8 +9443,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <h2><span class="material-icons material-icons-round align-middle"
                             style="color: #ffa500;">notifications</span> <span class="align-middle">Notifications</span>
                     </h2>
-                    <div class="mb-4" id="communicationUserNotifications">
-                        <?php echo $outputProfileUserNotifications; ?>
+                    <div id="comms-communicationUserNotifications" class="mb-4 down-top-grad-white p-4 rounded-4">
+                        <?php echo $outputProfileUserNotificationsAccordion; ?>
                     </div>
 
                     <hr class="text-white">
@@ -9560,7 +9573,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <h1 class="text-center mt-4 fs-1">
                         <span class="material-icons material-icons-round align-middle"
                             style="font-size: 60px !important; color: #ffa500;">
-                            widgets </span>
+                            interests </span>
                         <span class="align-middle">Widgets.</span>
                     </h1>
 
@@ -10269,8 +10282,9 @@ if (isset($_SESSION["currentUserAuth"])) {
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
             <div class="modal-content feature-tab-nav-content">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title fs-1" id="tabNavModalLabel"><span style="color: #ffa500;">.app</span>
-                        navigation</h5>
+                    <h5 class="modal-title fs-1" id="tabNavModalLabel">
+                        <span style="color: #ffa500;">app</span>.nav
+                    </h5>
                     <button id="apps-tray-close-btn" type="button" class="onefit-buttons-style-danger p-2"
                         data-bs-dismiss="modal" aria-label="Close">
                         <span class="material-icons material-icons-round"> close </span>
@@ -10777,7 +10791,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                         <div class="text-center">
                             <h1 class="offcanvas-title fs-5" id="offcanvasBottomOnefitChatLabel">
-                                Messanger.
+                                Messages.
                             </h1>
                         </div>
 
@@ -10960,22 +10974,20 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <div class="col p-3 pb-0">
                                                 <textarea name="" class="w-100 quick-post-input p-2 shadow text-white"
                                                     id="post-message-community" cols="30" rows="2"
-                                                    placeholder="Message." style="
-                                                    border-radius: 15px;
-                                                    border: 5px solid var(--mineshaft);
-                                                    min-height: 100px !important;
-                                                    max-height: 500px !important;
-                                                background-color:var(--mineshaft);"></textarea>
+                                                    placeholder="Message."
+                                                    style="border-radius: 15px; border: 5px solid var(--mineshaft); background-color: var(--mineshaft); min-height: 100px !important; max-height: 500px !important; height: 22px;"></textarea>
 
-                                                <div class="d-flex justify-content-between gap-2 p-0">
+                                                <div
+                                                    class="d-flex justify-content-between gap-2 p-0 left-right-grad-tahiti-mineshaft rounded-4 p-1">
                                                     <!-- function buttons horiz-list -->
                                                     <ul id="message-function-horiz-btn-list"
-                                                        class="list-group list-group-horizontal justify-content-betweenz border-0 bg-transparent">
+                                                        class="list-group list-group-horizontal justify-content-betweenz border-0 bg-transparent"
+                                                        style="margin-top:0px;">
                                                         <li
                                                             class="list-group-item border-0 p-0 bg-transparent flex-fill d-grid">
                                                             <!-- + feelings / emoji / reaction -->
                                                             <button type="button"
-                                                                class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-grid">
+                                                                class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-flex gap-2 align-items-center">
                                                                 <span
                                                                     class="material-icons material-icons-round align-middle"
                                                                     style="font-size: 20px !important">add_reaction</span>
@@ -10989,7 +11001,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             class="list-group-item border-0 p-0 bg-transparent flex-fill d-grid">
                                                             <!-- + resource (share media: pdf/img/mp4/mp3) -->
                                                             <button type="button"
-                                                                class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-grid">
+                                                                class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-flex gap-2 align-items-center">
                                                                 <span
                                                                     class="material-icons material-icons-round align-middle"
                                                                     style="font-size: 20px !important">attach_file
@@ -11004,7 +11016,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             class="list-group-item border-0 p-0 bg-transparent flex-fill d-grid">
                                                             <!-- + web web links -->
                                                             <button type="button"
-                                                                class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-grid">
+                                                                class="onefit-buttons-style-dark shadow p-3 m-1 border-1 d-flex gap-2 align-items-center">
                                                                 <span
                                                                     class="material-icons material-icons-round align-middle"
                                                                     style="font-size: 20px !important">link</span>
@@ -11854,536 +11866,678 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 aria-labelledby="cav-flush-header-new_activities"
                                 data-bs-parent="#accordionFlushCalenderActivityViewer">
                                 <div class="accordion-body">
-                                    <form id="add-new-schedule-form" class="text-start d-grid gap-2 comfortaa-font fs-5"
-                                        style="border-radius: 25px;" method="post"
-                                        action="../scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/add_to_teams_training_schedule.php"
-                                        autocomplete="off">
-                                        <h5 class="fs-2 p-4 fw-bold text-center comfortaa-font shadow my-4 border-5 border-start border-end"
-                                            style="border-radius:25px;">
-                                            Capture New Activity.
-                                        </h5>
-                                        <hr class="text-white">
+                                    <script>
+                                    function getDayName(dateStr, locale) {
+                                        var date = new Date(dateStr);
+                                        return date.toLocaleDateString(locale, {
+                                            weekday: 'long'
+                                        });
+                                    }
 
-                                        <div class="output-container my-2" id="output-container">
-                                            <!---->
-                                        </div>
+                                    function changeSelDateValues(selDate) {
+                                        var dateStr = selDate;
+                                        console.log("$(#add-to-calender-activity-date-value).oninput: dateStr - " +
+                                            dateStr);
+                                        var day = getDayName(formatDate(dateStr), "en-ZA");
+                                        document.getElementById('add-to-calender-activity-day-value').value = day;
+                                    }
 
-                                        <div class="form-group my-4">
-                                            <label for="add-to-calender-activity-title-value"
-                                                class="poppins-font fs-4 mb-4" style="color: #ffa500;">Team
-                                                select:</label>
-                                            <select
-                                                class="custom-select form-control-select-input p-4 team-selection-list"
-                                                name="add-to-calender-team-select" id="add-to-calender-team-select"
-                                                placeholder="Select your Team." required="">
-                                                <option value="noselection" selected="">⚽️ Switch Teams. 🏀</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group my-4">
-                                            <label for="add-to-calender-activity-title-value"
-                                                class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">1.
-                                                Title:</label>
-                                            <input class="form-control-text-input p-4" type="text"
-                                                name="add-to-calender-activity-title-value"
-                                                id="add-to-calender-activity-title-value" placeholder="Title"
-                                                required="">
-                                        </div>
-                                        <div class="form-group my-4">
-                                            <label for="add-to-calender-activity-rpe-value"
-                                                class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">2. RPE
-                                                (Auto)</label>
-                                            <input class="form-control-text-input p-4" type="number" value="0"
-                                                name="add-to-calender-activity-rpe-value"
-                                                id="add-to-calender-activity-rpe-value" placeholder="RPE" required=""
-                                                readonly>
-                                        </div>
-                                        <div class="form-group my-4">
-                                            <label for="add-to-calender-activity-day-value"
-                                                class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">3.
-                                                Day:</label>
-                                            <input class="form-control-text-input p-4" type="text"
-                                                name="add-to-calender-activity-day-value"
-                                                id="add-to-calender-activity-day-value" placeholder="Day" required=""
-                                                readonly="">
-                                        </div>
-                                        <script>
-                                        function getDayName(dateStr, locale) {
-                                            var date = new Date(dateStr);
-                                            return date.toLocaleDateString(locale, {
-                                                weekday: 'long'
-                                            });
-                                        }
-
-                                        function changeSelDateValues(selDate) {
-                                            var dateStr = selDate;
-                                            console.log("$(#add-to-calender-activity-date-value).oninput: dateStr - " +
-                                                dateStr);
-                                            var day = getDayName(formatDate(dateStr), "en-ZA");
-                                            document.getElementById('add-to-calender-activity-day-value').value = day;
-                                        };
-                                        </script>
-                                        <div class="form-group my-4">
-                                            <label for="add-to-calender-activity-date-value"
-                                                class="poppins-font fs-4 mb-4" style="color: #ffa500;">4. Date:</label>
-                                            <input class="form-control-text-input p-4"
-                                                onchange="changeSelDateValues(this.value)" type="date"
-                                                name="add-to-calender-activity-date-value"
-                                                id="add-to-calender-activity-date-value" placeholder="Date" required="">
-                                        </div>
-                                        <script>
-                                        function toggleCustomColorSelection(value, newTag) {
-                                            newTag = newTag || false;
-                                            var colorExtract;
-                                            if (value === 'custom') {
-                                                // set display value to block for #custom-color-selection
-                                                document.getElementById('custom-color-selection').style.display =
-                                                    "block";
-                                                // default th bg value to white
-                                                document.getElementById('color-preview').style.backgroundColor =
-                                                    "white";
-                                            } else {
-                                                if (newTag === true) {
-                                                    // call $.newCustomColorTag(tagColor) to change the color
-                                                    var tagState = $.newCustomColorTag(value);
-                                                    if (tagState == true) {
-                                                        // hide the #custom-color-selection col and console log success message
-                                                        document.getElementById('custom-color-selection').style
-                                                            .display = "none";
-                                                        // colorExtract = value.split('[').pop().split(']')[0];
-                                                        document.getElementById('color-preview').style.backgroundColor =
-                                                            value;
-                                                    } else {
-                                                        // consol log failure message
-                                                        console.log(
-                                                            "[toggleCustomColorSelection] failed to create color tag."
-                                                        );
-                                                    }
-                                                } else {
-                                                    // set display value to greenyellow as it it the first item/color code in our select input for #custom-color-selection
-                                                    document.getElementById('custom-color-selection').style.display =
-                                                        "none";
-                                                    // extract the color of the selection made/passed through the value parameter and set it as the backgroun color of #custom-color-selection
-                                                    colorExtract = value.split('[').pop().split(']')[0];
+                                    function toggleCustomColorSelection(value, newTag) {
+                                        newTag = newTag || false;
+                                        var colorExtract;
+                                        if (value === 'custom') {
+                                            // set display value to block for #custom-color-selection
+                                            document.getElementById('custom-color-selection').style.display =
+                                                "block";
+                                            // default th bg value to white
+                                            document.getElementById('color-preview').style.backgroundColor =
+                                                "white";
+                                        } else {
+                                            if (newTag === true) {
+                                                // call $.newCustomColorTag(tagColor) to change the color
+                                                var tagState = $.newCustomColorTag(value);
+                                                if (tagState == true) {
+                                                    // hide the #custom-color-selection col and console log success message
+                                                    document.getElementById('custom-color-selection').style
+                                                        .display = "none";
+                                                    // colorExtract = value.split('[').pop().split(']')[0];
                                                     document.getElementById('color-preview').style.backgroundColor =
-                                                        colorExtract;
-                                                }
-
-                                                // if value starts with off_day, hide #question-6-activities, else show #question-6-activities
-                                                if (value.startsWith('off_day')) {
-                                                    document.getElementById('question-6-activities').style.display =
-                                                        "none";
-                                                    // 
+                                                        value;
                                                 } else {
-                                                    document.getElementById('question-6-activities').style.display =
-                                                        "block";
+                                                    // consol log failure message
+                                                    console.log(
+                                                        "[toggleCustomColorSelection] failed to create color tag."
+                                                    );
                                                 }
-
+                                            } else {
+                                                // set display value to greenyellow as it it the first item/color code in our select input for #custom-color-selection
+                                                document.getElementById('custom-color-selection').style.display =
+                                                    "none";
+                                                // extract the color of the selection made/passed through the value parameter and set it as the backgroun color of #custom-color-selection
+                                                colorExtract = value.split('[').pop().split(']')[0];
+                                                document.getElementById('color-preview').style.backgroundColor =
+                                                    colorExtract;
                                             }
+
+                                            // if value starts with off_day, hide #question-6-activities, else show #question-6-activities
+                                            if (value.startsWith('off_day')) {
+                                                document.getElementById('question-6-activities').style.display =
+                                                    "none";
+                                                // 
+                                            } else {
+                                                document.getElementById('question-6-activities').style.display =
+                                                    "block";
+                                            }
+
                                         }
-                                        </script>
-                                        <div class="form-group my-4">
-                                            <label for="add-to-calender-activity-colorcode-value"
-                                                class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">
-                                                5. Assign color code:
-                                            </label>
-                                            <select class="custom-select form-control-select-input p-4"
-                                                onchange="toggleCustomColorSelection(this.value)"
-                                                name="add-to-calender-activity-colorcode-value"
-                                                id="add-to-calender-activity-colorcode-value"
-                                                placeholder="Select a color code" required="">
-                                                <!-- MATCH DAYS    OFF DAYS     TRAINING DAYS   FRIENDLY GAMES    RECOVERY -->
-                                                <option value="off_day[greenyellow]" style="color: greenyellow;">Off day
-                                                </option>
-                                                <option value="recovery_day[blue]" style="color: blue;">Recovery day
-                                                </option>
-                                                <option value="training_day[green]" style="color: green;">Training day
-                                                </option>
-                                                <option value="friendly_game[purple]" style="color: purple;">Friendly
-                                                    game</option>
-                                                <option value="match_day[red]" style="color: red;">Match day</option>
-                                                <option value="custom">Custom color code</option>
-                                            </select>
-                                        </div>
-                                        <div class="row justify-content-center align-items-center">
-                                            <div id="custom-color-selection"
-                                                class="col-md-8 border-1 border-end w3-animate-left"
-                                                style="display: none;">
-                                                <div class="form-group my-4 px-2">
-                                                    <label for="add-to-calender-activity-custom-colorcode-value"
-                                                        class="poppins-font fs-4 mb-4" style="color: #ffa500;">5.1.
-                                                        Custom Color Code:</label>
-                                                    <div class="d-flex gap-4 align-items-end justify-content-center">
-                                                        <div class="d-grid gap-1">
-                                                            <label
-                                                                for="add-to-calender-activity-custom-colorcode-title-value"
-                                                                class="poppins-font form-check-label text-center pt-2"
-                                                                style="font-size:10px;">
-                                                                Please provide a title to identify what the selected
-                                                                color code tag means.
-                                                            </label>
-                                                            <input class="form-control-text-input p-4" type="text"
-                                                                value="color_tag"
-                                                                name="add-to-calender-activity-custom-colorcode-title-value"
-                                                                id="add-to-calender-activity-custom-colorcode-title-value"
-                                                                placeholder="Please provide a title to identify what the selected color code means">
-                                                        </div>
-                                                        <div class="d-grid gap-1 text-center">
-                                                            <span
-                                                                class="material-icons material-icons-outlined align-middle"
-                                                                style="font-size:20px!important;">
-                                                                format_color_fill
-                                                            </span>
-                                                            <input class="rounded-pill p-3" type="color"
-                                                                name="add-to-calender-activity-custom-colorcode-value"
-                                                                id="add-to-calender-activity-custom-colorcode-value"
-                                                                oninput="toggleCustomColorSelection(this.value,true)"
-                                                                placeholder="select a custom color" value="#ffffff"
-                                                                style="width:50px;height:50px;">
-                                                        </div>
+                                    }
+                                    </script>
+
+                                    <div id="add-new-schedule-form-container">
+                                        <form id="add-new-schedule-form"
+                                            class="text-start d-grid gap-2 comfortaa-font fs-5"
+                                            style="border-radius: 25px;" method="post"
+                                            action="../scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/add_to_teams_training_schedule.php"
+                                            autocomplete="off">
+                                            <h5 class="fs-2 p-4 fw-bold text-center comfortaa-font shadow my-4 border-5 border-start border-end"
+                                                style="border-radius:25px;">
+                                                Capture New Activity.
+                                            </h5>
+                                            <hr class="text-white">
+
+                                            <div class="output-container my-2" id="output-container">
+                                                <!---->
+                                            </div>
+
+                                            <div class="form-group my-4">
+                                                <label for="add-to-calender-activity-title-value"
+                                                    class="poppins-font fs-4 mb-4" style="color: #ffa500;">Team
+                                                    select:</label>
+                                                <select
+                                                    class="custom-select form-control-select-input p-4 team-selection-list"
+                                                    name="add-to-calender-team-select" id="add-to-calender-team-select"
+                                                    placeholder="Select your Team." required="">
+                                                    <option value="noselection" selected="">⚽️ Switch Teams. 🏀</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group my-4">
+                                                <label for="add-to-calender-activity-title-value"
+                                                    class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">1.
+                                                    Title:</label>
+                                                <input class="form-control-text-input p-4" type="text"
+                                                    name="add-to-calender-activity-title-value"
+                                                    id="add-to-calender-activity-title-value" placeholder="Title"
+                                                    required="">
+                                            </div>
+                                            <div class="form-group my-4">
+                                                <label for="add-to-calender-activity-rpe-value"
+                                                    class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">2.
+                                                    RPE
+                                                    (Auto)</label>
+                                                <input class="form-control-text-input p-4" type="number" value="0"
+                                                    name="add-to-calender-activity-rpe-value"
+                                                    id="add-to-calender-activity-rpe-value" placeholder="RPE"
+                                                    required="" readonly>
+                                            </div>
+                                            <div class="form-group my-4">
+                                                <label for="add-to-calender-activity-day-value"
+                                                    class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">3.
+                                                    Day:</label>
+                                                <input class="form-control-text-input p-4" type="text"
+                                                    name="add-to-calender-activity-day-value"
+                                                    id="add-to-calender-activity-day-value" placeholder="Day"
+                                                    required="" readonly="">
+                                            </div>
+
+                                            <div class="form-group my-4">
+                                                <label for="add-to-calender-activity-date-value"
+                                                    class="poppins-font fs-4 mb-4" style="color: #ffa500;">4.
+                                                    Date:</label>
+                                                <input class="form-control-text-input p-4"
+                                                    onchange="changeSelDateValues(this.value)" type="date"
+                                                    name="add-to-calender-activity-date-value"
+                                                    id="add-to-calender-activity-date-value" placeholder="Date"
+                                                    required="">
+                                            </div>
+                                            <script>
+
+                                            </script>
+                                            <div class="form-group my-4">
+                                                <label for="add-to-calender-activity-colorcode-value"
+                                                    class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">
+                                                    5. Assign color code:
+                                                </label>
+                                                <select class="custom-select form-control-select-input p-4"
+                                                    onchange="toggleCustomColorSelection(this.value)"
+                                                    name="add-to-calender-activity-colorcode-value"
+                                                    id="add-to-calender-activity-colorcode-value"
+                                                    placeholder="Select a color code" required="">
+                                                    <!-- MATCH DAYS    OFF DAYS     TRAINING DAYS   FRIENDLY GAMES    RECOVERY -->
+                                                    <option value="off_day[greenyellow]" style="color: greenyellow;">Off
+                                                        day
+                                                    </option>
+                                                    <option value="recovery_day[blue]" style="color: blue;">Recovery day
+                                                    </option>
+                                                    <option value="training_day[green]" style="color: green;">Training
+                                                        day
+                                                    </option>
+                                                    <option value="friendly_game[purple]" style="color: purple;">
+                                                        Friendly
+                                                        game</option>
+                                                    <option value="match_day[red]" style="color: red;">Match day
+                                                    </option>
+                                                    <option value="custom">Custom color code</option>
+                                                </select>
+                                            </div>
+                                            <div class="row justify-content-center align-items-center">
+                                                <div id="custom-color-selection"
+                                                    class="col-md-8 border-1 border-end w3-animate-left"
+                                                    style="display: none;">
+                                                    <div class="form-group my-4 px-2">
+                                                        <label for="add-to-calender-activity-custom-colorcode-value"
+                                                            class="poppins-font fs-4 mb-4" style="color: #ffa500;">5.1.
+                                                            Custom Color Code:</label>
                                                         <div
-                                                            class="form-check d-flex gap-2 text-center justify-content-center">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                id="add-to-calender-activity-custom-colorcode-save-tag">
-                                                            <label
-                                                                for="add-to-calender-activity-custom-colorcode-save-tag"
-                                                                class="poppins-font form-check-label text-center pt-2">Save?</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 d-grid text-center">
-                                                <span id="color-preview"
-                                                    class="p-4 shadow align-middle text-truncate text-dark shadow"
-                                                    style="background-color: greenyellow; border-radius: 25px;">
-                                                    <span class="material-icons material-icons-round align-middle"
-                                                        style="color: var(--mineshaft);">
-                                                        palette
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <!-- we will have a two-col row elem: left col is for either selecting existing activities to push them to the listbox on the right col / using a textarea field to type in activities to push them to the listbox on the right col -->
-
-                                        <!-- question 6 actvities selection -->
-                                        <div id="question-6-activities" style="display: none;">
-                                            <h5 class="poppins-font fs-4 fw-bold mb-4"
-                                                style="color: var(--tahitigold) !important">6. Add Activities</h5>
-                                            <div class="row align-items-center">
-                                                <div class="col-md d-grid">
-                                                    <!-- select an existing exercise activity -->
-                                                    <div class="form-group d-grid gap-2">
-                                                        <label for="add-to-calender-activity-selection"
-                                                            class="poppins-font fs-4 add-to-calender-activity-selection"
-                                                            style="color: #ffa500;">Exercises &amp; Activities.</label>
-                                                        <select
-                                                            class="custom-select form-control-select-input p-2 light-scroller"
-                                                            id="add-to-calender-activity-selection"
-                                                            style="border-radius:25px;height:290px;" multiple="multiple"
-                                                            rows="20">
-                                                            <option value="no-selection" selected="">Select a workout /
-                                                                activity.</option>
-                                                            <option value="40"> 90/90 spiral with rotation (At-Home -
-                                                                Back Exercises - Cooldowns) (10xp)</option>
-                                                            <option value="35"> Bent-over double delt raises (At-Home -
-                                                                Back Exercises - Standing movements) (15xp)</option>
-                                                            <option value="36"> Bent-over row with resistance band
-                                                                (At-Home - Back Exercises - Standing movements) (10xp)
-                                                            </option>
-                                                            <option value="29"> Bird dog (At-Home - Back Exercises -
-                                                                Floor movements) (8xp)</option>
-                                                            <option value="2"> Cable crossover (75xp)</option>
-                                                            <option value="26"> Cat-Cow (At-Home - Back Exercises -
-                                                                Warmups) (6xp)</option>
-                                                            <option value="1"> Chest dip (45xp)</option>
-                                                            <option value="12"> Chest press (Upper-body bulk and sculpt)
-                                                                (48xp)</option>
-                                                            <option value="23"> Chest press (Upper-body tone and
-                                                                tighten) (45xp)</option>
-                                                            <option value="3"> Decline bench press (39xp)</option>
-                                                            <option value="24"> Deltoid raises (Upper-body tone and
-                                                                tighten) (45xp)</option>
-                                                            <option value="18"> Diamond pushups (Upper-body tone and
-                                                                tighten) (30xp)</option>
-                                                            <option value="20"> Dumbbell curls (Upper-body tone and
-                                                                tighten) (45xp)</option>
-                                                            <option value="25"> Dumbbell front raises (Upper-body tone
-                                                                and tighten) (45xp)</option>
-                                                            <option value="37"> Extend rotate At-Home - Back Exercises -
-                                                                (Standing movements) (10xp)</option>
-                                                            <option value="28"> Hammock (At-Home - Back Exercises -
-                                                                Warmups) (4xp)</option>
-                                                            <option value="19"> Hand release pushup (Upper-body tone and
-                                                                tighten) (30xp)</option>
-                                                            <option value="33"> Hip hinges (At-Home - Back Exercises -
-                                                                Standing movements) (20xp)</option>
-                                                            <option value="13"> Incline dumbbell flies (Upper-body bulk
-                                                                and sculpt) (48xp)</option>
-                                                            <option value="14"> Incline dumbbell triceps extension
-                                                                (Upper-body bulk and sculpt) (48xp)</option>
-                                                            <option value="4"> Incline push up (50xp)</option>
-                                                            <option value="34"> Isometric hip hinges (At-Home - Back
-                                                                Exercises - Standing movements) (3xp)</option>
-                                                            <option value="39"> Isometric neck extension (At-Home - Back
-                                                                Exercises - Chair exercises) (5xp)</option>
-                                                            <option value="27"> Lateral Wheel (At-Home - Back Exercises
-                                                                - Warmups) (3xp)</option>
-                                                            <option value="30"> Lunge rotate (At-Home - Back Exercises -
-                                                                Floor movements) (50xp)</option>
-                                                            <option value="17"> Mountain climbers (Upper-body tone and
-                                                                tighten) (60xp)</option>
-                                                            <option value="10"> Overhead dumbbell press (Upper-body bulk
-                                                                and sculpt) (40xp)</option>
-                                                            <option value="6"> Parallel Bar Dips (Upper-body bulk and
-                                                                sculpt) (36xp)</option>
-                                                            <option value="31"> Plank with lateral arm raise (At-Home -
-                                                                Back Exercises - Floor movements) (20xp)</option>
-                                                            <option value="8"> Plyometric Push-ups (Upper-body bulk and
-                                                                sculpt) (36xp)</option>
-                                                            <option value="7"> Push-ups (Upper-body bulk and sculpt)
-                                                                (36xp)</option>
-                                                            <option value="5"> Seated machine fly (90xp)</option>
-                                                            <option value="38"> Shoulder squeeze (At-Home - Back
-                                                                Exercises - Chair exercises) (5xp)</option>
-                                                            <option value="11"> Standing dumbbell upright row
-                                                                (Upper-body bulk and sculpt) (40xp)</option>
-                                                            <option value="32"> Superman (At-Home - Back Exercises -
-                                                                Floor movements) (10xp)</option>
-                                                            <option value="42"> Supine twist (At-Home - Back Exercises -
-                                                                Cooldowns) (2xp)</option>
-                                                            <option value="15"> Triceps dips (Upper-body tone and
-                                                                tighten) (45xp)</option>
-                                                            <option value="21"> Triceps kickbacks (Upper-body tone and
-                                                                tighten) (45xp)</option>
-                                                            <option value="22"> Two-arm dumbbell row (Upper-body tone
-                                                                and tighten) (36xp)</option>
-                                                            <option value="9"> Walking plank (Upper-body bulk and
-                                                                sculpt) (36xp)</option>
-                                                            <option value="16"> Wall angels (Upper-body tone and
-                                                                tighten) (60xp)</option>
-                                                            <option value="41"> Wind-relieving pose (At-Home - Back
-                                                                Exercises - Cooldowns) (2xp)</option>
-                                                            <option value="other">Other</option>
-                                                        </select>
-                                                        <button type="button"
-                                                            id="add-selection-to-activities-selectlist-btn"
-                                                            class="onefit-buttons-style-light p-4">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle"
-                                                                style="font-size: 30px!important;">
-                                                                keyboard_double_arrow_down
-                                                            </span>
-                                                            add.
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ select an existing exercise activity -->
-                                                </div>
-                                                <div class="col-md-2 py-4">
-                                                    <div class="d-grid justify-content-center text-center">
-                                                        <button type="button"
-                                                            class="onefit-buttons-style-tahiti p-3 d-grid"
-                                                            data-bs-toggle="collapse"
-                                                            data-bs-target="#new-exercise-activity-container"
-                                                            aria-expanded="true"
-                                                            aria-controls="new-exercise-activity-container">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle"
-                                                                style="font-size: 30px!important;">
-                                                                playlist_add
-                                                            </span>
-                                                            <span style="font-size:10px!important;"
-                                                                class="text-truncate">
-                                                                New Exercise/Activity.
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div id="new-exercise-activity-container"
-                                                    class="col-md-5 gap-4 collapse w3-animate-right">
-                                                    <!-- Textarea for typing out the exercises -->
-                                                    <div class="form-group d-grid gap-2">
-                                                        <label for="add-to-calender-activity-specify-title"
-                                                            class="poppins-font fs-4" style="color: #ffa500;">Create New
-                                                            Activities:</label>
-                                                        <input class="form-control-text-input p-4" type="text"
-                                                            name="add-to-calender-activity-specify-title"
-                                                            id="add-to-calender-activity-specify-title"
-                                                            placeholder="Exercise / activity title."
-                                                            style="border-radius:25px;font-size:12px!important;">
-
-                                                        <label for="add-to-calender-activity-specify-xp"
-                                                            class="poppins-font"
-                                                            style="color: #ffa500;font-size:12px;">Allocate xp pts (1 -
-                                                            10):</label>
-                                                        <input class="form-control-text-input p-4" type="number"
-                                                            oninput="validity.valid||(value='');" min="1" max="10"
-                                                            name="add-to-calender-activity-specify-xp"
-                                                            id="add-to-calender-activity-specify-xp"
-                                                            placeholder="How much XP? 10xp max."
-                                                            style="border-radius:25px;">
-
-                                                        <div class="form-group">
-                                                            <label for="sets-reps-rests" class="poppins-font"
-                                                                style="color: #ffa500;font-size:12px;">Select the Sets,
-                                                                Reps &amp; Rests:</label>
-                                                            <div class="row" id="sets-reps-rests">
-                                                                <div class="col-md">
-                                                                    <input
-                                                                        class="form-control-text-input p-4 onefit-input-grad-white-dark border-0"
-                                                                        type="number"
-                                                                        oninput="validity.valid||(value='');" min="1"
-                                                                        max="10" value="1"
-                                                                        name="add-to-calender-activity-specify-sets"
-                                                                        id="add-to-calender-activity-specify-sets"
-                                                                        placeholder="How many Sets? 10 max sets."
-                                                                        style="border-radius:25px;">
-                                                                </div>
-                                                                <div class="col-md">
-                                                                    <input
-                                                                        class="form-control-text-input p-4 onefit-input-grad-white-dark border-0"
-                                                                        type="number"
-                                                                        oninput="validity.valid||(value='');" min="1"
-                                                                        max="100" value="1"
-                                                                        name="add-to-calender-activity-specify-reps"
-                                                                        id="add-to-calender-activity-specify-reps"
-                                                                        placeholder="How many Sets? 10 max reps."
-                                                                        style="border-radius:25px;">
-                                                                </div>
-                                                                <div class="col-md">
-                                                                    <input
-                                                                        class="form-control-text-input p-4 onefit-input-grad-white-dark border-0"
-                                                                        type="number"
-                                                                        oninput="validity.valid||(value='');" min="0"
-                                                                        max="10" value="0"
-                                                                        name="add-to-calender-activity-specify-rests"
-                                                                        id="add-to-calender-activity-specify-rests"
-                                                                        placeholder="How many Sets? 5 max sets."
-                                                                        style="border-radius:25px;">
-                                                                </div>
+                                                            class="d-flex gap-4 align-items-end justify-content-center">
+                                                            <div class="d-grid gap-1">
+                                                                <label
+                                                                    for="add-to-calender-activity-custom-colorcode-title-value"
+                                                                    class="poppins-font form-check-label text-center pt-2"
+                                                                    style="font-size:10px;">
+                                                                    Please provide a title to identify what the selected
+                                                                    color code tag means.
+                                                                </label>
+                                                                <input class="form-control-text-input p-4" type="text"
+                                                                    value="color_tag"
+                                                                    name="add-to-calender-activity-custom-colorcode-title-value"
+                                                                    id="add-to-calender-activity-custom-colorcode-title-value"
+                                                                    placeholder="Please provide a title to identify what the selected color code means">
+                                                            </div>
+                                                            <div class="d-grid gap-1 text-center">
+                                                                <span
+                                                                    class="material-icons material-icons-outlined align-middle"
+                                                                    style="font-size:20px!important;">
+                                                                    format_color_fill
+                                                                </span>
+                                                                <input class="rounded-pill p-3" type="color"
+                                                                    name="add-to-calender-activity-custom-colorcode-value"
+                                                                    id="add-to-calender-activity-custom-colorcode-value"
+                                                                    oninput="toggleCustomColorSelection(this.value,true)"
+                                                                    placeholder="select a custom color" value="#ffffff"
+                                                                    style="width:50px;height:50px;">
+                                                            </div>
+                                                            <div
+                                                                class="form-check d-flex gap-2 text-center justify-content-center">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="add-to-calender-activity-custom-colorcode-save-tag">
+                                                                <label
+                                                                    for="add-to-calender-activity-custom-colorcode-save-tag"
+                                                                    class="poppins-font form-check-label text-center pt-2">Save?</label>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 d-grid text-center">
+                                                    <span id="color-preview"
+                                                        class="p-4 shadow align-middle text-truncate text-dark shadow"
+                                                        style="background-color: greenyellow; border-radius: 25px;">
+                                                        <span class="material-icons material-icons-round align-middle"
+                                                            style="color: var(--mineshaft);">
+                                                            palette
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
 
-                                                        <div class="form-group">
-                                                            <label
-                                                                for="add-to-calender-activity-specify-new-description"
+                                            <!-- we will have a two-col row elem: left col is for either selecting existing activities to push them to the listbox on the right col / using a textarea field to type in activities to push them to the listbox on the right col -->
+
+                                            <!-- question 6 actvities selection -->
+                                            <div id="question-6-activities" style="display: none;">
+                                                <h5 class="poppins-font fs-4 fw-bold mb-4"
+                                                    style="color: var(--tahitigold) !important">6. Add Activities</h5>
+                                                <div class="row align-items-center">
+                                                    <div class="col-md d-grid">
+                                                        <!-- select an existing exercise activity -->
+                                                        <div class="form-group d-grid gap-2">
+                                                            <label for="add-to-calender-activity-selection"
+                                                                class="poppins-font fs-4 add-to-calender-activity-selection"
+                                                                style="color: #ffa500;">Exercises &amp;
+                                                                Activities.</label>
+                                                            <select
+                                                                class="custom-select form-control-select-input p-2 light-scroller"
+                                                                id="add-to-calender-activity-selection"
+                                                                style="border-radius:25px;height:290px;"
+                                                                multiple="multiple" rows="20">
+                                                                <option value="no-selection" selected="">Select a
+                                                                    workout /
+                                                                    activity.</option>
+                                                                <option value="40"> 90/90 spiral with rotation (At-Home
+                                                                    -
+                                                                    Back Exercises - Cooldowns) (10xp)</option>
+                                                                <option value="35"> Bent-over double delt raises
+                                                                    (At-Home -
+                                                                    Back Exercises - Standing movements) (15xp)</option>
+                                                                <option value="36"> Bent-over row with resistance band
+                                                                    (At-Home - Back Exercises - Standing movements)
+                                                                    (10xp)
+                                                                </option>
+                                                                <option value="29"> Bird dog (At-Home - Back Exercises -
+                                                                    Floor movements) (8xp)</option>
+                                                                <option value="2"> Cable crossover (75xp)</option>
+                                                                <option value="26"> Cat-Cow (At-Home - Back Exercises -
+                                                                    Warmups) (6xp)</option>
+                                                                <option value="1"> Chest dip (45xp)</option>
+                                                                <option value="12"> Chest press (Upper-body bulk and
+                                                                    sculpt)
+                                                                    (48xp)</option>
+                                                                <option value="23"> Chest press (Upper-body tone and
+                                                                    tighten) (45xp)</option>
+                                                                <option value="3"> Decline bench press (39xp)</option>
+                                                                <option value="24"> Deltoid raises (Upper-body tone and
+                                                                    tighten) (45xp)</option>
+                                                                <option value="18"> Diamond pushups (Upper-body tone and
+                                                                    tighten) (30xp)</option>
+                                                                <option value="20"> Dumbbell curls (Upper-body tone and
+                                                                    tighten) (45xp)</option>
+                                                                <option value="25"> Dumbbell front raises (Upper-body
+                                                                    tone
+                                                                    and tighten) (45xp)</option>
+                                                                <option value="37"> Extend rotate At-Home - Back
+                                                                    Exercises -
+                                                                    (Standing movements) (10xp)</option>
+                                                                <option value="28"> Hammock (At-Home - Back Exercises -
+                                                                    Warmups) (4xp)</option>
+                                                                <option value="19"> Hand release pushup (Upper-body tone
+                                                                    and
+                                                                    tighten) (30xp)</option>
+                                                                <option value="33"> Hip hinges (At-Home - Back Exercises
+                                                                    -
+                                                                    Standing movements) (20xp)</option>
+                                                                <option value="13"> Incline dumbbell flies (Upper-body
+                                                                    bulk
+                                                                    and sculpt) (48xp)</option>
+                                                                <option value="14"> Incline dumbbell triceps extension
+                                                                    (Upper-body bulk and sculpt) (48xp)</option>
+                                                                <option value="4"> Incline push up (50xp)</option>
+                                                                <option value="34"> Isometric hip hinges (At-Home - Back
+                                                                    Exercises - Standing movements) (3xp)</option>
+                                                                <option value="39"> Isometric neck extension (At-Home -
+                                                                    Back
+                                                                    Exercises - Chair exercises) (5xp)</option>
+                                                                <option value="27"> Lateral Wheel (At-Home - Back
+                                                                    Exercises
+                                                                    - Warmups) (3xp)</option>
+                                                                <option value="30"> Lunge rotate (At-Home - Back
+                                                                    Exercises -
+                                                                    Floor movements) (50xp)</option>
+                                                                <option value="17"> Mountain climbers (Upper-body tone
+                                                                    and
+                                                                    tighten) (60xp)</option>
+                                                                <option value="10"> Overhead dumbbell press (Upper-body
+                                                                    bulk
+                                                                    and sculpt) (40xp)</option>
+                                                                <option value="6"> Parallel Bar Dips (Upper-body bulk
+                                                                    and
+                                                                    sculpt) (36xp)</option>
+                                                                <option value="31"> Plank with lateral arm raise
+                                                                    (At-Home -
+                                                                    Back Exercises - Floor movements) (20xp)</option>
+                                                                <option value="8"> Plyometric Push-ups (Upper-body bulk
+                                                                    and
+                                                                    sculpt) (36xp)</option>
+                                                                <option value="7"> Push-ups (Upper-body bulk and sculpt)
+                                                                    (36xp)</option>
+                                                                <option value="5"> Seated machine fly (90xp)</option>
+                                                                <option value="38"> Shoulder squeeze (At-Home - Back
+                                                                    Exercises - Chair exercises) (5xp)</option>
+                                                                <option value="11"> Standing dumbbell upright row
+                                                                    (Upper-body bulk and sculpt) (40xp)</option>
+                                                                <option value="32"> Superman (At-Home - Back Exercises -
+                                                                    Floor movements) (10xp)</option>
+                                                                <option value="42"> Supine twist (At-Home - Back
+                                                                    Exercises -
+                                                                    Cooldowns) (2xp)</option>
+                                                                <option value="15"> Triceps dips (Upper-body tone and
+                                                                    tighten) (45xp)</option>
+                                                                <option value="21"> Triceps kickbacks (Upper-body tone
+                                                                    and
+                                                                    tighten) (45xp)</option>
+                                                                <option value="22"> Two-arm dumbbell row (Upper-body
+                                                                    tone
+                                                                    and tighten) (36xp)</option>
+                                                                <option value="9"> Walking plank (Upper-body bulk and
+                                                                    sculpt) (36xp)</option>
+                                                                <option value="16"> Wall angels (Upper-body tone and
+                                                                    tighten) (60xp)</option>
+                                                                <option value="41"> Wind-relieving pose (At-Home - Back
+                                                                    Exercises - Cooldowns) (2xp)</option>
+                                                                <option value="other">Other</option>
+                                                            </select>
+                                                            <button type="button"
+                                                                id="add-selection-to-activities-selectlist-btn"
+                                                                class="onefit-buttons-style-light p-4">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 30px!important;">
+                                                                    keyboard_double_arrow_down
+                                                                </span>
+                                                                add.
+                                                            </button>
+                                                        </div>
+                                                        <!-- ./ select an existing exercise activity -->
+                                                    </div>
+                                                    <div class="col-md-2 py-4">
+                                                        <div class="d-grid justify-content-center text-center">
+                                                            <button type="button"
+                                                                class="onefit-buttons-style-tahiti p-3 d-grid"
+                                                                data-bs-toggle="collapse"
+                                                                data-bs-target="#new-exercise-activity-container"
+                                                                aria-expanded="true"
+                                                                aria-controls="new-exercise-activity-container">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 30px!important;">
+                                                                    playlist_add
+                                                                </span>
+                                                                <span style="font-size:10px!important;"
+                                                                    class="text-truncate">
+                                                                    New Exercise/Activity.
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div id="new-exercise-activity-container"
+                                                        class="col-md-5 gap-4 collapse w3-animate-right">
+                                                        <!-- Textarea for typing out the exercises -->
+                                                        <div class="form-group d-grid gap-2">
+                                                            <label for="add-to-calender-activity-specify-title"
+                                                                class="poppins-font fs-4" style="color: #ffa500;">Create
+                                                                New
+                                                                Activities:</label>
+                                                            <br />
+
+                                                            <label for="add-to-calender-activity-specify-xp"
                                                                 class="poppins-font"
-                                                                style="color: #ffa500;font-size:12px;">Please provide
-                                                                the Description &amp; Guidelines/Instructions of this
-                                                                Exercise/Activty:</label>
-                                                            <textarea
-                                                                class="form-control-text-input p-2 text-dark light-scroller"
-                                                                rows="3" type="text"
-                                                                name="add-to-calender-activity-specify-new-description"
-                                                                id="add-to-calender-activity-specify-new-description"
-                                                                placeholder="Description..."
-                                                                style="border-radius:25px;font-size:12px!important;"></textarea>
+                                                                style="color: #ffa500;font-size:12px;">Exercise /
+                                                                activity
+                                                                name:</label>
+                                                            <input class="form-control-text-input p-4" type="text"
+                                                                name="add-to-calender-activity-specify-title"
+                                                                id="add-to-calender-activity-specify-title"
+                                                                placeholder="Exercise / activity name."
+                                                                style="border-radius:25px;font-size:12px!important;">
 
-                                                            <textarea
-                                                                class="form-control-text-input p-2 text-dark light-scroller"
-                                                                rows="3" type="text"
-                                                                name="add-to-calender-activity-specify-new-guidelines"
-                                                                id="add-to-calender-activity-specify-new-guidelines"
-                                                                placeholder="Guidelines / Instructions..."
-                                                                style="border-radius:25px;font-size:12px!important;"></textarea>
+                                                            <!-- icon selection -->
+                                                            <div class="input-group gap-2 chart-col-bar-item"
+                                                                style="transform: scale(1,1) !important;">
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input me-2" type="radio"
+                                                                        name="activity-icon" id="activity-icon-cycling"
+                                                                        value="../media/assets/icons/cycling.png">
+                                                                    <label class="form-check-label"
+                                                                        for="activity-icon-cycling">
+                                                                        <img src="../media/assets/icons/cycling.png"
+                                                                            alt="cycling/spinning"
+                                                                            style="height: 50px; width: auto; filter: invert(0);">
+                                                                        Cycling / Spinning
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input me-2" type="radio"
+                                                                        name="activity-icon" id="activity-icon-strength"
+                                                                        value="../media/assets/icons/bodybuilder.png">
+                                                                    <label class="form-check-label"
+                                                                        for="activity-icon-strength">
+                                                                        <img src="../media/assets/icons/bodybuilder.png"
+                                                                            alt="strength"
+                                                                            style="height: 50px; width: auto; filter: invert(0);">
+                                                                        Strength
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input me-2" type="radio"
+                                                                        name="activity-icon" id="activity-icon-icebath"
+                                                                        value="../media/assets/icons/bath-tub.png">
+                                                                    <label class="form-check-label"
+                                                                        for="activity-icon-icebath">
+                                                                        <img src="../media/assets/icons/bath-tub.png"
+                                                                            alt="ice bath"
+                                                                            style="height: 50px; width: auto; filter: invert(0);">
+                                                                        Ice bath
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input me-2" type="radio"
+                                                                        name="activity-icon" id="activity-icon-running"
+                                                                        value="../media/assets/icons/running.png">
+                                                                    <label class="form-check-label"
+                                                                        for="activity-icon-running">
+                                                                        <img src="../media/assets/icons/running.png"
+                                                                            alt="running"
+                                                                            style="height: 50px; width: auto; filter: invert(0);">
+                                                                        Running
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input me-2" type="radio"
+                                                                        name="activity-icon" id="activity-icon-tactics"
+                                                                        value="../media/assets/icons/thinking.png">
+                                                                    <label class="form-check-label"
+                                                                        for="activity-icon-tactics">
+                                                                        <img src="../media/assets/icons/thinking.png"
+                                                                            alt="tactics"
+                                                                            style="height: 50px; width: auto; filter: invert(0);">
+                                                                        Tactics
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input me-2" type="radio"
+                                                                        name="activity-icon" id="activity-icon-kickoff"
+                                                                        value="../media/assets/icons/soccer-ball.png">
+                                                                    <label class="form-check-label"
+                                                                        for="activity-icon-kickoff">
+                                                                        <img src="../media/assets/icons/soccer-ball.png"
+                                                                            alt="kick-off"
+                                                                            style="height: 50px; width: auto; filter: invert(0);">
+                                                                        Kick-off
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input me-2" type="radio"
+                                                                        name="activity-icon" id="activity-icon-multidir"
+                                                                        value="../media/assets/icons/directions.png">
+                                                                    <label class="form-check-label"
+                                                                        for="activity-icon-multidir">
+                                                                        <img src="../media/assets/icons/directions.png"
+                                                                            alt="multi-directional"
+                                                                            style="height: 50px; width: auto; filter: invert(0);">
+                                                                        Multi-directional
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <!-- ./ icon selection -->
+
+                                                            <label for="add-to-calender-activity-specify-xp"
+                                                                class="poppins-font"
+                                                                style="color: #ffa500;font-size:12px;">Allocate xp pts
+                                                                (1 -
+                                                                10):</label>
+                                                            <input class="form-control-text-input p-4" type="number"
+                                                                oninput="validity.valid||(value='');" min="1" max="10"
+                                                                name="add-to-calender-activity-specify-xp"
+                                                                id="add-to-calender-activity-specify-xp"
+                                                                placeholder="How much XP? 10xp max."
+                                                                style="border-radius:25px;">
+
+                                                            <div class="form-group">
+                                                                <label for="sets-reps-rests" class="poppins-font"
+                                                                    style="color: #ffa500;font-size:12px;">Select the
+                                                                    Sets,
+                                                                    Reps &amp; Rests:</label>
+                                                                <div class="row" id="sets-reps-rests">
+                                                                    <div class="col-md">
+                                                                        <input
+                                                                            class="form-control-text-input p-4 onefit-input-grad-white-dark border-0"
+                                                                            type="number"
+                                                                            oninput="validity.valid||(value='');"
+                                                                            min="1" max="10" value="1"
+                                                                            name="add-to-calender-activity-specify-sets"
+                                                                            id="add-to-calender-activity-specify-sets"
+                                                                            placeholder="How many Sets? 10 max sets."
+                                                                            style="border-radius:25px;">
+                                                                    </div>
+                                                                    <div class="col-md">
+                                                                        <input
+                                                                            class="form-control-text-input p-4 onefit-input-grad-white-dark border-0"
+                                                                            type="number"
+                                                                            oninput="validity.valid||(value='');"
+                                                                            min="1" max="100" value="1"
+                                                                            name="add-to-calender-activity-specify-reps"
+                                                                            id="add-to-calender-activity-specify-reps"
+                                                                            placeholder="How many Sets? 10 max reps."
+                                                                            style="border-radius:25px;">
+                                                                    </div>
+                                                                    <div class="col-md">
+                                                                        <input
+                                                                            class="form-control-text-input p-4 onefit-input-grad-white-dark border-0"
+                                                                            type="number"
+                                                                            oninput="validity.valid||(value='');"
+                                                                            min="0" max="10" value="0"
+                                                                            name="add-to-calender-activity-specify-rests"
+                                                                            id="add-to-calender-activity-specify-rests"
+                                                                            placeholder="How many Sets? 5 max sets."
+                                                                            style="border-radius:25px;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label
+                                                                    for="add-to-calender-activity-specify-new-description"
+                                                                    class="poppins-font"
+                                                                    style="color: #ffa500;font-size:12px;">Please
+                                                                    provide
+                                                                    the Description &amp; Guidelines/Instructions of
+                                                                    this
+                                                                    Exercise/Activty:</label>
+                                                                <textarea
+                                                                    class="form-control-text-input p-2 text-dark light-scroller"
+                                                                    rows="3" type="text"
+                                                                    name="add-to-calender-activity-specify-new-description"
+                                                                    id="add-to-calender-activity-specify-new-description"
+                                                                    placeholder="Description..."
+                                                                    style="border-radius:25px;font-size:12px!important;"></textarea>
+
+                                                                <textarea
+                                                                    class="form-control-text-input p-2 text-dark light-scroller"
+                                                                    rows="3" type="text"
+                                                                    name="add-to-calender-activity-specify-new-guidelines"
+                                                                    id="add-to-calender-activity-specify-new-guidelines"
+                                                                    placeholder="Guidelines / Instructions..."
+                                                                    style="border-radius:25px;font-size:12px!important;"></textarea>
+                                                            </div>
+
+
+                                                            <label for="add-to-calender-specify-training-phase"
+                                                                class="poppins-font"
+                                                                style="color: #ffa500;font-size:12px;">Select the
+                                                                Training
+                                                                level (L1 - L3):</label>
+                                                            <select
+                                                                class="custom-select form-control-select-input p-2 light-scroller"
+                                                                id="add-to-calender-specify-training-phase"
+                                                                name="add-to-calender-specify-training-phase"
+                                                                style="border-radius:25px;">
+                                                                <option value="beginner" selected>Beginner (L1).
+                                                                </option>
+                                                                <option value="intermediate">Intermediate (L2).</option>
+                                                                <option value="advanced">Advanced (L3).</option>
+                                                            </select>
+
+                                                            <button type="button"
+                                                                id="add-selection-to-activities-textinput-btn"
+                                                                class="onefit-buttons-style-light p-4">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 30px!important;">
+                                                                    add
+                                                                </span>
+                                                                save.
+                                                            </button>
+                                                        </div>
+                                                        <!-- ./ Textarea for typing out the exercises -->
+
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <hr class="text-white">
+                                                    <label for="select-workout-exercises-selected" class="mb-2">
+                                                        <span
+                                                            class="material-icons material-icons-outlined align-middle"
+                                                            style="font-size:20px!important;">
+                                                            queue
+                                                        </span>
+                                                        <span class="align-middle"> Activities Added.</span>
+                                                    </label>
+                                                    <!-- move items function buttons -->
+                                                    <div class="d-flex justify-content-between gap-2 mb-2">
+                                                        <div class="d-grid">
+                                                            <h1 id="selected-xp-counter" class="fs-5"
+                                                                style="color: var(--tahitigold);">Total xp: 0 | 0
+                                                                activities.</h1>
                                                         </div>
 
+                                                        <div class="d-flex justify-content-end gap-2">
+                                                            <button type="button"
+                                                                id="remove-selection-from-selected-activities-list-btn"
+                                                                class="onefit-buttons-style-light p-2">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 30px!important;">
+                                                                    remove
+                                                                </span>
+                                                                <span style="font-size:10px!important;">
+                                                                    Remove selected.
+                                                                </span>
+                                                            </button>
+                                                            <button type="button"
+                                                                id="remove-all-from-selected-activities-list-btn"
+                                                                class="onefit-buttons-style-danger p-2">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    style="font-size: 30px!important;">
+                                                                    restart_alt
+                                                                </span>
+                                                                <span style="font-size:10px!important;">
+                                                                    Remove all selected.
+                                                                </span>
+                                                            </button>
+                                                        </div>
 
-                                                        <label for="add-to-calender-specify-training-phase"
-                                                            class="poppins-font"
-                                                            style="color: #ffa500;font-size:12px;">Select the Training
-                                                            level (L1 - L3):</label>
-                                                        <select
-                                                            class="custom-select form-control-select-input p-2 light-scroller"
-                                                            id="add-to-calender-specify-training-phase"
-                                                            name="add-to-calender-specify-training-phase"
-                                                            style="border-radius:25px;">
-                                                            <option value="beginner" selected>Beginner (L1).</option>
-                                                            <option value="intermediate">Intermediate (L2).</option>
-                                                            <option value="advanced">Advanced (L3).</option>
-                                                        </select>
-
-                                                        <button type="button"
-                                                            id="add-selection-to-activities-textinput-btn"
-                                                            class="onefit-buttons-style-light p-4">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle"
-                                                                style="font-size: 30px!important;">
-                                                                add
-                                                            </span>
-                                                            save.
-                                                        </button>
                                                     </div>
-                                                    <!-- ./ Textarea for typing out the exercises -->
-
+                                                    <!-- listbox on the right col is the listbox that will be submitted on form submit -->
+                                                    <select id="select-workout-exercises-selected"
+                                                        name="select-workout-exercises-selected[]"
+                                                        class="form-control light-scroller" multiple="multiple"
+                                                        rows="50" style="min-height:200px;border-radius:25px;"></select>
                                                 </div>
+
                                             </div>
-                                            <div>
-                                                <hr class="text-white">
-                                                <label for="select-workout-exercises-selected" class="mb-2">
-                                                    <span class="material-icons material-icons-outlined align-middle"
-                                                        style="font-size:20px!important;">
-                                                        queue
-                                                    </span>
-                                                    <span class="align-middle"> Activities Added.</span>
-                                                </label>
-                                                <!-- move items function buttons -->
-                                                <div class="d-flex justify-content-between gap-2 mb-2">
-                                                    <div class="d-grid">
-                                                        <h1 id="selected-xp-counter" class="fs-5"
-                                                            style="color: var(--tahitigold);">Total xp: 0 | 0
-                                                            activities.</h1>
-                                                    </div>
+                                            <!-- ./ question 6 actvities selection -->
 
-                                                    <div class="d-flex justify-content-end gap-2">
-                                                        <button type="button"
-                                                            id="remove-selection-from-selected-activities-list-btn"
-                                                            class="onefit-buttons-style-light p-2">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle"
-                                                                style="font-size: 30px!important;">
-                                                                remove
-                                                            </span>
-                                                            <span style="font-size:10px!important;">
-                                                                Remove selected.
-                                                            </span>
-                                                        </button>
-                                                        <button type="button"
-                                                            id="remove-all-from-selected-activities-list-btn"
-                                                            class="onefit-buttons-style-danger p-2">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle"
-                                                                style="font-size: 30px!important;">
-                                                                restart_alt
-                                                            </span>
-                                                            <span style="font-size:10px!important;">
-                                                                Remove all selected.
-                                                            </span>
-                                                        </button>
-                                                    </div>
+                                            <!-- submit btn -->
+                                            <button id="single-submit-add-new-schedule-data-form"
+                                                class="onefit-buttons-style-tahiti p-4 mt-4 shadow d-grid" type="submit"
+                                                value="Save">
+                                                <span class="material-icons material-icons-outlined align-middle">
+                                                    event_available
+                                                </span>
+                                                <span class="align-middle">Save.</span>
+                                            </button>
+                                            <!-- hidden="" aria-hidden="true" -->
 
-                                                </div>
-                                                <!-- listbox on the right col is the listbox that will be submitted on form submit -->
-                                                <select id="select-workout-exercises-selected"
-                                                    name="select-workout-exercises-selected[]"
-                                                    class="form-control light-scroller" multiple="multiple" rows="50"
-                                                    style="min-height:200px;border-radius:25px;"></select>
-                                            </div>
-
-                                        </div>
-                                        <!-- ./ question 6 actvities selection -->
-
-                                        <!-- submit btn -->
-                                        <button id="single-submit-add-new-schedule-data-form"
-                                            class="onefit-buttons-style-tahiti p-4 mt-4 shadow d-grid" type="submit"
-                                            value="Save">
-                                            <span class="material-icons material-icons-outlined align-middle">
-                                                event_available
-                                            </span>
-                                            <span class="align-middle">Save.</span>
-                                        </button>
-                                        <!-- hidden="" aria-hidden="true" -->
-
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -12420,110 +12574,121 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div id="tabEditWeeklyTeamsTrainingScheduleModal_body" class="modal-body border-0"
                     style="overflow-x: hidden">
                     <div class="row px-4 align-items-end">
-                        <div id="display-activity-bar-preview" class="col-md-4 p-4 text-center">
+                        <div id="display-activity-bar-preview" class="col-md-4 p-4 text-center light-scroller"
+                            style="max-height:70vh;overflow-y:auto;">
                             <!-- display activity bar here -->
                         </div>
-                        <div class="col-md-8">
-                            <form id="teams-add-new-day-activity-data-form"
-                                class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;"
-                                method="post"
-                                action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/teams_add_new_activity_day_form_submit.php"
-                                autocomplete="off">
-                                <div class="form-group my-4">
-                                    <label for="activity-title" class="comfortaa-font fs-5 text-start"
-                                        style="color: #ffa500;">Activity title:</label>
-                                    <input class="form-control-text-input p-4" type="text" name="activity-title"
-                                        id="activity-title" placeholder="Activity Title (Required)" required />
-                                </div>
-                                <div class="form-group my-4">
-                                    <label for="rpe" class="comfortaa-font fs-5 text-start"
-                                        style="color: #ffa500;">RPE:</label>
-                                    <input class="form-control-text-input p-4" type="number" name="rpe" id="rpe"
-                                        placeholder="RPE (Required)" required />
-                                </div>
-                                <div class="form-group my-4">
-                                    <h5 class="text-start" style="color: #ffa500;">Assign an icon:</h5>
-                                    <div class="input-group gap-2 chart-col-bar-item"
-                                        style="transform: scale(1,1) !important;">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input me-2" type="radio" name="activity-icon"
-                                                id="activity-icon-cycling" value="../media/assets/icons/cycling.png">
-                                            <label class="form-check-label" for="activity-icon-cycling">
-                                                <img src="../media/assets/icons/cycling.png" alt="cycling/spinning"
-                                                    style="height: 50px; width: auto"> Cycling / Spinning
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input me-2" type="radio" name="activity-icon"
-                                                id="activity-icon-strength"
-                                                value="../media/assets/icons/bodybuilder.png">
-                                            <label class="form-check-label" for="activity-icon-strength">
-                                                <img src="../media/assets/icons/bodybuilder.png" alt="strength"
-                                                    style="height: 50px; width: auto"> Strength
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input me-2" type="radio" name="activity-icon"
-                                                id="activity-icon-icebath" value="../media/assets/icons/bath-tub.png">
-                                            <label class="form-check-label" for="activity-icon-icebath">
-                                                <img src="../media/assets/icons/bath-tub.png" alt="ice bath"
-                                                    style="height: 50px; width: auto"> Ice bath
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input me-2" type="radio" name="activity-icon"
-                                                id="activity-icon-running" value="../media/assets/icons/running.png">
-                                            <label class="form-check-label" for="activity-icon-running">
-                                                <img src="../media/assets/icons/running.png" alt="running"
-                                                    style="height: 50px; width: auto"> Running
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input me-2" type="radio" name="activity-icon"
-                                                id="activity-icon-tactics" value="../media/assets/icons/thinking.png">
-                                            <label class="form-check-label" for="activity-icon-tactics">
-                                                <img src="../media/assets/icons/thinking.png" alt="tactics"
-                                                    style="height: 50px; width: auto"> Tactics
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input me-2" type="radio" name="activity-icon"
-                                                id="activity-icon-kickoff"
-                                                value="../media/assets/icons/soccer-ball.png">
-                                            <label class="form-check-label" for="activity-icon-kickoff">
-                                                <img src="../media/assets/icons/soccer-ball.png" alt="kick-off"
-                                                    style="height: 50px; width: auto"> Kick-off
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input me-2" type="radio" name="activity-icon"
-                                                id="activity-icon-multidir"
-                                                value="../media/assets/icons/directions.png">
-                                            <label class="form-check-label" for="activity-icon-multidir">
-                                                <img src="../media/assets/icons/directions.png" alt="multi-directional"
-                                                    style="height: 50px; width: auto"> Multi-directional
-                                            </label>
+                        <div class="col-md-8 light-scroller" style="max-height:70vh;overflow-y:auto;">
+                            <div id="add-new-day-activity-form-container">
+                                <!-- dynamically add this form based on whether the selected date/day has a schedule or not. If has schedule, only request the new activity else get the full schedule submission form -->
+                                <form id="teams-add-new-day-activity-data-form"
+                                    class="text-center p-4 comfortaa-font fs-5 shadow" style="border-radius: 25px;"
+                                    method="post"
+                                    action="../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/teams_add_new_activity_day_form_submit.php"
+                                    autocomplete="off">
+                                    <div class="form-group my-4">
+                                        <label for="activity-title" class="comfortaa-font fs-5 text-start"
+                                            style="color: #ffa500;">Activity title:</label>
+                                        <input class="form-control-text-input p-4" type="text" name="activity-title"
+                                            id="activity-title" placeholder="Activity Title (Required)" required />
+                                    </div>
+                                    <div class="form-group my-4">
+                                        <label for="rpe" class="comfortaa-font fs-5 text-start"
+                                            style="color: #ffa500;">RPE:</label>
+                                        <input class="form-control-text-input p-4" type="number" name="rpe" id="rpe"
+                                            placeholder="RPE (Required)" required />
+                                    </div>
+                                    <div class="form-group my-4">
+                                        <h5 class="text-start" style="color: #ffa500;">Assign an icon:</h5>
+                                        <div class="input-group gap-2 chart-col-bar-item"
+                                            style="transform: scale(1,1) !important;">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input me-2" type="radio" name="activity-icon"
+                                                    id="activity-icon-cycling"
+                                                    value="../media/assets/icons/cycling.png">
+                                                <label class="form-check-label" for="activity-icon-cycling">
+                                                    <img src="../media/assets/icons/cycling.png" alt="cycling/spinning"
+                                                        style="height: 50px; width: auto"> Cycling / Spinning
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input me-2" type="radio" name="activity-icon"
+                                                    id="activity-icon-strength"
+                                                    value="../media/assets/icons/bodybuilder.png">
+                                                <label class="form-check-label" for="activity-icon-strength">
+                                                    <img src="../media/assets/icons/bodybuilder.png" alt="strength"
+                                                        style="height: 50px; width: auto"> Strength
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input me-2" type="radio" name="activity-icon"
+                                                    id="activity-icon-icebath"
+                                                    value="../media/assets/icons/bath-tub.png">
+                                                <label class="form-check-label" for="activity-icon-icebath">
+                                                    <img src="../media/assets/icons/bath-tub.png" alt="ice bath"
+                                                        style="height: 50px; width: auto"> Ice bath
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input me-2" type="radio" name="activity-icon"
+                                                    id="activity-icon-running"
+                                                    value="../media/assets/icons/running.png">
+                                                <label class="form-check-label" for="activity-icon-running">
+                                                    <img src="../media/assets/icons/running.png" alt="running"
+                                                        style="height: 50px; width: auto"> Running
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input me-2" type="radio" name="activity-icon"
+                                                    id="activity-icon-tactics"
+                                                    value="../media/assets/icons/thinking.png">
+                                                <label class="form-check-label" for="activity-icon-tactics">
+                                                    <img src="../media/assets/icons/thinking.png" alt="tactics"
+                                                        style="height: 50px; width: auto"> Tactics
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input me-2" type="radio" name="activity-icon"
+                                                    id="activity-icon-kickoff"
+                                                    value="../media/assets/icons/soccer-ball.png">
+                                                <label class="form-check-label" for="activity-icon-kickoff">
+                                                    <img src="../media/assets/icons/soccer-ball.png" alt="kick-off"
+                                                        style="height: 50px; width: auto"> Kick-off
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input me-2" type="radio" name="activity-icon"
+                                                    id="activity-icon-multidir"
+                                                    value="../media/assets/icons/directions.png">
+                                                <label class="form-check-label" for="activity-icon-multidir">
+                                                    <img src="../media/assets/icons/directions.png"
+                                                        alt="multi-directional" style="height: 50px; width: auto">
+                                                    Multi-directional
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group my-4">
-                                    <label for="activity-select"
-                                        class="comfortaa-font fs-5 text-start add-to-calender-activity-selection"
-                                        style="color: #ffa500;">1. Workout / Activity:</label>
-                                    <select class="custom-select form-control-select-input p-4" name="activity-select"
-                                        id="activity-select" required>
-                                        <option value='no-selection'>Select a workout / activity.</option>
-                                        $workout_activities_list
-                                        <option value='specified'>Specify</option>
-                                    </select>
-                                </div>
-                                <!-- submit btn -->
-                                <button id="submit-teams-add-new-day-activity-data-form"
-                                    class="btn onefit-buttons-style-tahiti p-4" type="submit" value="submit">
-                                    <span class="material-icons material-icons-round align-middle"> add_circle </span>
-                                    <span class="align-middle">Add.</span>
-                                </button>
-                            </form>
+                                    <div class="form-group my-4">
+                                        <label for="activity-select"
+                                            class="comfortaa-font fs-5 text-start add-to-calender-activity-selection"
+                                            style="color: #ffa500;">1. Workout / Activity:</label>
+                                        <select class="custom-select form-control-select-input p-4"
+                                            name="activity-select" id="activity-select" required>
+                                            <option value='no-selection'>Select a workout / activity.</option>
+                                            $workout_activities_list
+                                            <option value='specified'>Specify</option>
+                                        </select>
+                                    </div>
+                                    <!-- submit btn -->
+                                    <button id="submit-teams-add-new-day-activity-data-form"
+                                        class="btn onefit-buttons-style-tahiti p-4" type="submit" value="submit">
+                                        <span class="material-icons material-icons-round align-middle"> add_circle
+                                        </span>
+                                        <span class="align-middle">Add.</span>
+                                    </button>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
 
@@ -12741,7 +12906,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             </div>`;
 
         var widgetLocationIndicator =
-            `<div class="text-center fs-5 text-muted comfortaa-font my-5 p-4 border-1 border" style="border-radius: 15px;"> <span class="material-icons material-icons-round" style="font-size: 24px !important"> widgets </span> Widgets panel. </div>`;
+            `<div class="text-center fs-5 text-muted comfortaa-font my-5 p-4 border-1 border" style="border-radius: 15px;"> <span class="material-icons material-icons-round" style="font-size: 24px !important"> interests </span> Widgets panel. </div>`;
 
         $('#widgets-panel-clock').html(clockHtml);
         // replace with "Check widgets panel"
@@ -13669,7 +13834,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // update the date displayed in #selected-calender-date-display-lbl and sync training data to the selected date
         $('#selected-calender-date-display-lbl').html(
-            `<span class="material-icons material-icons-sharp align-middle" style="font-size:20px!important;color:var(--tahitigold)!important;">calendar_month</span> <span class="align-middle" style="font-size:8px;">` +
+            `<span class="material-icons material-icons-sharp align-middle" style="font-size:20px!important;color:var(--tahitigold)!important;">calendar_month</span> <span class="align-middle" style="font-size:14px!important;">` +
             dateQueried.toDateString() + `</span>`); // or toLocalDateString() for dd/mm/yyyy format
     }
     // sync data stored in local storage with remote storage for specified chartObj
@@ -14621,7 +14786,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // assign current date to #selected-calender-date-display-lbl innerhtml
         document.getElementById('selected-calender-date-display-lbl').innerHTML =
-            `<span class="material-icons material-icons-sharp align-middle" style="font-size:20px!important;color:var(--tahitigold)!important;">calendar_month</span>  <span class="align-middle" style="font-size:8px;">` +
+            `<span class="material-icons material-icons-sharp align-middle" style="font-size:20px!important;color:var(--tahitigold)!important;">calendar_month</span>  <span class="align-middle" style="font-size:14px!important;">` +
             dateNow.toDateString() + `</span>`; // or toLocalDateString() for dd/mm/yyyy format
     }
 
@@ -16445,6 +16610,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     // load Teams Activity Capturing Form
     $.loadTeamsActivityCaptureForm = function(day, grpRefcode) {
+        console.log("$.loadTeamsActivityCaptureForm Day: " + day);
         // alert("../scripts/php/main_app/data_management/system_admin/team_athletics_data/compile_teams_add_new_activity_day_form.php?day=" + day + "&gref=" + grpRefcode);
 
         // get the currently selected teams grcode from #trainingSubTabMainTeamSelection :. onchange func for this elem is $.trainingSubTabMainTeamSelection
@@ -16453,8 +16619,10 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         if (mainTeamSelectionGRCode == 'noselection') {
             alert('Please select a team from the Switch Team Selection and try again.');
-            // smooth scroll
-            $.smoothScroll('#v-sub-tab-pills-insights-teamathletics', '#trainingSubTabMainTeamSelection');
+            // smooth scroll - do not smooth scroll to the #trainingSubTabMainTeamSelection elem as it is already in view
+            // $.smoothScroll('#v-sub-tab-pills-insights-teamathletics', '#trainingSubTabMainTeamSelection');
+            // click the #collapseTeamSelectBtn elem to show the collapseed team selection panel
+            $('#collapseTeamSelectBtn').click();
             // console.log focus event
             console.log('[$.loadTeamsActivityCaptureForm] focus event: #trainingSubTabMainTeamSelection')
             // set focus
@@ -16464,26 +16632,69 @@ if (isset($_SESSION["currentUserAuth"])) {
             grpRefcode = mainTeamSelectionGRCode;
             localStorage.setItem('grcode', grpRefcode);
 
-            $.get("../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/compile/compile_teams_add_new_activity_day_form.php?day=" +
+            // get - compile the preview column-bar content
+            $.get("../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/compile/compile_teams_day_activities_preview_column_bar.php?day=" +
                 day + "&gref=" + grpRefcode,
                 function(data, status) {
-                    console.log("loadTeamsActivityCaptureForm returned: \n[Status]: " + status + "\n[Data]: " +
+                    console.log("loadTeamsActivityCaptureForm returned [GET 1]: \n[Status]: " + status +
+                        "\n[Data]: " +
                         data);
 
                     if (status != "success") {
                         // provide an error message
-                        console.log("Get Req Failed -> $.loadTeamsActivityCaptureForm returned: \n[Status]: " +
+                        console.log(
+                            "Get Req Failed -> $.loadTeamsActivityCaptureForm returned [GET 1]: \n[Status]: " +
                             status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.loadTeamsActivityCaptureForm returned: \n[Status]: " +
+                        alert("Get Req Failed -> $.loadTeamsActivityCaptureForm returned [GET 1]: \n[Status]: " +
                             status + "\n[Data]: " + data);
                         showSnackbar("Failed to Load Activities Bar Preview.");
                     } else {
                         // populate the modal body
                         $('#display-activity-bar-preview').html(data);
-                        $('#toggleTabeditWeeklyTeamsTrainingScheduleModalBtn').click();
-                        showSnackbar("Activities Bar Preview Loaded.");
+                        // $('#toggleTabeditWeeklyTeamsTrainingScheduleModalBtn').click();
+                        // showSnackbar("Activities Bar Preview Loaded.");
                     }
                 });
+
+            // get - compile the data update form from 
+            $.get("../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/compile/compile_teams_schedule_activity_submit_form.php?day=" +
+                day + "&gref=" + grpRefcode,
+                function(data, status) {
+                    console.log("loadTeamsActivityCaptureForm returned [GET 2]: \n[Status]: " + status +
+                        "\n[Data]: " +
+                        data);
+
+                    if (status != "success") {
+                        // provide an error message
+                        console.log(
+                            "Get Req Failed -> $.loadTeamsActivityCaptureForm returned [GET 2]: \n[Status]: " +
+                            status + "\n[Data]: " + data);
+                        alert("Get Req Failed -> $.loadTeamsActivityCaptureForm returned [GET 2]: \n[Status]: " +
+                            status + "\n[Data]: " + data);
+                        showSnackbar("Failed to Load Activities Bar Preview.");
+                    } else {
+                        // check the returned result, if equals to "new_schedule_form" then transfer form html inside #add-new-schedule-form-container elem to #add-new-day-activity-form-container elem
+                        if (data == "new_schedule_form") {
+                            // transfer form html inside #add-new-schedule-form-container elem to #add-new-day-activity-form-container elem
+                            let newScheduleForm = $('#add-new-schedule-form-container').html();
+                            console.log("New Schedule Form: \n" + newScheduleForm);
+                            $('#add-new-day-activity-form-container').html(newScheduleForm);
+                            // update the date and day
+                            $('#add-to-calender-activity-day-value').val(day);
+                            $('#add-to-calender-activity-date-value').val(formatDate(Date.now()));
+
+                        } else {
+                            console.log("Returned data: \n" + data);
+                            // populate the modal body
+                            $('#add-new-day-activity-form-container').html(data);
+                        }
+
+                        // showSnackbar("Add exercise / activity form loaded.");
+                    }
+                });
+
+            // 
+            $('#toggleTabeditWeeklyTeamsTrainingScheduleModalBtn').click();
         }
 
     }
