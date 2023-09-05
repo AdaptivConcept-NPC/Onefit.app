@@ -8,3 +8,4 @@ media/
 scripts/php/api/OAuth/GoogleOAuth_CS
 
 # ignore google api services folder
+node_modules/
