@@ -3,3 +3,4 @@
 
 # ignore media folder as it is too big for upload to the server
 media/
+node_modules
