@@ -15,7 +15,11 @@ if (!isset($_GET['usnm'])) die("Fatal Error");
 $user_loggedin_username =
     $final_output =
     $output_user_account_profile_img =
-    $verif_icon = null;
+    $verif_icon =
+    $verif_icon_tahiti =
+    $verif_icon_dark =
+    $verif_icon_white =
+    $verif_icon_nocolor = null;
 
 $user_friend_count =
     $user_workout_achievements_count =
@@ -103,39 +107,45 @@ try {
 
     // verification icon
     if ($usrdetails_verification == "verified") {
-        $verif_icon = '<span class="material-icons material-icons-round align-middle" style="font-size: 80px !important;color:var(--tahitigold);"> verified_user </span>';
-        $verif_label = "Verified.";
+        $verif_icon_tahiti = '<span class="material-icons material-icons-round align-middle" style="font-size: 80px !important;color:var(--tahitigold);"> verified_user </span>';
+        $verif_icon_dark = '<span class="material-icons material-icons-round align-middle" style="font-size: 80px !important;color:var(--mineshaft);"> verified_user </span>';
+        $verif_icon_white = '<span class="material-icons material-icons-round align-middle" style="font-size: 80px !important;color:var(--white);"> verified_user </span>';
+        $verif_icon_nocolor = '<span class="material-icons material-icons-round align-middle" style="font-size: 80px !important;"> verified_user </span>';
+        $verif_label = "Pro";
     } else {
-        $verif_icon = '<span class="material-icons material-icons-round align-middle" style="font-size: 80px !important;color:var(--tahitigold);"> groups </span>';
-        $verif_label = "Community.";
+        $verif_icon_tahiti = '<span class="material-icons material-icons-round align-middle" style="font-size: 80px !important;color:var(--tahitigold);"> groups_3 </span>';
+        $verif_icon_dark = '<span class="material-icons material-icons-round align-middle" style="font-size: 80px !important;color:var(--dark);"> groups_3 </span>';
+        $verif_icon_white = '<span class="material-icons material-icons-round align-middle" style="font-size: 80px !important;color:var(--white);"> groups_3 </span>';
+        $verif_icon_nocolor = '<span class="material-icons material-icons-round align-middle" style="font-size: 80px !important;"> groups_3 </span>';
+        $verif_label = "Community";
     }
 
     // switch $usrdetails_profiletype
     switch ($usrdetails_profiletype) {
         case "private":
-            $usrdetails_profiletype = ".Premiere";
+            $usrdetails_profiletype = "Premiere";
             break;
         case "trainer":
-            $usrdetails_profiletype = ".Trainer";
+            $usrdetails_profiletype = "Trainer";
             break;
         case "community_trainer":
-            $usrdetails_profiletype = ".CommTrainer";
+            $usrdetails_profiletype = "CommTrainer";
             break;
         case "trainee":
-            $usrdetails_profiletype = ".Pro";
+            $usrdetails_profiletype = "Pro";
             break;
         case "admin":
-            $usrdetails_profiletype = ".Administrator";
+            $usrdetails_profiletype = "Administrator";
             break;
         case "community":
-            $usrdetails_profiletype = ".CommTrainee";
+            $usrdetails_profiletype = "CommTrainee";
             break;
         case "community_trainee":
-            $usrdetails_profiletype = ".CommTrainee";
+            $usrdetails_profiletype = "CommTrainee";
             break;
         default:
             // public: community members
-            $usrdetails_profiletype = "Guest.";
+            $usrdetails_profiletype = "Guest";
             break;
     }
 
@@ -271,23 +281,35 @@ try {
                 $output_user_account_profile_img
             </div>
             <!-- ./ Profile Picture -->
-            <div id="profile-verification-strip" class="p-4" style="background:#343434;">
+            <div id="profile-verification-strip" class="p-4 pb-0 d-grid gap-4" style="background:#343434;">
                 <p class="poppins-font p-4 pb-0 m-0 fs-1">$usrdetails_name $usrdetails_surname</p>
-                <div class="d-grid gap-2">
-                    <div class="text-center mb-3">
-                        <span class="comfortaa-font" style="font-size:12px;color:var(--tahitigold);">@$user_loggedin_username</span>
+                <div class="d-grid gap-2 mb-4">
+                    <div class="text-center mb-3 d-none">
+                        <span class="barcode-font" style="font-size:16px;color:var(--white);">
+                            <span style="color:var(--tahitigold);">
+                                @$user_loggedin_username
+                            </span>
+                        </span>
                     </div>
-                    <div class="row gap-4 align-items-end">
-                        <div class="col-sm-5 text-sm-end">
-                            <span class="comfortaa-font mb-2" style="font-size:14px;color:var(--tahitigold);"> $verif_label </span>
+                    <div class="d-flex gap-4 align-items-center justify-content-evenly">
+                        <div class="col-sm-5 text-sm-end d-none d-md-block">
+                            <span class="poppins-font" style="font-size:16px;color:var(--white);">
+                                <span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;color:var(--tahitigold);">
+                                    alternate_email
+                                </span> $user_loggedin_username
+                            </span>
                         </div>
                         <div class="col-sm d-grid justify-content-center">
-                            <div class="border-start border-end border-light border-5 p-4" style="border-radius:15px;">
-                                $verif_icon
+                            <div class="border-start border-end border-light border-5 p-4 py-2" style="border-radius:15px;">
+                                $verif_icon_tahiti
+                                <span class="comfortaa-font mb-2 text-truncate" style="font-size:14px;color:var(--white);"> $verif_label </span>
                             </div>
                         </div>
-                        <div class="col-sm-5 text-sm-start">
-                            <span class="comfortaa-font mb-2" style="font-size:14px;color:var(--tahitigold);"> $usrdetails_profiletype </span>
+                        <div class="col-sm-5 text-sm-start d-none d-md-block">
+                            <span class="poppins-font mb-2" style="font-size:16px;color:var(--white);"> $usrdetails_profiletype </span>
+                            <span class="material-icons material-icons-round align-middle" style="font-size: 22px !important;color:var(--tahitigold);">
+                                workspaces
+                            </span>
                         </div>
                     </div>
                     <!--<div class="d-flex gap-4 justify-content-center align-items-end"></div>-->
@@ -296,66 +318,69 @@ try {
         </div>
         <!--<hr class="text-white" />-->
         <!-- main buttons for interacting with user profile -->
-        <div class="d-flex justify-content-around align-items-center p-4 mx-2" style="background-color: #343434;border-radius:0 0 25px 25px;">
-            <!--  -->
-            <button type="button"
-                class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid position-relative">
-                <span
-                    class="material-icons material-icons-round align-middle"
-                    style="font-size: 40px !important">follow_the_signs</span>
-                <span class="align-middle"
-                    style="font-size: 10px;">
-                    Followers
+        <div class="d-flex justify-content-evenly aroundz align-items-center p-4 pt-0 mx-2" style="background-color: #343434;border-radius:0 0 25px 25px;">
+            <!-- audience -->
+            <button type="button" class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid position-relative gap-4">
+                <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">follow_the_signs</span>
+                <span class="align-middle d-none d-lg-block" style="font-size: 12px;">
+                    Audience
                 </span>
-                <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill text-dark p-2 px-3 poppins-font fs-5z shadow" style="background-color:var(--tahitigold)!important;">
+                <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill text-dark p-2 px-3 poppins-font fs-5z shadow" style="background-color:var(--tahitigold)!important;">
                     99+ <span class="visually-hidden">followers</span>
                 </span>
             </button>
             <!-- visual divide -->
             <div>
-                <span
-                    class="material-icons material-icons-round align-middle"
-                    style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
+                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important; color: var(--tahitigold) !important; transform: rotate(90deg);">
                     horizontal_rule
                 </span>
             </div>
             <!-- ./ visual divide -->
-            <!--  -->
-            <button type="button"
-                class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid position-relative">
-                <span
-                    class="material-icons material-icons-round align-middle"
-                    style="font-size: 40px !important"> handshake
+            <!-- support -->
+            <button type="button" class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid position-relative gap-4">
+                <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important"> handshake
                 </span>
-                <span class="align-middle"
-                    style="font-size: 10px;">
+                <span class="align-middle d-none d-lg-block" style="font-size: 12px;">
                     Trainer Support
                 </span>
-                <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill text-dark p-2 px-3 poppins-font fs-5z shadow" style="background-color:var(--tahitigold)!important;">
-                    12 interactions <span class="visually-hidden">support requests</span>
+                <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill text-dark p-2 px-3 poppins-font fs-5z shadow" style="background-color:var(--tahitigold)!important;">
+                    12 interactions <span class="visually-hidden">Trainer Support</span>
                 </span>
             </button>
             <!-- visual divide -->
             <div>
-                <span
-                    class="material-icons material-icons-round align-middle"
-                    style="font-size: 20px !important; color: #ffa500 !important; transform: rotate(90deg);">
+                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important; color: var(--tahitigold) !important; transform: rotate(90deg);">
                     horizontal_rule
                 </span>
             </div>
             <!-- ./ visual divide -->
-            <!--  -->
-            <button type="button"
-                class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid position-relative">
-                <span
-                    class="material-icons material-icons-round align-middle"
-                    style="font-size: 40px !important"> 3p </span>
-                <span class="align-middle"
-                    style="font-size: 10px;">
+            <!-- messages -->
+            <button type="button" class="onefit-buttons-style-dark p-4 m-1 border-1 bg-transparent d-grid position-relative gap-4" onclick="$('#app-msgs-btn').click()">
+                <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important"> 3p </span>
+                <span class="align-middle d-none d-lg-block" style="font-size: 12px;">
                     Messages
                 </span>
-                <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill text-dark p-2 px-3 poppins-font fs-5z shadow" style="background-color:var(--tahitigold)!important;">
+                <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill text-dark p-2 px-3 poppins-font fs-5z shadow" style="background-color:var(--tahitigold)!important;">
                     99+ <span class="visually-hidden">unread messages</span>
+                </span>
+            </button>
+            <!-- visual divide -->
+            <div>
+                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important; color: var(--tahitigold) !important; transform: rotate(90deg);">
+                    horizontal_rule
+                </span>
+            </div>
+            <!-- ./ visual divide -->
+            <!-- go live -->
+            <button type="button" class="onefit-buttons-style-red p-4 m-1 border-1 bg-transparent d-grid gap-4 position-relative">
+                <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important"> live_tv </span>
+                <span class="align-middle d-none d-lg-block" style="font-size: 12px;">
+                    <!-- <span style="color: var(--tahitigold) !important;">+</span> -->
+                    <span class="material-icons material-icons-round align-middle" style="font-size: 12px !important; color: var(--red);"> radio_button_checked
+                    </span> Go Live
+                </span>
+                <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill text-white p-2 px-3 poppins-font fs-5 shadow" style="background-color:var(--red)!important;">
+                    Live <span class="visually-hidden">live status</span>
                 </span>
             </button>
         </div>
@@ -368,7 +393,7 @@ try {
             <div id="fitness-progression-progress-bar" class="bar-fpwidget">
                 <h5 class="mt-4 text-center fs-1"><span class="material-icons material-icons-outlined align-middle" style="color: #fff;">data_exploration</span> <span class="align-middle">Fitness Progression</span></h5>
                 <div class="progress mt-4 bg-white" style="height:20px;border:1px solid white !important;">
-                    <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: $fp_xp_progression_rate%; background-color: #343434 !important; border-right: #ffa500 10px solid;" aria-valuenow="$fp_xp_progression_rate" aria-valuemin="$user_current_fp_xp" aria-valuemax="$goal_fp_xp"></div>
+                    <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: $fp_xp_progression_rate%; background-color: #343434 !important; border-right: var(--tahitigold) 10px solid;" aria-valuenow="$fp_xp_progression_rate" aria-valuemin="$user_current_fp_xp" aria-valuemax="$goal_fp_xp"></div>
                 </div>
                 <div class="mt-2 w-100 d-flex justify-content-between" style="margin-bottom:20px!important;">
                     <p class="text-start m-0 poppins-font" style="font-size: 12px;">
@@ -400,53 +425,64 @@ try {
         <!-- user detailed progression list - user info -->
         <ol class="p-4 list-group list-group-numberedz list-group-flush p-4 mx-2 edge-line-tahiti-vertical-grad-slanted gap-4" style="background-color: rgba(52, 52, 52, 1);border-radius:25px;margin-top:-25px;">
             <li class="p-4 list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark left-right-grad-mineshaft" style="border-radius:25px">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold users-name-tag fs-5 mb-2" style="color: #ffa500">
-                        $usrdetails_name $usrdetails_surname
+                <div class="d-flex gap-2 align-items-center">
+                    <div class="text-center d-none d-lg-block">
+                        <span class="material-icons material-icons-round d-none">
+                            assignment_ind
+                        </span>
+                        $output_user_account_profile_img
                     </div>
-                    <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500; font-size: 20px !important;">alternate_email</span>
-                    <span class="username-tag mb-4 barcode-fontz">$user_loggedin_username</span><br />
-                    <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500; font-size: 20px !important;">data_exploration</span> 
-                    <span class="align-middle">Level 1 [$user_current_fp_xp xp]</span>
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold users-name-tag fs-5 mb-2" style="color: var(--tahitigold)">
+                            $usrdetails_name $usrdetails_surname
+                        </div>
+                        <span class="material-icons material-icons-outlined align-middle" style="color: var(--tahitigold); font-size: 20px !important;">alternate_email</span>
+                        <span class="username-tag mb-4 barcode-fontz">$user_loggedin_username</span><br />
+                        <span class="material-icons material-icons-outlined align-middle" style="color: var(--tahitigold); font-size: 20px !important;">data_exploration</span> 
+                        <span class="align-middle">Level 1 [$user_current_fp_xp xp]</span>
+                    </div>
                 </div>
-                <span class="badge bg-primary p-4" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
-                    $verif_icon
+                <span class="badge bg-primary p-4 d-grid" style="background-color: var(--tahitigold) !important; color: var(--mineshaft) !important; border-radius: 25px">
+                    $verif_icon_dark
+                    <span>$verif_label Groups</span>
                 </span>
             </li>
             <!-- Friends section -->
             <li class="p-4 list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark left-right-grad-mineshaft" style="border-radius:25px">
                 <div class="ms-2 me-auto">
-                    <div class="fw-bold mb-2" style="color: #ffa500">Followers</div>
+                    <h5 class="fw-bold mb-2 fs-5" style="color: var(--tahitigold)">Audience</h5>
                     <span>$user_friend_count Friends</span><br />
                     <span>0 Followers</span><br />
                     <span>0 Following</span>
                 </div>
-                <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
-                    <span class="material-icons material-icons-round" style="font-size: 40px !important"> people_alt </span>
+                <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: var(--tahitigold) !important; color: var(--mineshaft) !important; border-radius: 25px">
+                    <span class="material-icons material-icons-round" style="font-size: 80px !important"> people_alt </span>
                     <span>$user_friend_count</span>
                 <span>
             </li>
             <!-- Achievements section -->
             <li class="p-4 list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark left-right-grad-mineshaft" style="border-radius:25px">
                 <div class="ms-2 me-auto">
-                    <div class="fw-bold mb-2" style="color: #ffa500">Achievements</div>
-                    <span>$user_workout_achievements_count Achievements</span><br />
-                    <span>0 Awards</span><br />
+                    <h5 class="fw-bold mb-2 fs-5" style="color: var(--tahitigold)">Achievements</h5>
+                    <span>$user_workout_achievements_count Awards</span><br />
+                    <span>$user_workout_achievements_count Rewards</span><br />
+                    <span>Total Achievements</span><br />
                 </div>
-                <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
-                    <span class="material-icons material-icons-round" style="font-size: 40px !important"> emoji_events </span>
+                <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: var(--tahitigold) !important; color: var(--mineshaft) !important; border-radius: 25px">
+                    <span class="material-icons material-icons-round" style="font-size: 80px !important"> emoji_events </span>
                     <span>$user_workout_achievements_count</span>
                 </span>
             </li>
             <!-- Challengess section -->
             <li class="p-4 list-group-item d-flex justify-content-between align-items-center bg-transparent shadow text-white border-dark left-right-grad-mineshaft" style="border-radius:25px">
                 <div class="ms-2 me-auto">
-                    <div class="fw-bold mb-2" style="color: #ffa500">Challenges</div>
-                    <span>$user_challenge_cmplt_count Challenges Completed</span>
+                    <h5 class="fw-bold mb-2 fs-5" style="color: var(--tahitigold)">Challenges</h5>
+                    <span>$user_challenge_cmplt_count Challenges Completed</span><br/>
+                    <span>$user_challenge_cmplt_count Total Challenges</span>
                 </div>
-                <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: #ffa500 !important; color: #333 !important; border-radius: 25px">
-                    <span class="material-icons material-icons-round" style="font-size: 40px !important"> stars </span>
-                    <span>$user_challenge_cmplt_count</span>
+                <span class="badge bg-primary p-4 d-grid align-items-center fs-5" style="background-color: var(--tahitigold) !important; color: var(--mineshaft) !important; border-radius: 25px">
+                    <span class="material-icons material-icons-round" style="font-size: 80px !important"> stars </span>
+                    <span>$user_challenge_cmplt_count%</span>
                 </span>
             </li>
         </ol>

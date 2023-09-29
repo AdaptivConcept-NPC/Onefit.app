@@ -128,7 +128,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
     <title><?php echo $usrprof_name . " " . $usrprof_surname; ?> - Onefit.app&trade; | Onefit.Net&reg; &copy;
         <?php echo date('Y'); ?></title>
 
@@ -933,7 +933,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- Main Content -->
     <main id="main-content-container" class="container-lg" style="padding-bottom: 50px">
         <!-- Main Navigation Bar -->
-        <nav id="main-navbar" class="navbar sticky-topz w-100 mb-4 py-4 top-down-grad-dark"
+        <nav id="main-navbar" class="navbar sticky-topz w-100 mb-4 p-4 top-down-grad-dark"
             style="border-radius: 25px; max-height: 100vh !important; border-top: var(--mineshaft) solid 0px;">
             <!-- App Function Buttons -->
             <div class="container d-flex gap-1 align-items-center w3-animate-top">
@@ -3351,10 +3351,72 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     style="color: #ffa500;">
                                                     rss_feed
                                                 </span><span class="align-middle"> RSS.</span></h5>
+
                                             <hr class="text-white">
-                                            <div id="more-stuff-rss-feed-container" style="min-height: 30vh;">
-                                                <!-- <iframe style="width: 100%;height:50vh;" src="https://rss.app/embed/v1/imageboard/tqX4YEeGEu1eOKAT" frameborder="0"></iframe> -->
-                                                <!-- width="100%" height="50vh" -->
+
+                                            <div class="mb-4 py-4" style="min-height: 30vh;"
+                                                id="more-stuff-rss-feed-container">
+                                                <!-- #FitnessandDiet -->
+                                                <h5><span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 22px !important;">rss_feed</span> <span
+                                                        class="align-middle" style="color: #ffa500;"><span
+                                                            class="text-muted">RSS.</span> #FitnessandDiet</span></h5>
+                                                <div class="mb-4 p-4"
+                                                    style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                                                    <!-- <rssapp-magazine id="tRprB0QxQKySE340"></rssapp-magazine>
+                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
+                                                    <span class="text-muted">RSS is down.</span>
+                                                </div>
+
+                                                <!-- #Wellness -->
+                                                <h5><span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 22px !important;">rss_feed</span> <span
+                                                        class="align-middle" style="color: #ffa500;"><span
+                                                            class="text-muted">RSS.</span> #Wellness</span></h5>
+                                                <div class="mb-4 p-4"
+                                                    style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                                                    <!-- <rssapp-magazine id="tdSnePzUjMvFu4nu"></rssapp-magazine>
+                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
+                                                    <span class="text-muted">RSS is down.</span>
+                                                </div>
+
+                                                <!-- #worldofsport feed -->
+                                                <h5><span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 22px !important;">rss_feed</span> <span
+                                                        class="align-middle" style="color: #ffa500;"><span
+                                                            class="text-muted">RSS.</span> #WorldofSports</span></h5>
+                                                <div class="mb-4 p-4"
+                                                    style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                                                    <!-- <rssapp-magazine id="tqX4YEeGEu1eOKAT"></rssapp-magazine>
+                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
+                                                    <span class="text-muted">RSS is down.</span>
+                                                </div>
+
+                                                <!-- #footballfocus feed -->
+                                                <h5><span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 22px !important;">rss_feed</span> <span
+                                                        class="align-middle" style="color: #ffa500;"><span
+                                                            class="text-muted">RSS.</span> #FootballFocus</span></h5>
+                                                <div class="mb-4 p-4"
+                                                    style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                                                    <!-- <rssapp-magazine id="omltJunAYvJxQiZc"></rssapp-magazine>
+                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
+                                                    <span class="text-muted">RSS is down.</span>
+                                                </div>
+
+                                                <!-- #HealthandLifestyle -->
+                                                <h5><span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 22px !important;">rss_feed</span> <span
+                                                        class="align-middle" style="color: #ffa500;"><span
+                                                            class="text-muted">RSS.</span> #HealthandLifestyle</span>
+                                                </h5>
+                                                <div class="mb-4 p-4"
+                                                    style="overflow: hidden; background-color: #333333; border-radius: 25px;">
+                                                    <!-- <rssapp-magazine id="tUyOEDFpWEUsTIO4"></rssapp-magazine>
+                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
+                                                    <span class="text-muted">RSS is down.</span>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -3716,20 +3778,33 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <!-- Store Items Container -->
                     <div class="p-4 top-down-grad-dark" style="border-radius: 25px;">
-                        <h5 class="fs-2 fw-bold text-center mb-4" style="color:var(--tahitigold)!important;">
-                            Browse our range of wearables and various training equipment.
-                        </h5>
-                        <p class="text-center pb-5">
-                            Need some stuff for your fitness journey, we have you coverd.
-                            Browse our selection of products and get them delivered to your door for free.
-                            It is in your benefit to become a Pro Member of the Onefit Community today!
-                            All Premium Mmembers get Loyalty Discounts on every purchase as well as many
-                            benefits to keep your fitness journey flowing.
-                            Go ahead and Register today, or better yet, become a Pro Member to reap greater fitness
-                            rewards.
-                        </p>
+                        <div class="row d-flexz justify-content-start align-items-center mb-4">
+                            <div class="col-md-3 text-center">
+                                <span class="material-icons material-icons-round"
+                                    style="font-size: 200px !important;color:var(--tahitigold)!important;">
+                                    storefront
+                                </span>
+                            </div>
+                            <div class="col-md text-start p-4"
+                                style="background-color:var(--mineshaft);border-radius:25px;">
+                                <h5 class="fs-2 fw-bold text-start mb-4" style="color:var(--tahitigold)!important;">
+                                    Browse our range of wearables and various training equipment.
+                                </h5>
+                                <p class="text-start">
+                                    Need some stuff for your fitness journey, we have you coverd.
+                                    Browse our selection of products and get them delivered to your door for free.
+                                    It is in your benefit to become a Pro Member of the Onefit Community today!
+                                    All Premium Mmembers get Loyalty Discounts on every purchase as well as many
+                                    benefits to keep your fitness journey flowing.
+                                    Go ahead and Register today, or better yet, become a Pro Member to reap greater
+                                    fitness
+                                    rewards.
+                                </p>
+                            </div>
+                        </div>
+
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-3 light-scroller" style="max-height:90vh;overflow-y:auto;">
                                 <div class="d-grid gap-2 d-lg-none d-xl-none d-xxl-none">
                                     <button class="onefit-buttons-style-dark p-4 mb-4" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#store-items-nav-menu"
@@ -3760,10 +3835,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 <div class="d-grid gap-2">
                                                     <span
                                                         class="material-icons material-icons-round">fitness_center</span>
-                                                    <p style="font-size: 10px;">Weights &amp; Dumbells</p>
+                                                    <p style="font-size: 10px;">Equipment</p>
                                                 </div>
                                             </button>
-                                            <button class="nav-link side-nav-link"
+                                            <!-- <button class="nav-link side-nav-link"
                                                 id="v-pills-social-store-equipment-exercisemachines-tab"
                                                 data-bs-toggle="pill"
                                                 data-bs-target="#v-pills-social-store-equipment-exercisemachines"
@@ -3775,7 +3850,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         class="material-icons material-icons-round">monitor_weight</span>
                                                     <p style="font-size: 10px;">Exercise Machines</p>
                                                 </div>
-                                            </button>
+                                            </button> -->
                                             <button class="nav-link side-nav-link"
                                                 id="v-pills-social-store-fitness-accessories-tab" data-bs-toggle="pill"
                                                 data-bs-target="#v-pills-social-store-fitness-accessories" type="button"
@@ -3783,7 +3858,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 aria-selected="false">
                                                 <div class="d-grid gap-2">
                                                     <span class="material-icons material-icons-round">backpack</span>
-                                                    <p style="font-size: 10px;">Fitness Accessories</p>
+                                                    <p style="font-size: 10px;">Training Accessories</p>
                                                 </div>
                                             </button>
                                             <button class="nav-link side-nav-link" id="v-pills-social-store-apparel-tab"
@@ -3817,17 +3892,18 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                 </div>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-9 light-scroller" style="max-height:90vh;overflow-y:auto;">
                                 <div class="tab-content" id="v-pills-tabContent">
                                     <div class="tab-pane fade show active w3-animate-right"
                                         id="v-pills-social-store-wearables" role="tabpanel"
                                         aria-labelledby="v-pills-social-store-wearables-tab">
-                                        <h5 class="fs-2 fw-bold text-center bg-white text-dark rounded-pill p-4 shadow">
+                                        <h5
+                                            class="fs-2 fw-bold text-center bg-whitez text-white rounded-pillz p-4 shadow sticky-top top-down-grad-dark m-0">
                                             Smart Watches &amp; Activity Trackers</h5>
                                         <hr>
 
                                         <!-- Smart watch Card Grid -->
-                                        <div class="container">
+                                        <div id="smartwatch-product-list" class="container">
                                             <div class="grid-container" id="store-smart-watch-grid-container">
                                                 <div class="text-center my-4" style="padding: 100px 10px;">
                                                     <small class="text-muted">No items to display. Check back
@@ -3869,555 +3945,6 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets//smartwatches/Apple Watch Series 3 GPS 38mm Silver Aluminium Case - White Sport Band R4400.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">Apple Watch Series 3 GPS 38mm Silver
-                                                            Aluminium Case - White Sport Band</h5>
-                                                        <h5 class="card-title">R4400</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/apple-watch-series-3-receives-a-massive-discount-530399-2.jpg"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">Apple Watch Series 3</h5>
-                                                        <h5 class="card-title">R4500</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/Astrum Wireless Bluetooth IP68 Sports Smart Watch - M2 Black R639.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">Astrum Wireless Bluetooth IP68
-                                                            Sports Smart Watch - M2 Black</h5>
-                                                        <h5 class="card-title">R639</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/FITBIT ALTA HR LARGE BLUE_GREY FITNESS TRACKER R24999.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">fitbit Alta HR Large Blue / Grey
-                                                            Fitness Tracker</h5>
-                                                        <h5 class="card-title">R2499</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/Fitbit Charge 4 Activity Tracker R2900.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">Fitbit Charge 4 Activity Tracker
-                                                        </h5>
-                                                        <h5 class="card-title">R2900</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/fitbit-versa2-3qtr-black.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">fitbit Versa 2 3QTR Black</h5>
-                                                        <h5 class="card-title">R1999</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/FocusFit Pro - X3C IP68 Smartwatch and Fitness Tracker R798.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">FocusFit Pro - X3C IP68 Smartwatch
-                                                            and Fitness Tracker</h5>
-                                                        <h5 class="card-title">R798</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/FocusFit Pro-T500 Smartwatch and Fitness Tracker R348.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">FocusFit Pro-T500 Smartwatch and
-                                                            Fitness Tracker</h5>
-                                                        <h5 class="card-title">R348</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/G30 smartwatch-heartrate monitor-bluetooth call-blood pressure (black) R799.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">G30 smartwatch-heartrate
-                                                            monitor-bluetooth call-blood pressure (black)</h5>
-                                                        <h5 class="card-title">R799</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/Genius F2 Activity Smart Watch R579.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">Genius F2 Activity Smart Watch</h5>
-                                                        <h5 class="card-title">R579</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/HUAWEI WATCH GT 2e Black R2899.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">HUAWEI WATCH GT 2e Black</h5>
-                                                        <h5 class="card-title">R2899</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/Series 7 Smart Watch Black R549.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">Series 7 Smart Watch Black</h5>
-                                                        <h5 class="card-title">R549</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/SM-R500NZKABTU_samsung_watch_01.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">SM-R500NZKABTU Samsung Watch</h5>
-                                                        <h5 class="card-title">R2990</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/Tempo Pulse 2.0 Black Fitness Watch R999.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">Tempo Pulse 2.0 Black Fitness Watch
-                                                        </h5>
-                                                        <h5 class="card-title">R999</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="card grid-tile shadow"
-                                                    style="background-color: #343434 !important; overflow: hidden;">
-                                                    <img src="../media/assets/smartwatches/Xiaomi - Mi Smart Band 4 Android & iOS Fitness Watch - Black R189.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fs-4">Xiaomi - Mi Smart Band 4 Android &
-                                                            iOS Fitness Watch - Black</h5>
-                                                        <h5 class="card-title">R189</h5>
-                                                        <p class="card-text">Watch Description.</p>
-                                                        <hr>
-                                                        <p class="card-text">Watch Features</p>
-                                                        <ol class="list-group list-group-numbered">
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to all Community and Level-1 to Level-2 Fitness
-                                                                Programs</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Access to Community Live Streams and Private 1-</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Premium 1-ON-1 Personal Trainer Support</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Diet-Bar Recommendations</li>
-                                                            <li
-                                                                class="list-group-item border-0 bg-transparent text-white">
-                                                                Onefoodie Meal-Kit Subscriptions</li>
-                                                        </ol>
-                                                    </div>
-                                                    <div class="card-footer d-grid">
-                                                        <button
-                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                            Add to Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                         <!-- ./ Smart watch Card Grid -->
@@ -4425,27 +3952,29 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="tab-pane fade show w3-animate-right"
                                         id="v-pills-social-store-weights-bumbells" role="tabpanel"
                                         aria-labelledby="v-pills-social-store-weights-bumbells-tab">
-                                        <h5 class="fs-1 fw-bold text-center bg-white text-dark rounded-pill p-4 shadow">
-                                            Weights &amp; Dumbells</h5>
+                                        <h5
+                                            class="fs-2 fw-bold text-center bg-whitez text-white rounded-pillz p-4 shadow sticky-top top-down-grad-dark m-0">
+                                            Equipment</h5>
                                         <hr>
                                         <div class="text-center my-4" style="padding: 100px 10px;">
                                             <small class="text-muted">No items to display. Check back soon.</small>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade show w3-animate-right"
+                                    <!-- <div class="tab-pane fade show w3-animate-right"
                                         id="v-pills-social-store-equipment-exercisemachines" role="tabpanel"
                                         aria-labelledby="v-pills-social-store-equipment-exercisemachines-tab">
-                                        <h5 class="fs-1 fw-bold text-center bg-white text-dark rounded-pill p-4 shadow">
+                                        <h5 class="fs-2 fw-bold text-center bg-whitez text-white rounded-pillz p-4 shadow sticky-top top-down-grad-dark m-0">
                                             Exercise Machines</h5>
                                         <hr>
                                         <div class="text-center my-4" style="padding: 100px 10px;">
                                             <small class="text-muted">No items to display. Check back soon.</small>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="tab-pane fade show w3-animate-right"
                                         id="v-pills-social-store-fitness-accessories" role="tabpanel"
                                         aria-labelledby="v-pills-social-store-fitness-accessories-tab">
-                                        <h5 class="fs-1 fw-bold text-center bg-white text-dark rounded-pill p-4 shadow">
+                                        <h5
+                                            class="fs-2 fw-bold text-center bg-whitez text-white rounded-pillz p-4 shadow sticky-top top-down-grad-dark m-0">
                                             Fitness Accessories</h5>
                                         <hr>
                                         <div class="text-center my-4" style="padding: 100px 10px;">
@@ -4454,7 +3983,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </div>
                                     <div class="tab-pane fade show w3-animate-right" id="v-pills-social-store-apparel"
                                         role="tabpanel" aria-labelledby="v-pills-social-store-apparel-tab">
-                                        <h5 class="fs-1 fw-bold text-center bg-white text-dark rounded-pill p-4 shadow">
+                                        <h5
+                                            class="fs-2 fw-bold text-center bg-whitez text-white rounded-pillz p-4 shadow sticky-top top-down-grad-dark m-0">
                                             Apparel</h5>
                                         <hr>
                                         <div class="text-center my-4" style="padding: 100px 10px;">
@@ -4464,46 +3994,58 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="tab-pane fade show w3-animate-right"
                                         id="v-pills-social-store-nutrition-supplements" role="tabpanel"
                                         aria-labelledby="v-pills-social-store-nutrition-supplements-tab">
-                                        <h5 class="fs-1 fw-bold text-center bg-white text-dark rounded-pill p-4 shadow">
+                                        <h5
+                                            class="fs-2 fw-bold text-center bg-whitez text-white rounded-pillz p-4 shadow sticky-top top-down-grad-dark m-0">
                                             Nutrition &amp; Supplements</h5>
                                         <hr>
                                         <div class="text-center my-4" style="padding: 100px 10px;">
                                             <small class="text-muted">No items to display. Check back soon.</small>
                                         </div>
                                         <!-- Meds and Supplements Card Grid -->
-                                        <div class="card-group">
-                                            <div class="card grid-tile shadow"
-                                                style="background-color: #343434 !important; overflow: hidden;">
-                                                <img src="../media/assets/OnefitNet Profile Pic Redone.png"
-                                                    class="card-img-top" alt="...">
-                                                <div class="card-body">
-                                                    <h5 class="card-title fs-4">Supplement 1</h5>
-                                                    <h5 class="card-title">Supplement Price</h5>
-                                                    <p class="card-text">Supplement Description.</p>
-                                                    <hr>
-                                                    <p class="card-text">Supplement Features</p>
-                                                    <ol class="list-group list-group-numbered">
-                                                        <li class="list-group-item border-0 bg-transparent text-white">
-                                                            Access to all Community and Level-1 to Level-2 Fitness
-                                                            Programs</li>
-                                                        <li class="list-group-item border-0 bg-transparent text-white">
-                                                            Access to Community Live Streams and Private 1-</li>
-                                                        <li class="list-group-item border-0 bg-transparent text-white">
-                                                            Premium 1-ON-1 Personal Trainer Support</li>
-                                                        <li class="list-group-item border-0 bg-transparent text-white">
-                                                            Diet-Bar Recommendations</li>
-                                                        <li class="list-group-item border-0 bg-transparent text-white">
-                                                            Onefoodie Meal-Kit Subscriptions</li>
-                                                    </ol>
-                                                </div>
-                                                <div class="card-footer d-grid">
-                                                    <button
-                                                        class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                                        Add to Cart
-                                                    </button>
+                                        <div class="container">
+                                            <div class="text-center my-4" style="padding: 100px 10px;">
+                                                <small class="text-muted">No items to display. Check back soon.</small>
+                                            </div>
+                                            <div id="nutrition-supplements-product-list" class="card-group d-none">
+                                                <div class="card grid-tile shadow"
+                                                    style="background-color: #343434 !important; overflow: hidden;">
+                                                    <img src="../media/assets/OnefitNet Profile Pic Redone.png"
+                                                        class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title fs-4">Supplement 1</h5>
+                                                        <h5 class="card-title">Supplement Price</h5>
+                                                        <p class="card-text">Supplement Description.</p>
+                                                        <hr>
+                                                        <p class="card-text">Supplement Features</p>
+                                                        <ol class="list-group list-group-numbered">
+                                                            <li
+                                                                class="list-group-item border-0 bg-transparent text-white">
+                                                                Access to all Community and Level-1 to Level-2 Fitness
+                                                                Programs</li>
+                                                            <li
+                                                                class="list-group-item border-0 bg-transparent text-white">
+                                                                Access to Community Live Streams and Private 1-</li>
+                                                            <li
+                                                                class="list-group-item border-0 bg-transparent text-white">
+                                                                Premium 1-ON-1 Personal Trainer Support</li>
+                                                            <li
+                                                                class="list-group-item border-0 bg-transparent text-white">
+                                                                Diet-Bar Recommendations</li>
+                                                            <li
+                                                                class="list-group-item border-0 bg-transparent text-white">
+                                                                Onefoodie Meal-Kit Subscriptions</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="card-footer d-grid">
+                                                        <button
+                                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <!-- Meds and Supplements Card Grid -->
                                     </div>
                                 </div>
@@ -4512,127 +4054,612 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
                     <!-- ./ Store Items Container -->
 
-                    <!-- Membership Sales Card Grid -->
-                    <h5 class="fs-1 fw-bold text-center my-4"><span class="material-icons material-icons-round">
-                            verified_user </span> Membership </h5>
-                    <div class="card-groupz grid-container">
-                        <div class="card grid-tile shadow"
-                            style="background-color: #343434 !important; overflow: hidden;">
-                            <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Community Fitness - Free</h5>
-                                <p class="card-text">The Community Fitness account offers Trainees with access to the
-                                    Onefit Community Content and Group Training Programs.
-                                    Sign up today to get access to over 100 curated fitness prograns and tailored
-                                    suggestions, including fitness and wellness tracking features.</p>
+                    <!-- Membership Sales Pricing Table -->
+                    <h5 class="fs-1 d-grid fw-bold text-center my-4 py-4" style="color:var(--white);">
+                        <span class="material-icons material-icons-round"
+                            style="font-size:80px!important;color:var(--tahitigold);">
+                            verified_user
+                        </span>
+                        <span><strong style="color:var(--tahitigold);">Pro</strong> Membership</span>
+                    </h5>
+                    <div class="table-responsive light">
+                        <table class="table table-stripedz shadow-lg align-middle"
+                            style="border-radius: 25px;overflow-y:auto;background-color: var(--mineshaft);color:#fff;">
+                            <thead>
+                                <tr>
+                                    <th colspan="5" scope="col p-4 text-start"
+                                        style="background-color:var(--white)!important;color:var(--mineshaft);border-radius:25px 25px 0 0 !important;overflow:hidden;">
+                                        <p class="text-center my-4 fs-3">Membership Benefits.</p>
+                                    </th>
+                                </tr>
+                                <tr class="text-center fs-3">
+                                    <th scope="col p-4 text-start">
+                                        <p class="align-middle my-4 text-start">Features</p>
+                                    </th>
+                                    <th scope="col p-4">
+                                        <p class="align-middle my-4">Community.<span
+                                                style="color:var(--tahitigold)">Indi</span></p>
+                                    </th>
+                                    <th scope="col p-4">
+                                        <p class="align-middle my-4">Pro.<span
+                                                style="color:var(--tahitigold)">Starter</span></p>
+                                    </th>
+                                    <th scope="col p-4">
+                                        <p class="align-middle my-4">Pro.<span
+                                                style="color:var(--tahitigold)">Athlete</span></p>
+                                    </th>
+                                    <th scope="col p-4">
+                                        <p class="align-middle my-4">Teams.<span
+                                                style="color:var(--tahitigold)">Pro</span>
+                                        </p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <tr>
+                                    <td colspan="5" class="text-center bg-white text-dark fw-bold fs-3"
+                                        style="background-color:var(--tahitigold);">For Individuals.</td>
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Pro.Starter Active kit (carry bag, water bottle, towel,
+                                        yoga-mat,
+                                        resistance band,
+                                        mini-tripod)</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
 
-                                <ol class="list-group list-group-numbered">
-                                    <li class="list-group-item border-0 bg-transparent text-white">Community Fitness
-                                        Programs and Resources</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Community Live
-                                        Streams</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Group-Training
-                                        Community Streams</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar
-                                        Recommendations</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit
-                                        Subscriptions</li>
-                                </ol>
-                            </div>
-                            <div class="card-footer d-grid">
-                                <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                    Free
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card grid-tile shadow"
-                            style="background-color: #343434 !important; overflow: hidden;">
-                            <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Indi.Starter Training (Basic) - 3 Months</h5>
-                                <p class="card-text">The Indi.Starter account offers Trainees access to Curated Premium
-                                    Fitness Programs from Level-1 to Level-3 of our
-                                    Catalogue as well as access to Personal Trainer Support services to make
-                                    transitioning into Fitness Process much easier.</p>
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Pro.Athlete Active kit (fitbit activity band, carry bag,
+                                        water
+                                        bottle, towel,
+                                        yoga-mat, resistance band, mini-tripod)</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
 
-                                <ol class="list-group list-group-numbered">
-                                    <li class="list-group-item border-0 bg-transparent text-white">Access to all
-                                        Community and Level-1 to Level-2 Fitness Programs</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Access to Community
-                                        Live Streams and Private 1-</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Premium 1-ON-1
-                                        Personal Trainer Support</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar
-                                        Recommendations</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit
-                                        Subscriptions</li>
-                                </ol>
-                            </div>
-                            <div class="card-footer d-grid">
-                                <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                    R1800 (3 Months)
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card grid-tile shadow"
-                            style="background-color: #343434 !important; overflow: hidden;">
-                            <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Indi.Pro Training (Pro) - 12 Months</h5>
-                                <p class="card-text">This card has supporting text below as a natural lead-in to
-                                    additional content.</p>
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">fitbit stats integration</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
 
-                                <ol class="list-group list-group-numbered">
-                                    <li class="list-group-item border-0 bg-transparent text-white">Community Fitness
-                                        Programs</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Community Live
-                                        Streams</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Group-Training
-                                        Community Streams</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar
-                                        Recommendations</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit
-                                        Weekly</li>
-                                </ol>
-                            </div>
-                            <div class="card-footer d-grid">
-                                <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                    R5200 (12 Months)
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card grid-tile shadow"
-                            style="background-color: #343434 !important; overflow: hidden;">
-                            <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Team.Pro Training (Pro) - Contact Sales</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional
-                                    content.
-                                    This card has even longer content than the first to show that equal height action.
-                                </p>
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Level-1 curated fitness programs.</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
 
-                                <ol class="list-group list-group-numbered">
-                                    <li class="list-group-item border-0 bg-transparent text-white">Community Fitness
-                                        Programs</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Community Live
-                                        Streams</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Group-Training
-                                        Community Streams</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Diet-Bar
-                                        Recommendations</li>
-                                    <li class="list-group-item border-0 bg-transparent text-white">Onefoodie Meal-Kit
-                                        Subscriptions</li>
-                                </ol>
-                            </div>
-                            <div class="card-footer d-grid">
-                                <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
-                                    Contact Sales
-                                </button>
-                            </div>
-                        </div>
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Level-2 curated fitness programs.</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Level-3 curated fitness programs.</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Pro rewards program (xp prizes).</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Community rewards program (xp prizes).</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Community Live Streams.</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Private group training</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Virtual training support.</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Personal trainer support.</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Wellness tools and counselling. </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Nutrition tracking and management tools.</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Dieticien support and meal-kits resources.</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="text-center">
+                                    <td colspan="5" class="text-center bg-white text-dark fw-bold fs-3">For Teams.</td>
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Power BI analytics dashboard.</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Google community survey dashboard.</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">Training resource research APIs (AdaptEngine™).</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="text-center">
+                                    <!-- <th scope="row">1</th> -->
+                                    <td class="text-start">AI content generation tools.</td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle">
+                                            highlight_off
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--tahitigold)!important;">
+                                            check_circle_outline
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                <tr class="py-4 border-0 text-center">
+                                    <td class="border-0 fs-1 text-truncate">Subscribe today!</td>
+                                    <td class="border-0 py-4">
+                                        <button
+                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold shadowz fs-2">
+                                            Free
+                                        </button>
+                                    </td>
+                                    <td class="border-0 py-4">
+                                        <button
+                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold shadowz">
+                                            R1800 (3 Months)
+                                        </button>
+                                    </td>
+                                    <td class="border-0 py-4">
+                                        <button
+                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold shadowz">
+                                            R5200 (12 Months)
+                                        </button>
+                                    </td>
+                                    <td class="border-0 py-4">
+                                        <button
+                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold shadowz">
+                                            Contact Sales
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- Membership Sales Card Grid -->
+
+                    <!-- Membership Sales Pricing Table -->
                 </div>
                 <!-- removed Onefit.Social Tab -->
                 <div id="TabData" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
@@ -9777,7 +9804,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div> -->
 
                         <!-- onefit.muse music widget (new widget style) -->
-                        <div class="p-0 darkpads-bg-container-static shadow border-5 border-start border-end border-bottom"
+                        <div class="p-0 darkpads-bg-container-static shadow border-5 border-start border-end border-top border-bottom"
                             id="track-info-visualizer-container"
                             style="border-color: #ffa500 !important; border-radius: 25px !important; overflow: hidden;">
                             <div class="down-top-grad-dark p-4 h-100 w-100">
@@ -9788,14 +9815,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         equalizer
                                     </span>
                                 </h5>
-                                <hr class="text-white" />
+                                <hr class="text-white">
                                 <!-- ./ widget title -->
 
                                 <div class="row align-items-center">
                                     <div class="col-md -4 text-center">
                                         <!--Thumbnail-->
                                         <div id="media-player-thumbnail" class="p-0 shadow border-bottom"
-                                            style="min-height: 20vh; border-radius: 25px; color: #fff; background-color: #343434; border-color: #ffa500 !important; border-width: 5px !important; overflow: hidden;">
+                                            style="min-height: 20vh; border-radius: 25px; color: #fff; background-color: black; border-color: #ffa500 !important; border-width: 5px !important; overflow: hidden;">
                                             <div class="card bg-dark text-white border-0">
                                                 <!-- style="border-radius: 25px !important;" -->
                                                 <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
@@ -9826,59 +9853,67 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         </div>
                                         <!--./ Thumbnail-->
 
-                                        <div class="d-grid gap-2 w-100">
-                                            <button class="onefit-buttons-style-dark shadow p-2 px-4 my-4"
-                                                style="transform: translate(0) !important;" id="museplayer-togglebtn"
-                                                type="button" data-bs-toggle="collapse"
+                                        <div class="d-grid gap-2 justify-content-centerz">
+                                            <button
+                                                class="onefit-buttons-style-darkz rounded-pill shadow p-2 mt-4 d-grid border border-5 collapsed"
+                                                style="transform: translate(0) !important;border-color: var(--tahitigold) !important;background-color: var(--mineshaft);"
+                                                id="museplayer-togglebtn" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#track-playid-songid" aria-expanded="false"
                                                 aria-controls="track-playid-songid">
-                                                <div class="row align-items-center w-100 text-center">
-                                                    <div class="col-sm text-start">
-                                                        <span
-                                                            class="material-icons material-icons-round rounded-pill shadow -sm p-3"
-                                                            style="font-size: 50px !important;">
-                                                            art_track
-                                                        </span>
-                                                    </div>
-                                                    <div class="col-sm py-4">
-                                                        track Title (00:00)
+                                                <div class="container w-100 p-0">
+                                                    <div
+                                                        class="d-flex gap-2 justify-content-between align-items-center w-100 text-center">
+
+                                                        <div class="col -sm py-4 shadow rounded-pill bg-whitez text-dark fw-bold"
+                                                            style="background-color:var(--tahitigold);">
+                                                            track Title (00:00)
+                                                        </div>
+                                                        <div class="col-2 text-end d-flex gap-2 justify-content-end">
+                                                            <span
+                                                                class="material-icons material-icons-round rounded-pill shadow-sm p-0 text-darkz"
+                                                                style="font-size: 50px !important;color: var(--tahitigold);">
+                                                                album
+                                                            </span>
+
+                                                        </div>
                                                     </div>
                                                 </div>
+
                                             </button>
                                         </div>
 
                                     </div>
-                                    <div class="col-xlg-8 mb-4 collapse w3-animate-right text-white"
-                                        id="track-playid-songid">
-                                        <div class="mb-4 py-2">
+                                    <div class="col-xlg-8 my-4 w3-animate-right text-white top-down-grad-tahiti collapse"
+                                        id="track-playid-songid" style="border-radius: 25px;">
+                                        <div class="mb-4z py-2 pt-4 fw-bold">
                                             <span class="material-icons material-icons-round align-middle"
-                                                style="font-size: 20px !important; color: #ffa500 !important;">info</span>
-                                            Track Information.
+                                                style="font-size: 20px !important; color: var(--mineshaft) !important;">info</span>
+                                            Media Info.
                                         </div>
 
                                         <hr class="text-white">
 
                                         <ul class="list-group list-group-flush">
                                             <li
-                                                class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-center">
+                                                class="onefit-buttons-style-dark list-group-item bg-transparent comfortaa-font fs-5 text-white text-center my-4">
                                                 <span class="align-middle">Like</span> <span
                                                     class="material-icons material-icons-round align-middle"
                                                     style="font-size: 20px !important;">thumb_up</span>
                                             </li>
                                             <li
-                                                class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-center">
+                                                class="onefit-buttons-style-dark list-group-item bg-transparent comfortaa-font fs-5 text-white text-center my-4">
                                                 <span class="align-middle">Share</span> <span
                                                     class="material-icons material-icons-round align-middle"
                                                     style="font-size: 20px !important;">share</span>
                                             </li>
                                             <li
-                                                class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-center">
+                                                class="onefit-buttons-style-dark list-group-item bg-transparent comfortaa-font fs-5 text-white text-center my-4">
                                                 <span class="align-middle">Save</span> <span
                                                     class="material-icons material-icons-round align-middle"
                                                     style="font-size: 20px !important;">favorite</span>
                                             </li>
                                             <li
-                                                class="list-group-item bg-transparent comfortaa-font fs-5 text-white text-center">
+                                                class="onefit-buttons-style-dark list-group-item bg-transparent comfortaa-font fs-5 text-white text-center my-4">
                                                 <span class="align-middle">follow</span> <span
                                                     class="material-icons material-icons-round align-middle"
                                                     style="font-size: 20px !important;">follow_the_signs</span>
@@ -9891,18 +9926,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <div class="text-center">
                                     <hr class="text-white">
                                     <div class="row my-4">
-                                        <div class="col -sm">
-                                            <button class="onefit-buttons-style-dark p-4"
+                                        <div class="col -sm d-grid">
+                                            <button class="onefit-buttons-style-tahiti p-4"
                                                 onclick="musePlayerController('prev')"><span
                                                     class="material-icons material-icons-round">skip_previous</span></button>
                                         </div>
-                                        <div class="col -sm">
-                                            <button class="onefit-buttons-style-dark p-4"
+                                        <div class="col -sm d-grid">
+                                            <button class="onefit-buttons-style-tahiti p-4"
                                                 onclick="musePlayerController('togglePlay')"><span
                                                     class="material-icons material-icons-round">play_circle</span></button>
                                         </div>
-                                        <div class="col -sm">
-                                            <button class="onefit-buttons-style-dark p-4"
+                                        <div class="col -sm d-grid">
+                                            <button class="onefit-buttons-style-tahiti p-4"
                                                 onclick="musePlayerController('next')"><span
                                                     class="material-icons material-icons-round">skip_next</span></button>
                                         </div>
