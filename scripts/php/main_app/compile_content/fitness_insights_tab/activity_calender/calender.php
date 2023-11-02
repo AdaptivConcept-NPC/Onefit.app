@@ -89,7 +89,7 @@ for ($i = 0; $i < ($maxday + $startday); $i++) {
         // echo <<<_END
         // Do they match using ==? $todayCheck <hr><br><br>
         // _END; /* test output */
-        if ($todayCheck == "Yes") $todayClass = 'today';
+        if ($todayCheck == "Yes") $todayClass = 'today down-top-grad-white fs-1 py-4';
     }
 
     if (($i % 7) == 0) $output .= '<tr>';
@@ -175,7 +175,7 @@ echo <<<_END
                                 <span class="align-middle text-start" style="font-size:16px;">Last month.</span>
                             </div>
                         </button>
-                        <div class="p-4 d-grid gap-2" colspan="5" style="font-size:50px;cursor:pointer;" onclick="navCalender(null,null,'today')">
+                        <div class="onefit-buttons-style-light p-4 d-grid gap-2" colspan="5" style="font-size:50px;cursor:pointer;" onclick="navCalender(null,null,'today')">
                             <strong class="text-truncate"> $calenderHeading. </strong>
                             <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
                         </div>

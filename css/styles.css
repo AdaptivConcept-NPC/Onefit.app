@@ -630,14 +630,41 @@ sup {
 	}
 }
 
-.social-link-icon-insta {
+/* dark version */
+.social-link-icon-fb-dark {
 	color: var(--white) !important;
 	background-color: var(--mineshaft);
 	transition: 0.3s;
 	border-radius: 15px !important;
 }
 
-.social-link-icon-insta:hover {
+.social-link-icon-fb-dark:hover {
+	transform: scale(0.97, 0.97);
+	background-color: var(--facebook) !important;
+	border-radius: 25px !important;
+}
+
+.social-link-icon-yt-dark {
+	color: var(--white) !important;
+	background-color: var(--mineshaft);
+	transition: 0.3s;
+	border-radius: 15px !important;
+}
+
+.social-link-icon-yt-dark:hover {
+	transform: scale(0.97, 0.97);
+	background-color: var(--youtube) !important;
+	border-radius: 25px !important;
+}
+
+.social-link-icon-insta-dark {
+	color: var(--white) !important;
+	background-color: var(--mineshaft);
+	transition: 0.3s;
+	border-radius: 15px !important;
+}
+
+.social-link-icon-insta-dark:hover {
 	transform: scale(0.97, 0.97);
 
 	background: rgb(245, 133, 41);
@@ -653,18 +680,86 @@ sup {
 	border-radius: 25px !important;
 }
 
-.social-link-icon-twitter {
+.social-link-icon-twitter-dark {
 	color: var(--white) !important;
 	background-color: var(--mineshaft);
 	transition: 0.3s;
 	border-radius: 15px !important;
 }
 
-.social-link-icon-twitter:hover {
+.social-link-icon-twitter-dark:hover {
 	transform: scale(0.97, 0.97);
 	background-color: var(--twitter) !important;
 	border-radius: 25px !important;
 }
+
+/* end of dark version */
+
+/* light version */
+.social-link-icon-fb-light {
+	color: var(--tahitigold) !important;
+	background-color: var(--white);
+	transition: 0.3s;
+	border-radius: 15px !important;
+}
+
+.social-link-icon-fb-light:hover {
+	color: var(--white) !important;
+	transform: scale(0.97, 0.97);
+	background-color: var(--facebook) !important;
+	border-radius: 25px !important;
+}
+
+.social-link-icon-yt-light {
+	color: var(--tahitigold) !important;
+	background-color: var(--white);
+	transition: 0.3s;
+	border-radius: 15px !important;
+}
+
+.social-link-icon-yt-light:hover {
+	color: var(--white) !important;
+	transform: scale(0.97, 0.97);
+	background-color: var(--youtube) !important;
+	border-radius: 25px !important;
+}
+.social-link-icon-insta-light {
+	color: var(--tahitigold) !important;
+	background-color: var(--white);
+	transition: 0.3s;
+	border-radius: 15px !important;
+}
+
+.social-link-icon-insta-light:hover {
+	transform: scale(0.97, 0.97);
+	color: var(--white) !important;
+	background: rgb(245, 133, 41);
+	background: linear-gradient(
+		152deg,
+		rgba(245, 133, 41, 1) 0%,
+		rgba(254, 218, 119, 1) 25%,
+		rgba(221, 42, 123, 1) 50%,
+		rgba(129, 52, 175, 1) 75%,
+		rgba(81, 91, 212, 1) 100%
+	);
+
+	border-radius: 25px !important;
+}
+
+.social-link-icon-twitter-light {
+	color: var(--tahitigold) !important;
+	background-color: var(--white);
+	transition: 0.3s;
+	border-radius: 15px !important;
+}
+
+.social-link-icon-twitter-light:hover {
+	transform: scale(0.97, 0.97);
+	background-color: var(--twitter) !important;
+	border-radius: 25px !important;
+}
+
+/* end of light version */
 
 .onefit-buttons-style-light-twitter {
 	background: var(--white);
@@ -761,32 +856,6 @@ sup {
 }
 
 /* ./ inputs with grad bg styling */
-
-.social-link-icon-fb {
-	color: var(--white) !important;
-	background-color: var(--mineshaft);
-	transition: 0.3s;
-	border-radius: 15px !important;
-}
-
-.social-link-icon-fb:hover {
-	transform: scale(0.97, 0.97);
-	background-color: var(--facebook) !important;
-	border-radius: 25px !important;
-}
-
-.social-link-icon-yt {
-	color: var(--white) !important;
-	background-color: var(--mineshaft);
-	transition: 0.3s;
-	border-radius: 15px !important;
-}
-
-.social-link-icon-yt:hover {
-	transform: scale(0.97, 0.97);
-	background-color: var(--youtube) !important;
-	border-radius: 25px !important;
-}
 
 .general-light-link-item {
 	color: var(--mineshaft) !important;
@@ -2765,7 +2834,7 @@ div.horizontal-scroll-card-nav {
 }
 
 .today {
-	background-color: var(--white) !important;
+	/* background-color: var(--white) !important; */
 	color: var(--mineshaft) !important;
 }
 
@@ -2814,6 +2883,57 @@ div.horizontal-scroll-card-nav {
 /* defalut alignment of .align-text-... classes */
 .align-text-center {
 	text-align: center;
+}
+
+/* scrolling text - src: https://blog.hubspot.com/website/scrolling-text-css */
+.horiz-scroll-text-container {
+	border: 3px solid black;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.horiz-scroll-text {
+	/* animation properties */
+	-moz-transform: translateX(100%);
+	-webkit-transform: translateX(100%);
+	transform: translateX(100%);
+
+	-moz-animation: my-animation 15s linear infinite;
+	-webkit-animation: my-animation 15s linear infinite;
+	animation: my-animation 15s linear infinite;
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
+	from {
+		-moz-transform: translateX(100%);
+	}
+	to {
+		-moz-transform: translateX(-100%);
+	}
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+	from {
+		-webkit-transform: translateX(100%);
+	}
+	to {
+		-webkit-transform: translateX(-100%);
+	}
+}
+
+@keyframes my-animation {
+	from {
+		-moz-transform: translateX(100%);
+		-webkit-transform: translateX(100%);
+		transform: translateX(100%);
+	}
+	to {
+		-moz-transform: translateX(-100%);
+		-webkit-transform: translateX(-100%);
+		transform: translateX(-100%);
+	}
 }
 
 /*Custome Breakpoint Classes*/

@@ -149,7 +149,8 @@ if (isset($_SESSION["currentUserAuth"])) {
         coreScriptLoaded_custom_jquery_func_js = coreScriptLoaded_moment_js = coreScriptLoaded_googlefonts_fonts =
         coreScriptLoaded_googlefonts_css = coreScriptLoaded_soccerfield_css = coreScriptLoaded_soccerfield_css =
         coreScriptLoaded_soccerfield_js = coreScriptLoaded_chartjs_js = coreScriptLoaded_markers_css =
-        coreScriptLoaded_markers_js = coreScriptLoaded_chat_css = false;
+        coreScriptLoaded_markers_js = coreScriptLoaded_chat_css =
+        coreScriptLoaded_turnjs_js = coreScriptLoaded_turnjs_css = false;
     </script>
 
     <!--fontawesome-->
@@ -256,6 +257,28 @@ if (isset($_SESSION["currentUserAuth"])) {
     <link rel="stylesheet" href="../css/markers.css" onload="coreScriptLoaded_markers_css=true;">
     <script src="../scripts/js/floating-layer-at-cursor-position.js" onload="coreScriptLoaded_markers_js=true;">
     </script>
+
+    <!-- stun.js local -->
+    <script src="../node_modules/stun-js/stun.min.js"></script>
+    <script src="../node_modules/stun-js/lib/attributes.js"></script>
+    <script src="../node_modules/stun-js/lib/packet.js"></script>
+    <script src="../node_modules/stun-js/lib/stun_client.js"></script>
+    <script src="../node_modules/stun-js/lib/stun_comm.js"></script>
+    <script src="../node_modules/stun-js/lib/utils.js"></script>
+
+    <!-- turn.js cdn -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.js"
+        integrity="sha512-9ocft8BVEGO4YnjEW4Tkq0+d3Usuax+GF922LJML/Q5ZLmtu9hgBbUZTxKXAkm+hzIHoC3I+vYha66opI9AuSg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" onload="coreScriptLoaded_markers_js=true;"></script> -->
+
+    <!-- turn.js local -->
+    <script src="../node_modules/turn-js/turn.min.js" onload="coreScriptLoaded_turnjs_js=true;"></script>
+    <script src="../node_modules/turn-js/lib/attributes.js"></script>
+    <script src="../node_modules/turn-js/lib/channel_data.js"></script>
+    <script src="../node_modules/turn-js/lib/packet.js"></script>
+    <script src="../node_modules/turn-js/lib/turn_client.js"></script>
+
+    <link rel="stylesheet" href="../css/flipbook.css" onload="coreScriptLoaded_turnjs_css=true;">
 
 </head>
 
@@ -427,6 +450,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
             </div>
         </div>
+
+        <div class="fixed-top text-end p-4" id="load-countdown-container">
+            <label class="text-end">
+                <span class="material-icons material-icons-outline align-middle"
+                    style="font-size:20px!important;">timer</span>
+                <span class="align-middle" id="load-countdown">0s.</span>
+            </label>
+        </div>
+
         <nav class="text-center text-center p-4 fixed-bottom d-grid justify-content-center">
             <p id="loadtime-output-label" class="text-center comfortaa-font mt-2 mb-4 d-none">Loading. Please wait.</p>
             <div class="progress my-4 rounded-pill shadow"
@@ -455,470 +487,477 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ Facebook API -->
 
     <!-- Navigation bar, Cart & Other functions -->
-    <header id="nav-bar-header" class="container-xlg -fluid text-center py-5 px-4">
+    <header id="nav-bar-header" class="container-xlg -fluid text-center pt-5 px-4">
         <a class="navbar-brand my-4 mx-0 p-4 fs-1 text-white comfortaa-font" href="#">
             One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span>
         </a>
 
         <!-- Cart Container  -->
-        <div class="container py-4 d-none">
-            <div class="text-center">
-                <button class="navbar-toggler shadowz onefit-buttons-style-dark p-2 hide-side-panels" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel">
-                    <div class="row px-4 py-2 align-items-centerz">
-                        <div class="col-sm border-start border-end border-light p-2">
-                            <span class="material-icons material-icons-round align-middle"
-                                style="font-size: 50px !important;">
-                                verified_user
-                            </span>
-                        </div>
-                        <div class="col-sm border-start border-end border-light p-2">
-                            <div class="d-grid gap-2">
-                                <span class="material-icons material-icons-round" style="font-size: 20px !important">
-                                    shopping_cart </span>
-                                <span class="d-nonez d-lg-blockz" id="" style="font-size: 10px;">Cart (<span
-                                        class="fw-bold comfortaa-font" style="color: #ffa500;">4</span>)</span>
-                            </div>
-                        </div>
-                        <div class="col-sm fw-bold comfortaa-font border-start border-end border-light p-2">
-                            <span class="align-middle" style="font-size: 10px; color: #ffa500;">ZAR</span><br> 0.00
-                        </div>
-                    </div>
-                </button>
-            </div>
-
-            <div class="collapse showz down-top-grad-dark w3-animate-top comfortaa-font text-white"
-                style="border-radius: 25px; overflow: hidden;" id="cart-panel">
-                <div class="p-4 shadow" id="">
-                    <div class="text-center d-flex justify-content-between align-items-center">
-                        <button
-                            class="navbar-toggler shadow onefit-buttons-style-dark p-4 mb-4 w3-animate-right d-grid gap-1"
-                            type="button" onclick="openLink(event, 'TabStore')">
-                            <span class="material-icons material-icons-round align-middle">
-                                storefront
-                            </span>
-                            <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span
-                                    style="color: #ffa500 !important;">.Store</span></span>
-                        </button>
-
-                        <div class="w3-animate-top text-center">
-                            <!-- <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="max-height: 50px;" alt="logo"> -->
-                            <div class="d-grid text-center">
-                                <p class="m-0 fs-5 comfortaa-font text-muted">Shopping</p>
-                                <p class="m-0 fs-1 comfortaa-font text-muted">Cart.</p>
-                            </div>
-
-                        </div>
-
-                        <button
-                            class="navbar-toggler shadow onefit-buttons-style-dark p-4 mb-4 w3-animate-left d-grid gap-1"
-                            type="button">
-                            <span class="material-icons material-icons-round align-middle">
-                                point_of_sale
-                            </span>
-                            <span class="align-middle">
-                                <span class="d-none d-lg-block">Proceed to </span><span class="d-none d-lg-block"
-                                    style="color: #ffa500 !important;">Payment.</span>
-                            </span><span class="d-lg-none" style="color: #ffa500 !important;">Pay.</span>
-                        </button>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xlg-6 py-4">
-                            <p class="text-center w3-animate-left comfortaa-font" style="min-height: 30px;">
-                                <span class="material-icons material-icons-round align-middle">
-                                    checklist
+        <div id="dynamic-user-cart">
+            <div class="container py-4 d-none">
+                <div class="text-center">
+                    <button class="navbar-toggler shadowz onefit-buttons-style-dark p-2 hide-side-panels" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel">
+                        <div class="row px-4 py-2 align-items-centerz">
+                            <div class="col-sm border-start border-end border-light p-2">
+                                <span class="material-icons material-icons-round align-middle"
+                                    style="font-size: 50px !important;">
+                                    verified_user
                                 </span>
-                                Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
-                                    style="color: #ffa500;">20220201-879ds6fsdf_id</span> ]
-                            </p>
-                            <hr class="text-white">
+                            </div>
+                            <div class="col-sm border-start border-end border-light p-2">
+                                <div class="d-grid gap-2">
+                                    <span class="material-icons material-icons-round"
+                                        style="font-size: 20px !important">
+                                        shopping_cart </span>
+                                    <span class="d-nonez d-lg-blockz" id="" style="font-size: 10px;">Cart (<span
+                                            class="fw-bold comfortaa-font" style="color: #ffa500;">4</span>)</span>
+                                </div>
+                            </div>
+                            <div class="col-sm fw-bold comfortaa-font border-start border-end border-light p-2">
+                                <span class="align-middle" style="font-size: 10px; color: #ffa500;">ZAR</span><br> 0.00
+                            </div>
+                        </div>
+                    </button>
+                </div>
 
-                            <!-- invoice totals -->
-                            <div class="container p-2 pt-4 top-down-grad-dark" style="border-radius: 25px;">
-                                <h1 class="">Cart Totals.</h1>
-                                <div class="row p-4 align-items-center">
-                                    <div class="col-md">
-                                        <h1>R<span id="shop-cart-total-amt">0.00</span> <span class="align-top"
-                                                style="font-size: 10px; color: #ffa500;">ZAR</span></h1>
+                <div class="collapse showz down-top-grad-dark w3-animate-top comfortaa-font text-white"
+                    style="border-radius: 25px; overflow: hidden;" id="cart-panel">
+                    <div class="p-4 shadow" id="">
+                        <div class="text-center d-flex justify-content-between align-items-center">
+                            <button
+                                class="navbar-toggler shadow onefit-buttons-style-dark p-4 mb-4 w3-animate-right d-grid gap-1"
+                                type="button" onclick="openLink(event, 'TabStore')">
+                                <span class="material-icons material-icons-round align-middle">
+                                    storefront
+                                </span>
+                                <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span
+                                        style="color: #ffa500 !important;">.Store</span></span>
+                            </button>
+
+                            <div class="w3-animate-top text-center">
+                                <!-- <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="max-height: 50px;" alt="logo"> -->
+                                <div class="d-grid text-center">
+                                    <p class="m-0 fs-5 comfortaa-font text-muted">Shopping</p>
+                                    <p class="m-0 fs-1 comfortaa-font text-muted">Cart.</p>
+                                </div>
+
+                            </div>
+
+                            <button
+                                class="navbar-toggler shadow onefit-buttons-style-dark p-4 mb-4 w3-animate-left d-grid gap-1"
+                                type="button">
+                                <span class="material-icons material-icons-round align-middle">
+                                    point_of_sale
+                                </span>
+                                <span class="align-middle">
+                                    <span class="d-none d-lg-block">Proceed to </span><span class="d-none d-lg-block"
+                                        style="color: #ffa500 !important;">Payment.</span>
+                                </span><span class="d-lg-none" style="color: #ffa500 !important;">Pay.</span>
+                            </button>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xlg-6 py-4">
+                                <p class="text-center w3-animate-left comfortaa-font" style="min-height: 30px;">
+                                    <span class="material-icons material-icons-round align-middle">
+                                        checklist
+                                    </span>
+                                    Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
+                                        style="color: #ffa500;">20220201-879ds6fsdf_id</span> ]
+                                </p>
+                                <hr class="text-white">
+
+                                <!-- invoice totals -->
+                                <div class="container p-2 pt-4 top-down-grad-dark" style="border-radius: 25px;">
+                                    <h1 class="">Cart Totals.</h1>
+                                    <div class="row p-4 align-items-center">
+                                        <div class="col-md">
+                                            <h1>R<span id="shop-cart-total-amt">0.00</span> <span class="align-top"
+                                                    style="font-size: 10px; color: #ffa500;">ZAR</span></h1>
+                                        </div>
+                                        <div class="col-md -4 border-1 border-start border-end">
+                                            <h1><span id="shop-cart-total-items">4</span> <span class="align-top"
+                                                    style="font-size: 10px; color: #ffa500;">Items</span></h1>
+                                        </div>
+                                        <div class="col-md -2 d-grid">
+                                            <button id="clear-all-cart-item-btn"
+                                                class="onefit-buttons-style-danger bg-transparent p-3 text-center">
+                                                <div class="d-grid">
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 40px !important">
+                                                        delete
+                                                    </span>
+                                                    <span class="align-middle" style="font-size:10px;">
+                                                        Clear Cart
+                                                    </span>
+                                                </div>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="col-md -4 border-1 border-start border-end">
-                                        <h1><span id="shop-cart-total-items">4</span> <span class="align-top"
-                                                style="font-size: 10px; color: #ffa500;">Items</span></h1>
-                                    </div>
-                                    <div class="col-md -2 d-grid">
-                                        <button id="clear-all-cart-item-btn"
-                                            class="onefit-buttons-style-danger bg-transparent p-3 text-center">
+                                </div>
+
+                                <ul id="main-cart-items-list"
+                                    class="list-group list-group-flush list-group-numbered shadow py-4 px-4 w3-animate-left"
+                                    style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
+                                    <li id="main-cart-items-list-item-idvalue"
+                                        class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
+                                        style="border-radius: 10px;">
+                                        <div class="w-100 align-items-center justify-content-between">
+
+                                            <div class="row align-items-center gap-4">
+                                                <div class="col-md">
+                                                    <div class="d-grid gap-2 text-start px-4 pb-2">
+                                                        <div class="comfortaa-font">
+                                                            <span id="main-cart-items-list-item-name"
+                                                                class="align-middle">Aiwa Smart Band ASB-40</span>
+                                                        </div>
+                                                        <div class="comfortaa-font">
+                                                            <span class="material-icons material-icons-round text-muted"
+                                                                style="font-size: 10px !important;">monetization_on</span>
+                                                            <span class="fs-5" id="main-cart-items-list-item-price"
+                                                                style="color: #ffa500;">R149.00</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 border-5 border-start border-end"
+                                                    style="border-radius:25px;">
+                                                    <div class="d-grid justify-content-center my-4">
+                                                        <!-- quantity -->
+                                                        <div class="input-group m-0">
+                                                            <span class="input-group-text"
+                                                                id="cart-item-quantity-cartitemid"
+                                                                style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
+                                                            <input type="number" class="form-control text-center"
+                                                                min="0" step="1" oninput="validity.valid||(value='');"
+                                                                placeholder="qty" aria-label="quantity"
+                                                                aria-describedby="cart-item-quantity-cartitemid"
+                                                                style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 p-4">
+                                                    <div class="d-flex justify-content-center">
+                                                        <button id="remove-cart-item-itemid"
+                                                            class="onefit-buttons-style-tahiti p-4 text-center">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 40px !important">
+                                                                highlight_off
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                    <li id="main-cart-items-list-item-idvalue"
+                                        class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
+                                        style="border-radius: 10px;">
+                                        <div class="w-100 align-items-center justify-content-between">
+
+                                            <div class="row align-items-center gap-4">
+                                                <div class="col-md">
+                                                    <div class="d-grid gap-2 text-start px-4 pb-2">
+                                                        <div class="comfortaa-font">
+                                                            <span id="main-cart-items-list-item-name"
+                                                                class="align-middle">Aiwa Smart Band ASB-40</span>
+                                                        </div>
+                                                        <div class="comfortaa-font">
+                                                            <span class="material-icons material-icons-round text-muted"
+                                                                style="font-size: 10px !important;">monetization_on</span>
+                                                            <span class="fs-5" id="main-cart-items-list-item-price"
+                                                                style="color: #ffa500;">R149.00</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 border-5 border-start border-end"
+                                                    style="border-radius:25px;">
+                                                    <div class="d-grid justify-content-center my-4">
+                                                        <!-- quantity -->
+                                                        <div class="input-group m-0">
+                                                            <span class="input-group-text"
+                                                                id="cart-item-quantity-cartitemid"
+                                                                style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
+                                                            <input type="number" class="form-control text-center"
+                                                                min="0" step="1" oninput="validity.valid||(value='');"
+                                                                placeholder="qty" aria-label="quantity"
+                                                                aria-describedby="cart-item-quantity-cartitemid"
+                                                                style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 p-4">
+                                                    <div class="d-flex justify-content-center">
+                                                        <button id="remove-cart-item-itemid"
+                                                            class="onefit-buttons-style-tahiti p-4 text-center">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 40px !important">
+                                                                highlight_off
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                    <li id="main-cart-items-list-item-idvalue"
+                                        class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
+                                        style="border-radius: 10px;">
+                                        <div class="w-100 align-items-center justify-content-between">
+
+                                            <div class="row align-items-center gap-4">
+                                                <div class="col-md">
+                                                    <div class="d-grid gap-2 text-start px-4 pb-2">
+                                                        <div class="comfortaa-font">
+                                                            <span id="main-cart-items-list-item-name"
+                                                                class="align-middle">Aiwa Smart Band ASB-40</span>
+                                                        </div>
+                                                        <div class="comfortaa-font">
+                                                            <span class="material-icons material-icons-round text-muted"
+                                                                style="font-size: 10px !important;">monetization_on</span>
+                                                            <span class="fs-5" id="main-cart-items-list-item-price"
+                                                                style="color: #ffa500;">R149.00</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 border-5 border-start border-end"
+                                                    style="border-radius:25px;">
+                                                    <div class="d-grid justify-content-center my-4">
+                                                        <!-- quantity -->
+                                                        <div class="input-group m-0">
+                                                            <span class="input-group-text"
+                                                                id="cart-item-quantity-cartitemid"
+                                                                style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
+                                                            <input type="number" class="form-control text-center"
+                                                                min="0" step="1" oninput="validity.valid||(value='');"
+                                                                placeholder="qty" aria-label="quantity"
+                                                                aria-describedby="cart-item-quantity-cartitemid"
+                                                                style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 p-4">
+                                                    <div class="d-flex justify-content-center">
+                                                        <button id="remove-cart-item-itemid"
+                                                            class="onefit-buttons-style-tahiti p-4 text-center">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 40px !important">
+                                                                highlight_off
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- ***delete ../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/get_user_stats_activity_tracker.php -->
+                                    </li>
+                                    <li id="main-cart-items-list-item-idvalue"
+                                        class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
+                                        style="border-radius: 10px;">
+                                        <div class="w-100 align-items-center justify-content-between">
+                                            <div class="row align-items-center gap-4">
+                                                <div class="col-md">
+                                                    <div class="d-grid gap-2 text-start px-4 pb-2">
+                                                        <div class="comfortaa-font">
+                                                            <span id="main-cart-items-list-item-name"
+                                                                class="align-middle">Aiwa Smart Band ASB-40</span>
+                                                        </div>
+                                                        <div class="comfortaa-font">
+                                                            <span class="material-icons material-icons-round text-muted"
+                                                                style="font-size: 10px !important;">monetization_on</span>
+                                                            <span class="fs-5" id="main-cart-items-list-item-price"
+                                                                style="color: #ffa500;">R149.00</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 border-5 border-start border-end"
+                                                    style="border-radius:25px;">
+                                                    <div class="d-grid justify-content-center my-4">
+                                                        <!-- quantity -->
+                                                        <div class="input-group m-0">
+                                                            <span class="input-group-text"
+                                                                id="cart-item-quantity-cartitemid"
+                                                                style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
+                                                            <input type="number" class="form-control text-center"
+                                                                min="0" step="1" oninput="validity.valid||(value='');"
+                                                                placeholder="qty" aria-label="quantity"
+                                                                aria-describedby="cart-item-quantity-cartitemid"
+                                                                style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 p-4">
+                                                    <div class="d-flex justify-content-center">
+                                                        <button id="remove-cart-item-itemid"
+                                                            class="onefit-buttons-style-tahiti p-4 text-center">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 40px !important">
+                                                                highlight_off
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-xlg-6 py-4">
+                                <p class="text-center w3-animate-right comfortaa-font" style="min-height: 30px;">
+                                    <span class="material-icons material-icons-round align-middle">
+                                        shopping_cart
+                                    </span>
+                                    Cart Items (<span id="mini-cart-item-count" style="color: #ffa500;">4</span>)
+                                </p>
+                                <hr class="text-white">
+                                <div class="horizontal-scroll p-5 w3-animate-right">
+                                    <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
+                                        style="border-color: #ffa500 !important;">
+                                        <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
+                                            style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
+                                            1
+                                        </div>
+                                        <div class="d-grid gap-2 justify-content-center">
+                                            <span class="material-icons material-icons-round text-muted"
+                                                style="font-size: 10px !important;">sell</span>
+                                            <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
+                                                style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                            <div class="text-center">
+                                                <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
+                                                    Class="img-fluid shadow"
+                                                    style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
+                                            </div>
+
+                                            <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                                <span class="material-icons material-icons-round text-muted"
+                                                    style="font-size: 10px !important;">monetization_on</span>
+                                                <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price"
+                                                    style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
+                                            </p>
                                             <div class="d-grid">
-                                                <span class="material-icons material-icons-round align-middle"
-                                                    style="font-size: 40px !important">
-                                                    delete
-                                                </span>
-                                                <span class="align-middle" style="font-size:10px;">
-                                                    Clear Cart
-                                                </span>
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <ul id="main-cart-items-list"
-                                class="list-group list-group-flush list-group-numbered shadow py-4 px-4 w3-animate-left"
-                                style="background-color: #343434; overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
-                                <li id="main-cart-items-list-item-idvalue"
-                                    class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
-                                    style="border-radius: 10px;">
-                                    <div class="w-100 align-items-center justify-content-between">
-
-                                        <div class="row align-items-center gap-4">
-                                            <div class="col-md">
-                                                <div class="d-grid gap-2 text-start px-4 pb-2">
-                                                    <div class="comfortaa-font">
-                                                        <span id="main-cart-items-list-item-name"
-                                                            class="align-middle">Aiwa Smart Band ASB-40</span>
-                                                    </div>
-                                                    <div class="comfortaa-font">
-                                                        <span class="material-icons material-icons-round text-muted"
-                                                            style="font-size: 10px !important;">monetization_on</span>
-                                                        <span class="fs-5" id="main-cart-items-list-item-price"
-                                                            style="color: #ffa500;">R149.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 border-5 border-start border-end"
-                                                style="border-radius:25px;">
-                                                <div class="d-grid justify-content-center my-4">
-                                                    <!-- quantity -->
-                                                    <div class="input-group m-0">
-                                                        <span class="input-group-text"
-                                                            id="cart-item-quantity-cartitemid"
-                                                            style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
-                                                        <input type="number" class="form-control text-center" min="0"
-                                                            step="1" oninput="validity.valid||(value='');"
-                                                            placeholder="qty" aria-label="quantity"
-                                                            aria-describedby="cart-item-quantity-cartitemid"
-                                                            style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 p-4">
-                                                <div class="d-flex justify-content-center">
-                                                    <button id="remove-cart-item-itemid"
-                                                        class="onefit-buttons-style-tahiti p-4 text-center">
-                                                        <span class="material-icons material-icons-round align-middle"
-                                                            style="font-size: 40px !important">
-                                                            highlight_off
-                                                        </span>
-                                                    </button>
-                                                </div>
+                                                <button id="remove-cart-item-itemid"
+                                                    class="onefit-buttons-style-tahiti p-2 text-center">
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important">
+                                                        highlight_off
+                                                    </span>
+                                                </button>
                                             </div>
                                         </div>
+
                                     </div>
-
-                                </li>
-                                <li id="main-cart-items-list-item-idvalue"
-                                    class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
-                                    style="border-radius: 10px;">
-                                    <div class="w-100 align-items-center justify-content-between">
-
-                                        <div class="row align-items-center gap-4">
-                                            <div class="col-md">
-                                                <div class="d-grid gap-2 text-start px-4 pb-2">
-                                                    <div class="comfortaa-font">
-                                                        <span id="main-cart-items-list-item-name"
-                                                            class="align-middle">Aiwa Smart Band ASB-40</span>
-                                                    </div>
-                                                    <div class="comfortaa-font">
-                                                        <span class="material-icons material-icons-round text-muted"
-                                                            style="font-size: 10px !important;">monetization_on</span>
-                                                        <span class="fs-5" id="main-cart-items-list-item-price"
-                                                            style="color: #ffa500;">R149.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 border-5 border-start border-end"
-                                                style="border-radius:25px;">
-                                                <div class="d-grid justify-content-center my-4">
-                                                    <!-- quantity -->
-                                                    <div class="input-group m-0">
-                                                        <span class="input-group-text"
-                                                            id="cart-item-quantity-cartitemid"
-                                                            style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
-                                                        <input type="number" class="form-control text-center" min="0"
-                                                            step="1" oninput="validity.valid||(value='');"
-                                                            placeholder="qty" aria-label="quantity"
-                                                            aria-describedby="cart-item-quantity-cartitemid"
-                                                            style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 p-4">
-                                                <div class="d-flex justify-content-center">
-                                                    <button id="remove-cart-item-itemid"
-                                                        class="onefit-buttons-style-tahiti p-4 text-center">
-                                                        <span class="material-icons material-icons-round align-middle"
-                                                            style="font-size: 40px !important">
-                                                            highlight_off
-                                                        </span>
-                                                    </button>
-                                                </div>
-                                            </div>
+                                    <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
+                                        style="border-color: #ffa500 !important;">
+                                        <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
+                                            style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
+                                            2
                                         </div>
-                                    </div>
-
-                                </li>
-                                <li id="main-cart-items-list-item-idvalue"
-                                    class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
-                                    style="border-radius: 10px;">
-                                    <div class="w-100 align-items-center justify-content-between">
-
-                                        <div class="row align-items-center gap-4">
-                                            <div class="col-md">
-                                                <div class="d-grid gap-2 text-start px-4 pb-2">
-                                                    <div class="comfortaa-font">
-                                                        <span id="main-cart-items-list-item-name"
-                                                            class="align-middle">Aiwa Smart Band ASB-40</span>
-                                                    </div>
-                                                    <div class="comfortaa-font">
-                                                        <span class="material-icons material-icons-round text-muted"
-                                                            style="font-size: 10px !important;">monetization_on</span>
-                                                        <span class="fs-5" id="main-cart-items-list-item-price"
-                                                            style="color: #ffa500;">R149.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 border-5 border-start border-end"
-                                                style="border-radius:25px;">
-                                                <div class="d-grid justify-content-center my-4">
-                                                    <!-- quantity -->
-                                                    <div class="input-group m-0">
-                                                        <span class="input-group-text"
-                                                            id="cart-item-quantity-cartitemid"
-                                                            style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
-                                                        <input type="number" class="form-control text-center" min="0"
-                                                            step="1" oninput="validity.valid||(value='');"
-                                                            placeholder="qty" aria-label="quantity"
-                                                            aria-describedby="cart-item-quantity-cartitemid"
-                                                            style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 p-4">
-                                                <div class="d-flex justify-content-center">
-                                                    <button id="remove-cart-item-itemid"
-                                                        class="onefit-buttons-style-tahiti p-4 text-center">
-                                                        <span class="material-icons material-icons-round align-middle"
-                                                            style="font-size: 40px !important">
-                                                            highlight_off
-                                                        </span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- ***delete ../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/get_user_stats_activity_tracker.php -->
-                                </li>
-                                <li id="main-cart-items-list-item-idvalue"
-                                    class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
-                                    style="border-radius: 10px;">
-                                    <div class="w-100 align-items-center justify-content-between">
-                                        <div class="row align-items-center gap-4">
-                                            <div class="col-md">
-                                                <div class="d-grid gap-2 text-start px-4 pb-2">
-                                                    <div class="comfortaa-font">
-                                                        <span id="main-cart-items-list-item-name"
-                                                            class="align-middle">Aiwa Smart Band ASB-40</span>
-                                                    </div>
-                                                    <div class="comfortaa-font">
-                                                        <span class="material-icons material-icons-round text-muted"
-                                                            style="font-size: 10px !important;">monetization_on</span>
-                                                        <span class="fs-5" id="main-cart-items-list-item-price"
-                                                            style="color: #ffa500;">R149.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 border-5 border-start border-end"
-                                                style="border-radius:25px;">
-                                                <div class="d-grid justify-content-center my-4">
-                                                    <!-- quantity -->
-                                                    <div class="input-group m-0">
-                                                        <span class="input-group-text"
-                                                            id="cart-item-quantity-cartitemid"
-                                                            style="font-size: 10px;color:#ffa500!important;background-color:#343434">Qty</span>
-                                                        <input type="number" class="form-control text-center" min="0"
-                                                            step="1" oninput="validity.valid||(value='');"
-                                                            placeholder="qty" aria-label="quantity"
-                                                            aria-describedby="cart-item-quantity-cartitemid"
-                                                            style="border-radius: 0 50rem 50rem 0 !important;background-color: #343434; color: #fff;max-width:80px;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 p-4">
-                                                <div class="d-flex justify-content-center">
-                                                    <button id="remove-cart-item-itemid"
-                                                        class="onefit-buttons-style-tahiti p-4 text-center">
-                                                        <span class="material-icons material-icons-round align-middle"
-                                                            style="font-size: 40px !important">
-                                                            highlight_off
-                                                        </span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-xlg-6 py-4">
-                            <p class="text-center w3-animate-right comfortaa-font" style="min-height: 30px;">
-                                <span class="material-icons material-icons-round align-middle">
-                                    shopping_cart
-                                </span>
-                                Cart Items (<span id="mini-cart-item-count" style="color: #ffa500;">4</span>)
-                            </p>
-                            <hr class="text-white">
-                            <div class="horizontal-scroll p-5 w3-animate-right">
-                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
-                                    style="border-color: #ffa500 !important;">
-                                    <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
-                                        style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
-                                        1
-                                    </div>
-                                    <div class="d-grid gap-2 justify-content-center">
-                                        <span class="material-icons material-icons-round text-muted"
-                                            style="font-size: 10px !important;">sell</span>
-                                        <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
-                                            style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
-                                        <div class="text-center">
-                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
-                                                Class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh;"
-                                                alt="placeholder">
-                                        </div>
-
-                                        <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                        <div class="d-grid gap-2 justify-content-center">
                                             <span class="material-icons material-icons-round text-muted"
-                                                style="font-size: 10px !important;">monetization_on</span>
-                                            <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price"
-                                                style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
-                                        </p>
-                                        <div class="d-grid">
-                                            <button id="remove-cart-item-itemid"
-                                                class="onefit-buttons-style-tahiti p-2 text-center">
-                                                <span class="material-icons material-icons-round align-middle"
-                                                    style="font-size: 20px !important">
-                                                    highlight_off
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
+                                                style="font-size: 10px !important;">sell</span>
+                                            <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
+                                                style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                            <div class="text-center">
+                                                <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
+                                                    Class="img-fluid shadow"
+                                                    style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
+                                            </div>
 
-                                </div>
-                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
-                                    style="border-color: #ffa500 !important;">
-                                    <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
-                                        style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
-                                        2
-                                    </div>
-                                    <div class="d-grid gap-2 justify-content-center">
-                                        <span class="material-icons material-icons-round text-muted"
-                                            style="font-size: 10px !important;">sell</span>
-                                        <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
-                                            style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
-                                        <div class="text-center">
-                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
-                                                Class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh;"
-                                                alt="placeholder">
+                                            <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                                <span class="material-icons material-icons-round text-muted"
+                                                    style="font-size: 10px !important;">monetization_on</span>
+                                                <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price"
+                                                    style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
+                                            </p>
+                                            <div class="d-grid">
+                                                <button id="remove-cart-item-itemid"
+                                                    class="onefit-buttons-style-tahiti p-2 text-center">
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important">
+                                                        highlight_off
+                                                    </span>
+                                                </button>
+                                            </div>
                                         </div>
 
-                                        <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                    </div>
+                                    <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
+                                        style="border-color: #ffa500 !important;">
+                                        <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
+                                            style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
+                                            3
+                                        </div>
+                                        <div class="d-grid gap-2 justify-content-center">
                                             <span class="material-icons material-icons-round text-muted"
-                                                style="font-size: 10px !important;">monetization_on</span>
-                                            <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price"
-                                                style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
-                                        </p>
-                                        <div class="d-grid">
-                                            <button id="remove-cart-item-itemid"
-                                                class="onefit-buttons-style-tahiti p-2 text-center">
-                                                <span class="material-icons material-icons-round align-middle"
-                                                    style="font-size: 20px !important">
-                                                    highlight_off
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
+                                                style="font-size: 10px !important;">sell</span>
+                                            <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
+                                                style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                            <div class="text-center">
+                                                <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
+                                                    Class="img-fluid shadow"
+                                                    style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
+                                            </div>
 
-                                </div>
-                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
-                                    style="border-color: #ffa500 !important;">
-                                    <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
-                                        style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
-                                        3
-                                    </div>
-                                    <div class="d-grid gap-2 justify-content-center">
-                                        <span class="material-icons material-icons-round text-muted"
-                                            style="font-size: 10px !important;">sell</span>
-                                        <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
-                                            style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
-                                        <div class="text-center">
-                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
-                                                Class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh;"
-                                                alt="placeholder">
+                                            <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                                <span class="material-icons material-icons-round text-muted"
+                                                    style="font-size: 10px !important;">monetization_on</span>
+                                                <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price"
+                                                    style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
+                                            </p>
+                                            <div class="d-grid">
+                                                <button id="remove-cart-item-itemid"
+                                                    class="onefit-buttons-style-tahiti p-2 text-center">
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important">
+                                                        highlight_off
+                                                    </span>
+                                                </button>
+                                            </div>
                                         </div>
 
-                                        <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                    </div>
+                                    <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
+                                        style="border-color: #ffa500 !important;">
+                                        <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
+                                            style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
+                                            4
+                                        </div>
+                                        <div class="d-grid gap-2 justify-content-center">
                                             <span class="material-icons material-icons-round text-muted"
-                                                style="font-size: 10px !important;">monetization_on</span>
-                                            <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price"
-                                                style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
-                                        </p>
-                                        <div class="d-grid">
-                                            <button id="remove-cart-item-itemid"
-                                                class="onefit-buttons-style-tahiti p-2 text-center">
-                                                <span class="material-icons material-icons-round align-middle"
-                                                    style="font-size: 20px !important">
-                                                    highlight_off
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
+                                                style="font-size: 10px !important;">sell</span>
+                                            <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
+                                                style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                            <div class="text-center">
+                                                <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
+                                                    Class="img-fluid shadow"
+                                                    style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
+                                            </div>
 
-                                </div>
-                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
-                                    style="border-color: #ffa500 !important;">
-                                    <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
-                                        style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
-                                        4
-                                    </div>
-                                    <div class="d-grid gap-2 justify-content-center">
-                                        <span class="material-icons material-icons-round text-muted"
-                                            style="font-size: 10px !important;">sell</span>
-                                        <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
-                                            style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
-                                        <div class="text-center">
-                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
-                                                Class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh;"
-                                                alt="placeholder">
+                                            <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                                <span class="material-icons material-icons-round text-muted"
+                                                    style="font-size: 10px !important;">monetization_on</span>
+                                                <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price"
+                                                    style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
+                                            </p>
+                                            <div class="d-grid">
+                                                <button id="remove-cart-item-itemid"
+                                                    class="onefit-buttons-style-tahiti p-2 text-center">
+                                                    <span class="material-icons material-icons-round align-middle"
+                                                        style="font-size: 20px !important">
+                                                        highlight_off
+                                                    </span>
+                                                </button>
+                                            </div>
                                         </div>
 
-                                        <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
-                                            <span class="material-icons material-icons-round text-muted"
-                                                style="font-size: 10px !important;">monetization_on</span>
-                                            <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price"
-                                                style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
-                                        </p>
-                                        <div class="d-grid">
-                                            <button id="remove-cart-item-itemid"
-                                                class="onefit-buttons-style-tahiti p-2 text-center">
-                                                <span class="material-icons material-icons-round align-middle"
-                                                    style="font-size: 20px !important">
-                                                    highlight_off
-                                                </span>
-                                            </button>
-                                        </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -926,6 +965,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
             </div>
         </div>
+
         <!-- ./ Cart Container  -->
     </header>
     <!-- ./ Navigation bar, Cart & Other functions -->
@@ -968,11 +1008,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                         onclick="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
                         <!--  data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal" -->
                         <div class="d-grid gap-2 text-center">
-                            <!-- Profile Picture -->
-                            <img src="../media/assets/One-Symbol-Logo-White.svg" alt="Onefit Logo"
-                                class="p-1 img-fluid my-pulse-animation-tahitiz"
-                                style="height: 50px; width: 50px; border-radius: 15px; border-color: #ffa500 !important">
-                            <!-- ./ Profile Picture -->
+                            <div class="text-center">
+                                <img src="../media/assets/One-Symbol-Logo-White.svg" alt="Onefit Logo"
+                                    class="p-1 img-fluid my-pulse-animation-tahitiz"
+                                    style="height: 50px; width: 50px; border-radius: 15px; border-color: #ffa500 !important">
+                            </div>
                             <span class="d-none d-lg-block">Refresh</span>
                         </div>
                     </button>
@@ -1725,45 +1765,68 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             role="tabpanel"
                                             aria-labelledby="v-sub-tab-pills-profile-subtab-communityfeed">
                                             <div class="row align-items-startz">
-                                                <div class="col-md-4 p-4 px-1 light-scroller"
+                                                <div class="col-md-4 p-4 px-1 no-scroller"
                                                     style="max-height: 90vh;overflow-y: auto">
-                                                    <h5><span
+                                                    <h5 class="text-center">
+                                                        <span
                                                             class="material-icons material-icons-outlined align-middle"
                                                             style="color: #ffa500;">
-                                                            diversity_3</span><span class="align-middle"> Groups.</span>
+                                                            radar</span><span class="align-middle"> Networks &amp;
+                                                            Groups.</span>
                                                     </h5>
                                                     <hr class="text-white">
-                                                    <div id="user-community-groups-subs-list" class="pb-4"
-                                                        style="max-height:80vh!important;">
-                                                        <p>User will b able to see a list of their group subscriptions
-                                                            and open the feeds
-                                                            specific to the selected group.</p>
-                                                    </div>
 
-                                                    <h5><span
-                                                            class="material-icons material-icons-outlined align-middle"
-                                                            style="color: #ffa500;">
-                                                            diversity_2</span><span class="align-middle"> Teams.</span>
-                                                    </h5>
-                                                    <hr class="text-white">
-                                                    <div id="user-teams-groups-subs-list" class="pb-4"
-                                                        style="max-height:80vh!important;">
-                                                        <p>User will b able to see a list of their group subscriptions
-                                                            and open the feeds
-                                                            specific to the selected group.</p>
-                                                    </div>
+                                                    <div id="user-networks-list-container">
+                                                        <!-- community networks stream / groups -->
+                                                        <h5><span
+                                                                class="material-icons material-icons-outlined align-middle"
+                                                                style="color: #ffa500;">
+                                                                groups_3</span><span class="align-middle">
+                                                                Community.</span>
+                                                        </h5>
+                                                        <hr class="text-white">
+                                                        <div id="user-community-groups-subs-list" class="pb-4 mb-5"
+                                                            style="max-height:80vh!important;overflow-y: auto">
+                                                            <p>User will b able to see a list of their group
+                                                                subscriptions
+                                                                and open the feeds
+                                                                specific to the selected group.</p>
+                                                        </div>
+                                                        <!-- ./ community networks stream / groups -->
 
-                                                    <h5><span
-                                                            class="material-icons material-icons-outlined align-middle"
-                                                            style="color: #ffa500;">
-                                                            verified_user</span><span class="align-middle"> Pro.</span>
-                                                    </h5>
-                                                    <hr class="text-white">
-                                                    <div id="user-pro-groups-subs-list" class="pb-4"
-                                                        style="max-height:80vh!important;">
-                                                        <p>User will b able to see a list of their group subscriptions
-                                                            and open the feeds
-                                                            specific to the selected group.</p>
+                                                        <!-- teams networks stream / group -->
+                                                        <h5><span
+                                                                class="material-icons material-icons-outlined align-middle"
+                                                                style="color: #ffa500;">
+                                                                diversity_2</span><span class="align-middle">
+                                                                Teams.</span>
+                                                        </h5>
+                                                        <hr class="text-white">
+                                                        <div id="user-teams-groups-subs-list" class="pb-4 mb-5"
+                                                            style="max-height:80vh!important;overflow-y: auto">
+                                                            <p>User will b able to see a list of their group
+                                                                subscriptions
+                                                                and open the feeds
+                                                                specific to the selected group.</p>
+                                                        </div>
+                                                        <!-- ./ teams networks stream / group -->
+
+                                                        <!-- Pro networks stream / groups -->
+                                                        <h5><span
+                                                                class="material-icons material-icons-outlined align-middle"
+                                                                style="color: #ffa500;">
+                                                                verified_user</span><span class="align-middle">
+                                                                Pro.</span>
+                                                        </h5>
+                                                        <hr class="text-white">
+                                                        <div id="user-pro-groups-subs-list" class="pb-4 mb-5"
+                                                            style="max-height:80vh!important;overflow-y: auto">
+                                                            <p>User will b able to see a list of their group
+                                                                subscriptions
+                                                                and open the feeds
+                                                                specific to the selected group.</p>
+                                                        </div>
+                                                        <!-- ./ Pro networks stream / groups -->
                                                     </div>
 
                                                 </div>
@@ -6827,7 +6890,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     id="nav-tab-insightsSubFeatureCategories" role="tablist"
                                     style="border-color: #ffa500 !important">
                                     <button class="nav-link p-4 comfortaa-font fw-bold active position-relative"
-                                        id="nav-trainingProgramCategories-challenges-tab"
+                                        style="min-width:170px" id="nav-trainingProgramCategories-challenges-tab"
                                         onclick="setCurrentInsightsTrainingProgramTab('challenges')">
                                         Challenges.
                                         <span
@@ -6843,7 +6906,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <button
                                         class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
-                                        id="nav-trainingProgramCategories-googleSurveys-tab"
+                                        style="min-width:170px" id="nav-trainingProgramCategories-googleSurveys-tab"
                                         onclick="setCurrentInsightsTrainingProgramTab('googleSurveys')">
                                         Google Surveys.
 
@@ -6857,7 +6920,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <button
                                         class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
-                                        id="nav-trainingProgramCategories-teamAthletics-tab"
+                                        style="min-width:170px" id="nav-trainingProgramCategories-teamAthletics-tab"
                                         onclick="setCurrentInsightsTrainingProgramTab('teamAthletics')">
                                         Team Athletics.
 
@@ -6869,7 +6932,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <button
                                         class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
-                                        id="nav-trainingProgramCategories-wellness-tab"
+                                        style="min-width:170px" id="nav-trainingProgramCategories-wellness-tab"
                                         onclick="setCurrentInsightsTrainingProgramTab('wellness')">
                                         Wellness.
 
@@ -6881,7 +6944,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <button
                                         class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
-                                        id="nav-trainingProgramCategories-nutrition-tab"
+                                        style="min-width:170px" id="nav-trainingProgramCategories-nutrition-tab"
                                         onclick="setCurrentInsightsTrainingProgramTab('nutrition')">
                                         Nutrition.
 
@@ -7386,26 +7449,45 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     style="background-color: var(--mineshaft);" tabindex="-1"
                                                     id="offcanvasTeamFormation"
                                                     aria-labelledby="offcanvasTeamFormationLabel">
-                                                    <div class="offcanvas-header top-down-grad-dark p-5 fixed-top">
+                                                    <div
+                                                        class="offcanvas-header top-down-grad-dark p-5 fixed-top align-items-start">
                                                         <div class="d-grid me-4">
-                                                            <div class="d-flex align-items-center gap-2 mb-2">
-                                                                <span
-                                                                    class="material-icons material-icons-round align-middle p-2"
-                                                                    style="color:var(--mineshaft); border-radius:15px;background-color:var(--white);">
-                                                                    psychology
-                                                                </span>
+                                                            <div class="d-flex align-items-center gap-4 mb-2">
+                                                                <!-- team logo -->
+                                                                <img src="../media/teams/TEC_United_FC/logo.png"
+                                                                    class="img-fluid ms-2"
+                                                                    style="max-width:150px;border-radius:15px;background-color:var(--white);"
+                                                                    alt="team logo">
+                                                                <!-- ./ team logo -->
                                                                 <div class="d-grid gap-0">
-                                                                    <span class="comfortaa-font"
-                                                                        style="font-size: 10px;">Tactical Strategy &amp;
-                                                                        Formation Plan.</span>
+                                                                    <div
+                                                                        class="d-flex gap-2 align-items-end justify-content-center">
+                                                                        <span class="comfortaa-font align-middle"
+                                                                            style="font-size: 12px;">Tactical Strategy
+                                                                            &amp;
+                                                                            Formation Plan.</span>
+                                                                        <span
+                                                                            class="material-icons material-icons-round align-middle p-2 d-none"
+                                                                            style="color:var(--mineshaft);/* border-radius:15px;background-color:var(--white);*/">
+                                                                            psychology
+                                                                        </span>
+                                                                    </div>
                                                                     <h5 class="offcanvas-title my-0 fs-1"
                                                                         id="offcanvasTeamFormationLabel">
-                                                                        Team Select.
+                                                                        TEC United FC.
                                                                     </h5>
+                                                                    <span class="comfortaa-font text-center"
+                                                                        style="font-size: 20px;">
+                                                                        <span
+                                                                            class="material-icons material-icons-round align-middle"
+                                                                            style="color:var(--tahitigold);font-size:20px;!important;">
+                                                                            place
+                                                                        </span> Johannesburg, Tsakane
+                                                                    </span>
                                                                 </div>
                                                             </div>
 
-                                                            <select id="formation-team-selection"
+                                                            <!-- <select id="formation-team-selection"
                                                                 onchange="$.fetchTeamData(this.value)"
                                                                 class="form-select form-select-lg mb-3"
                                                                 aria-label=".form-select-lg example">
@@ -7416,7 +7498,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             <div id="loading-formation-data-spinner"
                                                                 class="d-flex gap-2 justify-content-between" hidden>
                                                                 <div>
-                                                                    <!-- all teams or teams administrated by me switch -->
+                                                                    /*all teams or teams administrated by me switch*/
                                                                     <div
                                                                         class="form-check form-switch d-flex gap-2 align-items-center">
                                                                         <input class="form-check-input" type="checkbox"
@@ -7442,7 +7524,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         </span>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
 
                                                         </div>
 
@@ -7467,7 +7549,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                     class="fs-3 text-center text-dark poppins-font fw-bold">
                                                                     Tactical Guidelines.</h5>
                                                                 <hr class="bg-dark shadow" style="height: 2px;">
-                                                                <p id="tactical-guidelines-container">
+                                                                <h5 id="formation-title"
+                                                                    class="text-start text-dark poppins-font fw-bold fs-1 py-4 m-0 fw-bold w3-animate-bottom down-top-grad-white"
+                                                                    style="border-radius:25px;">
+                                                                    Formation: <span class="poppins-font">2-5-3</span>
+                                                                </h5>
+                                                                <p id="tactical-guidelines-container"
+                                                                    class="text-start">
                                                                     This section is meant for displaying the coaches
                                                                     guidelines and instructions as a means of memorizing
                                                                     key tactics for the game.
@@ -7475,11 +7563,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             </div>
 
                                                             <div id="teamathletics-team-formation" class="py-4">
-                                                                <h5 id="formation-title"
-                                                                    class="text-center text-dark poppins-font fw-bold fs-3 mb-4 comfortaa-font fw-bold w3-animate-bottom"
-                                                                    style="display:none;">
-                                                                    Formation: <span class="poppins-font">2-5-3</span>
-                                                                </h5>
+                                                                <hr class="bg-white shadow" style="height: 10px;">
+                                                                <!-- pitch preview -->
                                                                 <div class="mb-4 d-flex justify-content-center shadow"
                                                                     id="soccerfield" style="overflow-x: auto;">
                                                                     <div class="d-flex justify-content-center p-5">
@@ -7491,8 +7576,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                                <hr class="bg-dark shadow" style="height: 10px;">
+                                                                <!-- ./ pitch preview -->
+                                                                <hr class="bg-white shadow" style="height: 10px;">
 
                                                                 <!-- #formation-tables-preview -->
                                                                 <div id="formation-tables-preview" class="row">
@@ -7500,10 +7585,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                     <div class="col-md light-scroller"
                                                                         style="max-height:80vh;overflow-y:auto;">
                                                                         <!-- starting squad team list -->
-                                                                        <h5 class="text-dark poppins-font fw-bold">
+                                                                        <h5 class="text-dark poppins-font fs-2 fw-bold">
                                                                             Starting lineup.</h5>
                                                                         <table
-                                                                            class="table table-dark table-striped table-hover table-bordered mb-4 align-middle">
+                                                                            class="table table-light table-striped table-hover table-bordered mb-4 align-middle">
                                                                             <thead>
                                                                                 <tr>
                                                                                     <th scope="col">Kit #</th>
@@ -7542,10 +7627,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         <!-- ./ starting squad team list -->
 
                                                                         <!-- Substitude list -->
-                                                                        <h5 class="text-dark poppins-font fw-bold">
+                                                                        <h5 class="text-dark poppins-font fs-3 fw-bold">
                                                                             Substitues.</h5>
                                                                         <table
-                                                                            class="table table-dark table-striped table-hover table-bordered mb-4 align-middle">
+                                                                            class="table table-light table-striped table-hover table-bordered mb-4 align-middle">
                                                                             <thead>
                                                                                 <tr>
                                                                                     <th scope="col">Kit #</th>
@@ -7578,10 +7663,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         <!-- ./ Substitude list -->
 
                                                                         <!-- reserves list -->
-                                                                        <h5 class="text-dark poppins-font fw-bold">
+                                                                        <h5 class="text-dark poppins-font fs-3 fw-bold">
                                                                             Researved.</h5>
                                                                         <table
-                                                                            class="table table-dark table-striped table-hover table-bordered mb-4 align-middle">
+                                                                            class="table table-light table-striped table-hover table-bordered mb-4 align-middle">
                                                                             <thead>
                                                                                 <tr>
                                                                                     <th scope="col">Kit #</th>
@@ -7614,10 +7699,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         <!-- ./ reserves list -->
 
                                                                         <!-- technical team list -->
-                                                                        <h5 class="text-dark poppins-font fw-bold">
+                                                                        <h5 class="text-dark poppins-font fs-3 fw-bold">
                                                                             Technical Team.</h5>
                                                                         <table
-                                                                            class="table table-dark table-striped table-hover table-bordered mb-4 align-middle">
+                                                                            class="table table-light table-striped table-hover table-bordered mb-4 align-middle">
                                                                             <thead>
                                                                                 <tr>
                                                                                     <th scope="col">Role</th>
@@ -9109,6 +9194,19 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- removed monthly challenges section -->
 
                     <h5>Diary</h5>
+                    <!-- turn.js plugin -->
+                    <div class="flipbook" id="main-diary-flipbook">
+                        <div class="hard"> Turn.js </div>
+                        <div class="hard"></div>
+                        <div> Page 1 </div>
+                        <div> Page 2 </div>
+                        <div> Page 3 </div>
+                        <div> Page 4 </div>
+                        <div class="hard"></div>
+                        <div class="hard"></div>
+                    </div>
+
+
                     <hr class="text-white">
                     <h5>Resources</h5>
                     (bookmarked resources, posts or search engine links)
@@ -9864,11 +9962,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <div
                                                         class="d-flex gap-2 justify-content-between align-items-center w-100 text-center">
 
-                                                        <div class="col -sm py-4 shadow rounded-pill bg-whitez text-dark fw-bold"
+                                                        <div class="col -sm py-4 shadow rounded-pill bg-whitez text-dark fw-bold horiz-scroll-text-container border-0"
                                                             style="background-color:var(--tahitigold);">
-                                                            track Title (00:00)
+                                                            <div class="horiz-scroll-text-stop">Track title</div>
                                                         </div>
-                                                        <div class="col-2 text-end d-flex gap-2 justify-content-end">
+                                                        <div class="text-white">(00:00)</div>
+                                                        <div class="col-2z text-end d-flex gap-2 justify-content-end">
                                                             <span
                                                                 class="material-icons material-icons-round rounded-pill shadow-sm p-0 text-darkz"
                                                                 style="font-size: 50px !important;color: var(--tahitigold);">
@@ -9974,11 +10073,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div class="border-0" style="overflow-x: hidden">
 
                     <h5 class="modal-title fs-1 my-4 text-center" id="tabLatestSocialModalLabel">One<span
-                            style="color: #ffa500">fit.</span>Net Updates &amp; Socials</h5>
+                            style="color: #ffa500">fit.</span>Net - Updates &amp; Socials</h5>
 
                     <!-- Latest Updates & Socials Container -->
                     <!-- Main User Profile Preview List (Main UPPL - It is hidden on screens smaller than lg) -->
-                    <div class="shadow p-0" style="border-radius: 25px; background-color: #343434; overflow: hidden;"
+                    <div class="shadow p-0 down-top-grad-tahiti py-4"
+                        style="border-radius: 25px;/* background-color: #343434; */overflow: hidden;"
                         id="main-upp-list">
                         <div class="container comfortaa-font p-0 mt-2 text-white mx-4z d-nonez d-lg-blockz">
                             <!-- UPPL Header (with Banner and Profile Pic) -->
@@ -9987,44 +10087,49 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                 <!-- Users Profile Banner -->
                                 <div class="shadow -lg m-0"
-                                    style="border-radius: 30px 30px 100% 100%; height: 400px; width: 100%; overflow: hidden; background-image: url('../media/assets/fitness-colage.png'); background-position: center; background-attachment: local; background-clip: content-box; background-size: cover; border-bottom: solid 5px white;">
+                                    style="border-radius: 25px 25px;height: 400px;width: 100%;overflow: hidden;background-image: url('../media/assets/fitness-colage.png');background-position: center;background-attachment: local;background-clip: content-box;background-size: cover;border-bottom: solid 5px white;">
                                 </div>
                                 <!-- ./ Users Profile Banner -->
 
                                 <!-- Profile Picture -->
                                 <img src="../media/assets/One-Symbol-Logo-Two-Tone.svg" alt="Onefit Logo"
                                     class="p-3 img-fluid top-down-grad-tahiti shadow"
-                                    style="margin-top: -100px; height: 200px; border-radius: 55px; border-color: #ffa500 !important; background-color: var(--mineshaft);">
+                                    style="margin-top: -100px; height: 200px; border-radius: 55px; background-color: var(--mineshaft); border-color: rgb(255, 165, 0) !important; filter: invert(0);">
                                 <!-- ./ Profile Picture -->
                                 <p class="mt-2 mt-4 fs-1 fw-bold comfortaa-font">One<span
                                         style="color: #ffa500;">fit</span>.app</p>
                             </div>
                             <!-- ./ UPPL Header (with Banner and Profile Pic) -->
 
-                            <div class="row">
+                            <div class="row align-items-center">
                                 <div class="col-md">
                                     <ol class="list-group list-group-flush border-0 my-4">
                                         <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white"
                                             style="border-color: #fff !important">
                                             <div class="ms-2 me-auto">
-                                                <div class="fw-bold" style="color: #ffa500">One-On-One Fitness Network®
+                                                <div class="fw-bold fs-2 poppins-font"
+                                                    style="color: var(--white);font-size: 20px;">One-On-One Fitness
+                                                    Network®
                                                 </div>
                                                 @OnefitNet<br>
                                                 Community Growth: <br>
-                                                1 Trainee (<i class="fas fa-solid fa-dash" aria-hidden="true"></i> 0%)
+                                                +141 new members. (<i class="fas fa-solid fa-dash"
+                                                    aria-hidden="true"></i> 12.6% from 2022 - 2023 )
                                             </div>
-                                            <span class="badge bg-primary rounded-pillz p-4"
+                                            <span class="badge bg-primary rounded-pillz p-4 fs-6"
                                                 style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px">
-                                                <span class="material-icons material-icons-round"
-                                                    style="font-size: 20px !important">
+                                                <span class="material-icons material-icons-round align-middle"
+                                                    style="font-size: 40px !important;">
                                                     workspace_premium </span>
-                                                Awards Issued
+                                                10 Awards Issued
                                             </span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white"
                                             style="border-color: #fff !important">
                                             <div class="ms-2 me-auto">
-                                                <div class="fw-bold text-end" style="color: #ffa500">Followers</div>
+                                                <div class="fw-bold text-start fs-3 poppins-font"
+                                                    style="color: var(--white);font-size: 20px;">Community Statistics.
+                                                </div>
                                                 2 Trainees<br>
                                                 6 Trainers<br>
                                                 20 Groups<br>
@@ -10033,20 +10138,20 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 20 Diet Programs<br>
                                                 5 Wellness Programs
                                             </div>
-                                            <span class="badge bg-primary rounded-pillz p-4"
+                                            <span class="badge bg-primary rounded-pillz p-4 fs-1"
                                                 style="background-color: #ffa500 !important; color: #343434 !important; border-radius: 25px"><span
-                                                    class="material-icons material-icons-round"
-                                                    style="font-size: 20px !important"> people_alt
+                                                    class="material-icons material-icons-round align-middle"
+                                                    style="font-size: 40px !important;"> people_alt
                                                 </span> 6</span>
                                         </li>
                                     </ol>
                                 </div>
                                 <div class="col-md-5 text-center">
-                                    <h3>Support us on Socials</h3>
+                                    <h3>Engage with us on Socials.</h3>
                                     <div class="container-fluid">
                                         <div class="row align-items-center" style="font-size: 40px;">
                                             <div class="col m">
-                                                <button class="border-0 social-link-icon-insta p-4 my-4 shadow"
+                                                <button class="border-0 social-link-icon-insta-light p-4 my-4 shadow"
                                                     style="cursor: pointer" onclick="launchLink('www.google.com')">
                                                     <div class="d-grid gap-2">
                                                         <i class="fab fa-instagram" aria-hidden="true"></i>
@@ -10056,7 +10161,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </div>
 
                                             <div class="col">
-                                                <button class="border-0 social-link-icon-twitter p-4 my-4 shadow"
+                                                <button class="border-0 social-link-icon-twitter-light p-4 my-4 shadow"
                                                     style="cursor: pointer" onclick="launchLink('www.google.com')">
                                                     <div class="d-grid gap-2">
                                                         <i class="fab fa-twitter" aria-hidden="true"></i>
@@ -10066,7 +10171,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </div>
 
                                             <div class="col">
-                                                <button class="border-0 social-link-icon-fb p-4 my-4 shadow"
+                                                <button class="border-0 social-link-icon-fb-light p-4 my-4 shadow"
                                                     style="cursor: pointer" onclick="launchLink('www.google.com')">
                                                     <div class="d-grid gap-2">
                                                         <i class="fab fa-facebook" aria-hidden="true"></i>
@@ -10076,7 +10181,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </div>
 
                                             <div class="col">
-                                                <button class="border-0 social-link-icon-yt p-4 my-4 shadow"
+                                                <button class="border-0 social-link-icon-yt-light p-4 my-4 shadow"
                                                     style="cursor: pointer" onclick="launchLink('www.google.com')">
                                                     <div class="d-grid gap-2">
                                                         <i class="fab fa-youtube" aria-hidden="true"></i>
@@ -10260,9 +10365,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <div class="grid-tile d-grid">
                             <!-- 5. Button trigger modal>>>>>>>>>> Calender Activity Form Modal -->
-                            <button id="toggleCalenderActivityFormeModalBtn" type="button"
-                                class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow"
+                            <button id="toggleCalenderActivityFormeModalBtn" onclick="openCalenderActivityForm()"
+                                type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow"
                                 data-bs-toggle="modal" data-bs-target="#CalenderActivityFormeModal">
+                                <!--  -->
                                 <span class="material-icons material-icons-round align-middle">
                                     event_note
                                 </span>
@@ -12803,7 +12909,24 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <!-- A Lot of Javascript here!!! - should be in external js files -->
     <script>
-    // 
+    // **************************** js_start: my custom js😎👌
+
+    // js countup for 60 seconds
+    let timeleft = 0;
+    const downloadTimer = setInterval(function() {
+        if (timeleft >= 60) {
+            clearInterval(downloadTimer);
+            document.getElementById("load-countdown").innerHTML = "+" + timeleft + "s.";
+            document.getElementById("loadtime-output-label").innerHTML =
+                "The page load is taking longer than usual. Please wait while we load the page for you.";
+            document.getElementById("loadtime-output-label").classList.remove("d-none");
+        } else {
+            document.getElementById("load-countdown").innerHTML = timeleft + "s.";
+        }
+        timeleft += 1;
+    }, 1000);
+
+    // load the chat conversations
     $.loadChatConversation = function(conversationId, currentUserUsrnm, conversationRef) {
         // show #load-wait-screen-curtain 
         $('#load-wait-screen-curtain').show();
@@ -13505,6 +13628,8 @@ if (isset($_SESSION["currentUserAuth"])) {
     function loadStore(currentUser) {
         // load store products
         $.getStoreProducts('ui_data', '#store-smart-watch-grid-container');
+        // load the users cart. data compilation will be done via PHP script with user session data as the cart data will be saved on MySQL db
+        $.getUserCart();
 
         /* move the progress bar forward */
         updateLoadProgressBar(6);
@@ -13613,6 +13738,9 @@ if (isset($_SESSION["currentUserAuth"])) {
         // } catch (error) {
         //     console.log("loadMedia -> Exception error: " + error);
         // }
+
+        // stop downloadTimer to lock in the load duration
+        clearInterval(downloadTimer);
     }
 
     // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -13845,6 +13973,18 @@ if (isset($_SESSION["currentUserAuth"])) {
 
 
     function openCalenderActivityForm(dateYear, dateMonth, dateDay) {
+        // set the date values to todays date if they were not passed as a parameter
+        const timeElapsed = Date.now('yyyy-MM-dd');
+
+        // assign year value to dateYear if dateYear parameter was not passed as a parameter
+        var dateYear = dateYear || new Date(timeElapsed).getFullYear();
+
+        // assign month value to dateMonth if dateMonth parameter was not passed as a parameter
+        var dateMonth = dateMonth || new Date(timeElapsed).getMonth() + 1;
+
+        // assign day value to dateDay if dateDay parameter was not passed as a parameter
+        var dateDay = dateDay || new Date(timeElapsed).getDate();
+
         // '2023/3/10'
         // alert(`Show modal for calender day: ${dateYear}/${dateMonth}/${dateDay}`);
 
@@ -14316,6 +14456,61 @@ if (isset($_SESSION["currentUserAuth"])) {
     function launchLink(link) {
         window.location.href = link;
     }
+
+    // function to check validity of id number using luhn algorithm
+    // error on idNumber.split('').map(Number)
+    // function validateIDNumber(idNumber) {
+    //     // alert("ID Number: " + idNumber);
+    //     // alert("ID Number Length: " + idNumber.length);
+    //     // alert("ID Number Type: " + typeof idNumber);
+
+    //     // check if idNumber is a number
+    //     if (isNaN(idNumber)) {
+    //         alert("ID Number is not a number.");
+    //         return false;
+    //     }
+
+    //     // check if idNumber is 13 digits long
+    //     if (idNumber.toString().length != 13) {
+    //         alert("ID Number is not 13 digits long.");
+    //         return false;
+    //     }
+
+    //     // check if idNumber is a valid id number
+    //     var idNumber = idNumber.split('').map(Number);
+    //     var checkSum = 0;
+    //     var checkDigit = idNumber.pop();
+
+    //     for (var i = 0; i < idNumber.length; i++) {
+    //         checkSum += ((i % 2) === 0 ? idNumber[i] * 2 : idNumber[i]);
+    //     }
+
+    //     return ((10 - (checkSum % 10)) % 10 === checkDigit);
+    // }
+    // Luhn Algorith checksum formula for validating card and ID numbers source: https://www.geeksforgeeks.org/luhn-algorithm/ | source: https://www.westerncape.gov.za/general-publication/decoding-your-south-african-id-number-0#:~:text=The%20first%206%20digits%20(YYMMDD,and%20males%20from%205000%2D9999.
+    function checkLuhn(cardNo) {
+        let nDigits = cardNo.length;
+
+        let nSum = 0;
+        let isSecond = false;
+        for (let i = nDigits - 1; i >= 0; i--) {
+
+            let d = cardNo[i].charCodeAt() - '0'.charCodeAt();
+
+            if (isSecond == true)
+                d = d * 2;
+
+            // We add two digits to handle
+            // cases that make two digits
+            // after doubling
+            nSum += parseInt(d / 10, 10);
+            nSum += d % 10;
+
+            isSecond = !isSecond;
+        }
+        return (nSum % 10 == 0);
+    }
+
 
     Date.prototype.getWeek = function(start) {
         //Calcing the starting point
@@ -15777,7 +15972,6 @@ if (isset($_SESSION["currentUserAuth"])) {
             if (status != "success") {
                 console.log("Get Req Failed -> $.getStoreProducts returned: \n[Status]: " + status +
                     "\n[Data]: " + data);
-                // alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
             } else {
                 // console log if json was requested
                 if (request == 'json') console.log('Store Products Json: \n' + data);
@@ -15785,6 +15979,19 @@ if (isset($_SESSION["currentUserAuth"])) {
             }
         });
     }
+
+    $.getUserCart = function() {
+        //$.get function that load content from php into #dynamic-user-cart on status: success
+        $.get("../scripts/php/main_app/compile_content/store_tab/user_cart_widget.php", function(data, status) {
+            if (status != "success") {
+                console.log("Get Req Failed -> $.getUserCart returned: \n[Status]: " + status +
+                    "\n[Data]: " +
+                    data);
+            } else {
+                $('#dynamic-user-cart').html(data);
+            }
+        });
+    };
 
     $.getFitnessProgressionUIWidgets = function(username, widgetType) {
         // widgetType should either be bar or mini - strictly

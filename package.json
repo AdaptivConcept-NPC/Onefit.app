@@ -3,6 +3,7 @@
     "bootstrap": "^5.2.3",
     "chart.js": "^3.9.1",
     "jquery": "^3.6.3",
-    "jquery-validation": "^1.19.5"
+    "jquery-validation": "^1.19.5",
+    "turn-js": "^0.5.4"
   }
 }
