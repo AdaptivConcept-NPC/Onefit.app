@@ -1081,8 +1081,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </button>
 
                 <!-- Navigation Menu Offcanvas -->
-                <div class="offcanvas offcanvas-end offcanvas-menu-primary-style fitness-bg-containerz" tabindex="-1"
-                    id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas offcanvas-end offcanvas-menu-primary-style w-50 fitness-bg-containerz"
+                    tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div class="no-scroller" id="offcanvas-menu">
                         <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
                             <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2"
