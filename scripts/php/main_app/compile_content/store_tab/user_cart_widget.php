@@ -1,18 +1,127 @@
 <?php
 
+$listItemNumber = 0;
+$cartItemsVList = "";
+$productName = "Aiwa Smart Band ASB-40";
+$productImageURL = "../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png";
+$productPriceLabel = ""; // format: R 0.00
+$productPrice = 259.95;
+$productRef = "20220201-879ds6fsdf_id";
+$productQty = 1;
+
+// test: compile product price text/label content
+function productPrice($currency, $productPrice)
+{
+    $priceText = "";
+    switch ($currency) {
+        case null:
+            # if blank
+            $priceText = "Error: currency not defined";
+            break;
+
+        case 'ZAR':
+            # if South African Rand
+            $priceText = "R $productPrice";
+            break;
+
+        default:
+            # if unknown currency
+            $priceText = "Error: unknown currency [ $currency ]";
+            break;
+    }
+
+    return $priceText;
+};
+
+
+for ($i = 1; $i <= 5; $i++) {
+    # code...
+    $listItemNumber += 1;
+    $list_item_id = "main-cart-items-list-item-$listItemNumber";
+    // reset product price label text
+    $productPriceLabel = "R 0.00";
+    // test: set product price and currency
+    $productPrice = 259.95;
+    $currency = "ZAR";
+    // call productPrice()
+    $productPriceLabel = productPrice($currency, $productPrice);
+
+    $cacheItem = <<<_END
+    <li id="$list_item_id" class="list-group-item border-light down-top-grad-tahiti text-dark fs-5 d-flex border-0 border -bottom" style="border-radius: 15px;border-color: var(--mineshaft) !important;">
+        <!-- ./ product / item card -->
+        <div class="w-100 align-items-center justify-content-between">
+            <div class="row gap-2 align-items-start justify-content-start">
+                <div class="col-md d-flex gap-1 justify-content-center p-4 top-down-grad-tahitiz rounded-4 no-scroller" style="overflow-x:auto;">
+                    <div class="row w-100">
+                        <div class="col-md d-grid gap-2 text-start p-0 align-items-center">
+                            <div class="poppins-font text-truncate">
+                                <span class="badge text-bg-light fs-4">$listItemNumber.</span>
+                                <span id="main-cart-items-list-item-name" class="align-middle fs-4 fs-bold text-white"> $productName</span>
+                            </div>
+                            <div class="poppins-font text-center">
+                                <span class="material-icons material-icons-round text-white d-nonez" style="font-size: 22px !important;">toll</span>
+                                <span class="fs-1" id="main-cart-items-list-item-price" style="color:var(--white);">$productPriceLabel</span>
+                            </div>
+                            <div class="text-xsm-center text-sm-center text-md-center text-lg-end"><span class="barcode-font text-truncate" id="cart-producte-ref" style="color: var(--mineshaft);font-size:12px!important;">$productRef</span></div>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="$productImageURL" alt="$productName - $productRef" style="filter: invert(0);max-width:200px;" class="img-fluid shadow-lg rounded-3">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 p-0 d-flex gap-2 align-items-start justify-content-center">
+                    <div class="border-0 border-startz border-endz down-top-grad-tahiti shadow-lg px-2" style="border-radius:25px;">
+                        <div class="d-grid justify-content-center my-4">
+                            <!-- quantity -->
+                            <div class="input-group m-0 d-grid gap-0 justify-content-center">
+                                <p class="input-group-text text-center m-0" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:var(--tahitigold)!important;/* background-color:#343434; */border-radius: 14px 14px 0 0;border: 0;">
+                                    <span class="material-icons align-middle" style="font-size:20px!important;">
+                                    production_quantity_limits
+                                    </span> Quantity.
+                                </p>
+                                <input type="number" class="form-control text-center w-100" value="$productQty" min="0" step="1" oninput="validity.valid||(value='');" placeholder="qty." aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border: 0;border-radius: 0 0 15px 15px !important;background-color: #343434;color: #fff;min-width: 50px;">
+                            </div>
+                            <!-- ./ quantity -->
+                            <!-- product description -->
+                            <div id="prod-highlighted-features" class="d-flex gap-2 mt-4">
+                                <span class="material-icons align-middle" style="font-size: 20px!important;">info</span>
+                                <span class="align-middle text-wrap" style="font-size: 10px;">Highlighted features.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-2">
+                        <div class="d-flex justify-content-center">
+                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-4 text-center shadow-lg -sm bg-transparent" onclick="deleteCartItem('product_id','product_ref','$list_item_id')" style="border-color: var(--red);color: var(--white) !important;">
+                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                    highlight_off
+                                </span>
+                                <span class="d-none d-lg-block text-truncate" style="font-size: 10px;">Remove!</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./ product / item card -->
+    </li>
+    _END;
+
+    $cartItemsVList .= $cacheItem;
+}
+
 $cart_widget_html_template = <<<_END
 <!-- Cart Container  -->
-<div class="container-fluid py-4 d-nonez">
+<div class="container py-4 d-nonez">
     <div class="text-center">
-        <button class="navbar-toggler shadowz onefit-buttons-style-tahiti p-0 hide-side-panels shadow-lg collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel" aria-expanded="false" id="main-cart-toggle-btn">
-            <div class="row px-4z py-2 m-0 align-items-center rounded-3 top-down-grad-dark">
+        <button class="navbar-toggler shadowz onefit-buttons-style-dark rounded-5z p-0 hide-side-panels shadow-lg collapsed border-3 border" style="overflow:hidden;" type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel" aria-expanded="false" id="main-cart-toggle-btn">
+            <div class="row px-4z py-2 m-0 align-items-center rounded-3 top-down-grad-tahiti">
                 <div class="col-sm fw-bold comfortaa-font border-startz border-endz border-light p-4 fs-4 d-grid gap-2 text-center text-white" style="min-width:100px;">
                     <span class="material-icons material-icons-round align-middle" style="font-size: 50px !important;">
                         card_membership
                     </span>
                     <span class="align-middle text-truncate" style="font-size: 15px;color: var(--white);">0 Coupons.</span>
                 </div>
-                <div class="col-sm border-3 border-start border-end border-light rounded-3 p-4 text-white" style="border-color: var(--tahitigold) !important;">
+                <div class="col-sm border-3 border-start border-end border-light rounded-3 p-4 text-white" style="border-color: var(--white) !important;">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                             shopping_cart </span>
@@ -31,7 +140,7 @@ $cart_widget_html_template = <<<_END
         </button>
     </div>
     <!-- ./ -->
-    <div class="showz down-top-grad-dark w3-animate-top comfortaa-font text-white collapse show" style="border-radius: 25px; overflow: hidden;" id="cart-panel">
+    <div class="showz down-top-grad-dark w3-animate-top comfortaa-font text-white collapse" style="border-radius: 25px; overflow: hidden;" id="cart-panel">
         <div class="p-4 shadow" id="">
             <div class="text-center d-flex justify-content-between align-items-center">
                 <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4 w3-animate-right d-grid gap-1" type="button" onclick="openLink(event, 'TabStore');openLink(event, 'TabStore');document.getElementById('main-cart-toggle-btn').click()">
@@ -67,56 +176,7 @@ $cart_widget_html_template = <<<_END
                         <h1 class="text-white w3-animate-left mb-4">My items.</h1>
                         <!-- Cart items vertical list -->
                         <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numberedz shadow py-4 px-2 w3-animate-left light-scroller top-down-grad-tahiti" style="/* background-color: var(--tahitigold); */overflow-y: auto;border-radius: 25px !important;max-height: 80vh !important;">
-                            <li id="main-cart-items-list-item-idvalue" class="list-group-item border-light down-top-grad-tahiti text-dark fs-5 d-flex border-0 border -bottom" style="border-radius: 15px;border-color: var(--mineshaft) !important;">
-                                <!-- ./ product / item card -->
-                                <div class="w-100 align-items-center justify-content-between">
-                                    <div class="row gap-2 align-items-center justify-content-start">
-                                        <div class="col-md d-flex gap-1 justify-content-center p-4 top-down-grad-tahitiz rounded-4 no-scroller" style="overflow-x:auto;">
-                                            <div class="row w-100">
-                                                <div class="col-md d-grid gap-2 text-start p-0 align-items-center">
-                                                    <div class="poppins-font text-truncate">
-                                                        <span class="badge text-bg-light">1.</span>
-                                                        <span id="main-cart-items-list-item-name" class="align-middle fs-4"> Aiwa Smart Band ASB-40</span>
-                                                    </div>
-                                                    <div class="poppins-font">
-                                                        <span class="material-icons material-icons-round text-white d-nonez" style="font-size: 22px !important;">toll</span>
-                                                        <span class="fs-1" id="main-cart-items-list-item-price" style="color: var(--white);">R 149.00</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" alt="product name / ref _thumb" style="filter: invert(0);max-width:200px;" class="img-fluid shadow-lg rounded-3">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 p-0 d-flex gap-2 align-items-end justify-content-center">
-                                            <div class="border-0 border-startz border-endz down-top-grad-tahiti shadow-lg px-2" style="border-radius:25px;">
-                                                <div class="d-grid justify-content-center my-4">
-                                                    <!-- quantity -->
-                                                    <div class="input-group m-0 d-grid gap-0 justify-content-center">
-                                                        <p class="input-group-text text-center m-0" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:#ffa500!important;/* background-color:#343434; */border-radius: 14px 14px 0 0;border: 0;">
-                                                            <span class="material-icons align-middle" style="font-size:20px!important;">
-                                                            production_quantity_limits
-                                                            </span> Quantity.
-                                                        </p>
-                                                        <input type="number" class="form-control text-center w-100" min="0" step="1" oninput="validity.valid||(value='');" placeholder="qty." aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border: 0;border-radius: 0 0 15px 15px !important;background-color: #343434;color: #fff;min-width: 50px;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="px-2">
-                                                <div class="d-flex justify-content-center">
-                                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-4 text-center shadow-lg -sm bg-transparent" style="border-color: var(--red);color: var(--white) !important;">
-                                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
-                                                            highlight_off
-                                                        </span>
-                                                        <span class="d-none d-lg-block text-truncate" style="font-size: 10px;">Remove!</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- ./ product / item card -->
-                            </li>
+                            $cartItemsVList
                         </ul>
                         <!-- ./ Cart items vertical list -->
                     </div>
@@ -125,11 +185,12 @@ $cart_widget_html_template = <<<_END
                     <div class="container-fluid p-2 pt-4 down-top-grad-tahiti border-3z border-topz" style="border-radius: 25px;border-color: var(--tahitigold) !important;">
                         <!-- invoice number barcode display -->
                         <div id="cart-invoice-ref">
-                            <p class="text-center w3-animate-left comfortaa-font" style="min-height: 30px;">
-                                <span class="material-icons material-icons-round align-middle" style="font-size:20px !important;">
+                            <p class="text-center w3-animate-left comfortaa-font d-grid" style="min-height: 30px;">
+                                <span class="material-icons material-icons-round align-middle" style="font-size:40px !important;">
                                     receipt_long
                                 </span>
-                                Invoice# [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;">20220201-879ds6fsdf_id</span> ]
+                                <span>Invoice Reference.</span>
+                                <span> <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;">20220201-879ds6fsdf_id</span> </span> 
                             </p>
                         </div>
                         <!-- ./ invoice number barcode display -->

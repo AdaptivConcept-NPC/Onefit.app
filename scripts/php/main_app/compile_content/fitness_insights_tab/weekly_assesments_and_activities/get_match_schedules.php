@@ -28,9 +28,44 @@ $team_athletics_match_id
     = $observed_match_duration
     = $match_result
     = $groups_group_ref_code
-    = $compile_table_rows = null;
+    = $compile_table_rows
+    = $record_function_buttons = null;
 
 // tst_grp_0001
+
+$record_function_buttons = <<<_END
+<td>
+    <button class="onefit-buttons-style-light p-4 text-center shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAnalyzeMatch" aria-controls="offcanvasAnalyzeMatch">
+        <div class="d-grid">
+            <span class="material-icons material-icons-round">
+                analytics
+            </span>
+            <span class="align-middle poppins-font text-truncate" style="font-size: 10px !important">
+                Analyze match.
+            </span>
+        </div>
+    </button>
+</td>
+<td>
+    <button class="onefit-buttons-style-light p-3 dropdown-toggle shadow" style="transform: scale(1)!important;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="material-icons material-icons-outlined align-middle">
+            expand_circle_down
+        </span>
+    </button>
+    <ul class="dropdown-menu bg-light gap-2 mt-1 p-2 shadow">
+        <li>
+            <button class="dropdown-item fw-bold" type="button">
+                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;">
+                    account_circle
+                </span>
+                <span class="align-middle">
+                    View Profile
+                </span>
+            </button>
+        </li>
+    </ul>
+</td>
+_END;
 
 try {
     // todays date
@@ -69,7 +104,7 @@ try {
         //there is no result so notify user that the account cannot be found
         $compile_table_rows = <<<_END
         <tr>
-            <td colspan="10" class="text-center fs-5 fw-bold">No matches to display.</td>
+            <td colspan="12" class="text-center fs-5 fw-bold">No matches to display.</td>
         </tr>
         _END;
     } else {
@@ -100,6 +135,7 @@ try {
                 <td>$standard_match_duration</td>
                 <td>$observed_match_duration</td>
                 <td>$match_result</td>
+                $record_function_buttons
             </tr>
             _END;
         }

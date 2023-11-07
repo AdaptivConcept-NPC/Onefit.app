@@ -1,0 +1,14 @@
+/* Start / Stop / Reset Timer by davinciharsha - https://codepen.io/davinciharsha */
+/* code source: https://codepen.io/davinciharsha/pen/vGBXzR */
+
+div.timer {
+	border: 1px #666666 solid;
+	border-radius: 25px;
+	/* width: 190px;
+	height: 50px; */
+	line-height: 50px;
+	font-size: 63px;
+	/* font-family: "Courier New", Courier, monospace; */
+	text-align: center;
+	margin: 5px;
+}

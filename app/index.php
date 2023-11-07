@@ -206,6 +206,8 @@ if (isset($_SESSION["currentUserAuth"])) {
         onload="coreScriptLoaded_googlefonts_fonts=true;">
     <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap" rel="stylesheet"
         onload="coreScriptLoaded_googlefonts_css=true;">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap" rel="stylesheet"
+        onload="coreScriptLoaded_googlefonts_css=true;">
 
     <!-- chartjs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"
@@ -280,6 +282,35 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <link rel="stylesheet" href="../css/flipbook.css" onload="coreScriptLoaded_turnjs_css=true;">
 
+    <link rel="stylesheet" href="../css/bounce-in-animations.css">
+
+    <style>
+    .tab-quick-nav {
+        position: fixed;
+        right: 0;
+        bottom: 10px;
+        /* max- */
+        width: 78px;
+        height: auto;
+        /* background-color: var(--tahitigold); */
+        color: var(--white);
+        border-radius: 25px 0 0 25px;
+        border-color: var(--tahitigold) !important;
+        z-index: 1000;
+        transition: all 200ms ease-in-out;
+    }
+
+    .tab-quick-nav:hover {
+        width: 234px !important;
+    }
+
+    .quick-nav-heading {
+        position: absolute;
+        top: 35px;
+        left: 0;
+        transform: rotate(-90deg);
+    }
+    </style>
 </head>
 
 <body class="noselect" onload="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
@@ -459,7 +490,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             </label>
         </div>
 
-        <nav class="text-center text-center p-4 fixed-bottom d-grid justify-content-center">
+        <nav class="text-center text-center p-4 fixed-bottom d-grid justify-content-center down-top-grad-dark">
             <p id="loadtime-output-label" class="text-center comfortaa-font mt-2 mb-4 d-none">Loading. Please wait.</p>
             <div class="progress my-4 rounded-pill shadow"
                 style="height:20px;max-width:500px;border-radius:50rem!important;background-color:var(--white)">
@@ -978,25 +1009,27 @@ if (isset($_SESSION["currentUserAuth"])) {
             <!-- App Function Buttons -->
             <div class="container d-flex gap-1 align-items-center w3-animate-top">
                 <button id="app-notifications-btn" main-data-bs-target="#tabLatestSonav-notifications-btn"
-                    style="border-color:var(--tahitigold)!important"
+                    style="border-color:var(--tahitigold)!important;min-width: 85.69px;"
                     class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels d-none d-sm-block border-bottom border-5"
                     type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications"
                     aria-controls="offcanvasNotifications">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important">
                             notifications </span>
-                        <span class="d-none d-lg-block" style="font-size: 10px;">Notifications</span>
+                        <span class="d-none d-lg-block text-truncate"
+                            style="font-size: 10px;max-width:55.69px;">Notifications</span>
                     </div>
                 </button>
 
-                <button type="button" id="apps-tray-open-btn" style="border-color:var(--tahitigold)!important"
+                <button type="button" id="apps-tray-open-btn"
+                    style="border-color:var(--tahitigold)!important;min-width: 85.69px;"
                     class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font hide-side-panels border-topz border-bottom border-5"
                     style="max-width:87px;" data-bs-toggle="modal" data-bs-target="#tabNavModal">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important;"
                             id="apps-tray-open-btn-icon"> dashboard </span>
                         <span class="d-none d-lg-block text-truncate" id="apps-tray-open-btn-text"
-                            style="font-size: 10px;"> Dashboard.</span>
+                            style="font-size: 10px;max-width:55.69px;"> Dashboard.</span>
                     </div>
                 </button>
 
@@ -1013,25 +1046,27 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     class="p-1 img-fluid my-pulse-animation-tahitiz"
                                     style="height: 50px; width: 50px; border-radius: 15px; border-color: #ffa500 !important">
                             </div>
-                            <span class="d-none d-lg-block">Refresh</span>
+                            <span class="d-none d-lg-block text-truncate">Refresh</span>
                         </div>
                     </button>
                 </div>
                 <!-- ./ Main App Content Refresh button -->
 
-                <button id="open-widgets-panel-btn" type="button" style="border-color:var(--tahitigold)!important"
+                <button id="open-widgets-panel-btn" type="button"
+                    style="border-color:var(--tahitigold)!important;min-width: 85.69px;"
                     class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font show-side-panels border-topz border-bottom border-5"
                     data-bs-toggle="collapse" data-bs-target="#widget-rows-container"
                     aria-controls="widget-rows-container">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> interests
                         </span>
-                        <span class="d-none d-lg-block" style="font-size: 10px;">Widgets</span>
+                        <span class="d-none d-lg-block text-truncate"
+                            style="font-size: 10px;max-width:55.69px;">Widgets</span>
                     </div>
                     <!--<span class="material-icons material-icons-round" style="font-size: 24px !important"> linear_scale </span>-->
                 </button>
 
-                <button id="main-nav-ext-links-btn" style="border-color:var(--tahitigold)!important"
+                <button id="main-nav-ext-links-btn" style="border-color:var(--tahitigold)!important;min-width: 85.69px;"
                     class="navbar-toggler shadow onefit-buttons-style-dark p-3 hide-right-side-panels d-none d-sm-block border-topz border-bottom border-5"
                     type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                     aria-controls="offcanvasNavbar">
@@ -1040,7 +1075,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                             style="font-size: 28px !important"> public
                             <!-- menu_open -->
                         </span>
-                        <span class="d-none d-lg-block" id="" style="font-size: 10px;">Web.nav</span>
+                        <span class="d-none d-lg-block text-truncate"
+                            style="font-size: 10px;max-width:55.69px;">Web.nav</span>
                     </div>
                 </button>
 
@@ -1323,34 +1359,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         </nav>
         <!-- ./ Main Navigation Bar -->
 
-        <style>
-        .tab-quick-nav {
-            position: fixed;
-            right: 0;
-            bottom: 10px;
-            /* max- */
-            width: 78px;
-            height: auto;
-            /* background-color: var(--tahitigold); */
-            color: var(--white);
-            border-radius: 25px 0 0 25px;
-            border-color: var(--tahitigold) !important;
-            z-index: 1000;
-            transition: all 200ms ease-in-out;
-        }
-
-        .tab-quick-nav:hover {
-            width: 234px !important;
-        }
-
-        .quick-nav-heading {
-            position: absolute;
-            top: 35px;
-            left: 0;
-            transform: rotate(-90deg);
-        }
-        </style>
-
         <!-- Tab Content -->
         <div class="container-xlg">
             <div class="tab-container" id="tab-container">
@@ -1362,7 +1370,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">dashboard</span> <span
                                 class="align-middle">Dashboard</span></h5>
-                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(dashboard)');">
+                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('dashboard')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
@@ -1524,8 +1532,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 style="background-color: #343434; color:#ffa500;">
                                 <div class="row align-items-center">
                                     <div class="col mb-2">
-                                        <button class="onefit-buttons-style-dark p-3"
-                                            onclick="alert('refresh profile tab')">
+                                        <button class="onefit-buttons-style-dark p-3" onclick="reloadTab('profile')">
                                             <!-- left touch for scroll indicator -->
                                             <span
                                                 class="material-icons material-icons-round align-middle text-muted p-4 rounded-circle shadow"
@@ -3500,7 +3507,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 style="color: #ffa500 !important; font-size: 40px;">travel_explore</span> <span
                                 class="align-middle">Discovery</span></h5>
                         <p class="text-center" style="font-size: 10px">powered by AdaptEngine™</p>
-                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(discovery)');">
+                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('discovery')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
@@ -3673,7 +3680,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <span style="color: #fff !important">One</span>
                                     <span style="color: #ffa500 !important">fit</span>.Studio</span>
                         </h5>
-                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(studio)');">
+                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('studio')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
@@ -3789,7 +3796,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <span class="align-middle"><span style="color: #fff !important">One</span>
                                 <span style="color: #ffa500 !important">fit</span>.Store</span>
                         </h5>
-                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(store)');">
+                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('store')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
@@ -4773,7 +4780,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </h1>
                         <p class="text-center my-4 comfortaa-font">Use the Fitness Insights page to track your Training
                             progression and workout activities.</p>
-                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(insights)');">
+                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('insights')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
@@ -6666,7 +6673,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         style="border-radius: 25px; border-color: #ffa500 !important;">
                         <span class="material-icons material-icons-outlined">sports</span>
                         <h5 class="mt-4 fs-1 text-center align-middle">Training.</h5>
-                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(training)');">
+                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('training')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
@@ -7161,6 +7168,85 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     id="v-sub-tab-pills-insights-teamathletics"
                                     style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;"
                                     role="tabpanel" aria-labelledby="v-sub-tab-pills-insights-teamathletics-tab">
+                                    <!-- Teams Match Anlysis Offcanvas -->
+                                    <button class="btn btn-primary d-none" type="button" data-bs-toggle="offcanvas"
+                                        data-bs-target="#offcanvasAnalyzeMatch" aria-controls="offcanvasAnalyzeMatch">
+                                        Toggle match analysis offcanvas
+                                    </button>
+
+                                    <style>
+                                    .match-analyse-offcanvas {
+                                        background-color: var(--mineshaft);
+                                        color: var(--white);
+                                    }
+                                    </style>
+
+                                    <link rel="stylesheet" href="../css/match_analysis.css">
+
+                                    <script src="../administration/scripts/js/match_analysis.js"></script>
+
+                                    <div class="offcanvas offcanvas-end w-100 match-analyse-offcanvasz top-down-grad-tahiti"
+                                        data-bs-backdrop="static" tabindex="-1" id="offcanvasAnalyzeMatch"
+                                        aria-labelledby="analyseMatchLabel" aria-modal="true" role="dialog">
+                                        <div class="offcanvas-header">
+                                            <h5 class="offcanvas-title" id="analyseMatchLabel">
+                                                <span class="material-icons material-icons-round align-middle fs-3">
+                                                    analytics
+                                                </span> Match Analysis.
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="offcanvas-body top-down-grad-dark">
+                                            <div class="row">
+                                                <div class="col-md pb-5">
+                                                    <h5 class="align-middle fs-5">
+                                                        <span class="material-icons material-icons-rounded align-middle"
+                                                            style="font-size:40px!important;">
+                                                            timer
+                                                        </span> Duration.
+                                                    </h5>
+
+                                                    <div class="timer">
+                                                        <span class="hour">00</span>:<span
+                                                            class="minute">00</span>:<span class="second">00</span>
+                                                    </div>
+                                                    <div class="control d-flex gap-2 justify-content-center">
+                                                        <button onclick="timer.start(1000)"
+                                                            class="onefit-buttons-style-light p-3">Start</button>
+                                                        <button onclick="timer.stop()"
+                                                            class="onefit-buttons-style-light p-3">Stop</button>
+                                                        <button onclick="timer.reset(60)"
+                                                            class="onefit-buttons-style-light p-3">Reset</button>
+                                                        <button onclick="timer.mode(1)"
+                                                            class="onefit-buttons-style-light p-3">Count up</button>
+                                                        <button onclick="timer.mode(0)"
+                                                            class="onefit-buttons-style-light p-3">Count down</button>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md pb-5">
+                                                    <h5 class="align-middle fs-5">
+                                                        <span class="material-icons material-icons-rounded align-middle"
+                                                            style="font-size:40px!important;">
+                                                            note_alt
+                                                        </span> Events.
+                                                    </h5>
+                                                </div>
+                                                <div class="col-md pb-5">
+                                                    <h5 class="align-middle fs-5">
+                                                        <span class="material-icons material-icons-rounded align-middle"
+                                                            style="font-size:40px!important;">
+                                                            auto_graph
+                                                        </span> Statistics.
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="offcanvas-footer"></div>
+                                    </div>
+                                    <!-- ./ Teams Match Anlysis Offcanvas -->
+
                                     <!-- sub-tab section navigation -->
                                     <!-- containerElemID, scrollToElemID, scrollSpeed -->
                                     <div id="training-tab-quick-nav"
@@ -8150,7 +8236,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 style="border-radius: 25px !important; overflow: hidden;">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">Match #</th>
+                                                        <th scope="col">Match Number</th>
                                                         <th scope="col">Match Title</th>
                                                         <th scope="col">Home Team</th>
                                                         <th scope="col">Away Team</th>
@@ -8160,11 +8246,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         <th scope="col">Standard Match Duration (Minutes)</th>
                                                         <th scope="col">Observed Match Duration (Minutes)</th>
                                                         <th scope="col">Match Result</th>
+                                                        <th scope="col">Analysis</th>
+                                                        <th scope="col">More.</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="teams-upcoming-match-schedule-tbody">
                                                     <tr>
-                                                        <td colspan="10" class="text-center fs-5 fw-bold">No fixtures
+                                                        <td colspan="12" class="text-center fs-5 fw-bold">No fixtures
                                                             available.</td>
                                                         <!-- <th scope="row">1</th>
                                                         <td>League Friendly - Team A (Home) vs Team B (Away)</td>
@@ -8183,13 +8271,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- ./ match fixtures / upcoming matches table -->
 
                                         <!-- match fixtures / match history table -->
-                                        <h5 class="text-center">Match history.</h5>
+                                        <h5 class="text-center">Previous matches.</h5>
                                         <div class="table-responsive mb-4">
                                             <table class="table table-bordered table-light table-striped my-4 shadow"
                                                 style="border-radius: 25px !important; overflow: hidden;">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">Match #</th>
+                                                        <th scope="col">Match Number</th>
                                                         <th scope="col">Match Title</th>
                                                         <th scope="col">Home Team</th>
                                                         <th scope="col">Away Team</th>
@@ -8199,11 +8287,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         <th scope="col">Standard Match Duration (Minutes)</th>
                                                         <th scope="col">Observed Match Duration (Minutes)</th>
                                                         <th scope="col">Match Result</th>
+                                                        <th scope="col">Analysis</th>
+                                                        <th scope="col">More.</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="teams-match-history-tbody">
                                                     <tr>
-                                                        <td colspan="10" class="text-center fs-5 fw-bold">No fixtures
+                                                        <td colspan="12" class="text-center fs-5 fw-bold">No fixtures
                                                             available.</td>
                                                         <!-- <th scope="row">1</th>
                                                         <td>League Friendly - Team A (Home) vs Team B (Away)</td>
@@ -9007,8 +9097,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">emoji_events</span> <span
                                 class="align-middle">Achievements</span></h5>
-                        <button class="onefit-buttons-style-tahiti p-4 d-grid"
-                            onclick="alert('reloadTab(achievements)');">
+                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('achievements')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
@@ -9220,7 +9309,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">perm_media</span> <span
                                 class="align-middle">Media</span></h5>
-                        <button class="onefit-buttons-style-tahiti p-4 d-grid" onclick="alert('reloadTab(media)');">
+                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('media')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
@@ -9515,8 +9604,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">forum</span> <span
                                 class="align-middle">Communications</span></h5>
-                        <button class="onefit-buttons-style-tahiti p-4 d-grid"
-                            onclick="alert('reloadTab(communications)');">
+                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('communications')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
@@ -9657,8 +9745,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: #ffa500 !important; font-size: 40px;">settings_accessibility</span> <span
                                 class="align-middle">Preferences</span></h5>
-                        <button class="onefit-buttons-style-tahiti p-4 d-grid"
-                            onclick="alert('reloadTab(preferences)');">
+                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('preferences')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--mineshaft)!important; */font-size:20px;"> sync
                             </span>
@@ -9713,7 +9800,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <!-- <iframe id="iframe-load-profile-header-section" class="w-100 mx-4 d-lg-none border-5 border-bottom" src="../scripts/php/main_app/compile_content/profile_tab/user_profile_header.php?usnm=KING_001" frameborder="0" style="height: 50vh; border-radius: 25px;border-color: #ffa500 !important;"></iframe> -->
                 <!-- ./ Widget: User Profile Preview List -->
 
-                <div class="row align-items-center mb-4">
+                <div class="row align-items-start mb-4">
                     <div class="col-lg text-center my-4">
                         <!-- Widget: mini profile header -->
                         <div id="mini-profile-header"
@@ -9902,14 +9989,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div> -->
 
                         <!-- onefit.muse music widget (new widget style) -->
-                        <div class="p-0 darkpads-bg-container-static shadow border-5 border-start border-end border-top border-bottom"
+                        <div class="p-0 darkpads-bg-container-static shadow border-5 border"
                             id="track-info-visualizer-container"
                             style="border-color: #ffa500 !important; border-radius: 25px !important; overflow: hidden;">
-                            <div class="down-top-grad-dark p-4 h-100 w-100">
+                            <div class="down-top-grad-tahiti p-4 h-100 w-100">
                                 <!-- widget title -->
                                 <h5 class="fs-5">
                                     <span class="align-middle">One<span style="color: #ffa500">fit</span>.Muse</span>
-                                    <span class="material-icons material-icons-round align-middle">
+                                    <span class="material-icons material-icons-round align-middle"
+                                        style="font-size:30px!important;">
                                         equalizer
                                     </span>
                                 </h5>
@@ -9954,7 +10042,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div class="d-grid gap-2 justify-content-centerz">
                                             <button
                                                 class="onefit-buttons-style-darkz rounded-pill shadow p-2 mt-4 d-grid border border-5 collapsed"
-                                                style="transform: translate(0) !important;border-color: var(--tahitigold) !important;background-color: var(--mineshaft);"
+                                                style="transform: translate(0) !important;border-color: var(--tahitigold) !important;background-color: transparent;"
                                                 id="museplayer-togglebtn" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#track-playid-songid" aria-expanded="false"
                                                 aria-controls="track-playid-songid">
@@ -9994,25 +10082,25 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                         <ul class="list-group list-group-flush">
                                             <li
-                                                class="onefit-buttons-style-dark list-group-item bg-transparent comfortaa-font fs-5 text-white text-center my-4">
+                                                class="onefit-buttons-style-dark list-group-item bg-transparent comfortaa-font fs-5 text-white text-center my-2">
                                                 <span class="align-middle">Like</span> <span
                                                     class="material-icons material-icons-round align-middle"
                                                     style="font-size: 20px !important;">thumb_up</span>
                                             </li>
                                             <li
-                                                class="onefit-buttons-style-dark list-group-item bg-transparent comfortaa-font fs-5 text-white text-center my-4">
+                                                class="onefit-buttons-style-dark list-group-item bg-transparent comfortaa-font fs-5 text-white text-center my-2">
                                                 <span class="align-middle">Share</span> <span
                                                     class="material-icons material-icons-round align-middle"
                                                     style="font-size: 20px !important;">share</span>
                                             </li>
                                             <li
-                                                class="onefit-buttons-style-dark list-group-item bg-transparent comfortaa-font fs-5 text-white text-center my-4">
+                                                class="onefit-buttons-style-dark list-group-item bg-transparent comfortaa-font fs-5 text-white text-center my-2">
                                                 <span class="align-middle">Save</span> <span
                                                     class="material-icons material-icons-round align-middle"
                                                     style="font-size: 20px !important;">favorite</span>
                                             </li>
                                             <li
-                                                class="onefit-buttons-style-dark list-group-item bg-transparent comfortaa-font fs-5 text-white text-center my-4">
+                                                class="onefit-buttons-style-dark list-group-item bg-transparent comfortaa-font fs-5 text-white text-center my-2">
                                                 <span class="align-middle">follow</span> <span
                                                     class="material-icons material-icons-round align-middle"
                                                     style="font-size: 20px !important;">follow_the_signs</span>
@@ -10082,7 +10170,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         id="main-upp-list">
                         <div class="container comfortaa-font p-0 mt-2 text-white mx-4z d-nonez d-lg-blockz">
                             <!-- UPPL Header (with Banner and Profile Pic) -->
-                            <div class="text-center top-down-grad-tahiti" style="border-radius:25px;">
+                            <div class="text-center top-down-grad-tahiti px-5 pt-5" style="border-radius:25px;">
                                 <!--<span class="material-icons material-icons-round" style="font-size: 48px !important"> account_circle </span>-->
 
                                 <!-- Users Profile Banner -->
@@ -13116,6 +13204,8 @@ if (isset($_SESSION["currentUserAuth"])) {
         reloadJs('../scripts/js/digital-clock.js');
     });
 
+
+
     // initialize global activity tracker chart objects
     // initialize activity tracking charts
     // Note: changes to the plugin code is not reflected to the chart, because the plugin is loaded at chart construction time and editor changes only trigger an chart.update().
@@ -13523,12 +13613,13 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     // 
     function updateLoadProgressBar(progress) {
-        // calculate the progress (12 initialization steps)
-        var progressLength = ((progress / 12) * 100).toFixed(0);
+        // calculate the progress (13 initialization steps)
+        const loadSteps = 13;
+        var progressLength = ((progress / loadSteps) * 100).toFixed(0);
 
         console.log("LoadCurtain Progressbar: " + progressLength + " %");
 
-        if (progress == 12) {
+        if (progress == loadSteps) {
             $('#app-load-progressbar').html(
                 `<span class="material-icons material-icons-round align-middle" style="font-size:16px!important;color:var(--mineshaft)!important;"> check_circle </span>`
             );
@@ -13542,7 +13633,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         // $('#app-load-progressbar').attr('aria-valuemin', 0);
         // $('#app-load-progressbar').attr('aria-valuemax', 100);
     }
-
 
     /* Step_0: function to load the Global UI tools */
     function loadGlobalUI(currentUser) {
@@ -13653,48 +13743,73 @@ if (isset($_SESSION["currentUserAuth"])) {
         console.log("loadInsights");
     }
 
-    /* Step_7: functions to load data for Achievements Main Tab */
-    function loadAchievements(currentUser) {
+    /* Step_7: functions to load data for Insights Main Tab */
+    function loadTraining(currentUser) {
+        loadActivityCalender();
+        getCurrentWeekStartEndDates();
+
+        let grcode = localStorage.getItem('teams_training_main_grcode');
+
+        // refresh fitness progression widgets
+        $.getFitnessProgressionUIWidgets(currentUser, 'bar');
+        $.getFitnessProgressionUIWidgets(currentUser, 'mini');
+
+        // reload user challenge cards in the training tab
+        $.getUserChallenges(currentUser);
+
+        // reload the weekly activities bar chart under Teams athletics training (training tab)
+        $.getTeamMatchSchedule(grcode);
+
+        // reload the weekly activities bar chart under Teams athletics training (training tab)
+        $.populateWeeklyActivityBarChart('this', grcode); // , dateQuery, dateQueryStr
 
         /* move the progress bar forward */
         updateLoadProgressBar(8);
+        console.log("loadTraining");
+    }
+
+    /* Step_8: functions to load data for Achievements Main Tab */
+    function loadAchievements(currentUser) {
+
+        /* move the progress bar forward */
+        updateLoadProgressBar(9);
         console.log("loadAchievements");
     }
 
-    /* Step_8: functions to load data for Media Main Tab */
+    /* Step_9: functions to load data for Media Main Tab */
     function loadMedia(currentUser) {
         $.getUsersMediaFiles();
 
         // we will call lazy loading method helper function in finaizeAppLoading function
 
         /* move the progress bar forward */
-        updateLoadProgressBar(9);
+        updateLoadProgressBar(10);
         console.log("loadMedia");
     }
 
-    /* Step_9: functions to load data for Communications Main Tab */
+    /* Step_10: functions to load data for Communications Main Tab */
     function loadCommunication(currentUser) {
 
         /* move the progress bar forward */
-        updateLoadProgressBar(10);
+        updateLoadProgressBar(11);
         console.log("loadCommunication");
     }
 
-    /* Step_10: functions to load data for Messages Main Tab */
+    /* Step_11: functions to load data for Messages Main Tab */
     function loadMessages(currentUser) {
 
         /* move the progress bar forward */
-        updateLoadProgressBar(11);
+        updateLoadProgressBar(12);
         console.log("loadMessages");
     }
 
-    /* Step_11: functions to load data for Preferences Main Tab */
+    /* Step_12: functions to load data for Preferences Main Tab */
     function loadPreferences(currentUser) {
         /* move the progress bar forward */
-        updateLoadProgressBar(12);
+        updateLoadProgressBar(13);
         console.log("loadPreferences");
     }
-    /* Step_12: finalize the App loading by providing users with access to interaction with UI */
+    /* Step_13: finalize the App loading by providing users with access to interaction with UI */
     function finalizeAppLoading(currentUser) {
         // hide the loading curtain - fade out
         // var curtain = document.getElementById("LoadCurtain");
@@ -13741,6 +13856,94 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // stop downloadTimer to lock in the load duration
         clearInterval(downloadTimer);
+    }
+
+    // tab reloading function
+    function reloadTab(tabName) {
+        // set display to block for #load-wait-screen-curtain
+        toggleLoadWaitCurtain('show');
+
+        let currentUser = localStorage.getItem('user_usnm');
+
+        /* 
+        reloadTab('dashboard')
+        reloadTab('profile')
+        reloadTab('discovery')
+        reloadTab('studio')
+        reloadTab('store')
+        reloadTab('insights')
+        reloadTab('training')
+        reloadTab('achievements')
+        reloadTab('media')
+        reloadTab('communications')
+        reloadTab('preferences')
+        */
+
+        // switch statement based on tabName
+        switch (tabName) {
+            case 'dashboard':
+                // reload the dashboard tab
+                // load the users dashboard
+                loadDashboard(currentUser);
+                break;
+            case 'profile':
+                // reload the profile tab
+                // load the users profile
+                loadProfile(currentUser);
+                break;
+            case 'discovery':
+                // reload the discovery tab
+                // load the users discovery
+                loadDiscovery(currentUser);
+                break;
+            case 'studio':
+                // reload the studio tab
+                // load the users studio
+                loadStudio(currentUser);
+                break;
+            case 'store':
+                // reload the store tab
+                // load the users store
+                loadStore(currentUser);
+                break;
+            case 'insights':
+                // reload the insights tab
+                // load the users insights
+                loadInsights(currentUser);
+                break;
+            case 'training':
+                // reload the training tab
+                // load the users training
+                loadTraining(currentUser);
+                break;
+            case 'achievements':
+                // reload the achievements tab
+                // load the users achievements
+                loadAchievements(currentUser);
+                break;
+            case 'media':
+                // reload the media tab
+                // load the users media
+                loadMedia(currentUser);
+                break;
+            case 'communications':
+                // reload the communications tab
+                // load the users communications
+                loadCommunications(currentUser);
+                break;
+            case 'preferences':
+                // reload the preferences tab
+                // load the users preferences
+                loadPreferences(currentUser);
+                break;
+            default:
+                // unknown tab name
+                console.log("Unknown tab: " + tabName);
+        }
+
+        // set display to none for #load-wait-screen-curtain
+        toggleLoadWaitCurtain('hide');
+        showSnackbar(capitalizeFirstLetter(tabName) + ' Tab reloaded.', 'alert_general', 'short_2500');
     }
 
     // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -13797,22 +14000,25 @@ if (isset($_SESSION["currentUserAuth"])) {
             /* Step_6: functions to load data for Insights Main Tab */
             loadInsights(usernm);
 
-            /* Step_7: functions to load data for Achievements Main Tab */
+            /* Step_7: functions to load data for Training Main Tab */
+            loadTraining(usernm);
+
+            /* Step_8: functions to load data for Achievements Main Tab */
             loadAchievements(usernm);
 
-            /* Step_8: functions to load data for Media Main Tab */
+            /* Step_9: functions to load data for Media Main Tab */
             loadMedia(usernm);
 
-            /* Step_9: functions to load data for Communications Main Tab */
+            /* Step_10: functions to load data for Communications Main Tab */
             loadCommunication(usernm);
 
-            /* Step_10: functions to load data for Messages Main Tab */
+            /* Step_11: functions to load data for Messages Main Tab */
             loadMessages(usernm);
 
-            /* Step_11: functions to load data for Preferences Main Tab */
+            /* Step_12: functions to load data for Preferences Main Tab */
             loadPreferences(usernm);
 
-            /* Step_12: finalize the App loading by providing users with access to interaction with UI */
+            /* Step_13: finalize the App loading by providing users with access to interaction with UI */
             finalizeAppLoading(usernm);
 
 
