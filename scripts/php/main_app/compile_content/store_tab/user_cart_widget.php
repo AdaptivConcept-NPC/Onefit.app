@@ -113,7 +113,7 @@ $cart_widget_html_template = <<<_END
 <!-- Cart Container  -->
 <div class="container py-4 d-nonez">
     <div class="text-center">
-        <button class="navbar-toggler shadowz onefit-buttons-style-dark rounded-5z p-0 hide-side-panels shadow-lg collapsed border-3 border" style="overflow:hidden;" type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel" aria-expanded="false" id="main-cart-toggle-btn">
+        <button class="navbar-toggler shadowz onefit-buttons-style-dark rounded-5z p-0 hide-side-panels shadow-lg collapsed border-5 border-bottom" style="overflow:hidden;" type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel" aria-expanded="false" id="main-cart-toggle-btn">
             <div class="row px-4z py-2 m-0 align-items-center rounded-3 top-down-grad-tahiti">
                 <div class="col-sm fw-bold comfortaa-font border-startz border-endz border-light p-4 fs-4 d-grid gap-2 text-center text-white" style="min-width:100px;">
                     <span class="material-icons material-icons-round align-middle" style="font-size: 50px !important;">
@@ -121,7 +121,7 @@ $cart_widget_html_template = <<<_END
                     </span>
                     <span class="align-middle text-truncate" style="font-size: 15px;color: var(--white);">0 Coupons.</span>
                 </div>
-                <div class="col-sm border-3 border-start border-end border-light rounded-3 p-4 text-white" style="border-color: var(--white) !important;">
+                <div class="col-sm border-0 border-startz border-endz border-lightz rounded-3 p-4 text-white" style="border-color: var(--white) !important;">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                             shopping_cart </span>
@@ -172,8 +172,8 @@ $cart_widget_html_template = <<<_END
             <div class="row">
                 <div class="col-xlg-6 py-4 d-grid gap-4">
                     <!-- Cart items vertical list -->
-                    <div class="container-fluid p-2 pt-4 top-down-grad-dark border-3z border-topz" style="border-radius: 25px;border-color: var(--tahitigold) !important;">
-                        <h1 class="text-white w3-animate-left mb-4">My items.</h1>
+                    <div class="container-fluid p-2 pt-4 top-down-grad-white border-3z border-topz" style="border-radius: 25px;border-color: var(--tahitigold) !important;">
+                        <h1 class="text-dark w3-animate-left mb-4">Items ordered.</h1>
                         <!-- Cart items vertical list -->
                         <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numberedz shadow py-4 px-2 w3-animate-left light-scroller top-down-grad-tahiti" style="/* background-color: var(--tahitigold); */overflow-y: auto;border-radius: 25px !important;max-height: 80vh !important;">
                             $cartItemsVList

@@ -144,12 +144,13 @@ if (isset($_GET['uid'])) {
 
                     $drillsList = <<<_END
                         <div id="training-drill-card-$exercise_drill_id" class="grid-tile p-4 down-top-grad-white shadow border-5 text-center border-bottom drills-tile d-grid justify-content-centerz">
-                            <!-- row-body --> 
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-sm-6 text-center">
-                                    <img src="$thumbnail" class="img-fluid shadow m-4" style="border-radius: 15px;" alt="$drill_title @ $training_level">
+                            <!-- row-body -->
+                            <div class="row justify-content-center align-items-centerz">
+                                <div class="col-md-6 text-center top-down-grad-tahiti p-4" 
+                                    style="border-radius: 25px;">
+                                    <img src="$thumbnail" class="img-fluid shadow w-100" style="border-radius: 15px; filter: invert(0);" alt="$drill_title @ $training_level">
                                 </div>
-                                <div class="col-sm-6 text-center">
+                                <div class="col-md-6 text-center down-top-grad-dark p-4 py-5" style="border-radius:25px;">
                                     <h5 class="fs-2 comfortaa-font"> $drill_title </h5>
                                     <p class="mb-4">
                                         <strong>Benefits:</strong> $benefits <br>
@@ -159,10 +160,10 @@ if (isset($_GET['uid'])) {
                                         <strong>Target area(s):</strong> $target_area
                                     </p>
                                 </div>
-                            </div> 
+                            </div>
                             <!-- /.row-body --> 
-                            <hr/>
-                            <button class="onefit-buttons-style-light p-4 fs-5 d-flex gap-2 align-items-center justify-content-center text-center" onclick="alert('launch trainer')">
+                            <hr class="mt-2"/>
+                            <button class="onefit-buttons-style-dark p-4 fs-5 d-flex gap-2 align-items-center justify-content-center text-center" onclick="alert('launch trainer')">
                                 <span class="material-icons material-icons-rounded align-middle" style="font-size:40px !important;">run_circle</span>
                                 <span class="text-start">Start.</span>
                             </button>
@@ -332,16 +333,16 @@ if (isset($_GET['uid'])) {
                     $workoutsList .= <<<_END
                         <div id="workout-card-$workout_id" $workoutsList_Theme_Classes>
                             <div class="card bg-transparent border-0 h-100">
-                                <div class="card-body bg-transparent border-0">
+                                <div class="card-body bg-transparent border-0 down-top-grad-dark" style="border-radius:25px;">
                                     <img src="$thumbnail" class="img-fluid shadow mb-4" style="border-radius: 25px; max-height: 300px;" alt="$workout_name">
                                     <div class="workout-card-info-content no-scroller">
                                         <p class="fs-2 comfortaa-font"> $workout_name </p>
-                                        <p class="mb-4"> 
+                                        <p class="mb-4 text-start"> 
                                             <strong>Guideline:</strong> <br> $guidelines <br>
                                             <strong>Goal:</strong> $goal_definition <br>
                                             <strong>Intensity (RPE):</strong> $rpe / 10 <br>
                                         </p>
-                                        <p class="mt-4 text-mutedz text-whitez"><span class="material-icons material-icons-round align-middle" style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
+                                        <p class="mt-4 text-start"><span class="material-icons material-icons-round align-middle" style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
                                             <strong>Avg. Workout Duration:</strong> *? mins / day <br>
                                             <strong>Category/Class:</strong> $category_class_name <br>
                                             <strong>Activities:</strong> $exercise_count_str <br>
@@ -350,8 +351,8 @@ if (isset($_GET['uid'])) {
                                     </div>
                                 </div>
                                 <div class="card-footer bg-transparent border-0 d-grid">
-                                <hr/>
-                                    <button class="onefit-buttons-style-light p-4 fs-5 d-flex gap-2 align-items-center justify-content-center text-center" onclick="alert('launch trainer')">
+                                <hr class="my-2"/>
+                                    <button class="onefit-buttons-style-dark p-4 fs-5 d-flex gap-2 align-items-center justify-content-center text-center" onclick="alert('launch trainer')">
                                         <span class="material-icons material-icons-rounded align-middle" style="font-size:40px !important;">run_circle</span>
                                         <span class="text-start">Start.</span>
                                     </button>

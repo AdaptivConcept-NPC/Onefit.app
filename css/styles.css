@@ -1751,7 +1751,7 @@ h6 {
 
 .drills-tile:hover {
 	border-color: var(--tahitigold) !important;
-	color: var(--mineshaft) !important;
+	color: var(--tahitigold) !important;
 
 	background: rgb(0, 0, 0);
 	background: -moz-linear-gradient(
@@ -1825,7 +1825,7 @@ h6 {
 
 .workouts-tile-premium-tahiti:hover {
 	border-color: var(--tahitigold) !important;
-	color: var(--mineshaft) !important;
+	color: var(--tahitigold) !important;
 
 	background: rgb(0, 0, 0);
 	background: -moz-linear-gradient(

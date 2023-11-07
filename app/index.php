@@ -6929,7 +6929,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
                                         style="min-width:170px" id="nav-trainingProgramCategories-teamAthletics-tab"
                                         onclick="setCurrentInsightsTrainingProgramTab('teamAthletics')">
-                                        Team Athletics.
+                                        Team / Athletics.
 
                                         <br>
                                         <span id="horizontal-rule-icon-teamathletics"
@@ -7207,21 +7207,27 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         </span> Duration.
                                                     </h5>
 
-                                                    <div class="timer">
+                                                    <div class="timer p-4">
                                                         <span class="hour">00</span>:<span
                                                             class="minute">00</span>:<span class="second">00</span>
+                                                    </div>
+                                                    <div class="control d-flex gap-2 justify-content-center">
+                                                        <button onclick="timer.mode(1)"
+                                                            class="onefit-buttons-style-light p-3">Count up</button>
+                                                        <button onclick="timer.mode(0)"
+                                                            class="onefit-buttons-style-light p-3">Count down</button>
                                                     </div>
                                                     <div class="control d-flex gap-2 justify-content-center">
                                                         <button onclick="timer.start(1000)"
                                                             class="onefit-buttons-style-light p-3">Start</button>
                                                         <button onclick="timer.stop()"
                                                             class="onefit-buttons-style-light p-3">Stop</button>
+                                                    </div>
+                                                    <div class="control d-flex gap-2 justify-content-center">
+
                                                         <button onclick="timer.reset(60)"
                                                             class="onefit-buttons-style-light p-3">Reset</button>
-                                                        <button onclick="timer.mode(1)"
-                                                            class="onefit-buttons-style-light p-3">Count up</button>
-                                                        <button onclick="timer.mode(0)"
-                                                            class="onefit-buttons-style-light p-3">Count down</button>
+
                                                     </div>
 
                                                 </div>
