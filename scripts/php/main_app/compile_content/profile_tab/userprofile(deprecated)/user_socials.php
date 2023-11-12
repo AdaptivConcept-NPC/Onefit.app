@@ -40,7 +40,7 @@ function getUserSocials() {
         if($usr_socialnet == "facebook"){
           $socialNetworkIcon = '<i class="fab fa-facebook"></i>';
         }else if($usr_socialnet == "twitter"){
-          $socialNetworkIcon = '<i class="fab fa-twitter"></i>';
+          $socialNetworkIcon = '<img src="../media/assets/icons/twitter-x-symbol-white.svg" style="height:40px;width:40px"  alt="Twitter - X logo">';
         }else if($usr_socialnet == "instagram"){
           $socialNetworkIcon = '<i class="fab fa-instagram"></i>';
         }else if($usr_socialnet == "tumbler"){
@@ -72,4 +72,3 @@ function getUserSocials() {
 
   return $output;
 }
-?>

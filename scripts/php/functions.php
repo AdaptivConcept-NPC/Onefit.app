@@ -1010,7 +1010,7 @@ function getUserNotifications($listType)
                     break;
                 case "accordion":
                     $communicationUserNotifications .= <<<_END
-                    <div class="accordion-item d-grid gap-2 p-0 my-2 border-0 shadow down-top-grad-dark">
+                    <div class="accordion-item d-grid gap-2 p-0 my-2 border-0 shadow down-top-grad-tahiti">
                         <h2 class="accordion-header m-0 p-0" id="cav-flush-header-notifcation-$notif_id">
                             <button class="accordion-button fs-5 fw-bold text-truncate gap-2 d-grid align-items-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-notifcation-$notif_id" aria-expanded="false" aria-controls="cav-flush-panel-notifcation-$notif_id">
                                 <div class="d-flex justify-content-between align-items-center">
@@ -1025,8 +1025,8 @@ function getUserNotifications($listType)
                                 </div>
                             </button>
                         </h2>
-                        <div class="accordion-collapse w3-animate-bottom collapse show" id="cav-flush-panel-notifcation-$notif_id" aria-labelledby="cav-flush-header-notifcation-$notif_id" data-bs-parent="#notificationsAccordion">
-                            <div class="accordion-body bg-transparent top-down-grad-dark rounded-4">
+                        <div class="accordion-collapse w3-animate-bottom collapse" id="cav-flush-panel-notifcation-$notif_id" aria-labelledby="cav-flush-header-notifcation-$notif_id" data-bs-parent="#notificationsAccordion">
+                            <div class="accordion-body bg-transparent down-top-grad-dark rounded-4">
                                 <div id="notification-message-$notif_id" class="text-start" style="min-height: 100px;">
                                     <p class="poppins-font text-start" style="cursor: pointer;">
                                         $notif_message
@@ -1328,7 +1328,8 @@ function getUserSocials()
             if ($usr_socialnet == "facebook") {
                 $socialNetworkIcon = '<i class="fab fa-facebook"></i>';
             } else if ($usr_socialnet == "twitter") {
-                $socialNetworkIcon = '<i class="fab fa-twitter"></i>';
+                $socialNetworkIcon = '<img class="twitter-x-icon" src="../media/assets/icons/twitter-x-symbol-white.svg" style="height:40px;width:40px"
+                            alt="Twitter - X logo">';
             } else if ($usr_socialnet == "instagram") {
                 $socialNetworkIcon = '<i class="fab fa-instagram"></i>';
             } else if ($usr_socialnet == "tumbler") {
@@ -2438,6 +2439,13 @@ function rememberMe()
     }
 }
 
+// uppercase first letter of each word in string
+function ucwords_str($str)
+{
+    $str = ucwords($str);
+    $str = str_replace("_", " ", $str);
+    return $str;
+}
 
 
 
@@ -2853,11 +2861,10 @@ function rememberMe()
 //         $usr_socialnet = $row["social_network"];
 //         $usr_socialhandle = $row["handle"];
 //         $usr_sociallink = $row["link"];
-
 //         if($usr_socialnet == "facebook"){
 //           $socialNetworkIcon = '<i class="fab fa-facebook"></i>';
 //         }else if($usr_socialnet == "twitter"){
-//           $socialNetworkIcon = '<i class="fab fa-twitter"></i>';
+//           $socialNetworkIcon = '<img class="twitter-x-icon" src="../media/assets/icons/twitter-x-symbol-white.svg" style="height:40px;width:40px" alt="Twitter - X logo">';
 //         }else if($usr_socialnet == "instagram"){
 //           $socialNetworkIcon = '<i class="fab fa-instagram"></i>';
 //         }else if($usr_socialnet == "tumbler"){

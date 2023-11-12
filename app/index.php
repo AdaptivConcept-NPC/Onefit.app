@@ -128,7 +128,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $usrprof_name . " " . $usrprof_surname; ?> - Onefit.app&trade; | Onefit.Net&reg; &copy;
         <?php echo date('Y'); ?></title>
 
@@ -353,7 +353,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                 aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
                 <div class="d-grid">
                     <span class="material-icons material-icons-round" style="font-size: 48px !important;">
-                        <i class="fab fa-twitter" style="font-size: 40px;"></i>
+                        <!-- <i class="fab fa-twitter" style="font-size: 40px;"></i> -->
+                        <img src="../media/assets/icons/twitter-x-symbol-white.svg" style="height:40px;width:40px"
+                            alt="Twitter - X logo">
                     </span>
                     <p class="comfortaa-font mt-1 mb-0" style="font-size: 10px;color:#fff!important;"><span
                             style="color:var(--twitter)!important;">@</span>onefitnet</p>
@@ -1102,24 +1104,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <div class="offcanvas-body"
                             style="padding-bottom: 40px; overflow-y: auto; overflow-x: hidden; max-height: 86.9vh;">
-                            <ul class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3">
-                                <li class="nav-item d-grid gap-2">
-                                    <button
-                                        class="onefit-buttons-style-light rounded-pill p-4 text-center shadow fw-bold"
-                                        style="transform: translate(0) !important; border-radius:25px!important;"
-                                        onclick="launchLink('../scripts/php/destroy_session.php')">
-                                        <div class="align-items-center">
-                                            <span class="material-icons material-icons-outlined align-middle"
-                                                style="color: var(--tahitigold);font-size:20px!important;">
-                                                logout
-                                            </span>
-                                            <span class="align-middle" style="font-size:20px!important;">
-                                                Logout.
-                                            </span>
-                                        </div>
-                                    </button>
-                                </li>
-                                <hr class="text-dark" style="height: 5px;">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
                                 <li class="nav-item text-center">
                                     <div class="d-grid mb-2 w3-animate-top">
                                         <p class="text-white comfortaa-font fs-4 mb-0 fw-bold"> Presented by </p>
@@ -1134,25 +1119,26 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             public
                                         </span>
                                         <img src="../media/assets/One-Logo.png" class="img-fluid px-4"
-                                            alt="onefitnet logo">
+                                            alt="onefitnet logo" style="filter: invert(0);">
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4 text-center"
-                                        style="border-radius: 25px !important;font-size:16px;" href="#"
-                                        target="_blank">One-On-One
+                                    <a class="nav-link p-4 text-center down-top-grad-dark"
+                                        style="border-radius: 25px !important;font-size:16px;"
+                                        href="https://onefitnet.co.za/" target="_blank">One-On-One
                                         Fitness Network<span style="color:var(--tahitigold);">™</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4 text-center"
-                                        style="border-radius: 25px !important;font-size:16px;" href="#"
-                                        target="_blank">LMM 1-On-1
+                                    <a class="nav-link p-4 text-center down-top-grad-dark"
+                                        style="border-radius: 25px !important;font-size:16px;"
+                                        href="https://onefitnet.co.za/redirect/?linkref=null" target="_blank">LMM 1-On-1
                                         Trainer<span style="color:var(--tahitigold);">™</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4 text-center"
-                                        style="border-radius: 25px !important;font-size:16px;" href="#"
-                                        target="_blank">AdaptivConcept<span style="color:var(--tahitigold);">™</span>
+                                    <a class="nav-link p-4 text-center down-top-grad-dark"
+                                        style="border-radius: 25px !important;font-size:16px;"
+                                        href="https://adaptivconcept.co.za/" target="_blank">AdaptivConcept<span
+                                            style="color:var(--tahitigold);">™</span>
                                         FL</a>
                                 </li>
                                 <hr>
@@ -1163,26 +1149,26 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </h5>
                                 <!-- affiliate links -->
                                 <p class="text-mutedz fw-bold text-center mb-4"
-                                    style="font-size:10px;color:var(--red);">
+                                    style="font-size:10px;color:var(--white);">
                                     <span class="material-icons material-icons-round align-middle"
-                                        style="font-size:20px!important;">
+                                        style="font-size:20px!important;color:var(--tahitigold);">
                                         warning
                                     </span>
                                     The links below are intended for demonstration purposed only.
                                     <span class="material-icons material-icons-round align-middle"
-                                        style="font-size:20px!important;">
+                                        style="font-size:20px!important;color:var(--tahitigold);">
                                         warning
                                     </span>
                                 </p>
                                 <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
-                                    <div class="row">
+                                    <div class="row w-100">
                                         <div class="col-md">
                                             <img src="../administration/media/affiliate/logos/gym_company_logo.png"
                                                 class="img-fluid rounded-4 shadow"
                                                 style="/* width:200px;height:100px; */filter: invert(0);"
                                                 alt="Gym Company logo - not affiliated">
                                         </div>
-                                        <div class="col-md poppins-font d-grid gap-1">
+                                        <div class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
                                             <p style="font-size:16px;" class="text-white text-start">gym4free is a
                                                 rewards programme exclusive to Gym Company members.</p>
                                             <a class="nav-link p-0 text-start"
@@ -1195,14 +1181,14 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                 </li>
                                 <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
-                                    <div class="row">
+                                    <div class="row w-100">
                                         <div class="col-md">
                                             <img src="../administration/media/affiliate/logos/planet_fitness_logo.png"
                                                 class="img-fluid rounded-4 shadow"
                                                 style="/* width:200px;height:100px; */filter: invert(0);"
                                                 alt="Planet Fitness logo - not affiliated">
                                         </div>
-                                        <div class="col-md poppins-font d-grid gap-1">
+                                        <div class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
                                             <p style="font-size:16px;" class="text-white text-start">Get your one week
                                                 free trial at your nearest PlanetFitness.</p>
                                             <a class="nav-link p-0 poppins-font text-start"
@@ -1215,14 +1201,14 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                 </li>
                                 <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
-                                    <div class="row">
+                                    <div class="row w-100">
                                         <div class="col-md">
                                             <img src="../administration/media/affiliate/logos/virgin_active_logo.png"
                                                 class="img-fluid rounded-4 shadow"
                                                 style="/* width:100px;height:100px; */filter: invert(0);"
                                                 alt="Virgin Active logo - not affiliated">
                                         </div>
-                                        <div class="col-md poppins-font d-grid gap-1">
+                                        <div class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
                                             <p style="font-size:16px;" class="text-white text-start">Virgin Active
                                                 Rewards.</p>
                                             <a class="nav-link p-0 text-start"
@@ -1248,7 +1234,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         Rewards Program</span>
                                 </p>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4 text-center"
+                                    <a class="nav-link p-4 text-center down-top-grad-dark"
                                         style="border-radius: 25px !important;font-size:16px;" href="#">
                                         <span
                                             class="material-icons material-icons-round align-middle">card_giftcard</span>
@@ -1256,17 +1242,34 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             style="color:var(--tahitigold);font-size:8px!important;">Alpha</sub></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4 text-center"
+                                    <a class="nav-link p-4 text-center down-top-grad-dark"
                                         style="border-radius: 25px !important;font-size:16px;" href="#">
                                         <span
                                             class="material-icons material-icons-round align-middle">auto_stories</span>
                                         Onefit.blog<span style="color:var(--tahitigold);">™</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4 text-center"
+                                    <a class="nav-link p-4 text-center down-top-grad-dark"
                                         style="border-radius: 25px !important;font-size:16px;" href="#">
                                         <span class="material-icons material-icons-round align-middle">storefront</span>
                                         Onefit.Shop<span style="color:var(--tahitigold);">™</span></a>
+                                </li>
+                                <hr class="text-dark my-5" style="height: 5px;">
+                                <li class="nav-item d-grid gap-2">
+                                    <button
+                                        class="onefit-buttons-style-light rounded-pill p-4 text-center shadow fw-bold"
+                                        style="transform: translate(0) !important; border-radius:25px!important;"
+                                        onclick="launchLink('../scripts/php/destroy_session.php')">
+                                        <div class="align-items-center">
+                                            <span class="material-icons material-icons-outlined align-middle"
+                                                style="color: var(--tahitigold);font-size:20px!important;">
+                                                logout
+                                            </span>
+                                            <span class="align-middle" style="font-size:20px!important;">
+                                                Logout.
+                                            </span>
+                                        </div>
+                                    </button>
                                 </li>
                             </ul>
                         </div>
@@ -1282,8 +1285,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     Notifications
                 </button>
 
-                <div class="offcanvas offcanvas-start offcanvas-menu-primary-style fitness-bg-containerz" tabindex="-1"
-                    id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
+                <div class="offcanvas offcanvas-start offcanvas-menu-primary-style fitness-bg-containerz w-50"
+                    tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
                     <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
                         <!-- <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;"> -->
                         <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2"
@@ -3162,9 +3165,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         style="color: #ffa500 !important;">Socials:
                                                                     </small>
                                                                     <small class="align-middle"
-                                                                        style="font-size: 8px !important"><i
-                                                                            class="fab fa-twitter"></i>
-                                                                        @handle |</small>
+                                                                        style="font-size: 8px !important">
+                                                                        <!-- <i class="fab fa-twitter"></i> -->
+                                                                        <img src="../media/assets/icons/twitter-x-symbol-white.svg"
+                                                                            style="height:40px;width:40px"
+                                                                            alt="Twitter - X logo">
+                                                                        @handle |
+                                                                    </small>
                                                                     <small class="align-middle"
                                                                         style="font-size: 8px !important"><i
                                                                             class="fab fa-facebook"></i>
@@ -3271,9 +3278,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         style="color: #ffa500 !important;">Socials:
                                                                     </small>
                                                                     <small class="align-middle"
-                                                                        style="font-size: 8px !important"><i
-                                                                            class="fab fa-twitter"></i>
-                                                                        @handle |</small>
+                                                                        style="font-size: 8px !important">
+                                                                        <!-- <i class="fab fa-twitter"></i> -->
+                                                                        <img src="../media/assets/icons/twitter-x-symbol-white.svg"
+                                                                            style="height:40px;width:40px"
+                                                                            alt="Twitter - X logo">
+                                                                        @handle |
+                                                                    </small>
                                                                     <small class="align-middle"
                                                                         style="font-size: 8px !important"><i
                                                                             class="fab fa-facebook"></i>
@@ -3365,9 +3376,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         style="color: #ffa500 !important;">Socials:
                                                                     </small>
                                                                     <small class="align-middle"
-                                                                        style="font-size: 8px !important"><i
-                                                                            class="fab fa-twitter"></i>
-                                                                        @handle |</small>
+                                                                        style="font-size: 8px !important">
+                                                                        <!-- <i class="fab fa-twitter"></i> -->
+                                                                        <img src="../media/assets/icons/twitter-x-symbol-white.svg"
+                                                                            style="height:40px;width:40px"
+                                                                            alt="Twitter - X logo">
+                                                                        @handle |
+                                                                    </small>
                                                                     <small class="align-middle"
                                                                         style="font-size: 8px !important"><i
                                                                             class="fab fa-facebook"></i>
@@ -3677,8 +3692,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 style="color: #ffa500 !important; font-size: 40px;">play_circle_outline</span>
                             <span style="color: #fff !important">
                                 <span class="align-middle">
-                                    <span style="color: #fff !important">One</span>
-                                    <span style="color: #ffa500 !important">fit</span>.Studio</span>
+                                    One<span style="color: #ffa500 !important">fit</span>.Studio
+                                </span>
                         </h5>
                         <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('studio')">
                             <span class="material-icons material-icons-round align-middle"
@@ -7185,67 +7200,501 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <script src="../administration/scripts/js/match_analysis.js"></script>
 
-                                    <div class="offcanvas offcanvas-end w-100 match-analyse-offcanvasz top-down-grad-tahiti"
+                                    <div class="offcanvas offcanvas-end w-100 match-analyse-offcanvasz top-down-grad-dark"
                                         data-bs-backdrop="static" tabindex="-1" id="offcanvasAnalyzeMatch"
                                         aria-labelledby="analyseMatchLabel" aria-modal="true" role="dialog">
                                         <div class="offcanvas-header">
-                                            <h5 class="offcanvas-title" id="analyseMatchLabel">
-                                                <span class="material-icons material-icons-round align-middle fs-3">
+                                            <h1 class="offcanvas-title" id="analyseMatchLabel">
+                                                <span class="material-icons material-icons-round align-middle fs-3" 
+                                                    style="font-size: 60px !important;color: var(--tahitigold);">
                                                     analytics
-                                                </span> Match Analysis.
-                                            </h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                                                aria-label="Close"></button>
+                                                </span> 
+                                                <span class=" align-middle">Match Analysis.</span>
+                                            </h1>
+                                            <button type="button" class="onefit-buttons-style-danger p-2"
+                                                data-bs-dismiss="offcanvas" aria-label="Close">
+                                                <span class="material-icons material-icons-round"> close </span>
+                                            </button>
                                         </div>
-                                        <div class="offcanvas-body top-down-grad-dark">
-                                            <div class="row">
-                                                <div class="col-md pb-5">
-                                                    <h5 class="align-middle fs-5">
+                                        <div class="offcanvas-body">
+                                            <div class="row align-items-startz down-top-grad-dark rounded-4">
+                                                <div class="col-md pb-5 down-top-grad-dark rounded-4">
+                                                <h5 class="align-middle fs-5 down-top-grad-tahiti rounded-4 p-4">
+                                                        <span class="material-icons material-icons-rounded align-middle"
+                                                            style="font-size:40px!important;">
+                                                            scoreboard
+                                                        </span> Scoreboard.
+                                                    </h5>
+                                                    <div id="analysis-scoreboard" class="my-4 top-down-grad-dark rounded-4">
+                                                        <div class="d-flex gap-2 align-items-center justify-content-between down-top-grad-tahiti rounded-4">
+                                                            <div class="team-one-title p-4 d-grid gap-2 text-center">
+                                                                <img src="../media/teams/TEC_United_FC/logo.png" class="img-fluid rounded-4 shadow bg-white" alt="Team A Logo" style="filter: invert(0);">
+                                                                <span id="scoreboard-team-one-name-label">Team A</span>
+                                                            </div>
+                                                            <div class="match-score col-4 p-4 fs-1 text-center">
+                                                                <div class="row align-items-center justify-content-between">
+                                                                    <!-- Team A goals / points -->
+                                                                    <!-- <div id="team-one-points" class="col -md"> 0 </div> -->
+                                                                    <!-- <div class="col -md"> - </div> -->
+                                                                    <!-- Team B score / points -->
+                                                                    <!-- <div id="team-two-points" class="col -md"> 0 </div> -->
+                                                                    <span id="match-score">0 - 0</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="team-two-title p-4 d-grid gap-2 text-center">
+                                                                <img src="../media/teams/TEC_United_FC/logo.png" class="img-fluid rounded-4 shadow bg-white" alt="Team B Logo" style="filter: invert(0);">
+                                                                <span id="scoreboard-team-two-name-label">Team B</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <h5 class="align-middle fs-5 down-top-grad-tahiti rounded-4 p-4">
                                                         <span class="material-icons material-icons-rounded align-middle"
                                                             style="font-size:40px!important;">
                                                             timer
                                                         </span> Duration.
                                                     </h5>
 
-                                                    <div class="timer p-4">
+                                                    <div class="timer p-4 my-4">
                                                         <span class="hour">00</span>:<span
                                                             class="minute">00</span>:<span class="second">00</span>
                                                     </div>
-                                                    <div class="control d-flex gap-2 justify-content-center">
+                                                    <h5>Select timer mode.</h5>
+                                                    <div
+                                                        class="controlz d-flex flex-columnz gap-2 justify-content-centerz mb-4">
                                                         <button onclick="timer.mode(1)"
-                                                            class="onefit-buttons-style-light p-3">Count up</button>
+                                                            class="onefit-buttons-style-light p-3 flex-fill">
+                                                            Count up <span
+                                                                class="material-icons material-icons-outlined align-middle"
+                                                                style="font-size:30px!important;">arrow_circle_up</span>
+                                                        </button>
                                                         <button onclick="timer.mode(0)"
-                                                            class="onefit-buttons-style-light p-3">Count down</button>
+                                                            class="onefit-buttons-style-light p-3 flex-fill">
+                                                            Count down <span
+                                                                class="material-icons material-icons-outlined align-middle"
+                                                                style="font-size:30px!important;">arrow_circle_down</span>
+                                                        </button>
                                                     </div>
-                                                    <div class="control d-flex gap-2 justify-content-center">
-                                                        <button onclick="timer.start(1000)"
-                                                            class="onefit-buttons-style-light p-3">Start</button>
-                                                        <button onclick="timer.stop()"
-                                                            class="onefit-buttons-style-light p-3">Stop</button>
+                                                    <h5>Start / Stop / Reset the timer.</h5>
+                                                    <div>
+                                                        <div
+                                                            class="controlz d-flex flex-columnz gap-2 justify-content-centerz mb-2">
+                                                            <button onclick="timer.start(1000)"
+                                                                class="onefit-buttons-style-success p-3 flex-fill">Start
+                                                                <span
+                                                                    class="material-icons material-icons-outlined align-middle"
+                                                                    style="font-size:30px!important;">check_circle</span></button>
+                                                            <button onclick="timer.stop()"
+                                                                class="onefit-buttons-style-danger p-3 flex-fill">Stop
+                                                                <span
+                                                                    class="material-icons material-icons-outlined align-middle"
+                                                                    style="font-size:30px!important;">highlight_off</span></button>
+                                                        </div>
+                                                        <div class="controlz d-grid gap-2 justify-content-centerz mb-4">
+
+                                                            <button onclick="timer.reset(60)"
+                                                                class="onefit-buttons-style-tahiti p-3">Reset <span
+                                                                    class="material-icons material-icons-outlined align-middle"
+                                                                    style="font-size:30px!important;">restart_alt</span></button>
+
+                                                        </div>
                                                     </div>
-                                                    <div class="control d-flex gap-2 justify-content-center">
-
-                                                        <button onclick="timer.reset(60)"
-                                                            class="onefit-buttons-style-light p-3">Reset</button>
-
-                                                    </div>
-
                                                 </div>
-                                                <div class="col-md pb-5">
-                                                    <h5 class="align-middle fs-5">
+                                                <div class="col-md pb-5 down-top-grad-dark rounded-4">
+                                                    <h5 class="align-middle fs-5 down-top-grad-tahiti rounded-4 p-4">
                                                         <span class="material-icons material-icons-rounded align-middle"
                                                             style="font-size:40px!important;">
                                                             note_alt
                                                         </span> Events.
                                                     </h5>
+                                                    <div id="match-event-buttons" class="d-grid gap-4">
+                                                        <!-- Goal
+                                                        Own Goal
+                                                        
+                                                        Foul
+
+                                                        Goal Kick
+                                                        Corner Kick
+                                                        Free Kick
+                                                        Penalty Kick
+                                                        
+                                                        Throw In
+                                                        Offside
+                                                        Hand-ball
+
+                                                        Injury
+
+                                                        Yellow Card
+                                                        Red Card
+
+                                                        Substitution
+
+                                                        Half-Time
+                                                        Full-Time
+                                                        Extra-Time -->
+
+                                                        <!-- goals -->
+                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Goal</button>
+                                                            </li>
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Own Goal</button>
+                                                            </li>
+                                                        </ul>
+                                                        <div id="match-event-list-gls">
+                                                            No goals scored.
+                                                        </div>
+
+                                                        <!-- foul play -->
+                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Foul</button>
+                                                            </li>
+                                                        </ul>
+                                                        <div id="match-event-list-flp">
+                                                            No fould committed.
+                                                        </div>
+
+                                                        <!-- ball serve / kicks -->
+                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Goal Kick</button>
+                                                            </li>
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Corner Kick</button>
+                                                            </li>
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Free Kick</button>
+                                                            </li>
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Penalty Kick</button>
+                                                            </li>
+                                                        </ul>
+                                                        <div id="match-event-list-bsk">
+                                                            No balls served.
+                                                        </div>
+
+                                                        <!-- match momentum pause -->
+                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Throw In</button>
+                                                            </li>
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Offside</button>
+                                                            </li>
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Hand-ball</button>
+                                                            </li>
+                                                        </ul>
+                                                        <div id="match-event-list-mmp">
+                                                            0 Throw-ins <br>
+                                                            0 Offsides <br>
+                                                            0 Hand balls
+                                                        </div>
+
+                                                        <!-- player injury and changes-->
+                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Injury</button>
+                                                            </li>
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Substitution</button>
+                                                            </li>
+                                                        </ul>
+                                                        <div id="match-event-list-pic">
+                                                            O Injuries <br>
+                                                            0 Substitutions
+                                                        </div>
+
+                                                        <!-- player offence warnings -->
+                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Yellow Card</button>
+                                                            </li>
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Red Card</button>
+                                                            </li>
+                                                        </ul>
+                                                        <div id="match-event-list-pow">
+                                                            0 Yellow Cards <br>
+                                                            0 Red Cards
+                                                        </div>
+
+                                                        <!-- match progression banchmarks -->
+                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Half-Time</button>
+                                                            </li>
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Full-Time</button>
+                                                            </li>
+                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
+                                                                <button
+                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                    onclick="matchAnalysisEvent('event_here')"
+                                                                    type="button">Extra-Time</button>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="mb-4" id="match-event-list-pmb">
+                                                            Match has not started.
+                                                        </div>
+
+                                                    </div>
+                                                    
+                                                    <div id="match-event-timeline">
+                                                        <h5 class="align-middle fs-5 down-top-grad-tahiti rounded-4 p-4">
+                                                            <span class="material-icons material-icons-rounded align-middle" style="font-size:40px!important;">
+                                                                view_timeline
+                                                            </span>
+                                                            Match Timeline.
+                                                        </h5>
+                                                        <img src="../media/assets/41597_2019_247_Fig1_HTML.webp"
+                                                            alt="event timeline reference - https://www.nature.com/articles/s41597-019-0247-7/figures/1"
+                                                            style="filter: invert(0);" class="img-fluid">
+                                                    </div>
                                                 </div>
-                                                <div class="col-md pb-5">
-                                                    <h5 class="align-middle fs-5">
+                                                <div class="col-md pb-5 down-top-grad-dark rounded-4">
+                                                    <h5 class="align-middle fs-5 down-top-grad-tahiti rounded-4 p-4">
                                                         <span class="material-icons material-icons-rounded align-middle"
                                                             style="font-size:40px!important;">
                                                             auto_graph
                                                         </span> Statistics.
                                                     </h5>
+
+                                                    <style>
+                                                    .analysis-progressbar-team-one {
+                                                        background-color: var(--tahitigold) !important;
+                                                        color: var(--mineshaft) !important;
+                                                    }
+
+                                                    .analysis-progressbar-team-two {
+                                                        background-color: var(--mineshaft) !important;
+                                                        color: var(--white) !important;
+                                                    }
+                                                    </style>
+
+                                                    <div id="analysis-match-stats" class="mb-5">
+                                                        <h5 class="my-4 text-center">Possession</h5>
+                                                        <div class="d-flex justify-content-between">
+                                                            <p class="text-start">Team A</p>
+                                                            <p class="text-end">Team B</p>
+                                                        </div>
+                                                        <div class="progress progress-stacked rounded-pill"
+                                                            style="height: 50px;">
+                                                            <div class="progress rounded-0 border-1 border-end"
+                                                                role="progressbar" aria-label="Team one"
+                                                                aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"
+                                                                style="width: 27%; height: 50px;background-color:var(--mineshaft);">
+                                                                <div
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-5">
+                                                                    27%
+                                                                </div>
+                                                            </div>
+                                                            <div class="progress rounded-0 border-1 border-start"
+                                                                role="progressbar" aria-label="Team two"
+                                                                aria-valuenow="73" aria-valuemin="0" aria-valuemax="100"
+                                                                style="width: 73%; height: 50px;background-color:var(--mineshaft);">
+                                                                <div
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-5">
+                                                                    73%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <h5 class="my-4 text-center">Shots</h5>
+                                                        <div class="d-flex justify-content-between">
+                                                            <p class="text-start">Team A</p>
+                                                            <p class="text-end">Team B</p>
+                                                        </div>
+                                                        <div class="progress progress-stacked rounded-pill"
+                                                            style="height: 50px;">
+                                                            <div class="progress rounded-0 border-1 border-end"
+                                                                role="progressbar" aria-label="Team one"
+                                                                aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"
+                                                                style="width: 27%; height: 50px;background-color:var(--mineshaft);">
+                                                                <div
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-5">
+                                                                    27%
+                                                                </div>
+                                                            </div>
+                                                            <div class="progress rounded-0 border-1 border-start"
+                                                                role="progressbar" aria-label="Team two"
+                                                                aria-valuenow="63" aria-valuemin="0" aria-valuemax="100"
+                                                                style="width: 73%; height: 50px;background-color:var(--mineshaft);">
+                                                                <div
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-5">
+                                                                    73%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <h5 class="my-4 text-center">Shots on Target</h5>
+                                                        <div class="d-flex justify-content-between">
+                                                            <p class="text-start">Team A</p>
+                                                            <p class="text-end">Team B</p>
+                                                        </div>
+                                                        <div class="progress progress-stacked rounded-pill"
+                                                            style="height: 50px;">
+                                                            <div class="progress rounded-0 border-1 border-end"
+                                                                role="progressbar" aria-label="Team one"
+                                                                aria-valuenow="13" aria-valuemin="0" aria-valuemax="100"
+                                                                style="width: 13%; height: 50px;background-color:var(--mineshaft);">
+                                                                <div
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-5">
+                                                                    13%
+                                                                </div>
+                                                            </div>
+                                                            <div class="progress rounded-0 border-1 border-start"
+                                                                role="progressbar" aria-label="Team two"
+                                                                aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"
+                                                                style="width: 87%; height: 50px;background-color:var(--mineshaft);">
+                                                                <div
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-5">
+                                                                    87%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <h5 class="my-4 text-center">Corners</h5>
+                                                        <div class="d-flex justify-content-between">
+                                                            <p class="text-start">Team A</p>
+                                                            <p class="text-end">Team B</p>
+                                                        </div>
+                                                        <div class="progress progress-stacked rounded-pill"
+                                                            style="height: 50px;">
+                                                            <div class="progress rounded-0 border-1 border-end"
+                                                                role="progressbar" aria-label="Team one"
+                                                                aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"
+                                                                style="width: 40%; height: 50px;background-color:var(--mineshaft);">
+                                                                <div
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-5">
+                                                                    30%
+                                                                </div>
+                                                            </div>
+                                                            <div class="progress rounded-0 border-1 border-start"
+                                                                role="progressbar" aria-label="Team two"
+                                                                aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                                                                style="width: 70%; height: 50px;background-color:var(--mineshaft);">
+                                                                <div
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-5">
+                                                                    70%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <h5 class="my-4 text-center">Fouls</h5>
+                                                        <div class="d-flex justify-content-between">
+                                                            <p class="text-start">Team A</p>
+                                                            <p class="text-end">Team B</p>
+                                                        </div>
+                                                        <div class="progress progress-stacked rounded-pill"
+                                                            style="height: 50px;">
+                                                            <div class="progress rounded-0 border-1 border-end"
+                                                                role="progressbar" aria-label="Team one"
+                                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
+                                                                style="width: 50%; height: 50px;background-color:var(--mineshaft);">
+                                                                <div
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-5">
+                                                                    50%
+                                                                </div>
+                                                            </div>
+                                                            <div class="progress rounded-0 border-1 border-start"
+                                                                role="progressbar" aria-label="Team two"
+                                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
+                                                                style="width: 50%; height: 50px;background-color:var(--mineshaft);">
+                                                                <div
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-5">
+                                                                    50%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <!-- references -->
+                                                        <small class="text-white mb-4">
+                                                            Crash Cource in Soccer Analytics:
+                                                            https://www.samford.edu/sports-analytics/fans/2020/A-Crash-Course-in-Soccer-Analytics
+                                                            <br>
+                                                            What is Match Momentum:
+                                                            https://theanalyst.com/eu/2021/11/what-is-match-momentum/
+                                                            <br>
+                                                            A public data set of spatio-temporal match events in soccer
+                                                            competitions:
+                                                            https://www.nature.com/articles/s41597-019-0247-7
+                                                            <br>
+                                                            A look at game experiences and fan engagement:
+                                                            https://kennethcortsen.com/a-look-at-game-experiences-and-fan-engagement/
+                                                            <br>
+                                                        </small>
+                                                    </div>
+                                                    <!-- match momentum chart -->
+                                                    <h5 class="align-middle fs-5 down-top-grad-tahiti rounded-4 p-4">
+                                                        <span class="material-icons material-icons-rounded align-middle" style="font-size:40px!important;">
+                                                            animation
+                                                        </span>    
+                                                        Match Momentum.
+                                                    </h5>
+                                                    <img src="../media/assets/2210378-the-analyst-momentum-plot-1-1024x645.jpeg"
+                                                        class="img-fluid rounded-4"
+                                                        alt="match momentaum reference chart - https://theanalyst.com/eu/2021/11/what-is-match-momentum/"
+                                                        style="filter: invert(0);">
                                                 </div>
                                             </div>
                                         </div>
@@ -9620,24 +10069,27 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <!-- Twitter social buttons / section -->
                     <!-- twitter social panel -->
-                    <div class="load-curtain-social-btn-panel darkpads-bg-container-staticz down-top-grad-tahiti comfortaa-font d-grid gap-2 p-4 shadow-lg"
+                    <div class="load-curtain-social-btn-panel darkpads-bg-container-staticz down-top-grad-white comfortaa-font d-grid gap-2 p-4 shadow-lg"
                         style="position: fixed;top: auto;bottom: 5vh;right: 0px; left: auto; border-radius: 25px 0 0 25px !important;">
                         <!-- z-index:auto; -->
                         <!--  d-none d-lg-block p-4 -->
                         <div class="d-flex gap-2 w-100 justify-content-start">
-                            <button class="p-4 m-0 shadow onefit-buttons-style-light-twitter" type="button"
+                            <button class="p-4 m-0 shadow onefit-buttons-style-dark-twitter collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed"
                                 aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
                                 <div class="d-grid">
                                     <span class="material-icons material-icons-round"
                                         style="font-size: 48px !important;">
-                                        <i class="fab fa-twitter" style="font-size: 40px;"></i>
+                                        <!-- <i class="fab fa-twitter" style="font-size: 40px;"></i> -->
+                                        <img src="../media/assets/icons/twitter-x-symbol-white.svg"
+                                            style="height: 40px; width: 40px; filter: invert(0);"
+                                            alt="Twitter - X logo">
                                     </span>
                                     <p class="comfortaa-font mt-1 mb-0" style="font-size: 10px;">@onefitnet</p>
                                 </div>
                             </button>
                         </div>
-                        <div class="collapse no-scroller pb-4 w3-animate-bottom" id="collapseloadCurtainTweetFeed"
+                        <div class="no-scroller pb-4 w3-animate-bottom collapse" id="collapseloadCurtainTweetFeed"
                             style="overflow-y: auto;">
                             <div class="pb-4 no-scroller"
                                 style="border-radius: 25px !important; overflow-y: auto; max-height: 90vh; min-width: 500px;">
@@ -9646,7 +10098,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">
                                     Tweets by <span style="color: var(--tahitigold)!important;">@OnefitNet</span>
                                 </a> -->
-                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                                 <div class="d-flex justify-content-center">
                                     <div class="spinner-border grow text-light my-4" style="width: 3rem; height: 3rem;"
                                         role="status">
@@ -9659,8 +10111,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- ./ twitter social panel -->
                     <!-- ./ Twitter social buttons / section -->
 
-                    <h2><span class="material-icons material-icons-round align-middle"
-                            style="color: #ffa500;">notifications</span> <span class="align-middle">Notifications</span>
+                    <h2 class="mt-5"><span class="material-icons material-icons-round align-middle"
+                            style="color: #ffa500;">notifications</span> <span
+                            class="align-middle">Notifications.</span>
                     </h2>
                     <div id="comms-communicationUserNotifications" class="mb-4 down-top-grad-white p-4 rounded-4">
                         <?php echo $outputProfileUserNotificationsAccordion; ?>
@@ -9669,7 +10122,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <hr class="text-white">
 
                     <h2><span class="material-icons material-icons-round align-middle"
-                            style="color: #ffa500;">newspaper</span> <span class="align-middle">Updates / News</span>
+                            style="color: #ffa500;">newspaper</span> <span class="align-middle">Updates / News
+                            Feeds.</span>
                     </h2>
                     <div class="mb-4" id="communicationNews">
                         <?php echo $outputCommunityNews; ?>
@@ -10258,7 +10712,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 <button class="border-0 social-link-icon-twitter-light p-4 my-4 shadow"
                                                     style="cursor: pointer" onclick="launchLink('www.google.com')">
                                                     <div class="d-grid gap-2">
-                                                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                                                        <img src="../media/assets/icons/twitter-x-symbol-white.svg"
+                                                            style="height:40px;width:40px" alt="Twitter - X logo">
                                                         <p style="font-size: 10px !important;">Twitter</p>
                                                     </div>
                                                 </button>
@@ -10410,7 +10865,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <div class="grid-container p-4">
                         <div class="grid-tile d-grid">
                             <!-- 1. Button trigger modal>>>>>>>>>> Tab Navigation Modal -->
-                            <button type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow"
+                            <button type="button" class="btnz btn-lightz onefit-buttons-style-light p-4 d-grid shadow"
                                 data-bs-toggle="modal" data-bs-target="#tabNavModal">
                                 <span class="material-icons material-icons-round align-middle">
                                     apps
@@ -10421,7 +10876,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <div class="grid-tile d-grid">
                             <button id="latest-social-feed-offcanvas-btn"
-                                class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" type="button"
+                                class="btnz btn-lightz onefit-buttons-style-light p-4 d-grid shadow" type="button"
                                 onclick="alert('Onefit.Social is unavailable at the moment.')">
                                 <span class="material-icons material-icons-round align-middle">
                                     stream
@@ -10433,7 +10888,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="grid-tile d-grid">
                             <!-- 3. Chat Modal / messages offcamvas toggle btn -->
                             <button id="toggle-messages-offcanvas"
-                                class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" type="button"
+                                class="btnz btn-lightz onefit-buttons-style-light p-4 d-grid shadow" type="button"
                                 data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat"
                                 aria-controls="offcanvasBottomOnefitChat">
                                 <span class="material-icons material-icons-round align-middle">
@@ -10446,7 +10901,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="grid-tile d-grid">
                             <!-- 4. Button trigger modal>>>>>>>>>> Tab Activity Tracker Capture Modal -->
                             <button id="toggleTabCaptureActivityTrackerDataModalBtn" type="button"
-                                class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow"
+                                class="btnz btn-lightz onefit-buttons-style-light p-4 d-grid shadow"
                                 data-bs-toggle="modal" data-bs-target="#tabCaptureActivityTrackerDataModal">
                                 <span class="material-icons material-icons-round align-middle">
                                     track_changes
@@ -10460,7 +10915,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="grid-tile d-grid">
                             <!-- 5. Button trigger modal>>>>>>>>>> Calender Activity Form Modal -->
                             <button id="toggleCalenderActivityFormeModalBtn" onclick="openCalenderActivityForm()"
-                                type="button" class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow"
+                                type="button" class="btnz btn-lightz onefit-buttons-style-light p-4 d-grid shadow"
                                 data-bs-toggle="modal" data-bs-target="#CalenderActivityFormeModal">
                                 <!--  -->
                                 <span class="material-icons material-icons-round align-middle">
@@ -10473,7 +10928,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="grid-tile d-grid">
                             <!-- 6. Button trigger modal>>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
                             <button id="toggleTabeditWeeklyTeamsTrainingScheduleModalBtn" type="button"
-                                class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow"
+                                class="btnz btn-lightz onefit-buttons-style-light p-4 d-grid shadow"
                                 data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
                                 <!-- hidden aria-hidden="true" -->
                                 <span class="material-icons material-icons-round align-middle">
@@ -10486,7 +10941,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="grid-tile d-grid d-none">
                             <!-- 7. Button trigger modal>>>>>>>>>> Insights Interactions: Physical Assessment Modal -->
                             <button id="show-interaction-modal-btn"
-                                class="btn btn-light onefit-buttons-style-light p-4 d-grid shadow" type="button"
+                                class="btnz btn-lightz onefit-buttons-style-light p-4 d-grid shadow" type="button"
                                 data-bs-toggle="modal" data-bs-target="#trainingInteractionsContentModal">
                                 <span class="material-icons material-icons-round align-middle">
                                     touch_app
@@ -10833,7 +11288,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 <button class="border-0 social-link-icon-twitter p-4 my-4 shadow"
                                                     style="cursor: pointer" onClick="launchLink('www.google.com')">
                                                     <div class="d-grid gap-2">
-                                                        <i class="fab fa-twitter"></i>
+                                                        <img class="twitter-x-icon"
+                                                            src="../media/assets/icons/twitter-x-symbol-white.svg"
+                                                            style="height:40px;width:40px" alt="Twitter - X logo">
                                                         <p style="font-size: 10px !important;">Twitter</p>
                                                     </div>
                                                 </button>
@@ -10945,8 +11402,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <!-- Quick Post to Social -->
                             <div class="social-quick-post d-grid">
                                 <textarea name="" class="w-100 quick-post-input" id="" cols="30" rows="10"
-                                    style="height: 40vh!important"
-                                    placeholder="Share an update with the Community.">Share an update with the
+                                    style="height: 40vh!important" placeholder="Share an update with the Community.">Share an update with the
                                     Community.</textarea>
                             </div>
                             <!-- ./ Quick Post to Social -->
@@ -12950,8 +13406,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                     </button>
 
-                    <h1 class="modal-title fs-3 text-white text-truncate text-center my-0 w3-animate-right"
-                        id="trainingInteractionsContentModalLabel">
+                    <h1 id="trainingInteractionsContentModalLabel"
+                        class="modal-title fs-3 text-white text-truncate text-center my-0 w3-animate-right"
+                        style="cursor:pointer;">
                         <span class="material-icons material-icons-round align-middle">shuffle_on</span>
                         <span class="align-middle d-none d-md-block"> Interaction Title.</span>
                     </h1>
@@ -12994,9 +13451,10 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <!-- ./ Modals ----------------------------------------------------------------------------------------- -->
 
-    <div id="notification-indicator" class="notification-indicator p-3 w3-animate-left left-right-grad-mineshaft shadow"
+    <div id="notification-indicator" class="notification-indicator p-3 w3-animate-left right-left-grad-tahiti shadow"
         onclick="$('#app-notifications-btn').click()">
-        <span class="material-icons material-icons-round p-1" id="notification-indicator-icon">
+        <span class="material-icons material-icons-round p-1" id="notification-indicator-icon"
+            style="color:var(--white);">
             pending
         </span>
     </div>
@@ -18279,6 +18737,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                     // $('#show-interaction-modal-btn').click();
                     // load the interaction modal with requested content
                     $('#trainingInteractionsContentModalLabel').html(modalHeader);
+                    // update the onclick function for the modal header label
+                    $('#trainingInteractionsContentModalLabel').attr('onclick',
+                        `$.loadInteractionContent('${loadContent}')`);
                     $('#interactionsContentContainer').html(data);
                 }
             });

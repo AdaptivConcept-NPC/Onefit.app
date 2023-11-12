@@ -142,27 +142,27 @@ if (isset($_GET['uid'])) {
                         $thumbnail = "../media/assets/OnefitNet Profile PicArtboard 2.jpg";
                     }
 
-                    $drillsList = <<<_END
+                    $drillsList .= <<<_END
                         <div id="training-drill-card-$exercise_drill_id" class="grid-tile p-4 down-top-grad-white shadow border-5 text-center border-bottom drills-tile d-grid justify-content-centerz">
                             <!-- row-body -->
                             <div class="row justify-content-center align-items-centerz">
-                                <div class="col-md-6 text-center top-down-grad-tahiti p-4" 
+                                <div class="col-xlg-6 text-center top-down-grad-tahiti p-4" 
                                     style="border-radius: 25px;">
                                     <img src="$thumbnail" class="img-fluid shadow w-100" style="border-radius: 15px; filter: invert(0);" alt="$drill_title @ $training_level">
                                 </div>
-                                <div class="col-md-6 text-center down-top-grad-dark p-4 py-5" style="border-radius:25px;">
-                                    <h5 class="fs-2 comfortaa-font"> $drill_title </h5>
-                                    <p class="mb-4">
+                                <div class="col-xlg-6 text-center down-top-grad-dark p-4 py-5 mb-4" style="border-radius:25px;overflow-x:auto;">
+                                    <h5 class="fs-2 text-wrap comfortaa-font"> $drill_title </h5>
+                                    <p class="mb-4 text-wrap">
                                         <strong>Benefits:</strong> $benefits <br>
                                         <strong>Intensity (RPE):</strong> $rpe / 10 <br>
                                     </p>
-                                    <p class="mt-4 text-mutedz text-whitez"><span class="material-icons material-icons-round align-middle" style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
+                                    <p class="mt-4 text-wrap text-mutedz text-whitez"><span class="material-icons material-icons-round align-middle" style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
                                         <strong>Target area(s):</strong> $target_area
                                     </p>
                                 </div>
                             </div>
                             <!-- /.row-body --> 
-                            <hr class="mt-2"/>
+                            <hr class="mt-0"/>
                             <button class="onefit-buttons-style-dark p-4 fs-5 d-flex gap-2 align-items-center justify-content-center text-center" onclick="alert('launch trainer')">
                                 <span class="material-icons material-icons-rounded align-middle" style="font-size:40px !important;">run_circle</span>
                                 <span class="text-start">Start.</span>
@@ -350,7 +350,7 @@ if (isset($_GET['uid'])) {
                                         </p>
                                     </div>
                                 </div>
-                                <div class="card-footer bg-transparent border-0 d-grid">
+                                <div class="card-footer bg-transparent border-0 d-grid p-0">
                                 <hr class="my-2"/>
                                     <button class="onefit-buttons-style-dark p-4 fs-5 d-flex gap-2 align-items-center justify-content-center text-center" onclick="alert('launch trainer')">
                                         <span class="material-icons material-icons-rounded align-middle" style="font-size:40px !important;">run_circle</span>
@@ -385,6 +385,7 @@ if (isset($_GET['uid'])) {
 
     // compile output
     $output = <<<_END
+    <div class="modal-body w3-animate-top rounded-5 top-down-grad-dark" style="/* background: var(--white); */">
         <h1 class="fs-1 fw-bold text-center my-5">Teams Training Drills.</h1>
         <p class="text-center"> 
             <span class="material-icons material-icons-outlined align-middle" style="font-size: 20px !important;"> info </span> 
@@ -419,7 +420,8 @@ if (isset($_GET['uid'])) {
                 $workoutsList
             </div>
         </div>
-        _END;
+    </div>
+    _END;
     // if ($found) {
     // } else {
     //     // output html to indicate that the content was not loaded successfully, offer link to support

@@ -317,7 +317,8 @@ rememberMe();
                             </strong>
                         </button>
                         <!-- <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Twitter API is not available at the moment. Please use your email to login.','alert_twitter', 'short_5000')">
-              <i class="fab fa-twitter"></i>
+              <img class="twitter-x-icon" src="../media/assets/icons/twitter-x-symbol-white.svg" style="height:40px;width:40px"
+                            alt="Twitter - X logo">
               Sign in with
               <strong class="fs-5 poppins-font">
                 <span style="color: #1DA1F2;">Twitter</span>
@@ -426,7 +427,7 @@ rememberMe();
                     <h2 class="text-center mt-4" style="color: #ffa500">Social</h2>
                     <hr class="bg-warning">
 
-                    <h5 class="mt-4 text-center"><i class="fab fa-twitter" aria-hidden="true"></i> Twitter Feed</h5>
+                    <h5 class="mt-4 text-center"><img src="../media/assets/icons/twitter-x-symbol-white.svg" style="height:40px;width:40px" alt="Twitter - X logo"> Twitter Feed</h5>
 
                     <div class="pb-4 no-scroller d-grid" style="border-radius: 25px !important; overflow-y: scroll; max-height: 90vh">
                         <div class="twitter-timeline twitter-timeline-rendered" style="display: flex; max-width: 100%; margin-top: 0px; margin-bottom: 0px;"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" style="position: static; visibility: visible; width: 334px; height: 7972px; display: block; flex-grow: 1;" title="Twitter Timeline" src="https://syndication.twitter.com/srv/timeline-profile/screen-name/OnefitNet?dnt=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=false&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;origin=http%3A%2F%2Flocalhost%3A8081%2FOnefit%2F%3Freturn%3Dsess_end&amp;sessionId=36bccd59108ca51751c04b11196860d0fbafdfd5&amp;showHeader=true&amp;showReplies=false&amp;transparent=false&amp;widgetsVersion=aaf4084522e3a%3A1674595607486"></iframe>
@@ -675,7 +676,7 @@ rememberMe();
                                 <li class="list-group-item bg-transparent border-0 social-link-icon-twitter my-2 shadow" style="cursor: pointer" onclick="launchLink('www.google.com')">
                                     <div class="row align-items-center">
                                         <div class="col-4 text-end">
-                                            <i class="fab fa-twitter" style="font-size: 40px;" aria-hidden="true"></i>
+                                            <img src="../media/assets/icons/twitter-x-symbol-white.svg" style="height:40px;width:40px" alt="Twitter - X logo">
                                         </div>
                                         <div class="col text-center" style="color: #ffa500;">
                                             |

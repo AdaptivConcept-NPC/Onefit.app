@@ -2,7 +2,7 @@
 /* code source: https://codepen.io/davinciharsha/pen/vGBXzR */
 
 div.timer {
-	border: 1px #666666 solid;
+	border: 3px var(--white) solid;
 	border-radius: 25px;
 	/* width: 190px;
 	height: 50px; */

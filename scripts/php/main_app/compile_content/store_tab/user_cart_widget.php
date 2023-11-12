@@ -51,10 +51,13 @@ for ($i = 1; $i <= 5; $i++) {
         <!-- ./ product / item card -->
         <div class="w-100 align-items-center justify-content-between">
             <div class="row gap-2 align-items-start justify-content-start">
-                <div class="col-md d-flex gap-1 justify-content-center p-4 top-down-grad-tahitiz rounded-4 no-scroller" style="overflow-x:auto;">
-                    <div class="row w-100">
+                <div class="col-md d-flex gap-1 justify-content-center p-4 pb-0 top-down-grad-tahitiz rounded-4 no-scroller" style="overflow-x:auto;">
+                    <div class="row w-100 mb-4">
+                        <div class="col-md-4">
+                            <img src="$productImageURL" alt="$productName - $productRef" style="filter: invert(0);max-width:200px;" class="img-fluid shadow-lg rounded-3">
+                        </div>
                         <div class="col-md d-grid gap-2 text-start p-0 align-items-center">
-                            <div class="poppins-font text-truncate">
+                            <div class="poppins-font text-truncate text-md-center mt-4">
                                 <span class="badge text-bg-light fs-4">$listItemNumber.</span>
                                 <span id="main-cart-items-list-item-name" class="align-middle fs-4 fs-bold text-white"> $productName</span>
                             </div>
@@ -62,10 +65,7 @@ for ($i = 1; $i <= 5; $i++) {
                                 <span class="material-icons material-icons-round text-white d-nonez" style="font-size: 22px !important;">toll</span>
                                 <span class="fs-1" id="main-cart-items-list-item-price" style="color:var(--white);">$productPriceLabel</span>
                             </div>
-                            <div class="text-xsm-center text-sm-center text-md-center text-lg-end"><span class="barcode-font text-truncate" id="cart-producte-ref" style="color: var(--mineshaft);font-size:12px!important;">$productRef</span></div>
-                        </div>
-                        <div class="col-md-4">
-                            <img src="$productImageURL" alt="$productName - $productRef" style="filter: invert(0);max-width:200px;" class="img-fluid shadow-lg rounded-3">
+                            <div class="text-xsm-center text-sm-center text-md-center text-lg-start"><span class="barcode-font text-truncate" id="cart-producte-ref" style="color: var(--white);font-size:12px!important;">$productRef</span></div>
                         </div>
                     </div>
                 </div>
@@ -79,11 +79,11 @@ for ($i = 1; $i <= 5; $i++) {
                                     production_quantity_limits
                                     </span> Quantity.
                                 </p>
-                                <input type="number" class="form-control text-center w-100" value="$productQty" min="0" step="1" oninput="validity.valid||(value='');" placeholder="qty." aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border: 0;border-radius: 0 0 15px 15px !important;background-color: #343434;color: #fff;min-width: 50px;">
+                                <input type="number" class="form-control text-center w-100" value="$productQty" min="1" max="5" step="1" oninput="validity.valid||(value='');" placeholder="qty." aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border: 0;border-radius: 0 0 15px 15px !important;background-color: #343434;color: #fff;min-width: 150px;">
                             </div>
                             <!-- ./ quantity -->
                             <!-- product description -->
-                            <div id="prod-highlighted-features" class="d-flex gap-2 mt-4">
+                            <div id="prod-highlighted-features" class="d-flex gap-2 mt-4 text-white">
                                 <span class="material-icons align-middle" style="font-size: 20px!important;">info</span>
                                 <span class="align-middle text-wrap" style="font-size: 10px;">Highlighted features.</span>
                             </div>
@@ -91,7 +91,7 @@ for ($i = 1; $i <= 5; $i++) {
                     </div>
                     <div class="px-2">
                         <div class="d-flex justify-content-center">
-                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-4 text-center shadow-lg -sm bg-transparent" onclick="deleteCartItem('product_id','product_ref','$list_item_id')" style="border-color: var(--red);color: var(--white) !important;">
+                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-4 text-center shadow-lg -sm bg-transparent" onclick="deleteCartItem('product_id','product_ref','$list_item_id')" style="border-color: var(--red);color: var(--red) !important;">
                                 <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
                                     highlight_off
                                 </span>
@@ -115,7 +115,7 @@ $cart_widget_html_template = <<<_END
     <div class="text-center">
         <button class="navbar-toggler shadowz onefit-buttons-style-dark rounded-5z p-0 hide-side-panels shadow-lg collapsed border-5 border-bottom" style="overflow:hidden;" type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel" aria-expanded="false" id="main-cart-toggle-btn">
             <div class="row px-4z py-2 m-0 align-items-center rounded-3 top-down-grad-tahiti">
-                <div class="col-sm fw-bold comfortaa-font border-startz border-endz border-light p-4 fs-4 d-grid gap-2 text-center text-white" style="min-width:100px;">
+                <div class="col-lg fw-bold comfortaa-font border-startz border-endz border-light p-4 fs-4 d-grid gap-2 text-center text-white" style="min-width:100px;">
                     <span class="material-icons material-icons-round align-middle" style="font-size: 50px !important;">
                         card_membership
                     </span>
@@ -125,7 +125,7 @@ $cart_widget_html_template = <<<_END
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                             shopping_cart </span>
-                        <span class="fw-bold comfortaa-font" style="color: var(--white);font-size: 20px;">0</span>
+                        <span class="fw-bold comfortaa-font" style="color: var(--white);font-size: 20px;"> $listItemNumber </span>
                         <span class="d-nonez d-lg-blockz" id="" style="font-size: 15px;">Items.</span>
                     </div>
                 </div>
@@ -143,7 +143,7 @@ $cart_widget_html_template = <<<_END
     <div class="showz down-top-grad-dark w3-animate-top comfortaa-font text-white collapse" style="border-radius: 25px; overflow: hidden;" id="cart-panel">
         <div class="p-4 shadow" id="">
             <div class="text-center d-flex justify-content-between align-items-center">
-                <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4 w3-animate-right d-grid gap-1" type="button" onclick="openLink(event, 'TabStore');openLink(event, 'TabStore');document.getElementById('main-cart-toggle-btn').click()">
+                <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4 w3-animate-right d-grid gap-1" type="button" onclick="openLink(event, 'TabStore');document.getElementById('main-cart-toggle-btn').click()">
                     <span class="material-icons material-icons-round align-middle">
                         storefront
                     </span>
@@ -173,20 +173,20 @@ $cart_widget_html_template = <<<_END
                 <div class="col-xlg-6 py-4 d-grid gap-4">
                     <!-- Cart items vertical list -->
                     <div class="container-fluid p-2 pt-4 top-down-grad-white border-3z border-topz" style="border-radius: 25px;border-color: var(--tahitigold) !important;">
-                        <h1 class="text-dark w3-animate-left mb-4">Items ordered.</h1>
+                        <h1 class="text-dark w3-animate-left mb-4">Items ordered ($listItemNumber).</h1>
                         <!-- Cart items vertical list -->
-                        <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numberedz shadow py-4 px-2 w3-animate-left light-scroller top-down-grad-tahiti" style="/* background-color: var(--tahitigold); */overflow-y: auto;border-radius: 25px !important;max-height: 80vh !important;">
+                        <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numberedz shadow py-5 px-4 w3-animate-left light-scroller top-down-grad-dark" style="/* background-color: var(--tahitigold); */overflow-y: auto;border-radius: 25px !important;max-height: 80vh !important;">
                             $cartItemsVList
                         </ul>
                         <!-- ./ Cart items vertical list -->
                     </div>
                     <!-- ./ Cart items vertical list -->
                     <!-- cart / invoice totals -->
-                    <div class="container-fluid p-2 pt-4 down-top-grad-tahiti border-3z border-topz" style="border-radius: 25px;border-color: var(--tahitigold) !important;">
+                    <div class="container-fluid p-2 py-5 down-top-grad-white border-3z border-topz" style="border-radius: 25px;border-color: var(--tahitigold) !important;">
                         <!-- invoice number barcode display -->
                         <div id="cart-invoice-ref">
-                            <p class="text-center w3-animate-left comfortaa-font d-grid" style="min-height: 30px;">
-                                <span class="material-icons material-icons-round align-middle" style="font-size:40px !important;">
+                            <p class="text-dark text-center w3-animate-left comfortaa-font d-grid" style="min-height: 30px;color: var(--white)!important;">
+                                <span class="material-icons material-icons-round align-middle mb-4" style="font-size:60px !important;">
                                     receipt_long
                                 </span>
                                 <span>Invoice Reference.</span>
@@ -194,16 +194,16 @@ $cart_widget_html_template = <<<_END
                             </p>
                         </div>
                         <!-- ./ invoice number barcode display -->
-                        <h1 class="text-white w3-animate-left mb-4">Cart Totals.</h1>
-                        <div class="row p-4 pb-0 align-items-center down-top-grad-tahitiz" style="border-radius: 0 0 25px 25px;">
-                            <div class="col-md w3-animate-left">
-                                <h1>R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 12px;color: var(--white);">ZAR</span></h1>
+                        <h1 class="text-dark w3-animate-left mb-4">Cart Totals.</h1>
+                        <div class="row p-4 pb-0 align-items-center down-top-grad-tahitiz text-dark" style="border-radius: 0 0 25px 25px;">
+                            <div class="col-md w3-animate-left poppins-font">
+                                <h1>R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 12px;color: var(--tahitigold);">ZAR</span></h1>
                             </div>
-                            <div class="col-md -4 border-1 border-start border-end">
-                                <h1><span id="shop-cart-total-items">4</span> <span class="align-top" style="font-size: 12px;color: var(--white);">Items</span></h1>
+                            <div class="col-md -4 border-1 border-start border-end border-dark">
+                                <h1><span id="shop-cart-total-items">4</span> <span class="align-top" style="font-size: 12px;color: var(--tahitigold);">Items</span></h1>
                             </div>
                             <div class="col-md d-flex justify-content-center w3-animate-right">
-                                <button id="clear-all-cart-item-btn" class="onefit-buttons-style-danger bg-transparent p-3 text-center" style="border-color: var(--red);">
+                                <button id="clear-all-cart-item-btn" class="onefit-buttons-style-danger bg-transparentz p-3 text-center" style="border-color: var(--red);">
                                     <div class="d-grid">
                                         <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
                                             delete
