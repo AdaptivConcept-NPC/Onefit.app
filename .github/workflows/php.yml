@@ -1,0 +1,32 @@
+name: PHP CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'  # Use the PHP version you need
+
+    - name: Install dependencies
+      run: |
+        composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run tests
+      run: vendor/bin/phpunit
+
+    - name: App Build Number
+      uses: AcmeSoftwareLLC/app-build-number@v1.0.4
+  
+
