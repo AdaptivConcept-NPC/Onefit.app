@@ -486,7 +486,8 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         <div class="fixed-top text-end p-4" id="load-countdown-container">
             <label class="text-end">
-                <span class="material-icons material-icons-outline align-middle"
+                <span id="load-curtain-duration-indicator-icon"
+                    class="material-icons material-icons-outline align-middle"
                     style="font-size:20px!important;">timer</span>
                 <span class="align-middle" id="load-countdown">0s.</span>
             </label>
@@ -1058,7 +1059,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     style="border-color:var(--tahitigold)!important;min-width: 85.69px;"
                     class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font show-side-panels border-topz border-bottom border-5"
                     data-bs-toggle="collapse" data-bs-target="#widget-rows-container"
-                    aria-controls="widget-rows-container">
+                    aria-controls="widget-rows-container" onclick="$('#toggle-tab-container').click();">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> interests
                         </span>
@@ -1364,7 +1365,17 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         <!-- Tab Content -->
         <div class="container-xlg">
-            <div class="tab-container" id="tab-container">
+            <div class="d-grid justify-content-center pb-2">
+                <!-- toggle #tab-container -->
+                <button class="onefit-buttons-style-light p-4 d-none" id="toggle-tab-container" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#tab-container" aria-expanded="true"
+                    aria-controls="tab-container">
+                    Show/Hide Tabs
+                </button>
+            </div>
+
+            <!-- ./ toggle #tab-container -->
+            <div class="tab-container collapse show" id="tab-container">
                 <div id="TabHome" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: block">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
@@ -4823,12 +4834,13 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <!-- Vertical Activity Timeline of user -->
 
-                    <div id="v-timeline" class="w-100 my-4 py-4 shadow border-5 border-bottom"
+                    <div id="v-timeline" class="w-100 my-4 py-4 shadow border-5 border-bottom top-down-grad-tahiti"
                         style="background-color: #343434; border-radius: 25px; border-color: #ffa500 !important; overflow-x: auto;">
                         <div class="d-grid text-center">
-                            <h5 id="activity-timeline-header" class="my-4 fs-1 text-center align-middle"><span
-                                    class="material-icons material-icons-outlined align-middle"
-                                    style="color: #ffa500 !important; font-size: 40px;">
+                            <h5 id="activity-timeline-header" class="my-4 fs-1 text-center align-middle"
+                                style="color: var(--mineshaft) !important;">
+                                <span class="material-icons material-icons-outlined align-middle"
+                                    style="color: var(--mineshaft) !important;font-size: 80px;">
                                     timeline
                                 </span> Activity Timeline.
                             </h5>
@@ -4836,7 +4848,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                         <hr style="color: #ffa500;">
 
-                        <div id="vertical-timeline-varusername no-scroller"
+                        <div id="vertical-timeline-varusername" class="light-scroller"
                             style="max-height: 90vh; overflow: auto; border-radius: 25px;">
                             <div id="user-activity-timeline" class="timeline"
                                 style="min-width: 500px; border-radius: 25px;">
@@ -5066,20 +5078,25 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </div>
                             </div>
                             <div class="col-sm py-2 text-center">
-                                <div class="d-flex justify-content-center">
+                                <div class="d-grid justify-content-center">
                                     <button
-                                        class="btn p-4 onefit-buttons-style-dark my-pulse-animation-tahiti border-5 border hide-side-panels d-grid gap-2"
-                                        style="border-radius: 25px !important; border-color: #ffa500 !important;"
+                                        class="onefit-buttons-style-light d-grid gap-2 justify-content-center p-4 my-pulse-animation-whitez border-5 border hide-side-panels"
+                                        style="border-radius: 25px !important;border: solid 5px var(--white) !important;min-width: 120px;"
                                         type="button" data-bs-toggle="modal"
                                         data-bs-target="#tabCaptureActivityTrackerDataModal">
-                                        <img src="../media/assets/icons/icons8-smart-watch-50.png" alt="smartwatch"
-                                            class="img-fluid mb-2">
-                                        <span class="material-icons material-icons-round align-middle">
-                                            add_circle_outline
-                                        </span>
-                                        <span class="d-none d-lg-block" style="font-size: 8px;">
-                                            Capture Vitals.
-                                        </span>
+
+                                        <div class="d-grid gap-2 justify-content-center">
+                                            <img src="../media/assets/icons/icons8-smart-watch-50.png"
+                                                alt="smartwatch icon" class="img-fluidz h-100 w-100 mb-2"
+                                                style="filter: invert(1) !important;">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                add_circle_outline
+                                            </span>
+                                            <span class="d-none d-lg-block" style="font-size: 8px;">
+                                                Capture Vitals.
+                                            </span>
+                                        </div>
+
                                     </button>
                                 </div>
                             </div>
@@ -5905,7 +5922,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <!-- weekly assessment horizontal scroll container -->
                     <div id="weekly-assessment-horizontal-scroll-container"
-                        class="horizontal-scroll shadow align-items-start">
+                        class="horizontal-scroll light-scroller shadow align-items-start">
                         <div id="weekly-assessment-h-scroll-weekday-card-varmonday"
                             class="horizontal-scroll-card p-4 m-1 shadow text-center">
                             <h3 class="my-4">Monday (dd/mm/yyyy)</h3>
@@ -6762,7 +6779,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div class="nav force-inline-nav nav-tabs border-0 d-flex justify-content-between"
                                             id="nav-tab-insightsSubFeatureCategories" role="tablist"
                                             style="border-color: #ffa500 !important">
-                                            <button class="nav-link p-4 comfortaa-font fw-bold active position-relative"
+                                            <button
+                                                class="nav-link p-4 comfortaa-font fw-bold active position-relative shadow"
                                                 style="border-radius: 25px !important;"
                                                 id="nav-trainingProgramCategories-challenges-tab"
                                                 onclick="setCurrentInsightsTrainingProgramTab('challenges')">
@@ -6779,7 +6797,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </button>
 
                                             <button
-                                                class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                                                class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative shadow"
                                                 style="border-radius: 25px !important;"
                                                 id="nav-trainingProgramCategories-googleSurveys-tab"
                                                 onclick="setCurrentInsightsTrainingProgramTab('googleSurveys')">
@@ -6791,7 +6809,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     style="color: #ffa500; display: none;">poll</span>
                                             </button>
 
-                                            <!-- <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-indiAthlete-tab" onclick="setCurrentInsightsTrainingProgramTab('indiAthlete')">
+                                            <!-- <button class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative shadow" style="border-radius: 25px !important;" id="nav-trainingProgramCategories-indiAthlete-tab" onclick="setCurrentInsightsTrainingProgramTab('indiAthlete')">
                                                 Indi-Athletics.
 
                                                 <br>
@@ -6799,7 +6817,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </button> -->
 
                                             <button
-                                                class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                                                class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative shadow"
                                                 style="border-radius: 25px !important;"
                                                 id="nav-trainingProgramCategories-teamAthletics-tab"
                                                 onclick="setCurrentInsightsTrainingProgramTab('teamAthletics')">
@@ -6812,7 +6830,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </button>
 
                                             <button
-                                                class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                                                class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative shadow"
                                                 style="border-radius: 25px !important;"
                                                 id="nav-trainingProgramCategories-wellness-tab"
                                                 onclick="setCurrentInsightsTrainingProgramTab('wellness')">
@@ -6825,7 +6843,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </button>
 
                                             <button
-                                                class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                                                class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative shadow"
                                                 style="border-radius: 25px !important;"
                                                 id="nav-trainingProgramCategories-nutrition-tab"
                                                 onclick="setCurrentInsightsTrainingProgramTab('nutrition')">
@@ -6911,7 +6929,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <div class="nav nav-tabs justify-content-center"
                                     id="nav-tab-insightsSubFeatureCategories" role="tablist"
                                     style="border-color: #ffa500 !important">
-                                    <button class="nav-link p-4 comfortaa-font fw-bold active position-relative"
+                                    <button class="nav-link p-4 comfortaa-font fw-bold active position-relative shadow"
                                         style="min-width:170px" id="nav-trainingProgramCategories-challenges-tab"
                                         onclick="setCurrentInsightsTrainingProgramTab('challenges')">
                                         Challenges.
@@ -6927,7 +6945,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </button>
 
                                     <button
-                                        class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                                        class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative shadow"
                                         style="min-width:170px" id="nav-trainingProgramCategories-googleSurveys-tab"
                                         onclick="setCurrentInsightsTrainingProgramTab('googleSurveys')">
                                         Google Surveys.
@@ -6941,7 +6959,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <!-- removed selection button for indi-athletics sub-tab -->
 
                                     <button
-                                        class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                                        class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative shadow"
                                         style="min-width:170px" id="nav-trainingProgramCategories-teamAthletics-tab"
                                         onclick="setCurrentInsightsTrainingProgramTab('teamAthletics')">
                                         Team / Athletics.
@@ -6953,7 +6971,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </button>
 
                                     <button
-                                        class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                                        class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative shadow"
                                         style="min-width:170px" id="nav-trainingProgramCategories-wellness-tab"
                                         onclick="setCurrentInsightsTrainingProgramTab('wellness')">
                                         Wellness.
@@ -6965,7 +6983,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </button>
 
                                     <button
-                                        class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
+                                        class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative shadow"
                                         style="min-width:170px" id="nav-trainingProgramCategories-nutrition-tab"
                                         onclick="setCurrentInsightsTrainingProgramTab('nutrition')">
                                         Nutrition.
@@ -7205,10 +7223,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         aria-labelledby="analyseMatchLabel" aria-modal="true" role="dialog">
                                         <div class="offcanvas-header">
                                             <h1 class="offcanvas-title" id="analyseMatchLabel">
-                                                <span class="material-icons material-icons-round align-middle fs-3" 
+                                                <span class="material-icons material-icons-round align-middle fs-3"
                                                     style="font-size: 60px !important;color: var(--tahitigold);">
                                                     analytics
-                                                </span> 
+                                                </span>
                                                 <span class=" align-middle">Match Analysis.</span>
                                             </h1>
                                             <button type="button" class="onefit-buttons-style-danger p-2"
@@ -7217,96 +7235,143 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </button>
                                         </div>
                                         <div class="offcanvas-body">
-                                            <div class="row align-items-startz down-top-grad-dark rounded-4">
-                                                <div class="col-md pb-5 down-top-grad-dark rounded-4">
-                                                <h5 class="align-middle fs-5 down-top-grad-tahiti rounded-4 p-4">
+                                            <div class="row align-items-start top-down-grad-tahiti rounded-4 shadow"
+                                                style="overflow: hidden;">
+                                                <!-- scoreboard and duration controls -->
+                                                <div class="col-md pb-5 down-top-grad-dark rounded-0 light-scroller"
+                                                    style="height: 86vh;overflow-y: auto;">
+                                                    <h5 class="align-middle fs-5 down-top-grad-dark rounded-4 p-4">
                                                         <span class="material-icons material-icons-rounded align-middle"
                                                             style="font-size:40px!important;">
                                                             scoreboard
                                                         </span> Scoreboard.
                                                     </h5>
-                                                    <div id="analysis-scoreboard" class="my-4 top-down-grad-dark rounded-4">
-                                                        <div class="d-flex gap-2 align-items-center justify-content-between down-top-grad-tahiti rounded-4">
-                                                            <div class="team-one-title p-4 d-grid gap-2 text-center">
-                                                                <img src="../media/teams/TEC_United_FC/logo.png" class="img-fluid rounded-4 shadow bg-white" alt="Team A Logo" style="filter: invert(0);">
+                                                    <div id="analysis-scoreboard"
+                                                        class="my-4 down-top-grad-darkz rounded-4 sticky-top">
+                                                        <div
+                                                            class="d-flex gap-2 align-items-center justify-content-between down-top-grad-tahiti rounded-4">
+                                                            <div
+                                                                class="team-one-title p-4 d-grid gap-2 text-center top-down-grad-dark rounded-4">
+                                                                <img src="../media/teams/TEC_United_FC/logo.png"
+                                                                    class="img-fluid rounded-4 shadow bg-white"
+                                                                    alt="Team A Logo" style="filter: invert(0);">
                                                                 <span id="scoreboard-team-one-name-label">Team A</span>
                                                             </div>
                                                             <div class="match-score col-4 p-4 fs-1 text-center">
-                                                                <div class="row align-items-center justify-content-between">
+                                                                <div
+                                                                    class="row align-items-center justify-content-between">
                                                                     <!-- Team A goals / points -->
-                                                                    <!-- <div id="team-one-points" class="col -md"> 0 </div> -->
-                                                                    <!-- <div class="col -md"> - </div> -->
+                                                                    <div id="team-one-points" class="col-md"> 0 </div>
+                                                                    <div class="col-md"> - </div>
                                                                     <!-- Team B score / points -->
-                                                                    <!-- <div id="team-two-points" class="col -md"> 0 </div> -->
-                                                                    <span id="match-score">0 - 0</span>
+                                                                    <div id="team-two-points" class="col-md"> 0 </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="team-two-title p-4 d-grid gap-2 text-center">
-                                                                <img src="../media/teams/TEC_United_FC/logo.png" class="img-fluid rounded-4 shadow bg-white" alt="Team B Logo" style="filter: invert(0);">
+                                                            <div
+                                                                class="team-two-title p-4 d-grid gap-2 text-center top-down-grad-dark rounded-4">
+                                                                <img src="../media/teams/TEC_United_FC/logo.png"
+                                                                    class="img-fluid rounded-4 shadow bg-white"
+                                                                    alt="Team B Logo" style="filter: invert(0);">
                                                                 <span id="scoreboard-team-two-name-label">Team B</span>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <h5 class="align-middle fs-5 down-top-grad-tahiti rounded-4 p-4">
+                                                    <h5 class="align-middle fs-5 down-top-grad-dark rounded-4 p-4">
                                                         <span class="material-icons material-icons-rounded align-middle"
                                                             style="font-size:40px!important;">
                                                             timer
                                                         </span> Duration.
                                                     </h5>
 
-                                                    <div class="timer p-4 my-4">
-                                                        <span class="hour">00</span>:<span
-                                                            class="minute">00</span>:<span class="second">00</span>
-                                                    </div>
-                                                    <h5>Select timer mode.</h5>
-                                                    <div
-                                                        class="controlz d-flex flex-columnz gap-2 justify-content-centerz mb-4">
-                                                        <button onclick="timer.mode(1)"
-                                                            class="onefit-buttons-style-light p-3 flex-fill">
-                                                            Count up <span
-                                                                class="material-icons material-icons-outlined align-middle"
-                                                                style="font-size:30px!important;">arrow_circle_up</span>
-                                                        </button>
-                                                        <button onclick="timer.mode(0)"
-                                                            class="onefit-buttons-style-light p-3 flex-fill">
-                                                            Count down <span
-                                                                class="material-icons material-icons-outlined align-middle"
-                                                                style="font-size:30px!important;">arrow_circle_down</span>
-                                                        </button>
-                                                    </div>
-                                                    <h5>Start / Stop / Reset the timer.</h5>
-                                                    <div>
-                                                        <div
-                                                            class="controlz d-flex flex-columnz gap-2 justify-content-centerz mb-2">
-                                                            <button onclick="timer.start(1000)"
-                                                                class="onefit-buttons-style-success p-3 flex-fill">Start
-                                                                <span
-                                                                    class="material-icons material-icons-outlined align-middle"
-                                                                    style="font-size:30px!important;">check_circle</span></button>
-                                                            <button onclick="timer.stop()"
-                                                                class="onefit-buttons-style-danger p-3 flex-fill">Stop
-                                                                <span
-                                                                    class="material-icons material-icons-outlined align-middle"
-                                                                    style="font-size:30px!important;">highlight_off</span></button>
+                                                    <div id="duration-controls" class="p-4 rounded-4"
+                                                        style="color: var(--tahitigold) !important;background: var(--mineshaft);">
+                                                        <div class="timer p-4 my-4 text-truncate"
+                                                            style="border: 3px var(--tahitigold) solid;">
+                                                            <span class="hour">00</span>:<span
+                                                                class="minute">00</span>:<span class="second">00</span>
                                                         </div>
-                                                        <div class="controlz d-grid gap-2 justify-content-centerz mb-4">
-
-                                                            <button onclick="timer.reset(60)"
-                                                                class="onefit-buttons-style-tahiti p-3">Reset <span
+                                                        <h5>Select timer mode.</h5>
+                                                        <div
+                                                            class="controlz d-flex flex-columnz gap-2 justify-content-centerz mb-4">
+                                                            <button onclick="timer.mode(1)"
+                                                                class="onefit-buttons-style-light p-3 flex-fill">
+                                                                Count up <span
                                                                     class="material-icons material-icons-outlined align-middle"
-                                                                    style="font-size:30px!important;">restart_alt</span></button>
+                                                                    style="font-size:30px!important;">arrow_circle_up</span>
+                                                            </button>
+                                                            <button onclick="timer.mode(0)"
+                                                                class="onefit-buttons-style-light p-3 flex-fill">
+                                                                Count down <span
+                                                                    class="material-icons material-icons-outlined align-middle"
+                                                                    style="font-size:30px!important;">arrow_circle_down</span>
+                                                            </button>
+                                                        </div>
+                                                        <h5>Timer controls.</h5>
+                                                        <div>
+                                                            <div
+                                                                class="controlz d-flex flex-columnz gap-2 justify-content-centerz mb-2">
+                                                                <button onclick="timer.start(1000)"
+                                                                    class="onefit-buttons-style-success p-3 flex-fill">Start
+                                                                    <span
+                                                                        class="material-icons material-icons-outlined align-middle"
+                                                                        style="font-size:30px!important;">check_circle</span></button>
+                                                                <button onclick="timer.stop()"
+                                                                    class="onefit-buttons-style-danger p-3 flex-fill">Stop
+                                                                    <span
+                                                                        class="material-icons material-icons-outlined align-middle"
+                                                                        style="font-size:30px!important;">highlight_off</span></button>
+                                                            </div>
+                                                            <div
+                                                                class="controlz d-grid gap-2 justify-content-centerz mb-4">
 
+                                                                <button onclick="timer.reset(60)"
+                                                                    class="onefit-buttons-style-tahiti p-3">Reset <span
+                                                                        class="material-icons material-icons-outlined align-middle"
+                                                                        style="font-size:30px!important;">restart_alt</span></button>
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md pb-5 down-top-grad-dark rounded-4">
-                                                    <h5 class="align-middle fs-5 down-top-grad-tahiti rounded-4 p-4">
+                                                <!-- ./ scoreboard and duration controls -->
+                                                <!-- mini match timeline widget and match events button controls -->
+                                                <div class="col-md pb-5 down-top-grad-dark rounded-0 light-scroller"
+                                                    style="
+                                                        height: 86vh;
+                                                        overflow-y: auto;
+                                                    ">
+                                                    <div id="match-event-timeline">
+                                                        <h5 class="align-middle fs-5 down-top-grad-dark rounded-4 p-4">
+                                                            <span
+                                                                class="material-icons material-icons-rounded align-middle"
+                                                                style="font-size:40px!important;">
+                                                                view_timeline
+                                                            </span>
+                                                            Match Timeline.
+                                                        </h5>
+                                                        <img src="../media/assets/41597_2019_247_Fig1_HTML.png"
+                                                            alt="event timeline reference - https://www.nature.com/articles/s41597-019-0247-7/figures/1"
+                                                            style="filter: invert(0);" class="img-fluid">
+
+                                                        <!-- toggle timeline editor collapse panel -->
+                                                        <button class="onefit-buttons-style-white p-4 shadow"
+                                                            type="button" data-bs-toggle="collapse"
+                                                            data-bs-target="#match-timeline-editor-widget-panel"
+                                                            aria-expanded="false"
+                                                            aria-controls="match-timeline-editor-widget-panel">
+                                                            Open timeline editor.
+                                                        </button>
+                                                    </div>
+
+                                                    <h5 class="align-middle fs-5 down-top-grad-dark rounded-4 p-4">
                                                         <span class="material-icons material-icons-rounded align-middle"
                                                             style="font-size:40px!important;">
                                                             note_alt
                                                         </span> Events.
                                                     </h5>
-                                                    <div id="match-event-buttons" class="d-grid gap-4">
+                                                    <div id="match-event-buttons"
+                                                        class="d-grid gap-4 rounded-4 light-scroller"
+                                                        style="color:var(--white)!important;overflow-x: auto;">
                                                         <!-- Goal
                                                         Own Goal
                                                         
@@ -7333,176 +7398,409 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         Extra-Time -->
 
                                                         <!-- goals -->
-                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Goal</button>
-                                                            </li>
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Own Goal</button>
-                                                            </li>
-                                                        </ul>
-                                                        <div id="match-event-list-gls">
-                                                            No goals scored.
+                                                        <div class="top-down-grad-dark p-2 rounded-4">
+                                                            <ul
+                                                                class="list-group list-group-horizontal-lg rounded-4 bg-transparent mb-4">
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-success shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Goal</button>
+                                                                </li>
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-danger shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Own Goal</button>
+                                                                </li>
+                                                            </ul>
+                                                            <div id="match-event-list-gls">
+                                                                <p id="event-summary-gls">No goals scored.</p>
+
+                                                                <table class="table table-stripedz table-hoverz"
+                                                                    style="color:var(--white)!important;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col"
+                                                                                class="text-start fw-bold fs-4">Team A
+                                                                            </th>
+                                                                            <th scope="col"
+                                                                                class="text-end fw-bold fs-4">Team B
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="text-start">Mark 43'</td>
+                                                                            <td class="text-end">Otto 44'</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Jacob</td>
+                                                                            <td class="text-end">Thornton</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Larry the Bird</td>
+                                                                            <td class="text-end">@twitter</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
 
                                                         <!-- foul play -->
-                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Foul</button>
-                                                            </li>
-                                                        </ul>
-                                                        <div id="match-event-list-flp">
-                                                            No fould committed.
+                                                        <div class="top-down-grad-dark p-2 rounded-4">
+                                                            <ul
+                                                                class="list-group list-group-horizontal-lg rounded-4 bg-transparent mb-4">
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-tahiti shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Foul</button>
+                                                                </li>
+                                                            </ul>
+                                                            <div id="match-event-list-flp">
+                                                                <p id="event-summary-flp">No fouls committed.</p>
+
+                                                                <table class="table table-stripedz table-hoverz"
+                                                                    style="color:var(--white)!important;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col"
+                                                                                class="text-start fw-bold fs-4">Team A
+                                                                            </th>
+                                                                            <th scope="col"
+                                                                                class="text-end fw-bold fs-4">Team B
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="text-start">Mark 43'</td>
+                                                                            <td class="text-end">Otto 44'</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Jacob</td>
+                                                                            <td class="text-end">Thornton</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Larry the Bird</td>
+                                                                            <td class="text-end">@twitter</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
 
                                                         <!-- ball serve / kicks -->
-                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Goal Kick</button>
-                                                            </li>
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Corner Kick</button>
-                                                            </li>
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Free Kick</button>
-                                                            </li>
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Penalty Kick</button>
-                                                            </li>
-                                                        </ul>
-                                                        <div id="match-event-list-bsk">
-                                                            No balls served.
+                                                        <div class="top-down-grad-dark p-2 rounded-4">
+                                                            <ul
+                                                                class="list-group list-group-horizontal-xlg rounded-4 bg-transparent mb-4">
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Goal Kick</button>
+                                                                </li>
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Corner Kick</button>
+                                                                </li>
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Free Kick</button>
+                                                                </li>
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Penalty Kick</button>
+                                                                </li>
+                                                            </ul>
+                                                            <div id="match-event-list-bsk">
+                                                                <p id="event-summary-bsk">No ball served.</p>
+
+                                                                <table class="table table-stripedz table-hoverz"
+                                                                    style="color:var(--white)!important;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col"
+                                                                                class="text-start fw-bold fs-4">Team A
+                                                                            </th>
+                                                                            <th scope="col"
+                                                                                class="text-end fw-bold fs-4">Team B
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="text-start">Mark 43'</td>
+                                                                            <td class="text-end">Otto 44'</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Jacob</td>
+                                                                            <td class="text-end">Thornton</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Larry the Bird</td>
+                                                                            <td class="text-end">@twitter</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
 
                                                         <!-- match momentum pause -->
-                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Throw In</button>
-                                                            </li>
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Offside</button>
-                                                            </li>
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Hand-ball</button>
-                                                            </li>
-                                                        </ul>
-                                                        <div id="match-event-list-mmp">
-                                                            0 Throw-ins <br>
-                                                            0 Offsides <br>
-                                                            0 Hand balls
+                                                        <div class="top-down-grad-dark p-2 rounded-4">
+                                                            <ul
+                                                                class="list-group list-group-horizontal-lg rounded-4 bg-transparent mb-4">
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Throw In</button>
+                                                                </li>
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Offside</button>
+                                                                </li>
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Hand-ball</button>
+                                                                </li>
+                                                            </ul>
+                                                            <div id="match-event-list-mmp">
+                                                                <p id="event-summary-mmp">
+                                                                    0 Throw-ins <br>
+                                                                    0 Offsides <br>
+                                                                    0 Hand balls
+                                                                </p>
+
+                                                                <table class="table table-stripedz table-hoverz"
+                                                                    style="color:var(--white)!important;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col"
+                                                                                class="text-start fw-bold fs-4">Team A
+                                                                            </th>
+                                                                            <th scope="col"
+                                                                                class="text-end fw-bold fs-4">Team B
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="text-start">Mark 43'</td>
+                                                                            <td class="text-end">Otto 44'</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Jacob</td>
+                                                                            <td class="text-end">Thornton</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Larry the Bird</td>
+                                                                            <td class="text-end">@twitter</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
 
                                                         <!-- player injury and changes-->
-                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Injury</button>
-                                                            </li>
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Substitution</button>
-                                                            </li>
-                                                        </ul>
-                                                        <div id="match-event-list-pic">
-                                                            O Injuries <br>
-                                                            0 Substitutions
+                                                        <div class="top-down-grad-dark p-2 rounded-4">
+                                                            <ul
+                                                                class="list-group list-group-horizontal-lg rounded-4 bg-transparent mb-4">
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Injury</button>
+                                                                </li>
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Substitution</button>
+                                                                </li>
+                                                            </ul>
+                                                            <div id="match-event-list-pic">
+                                                                <p id="event-summary-pic">
+                                                                    0 Injuries <br>
+                                                                    0 Substitutions
+                                                                </p>
+
+                                                                <table class="table table-stripedz table-hoverz"
+                                                                    style="color:var(--white)!important;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col"
+                                                                                class="text-start fw-bold fs-4">Team A
+                                                                            </th>
+                                                                            <th scope="col"
+                                                                                class="text-end fw-bold fs-4">Team B
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="text-start">Mark 43'</td>
+                                                                            <td class="text-end">Otto 44'</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Jacob</td>
+                                                                            <td class="text-end">Thornton</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Larry the Bird</td>
+                                                                            <td class="text-end">@twitter</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
 
                                                         <!-- player offence warnings -->
-                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Yellow Card</button>
-                                                            </li>
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Red Card</button>
-                                                            </li>
-                                                        </ul>
-                                                        <div id="match-event-list-pow">
-                                                            0 Yellow Cards <br>
-                                                            0 Red Cards
+                                                        <div class="top-down-grad-dark p-2 rounded-4">
+                                                            <ul
+                                                                class="list-group list-group-horizontal-lg rounded-4 bg-transparent mb-4">
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Yellow Card</button>
+                                                                </li>
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Red Card</button>
+                                                                </li>
+                                                            </ul>
+                                                            <div id="match-event-list-pow">
+                                                                <p id="event-summary-pow">
+                                                                    0 Yellow Cards <br>
+                                                                    0 Red Cards
+                                                                </p>
+
+                                                                <table class="table table-stripedz table-hoverz"
+                                                                    style="color:var(--white)!important;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col"
+                                                                                class="text-start fw-bold fs-4">Team A
+                                                                            </th>
+                                                                            <th scope="col"
+                                                                                class="text-end fw-bold fs-4">Team B
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="text-start">Mark 43'</td>
+                                                                            <td class="text-end">Otto 44'</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Jacob</td>
+                                                                            <td class="text-end">Thornton</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Larry the Bird</td>
+                                                                            <td class="text-end">@twitter</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
 
                                                         <!-- match progression banchmarks -->
-                                                        <ul class="list-group list-group-horizontal-sm rounded-4" style="background-color:var(--mineshaft);">
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Half-Time</button>
-                                                            </li>
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Full-Time</button>
-                                                            </li>
-                                                            <li class="list-group-item d-grid flex-fill bg-transparent">
-                                                                <button
-                                                                    class="onefit-buttons-style-light shadow p-4 poppins-font"
-                                                                    onclick="matchAnalysisEvent('event_here')"
-                                                                    type="button">Extra-Time</button>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="mb-4" id="match-event-list-pmb">
-                                                            Match has not started.
-                                                        </div>
+                                                        <div class="top-down-grad-dark p-2 rounded-4">
+                                                            <ul
+                                                                class="list-group list-group-horizontal-lg rounded-4 bg-transparent mb-4">
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Half-Time</button>
+                                                                </li>
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Full-Time</button>
+                                                                </li>
+                                                                <li
+                                                                    class="list-group-item d-grid flex-fill bg-transparent">
+                                                                    <button
+                                                                        class="onefit-buttons-style-light shadow p-4 poppins-font"
+                                                                        onclick="matchAnalysisEvent('event_here')"
+                                                                        type="button">Extra-Time</button>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="mb-4" id="match-event-list-pmb">
+                                                                <p id="event-summary-gls">Match has not started.</p>
 
+                                                                <table class="table table-stripedz table-hoverz"
+                                                                    style="color:var(--white)!important;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col"
+                                                                                class="text-start fw-bold fs-4">Match
+                                                                                Progression
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="text-start">Start: 14:23</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Half-time: 46'</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">full-time: 91'</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">Extra-time: +3' ->
+                                                                                94'</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-start">End: *16:03</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    
-                                                    <div id="match-event-timeline">
-                                                        <h5 class="align-middle fs-5 down-top-grad-tahiti rounded-4 p-4">
-                                                            <span class="material-icons material-icons-rounded align-middle" style="font-size:40px!important;">
-                                                                view_timeline
-                                                            </span>
-                                                            Match Timeline.
-                                                        </h5>
-                                                        <img src="../media/assets/41597_2019_247_Fig1_HTML.webp"
-                                                            alt="event timeline reference - https://www.nature.com/articles/s41597-019-0247-7/figures/1"
-                                                            style="filter: invert(0);" class="img-fluid">
-                                                    </div>
+
                                                 </div>
-                                                <div class="col-md pb-5 down-top-grad-dark rounded-4">
-                                                    <h5 class="align-middle fs-5 down-top-grad-tahiti rounded-4 p-4">
+                                                <!-- ./ mini match timeline widget and match events button controls -->
+                                                <!-- match stats and match momentum -->
+                                                <div class="col-md pb-5 down-top-grad-dark rounded-0 light-scroller"
+                                                    style="height: 86vh;overflow-y: auto;">
+                                                    <h5 class="align-middle fs-5 down-top-grad-dark rounded-4 p-4">
                                                         <span class="material-icons material-icons-rounded align-middle"
                                                             style="font-size:40px!important;">
                                                             auto_graph
@@ -7521,14 +7819,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     }
                                                     </style>
 
-                                                    <div id="analysis-match-stats" class="mb-5">
-                                                        <h5 class="my-4 text-center">Possession</h5>
+                                                    <div id="analysis-match-stats" class="mb-5 p-4 rounded-4" style="
+                                                            color: var(--tahitigold);
+                                                            background: var(--mineshaft);
+                                                        ">
+                                                        <h5 class="mb-4 text-start poppins-font"
+                                                            style="color: var(--white);">Possession</h5>
                                                         <div class="d-flex justify-content-between">
                                                             <p class="text-start">Team A</p>
                                                             <p class="text-end">Team B</p>
                                                         </div>
-                                                        <div class="progress progress-stacked rounded-pill"
-                                                            style="height: 50px;">
+                                                        <div class="progress progress-stacked rounded-pill shadow"
+                                                            style="height: 50px;background: var(--tahitigold);border-width: 0px !important;">
                                                             <div class="progress rounded-0 border-1 border-end"
                                                                 role="progressbar" aria-label="Team one"
                                                                 aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"
@@ -7551,12 +7853,13 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                                         <hr>
 
-                                                        <h5 class="my-4 text-center">Shots</h5>
+                                                        <h5 class="my-4 text-start poppins-font"
+                                                            style="color: var(--white);">Shots</h5>
                                                         <div class="d-flex justify-content-between">
                                                             <p class="text-start">Team A</p>
                                                             <p class="text-end">Team B</p>
                                                         </div>
-                                                        <div class="progress progress-stacked rounded-pill"
+                                                        <div class="progress progress-stacked rounded-pill shadow"
                                                             style="height: 50px;">
                                                             <div class="progress rounded-0 border-1 border-end"
                                                                 role="progressbar" aria-label="Team one"
@@ -7580,12 +7883,13 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                                         <hr>
 
-                                                        <h5 class="my-4 text-center">Shots on Target</h5>
+                                                        <h5 class="my-4 text-start poppins-font"
+                                                            style="color: var(--white);">Shots on Target</h5>
                                                         <div class="d-flex justify-content-between">
                                                             <p class="text-start">Team A</p>
                                                             <p class="text-end">Team B</p>
                                                         </div>
-                                                        <div class="progress progress-stacked rounded-pill"
+                                                        <div class="progress progress-stacked rounded-pill shadow"
                                                             style="height: 50px;">
                                                             <div class="progress rounded-0 border-1 border-end"
                                                                 role="progressbar" aria-label="Team one"
@@ -7609,12 +7913,13 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                                         <hr>
 
-                                                        <h5 class="my-4 text-center">Corners</h5>
+                                                        <h5 class="my-4 text-start poppins-font"
+                                                            style="color: var(--white);">Corners</h5>
                                                         <div class="d-flex justify-content-between">
                                                             <p class="text-start">Team A</p>
                                                             <p class="text-end">Team B</p>
                                                         </div>
-                                                        <div class="progress progress-stacked rounded-pill"
+                                                        <div class="progress progress-stacked rounded-pill shadow"
                                                             style="height: 50px;">
                                                             <div class="progress rounded-0 border-1 border-end"
                                                                 role="progressbar" aria-label="Team one"
@@ -7638,12 +7943,13 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                                         <hr>
 
-                                                        <h5 class="my-4 text-center">Fouls</h5>
+                                                        <h5 class="my-4 text-start poppins-font"
+                                                            style="color: var(--white);">Fouls</h5>
                                                         <div class="d-flex justify-content-between">
                                                             <p class="text-start">Team A</p>
                                                             <p class="text-end">Team B</p>
                                                         </div>
-                                                        <div class="progress progress-stacked rounded-pill"
+                                                        <div class="progress progress-stacked rounded-pill shadow"
                                                             style="height: 50px;">
                                                             <div class="progress rounded-0 border-1 border-end"
                                                                 role="progressbar" aria-label="Team one"
@@ -7685,10 +7991,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         </small>
                                                     </div>
                                                     <!-- match momentum chart -->
-                                                    <h5 class="align-middle fs-5 down-top-grad-tahiti rounded-4 p-4">
-                                                        <span class="material-icons material-icons-rounded align-middle" style="font-size:40px!important;">
+                                                    <h5 class="align-middle fs-5 down-top-grad-dark rounded-4 p-4">
+                                                        <span class="material-icons material-icons-rounded align-middle"
+                                                            style="font-size:40px!important;">
                                                             animation
-                                                        </span>    
+                                                        </span>
                                                         Match Momentum.
                                                     </h5>
                                                     <img src="../media/assets/2210378-the-analyst-momentum-plot-1-1024x645.jpeg"
@@ -7696,9 +8003,418 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         alt="match momentaum reference chart - https://theanalyst.com/eu/2021/11/what-is-match-momentum/"
                                                         style="filter: invert(0);">
                                                 </div>
+                                                <!-- ./ match stats and match momentum -->
                                             </div>
                                         </div>
-                                        <div class="offcanvas-footer"></div>
+
+                                        <div id="match-timeline-editor-widget-panel"
+                                            class="offcanvas-footer top-down-grad-dark p-4 collapse show">
+
+                                            <div class="light-scroller h-100" style="max-height:80vh;overflow-y:auto">
+                                                <h1>Match timeline editor.</h1>
+                                                <div class="row align-items-start">
+                                                    <!-- video player -->
+                                                    <div class="col-md">
+                                                        <div class="container p-0">
+                                                            <video id="analysis-timeline-video" class="w-100"
+                                                                controls="" crossorigin="" playsinline=""
+                                                                poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"
+                                                                data-plyr-config="{ &quot;ratio&quot;: &quot;16:9&quot; }"
+                                                                style="filter: invert(0);">
+                                                                <source
+                                                                    src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
+                                                                    type="video/mp4" size="576">
+                                                                <source
+                                                                    src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4"
+                                                                    type="video/mp4" size="720">
+                                                                <source
+                                                                    src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4"
+                                                                    type="video/mp4" size="1080">
+
+                                                                <!-- Caption files -->
+                                                                <track kind="captions" label="English" srclang="en"
+                                                                    src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
+                                                                    default="">
+                                                                <track kind="captions" label="Français" srclang="fr"
+                                                                    src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt">
+                                                                <!-- Fallback for browsers that don't support the <video> element -->
+                                                                <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
+                                                                    download="">Download</a>
+                                                            </video>
+                                                        </div>
+                                                    </div>
+                                                    <!-- timeline table -->
+                                                    <div class="col-md">
+                                                        <div class="table-responsive responsive-div-containerz">
+                                                            <table
+                                                                class="table table-light match-timeline-editor-tablez">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="headcolz" scope="col" colspan="2">
+                                                                            Players
+                                                                        </th>
+                                                                        <th class="longz" scope="col" colspan="100">
+                                                                            Timeline
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th class="headcolz" scope="col" colspan="2">
+                                                                            Time
+                                                                        </th>
+                                                                        <!-- <th class="longz" scope="col" colspan="100">
+                                                                            00:00
+                                                                            -
+                                                                            12:00</th> -->
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                        <th>00:00:00</th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th class="headcolz" scope="col" colspan="2">
+                                                                            Duration
+                                                                        </th>
+                                                                        <!-- <th class="longz" scope="col" colspan="100">
+                                                                            00:00:00
+                                                                            - 01:40:00
+                                                                        </th> -->
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                        <th>00:00</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="headcolz" colspan="2">
+                                                                            <span scope="row">1</span> Mark
+                                                                        </td>
+                                                                        <td class="longz" colspan="100">
+                                                                            <div class="progress progress-stacked w-100"
+                                                                                style="height: 50px;background-color:var(--mineshaft);">
+                                                                                <div class="progress rounded-0"
+                                                                                    role="progressbar"
+                                                                                    aria-label="Segment one"
+                                                                                    aria-valuenow="15" aria-valuemin="0"
+                                                                                    aria-valuemax="100"
+                                                                                    style="height: 50px;width: 15%">
+                                                                                    <div
+                                                                                        class="progress-bar text-dark bg-white w-100">
+                                                                                        Progress
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="progress rounded-0"
+                                                                                    role="progressbar"
+                                                                                    aria-label="Segment two"
+                                                                                    aria-valuenow="30" aria-valuemin="0"
+                                                                                    aria-valuemax="100"
+                                                                                    style="height: 50px;width: 50px;">
+                                                                                    <div
+                                                                                        class="progress-bar bg-success w-100">
+                                                                                        Event: A
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="progress rounded-0"
+                                                                                    role="progressbar"
+                                                                                    aria-label="Segment three"
+                                                                                    aria-valuenow="20" aria-valuemin="0"
+                                                                                    aria-valuemax="100"
+                                                                                    style="width: 20%;height: 50px;">
+                                                                                    <div
+                                                                                        class="progress-bar text-dark bg-white w-100">
+                                                                                        Progress
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="headcolz" colspan="2">
+                                                                            <span scope="row">2</span> Jacob
+                                                                        </td>
+                                                                        <td class="longz" colspan="100">
+                                                                            <div class="progress progress-stacked w-100"
+                                                                                style="height: 50px;background-color:var(--mineshaft);">
+                                                                                <div class="progress rounded-0"
+                                                                                    role="progressbar"
+                                                                                    aria-label="Segment one"
+                                                                                    aria-valuenow="15" aria-valuemin="0"
+                                                                                    aria-valuemax="100"
+                                                                                    style="height: 50px;width: 15%">
+                                                                                    <div
+                                                                                        class="progress-bar text-dark bg-white w-100">
+                                                                                        Progress
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="progress rounded-0"
+                                                                                    role="progressbar"
+                                                                                    aria-label="Segment two"
+                                                                                    aria-valuenow="30" aria-valuemin="0"
+                                                                                    aria-valuemax="100"
+                                                                                    style="height: 50px;width: 50px;">
+                                                                                    <div
+                                                                                        class="progress-bar bg-success w-100">
+                                                                                        Event: A
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="progress rounded-0"
+                                                                                    role="progressbar"
+                                                                                    aria-label="Segment three"
+                                                                                    aria-valuenow="20" aria-valuemin="0"
+                                                                                    aria-valuemax="100"
+                                                                                    style="width: 20%;height: 50px;">
+                                                                                    <div
+                                                                                        class="progress-bar text-dark bg-white w-100">
+                                                                                        Progress
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="headcolz" colspan="2">
+                                                                            <span scope="row">3</span> Larry the Bird
+                                                                        </td>
+                                                                        <td class="longz" colspan="100">
+                                                                            <div class="progress progress-stacked w-100"
+                                                                                style="height: 50px;background-color:var(--mineshaft);">
+                                                                                <div class="progress rounded-0"
+                                                                                    role="progressbar"
+                                                                                    aria-label="Segment one"
+                                                                                    aria-valuenow="15" aria-valuemin="0"
+                                                                                    aria-valuemax="100"
+                                                                                    style="height: 50px;width: 15%">
+                                                                                    <div
+                                                                                        class="progress-bar text-dark bg-white w-100">
+                                                                                        Progress
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="progress rounded-0"
+                                                                                    role="progressbar"
+                                                                                    aria-label="Segment two"
+                                                                                    aria-valuenow="30" aria-valuemin="0"
+                                                                                    aria-valuemax="100"
+                                                                                    style="height: 50px;width: 50px;">
+                                                                                    <div
+                                                                                        class="progress-bar bg-success w-100">
+                                                                                        Event: A
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="progress rounded-0"
+                                                                                    role="progressbar"
+                                                                                    aria-label="Segment three"
+                                                                                    aria-valuenow="20" aria-valuemin="0"
+                                                                                    aria-valuemax="100"
+                                                                                    style="width: 20%;height: 50px;">
+                                                                                    <div
+                                                                                        class="progress-bar text-dark bg-white w-100">
+                                                                                        Progress
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
                                     </div>
                                     <!-- ./ Teams Match Anlysis Offcanvas -->
 
@@ -7749,7 +8465,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             style="position:absolute;bottom:0;left:10px;z-index:1021;margin-bottom:-40px; border-radius:25px;cursor:pointer;">
                                             <div id="selected-calender-date-display-lbl"
                                                 class="onefit-buttons-style-dark p-4 shadow w3-animate-right"
-                                                style="font-size:14px!important;">
+                                                style="font-size:12px!important;">
                                                 Date today / selected
                                             </div>
                                         </div>
@@ -7765,7 +8481,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 aria-label="training: team selection filters">
                                                 <span class="material-icons material-icons-round align-middle"
                                                     style="font-size: 20px !important;color:var(--tahitigold)!important;">change_circle</span>
-                                                <span class="align-middle" style="font-size:14px;">Switch Team.</span>
+                                                <span class="align-middle" style="font-size:12px!important;">Switch
+                                                    Team.</span>
                                             </button>
                                         </div>
                                         <!-- ./ collapse team selection filters btn -->
@@ -8898,7 +9615,395 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     those who played 45+ minutes in previous match. </span>
                                             </h5>
 
-                                            <div class="row mb-4">
+                                            <!-- <div class="my-4 d-flex justify-content-between align-items-center">
+                                                <button class="onefit-buttons-style-light p-4 my-2 text-center" type="button" onclick="$.populateWeeklyActivityBarChart()">
+                                                    <span class="material-icons material-icons-round">
+                                                        refresh
+                                                    </span>
+                                                    <p class="d-none d-lg-block comfortaa-font" style="font-size: 10px;">Refresh.</p>
+                                                </button>
+
+                                                <button class="onefit-buttons-style-light p-4 my-2 text-center" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="add-weekly-activity-btn remove-weekly-activity-btn">
+                                                    <span class="material-icons material-icons-round">
+                                                        edit_calendar
+                                                    </span>
+                                                    <p class="d-none d-lg-block comfortaa-font" style="font-size: 10px;">Edit Weekly Schedule</p>
+                                                </button>
+
+                                                <button class="onefit-buttons-style-light p-4 shadow" type="button">
+                                                    <span class="material-icons material-icons-round">
+                                                        support_agent </span>
+                                                    <p class="d-none d-lg-block comfortaa-font" style="font-size: 10px;">Trainer.</p>
+                                                </button>
+                                            </div> -->
+
+                                            <hr class="text-white" style="height: 5px;">
+                                            <div class="container-fluid">
+                                                <div class="row align-items-end text-dark "
+                                                    id="training-schedule-chart-grid">
+                                                    <div class="col" id="day-1-col">
+                                                        <!-- Edit training day bar - Day 1 -->
+                                                        <div class="collapse multi-collapse w3-animate-bottom"
+                                                            id="remove-weekly-activity-btn-bar1">
+                                                            <button
+                                                                class="onefit-buttons-style-dark rounded-circle p-4 my-2"
+                                                                onclick="toggleEditDayBar('monday','group_ref_code_here')">
+                                                                <span class="material-icons material-icons-round"
+                                                                    style="font-size: 20px !important;">
+                                                                    edit
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <!-- ./ Edit training day bar - Day 1 -->
+                                                        <p id="bar-title-day1"
+                                                            class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            ?
+                                                        </p>
+
+                                                        <p id="bar-rpe-day1"
+                                                            class="comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            RPE ?
+                                                        </p>
+                                                        <div id="teams-weekly-activity-barchart-bar-day1"
+                                                            class="chart-col-bar p-2 shadow progress-bar progress-bar-stripedz bg-warningz">
+                                                            <hr class="text-white my-2 p-0" style="height: 5px;">
+                                                        </div>
+
+                                                        <hr class="text-dark">
+
+                                                        <div class="collapse multi-collapse w3-animate-top"
+                                                            id="add-weekly-activity-btn">
+                                                            <button
+                                                                class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
+                                                                onclick="$.loadTeamsActivityCaptureForm('monday','group_ref_code_here')"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle">
+                                                                    add_circle
+                                                                </span>
+                                                            </button>
+                                                        </div>
+
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Monday</p>
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
+                                                    </div>
+
+                                                    <div class="col" id="day-2-col">
+                                                        <!-- Edit training day bar - Day 2 -->
+                                                        <div class="collapse multi-collapse w3-animate-bottom"
+                                                            id="remove-weekly-activity-btn-bar2">
+                                                            <button
+                                                                class="onefit-buttons-style-dark rounded-circle p-4 my-2"
+                                                                onclick="toggleEditDayBar('monday','group_ref_code_here')">
+                                                                <span class="material-icons material-icons-round"
+                                                                    style="font-size: 20px !important;">
+                                                                    edit
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <!-- ./ Edit training day bar - Day 2 -->
+                                                        <p id="bar-title-day2"
+                                                            class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            ?
+                                                        </p>
+
+                                                        <p id="bar-rpe-day2"
+                                                            class="comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            RPE ?
+                                                        </p>
+
+                                                        <div id="teams-weekly-activity-barchart-bar-day2"
+                                                            class="chart-col-bar p-2 shadow">
+                                                            <hr class="text-white my-2 p-0" style="height: 5px;">
+                                                        </div>
+
+                                                        <hr class="text-dark">
+
+                                                        <div class="collapse multi-collapse w3-animate-top"
+                                                            id="add-weekly-activity-btn">
+                                                            <button
+                                                                class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
+                                                                onclick="$.loadTeamsActivityCaptureForm('tuesday','group_ref_code_here')"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle">
+                                                                    add_circle
+                                                                </span>
+                                                            </button>
+                                                        </div>
+
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Tuesday</p>
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
+                                                    </div>
+
+                                                    <div class="col" id="day-3-col">
+                                                        <!-- Edit training day bar - Day 3 -->
+                                                        <div class="collapse multi-collapse w3-animate-bottom"
+                                                            id="remove-weekly-activity-btn-bar3">
+                                                            <button
+                                                                class="onefit-buttons-style-dark rounded-circle p-4 my-2"
+                                                                onclick="toggleEditDayBar('monday','group_ref_code_here')">
+                                                                <span class="material-icons material-icons-round"
+                                                                    style="font-size: 20px !important;">
+                                                                    edit
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <!-- ./ Edit training day bar - Day 3 -->
+                                                        <p id="bar-title-day3"
+                                                            class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            ?
+                                                        </p>
+
+                                                        <p id="bar-rpe-day3"
+                                                            class="comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            RPE ?
+                                                        </p>
+
+                                                        <div id="teams-weekly-activity-barchart-bar-day3"
+                                                            class="chart-col-bar p-2 shadow">
+                                                            <hr class="text-white my-2 p-0" style="height: 5px;">
+                                                        </div>
+
+                                                        <hr class="text-dark">
+
+                                                        <div class="collapse multi-collapse w3-animate-top"
+                                                            id="add-weekly-activity-btn">
+                                                            <button
+                                                                class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
+                                                                onclick="loadTeamsActivityCaptureForm('wednesday')"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle">
+                                                                    add_circle
+                                                                </span>
+                                                            </button>
+                                                        </div>
+
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Wednesday</p>
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
+                                                    </div>
+
+                                                    <div class="col" id="day-4-col">
+                                                        <!-- Edit training day bar - Day 4 -->
+                                                        <div class="collapse multi-collapse w3-animate-bottom"
+                                                            id="remove-weekly-activity-btn-bar4">
+                                                            <button
+                                                                class="onefit-buttons-style-dark rounded-circle p-4 my-2"
+                                                                onclick="toggleEditDayBar('monday','group_ref_code_here')">
+                                                                <span class="material-icons material-icons-round"
+                                                                    style="font-size: 20px !important;">
+                                                                    edit
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <!-- ./ Edit training day bar - Day 4 -->
+                                                        <p id="bar-title-day4"
+                                                            class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            ?
+                                                        </p>
+
+                                                        <p id="bar-rpe-day4"
+                                                            class="comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            RPE ?
+                                                        </p>
+
+                                                        <div id="teams-weekly-activity-barchart-bar-day4"
+                                                            class="chart-col-bar p-2 shadow">
+                                                            <hr class="text-white my-2 p-0" style="height: 5px;">
+                                                        </div>
+
+                                                        <hr class="text-dark">
+
+                                                        <div class="collapse multi-collapse w3-animate-top"
+                                                            id="add-weekly-activity-btn">
+                                                            <button
+                                                                class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
+                                                                onclick="$.loadTeamsActivityCaptureForm('thursday','group_ref_code_here')"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle">
+                                                                    add_circle
+                                                                </span>
+                                                            </button>
+                                                        </div>
+
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Thursday</p>
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
+                                                    </div>
+
+                                                    <div class="col" id="day-5-col">
+                                                        <!-- Edit training day bar - Day 5 -->
+                                                        <div class="collapse multi-collapse w3-animate-bottom"
+                                                            id="remove-weekly-activity-btn-bar5">
+                                                            <button
+                                                                class="onefit-buttons-style-dark rounded-circle p-4 my-2"
+                                                                onclick="toggleEditDayBar('monday','group_ref_code_here')">
+                                                                <span class="material-icons material-icons-round"
+                                                                    style="font-size: 20px !important;">
+                                                                    edit
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <!-- ./ Edit training day bar - Day 5 -->
+                                                        <p id="bar-title-day5"
+                                                            class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            ?
+                                                        </p>
+
+                                                        <p id="bar-rpe-day5"
+                                                            class="comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            RPE ?
+                                                        </p>
+
+                                                        <div id="teams-weekly-activity-barchart-bar-day5"
+                                                            class="chart-col-bar p-2 shadow">
+                                                            <hr class="text-white my-2 p-0" style="height: 5px;">
+                                                        </div>
+
+                                                        <hr class="text-dark">
+
+                                                        <div class="collapse multi-collapse w3-animate-top"
+                                                            id="add-weekly-activity-btn">
+                                                            <button
+                                                                class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
+                                                                onclick="$.loadTeamsActivityCaptureForm('friday','group_ref_code_here')"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle">
+                                                                    add_circle
+                                                                </span>
+                                                            </button>
+                                                        </div>
+
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Friday</p>
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
+                                                    </div>
+
+                                                    <div class="col" id="day-6-col">
+                                                        <!-- Edit training day bar - Day 6 -->
+                                                        <div class="collapse multi-collapse w3-animate-bottom"
+                                                            id="remove-weekly-activity-btn-bar6">
+                                                            <button
+                                                                class="onefit-buttons-style-dark rounded-circle p-4 my-2"
+                                                                onclick="toggleEditDayBar('monday','group_ref_code_here')">
+                                                                <span class="material-icons material-icons-round"
+                                                                    style="font-size: 20px !important;">
+                                                                    edit
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <!-- ./ Edit training day bar - Day 6 -->
+                                                        <p id="bar-title-day6"
+                                                            class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            ?
+                                                        </p>
+
+                                                        <p id="bar-rpe-day6"
+                                                            class="comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            RPE ?
+                                                        </p>
+
+                                                        <div id="teams-weekly-activity-barchart-bar-day6"
+                                                            class="chart-col-bar p-2 shadow">
+                                                            <hr class="text-white my-2 p-0" style="height: 5px;">
+                                                        </div>
+
+                                                        <hr class="text-dark">
+
+                                                        <div class="collapse multi-collapse w3-animate-top"
+                                                            id="add-weekly-activity-btn">
+                                                            <button
+                                                                class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
+                                                                onclick="$.loadTeamsActivityCaptureForm('saturday','group_ref_code_here')"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle">
+                                                                    add_circle
+                                                                </span>
+                                                            </button>
+                                                        </div>
+
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Saturday</p>
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
+                                                    </div>
+
+                                                    <div class="col" id="day-7-col">
+                                                        <!-- Edit training day bar - Day 7 -->
+                                                        <div class="collapse multi-collapse w3-animate-bottom"
+                                                            id="remove-weekly-activity-btn-bar7">
+                                                            <button
+                                                                class="onefit-buttons-style-dark rounded-circle p-4 my-2"
+                                                                onclick="toggleEditDayBar('monday','group_ref_code_here')">
+                                                                <span class="material-icons material-icons-round"
+                                                                    style="font-size: 20px !important;">
+                                                                    edit
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <!-- ./ Edit training day bar - Day 7 -->
+                                                        <p id="bar-title-day7"
+                                                            class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            ?
+                                                        </p>
+
+                                                        <p id="bar-rpe-day7"
+                                                            class="comfortaa-font top-down-grad-white p-4"
+                                                            style="border-radius: 25px 25px 0 0;">
+                                                            RPE ?
+                                                        </p>
+
+                                                        <div id="teams-weekly-activity-barchart-bar-day7"
+                                                            class="chart-col-bar p-2 shadow">
+                                                            <hr class="text-white my-2 p-0" style="height: 5px;">
+                                                        </div>
+
+                                                        <hr class="text-dark">
+
+                                                        <div class="collapse multi-collapse w3-animate-top"
+                                                            id="add-weekly-activity-btn">
+                                                            <button
+                                                                class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
+                                                                onclick="$.loadTeamsActivityCaptureForm('sunday','group_ref_code_here')"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                                                <span
+                                                                    class="material-icons material-icons-round align-middle">
+                                                                    add_circle
+                                                                </span>
+                                                            </button>
+                                                        </div>
+
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Sunday</p>
+                                                        <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- column graph refresh, edit and trainer support buttons -->
+                                        <div class="container-fluid">
+                                            <div class="row mb-4 down-top-grad-white mt-4 pb-4"
+                                                style="border-radius: 0 0 25px 25px;">
                                                 <div class="col-md d-grid">
                                                     <button
                                                         class="onefit-buttons-style-light p-4 my-2 text-center shadow"
@@ -8934,376 +10039,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     </button>
                                                 </div>
                                             </div>
-
-                                            <!-- <div class="my-4 d-flex justify-content-between align-items-center">
-                                                <button class="onefit-buttons-style-light p-4 my-2 text-center" type="button" onclick="$.populateWeeklyActivityBarChart()">
-                                                    <span class="material-icons material-icons-round">
-                                                        refresh
-                                                    </span>
-                                                    <p class="d-none d-lg-block comfortaa-font" style="font-size: 10px;">Refresh.</p>
-                                                </button>
-
-                                                <button class="onefit-buttons-style-light p-4 my-2 text-center" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="add-weekly-activity-btn remove-weekly-activity-btn">
-                                                    <span class="material-icons material-icons-round">
-                                                        edit_calendar
-                                                    </span>
-                                                    <p class="d-none d-lg-block comfortaa-font" style="font-size: 10px;">Edit Weekly Schedule</p>
-                                                </button>
-
-                                                <button class="onefit-buttons-style-light p-4 shadow" type="button">
-                                                    <span class="material-icons material-icons-round">
-                                                        support_agent </span>
-                                                    <p class="d-none d-lg-block comfortaa-font" style="font-size: 10px;">Trainer.</p>
-                                                </button>
-                                            </div> -->
-
-                                            <hr class="text-white" style="height: 5px;">
-
-                                            <div class="row align-items-end text-dark"
-                                                id="training-schedule-chart-grid">
-                                                <div class="col" id="day-1-col">
-                                                    <!-- Edit training day bar - Day 1 -->
-                                                    <div class="collapse multi-collapse w3-animate-bottom"
-                                                        id="remove-weekly-activity-btn-bar1">
-                                                        <button
-                                                            class="onefit-buttons-style-dark rounded-circle p-4 my-2"
-                                                            onclick="toggleEditDayBar('monday','group_ref_code_here')">
-                                                            <span class="material-icons material-icons-round"
-                                                                style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day bar - Day 1 -->
-                                                    <p id="bar-title-day1"
-                                                        class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        ?
-                                                    </p>
-
-                                                    <p id="bar-rpe-day1" class="comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        RPE ?
-                                                    </p>
-                                                    <div id="teams-weekly-activity-barchart-bar-day1"
-                                                        class="chart-col-bar p-2 shadow progress-bar progress-bar-stripedz bg-warningz">
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse multi-collapse w3-animate-top"
-                                                        id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
-                                                            onclick="$.loadTeamsActivityCaptureForm('monday','group_ref_code_here')"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Monday</p>
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
-                                                </div>
-
-                                                <div class="col" id="day-2-col">
-                                                    <!-- Edit training day bar - Day 2 -->
-                                                    <div class="collapse multi-collapse w3-animate-bottom"
-                                                        id="remove-weekly-activity-btn-bar2">
-                                                        <button
-                                                            class="onefit-buttons-style-dark rounded-circle p-4 my-2"
-                                                            onclick="toggleEditDayBar('monday','group_ref_code_here')">
-                                                            <span class="material-icons material-icons-round"
-                                                                style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day bar - Day 2 -->
-                                                    <p id="bar-title-day2"
-                                                        class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        ?
-                                                    </p>
-
-                                                    <p id="bar-rpe-day2" class="comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        RPE ?
-                                                    </p>
-
-                                                    <div id="teams-weekly-activity-barchart-bar-day2"
-                                                        class="chart-col-bar p-2 shadow">
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse multi-collapse w3-animate-top"
-                                                        id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
-                                                            onclick="$.loadTeamsActivityCaptureForm('tuesday','group_ref_code_here')"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Tuesday</p>
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
-                                                </div>
-
-                                                <div class="col" id="day-3-col">
-                                                    <!-- Edit training day bar - Day 3 -->
-                                                    <div class="collapse multi-collapse w3-animate-bottom"
-                                                        id="remove-weekly-activity-btn-bar3">
-                                                        <button
-                                                            class="onefit-buttons-style-dark rounded-circle p-4 my-2"
-                                                            onclick="toggleEditDayBar('monday','group_ref_code_here')">
-                                                            <span class="material-icons material-icons-round"
-                                                                style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day bar - Day 3 -->
-                                                    <p id="bar-title-day3"
-                                                        class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        ?
-                                                    </p>
-
-                                                    <p id="bar-rpe-day3" class="comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        RPE ?
-                                                    </p>
-
-                                                    <div id="teams-weekly-activity-barchart-bar-day3"
-                                                        class="chart-col-bar p-2 shadow">
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse multi-collapse w3-animate-top"
-                                                        id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
-                                                            onclick="loadTeamsActivityCaptureForm('wednesday')"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Wednesday</p>
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
-                                                </div>
-
-                                                <div class="col" id="day-4-col">
-                                                    <!-- Edit training day bar - Day 4 -->
-                                                    <div class="collapse multi-collapse w3-animate-bottom"
-                                                        id="remove-weekly-activity-btn-bar4">
-                                                        <button
-                                                            class="onefit-buttons-style-dark rounded-circle p-4 my-2"
-                                                            onclick="toggleEditDayBar('monday','group_ref_code_here')">
-                                                            <span class="material-icons material-icons-round"
-                                                                style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day bar - Day 4 -->
-                                                    <p id="bar-title-day4"
-                                                        class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        ?
-                                                    </p>
-
-                                                    <p id="bar-rpe-day4" class="comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        RPE ?
-                                                    </p>
-
-                                                    <div id="teams-weekly-activity-barchart-bar-day4"
-                                                        class="chart-col-bar p-2 shadow">
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse multi-collapse w3-animate-top"
-                                                        id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
-                                                            onclick="$.loadTeamsActivityCaptureForm('thursday','group_ref_code_here')"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Thursday</p>
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
-                                                </div>
-
-                                                <div class="col" id="day-5-col">
-                                                    <!-- Edit training day bar - Day 5 -->
-                                                    <div class="collapse multi-collapse w3-animate-bottom"
-                                                        id="remove-weekly-activity-btn-bar5">
-                                                        <button
-                                                            class="onefit-buttons-style-dark rounded-circle p-4 my-2"
-                                                            onclick="toggleEditDayBar('monday','group_ref_code_here')">
-                                                            <span class="material-icons material-icons-round"
-                                                                style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day bar - Day 5 -->
-                                                    <p id="bar-title-day5"
-                                                        class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        ?
-                                                    </p>
-
-                                                    <p id="bar-rpe-day5" class="comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        RPE ?
-                                                    </p>
-
-                                                    <div id="teams-weekly-activity-barchart-bar-day5"
-                                                        class="chart-col-bar p-2 shadow">
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse multi-collapse w3-animate-top"
-                                                        id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
-                                                            onclick="$.loadTeamsActivityCaptureForm('friday','group_ref_code_here')"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Friday</p>
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
-                                                </div>
-
-                                                <div class="col" id="day-6-col">
-                                                    <!-- Edit training day bar - Day 6 -->
-                                                    <div class="collapse multi-collapse w3-animate-bottom"
-                                                        id="remove-weekly-activity-btn-bar6">
-                                                        <button
-                                                            class="onefit-buttons-style-dark rounded-circle p-4 my-2"
-                                                            onclick="toggleEditDayBar('monday','group_ref_code_here')">
-                                                            <span class="material-icons material-icons-round"
-                                                                style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day bar - Day 6 -->
-                                                    <p id="bar-title-day6"
-                                                        class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        ?
-                                                    </p>
-
-                                                    <p id="bar-rpe-day6" class="comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        RPE ?
-                                                    </p>
-
-                                                    <div id="teams-weekly-activity-barchart-bar-day6"
-                                                        class="chart-col-bar p-2 shadow">
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse multi-collapse w3-animate-top"
-                                                        id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
-                                                            onclick="$.loadTeamsActivityCaptureForm('saturday','group_ref_code_here')"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Saturday</p>
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
-                                                </div>
-
-                                                <div class="col" id="day-7-col">
-                                                    <!-- Edit training day bar - Day 7 -->
-                                                    <div class="collapse multi-collapse w3-animate-bottom"
-                                                        id="remove-weekly-activity-btn-bar7">
-                                                        <button
-                                                            class="onefit-buttons-style-dark rounded-circle p-4 my-2"
-                                                            onclick="toggleEditDayBar('monday','group_ref_code_here')">
-                                                            <span class="material-icons material-icons-round"
-                                                                style="font-size: 20px !important;">
-                                                                edit
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- ./ Edit training day bar - Day 7 -->
-                                                    <p id="bar-title-day7"
-                                                        class="fs-3 fw-bold comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        ?
-                                                    </p>
-
-                                                    <p id="bar-rpe-day7" class="comfortaa-font top-down-grad-white p-4"
-                                                        style="border-radius: 25px 25px 0 0;">
-                                                        RPE ?
-                                                    </p>
-
-                                                    <div id="teams-weekly-activity-barchart-bar-day7"
-                                                        class="chart-col-bar p-2 shadow">
-                                                        <hr class="text-white my-2 p-0" style="height: 5px;">
-                                                    </div>
-
-                                                    <hr class="text-dark">
-
-                                                    <div class="collapse multi-collapse w3-animate-top"
-                                                        id="add-weekly-activity-btn">
-                                                        <button class="onefit-buttons-style-tahiti rounded-5 p-2 my-2"
-                                                            onclick="$.loadTeamsActivityCaptureForm('sunday','group_ref_code_here')"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle">
-                                                                add_circle
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Sunday</p>
-                                                    <p class="text-center fs-5 fw-bold comfortaa-font">Date</p>
-                                                </div>
-                                            </div>
                                         </div>
+                                        <!-- ./ column graph refresh, edit and trainer support buttons -->
                                         <!-- ./ Training schedule intensity column graph (to show lists of activities that are planned to be performed for each weekday) -->
                                         <!-- ./ weekly training schedule and summaries -->
 
@@ -10251,7 +10988,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <button id="close-widgets-panel" type="button" class="onefit-buttons-style-danger p-2"
                         data-bs-toggle="collapse" data-bs-target="#widget-rows-container"
-                        aria-controls="widget-rows-container">
+                        aria-controls="widget-rows-container" onclick="$('#toggle-tab-container').click();">
                         <span class="material-icons material-icons-round"> close </span>
                     </button>
                 </div>
@@ -13467,16 +14204,25 @@ if (isset($_SESSION["currentUserAuth"])) {
     let timeleft = 0;
     const downloadTimer = setInterval(function() {
         if (timeleft >= 60) {
-            clearInterval(downloadTimer);
+            // clearInterval(downloadTimer);
+            document.getElementById("load-curtain-duration-indicator-icon").innerHTML = " priority_high ";
             document.getElementById("load-countdown").innerHTML = "+" + timeleft + "s.";
             document.getElementById("loadtime-output-label").innerHTML =
                 "The page load is taking longer than usual. Please wait while we load the page for you.";
             document.getElementById("loadtime-output-label").classList.remove("d-none");
+        } else if (timeleft >= 120) {
+            clearInterval(downloadTimer);
+            document.getElementById("load-curtain-duration-indicator-icon").innerHTML = " error ";
+            document.getElementById("load-countdown").innerHTML = "+" + timeleft + "s.";
+            document.getElementById("loadtime-output-label").innerHTML =
+                `An error may have occured. Please <a onclick="window.location.reload(true);">reload</a> the page.`;
+            // document.getElementById("loadtime-output-label").classList.remove("d-none");
         } else {
             document.getElementById("load-countdown").innerHTML = timeleft + "s.";
         }
         timeleft += 1;
     }, 1000);
+
 
     // load the chat conversations
     $.loadChatConversation = function(conversationId, currentUserUsrnm, conversationRef) {
@@ -14320,6 +15066,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // stop downloadTimer to lock in the load duration
         clearInterval(downloadTimer);
+        document.getElementById("load-curtain-duration-indicator-icon").innerHTML = " bolt ";
     }
 
     // tab reloading function

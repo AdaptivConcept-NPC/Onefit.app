@@ -26,16 +26,15 @@ function productPrice($currency, $productPrice)
 
         default:
             # if unknown currency
-            $priceText = "Error: unknown currency [ $currency ]";
+            $priceText = "Error: unsupported currency [ $currency ]";
             break;
     }
 
     return $priceText;
 };
 
-
+# compile product item card
 for ($i = 1; $i <= 5; $i++) {
-    # code...
     $listItemNumber += 1;
     $list_item_id = "main-cart-items-list-item-$listItemNumber";
     // reset product price label text
@@ -58,7 +57,7 @@ for ($i = 1; $i <= 5; $i++) {
                         </div>
                         <div class="col-md d-grid gap-2 text-start p-0 align-items-center">
                             <div class="poppins-font text-truncate text-md-center mt-4">
-                                <span class="badge text-bg-light fs-4">$listItemNumber.</span>
+                                <span class="badge text-bg-dark fs-4">$listItemNumber.</span>
                                 <span id="main-cart-items-list-item-name" class="align-middle fs-4 fs-bold text-white"> $productName</span>
                             </div>
                             <div class="poppins-font text-center">
@@ -69,7 +68,7 @@ for ($i = 1; $i <= 5; $i++) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 p-0 d-flex gap-2 align-items-start justify-content-center">
+                <div class="col-md-4 p-4 d-flex gap-2 align-items-start justify-content-center">
                     <div class="border-0 border-startz border-endz down-top-grad-tahiti shadow-lg px-2" style="border-radius:25px;">
                         <div class="d-grid justify-content-center my-4">
                             <!-- quantity -->
@@ -173,9 +172,13 @@ $cart_widget_html_template = <<<_END
                 <div class="col-xlg-6 py-4 d-grid gap-4">
                     <!-- Cart items vertical list -->
                     <div class="container-fluid p-2 pt-4 top-down-grad-white border-3z border-topz" style="border-radius: 25px;border-color: var(--tahitigold) !important;">
-                        <h1 class="text-dark w3-animate-left mb-4">Items ordered ($listItemNumber).</h1>
+                        <h1 class="text-dark w3-animate-left mb-4 fs-5 text-center">
+                            <span class="material-icons material-icons-round align-middle" 
+                                style="font-size: 40px !important">
+                                shopping_cart </span> Items ordered ($listItemNumber).
+                        </h1>
                         <!-- Cart items vertical list -->
-                        <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numberedz shadow py-5 px-4 w3-animate-left light-scroller top-down-grad-dark" style="/* background-color: var(--tahitigold); */overflow-y: auto;border-radius: 25px !important;max-height: 80vh !important;">
+                        <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numberedz shadow py-2 px-0 w3-animate-left no-scroller top-down-grad-dark gap-4" style="/* background-color: var(--tahitigold); */overflow-y: auto;border-radius: 25px !important;max-height: 80vh !important;">
                             $cartItemsVList
                         </ul>
                         <!-- ./ Cart items vertical list -->
@@ -189,7 +192,7 @@ $cart_widget_html_template = <<<_END
                                 <span class="material-icons material-icons-round align-middle mb-4" style="font-size:60px !important;">
                                     receipt_long
                                 </span>
-                                <span>Invoice Reference.</span>
+                                <span>Invoice Details.</span>
                                 <span> <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;">20220201-879ds6fsdf_id</span> </span> 
                             </p>
                         </div>

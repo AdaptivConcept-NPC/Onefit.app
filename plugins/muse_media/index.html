@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onefit.muse - TEST</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="hero">
+    <div class="music">
+        <p>Artist: IARXII</p>
+        <h1>Climbing on gold mountains (instrumental)</h1>
+        <div class="track">
+            <img src="media/play-button-icon.svg" id="playBtn">
+            <div>
+                <div id="duration">
+                    <span id="current-time">--:--</span> / <span id="total-time">--:--</span>
+                </div>
+                <div id="waveform"></div>
+                <!-- waveform message -->
+                <div id="media-output">...</div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script type="module">
+        var playBtn = document.getElementById('playBtn');
+
+        import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
+
+        const output = document.getElementById('media-output');
+
+        const wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: '#ddd',
+            progressColor: '#383351',
+            barWidth: 5,
+            barGap: 5,
+            barRadius: 2.5,
+            responsive: true,
+            height: 50
+        })
+
+        // Load an audio file, encode it first
+        let filePath = './media/songs/Lazi-Milano - Sounds of Deep vol4.mp3';
+        let encodedFilePath = encodeURIComponent(filePath);
+        wavesurfer.load(encodedFilePath);
+
+        // function to get waveform peaks data and save it localstorage
+        function getPeaks() {
+            let peaks = wavesurfer.backend.getPeaks(500);
+            localStorage.setItem('peaks', JSON.stringify(peaks));
+        }
+
+        // wavesurfer get duration of song
+        wavesurfer.on('ready', function () {
+            let duration = wavesurfer.getDuration();
+            let minutes = Math.floor(duration / 60);
+            let seconds = Math.floor(duration - minutes * 60);
+            let totalTime = document.getElementById('total-time');
+            totalTime.innerHTML = minutes + ':' + seconds;
+            // console.log(duration); // debug
+        });
+
+        // wavesurfer get current time of song
+        wavesurfer.on('audioprocess', function () {
+            let currentTime = wavesurfer.getCurrentTime();
+            let minutes = Math.floor(currentTime / 60);
+            let seconds = Math.floor(currentTime - minutes * 60);
+            let currentTimeEl = document.getElementById('current-time');
+            currentTimeEl.innerHTML = minutes + ':' + seconds;
+            // console.log(currentTime); // debug
+        });
+
+        playBtn.addEventListener('click', function () {
+            wavesurfer.playPause();
+            if (wavesurfer.isPlaying()) {
+                playBtn.src = 'media/pause-button-icon.svg';
+            } else {
+                playBtn.src = 'media/play-button-icon.svg';
+            }
+        });
+
+        // listen for fail / error
+        wavesurfer.on('error', function (err) {
+            console.error("waveform.js error: " + err);
+            // set play button to disabled
+            playBtn.disabled = true;
+            // show error message
+            output.innerHTML = 'Error loading waveform: ' + err;
+            // set output display to block
+            output.style.display = 'block';
+        });
+
+        // listen for song loading
+        wavesurfer.on('loading', function (percent, xhr) {
+            // console.log('loading: ' + percent + '%'); // debug
+            output.innerHTML = 'Loading waveform: ' + percent + '%';
+            if (percent === 100) {
+                output.innerHTML = 'Decoding audio waveform...';
+                // play song
+                wavesurfer.play();
+            }
+        });
+
+        // listen for song decoded
+        wavesurfer.on('ready', function (percent, xhr) {
+            // console.log('ready: ' + percent + '%'); // debug
+            output.innerHTML = 'Waveform ready!';
+            // timeout to set output display to none
+            setTimeout(function () {
+                output.style.display = 'none';
+            }, 1000);
+
+            // get peaks data from media and save it localstorage
+            getPeaks();
+        });
+
+        wavesurfer.on('finish', function () {
+            playBtn.src = 'media/play-button-icon.svg';
+            wavesurfer.stop();
+        });
+
+        wavesurfer.on('interaction', () => {
+            wavesurfer.play()
+        })
+    </script>
+</body>
+
+</html>

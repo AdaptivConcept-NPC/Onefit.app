@@ -162,7 +162,7 @@
 
 .timeline-container .content {
     padding: 30px 90px 30px 30px;
-    background: #343434;
+    /* background: #343434; */
     position: relative;
     /* border-radius: 0 500px 500px 0; */
     border-radius: 25px;
@@ -461,8 +461,8 @@
     /* border-radius: 0 500px 500px 0; */
     border-radius: 25px;
 
-    border-left: var(--mineshaft) 2px solid;
-    border-right: var(--mineshaft) 2px solid;
+    border-left: var(--white) 2px solid;
+    border-right: var(--white) 2px solid;
 }
 
 .quick-nav-container.right .content {

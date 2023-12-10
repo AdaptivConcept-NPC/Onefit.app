@@ -102,7 +102,7 @@ if (isset($_GET['usernm'])) {
                             $icon
                         </span>
                     </span>
-                    <div class="content">
+                    <div class="content top-down-grad-dark">
                         <h2 class="comfortaa-font">$action_title</h2>
                         <p class="mb-4">
                             $action_description

@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'poppins', sans-serif;
+}
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    background: #a9a9a9;
+    /* url(../images/hero.jpg) no-repeat center; */
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music {
+    width: 90%;
+    max-width: 900px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(red, 0, 0, 0.4);
+    background: #fff;
+    color: #555;
+    border-radius: 8px;
+}
+
+.track {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.track img {
+    width: 70px;
+    border-radius: 50%;
+    margin-right: 20px;
+    color: red;
+}
+
+.track div {
+    flex: 1;
+}

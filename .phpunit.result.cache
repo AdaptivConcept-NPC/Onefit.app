@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"BasicTest::testBasicTest":0.155}}
+{"version":1,"defects":{"FunctionsTest::testSanitizeMySQL":4},"times":{"BasicTest::testBasicTest":0.155,"FunctionsTest::testSanitizeString":0.004,"FunctionsTest::testSanitizeMySQL":0.004}}
