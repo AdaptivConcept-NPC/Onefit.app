@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '3734707d512daedc5104fb6ddd3e70a8fb529f3a',
+        'reference' => '0375b200f412d63470a3e6544b83970d1b9d08ed',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '3734707d512daedc5104fb6ddd3e70a8fb529f3a',
+            'reference' => '0375b200f412d63470a3e6544b83970d1b9d08ed',
             'dev_requirement' => false,
         ),
         'components/jquery' => array(
@@ -173,12 +173,12 @@
             'dev_requirement' => false,
         ),
         'phpseclib/phpseclib' => array(
-            'pretty_version' => '3.0.21',
-            'version' => '3.0.21.0',
+            'pretty_version' => '3.0.34',
+            'version' => '3.0.34.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpseclib/phpseclib',
             'aliases' => array(),
-            'reference' => '4580645d3fc05c189024eb3b834c6c1e4f0f30a1',
+            'reference' => '56c79f16a6ae17e42089c06a2144467acc35348a',
             'dev_requirement' => false,
         ),
         'phpunit/php-code-coverage' => array(
