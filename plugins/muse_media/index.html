@@ -10,8 +10,8 @@
 
 <body class="hero">
     <div class="music">
-        <p>Artist: IARXII</p>
-        <h1>Climbing on gold mountains (instrumental)</h1>
+        <p>Artist: Lazi Milano</p>
+        <h1>Sounds of Deep vol4</h1>
         <div class="track">
             <img src="media/play-button-icon.svg" id="playBtn">
             <div>
@@ -42,13 +42,14 @@
             barGap: 5,
             barRadius: 2.5,
             responsive: true,
-            height: 50
+            height: 50,
+            url: 'media/songs/Lazi-Milano - Sounds of Deep vol4.mp3',
         })
 
         // Load an audio file, encode it first
         let filePath = './media/songs/Lazi-Milano - Sounds of Deep vol4.mp3';
         let encodedFilePath = encodeURIComponent(filePath);
-        wavesurfer.load(encodedFilePath);
+        // wavesurfer.load(filePath);
 
         // function to get waveform peaks data and save it localstorage
         function getPeaks() {
@@ -64,6 +65,9 @@
             let totalTime = document.getElementById('total-time');
             totalTime.innerHTML = minutes + ':' + seconds;
             // console.log(duration); // debug
+
+            // Call getPeaks after the audio file has loaded
+            getPeaks();
         });
 
         // wavesurfer get current time of song
@@ -103,7 +107,7 @@
             if (percent === 100) {
                 output.innerHTML = 'Decoding audio waveform...';
                 // play song
-                wavesurfer.play();
+                // wavesurfer.play();
             }
         });
 
@@ -115,9 +119,6 @@
             setTimeout(function () {
                 output.style.display = 'none';
             }, 1000);
-
-            // get peaks data from media and save it localstorage
-            getPeaks();
         });
 
         wavesurfer.on('finish', function () {

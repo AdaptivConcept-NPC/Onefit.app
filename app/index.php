@@ -6821,7 +6821,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 style="border-radius: 25px !important;"
                                                 id="nav-trainingProgramCategories-teamAthletics-tab"
                                                 onclick="setCurrentInsightsTrainingProgramTab('teamAthletics')">
-                                                Team Athletics.
+                                                Teams &amp; Athletics.
 
                                                 <br>
                                                 <span id="md-horizontal-rule-icon-teamathletics"
@@ -6962,7 +6962,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative shadow"
                                         style="min-width:170px" id="nav-trainingProgramCategories-teamAthletics-tab"
                                         onclick="setCurrentInsightsTrainingProgramTab('teamAthletics')">
-                                        Team / Athletics.
+                                        Teams &amp; Athletics.
 
                                         <br>
                                         <span id="horizontal-rule-icon-teamathletics"
@@ -7111,7 +7111,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                         <hr class="text-white">
 
-                                        <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                                        <div class="p-4 my-4 d-grid text-center down-top-grad-tahiti border-5 border-end border-start"
                                             style="border-radius: 25px; border-color: #ffa500 !important;">
                                             <h5 class="fs-1 text-center my-4">Wellness Tracking</h5>
                                         </div>
@@ -7135,7 +7135,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- User Load Monitoring Log -->
                                         <hr class="text-white" style="height: 5px;">
 
-                                        <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                                        <div class="p-4 my-4 d-grid text-center down-top-grad-tahiti border-5 border-end border-start"
                                             style="border-radius: 25px; border-color: #ffa500 !important;">
                                             <h5 class="mt-4 fs-1 text-center mb-4">Load Monitoring</h5>
                                         </div>
@@ -9402,7 +9402,43 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- ./ upcoming match fixtures/schedule header -->
 
                                         <!-- match fixtures / upcoming matches table -->
-                                        <h5 class="text-center">Upcoming matches.</h5>
+                                        <div class="row justify-content-between align-items-center">
+                                            <div class="col -md d-grid justify-content-start">
+                                                <button
+                                                    onclick="getSchedule('r', '#teams-upcoming-match-schedule-tbody', 'upcoming');"
+                                                    class="onefit-buttons-style-dark p-4 my-2 text-center shadow"
+                                                    type="button">
+                                                    <div class="d-grid">
+                                                        <span class="material-icons material-icons-round">
+                                                            refresh
+                                                        </span>
+                                                        <span class="align-middle poppins-font text-truncate"
+                                                            style="font-size: 10px !important">
+                                                            Refresh.
+                                                        </span>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                            <div class="col -md">
+                                                <h5 class="text-center fs-4">Upcoming matches.</h5>
+                                            </div>
+                                            <div class="col -md d-grid justify-content-end">
+                                                <button onclick=""
+                                                    class="onefit-buttons-style-dark p-4 my-2 text-center shadow"
+                                                    type="button">
+                                                    <div class="d-grid">
+                                                        <span class="material-icons material-icons-round">
+                                                            add_circle
+                                                        </span>
+                                                        <span class="align-middle poppins-font text-truncate"
+                                                            style="font-size: 10px !important">
+                                                            Add new.
+                                                        </span>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+
                                         <div class="table-responsive mb-4">
                                             <table class="table table-bordered table-light table-striped my-4 shadow"
                                                 style="border-radius: 25px !important; overflow: hidden;">
@@ -9443,7 +9479,43 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- ./ match fixtures / upcoming matches table -->
 
                                         <!-- match fixtures / match history table -->
-                                        <h5 class="text-center">Previous matches.</h5>
+                                        <div class="row justify-content-between align-items-center">
+                                            <div class="col -md d-grid justify-content-start">
+                                                <button
+                                                    onclick="getSchedule('r', '#teams-match-history-tbody', 'played');"
+                                                    class="onefit-buttons-style-dark p-4 my-2 text-center shadow"
+                                                    type="button">
+                                                    <div class="d-grid">
+                                                        <span class="material-icons material-icons-round">
+                                                            refresh
+                                                        </span>
+                                                        <span class="align-middle poppins-font text-truncate"
+                                                            style="font-size: 10px !important">
+                                                            Refresh.
+                                                        </span>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                            <div class="col -md">
+                                                <h5 class="text-center fs-4">Past matches.</h5>
+                                            </div>
+                                            <div class="col -md d-grid justify-content-end">
+                                                <button onclick=""
+                                                    class="onefit-buttons-style-dark p-4 my-2 text-center shadow"
+                                                    type="button">
+                                                    <div class="d-grid">
+                                                        <span class="material-icons material-icons-round">
+                                                            add_circle
+                                                        </span>
+                                                        <span class="align-middle poppins-font text-truncate"
+                                                            style="font-size: 10px !important">
+                                                            Add new.
+                                                        </span>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+
                                         <div class="table-responsive mb-4">
                                             <table class="table table-bordered table-light table-striped my-4 shadow"
                                                 style="border-radius: 25px !important; overflow: hidden;">
@@ -10049,7 +10121,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- Section: Interaction buttons (incl: Drills, Physical Assessment, Nutrition board, Program Administration) -->
                                         <section id="interactions-section" class="p-4 pt-0">
                                             <!-- class="fs-1 comfortaa-font my-5 text-center"  -->
-                                            <h1 class="fs-2 p-5 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-whitez border-5 border-start border-end"
+                                            <h1 class="fs-2 p-5 fw-bold rounded-pill text-center comfortaa-font shadow my-4 down-top-grad-tahiti border-5 border-start border-end"
                                                 style="border-radius:25px !important;">
                                                 <span class="material-icons material-icons-round align-middle"
                                                     style="color:var(--tahitigold)!important;">touch_app</span>
@@ -17481,6 +17553,9 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     // get team match schedule
     function getSchedule(grcode, elemId, periodRequest) {
+        // if grcode is 'r' the assign grcode from localstorage
+        if (grcode == 'r') grcode = localStorage.getItem('grcode');
+
         $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/weekly_assesments_and_activities/get_match_schedules.php?grcode=" +
             grcode + "&period_req=" + periodRequest,
             function(data, status) {
@@ -17491,10 +17566,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                         "\n[Data]: " + data);
                 } else {
                     $(elemId).html(data);
+                    console.log("Match schedule loaded:" + periodRequest);
                 }
-            });
+            }
+        );
+
+        showSnackbar("Match schedule loaded:" + periodRequest, "alert_general", "short_5000");
     }
     $.getTeamMatchSchedule = function(grcode) {
+        grcode = grcode || localStorage.getItem('grcode');
+
         const periods = ["upcoming", "history"];
 
         periods.forEach(period => {

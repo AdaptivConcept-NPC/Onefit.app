@@ -49,53 +49,61 @@ for ($i = 1; $i <= 5; $i++) {
     <li id="$list_item_id" class="list-group-item border-light down-top-grad-tahiti text-dark fs-5 d-flex border-0 border -bottom" style="border-radius: 15px;border-color: var(--mineshaft) !important;">
         <!-- ./ product / item card -->
         <div class="w-100 align-items-center justify-content-between">
-            <div class="row gap-2 align-items-start justify-content-start">
+            <div class="row gap-2 align-items-center justify-content-start">
                 <div class="col-md d-flex gap-1 justify-content-center p-4 pb-0 top-down-grad-tahitiz rounded-4 no-scroller" style="overflow-x:auto;">
                     <div class="row w-100 mb-4">
-                        <div class="col-md-4">
-                            <img src="$productImageURL" alt="$productName - $productRef" style="filter: invert(0);max-width:200px;" class="img-fluid shadow-lg rounded-3">
+                        <div class="col-md-4 rounded-4" style="overflow-x:hidden;">
+                            <img src="$productImageURL" alt="$productName - $productRef" style="filter: invert(0);max-width:200px;" class="img-fluid shadow-lg rounded-4">
                         </div>
-                        <div class="col-md d-grid gap-2 text-start p-0 align-items-center">
+                        <div class="col-md d-grid gap-2 text-start p-2 align-items-center">
                             <div class="poppins-font text-truncate text-md-center mt-4">
-                                <span class="badge text-bg-dark fs-4">$listItemNumber.</span>
+                                <span class="badge text-bg-light fs-4">$listItemNumber.</span>
                                 <span id="main-cart-items-list-item-name" class="align-middle fs-4 fs-bold text-white"> $productName</span>
                             </div>
                             <div class="poppins-font text-center">
                                 <span class="material-icons material-icons-round text-white d-nonez" style="font-size: 22px !important;">toll</span>
                                 <span class="fs-1" id="main-cart-items-list-item-price" style="color:var(--white);">$productPriceLabel</span>
                             </div>
-                            <div class="text-xsm-center text-sm-center text-md-center text-lg-start"><span class="barcode-font text-truncate" id="cart-producte-ref" style="color: var(--white);font-size:12px!important;">$productRef</span></div>
+                            <div class="text-xsm-center text-center text-sm-centerz text-md-centerz text-lg-startz">
+                                <span class="barcode-font poppins text-truncate" id="cart-product-ref" style="color: var(--white);font-size:12px!important;">$productRef</span>
+                                <span> | </span>
+                                <span class="poppins-font text-truncate" id="cart-product-quantity" style="color: var(--white);font-size:12px!important;">$productQty ordered</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 p-4 d-flex gap-2 align-items-start justify-content-center">
-                    <div class="border-0 border-startz border-endz down-top-grad-tahiti shadow-lg px-2" style="border-radius:25px;">
-                        <div class="d-grid justify-content-center my-4">
-                            <!-- quantity -->
-                            <div class="input-group m-0 d-grid gap-0 justify-content-center">
-                                <p class="input-group-text text-center m-0" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:var(--tahitigold)!important;/* background-color:#343434; */border-radius: 14px 14px 0 0;border: 0;">
-                                    <span class="material-icons align-middle" style="font-size:20px!important;">
-                                    production_quantity_limits
-                                    </span> Quantity.
-                                </p>
-                                <input type="number" class="form-control text-center w-100" value="$productQty" min="1" max="5" step="1" oninput="validity.valid||(value='');" placeholder="qty." aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border: 0;border-radius: 0 0 15px 15px !important;background-color: #343434;color: #fff;min-width: 150px;">
-                            </div>
-                            <!-- ./ quantity -->
-                            <!-- product description -->
-                            <div id="prod-highlighted-features" class="d-flex gap-2 mt-4 text-white">
-                                <span class="material-icons align-middle" style="font-size: 20px!important;">info</span>
-                                <span class="align-middle text-wrap" style="font-size: 10px;">Highlighted features.</span>
+                <div class="col-md-4 p-4 collapse" id="cart-items-options-collapse-$listItemNumber">
+                    <div class="row gap-2 align-items-start justify-content-centerz">
+                        <div class="col-md">
+                            <div class="border-0 border-startz border-endz down-top-grad-tahiti shadow-lg p-2" style="border-radius:15px;">
+                                <div class="d-grid justify-content-center mt-4 ">
+                                    <!-- quantity -->
+                                    <div class="input-group m-0 d-grid gap-0 justify-content-center">
+                                        <p class="input-group-text text-center m-0" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:var(--tahitigold)!important;/* background-color:#343434; */border-radius: 14px 14px 0 0;border: 0;">
+                                            <span class="material-icons align-middle" style="font-size:20px!important;">
+                                            production_quantity_limits
+                                            </span> Quantity.
+                                        </p>
+                                        <input type="number" class="form-control text-center w-100" value="$productQty" min="1" max="5" step="1" oninput="validity.valid||(value='');" placeholder="qty." aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border: 0;border-radius: 0 0 15px 15px !important;background-color: #343434;color: #fff;min-width: 150px;">
+                                    </div>
+                                    <!-- ./ quantity -->
+                                    <!-- product description -->
+                                    <div id="prod-highlighted-features" class="d-flex gap-2 my-4 text-white">
+                                        <span class="material-icons align-middle" style="font-size: 20px!important;">info</span>
+                                        <span class="align-middle text-wrap" style="font-size: 10px;">Highlighted features.</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="px-2">
-                        <div class="d-flex justify-content-center">
-                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-4 text-center shadow-lg -sm bg-transparent" onclick="deleteCartItem('product_id','product_ref','$list_item_id')" style="border-color: var(--red);color: var(--red) !important;">
-                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
-                                    highlight_off
-                                </span>
-                                <span class="d-none d-lg-block text-truncate" style="font-size: 10px;">Remove!</span>
-                            </button>
+                        <div class="col-md p-0">
+                            <div class="d-grid justify-content-centerz m-2">
+                                <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-4 text-center shadow-lg -sm bg-transparent" onclick="deleteCartItem('product_id','product_ref','main-cart-items-list-item-1')" style="border-color: var(--red);color: var(--red) !important;">
+                                    <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                        highlight_off
+                                    </span>
+                                    <span class="d-none d-lg-block text-truncate" style="font-size: 10px;">Remove!</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
