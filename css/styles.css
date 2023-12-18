@@ -883,12 +883,12 @@ h6 {
 }
 
 /* Track */
-*::-webkit-scrollbar-track {
+/* *::-webkit-scrollbar-track {
 	background: var(--tahitigold) !important;
-	/*padding: 5px 0;
+	padding: 5px 0;
   margin: 30px 0;
-  border-radius: 50rem;*/
-}
+  border-radius: 50rem;
+} */
 
 /* Handle */
 *::-webkit-scrollbar-thumb {

@@ -10371,6 +10371,10 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <hr class="text-white" />
                     <h5>Goals</h5>
+                    <!-- iframe to show goal_setting.html -->
+                    <iframe id="goals-iframe" class="shadow mb-5" src="goal_setting.html" frameborder="0"
+                        style="width: 100%; height: 100vh; border-radius: 25px;"></iframe>
+                    <!-- ./ iframe to show goal_setting.html -->
                     <hr class="text-white">
                     <h5>Timeframes</h5>
                     <hr class="text-white">
