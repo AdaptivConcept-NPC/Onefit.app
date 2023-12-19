@@ -19,14 +19,23 @@ jobs:
       with:
         php-version: '7.4'  # Use the PHP version you need
 
+    # runs composer validate to check the composer.json and composer.lock files
+    - name: Validate composer.json and composer.lock
+      run: composer validate --no-check-all --strict
+  
     - name: Install dependencies
-      run: |
-        composer install --prefer-dist --no-progress --no-suggest
-
+      run: composer install --prefer-dist --no-progress --no-suggest
+    
     - name: Run tests
       run: vendor/bin/phpunit
-
+    
+    # uses the AcmeSoftwareLLC/app-build-number action to get the build number. The id field allows us to refer to the output of this step in later steps
     - name: App Build Number
       uses: AcmeSoftwareLLC/app-build-number@v1.0.4
+      id: build-number
+    
+    # The Set build number as environment variable step creates an environment variable named BUILD_NUMBER and sets its value to the build number obtained from the App Build Number step. The >> $GITHUB_ENV part appends the variable to the GitHub Actions environment file, making it available to all subsequent steps in the workflow
+    - name: Set build number as environment variable
+      run: echo "BUILD_NUMBER=${{ steps.build-number.outputs.build-number }}" >> $GITHUB_ENV
   
 
