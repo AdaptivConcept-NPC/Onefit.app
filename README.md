@@ -1,3 +1,3 @@
-# Onefit.app - Apha Test Build (08/09/2023)
+# Onefit.app - Alpha Test Build (08/09/2023)
 
 Onefit™ is a community based fitness, wellness and lifestyle platform. We aim to assist people from all backgrounds find a better state of being by accessing inspirational and instructional resources, connecting trainers with trainees and developing fitness groups in all spheres of physical activity and athletisism. We will help you reach your fitness goals, find friends, obtain knowledge about uplifting yourself. Register an account today to get a personalized training and eating plans from professional trainers and dieticians as well as resources from health professionals. Proudly brought to you by AdaptivConcept (Media), LMM 1-ON-1 Trainer and One-On-One Fitness Network. © 2021
