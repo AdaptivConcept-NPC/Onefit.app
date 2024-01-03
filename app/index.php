@@ -150,7 +150,8 @@ if (isset($_SESSION["currentUserAuth"])) {
         coreScriptLoaded_googlefonts_css = coreScriptLoaded_soccerfield_css = coreScriptLoaded_soccerfield_css =
         coreScriptLoaded_soccerfield_js = coreScriptLoaded_chartjs_js = coreScriptLoaded_markers_css =
         coreScriptLoaded_markers_js = coreScriptLoaded_chat_css =
-        coreScriptLoaded_turnjs_js = coreScriptLoaded_turnjs_css = false;
+        coreScriptLoaded_turnjs_js = coreScriptLoaded_turnjs_css =
+        coreScriptLoaded_jquery_maphighlight_cdn_js = false;
     </script>
 
     <!--fontawesome-->
@@ -195,11 +196,6 @@ if (isset($_SESSION["currentUserAuth"])) {
         onload="coreScriptLoaded_moment_js=true;"></script>
     <!-- ./ For Digital Clock Plugin -->
 
-    <!-- Map Highlight -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js"></script>
-    <script src="../scripts/js/mapoid/mapoid.js"></script> -->
-    <!-- ./ Map Highlight -->
-
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" onload="coreScriptLoaded_googlefonts_fonts=true;">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin
@@ -222,8 +218,8 @@ if (isset($_SESSION["currentUserAuth"])) {
     </script> -->
 
 
-    <!-- JQuery local 3.6.3 -->
-    <script src="../node_modules/jquery/dist/jquery.min.js" onload="coreScriptLoaded_jquery_local_js=true;"></script>
+    <!-- moved jquery and maphighlight to bottom before scripts -->
+    <link rel="stylesheet" href="../css/map-highlight.css">
 
     <!-- JQuery CDN 3.6.0 -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script> -->
@@ -252,12 +248,10 @@ if (isset($_SESSION["currentUserAuth"])) {
         onload="coreScriptLoaded_soccerfield_css=true;" />
     <link rel="stylesheet" href="../scripts/js/soccer-field-players-positions/soccerfield.default.min.css"
         onload="coreScriptLoaded_soccerfield_css=true;" />
-    <script src="../scripts/js/soccer-field-players-positions/jquery.soccerfield.min.js"
-        onload="coreScriptLoaded_soccerfield_js=true;"></script>
 
     <!-- marker css and js -->
     <link rel="stylesheet" href="../css/markers.css" onload="coreScriptLoaded_markers_css=true;">
-    <script src="../scripts/js/floating-layer-at-cursor-position.js" onload="coreScriptLoaded_markers_js=true;">
+    <!-- <script src="../scripts/js/floating-layer-at-cursor-position.js" onload="coreScriptLoaded_markers_js=true;"> -->
     </script>
 
     <!-- stun.js local -->
@@ -381,7 +375,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </a> -->
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 <div class="d-flex justify-content-center">
-                    <div class="spinner-border grow text-light my-4" style="width: 3rem; height: 3rem;" role="status">
+                    <div class="spinner-grow grow text-light my-4" style="width: 3rem; height: 3rem;" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
                 </div>
@@ -14272,6 +14266,17 @@ if (isset($_SESSION["currentUserAuth"])) {
         </span>
     </div>
 
+    <!-- JQuery local 3.6.3 -->
+    <script src="../node_modules/jquery/dist/jquery.min.js" onload="coreScriptLoaded_jquery_local_js=true;"></script>
+    <!-- Map Highlight -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js"
+        onload="coreScriptLoaded_jquery_maphighlight_cdn_js=true;"></script>
+    <!-- <script src="../scripts/js/mapoid/mapoid.js"></script> -->
+    <!-- ./ Map Highlight -->
+    <script src="../scripts/js/soccer-field-players-positions/jquery.soccerfield.min.js"
+        onload="coreScriptLoaded_soccerfield_js=true;"></script>
+
     <!-- A Lot of Javascript here!!! - should be in external js files -->
     <script>
     // **************************** js_start: my custom js😎👌
@@ -15048,6 +15053,8 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         // reload the weekly activities bar chart under Teams athletics training (training tab)
         $.populateWeeklyActivityBarChart('this', grcode); // , dateQuery, dateQueryStr
+
+
 
         /* move the progress bar forward */
         updateLoadProgressBar(8);
@@ -19490,6 +19497,51 @@ if (isset($_SESSION["currentUserAuth"])) {
     });
     // ./ ajax jquery - submit add match to fixture data form
 
+    // initialize image map highlighting plugin - interactions physical assessment
+    function initMapHighlight() {
+        console.log("initializing Map Highlight");
+        // Initialize maphilight plugin
+        $('img[usemap]').maphilight();
+
+        // Handle area click events
+        $('area').on('click', function() {
+            // Get the value of the 'onclick' attribute and execute the function
+            var onClickFunction = $(this).attr('onclick');
+            if (onClickFunction) {
+                eval(onClickFunction);
+            }
+
+            // Add your custom code here, for example, show an alert
+            alert("Area clicked: " + $(this).attr('alt'));
+        });
+
+        // area mouseover
+        const imageMap = document.getElementById("image-map-front");
+        // const areas = $('image-map-front > area'); //document.querySelectorAll('area');
+
+        // areas = query get area elements from name="image-map-male-front-indi"
+        const areas = Array.from($('#map-area-front[name="image-map-male-front-indi"]'));
+
+        areas.forEach(function(area) {
+            area.addEventListener("mouseover", function() {
+                area.classList.add('highlight');
+            });
+
+            area.addEventListener("mouseout", function() {
+                area.classList.remove('highlight');
+            });
+
+            area.addEventListener("click", function() {
+                alert("Area clicked: " + area.getAttribute('alt'));
+                // createMarker(); // Call your function here
+            });
+        });
+
+        // save state to localstorage
+        localStorage.setItem('imageMapState', true);
+
+    }
+
     // load interaction model content
     $.loadInteractionContent = function(loadContent) {
         let user_id = localStorage.getItem('user_usnm');
@@ -19554,6 +19606,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                 alert("Error: no content request received. [$.loadInteractionContent]: loadContent Param: " +
                     loadContent);
                 break;
+        }
+
+        if (loadContent == "PhysicalAssessment") {
+            // call initMapHighlight function
+            initMapHighlight();
         }
 
         if (getRequestLink != 'abort operation') {

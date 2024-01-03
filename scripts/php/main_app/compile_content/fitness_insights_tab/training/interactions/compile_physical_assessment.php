@@ -227,11 +227,14 @@ if (isset($_GET['uid'])) {
                 <p class="fs-5">Themographic Body Chart - Trainer will enter temperature data in a capturing form.</p>
             </div>
         </div>
+        <div id="3dViewer" class="mb-4">
+            <iframe src="localhost:3000" frameborder="0" style="height:50vh;width:100%;border-radius:25px;"></iframe>
+        </div>
         <div class="row align-items-start">
-            <div class="col-md no-sroller top-down-grad-dark rounded-5 text-center mb-5" style="overflow-x:auto;border-top-right-radius: 0px !important;">
+            <div class="image-map-container col-md no-sroller top-down-grad-dark text-center mb-5" style="overflow-x:auto;border-top-right-radius: 0px !important;">
                 <h5 class="fs-3 text-end px-4">Front.</h5>
-                <img onclick="createMarker()" src="../media/assets/body_charts/muscle-men-body-map-front.jpg" alt="male body map - front" class="img-fluidz map image-map-male-front" style="border-radius: 25px; cursor: pointer; filter: invert(0);" usemap="#image-map-male-front-indi".>
-                <map name="image-map-male-front-indi">
+                <img id="image-map-front" src="../media/assets/body_charts/muscle-men-body-map-front.jpg" alt="male body map - front" class="img-fluidz map image-map-male-front" style="border-radius: 25px; cursor: pointer; filter: invert(0);" usemap="#image-map-male-front-indi".>
+                <map id="map-area-front" name="image-map-male-front-indi">
                     <area data-maphilight="{&quot;strokeColor&quot;:&quot;0000ff&quot;,&quot;strokeWidth&quot;:5,&quot;fillColor&quot;:&quot;00ff00&quot;,&quot;fillOpacity&quot;:0.6}" onclick="toggleMapSelection('Male-Front-Head')" target="" alt="Male-Front-Head " title="Male-Front-Head " coords="249,98,221,109,218,145,210,143,212,156,220,166,221,177,232,190,241,230,246,232,250,237,255,232,258,225,265,192,276,178,279,165,286,156,286,143,280,138,280,122,270,105" shape="poly">
                     <area data-maphilight="{&quot;strokeColor&quot;:&quot;0000ff&quot;,&quot;strokeWidth&quot;:5,&quot;fillColor&quot;:&quot;00ff00&quot;,&quot;fillOpacity&quot;:0.6}" onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Left')" target="" alt="Male-Front-Pectoralis-Major-Left" title="Male-Front-Pectoralis-Major-Left" coords="253,305,254,256,265,235,289,236,302,241,317,244,325,257,328,270,319,269,315,282,309,300,295,311,272,314" shape="poly">
                     <area data-maphilight="{&quot;strokeColor&quot;:&quot;0000ff&quot;,&quot;strokeWidth&quot;:5,&quot;fillColor&quot;:&quot;00ff00&quot;,&quot;fillOpacity&quot;:0.6}" onclick="toggleMapSelection('Male-Front-Pectoralis-Major-Right')" target="" alt="Male-Front-Pectoralis-Major-Right" title="Male-Front-Pectoralis-Major-Right" coords="246,303,245,254,235,235,211,235,194,241,177,245,173,259,170,274,181,265,184,279,185,293,194,305,213,315,238,310" shape="poly">
@@ -281,9 +284,9 @@ if (isset($_GET['uid'])) {
                     <area data-maphilight="{&quot;strokeColor&quot;:&quot;0000ff&quot;,&quot;strokeWidth&quot;:5,&quot;fillColor&quot;:&quot;00ff00&quot;,&quot;fillOpacity&quot;:0.6}" onclick="toggleMapSelection('Male-Front-Tibia-Right')" target="" alt="Male-Front-Tibia-Right" title="Male-Front-Tibia-Right" coords="204,826,197,827,195,730,191,665,202,662,210,655,215,660,217,669,204,694,203,712,201,739" shape="poly">
                 </map>
             </div>
-            <div class="col-md no-sroller top-down-grad-dark rounded-5 text-center mb-5" style="overflow-x:auto;border-top-left-radius: 0px !important;">
+            <div class="col-md no-sroller top-down-grad-dark text-center mb-5" style="overflow-x:auto;border-top-left-radius: 0px !important;">
                 <h5 class="fs-3 text-end px-4">Back.</h5>
-                <img onclick="createMarker()" src="../media/assets/body_charts/muscle-men-body-map-back.jpg" alt="male body map - back" style="border-radius: 25px; cursor: pointer; filter: invert(0);" class="img-fluidz" usemap="#image-map-male-back-indi">
+                <img  id="image-map-back" src="../media/assets/body_charts/muscle-men-body-map-back.jpg" alt="male body map - back" style="border-radius: 25px; cursor: pointer; filter: invert(0);" class="img-fluidz" usemap="#image-map-male-back-indi">
             </div>
             <div class="col-md-4 text-white">
                 <h5 class="fs-3 text-center top-down-grad-dark rounded-4 m-0 py-4">Muscle groups.</h5>
