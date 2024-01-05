@@ -46,7 +46,7 @@ for ($i = 1; $i <= 5; $i++) {
     $productPriceLabel = productPrice($currency, $productPrice);
 
     $cacheItem = <<<_END
-    <li id="$list_item_id" class="list-group-item border-light down-top-grad-tahiti text-dark fs-5 d-flex border-0 border -bottom" style="border-radius: 15px;border-color: var(--mineshaft) !important;">
+    <li id="$list_item_id" class="list-group-item border-light down-top-grad-tahiti text-dark fs-5 d-flex border-0 border -bottom" style="border-radius: 15px;border-color: var(--secondary-color) !important;">
         <!-- ./ product / item card -->
         <div class="w-100 align-items-center justify-content-between">
             <div class="row gap-2 align-items-center justify-content-start">
@@ -65,9 +65,9 @@ for ($i = 1; $i <= 5; $i++) {
                                 <span class="fs-1" id="main-cart-items-list-item-price" style="color:var(--white);">$productPriceLabel</span>
                             </div>
                             <div class="text-xsm-center text-center text-sm-centerz text-md-centerz text-lg-startz">
-                                <span class="barcode-font poppins text-truncate" id="cart-product-ref" style="color: var(--white);font-size:12px!important;">$productRef</span>
+                                <span class="barcode-font poppins text-truncate" id="cart-product-ref" style="color: var(--text-color);font-size:12px!important;">$productRef</span>
                                 <span> | </span>
-                                <span class="poppins-font text-truncate" id="cart-product-quantity" style="color: var(--white);font-size:12px!important;">$productQty ordered</span>
+                                <span class="poppins-font text-truncate" id="cart-product-quantity" style="color: var(--text-color);font-size:12px!important;">$productQty ordered</span>
                             </div>
                         </div>
                     </div>
@@ -79,12 +79,12 @@ for ($i = 1; $i <= 5; $i++) {
                                 <div class="d-grid justify-content-center mt-4 ">
                                     <!-- quantity -->
                                     <div class="input-group m-0 d-grid gap-0 justify-content-center">
-                                        <p class="input-group-text text-center m-0" id="cart-item-quantity-cartitemid" style="font-size: 10px;color:var(--tahitigold)!important;/* background-color:#343434; */border-radius: 14px 14px 0 0;border: 0;">
+                                        <p class="input-group-text text-center m-0" id="cart-item-quantity-cartitemid" style="font-size: 10px;color: var(--primary-color)!important;/* background-color: var(--secondary-color); */border-radius: 14px 14px 0 0;border: 0;">
                                             <span class="material-icons align-middle" style="font-size:20px!important;">
                                             production_quantity_limits
                                             </span> Quantity.
                                         </p>
-                                        <input type="number" class="form-control text-center w-100" value="$productQty" min="1" max="5" step="1" oninput="validity.valid||(value='');" placeholder="qty." aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border: 0;border-radius: 0 0 15px 15px !important;background-color: #343434;color: #fff;min-width: 150px;">
+                                        <input type="number" class="form-control text-center w-100" value="$productQty" min="1" max="5" step="1" oninput="validity.valid||(value='');" placeholder="qty." aria-label="quantity" aria-describedby="cart-item-quantity-cartitemid" style="border: 0;border-radius: 0 0 15px 15px !important;background-color: var(--secondary-color);color: #fff;min-width: 150px;">
                                     </div>
                                     <!-- ./ quantity -->
                                     <!-- product description -->
@@ -126,13 +126,13 @@ $cart_widget_html_template = <<<_END
                     <span class="material-icons material-icons-round align-middle" style="font-size: 50px !important;">
                         card_membership
                     </span>
-                    <span class="align-middle text-truncate" style="font-size: 15px;color: var(--white);">0 Coupons.</span>
+                    <span class="align-middle text-truncate" style="font-size: 15px;color: var(--text-color);">0 Coupons.</span>
                 </div>
-                <div class="col-sm border-0 border-startz border-endz border-lightz rounded-3 p-4 text-white" style="border-color: var(--white) !important;">
+                <div class="col-sm border-0 border-startz border-endz border-lightz rounded-3 p-4 text-white" style="border-color: var(--text-color) !important;">
                     <div class="d-grid gap-2">
                         <span class="material-icons material-icons-round" style="font-size: 20px !important">
                             shopping_cart </span>
-                        <span class="fw-bold comfortaa-font" style="color: var(--white);font-size: 20px;"> $listItemNumber </span>
+                        <span class="fw-bold comfortaa-font" style="color: var(--text-color);font-size: 20px;"> $listItemNumber </span>
                         <span class="d-nonez d-lg-blockz" id="" style="font-size: 15px;">Items.</span>
                     </div>
                 </div>
@@ -140,8 +140,8 @@ $cart_widget_html_template = <<<_END
                     <span class="material-icons material-icons-round align-middle" style="font-size: 50px !important;">
                         toll
                     </span>
-                    <span class="align-middle text-truncate" style="font-size: 20px;color: var(--white);">R 0.00</span>
-                    <span class="align-middle d-none" style="font-size: 10px;color: var(--white);">ZAR</span>
+                    <span class="align-middle text-truncate" style="font-size: 20px;color: var(--text-color);">R 0.00</span>
+                    <span class="align-middle d-none" style="font-size: 10px;color: var(--text-color);">ZAR</span>
                 </div>
             </div>
         </button>
@@ -154,7 +154,7 @@ $cart_widget_html_template = <<<_END
                     <span class="material-icons material-icons-round align-middle">
                         storefront
                     </span>
-                    <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span style="color: #ffa500 !important;">.Store</span></span>
+                    <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span style="color: var(--primary-color) !important;">.Store</span></span>
                 </button>
 
                 <div class="w3-animate-top text-center">
@@ -171,47 +171,47 @@ $cart_widget_html_template = <<<_END
                         point_of_sale
                     </span>
                     <span class="align-middle">
-                        <span class="d-none d-lg-block">Proceed to </span><span class="d-none d-lg-block" style="color: #ffa500 !important;">Checkout.</span>
-                    </span><span class="d-lg-none" style="color: #ffa500 !important;">Pay.</span>
+                        <span class="d-none d-lg-block">Proceed to </span><span class="d-none d-lg-block" style="color: var(--primary-color) !important;">Checkout.</span>
+                    </span><span class="d-lg-none" style="color: var(--primary-color) !important;">Pay.</span>
                 </button>
             </div>
             <!-- ./ -->
             <div class="row">
                 <div class="col-xlg-6 py-4 d-grid gap-4">
                     <!-- Cart items vertical list -->
-                    <div class="container-fluid p-2 pt-4 top-down-grad-white border-3z border-topz" style="border-radius: 25px;border-color: var(--tahitigold) !important;">
+                    <div class="container-fluid p-2 pt-4 top-down-grad-white border-3z border-topz" style="border-radius: 25px;border-color: var(--primary-color) !important;">
                         <h1 class="text-dark w3-animate-left mb-4 fs-5 text-center">
                             <span class="material-icons material-icons-round align-middle" 
                                 style="font-size: 40px !important">
                                 shopping_cart </span> Items ordered ($listItemNumber).
                         </h1>
                         <!-- Cart items vertical list -->
-                        <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numberedz shadow py-2 px-0 w3-animate-left no-scroller top-down-grad-dark gap-4" style="/* background-color: var(--tahitigold); */overflow-y: auto;border-radius: 25px !important;max-height: 80vh !important;">
+                        <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numberedz shadow py-2 px-0 w3-animate-left no-scroller top-down-grad-dark gap-4" style="/* background-color: var(--primary-color); */overflow-y: auto;border-radius: 25px !important;max-height: 80vh !important;">
                             $cartItemsVList
                         </ul>
                         <!-- ./ Cart items vertical list -->
                     </div>
                     <!-- ./ Cart items vertical list -->
                     <!-- cart / invoice totals -->
-                    <div class="container-fluid p-2 py-5 down-top-grad-white border-3z border-topz" style="border-radius: 25px;border-color: var(--tahitigold) !important;">
+                    <div class="container-fluid p-2 py-5 down-top-grad-white border-3z border-topz" style="border-radius: 25px;border-color: var(--primary-color) !important;">
                         <!-- invoice number barcode display -->
                         <div id="cart-invoice-ref">
-                            <p class="text-dark text-center w3-animate-left comfortaa-font d-grid" style="min-height: 30px;color: var(--white)!important;">
+                            <p class="text-dark text-center w3-animate-left comfortaa-font d-grid" style="min-height: 30px;color: var(--text-color)!important;">
                                 <span class="material-icons material-icons-round align-middle mb-4" style="font-size:60px !important;">
                                     receipt_long
                                 </span>
                                 <span>Invoice Details.</span>
-                                <span> <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;">20220201-879ds6fsdf_id</span> </span> 
+                                <span> <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);">20220201-879ds6fsdf_id</span> </span> 
                             </p>
                         </div>
                         <!-- ./ invoice number barcode display -->
                         <h1 class="text-dark w3-animate-left mb-4">Cart Totals.</h1>
                         <div class="row p-4 pb-0 align-items-center down-top-grad-tahitiz text-dark" style="border-radius: 0 0 25px 25px;">
                             <div class="col-md w3-animate-left poppins-font">
-                                <h1>R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 12px;color: var(--tahitigold);">ZAR</span></h1>
+                                <h1>R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 12px;color: var(--primary-color);">ZAR</span></h1>
                             </div>
                             <div class="col-md -4 border-1 border-start border-end border-dark">
-                                <h1><span id="shop-cart-total-items">4</span> <span class="align-top" style="font-size: 12px;color: var(--tahitigold);">Items</span></h1>
+                                <h1><span id="shop-cart-total-items">4</span> <span class="align-top" style="font-size: 12px;color: var(--primary-color);">Items</span></h1>
                             </div>
                             <div class="col-md d-flex justify-content-center w3-animate-right">
                                 <button id="clear-all-cart-item-btn" class="onefit-buttons-style-danger bg-transparentz p-3 text-center" style="border-color: var(--red);">
@@ -235,24 +235,24 @@ $cart_widget_html_template = <<<_END
                         <span class="material-icons material-icons-round align-middle">
                             shopping_cart
                         </span>
-                        Cart Items (<span id="mini-cart-item-count" style="color: #ffa500;">4</span>)
+                        Cart Items (<span id="mini-cart-item-count" style="color: var(--primary-color);">4</span>)
                     </p>
                     <hr class="text-white">
                     <div class="horizontal-scroll p-5 w3-animate-right collapse">
-                        <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: #ffa500 !important;">
-                            <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
+                        <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: var(--primary-color) !important;">
+                            <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
                                 1
                             </div>
                             <div class="d-grid gap-2 justify-content-center">
                                 <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">sell</span>
-                                <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
                                 <div class="text-center">
                                     <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh; filter: invert(0);" alt="placeholder">
                                 </div>
                                 <!-- ./ -->
                                 <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
                                     <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
-                                    <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
+                                    <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: var(--primary-color);">R149.00</span> | Aiwa Smart Band ASB-40
                                 </p>
                                 <div class="d-grid">
                                     <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
@@ -264,20 +264,20 @@ $cart_widget_html_template = <<<_END
                             </div>
                             <!-- ./ -->
                         </div>
-                        <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: #ffa500 !important;">
-                            <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
+                        <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: var(--primary-color) !important;">
+                            <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
                                 2
                             </div>
                             <div class="d-grid gap-2 justify-content-center">
                                 <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">sell</span>
-                                <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
                                 <div class="text-center">
                                     <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh; filter: invert(0);" alt="placeholder">
                                 </div>
                                 <!-- ./ -->
                                 <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
                                     <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
-                                    <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
+                                    <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: var(--primary-color);">R149.00</span> | Aiwa Smart Band ASB-40
                                 </p>
                                 <div class="d-grid">
                                     <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
@@ -289,20 +289,20 @@ $cart_widget_html_template = <<<_END
                             </div>
                             <!-- ./ -->
                         </div>
-                        <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: #ffa500 !important;">
-                            <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
+                        <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: var(--primary-color) !important;">
+                            <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
                                 3
                             </div>
                             <div class="d-grid gap-2 justify-content-center">
                                 <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">sell</span>
-                                <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
                                 <div class="text-center">
                                     <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh; filter: invert(0);" alt="placeholder">
                                 </div>
 
                                 <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
                                     <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
-                                    <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
+                                    <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: var(--primary-color);">R149.00</span> | Aiwa Smart Band ASB-40
                                 </p>
                                 <div class="d-grid">
                                     <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
@@ -314,20 +314,20 @@ $cart_widget_html_template = <<<_END
                             </div>
                             <!-- ./ -->
                         </div>
-                        <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: #ffa500 !important;">
-                            <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: #ffa500 !important; background-color: #343434 !important; border-radius: 5px;">
+                        <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: var(--primary-color) !important;">
+                            <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
                                 4
                             </div>
                             <div class="d-grid gap-2 justify-content-center">
                                 <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">sell</span>
-                                <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: #ffa500;font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
                                 <div class="text-center">
                                     <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh; filter: invert(0);" alt="placeholder">
                                 </div>
                                 <!-- ./ -->
                                 <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
                                     <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
-                                    <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: #ffa500;">R149.00</span> | Aiwa Smart Band ASB-40
+                                    <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: var(--primary-color);">R149.00</span> | Aiwa Smart Band ASB-40
                                 </p>
                                 <div class="d-grid">
                                     <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">

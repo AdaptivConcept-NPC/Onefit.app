@@ -16,7 +16,7 @@ if (isset($_GET['uid'])) {
     _END;
 
     $drillsList = <<<_END
-    <div id="launch-user-drill-designer" class="grid-tile p-4 shadow border-5 border-bottom down-top-grad-whitez drills-tile d-grid justify-content-center" style="border-radius: 0 0 25px 25px;border-color: var(--tahitigold)!important;;max-width:25%;">
+    <div id="launch-user-drill-designer" class="grid-tile p-4 shadow border-5 border-bottom down-top-grad-whitez drills-tile d-grid justify-content-center" style="border-radius: 0 0 25px 25px;border-color: var(--primary-color)!important;;max-width:25%;">
         <button class="onefit-buttons-style-light p-4 d-flex gap-2 align-items-center" onclick="alert('Workout designer is unavailable at the moment.')">
             <span class="material-icons material-icons-outline align-middle" style="font-size:40px !important;">add_circle</span>
             <span class="fs-2z fw-bold comfortaa-font text-start">Create a Training Drill.</span>
@@ -38,7 +38,7 @@ if (isset($_GET['uid'])) {
 
     $workoutsList_Theme_Classes = $workoutcardtheme_1; //visual test: use the first style classes 
     $workoutsList = <<<_END
-    <div id="launch-user-workout-designer" class="grid-tile p-4 shadow text-center border-5 border position-relative down-top-grad-white" style="background-color: #343434; border-color: #ffa500 !important;max-width:25%;">
+    <div id="launch-user-workout-designer" class="grid-tile p-4 shadow text-center border-5 border position-relative down-top-grad-white" style="background-color: var(--secondary-color); border-color: var(--primary-color) !important;max-width:25%;">
         <img src="$thumbnail" class="img-fluid shadow mb-4" style="border-radius: 25px; max-height: 300px;" alt="default thumbnail">
         <button class="onefit-buttons-style-light p-4 fs-5 d-flex gap-2 align-items-center" onclick="alert('Workout designer is unavailable at the moment.')">
             <span class="material-icons material-icons-outline align-middle" style="font-size:40px !important;">add_circle</span>
@@ -156,7 +156,7 @@ if (isset($_GET['uid'])) {
                                         <strong>Benefits:</strong> $benefits <br>
                                         <strong>Intensity (RPE):</strong> $rpe / 10 <br>
                                     </p>
-                                    <p class="mt-4 text-wrap text-mutedz text-whitez"><span class="material-icons material-icons-round align-middle" style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
+                                    <p class="mt-4 text-wrap text-mutedz text-whitez"><span class="material-icons material-icons-round align-middle" style="font-size: 10px !important; color: var(--primary-color) !important;">schedule</span>
                                         <strong>Target area(s):</strong> $target_area
                                     </p>
                                 </div>
@@ -342,7 +342,7 @@ if (isset($_GET['uid'])) {
                                             <strong>Goal:</strong> $goal_definition <br>
                                             <strong>Intensity (RPE):</strong> $rpe / 10 <br>
                                         </p>
-                                        <p class="mt-4 text-start"><span class="material-icons material-icons-round align-middle" style="font-size: 10px !important; color: #ffa500 !important;">schedule</span>
+                                        <p class="mt-4 text-start"><span class="material-icons material-icons-round align-middle" style="font-size: 10px !important; color: var(--primary-color) !important;">schedule</span>
                                             <strong>Avg. Workout Duration:</strong> *? mins / day <br>
                                             <strong>Category/Class:</strong> $category_class_name <br>
                                             <strong>Activities:</strong> $exercise_count_str <br>

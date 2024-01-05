@@ -1,19 +1,3 @@
-:root {
-    --mineshaft: #343434;
-    --mineshaft-rgba: rgba(52, 52, 52, 0.8);
-    --white: #ffffff;
-    --silver: #c5c5c5;
-    --tahitigold: #ffa500;
-    --dustygray: #949494;
-    --red: #c20000;
-    --green: #119400;
-
-    /*Social Media*/
-    --facebook: #3a549e;
-    --twitter: #00aff0;
-    --youtube: #e90101;
-}
-
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Comfortaa:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap&family=Libre+Barcode+128&display=swap");
 
 .tab-quick-nav {
@@ -23,10 +7,10 @@
     /* max- */
     width: 78px;
     height: auto;
-    /* background-color: var(--tahitigold); */
+    /* background-color: var(--primary-color); */
     color: var(--white);
     border-radius: 25px 0 0 25px;
-    border-color: var(--tahitigold) !important;
+    border-color: var(--primary-color) !important;
     z-index: 10000;
     transition: all 200ms ease-in-out;
 }
@@ -61,7 +45,7 @@
     content: '';
     position: absolute;
     width: 2px;
-    background: #ffa500;
+    background: var(--primary-color);
     top: 0;
     bottom: 0;
     left: 50%;
@@ -82,8 +66,8 @@
     height: 16px;
     top: calc(50% - 8px);
     right: -8px;
-    background: #ffffff;
-    border: 2px solid #ffa500;
+    background: var(--text-color)fff;
+    border: 2px solid var(--primary-color);
     border-radius: 16px;
     z-index: 1;
 }
@@ -107,7 +91,7 @@
     height: 2px;
     top: calc(50% - 1px);
     right: 8px;
-    background: #ffa500;
+    background: var(--primary-color);
     z-index: 1;
 }
 
@@ -122,7 +106,7 @@
     text-align: center;
     font-size: 14px;
     font-weight: bold;
-    color: #fff;
+    color: var(--text-color);
     text-transform: uppercase;
     letter-spacing: 1px;
     z-index: 1;
@@ -143,12 +127,12 @@
     height: 40px;
     padding: 9px 0;
     top: calc(50% - 20px);
-    background: #343434;
-    border: 2px solid #ffa500;
+    background: var(--secondary-color);
+    border: 2px solid var(--primary-color);
     border-radius: 50%;
     text-align: center;
     font-size: 18px;
-    color: #fff;
+    color: var(--text-color);
     z-index: 1;
 }
 
@@ -162,13 +146,13 @@
 
 .timeline-container .content {
     padding: 30px 90px 30px 30px;
-    /* background: #343434; */
+    /* background: var(--secondary-color); */
     position: relative;
     /* border-radius: 0 500px 500px 0; */
     border-radius: 25px;
 
-    border-left: #ffa500 2px solid;
-    border-right: #ffa500 2px solid;
+    border-left: var(--primary-color) 2px solid;
+    border-right: var(--primary-color) 2px solid;
 }
 
 .timeline-container.right .content {
@@ -180,14 +164,14 @@
     margin: 0 0 10px 0;
     font-size: 18px;
     font-weight: normal;
-    color: #ffa500;
+    color: var(--primary-color);
 }
 
 .timeline-container .content p {
     margin: 0;
     font-size: 16px;
     line-height: 22px;
-    color: #fff;
+    color: var(--text-color);
 }
 
 @media (max-width: 767.98px) {
@@ -213,7 +197,7 @@
     .timeline-container.left::before,
     .timeline-container.right::before {
         left: 100px;
-        border-color: transparent #ffa500 transparent transparent;
+        border-color: transparent var(--primary-color) transparent transparent;
     }
 
     .timeline-container.left .date,
@@ -343,7 +327,7 @@
     content: '';
     position: absolute;
     width: 5px;
-    background: var(--tahitigold);
+    background: var(--primary-color);
     top: 0;
     bottom: 0;
     left: 50%;
@@ -353,7 +337,7 @@
 .quick-nav-container {
     padding: 15px 30px;
     position: relative;
-    background: var(--mineshaft);
+    background: var(--secondary-color);
     width: 170px;
     border-radius: 0 15px 15px 0;
 }
@@ -365,8 +349,8 @@
     height: 32px;
     top: calc(50% - 16px);
     right: -16px;
-    background: var(--tahitigold);
-    border: 5px solid var(--mineshaft);
+    background: var(--primary-color);
+    border: 5px solid var(--secondary-color);
     border-radius: 16px;
     z-index: 1;
     transition: all 200ms ease-in;
@@ -375,7 +359,7 @@
 
 .quick-nav-container:hover::after {
     background: var(--white);
-    border: 5px solid var(--tahitigold);
+    border: 5px solid var(--primary-color);
 }
 
 /* .quick-nav-container:hover::after+.quick-nav-container {
@@ -389,7 +373,7 @@
     height: 2px;
     top: calc(50% - 1px);
     right: 8px;
-    /* background: #ffa500; */
+    /* background: var(--primary-color); */
     z-index: 1;
 }
 
@@ -416,7 +400,7 @@
     text-align: center;
     font-size: 14px;
     font-weight: bold;
-    color: #fff;
+    color: var(--text-color);
     text-transform: uppercase;
     letter-spacing: 1px;
     z-index: 1;
@@ -437,12 +421,12 @@
     height: 40px;
     padding: 9px 0;
     top: calc(50% - 20px);
-    background: #343434;
-    border: 2px solid #ffa500;
+    background: var(--secondary-color);
+    border: 2px solid var(--primary-color);
     border-radius: 50%;
     text-align: center;
     font-size: 18px;
-    color: #fff;
+    color: var(--text-color);
     z-index: 1;
 }
 
@@ -456,7 +440,7 @@
 
 .quick-nav-container .content {
     padding: 30px 90px 30px 30px;
-    background: #343434;
+    background: var(--secondary-color);
     position: relative;
     /* border-radius: 0 500px 500px 0; */
     border-radius: 25px;
@@ -474,28 +458,28 @@
     margin: 0 0 10px 0;
     font-size: 18px;
     font-weight: normal;
-    color: #ffa500;
+    color: var(--primary-color);
 }
 
 .quick-nav-container .content p {
     margin: 0;
     font-size: 16px;
     line-height: 22px;
-    color: #fff;
+    color: var(--text-color);
 }
 
 .section-btn {
     text-align: center;
     /* font-size: 18px; */
-    background-color: var(--mineshaft);
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
     z-index: 1;
     cursor: pointer;
 }
 
 .section-btn:hover {
-    background-color: var(--tahitigold);
-    color: var(--mineshaft);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .section-btn:focus {
@@ -527,7 +511,7 @@
     .quick-nav-container.left::before,
     .quick-nav-container.right::before {
         left: 100px;
-        border-color: transparent var(--mineshaft) transparent transparent;
+        border-color: transparent var(--secondary-color) transparent transparent;
     }
 
     .quick-nav-container.left .date,

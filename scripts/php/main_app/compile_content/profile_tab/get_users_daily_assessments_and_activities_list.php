@@ -88,13 +88,13 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
                     // if request is for indi then populate the indi related variable
                     $inner_activities_hscroll_card_content_indi = <<<_END
                     <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
-                        <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                        <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: var(--secondary-color) !important; border-radius: 25px">
                             <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
                             <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
                             <span class="material-icons material-icons-round">self_improvement</span>
                         </span>
                         <div class="ms-2 me-auto">
-                            <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                            <p class="fw-bold text-center text-muted" style="color: var(--primary-color)">No activities lined up.</p>
                         </div>
                     </li>
                     _END;
@@ -102,13 +102,13 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
                     // if request is for teams then populate the teams related variable
                     $inner_activities_hscroll_card_content_teams = <<<_END
                     <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white" style="border-color: #fff !important">
-                        <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                        <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: var(--secondary-color) !important; border-radius: 25px">
                             <!-- <i class="fab fa-google" style="font-size: 30px!important"></i> -->
                             <!-- <i class="fas fa-solid fa-face-relieved" style="font-size: 30px!important"></i> -->
                             <span class="material-icons material-icons-round">self_improvement</span>
                         </span>
                         <div class="ms-2 me-auto">
-                            <p class="fw-bold text-center text-muted" style="color: #ffa500">No activities lined up.</p>
+                            <p class="fw-bold text-center text-muted" style="color: var(--primary-color)">No activities lined up.</p>
                         </div>
                     </li>
                     _END;
@@ -140,12 +140,12 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
                         $inner_activities_hscroll_card_content_indi .= <<<_END
                         <li class="list-group-item d-grid justify-content-betweenz align-items-center bg-transparent text-white" style="border-color: #fff !important;border-radius: 25px;">
                             <div class="d-flex w-100 align-items-center justify-content-between">
-                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: var(--secondary-color) !important; border-radius: 25px">
                                     <img src="$activity_icon" src="$schedule_title - $activity_title" class="img-fluidz" style="width: 48px;">
                                 </span>
                                 <div class="d-grid gap-2 text-start px-4 pb-2">
-                                    <p class="fw-bold fs-4" style="color: #ffa500"> $schedule_title </p>
-                                    <p class="fw-bold fs-5" style="color: #ffa500"> $activity_title </p>
+                                    <p class="fw-bold fs-4" style="color: var(--primary-color)"> $schedule_title </p>
+                                    <p class="fw-bold fs-5" style="color: var(--primary-color)"> $activity_title </p>
                                     <p class="fw-bold"> $activity_description </p>
                                 </div>
                                 <div class="d-grid justify-content-end">
@@ -178,12 +178,12 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
                         $inner_activities_hscroll_card_content_teams .= <<<_END
                         <li class="list-group-item d-grid justify-content-betweenz align-items-center bg-transparent text-white" style="border-color: #fff !important;border-radius: 25px;">
                             <div class="d-flex w-100 align-items-center justify-content-between">
-                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+                                <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: var(--secondary-color) !important; border-radius: 25px">
                                     <img src="$activity_icon" src="$schedule_title - $activity_title" class="img-fluidz" style="width: 48px;">
                                 </span>
                                 <div class="d-grid gap-2 text-start px-4 pb-2">
-                                    <p class="fw-bold fs-4" style="color: #ffa500"> $schedule_title </p>
-                                    <p class="fw-bold fs-5" style="color: #ffa500"> $activity_title </p>
+                                    <p class="fw-bold fs-4" style="color: var(--primary-color)"> $schedule_title </p>
+                                    <p class="fw-bold fs-5" style="color: var(--primary-color)"> $activity_title </p>
                                     <p class="fw-bold"> $activity_description </p>
                                 </div>
                                 <div class="d-grid justify-content-end">
@@ -215,26 +215,26 @@ if (isset($_GET['date']) && isset($_GET['grcode'])) {
 
     $weekdayCardOutput = <<<_END
     <h3 class="mt-0 mb-2 poppins-font fs-3">$paramDayName.</h3>
-    <p class="mb-4 text-mutedz poppins-font" style="color:var(--tahitigold);">$dayDateThisWeek</p>
+    <p class="mb-4 text-mutedz poppins-font" style="color: var(--primary-color);">$dayDateThisWeek</p>
     <hr class="text-white" style="height: 5px;">
     <!-- assessments list -->
     <ol class="list-group list-group-flush border-0 my-4">
         <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important;border-radius: 15px;">
-            <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+            <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: var(--secondary-color) !important; border-radius: 25px">
                 <i class="fab fa-google" style="font-size: 48px!important"></i>
             </span>
             <div class="ms-2 me-auto text-start">
-                <div class="fw-bold" style="color: #ffa500">Daily Load Monitoring Survey</div>
+                <div class="fw-bold" style="color: var(--primary-color)">Daily Load Monitoring Survey</div>
                 <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important">recycling</span> Frequency: Daily<br />
                 <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important">assignment_late</span> Required: Optional
             </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent text-white" style="border-color: #fff !important;border-radius: 15px;">
-            <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: #343434 !important; border-radius: 25px">
+            <span class="badge bg-primary rounded-pillz p-4" style="background-color: #fff !important; color: var(--secondary-color) !important; border-radius: 25px">
                 <i class="fab fa-google" style="font-size: 48px!important"></i>
             </span>
             <div class="ms-2 me-auto text-start">
-                <div class="fw-bold" style="color: #ffa500">Wellness Tracking Survey</div>
+                <div class="fw-bold" style="color: var(--primary-color)">Wellness Tracking Survey</div>
                 <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important">recycling</span> Frequency: Daily<br />
                 <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important">assignment_late</span> Required: Optional
             </div>

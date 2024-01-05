@@ -422,7 +422,7 @@ function compileSelectInputExerciseList()
             // _END;
 
             $compile_workout_activities_list .= <<<_END
-            <option value="$exercise_id"> $exercise_name ($xp_points<sub style="color: #ffa500;">xp</sub>)</option>
+            <option value="$exercise_id"> $exercise_name ($xp_points<sub style="color: var(--primary-color);">xp</sub>)</option>
             _END;
         }
     } else {
@@ -627,19 +627,19 @@ function getUserChatConversations()
             }
 
             $communicationUserMessages .= <<<_END
-            <li class="list-group-item bg-transparent text-white border-5 border-bottom" id="conversation-$convo_conversationid" style="cursor:pointer;border-radius:25px;border-color:var(--tahitigold)!important;" onclick="$.loadChatConversation('$convo_conversationid', '$currentUser_Usrnm', '$convo_conversationref');$('#toggle-chats-list-btn').click();">
+            <li class="list-group-item bg-transparent text-white border-5 border-bottom" id="conversation-$convo_conversationid" style="cursor:pointer;border-radius:25px;border-color: var(--primary-color)!important;" onclick="$.loadChatConversation('$convo_conversationid', '$currentUser_Usrnm', '$convo_conversationref');$('#toggle-chats-list-btn').click();">
                 <div class="row align-items-center" style="min-height: 100px;">
                     <div class="col-sm-3 text-md-center">
                         <img src="$default_image_url" class="rounded-circle shadow bg-white p-1" style="height: 50px; width: 50px; filter: invert(0);" alt="placeholder profile pic">
                     </div>
                     <div class="col-sm text-center text-truncate gap-2">
                         <p class="fs-5 fw-bold my-0 text-start"> $secondaryuser_name $secondaryuser_surname </p>
-                        <p class="fs-5z my-0 text-truncate text-break text-start w-100" style="min-height:30px;color:var(--tahitigold);"> $convo_lastmsg </p>
+                        <p class="fs-5z my-0 text-truncate text-break text-start w-100" style="min-height:30px;color: var(--primary-color);"> $convo_lastmsg </p>
                     </div>
                     <div class="col-sm-2 text-center d-grid justify-content-end py-2 chat-notification-flag-alert w3-animate-left $unread_alert_display_state">
                         <button type="button" class="onefit-buttons-style-dark p-2 position-relative border-0 w3-animate-left" style="margin-top:-40px;" onclick="$.loadChatConversation('$convo_conversationid', '$currentUser_Usrnm', '$convo_conversationref')">
                             <span class="material-icons material-icons-round align-middle w3-animate-fadingz" style="font-size: 30px !important">announcement</span>
-                            <span class="position-absolute top-0 start-0 translate-middle p-2 bg-dangerz border-0 border-light rounded-circle w3-animate-fading" style="background-color: #ffa500 !important;">
+                            <span class="position-absolute top-0 start-0 translate-middle p-2 bg-dangerz border-0 border-light rounded-circle w3-animate-fading" style="background-color: var(--primary-color) !important;">
                                 <span class="visually-hidden">open conversation</span>
                             </span>
                         </button>
@@ -845,7 +845,7 @@ function getUserGroups()
                             <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="img-fluid" style="border-radius: 25px;"
                             alt="preview palceholder - delete">
                         </div>
-                        <div class="col-lg -8 p-4 left-right-grad-tahiti-mineshaft" style="border-radius: 25px; color: #343434;">
+                        <div class="col-lg -8 p-4 left-right-grad-tahiti-mineshaft" style="border-radius: 25px; color: var(--secondary-color);">
                             <div class="row">
                                 <div class="col-md text-dark">
                                 <h3>' . $grps_name . ' <span style="font-size: 10px; color: #fff;">' . $grps_privacy . '</span></h3>
@@ -1014,11 +1014,11 @@ function getUserNotifications($listType)
                         <h2 class="accordion-header m-0 p-0" id="cav-flush-header-notifcation-$notif_id">
                             <button class="accordion-button fs-5 fw-bold text-truncate gap-2 d-grid align-items-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-notifcation-$notif_id" aria-expanded="false" aria-controls="cav-flush-panel-notifcation-$notif_id">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="d-flex gap-2 justify-content-start align-items-center" style="color:var(--mineshaft)!important;">
+                                    <div class="d-flex gap-2 justify-content-start align-items-center" style="color: var(--secondary-color)!important;">
                                         <span class="material-icons material-icons-round align-middle d-none"> notifications </span>
                                         <span class="align-middle fw-bold fs-5 poppins-font">  $notif_title </span>
                                     </div>
-                                    <div class="pin-item-icon shadow p-2" style="border-radius:15px;font-size:10px!important;color:var(--mineshaft)!important;">
+                                    <div class="pin-item-icon shadow p-2" style="border-radius:15px;font-size:10px!important;color: var(--secondary-color)!important;">
                                         <span class="material-icons material-icons-round align-middle d-nones" style="font-size:30px !important;"> visibility_off </span>
                                         <span class="poppins-font">Unread.</span>
                                     </div>
@@ -1189,7 +1189,7 @@ function getUserResources()
                 <div class="content-panel-border-style bg-transparent left-right-grad-tahiti-mineshaft p-4">
                     <h3 class=" text-truncate">' . $usrresources_title . ' <span
                         style="font-size: 10px">' . $usrresources_type . '</span></h3>
-                    <p><span style="color: #ffa500">' . $usrresources_description . '</span></p>
+                    <p><span style="color: var(--primary-color)">' . $usrresources_description . '</span></p>
                     <p><i class="fas fa-link"></i> | ' . $usrresources_link . '</p>
                     <p>Shared by: @' . $usrresources_type . '</p>
 
@@ -1248,7 +1248,7 @@ function getUserSaves()
                         <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
                     </div>
                     <div class="col-md-8">
-                        <h3>' . $poster_name . ' ' . $poster_surname . ' <span style="font-size: 10px">@<span style="color: #ffa500">' . $poster_username . '</span></span></h3>
+                        <h3>' . $poster_name . ' ' . $poster_surname . ' <span style="font-size: 10px">@<span style="color: var(--primary-color)">' . $poster_username . '</span></span></h3>
                     </div>
                 </div>
                 <div class="post-content">
@@ -1424,7 +1424,7 @@ function getUserUpdates()
                 <div class="col-md-8 text-end">
                     <div class="d-grid gap-4 p-2" style="border-radius: 15px!important; background-color: rgba(52, 52, 52, 0.8) !important;">
                         <h3 class="text-truncate">' . $usrposts_name . ' ' . $usrposts_surname . ' ' . $usrposts_verification_output . '</h3>
-                        <span style="font-size: 10px">@<span style="color: #ffa500">' . $usrposts_user . '</span>
+                        <span style="font-size: 10px">@<span style="color: var(--primary-color)">' . $usrposts_user . '</span>
                     </div>
                 </div>
             </div>
@@ -1549,7 +1549,7 @@ function getCommunityGroups()
                     </div>
                     <div class="col-md -8">
                         <h3>$grps_name<span style="font-size: 10px">$grps_privacy</span></h3>
-                        <p><span style="color: #ffa500">$grps_description</span></p>
+                        <p><span style="color: var(--primary-color)">$grps_description</span></p>
                         <p>$grps_category</p>
                         <button class="null-btn shadow mt-4" onclick="openGroup('$grps_refcode')"><i class="fas fa-chevron-circle-right"></i> Open group</button>
                         <p class="text-right" style="font-size: 8px">$grps_createdby</p>
@@ -1597,7 +1597,7 @@ function getCommunityNews()
             $communicationNews .= '
             <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="news-' . $news_id . '">
                 <h3>' . $news_title . ' <span style="font-size: 10px">By ' . $news_poster_name . ' ' . $news_poster_surname . '</span></h3>
-                <p><span style="color: #ffa500">' . $news_content . '</span></p>
+                <p><span style="color: var(--primary-color)">' . $news_content . '</span></p>
                 <p class="text-right" style="font-size: 8px">' . $news_date . '</p>
             </div>
             ';
@@ -1653,7 +1653,7 @@ function getCommunityResources()
                 </div>
                 <div class="col-md-8">
                     <h3>' . $resource_title . ' <span style="font-size: 10px">' . $resource_type . '</span></h3>
-                    <p><span style="color: #ffa500">' . $resource_descr . '</span></p>
+                    <p><span style="color: var(--primary-color)">' . $resource_descr . '</span></p>
                     <p><i class="fas fa-link"></i> | ' . $resource_link . '</p>
                     <p>Shared by: @' . $sharedbyUsername . '</p>
 
@@ -1748,7 +1748,7 @@ function getCommunityUpdates()
                     <div class="col-md-8 text-end">
                     <div class="d-grid gap-4 p-2" style="border-radius: 15px!important; background-color: rgba(52, 52, 52, 0.8) !important;">
                         <h3 class="text-truncate">' . $commpost_usr_name . ' ' . $commpost_usr_surname . ' ' . $commpostusr_verification_output . '</h3>
-                        <span style="font-size: 10px">@<span style="color: #ffa500">' . $commpost_username . '</span></span>
+                        <span style="font-size: 10px">@<span style="color: var(--primary-color)">' . $commpost_username . '</span></span>
                     </div>
                     </div>
                 </div>
@@ -1932,7 +1932,7 @@ function getAllUsers()
                 </div>
                 <div class="card-body">
                     <h3>' . $allusrs_name . ' ' . $allusrs_surname . '</h3>
-                    <p>@<span style="color: #ffa500">' . $allusrs_username . '</span></p>
+                    <p>@<span style="color: var(--primary-color)">' . $allusrs_username . '</span></p>
                     <div class="text-center">
                     <button class="null-btn m-4 shadow" onclick="openProfiler(' . "'" . $allusrs_username . "'" . ')"><i class="fas fa-chevron-circle-right"></i> View profile</button>
                     </div>
@@ -2589,7 +2589,7 @@ function ucwords_str($str)
 //           </div>
 //           <div class="col-md -8">
 //             <h3>'.$grps_name.' <span style="font-size: 10px">'.$grps_privacy.'</span></h3>
-//             <p><span style="color: #ffa500">'.$grps_description.'</span></p>
+//             <p><span style="color: var(--primary-color)">'.$grps_description.'</span></p>
 //             <p>'.$grps_category.'</p>
 //             <button class="null-btn shadow mt-4" onclick="openGroup('."'".$grps_refcode."'".')"><i class="fas fa-chevron-circle-right"></i> Open group</button>
 //             <p class="text-right" style="font-size: 8px;">'.$grps_createdate.'</p>
@@ -2653,7 +2653,7 @@ function ucwords_str($str)
 //       $communicationUserNotifications .= '
 //       <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="notifcation-'.$notif_id.'">
 //         <h3>'.$notif_title.'</h3>
-//         <p><span style="color: #ffa500">'.$notif_message.'</span></p>
+//         <p><span style="color: var(--primary-color)">'.$notif_message.'</span></p>
 //         <p>'.$grps_category.'</p>
 //         <p class="text-right" style="font-size: 8px">'.$notif_date.'</p>
 //       </div>
@@ -2762,7 +2762,7 @@ function ucwords_str($str)
 //       <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="resource-'.$usrresources_resourceid.'-'.$currentUser_Usrnm.'" style="max-width: 100%!important">
 //         <div>
 //           <h3>'.$usrresources_title.' <span style="font-size: 10px">'.$usrresources_type.'</span></h3>
-//           <p><span style="color: #ffa500">'.$usrresources_description.'</span></p>
+//           <p><span style="color: var(--primary-color)">'.$usrresources_description.'</span></p>
 //           <p><i class="fas fa-link"></i> | '.$usrresources_link.'</p>
 //           <p>Shared by: @'.$usrresources_type.'</p>
 
@@ -2812,7 +2812,7 @@ function ucwords_str($str)
 //             <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="border-radius: 25px;max-height:100px" alt="prof thumbnail">
 //           </div>
 //           <div class="col-md-8">
-//             <h3>'.$poster_name.' '.$poster_surname.' <span style="font-size: 10px">@<span style="color: #ffa500">'.$poster_username.'</span></span></h3>
+//             <h3>'.$poster_name.' '.$poster_surname.' <span style="font-size: 10px">@<span style="color: var(--primary-color)">'.$poster_username.'</span></span></h3>
 //           </div>
 //         </div>
 //         <div class="post-content">
@@ -2919,7 +2919,7 @@ function ucwords_str($str)
 //                 '.$accountProdImg.'
 //               </div>
 //               <div class="col-md-8">
-//                 <h3>'.$usrposts_name.' '.$usrposts_surname.' <span style="font-size: 10px">@<span style="color: #ffa500">'.$usrposts_user.'</span></span></h3>
+//                 <h3>'.$usrposts_name.' '.$usrposts_surname.' <span style="font-size: 10px">@<span style="color: var(--primary-color)">'.$usrposts_user.'</span></span></h3>
 //               </div>
 //             </div>
 //             <div class="post-content">
@@ -2986,7 +2986,7 @@ function ucwords_str($str)
 //             </div>
 //             <div class="col-md -8">
 //               <h3>'.$grps_name.' <span style="font-size: 10px">'.$grps_privacy.'</span></h3>
-//               <p><span style="color: #ffa500">'.$grps_description.'</span></p>
+//               <p><span style="color: var(--primary-color)">'.$grps_description.'</span></p>
 //               <p>'.$grps_category.'</p>
 //               <button class="null-btn shadow mt-4" onclick="openGroup('."'".$grps_refcode."'".')"><i class="fas fa-chevron-circle-right"></i> Open group</button>
 //               <p class="text-right" style="font-size: 8px">'.$grps_createdate.'</p>
@@ -3029,7 +3029,7 @@ function ucwords_str($str)
 //       $communicationNews .= '
 //       <div class="grid-tile px-2 mx-0 content-panel-border-style my-4" id="news-'.$news_id.'">
 //         <h3>'.$news_title.' <span style="font-size: 10px">By '.$news_poster_name.' '.$news_poster_surname.' (@'.$news_createdby.')</span></h3>
-//         <p><span style="color: #ffa500">'.$news_content.'</span></p>
+//         <p><span style="color: var(--primary-color)">'.$news_content.'</span></p>
 //         <p class="text-right" style="font-size: 8px">'.$news_date.'</p>
 //       </div>
 //       ';
@@ -3082,7 +3082,7 @@ function ucwords_str($str)
 //           </div>
 //           <div class="col-md-8">
 //             <h3>'.$resource_title.' <span style="font-size: 10px">'.$resource_type.'</span></h3>
-//             <p><span style="color: #ffa500">'.$resource_descr.'</span></p>
+//             <p><span style="color: var(--primary-color)">'.$resource_descr.'</span></p>
 //             <p><i class="fas fa-link"></i> | '.$resource_link.'</p>
 //             <p>Shared by: @'.$sharedbyUsername.'</p>
 
@@ -3129,7 +3129,7 @@ function ucwords_str($str)
 //               '.$accountProdImg.'
 //             </div>
 //             <div class="col-md-8">
-//               <h3>'.$commpost_usr_name.' '.$commpost_usr_surname.' <span style="font-size: 10px">@<span style="color: #ffa500">'.$commpost_user.'</span></span></h3>
+//               <h3>'.$commpost_usr_name.' '.$commpost_usr_surname.' <span style="font-size: 10px">@<span style="color: var(--primary-color)">'.$commpost_user.'</span></span></h3>
 //             </div>
 //           </div>
 //           <div class="post-content">

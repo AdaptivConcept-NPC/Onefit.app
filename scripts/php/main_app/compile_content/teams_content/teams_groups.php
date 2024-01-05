@@ -56,7 +56,7 @@ try {
                     <span>$grps_createdby</span>
                 </div>
                 <div class="d-grid gap-2">
-                    <span class="badge rounded-pill fw-bold" style="background-color:var(--mineshaft)!important;">
+                    <span class="badge rounded-pill fw-bold" style="background-color: var(--secondary-color)!important;">
                         <span class="material-icons material-icons-round align-middle" style="font-size:12px!important;">
                             notifications_active
                         </span> ?
@@ -122,7 +122,7 @@ echo $output;
     </div>
     <div class="col-md -8">
         <h3>$grps_name<span style="font-size: 10px">$grps_privacy</span></h3>
-        <p><span style="color: #ffa500">$grps_description</span></p>
+        <p><span style="color: var(--primary-color)">$grps_description</span></p>
         <p>$grps_category</p>
         <button class="null-btn shadow mt-4" onclick="openGroup('$grps_refcode')"><i class="fas fa-chevron-circle-right"></i> Open group</button>
         <p class="text-right" style="font-size: 8px">$grps_createdby</p>
@@ -146,7 +146,7 @@ _END; */
                     <span>Trainer</span>
                 </div>
                 <div class="d-grid gap-2">
-                    <span class="badge rounded-pill fw-bold" style="background-color:var(--mineshaft)!important;">
+                    <span class="badge rounded-pill fw-bold" style="background-color: var(--secondary-color)!important;">
                         <span class="material-icons material-icons-round align-middle" style="font-size:12px!important;">
                             notifications_active
                         </span> 14

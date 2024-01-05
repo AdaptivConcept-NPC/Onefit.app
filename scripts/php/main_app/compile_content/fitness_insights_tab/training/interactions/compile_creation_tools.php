@@ -21,7 +21,7 @@ if (isset($_GET['uid'])) {
                             </div>
                         </button>
                         <div class="d-grid w-100">
-                            <h1 class="fs-5 comfortaa-font my-4 text-end -md-end -sm-end -lg-center" style="color:var(--tahitigold);"><span style="color:var(--white);">
+                            <h1 class="fs-5 comfortaa-font my-4 text-end -md-end -sm-end -lg-center" style="color: var(--primary-color);"><span style="color:var(--white);">
                                 Onefit.</span>Create.
                             </h1>
                             <!-- onclick="$('#toggle-create-functions-menu').click();" -->
@@ -43,10 +43,10 @@ if (isset($_GET['uid'])) {
                                     role="tab" 
                                     aria-controls="v-pills-creation-commfeed" 
                                     aria-selected="false">
-                                <span class="material-icons material-icons-round align-middle" style="color:var(--tahitigold);">
+                                <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color);">
                                     post_add
                                 </span> 
-                                <span class="d-none d-lg-block" style="color:var(--tahitigold);">|</span> 
+                                <span class="d-none d-lg-block" style="color: var(--primary-color);">|</span> 
                                 <span class="d-none d-lg-block d-sm-block text-start">community feed.</span>
                             </button>
                         </li>
@@ -60,10 +60,10 @@ if (isset($_GET['uid'])) {
                                     role="tab" 
                                     aria-controls="v-pills-creation-grpshare" 
                                     aria-selected="false">
-                                <span class="material-icons material-icons-round align-middle" style="color:var(--tahitigold);">
+                                <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color);">
                                     volunteer_activism
                                 </span> 
-                                <span class="d-none d-lg-block" style="color:var(--tahitigold);">|</span> 
+                                <span class="d-none d-lg-block" style="color: var(--primary-color);">|</span> 
                                 <span class="d-none d-lg-block d-sm-block text-start">Group sharing.</span>
                             </button>
                         </li>
@@ -75,10 +75,10 @@ if (isset($_GET['uid'])) {
                                     role="tab" 
                                     aria-controls="v-pills-creation-stream" 
                                     aria-selected="false">
-                                <span class="material-icons material-icons-round align-middle" style="color:var(--tahitigold);">
+                                <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color);">
                                     live_tv
                                 </span> 
-                                <span class="d-none d-lg-block" style="color:var(--tahitigold);">|</span> 
+                                <span class="d-none d-lg-block" style="color: var(--primary-color);">|</span> 
                                 <span class="d-none d-lg-block d-sm-block text-start">Onefit.Stream</span>
                             </button>
                         </li>
@@ -90,10 +90,10 @@ if (isset($_GET['uid'])) {
                                     role="tab" 
                                     aria-controls="v-pills-creation-mdupload" 
                                     aria-selected="false">
-                                <span class="material-icons material-icons-round align-middle" style="color:var(--tahitigold);">
+                                <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color);">
                                     perm_media
                                 </span> 
-                                <span class="d-none d-lg-block" style="color:var(--tahitigold);">|</span> 
+                                <span class="d-none d-lg-block" style="color: var(--primary-color);">|</span> 
                                 <span class="d-none d-lg-block d-sm-block text-start">Upload media.</span>
                             </button>
                         </li>
@@ -107,10 +107,10 @@ if (isset($_GET['uid'])) {
                                     role="tab" 
                                     aria-controls="v-pills-creation-messenger" 
                                     aria-selected="false">
-                                <span class="material-icons material-icons-round align-middle" style="color:var(--tahitigold);">
+                                <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color);">
                                     forum
                                 </span> 
-                                <span class="d-none d-lg-block" style="color:var(--tahitigold);">|</span> 
+                                <span class="d-none d-lg-block" style="color: var(--primary-color);">|</span> 
                                 <span class="d-none d-lg-block d-sm-block text-start">Messenger.</span>
                             </button>
                         </li>

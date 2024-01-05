@@ -87,7 +87,7 @@ function getUserProGroupSubs()
             </div>
             <div class="col-md-8 px-0 py-2 align-text-left-md">
               <h3 class="text-truncate fs-5">$grps_name  <span style="font-size: 30px !important" class="material-icons material-icons-round align-middle"> $grps_privacy </span></h3>
-              <p class="m-0"><span style="color: #ffa500"> $grps_description </span></p>
+              <p class="m-0"><span style="color: var(--primary-color)"> $grps_description </span></p>
               <small class="m-0">$grps_category Training</small>
             </div>
           </div>
@@ -95,7 +95,7 @@ function getUserProGroupSubs()
             <div class="col-md p-4 pt-0 d-grid justify-content-center">
               <button class="onefit-buttons-style-light p-3 shadow" onclick="openGroup('$grps_refcode')"><i class="fas fa-chevron-circle-right" aria-hidden="true"></i> Open group</button>
               <div class="d-flex gap-1 justify-content-center mt-2">
-                <span class="material-icons material-icons-round align-middle" style="font-size: 12px !important;color:var(--tahitigold)"> perm_identity </span>
+                <span class="material-icons material-icons-round align-middle" style="font-size: 12px !important;color: var(--primary-color)"> perm_identity </span>
                 <span class="fw-bold text-right align-middle" style="font-size: 8px;">Trainer: $grps_trainer_name</span>
                 <span class="text-right align-middle d-none" style="font-size: 8px;">Created on $formatCreateDate </span>
               </div>

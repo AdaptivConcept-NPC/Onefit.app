@@ -55,7 +55,7 @@ try {
                     <span>$grps_createdby</span>
                 </div>
                 <div class="d-grid gap-2">
-                    <span class="badge rounded-pill fw-bold" style="background-color:var(--mineshaft)!important;">
+                    <span class="badge rounded-pill fw-bold" style="background-color: var(--secondary-color)!important;">
                         <span class="material-icons material-icons-round align-middle" style="font-size:12px!important;">
                             notifications_active
                         </span> ?
@@ -129,7 +129,7 @@ echo $output;
                     <span>Trainer</span>
                 </div>
                 <div class="d-grid gap-2">
-                    <span class="badge rounded-pill fw-bold" style="background-color:var(--mineshaft)!important;">
+                    <span class="badge rounded-pill fw-bold" style="background-color: var(--secondary-color)!important;">
                         <span class="material-icons material-icons-round align-middle" style="font-size:12px!important;">
                             notifications_active
                         </span> 14

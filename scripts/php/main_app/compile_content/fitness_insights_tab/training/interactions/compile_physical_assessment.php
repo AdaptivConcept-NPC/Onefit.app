@@ -121,13 +121,13 @@ if (isset($_GET['uid'])) {
         $letter = chr(65 + $key);
 
         $muscle_group_card_list_items .= <<<_END
-        <li class="list-group-item list-group-item-action text-white pt-4" style="background-color:var(--mineshaft);">
+        <li class="list-group-item list-group-item-action text-white pt-4" style="background-color: var(--secondary-color);">
             <div class="row">
                 <div class="col-xlg">
                     <h5 class="fs-2 fw-bold"><span class="badge text-dark bg-white rounded-2 align-middle">$letter.</span> $muscle_name</h5>
                     
                     <ul class="list-group list-group-flush list-group-horizontalz muscles-horiz-list w-100 mb-4 rounded-4">
-                        <li class="list-group-item" style=" background-color: var(--tahitigold);color: var(--mineshaft);">
+                        <li class="list-group-item" style=" background-color: var(--primary-color);color: var(--secondary-color);">
                             <p class="fs-5 m-0 fw-boldz">Affected muscles:</p>
                         </li>
                         <li class="list-group-item list-group-item-action">
@@ -217,7 +217,7 @@ if (isset($_GET['uid'])) {
     <div class="modal-body w3-animate-top rounded-5 top-down-grad-tahiti px-4 py-5">
         <div class="row align-items-center text-white mb-4">
             <div class="col-md-2 text-center" style="overflow-x:hidden;">
-                <span class="material-icons material-icons-round align-middle" style="font-size:200px!important;color: var(--mineshaft);">personal_injury</span>
+                <span class="material-icons material-icons-round align-middle" style="font-size:200px!important;color: var(--secondary-color);">personal_injury</span>
             </div>
             <div class="col-md top-down-grad-dark p-4 rounded-5">
                 <h1 class="fs-1">

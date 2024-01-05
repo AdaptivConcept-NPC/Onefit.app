@@ -20,7 +20,7 @@
 	--twitter: #00aff0;
 	--youtube: #e90101;
 
-	--plyr-color-main: var(--tahitigold) !important;
+	--plyr-color-main: var(--primary-color) !important;
 }
 
 #clock {
@@ -79,7 +79,7 @@
 
 #clock.light .alarm {
 	/* background: url('../img/alarm_light.jpg'); */
-	background-color: var(--tahitigold) !important;
+	background-color: var(--primary-color) !important;
 	/* border-radius: 50%; */
 	border-radius: 4px;
 }
@@ -94,7 +94,7 @@
 --------------------------*/
 
 #clock.dark {
-	background-color: var(--tahitigold);
+	background-color: var(--primary-color);
 	color: #cacaca;
 }
 
@@ -109,14 +109,14 @@
 
 #clock.dark .alarm {
 	/* background: url('../media/assets/One-Tunnel.png'); */
-	background-color: var(--tahitigold) !important;
+	background-color: var(--primary-color) !important;
 	/* border-radius: 50%; */
 	border-radius: 4px;
 }
 
 #clock.dark .display {
-	background-color: var(--mineshaft);
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08) inset, 0 1px 1px var(--mineshaft);
+	background-color: var(--secondary-color);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08) inset, 0 1px 1px var(--secondary-color);
 }
 
 #clock.dark .digits div.dots:before,
@@ -416,7 +416,7 @@
 	height: 16px;
 	bottom: 20px;
 	/* background: url('../img/alarm_light.jpg'); */
-	background-color: var(--tahitigold) !important;
+	background-color: var(--primary-color) !important;
 	position: absolute;
 	opacity: 0.2;
 }
@@ -432,16 +432,20 @@
 	30% {
 		transform: scale(1.2);
 	}
+
 	40%,
 	60% {
 		transform: rotate(-20deg) scale(1.2);
 	}
+
 	50% {
 		transform: rotate(20deg) scale(1.2);
 	}
+
 	70% {
 		transform: rotate(0deg) scale(1.2);
 	}
+
 	100% {
 		transform: scale(1);
 	}
@@ -483,7 +487,7 @@
 /* Animations */
 @keyframes animate-tahiti {
 	0% {
-		box-shadow: 0 0 0 0 var(--tahitigold);
+		box-shadow: 0 0 0 0 var(--primary-color);
 	}
 
 	40% {
@@ -501,7 +505,7 @@
 
 @keyframes animate-dark {
 	0% {
-		box-shadow: 0 0 0 0 var(--mineshaft);
+		box-shadow: 0 0 0 0 var(--secondary-color);
 	}
 
 	40% {

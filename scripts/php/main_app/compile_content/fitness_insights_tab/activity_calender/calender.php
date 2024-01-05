@@ -159,10 +159,10 @@ $calenderHeading = $monthNames[$cMonth - 1]; // . " " . $cYear;
 echo <<<_END
 <div class="table-responsive pb-4 top-down-grad-dark" style="border-radius: 25px;">
     <table class="table table-hover mb-0">
-        <thead style="background: #fff; color: #343434;">
+        <thead style="background: #fff; color: var(--secondary-color);">
             <tr>
                 <td class="px-4 py-2 text-center fw-bold fs-5" colspan="7"
-                    style="background:var(--tahitigold);color:var(--mineshaft);">
+                    style="background:var(--tahitigold);color: var(--secondary-color);">
                     $cYear Training calender.
                 </td>
             </tr>
@@ -171,18 +171,18 @@ echo <<<_END
                     <div class="w-100 h-100 d-flex gap-4 justify-content-between">
                         <button class="onefit-buttons-style-light p-3 shadow -sm" onclick="navCalender('$prev_month','$prev_year','prev')">
                             <div class="d-flex gap-2 align-items-center">
-                                <i class="fas fa-chevron-left align-middle" style="color:var(--tahitigold);"></i> 
+                                <i class="fas fa-chevron-left align-middle" style="color: var(--primary-color);"></i> 
                                 <span class="align-middle text-start" style="font-size:16px;">Last month.</span>
                             </div>
                         </button>
                         <div class="onefit-buttons-style-light p-4 d-grid gap-2" colspan="5" style="font-size:50px;cursor:pointer;" onclick="navCalender(null,null,'today')">
                             <strong class="text-truncate"> $calenderHeading. </strong>
-                            <span class="material-icons material-icons-round" style="color: #ffa500 !important">keyboard_arrow_down</span>
+                            <span class="material-icons material-icons-round" style="color: var(--primary-color) !important">keyboard_arrow_down</span>
                         </div>
                         <button class="onefit-buttons-style-light p-3 shadow -sm" onclick="navCalender('$next_month','$next_year','next')">
                             <div class="d-flex gap-2 align-items-center">
                                 <span class="align-middle text-end" style="font-size:16px;">Next month.</span>
-                                <i class="fas fa-chevron-right align-middle" style="color:var(--tahitigold);"></i>
+                                <i class="fas fa-chevron-right align-middle" style="color: var(--primary-color);"></i>
                             </div>
                         </button>
                     </div>

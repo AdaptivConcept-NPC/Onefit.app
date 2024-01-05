@@ -76,7 +76,7 @@ try {
         }
 
         $compile .= <<<_END
-        <div id="inventory-$inventory_number" class="card grid-tile shadow" style="background-color: #343434 !important; overflow: hidden;">
+        <div id="inventory-$inventory_number" class="card grid-tile shadow" style="background-color: var(--secondary-color) !important; overflow: hidden;">
             <img src="$product_image_url" class="card-img-top" alt="$product_name | $product_category | $product_tag">
             <div class="card-body">
                 <h5 class="card-title fs-4">$product_name</h5>
