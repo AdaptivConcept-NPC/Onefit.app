@@ -65,7 +65,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
 
                 $columnBarHTML = <<<_END
                 <div id="form-bar-title-day$dayNum" class="fw-bold fs-3 fw-bold text-dark comfortaa-font top-down-grad-white p-4" style="border-radius: 25px 25px 0 0;">
-                    <p class="text-center my-4 p-4" style="border-radius:25px;color:var(--mineshaft)">No activities found. Add new activities.</p>
+                    <p class="text-center my-4 p-4" style="border-radius:25px;color: var(--secondary-color)">No activities found. Add new activities.</p>
                 </div>
                 <hr class="text-white my-2 p-0" style="height: 5px;">
                 <p class="text-center fs-5 fw-bold comfortaa-font">$schedule_day</p>

@@ -147,7 +147,7 @@ switch ($requestFormat) {
     case 'ui_default':
         # create the html ui output and embed the summary stats values within the html
         $output = <<<_END
-        <div class="container-xlg p-4 shadow-lg d-inline-blockz border-5 border-start border-end" style="border-radius: 25px; border-color: #ffa500 !important; background-color: #343434">
+        <div class="container-xlg p-4 shadow-lg d-inline-blockz border-5 border-start border-end" style="border-radius: 25px; border-color: var(--primary-color) !important; background-color: var(--secondary-color)">
             <div class="row align-items-center text-center comfortaa-font">
                 <div class="col-sm py-2 text-truncate">
                     <div class="d-none">
@@ -159,14 +159,14 @@ switch ($requestFormat) {
                             <span class="heartrate-avg-stat">
                                 $averageHeartrate
                             </span>
-                            <sup style="color: #ffa500;">b/s</sup>
+                            <sup style="color: var(--primary-color);">b/s</sup>
                         </span>
                         <span class="material-icons material-icons-round align-middle"> monitor_heart </span>
                     </div>
                 </div>
                 <div class="col-sm py-2 text-truncate">
                     <div class="d-inline">
-                        <span class="align-middle" style="color: #ffa500">|</span>
+                        <span class="align-middle" style="color: var(--primary-color)">|</span>
                     </div>
                 </div>
                 <div class="col-sm py-2 text-truncate">
@@ -180,14 +180,14 @@ switch ($requestFormat) {
                             <span class="temp-avg-stat">
                                 $averageTemp
                             </span>
-                            <sup style="color: #ffa500;">℃</sup>
+                            <sup style="color: var(--primary-color);">℃</sup>
                         </span>
                         <span class="material-icons material-icons-round align-middle"> device_thermostat </span>
                     </div>
                 </div>
                 <div class="col-sm py-2 text-truncate">
                     <div class="d-inline">
-                        <span class="align-middle" style="color: #ffa500">|</span>
+                        <span class="align-middle" style="color: var(--primary-color)">|</span>
                     </div>
                 </div>
                 <div class="col-sm py-2 text-center">
@@ -201,7 +201,7 @@ switch ($requestFormat) {
                 </div>
                 <div class="col-sm py-2 text-truncate">
                     <div class="d-inline">
-                        <span class="align-middle" style="color: #ffa500">|</span>
+                        <span class="align-middle" style="color: var(--primary-color)">|</span>
                     </div>
                 </div>
                 <div class="col-sm py-2 text-truncate">
@@ -216,14 +216,14 @@ switch ($requestFormat) {
                             <span class="speed-avg-stat">
                                 $averageSpeed
                             </span>
-                            <sup style="color: #ffa500;">ms</sup>
+                            <sup style="color: var(--primary-color);">ms</sup>
                         </span>
                         <span class="material-icons material-icons-round align-middle"> bolt </span>
                     </div>
                 </div>
                 <div class="col-sm py-2 text-truncate">
                     <div class="d-inline">
-                        <span class="align-middle" style="color: #ffa500">|</span>
+                        <span class="align-middle" style="color: var(--primary-color)">|</span>
                     </div>
                 </div>
                 <div class="col-sm py-2 text-truncate">
@@ -238,7 +238,7 @@ switch ($requestFormat) {
                             <span class="steps-taken-stat">
                                 $totalSteps
                             </span>
-                            <sup style="color: #ffa500; font-size: 10px;"> stps</sup>
+                            <sup style="color: var(--primary-color); font-size: 10px;"> stps</sup>
                         </div>
                         <span class="material-icons material-icons-round align-middle"> directions_walk </span>
                     </div>

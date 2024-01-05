@@ -48,7 +48,7 @@ function sendCredentials($general_purpose, $firstname, $lastname, $email, $usern
         //generate link button
         $link_button = <<<_END
         <a href="https://pantaspa.co.za/custom/application/"
-        style="background:linear-gradient(270deg,#009ba2ff 0%,#00c2cbff 100%);background-color:#00c2cbff;text-decoration:none;padding:15px 0px;color:#fff;border: #fff solid 3px;border-radius:36px;display:inline-block;font-weight:bold;text-transform:uppercase;width:100%;max-width:285px"
+        style="background:linear-gradient(270deg,#009ba2ff 0%,#00c2cbff 100%);background-color:#00c2cbff;text-decoration:none;padding:15px 0px;color: var(--text-color);border: #fff solid 3px;border-radius:36px;display:inline-block;font-weight:bold;text-transform:uppercase;width:100%;max-width:285px"
         class="m_2317402489703711923full-widthz"
         target="_blank"
         data-saferedirecturl="https://pantaspa.co.za/custom/application/"><span>Login</span></a>
@@ -58,7 +58,7 @@ function sendCredentials($general_purpose, $firstname, $lastname, $email, $usern
         <div style="color:redimportant;">
         Please use the credentials below to log into your account.<br> 
         Access the <a href="https://pantaspa.co.za/custom/application/"
-        style="color:#ffffff;font-weight:normal;text-decoration:underline"
+        style="color: var(--text-color)fff;font-weight:normal;text-decoration:underline"
         target="_blank"
         data-saferedirecturl="https://pantaspa.co.za/custom/application/">Administrator Portal</a>.
         <br><br>
@@ -71,7 +71,7 @@ function sendCredentials($general_purpose, $firstname, $lastname, $email, $usern
         _END;
 
         $mail_body = <<<_END
-        <p style="margin:25px 0;padding:0;color:#ffffff">
+        <p style="margin:25px 0;padding:0;color: var(--text-color)fff">
         $subject_greetings
         <br><br>
         $mail_body_content
@@ -91,7 +91,7 @@ function sendCredentials($general_purpose, $firstname, $lastname, $email, $usern
         //generate link button
         $link_button = <<<_END
         <a href="https://pantaspa.co.za/custom/application/"
-        style="background:linear-gradient(270deg,#009ba2ff 0%,#00c2cbff 100%);background-color:#00c2cbff;text-decoration:none;padding:15px 0px;color:#fff;border: #fff solid 3px;border-radius:36px;display:inline-block;font-weight:bold;text-transform:uppercase;width:100%;max-width:285px"
+        style="background:linear-gradient(270deg,#009ba2ff 0%,#00c2cbff 100%);background-color:#00c2cbff;text-decoration:none;padding:15px 0px;color: var(--text-color);border: #fff solid 3px;border-radius:36px;display:inline-block;font-weight:bold;text-transform:uppercase;width:100%;max-width:285px"
         class="m_2317402489703711923full-widthz"
         target="_blank"
         data-saferedirecturl="https://pantaspa.co.za/custom/application/"><span>Login</span></a>
@@ -101,7 +101,7 @@ function sendCredentials($general_purpose, $firstname, $lastname, $email, $usern
         <div style="color:redimportant;">
         Please use the credentials below to log into your account.<br> 
         Access the <a href="https://pantaspa.co.za/custom/application/"
-        style="color:#ffffff;font-weight:normal;text-decoration:underline"
+        style="color: var(--text-color)fff;font-weight:normal;text-decoration:underline"
         target="_blank"
         data-saferedirecturl="https://pantaspa.co.za/custom/application/">Administrator Portal</a>.
         <br><br>
@@ -125,7 +125,7 @@ function sendCredentials($general_purpose, $firstname, $lastname, $email, $usern
         _END;
 
         $mail_body = <<<_END
-        <p style="margin:25px 0;padding:0;color:#ffffff">
+        <p style="margin:25px 0;padding:0;color: var(--text-color)fff">
         $subject_greetings
         <br><br>
         $mail_body_content
@@ -211,7 +211,7 @@ function sendCredentials($general_purpose, $firstname, $lastname, $email, $usern
                         <div style="width:100%;height:100%;">
                             <!--#d6d6d5-->
                             <div role="article" aria-label="email name" lang="en"
-                                style="background:url('https://adaptivconcept.co.za/public_media/images/logo.png') fixed top center/620px 631px;font-size:18px;line-height:26px;font-family:'Montserrat','Poppins',Arial,Helvetica,sans-serif;color:#333">
+                                style="background:url('https://adaptivconcept.co.za/public_media/images/logo.png') fixed top center/620px 631px;font-size:18px;line-height:26px;font-family:'Montserrat','Poppins',Arial,Helvetica,sans-serif;color: var(--secondary-color)">
                                 <div class="mail-content-container">
                                     <!-- Mail Header -->
                                     <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
@@ -231,7 +231,7 @@ function sendCredentials($general_purpose, $firstname, $lastname, $email, $usern
                                                                         data-saferedirecturl="https://pantaspa.co.za/">
                                                                         <img src="https://adaptivconcept.co.za/public_media/images/PantaSpa_Logo_Color.png"
                                                                             alt="Panta-Spa-Logo"
-                                                                            style="background-color:#ffffff;padding:20px;border-radius:0 0 25px 25px;display:block;max-width:200px;width:100%;text-align:center"
+                                                                            style="background-color: var(--text-color)fff;padding:20px;border-radius:0 0 25px 25px;display:block;max-width:200px;width:100%;text-align:center"
                                                                             width="200">
                                                                     </a>
                                                                     <div style="line-height:90px;height:90px">
@@ -242,10 +242,10 @@ function sendCredentials($general_purpose, $firstname, $lastname, $email, $usern
                                                                         style="text-decoration:none" target="_blank"
                                                                         data-saferedirecturl="https://pantaspa.co.za/">
                                                                         <span
-                                                                            style="text-transform:uppercase;color:#ffffff;font-weight:bold;letter-spacing:2px;display:block;font-size:60px;line-height:60px">
+                                                                            style="text-transform:uppercase;color: var(--text-color)fff;font-weight:bold;letter-spacing:2px;display:block;font-size:60px;line-height:60px">
                                                                             Panta Spa &amp; Beauty Palace</span>
                                                                         <span
-                                                                            style="text-transform:uppercase;color:#ffffff;font-weight:bold;letter-spacing:2px;display:block;font-size:20px;line-height:30px">
+                                                                            style="text-transform:uppercase;color: var(--text-color)fff;font-weight:bold;letter-spacing:2px;display:block;font-size:20px;line-height:30px">
                                                                             $subject
                                                                             </span>
                                                                     </a>
@@ -297,7 +297,7 @@ function sendCredentials($general_purpose, $firstname, $lastname, $email, $usern
                                     <!-- Mail Footer -->
                                     <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0"
                                         role="presentation" width="620"
-                                        style="max-width:620px;width:100%;background-color:#ffffff">
+                                        style="max-width:620px;width:100%;background-color: var(--text-color)fff">
                                         <tbody>
                                             <tr>
                                                 <td style="padding:40px 20px 0px">

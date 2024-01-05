@@ -64,7 +64,7 @@ if (isset($_GET['usernm']) && isset($_GET['cycle'])) {
         if ($rows == 0) {
             //there is no result echo the label
             echo <<<_END
-            <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: #343434;">
+            <div class="grid-tile p-4 shadow text-center border-1 border" style="background-color: var(--secondary-color);">
                 <h1 class="fs-5">No challenges available.</h1>
             </div>
             _END;
@@ -106,14 +106,14 @@ if (isset($_GET['usernm']) && isset($_GET['cycle'])) {
 
 
                 $xp_bar = <<<_END
-                <div class="progress mb-2 rounded-pill" style="height:15px;background-color:var(--mineshaft);">
+                <div class="progress mb-2 rounded-pill" style="height:15px;background-color: var(--secondary-color);">
                     <!-- border:1px solid white !important; -->
                     <div class="progress-bar" role="progressbar" aria-label="Challenge XP Progression" style="width: 10%;background-color:var(--white)!important;" aria-valuenow="1" aria-valuemin="1" aria-valuemax="$totalChallengeXP"></div>
                 </div>
                 _END;
 
                 $challenges .= <<<_END
-                <div class="grid-tile p-4 pt-5 shadow text-center border-0 border shadow down-top-grad-tahiti" style="/* background-color: var(--white); */border-color: var(--mineshaft)!important;">
+                <div class="grid-tile p-4 pt-5 shadow text-center border-0 border shadow down-top-grad-tahiti" style="/* background-color: var(--text-color); */border-color: var(--secondary-color)!important;">
                     <div class="card bg-transparent h-100 border-0">
                         <div class="card-header bg-transparent border-0">
                             <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4" alt="">
@@ -129,11 +129,11 @@ if (isset($_GET['usernm']) && isset($_GET['cycle'])) {
                         </div>
                         <div class="card-footer bg-transparent border-0">
                             <!-- progress bar -->
-                            <p class="mb-2 fs-6 fw-bold text-start" style="font-size:10px;color:var(--mineshaft);">Progress:</p>
+                            <p class="mb-2 fs-6 fw-bold text-start" style="font-size:10px;color: var(--secondary-color);">Progress:</p>
                             <div id="challenge-xp-progress-container">
                                 $xp_bar
                             </div>
-                            <p class="text-end mb-0 fw-bold fs-6" style="color:var(--mineshaft);">? / $totalChallengeXP xp</p>
+                            <p class="text-end mb-0 fw-bold fs-6" style="color: var(--secondary-color);">? / $totalChallengeXP xp</p>
                         </div>
                     </div>
                 </div>

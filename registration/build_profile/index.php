@@ -46,10 +46,10 @@ function die_error_curtain($error_msg, $error_code)
     </head>
     <body>
       <!-- error Curtain -->
-      <div class="offline-curtain" id="error-curtain" style="background-color:var(--mineshaft);">
+      <div class="offline-curtain" id="error-curtain" style="background-color: var(--secondary-color);">
           <nav class="navbar navbar-light stickyz fixed-top navbar-style bg-transparent" style="z-index: 10000;">
               <div class="container-fluid justify-content-center p-5">
-                  <h1 class="navbar-brand fs-1 text-white comfortaa-font m-0">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></h1>
+                  <h1 class="navbar-brand fs-1 text-white comfortaa-font m-0">One<span style="color: var(--primary-color)">fit</span>.app<span style="font-size: 10px">&trade;</span></h1>
               </div>
           </nav>
           <div class="d-flex align-items-center down-top-grad-white" style="width: 100%; height: 100%;">
@@ -63,13 +63,13 @@ function die_error_curtain($error_msg, $error_code)
               </div>
           </div>
           <nav class="text-center text-center p-4 fixed-bottom" alt="">
-              <h1 id="output-msg-heading" class="navbar-brand fs-1 fw-bold comfortaa-font d-grid" style="color: var(--mineshaft);">
+              <h1 id="output-msg-heading" class="navbar-brand fs-1 fw-bold comfortaa-font d-grid" style="color: var(--secondary-color);">
                   <!--<span class="material-icons material-icons-round align-middle" style="font-size:40px!important;">
                     error_outline
                   </span> -->
                   <span class="align-middle">Fatal Error.</span>
               </h1>
-              <p id="output-msg-text" class="text-center poppins-font" style="color: var(--mineshaft);"> $error_msg </p>
+              <p id="output-msg-text" class="text-center poppins-font" style="color: var(--secondary-color);"> $error_msg </p>
               <div class="d-grid gap-2 col-6 mx-auto my-4">
                   <a href="../../" class="onefit-buttons-style-dark btn-lg p-4 poppins-font" style="border-radius: 50px;">Go Back</a>
               </div>
@@ -1042,7 +1042,7 @@ try {
     }
 
     a {
-      color: var(--tahitigold) !important;
+      color: var(--primary-color) !important;
     }
   </style>
 
@@ -1107,7 +1107,7 @@ try {
       </div>
     </div>
     <nav class="text-center text-center p-4 fixed-bottom" alt="">
-      <p class="navbar-brand fs-1 text-white comfortaa-font">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></p>
+      <p class="navbar-brand fs-1 text-white comfortaa-font">One<span style="color: var(--primary-color)">fit</span>.app<span style="font-size: 10px">&trade;</span></p>
       <p class="text-center comfortaa-font" styl="font-size: 10px !important;">Loading. Please wait.</p>
     </nav>
   </div>
@@ -1117,8 +1117,8 @@ try {
   <div id="eula-curtain" class="eula-curtain" style="display: block;">
     <div class="p-4 h-100" style="overflow-y: auto;">
       <div class="fixed-top p-4" style="background: #343434;">
-        <h1 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end" style="border-radius: 25px; background-color: #343434; color: #fff; border-color: #ffa500;">
-          <!-- <span class="material-icons material-icons-round" style="color: #ffa500;">
+        <h1 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end" style="border-radius: 25px; background-color: var(--secondary-color); color: #fff; border-color: var(--primary-color);">
+          <!-- <span class="material-icons material-icons-round" style="color: var(--primary-color);">
             looks_3
           </span> -->
           <span class="comfortaa-font">
@@ -1178,11 +1178,11 @@ try {
         <!-- Procession Buttons -->
         <div class="comfortaa-font text-center mt-4 text-white" style="margin-bottom: 40px; font-size: 20px;">
           <div class="d-grid gap-0 w-100 text-white">
-            <span class="rounded-pill p-4" style="background-color: #343434;">
-              One<span style="color: #ffa500;">fit</span>.app
+            <span class="rounded-pill p-4" style="background-color: var(--secondary-color);">
+              One<span style="color: var(--primary-color);">fit</span>.app
             </span>
 
-            <span class="material-icons material-icons-outlined" style="color: #ffa500;">
+            <span class="material-icons material-icons-outlined" style="color: var(--primary-color);">
               horizontal_rule
             </span>
           </div>
@@ -1206,7 +1206,7 @@ try {
               <!-- onclick="proceedToMain()" -->
               <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow w3-animate-left" form="eula-policy-info-form" type="submit" id="proceed-btn" style="display: none;">
                 <div class="d-grid gap-2 justify-content-center text-center fw-bold">
-                  <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
+                  <span class="material-icons material-icons-round" style="font-size: 40px !important; color: var(--primary-color);">
                     workspace_premium </span>
                   <span>Proceed.</span>
                 </div>
@@ -1247,7 +1247,7 @@ try {
   <!-- Navigation bar -->
   <nav class="navbar navbar-light sticky-topz fixed-top navbar-stylez top-down-grad-dark">
     <div class="container-fluid">
-      <a class="navbar-brand fs-1 text-white comfortaa-font" href="../index.php">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></a>
+      <a class="navbar-brand fs-1 text-white comfortaa-font" href="../index.php">One<span style="color: var(--primary-color)">fit</span>.app<span style="font-size: 10px">&trade;</span></a>
       <button class="navbar-toggler shadow onefit-buttons-style-dark p-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <!--<span class="navbar-toggler-icon"></span>-->
         <!--<img src="./media/assets/One-Symbol-Logo-Two-Tone.svg" alt="" class="img-fluid logo-size-1" />-->
@@ -1256,7 +1256,7 @@ try {
       </button>
       <div class="offcanvas offcanvas-end offcanvas-menu-primary-style" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="h-100z" id="offcanvas-menu">
-          <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
+          <div class="offcanvas-header fs-1" style="background-color: var(--secondary-color); color: #fff">
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
               <img src="../../media/assets/One-Symbol-Logo-White.svg" alt="icon" class="img-fluid logo-size-2" />
               Navigation
@@ -1302,15 +1302,15 @@ try {
     <div id="main-body-row-container" class="row w-100Z align-items-center m-0 no-scroller" style="height: 100vh !important; overflow-y: auto;">
       <div class="col-md -4 text-white h-100z p-0 no-scroller" style="max-height: 100vh; padding-top: 80px !important; overflow-y: auto;">
         <div class="container top-down-grad-dark p-4" style="border-radius: 25px 25px 0 0 !important;">
-          <h3 class="text-center p-4 bg-transparent fw-bold comfortaa-font text-truncate border-5 border-start border-end down-top-grad-tahitiz" style="color: #fff !important; border-color: #ffa500 !important; cursor: pointer; border-radius: 25px;">
+          <h3 class="text-center p-4 bg-transparent fw-bold comfortaa-font text-truncate border-5 border-start border-end down-top-grad-tahitiz" style="color: #fff !important; border-color: var(--primary-color) !important; cursor: pointer; border-radius: 25px;">
             <!-- class="text-center rounded-pillz p-4 mb-4 text-truncate shadow"
-            style="background-color: #ffa500; color: #343434 !important; border-radius: 25px !important;" -->
+            style="background-color: var(--primary-color); color: var(--secondary-color) !important; border-radius: 25px !important;" -->
             <div class="d-grid justify-content-center text-center comfortaa-font">
               <div class="text-center">
                 <img src="../../media/assets/One-Logo.svg" class="img-fluid my-4 px-4 text-center" style="border-radius: 25px; width: 100%; max-width: 400px!important;" alt="logo">
               </div>
 
-              <hr class="my-4" style="color: #ffa500;">
+              <hr class="my-4" style="color: var(--primary-color);">
 
               <span class="material-icons material-icons-round">
                 person_add
@@ -1324,9 +1324,9 @@ try {
 
           <hr class="text-white" style="margin-top: 80px; margin-bottom: 80px;">
 
-          <div class="p-4 d-grid justify-content-center text-center border-5 border-start border-end down-top-grad-dark" style="border-radius: 25px; border-color: #ffa500 !important;">
+          <div class="p-4 d-grid justify-content-center text-center border-5 border-start border-end down-top-grad-dark" style="border-radius: 25px; border-color: var(--primary-color) !important;">
             <div class="d-flex align-items-center justify-content-center align-middle">
-              <span class="material-icons material-icons-round" style="color: #ffa500;">
+              <span class="material-icons material-icons-round" style="color: var(--primary-color);">
                 looks_one
               </span>
               <h5 class="comfortaa-font my-4">Set your profile picture</h5>
@@ -1353,26 +1353,26 @@ try {
 
           <hr class="text-white" style="margin-top: 80px; margin-bottom: 80px;">
 
-          <ul class="pb-4z text-center list-group list-group-flush down-top-grad-dark border-white border-5 border-start border-end" style="border-radius: 25px !important; border-color: #ffa500 !important;">
-            <li id="toggle-main-form-window-list-btn" class="pt-4 list-group-item bg-transparent fw-bold comfortaa-font text-truncate down-top-grad-dark" style="color: #fff !important; border-color: #ffa500 !important; cursor: pointer;" onclick="switchTab('mainfrmwindow')">
+          <ul class="pb-4z text-center list-group list-group-flush down-top-grad-dark border-white border-5 border-start border-end" style="border-radius: 25px !important; border-color: var(--primary-color) !important;">
+            <li id="toggle-main-form-window-list-btn" class="pt-4 list-group-item bg-transparent fw-bold comfortaa-font text-truncate down-top-grad-dark" style="color: #fff !important; border-color: var(--primary-color) !important; cursor: pointer;" onclick="switchTab('mainfrmwindow')">
               <div class="d-grid gap-2 text-center justify-content-center">
                 <div class="d-flex align-items-center justify-content-center align-middle text-wrap">
-                  <span class="material-icons material-icons-round" style="color: #ffa500;">
+                  <span class="material-icons material-icons-round" style="color: var(--primary-color);">
                     looks_two
                   </span>
                   <span class="pt-4 fs-5">Create your Profile</span>
                 </div>
 
 
-                <span class="material-icons material-icons-round" style="color: #ffa500;">
-                  <!-- style="color: #ffa500; cursor: pointer;" -->
+                <span class="material-icons material-icons-round" style="color: var(--primary-color);">
+                  <!-- style="color: var(--primary-color); cursor: pointer;" -->
                   expand_more
                 </span>
               </div>
 
             </li>
 
-            <li id="category-selector-about-you" class="down-top-grad-dark list-group-item bg-transparent fw-bold comfortaa-font text-truncate profile-item-button collapse multi-collapse align-middle" style="color: #ffa500; border-color: #ffa500 !important;" onclick="switchTab('aboutyou')">
+            <li id="category-selector-about-you" class="down-top-grad-dark list-group-item bg-transparent fw-bold comfortaa-font text-truncate profile-item-button collapse multi-collapse align-middle" style="color: var(--primary-color); border-color: var(--primary-color) !important;" onclick="switchTab('aboutyou')">
               <div class="row align-items-center">
                 <div class="col-md text-truncate">
                   <span>About You</span>
@@ -1385,7 +1385,7 @@ try {
               </div>
 
             </li>
-            <li id="category-selector-goal-setting" class="down-top-grad-dark list-group-item bg-transparent fw-bold comfortaa-font text-truncate profile-item-button collapse multi-collapse align-middle" style="color: #ffa500; border-color: #ffa500 !important;" onclick="switchTab('goalsetting')">
+            <li id="category-selector-goal-setting" class="down-top-grad-dark list-group-item bg-transparent fw-bold comfortaa-font text-truncate profile-item-button collapse multi-collapse align-middle" style="color: var(--primary-color); border-color: var(--primary-color) !important;" onclick="switchTab('goalsetting')">
               <div class="row align-items-center">
                 <div class="col-md text-truncate">
                   <span>Goal Setting</span>
@@ -1398,7 +1398,7 @@ try {
               </div>
 
             </li>
-            <li id="category-selector-fitness-prefs" class="down-top-grad-dark list-group-item bg-transparent fw-bold comfortaa-font text-truncate profile-item-button collapse multi-collapse align-middle" style="color: #ffa500; border-color: #ffa500 !important;" onclick="switchTab('fitprefs')">
+            <li id="category-selector-fitness-prefs" class="down-top-grad-dark list-group-item bg-transparent fw-bold comfortaa-font text-truncate profile-item-button collapse multi-collapse align-middle" style="color: var(--primary-color); border-color: var(--primary-color) !important;" onclick="switchTab('fitprefs')">
               <div class="row align-items-center">
                 <div class="col-md text-truncate">
                   <span class="text-truncate">Fitness Preferances</span>
@@ -1411,7 +1411,7 @@ try {
               </div>
 
             </li>
-            <li id="category-selector-eu-agreements" class="down-top-grad-dark list-group-item bg-transparent fw-bold comfortaa-font text-truncate profile-item-button collapse multi-collapse align-middle" style="color: #ffa500; border-color: #ffa500 !important;" onclick="switchTab('eu-agreements')" hidden>
+            <li id="category-selector-eu-agreements" class="down-top-grad-dark list-group-item bg-transparent fw-bold comfortaa-font text-truncate profile-item-button collapse multi-collapse align-middle" style="color: var(--primary-color); border-color: var(--primary-color) !important;" onclick="switchTab('eu-agreements')" hidden>
               <div class="row align-items-center">
                 <div class="col-md">
                   <span>End-User Agreements</span>
@@ -1425,7 +1425,7 @@ try {
 
             </li>
 
-            <span class="material-icons material-icons-outlined" style="color: #ffa500; cursor: pointer;" onclick="switchTab('mainfrmwindow')">
+            <span class="material-icons material-icons-outlined" style="color: var(--primary-color); cursor: pointer;" onclick="switchTab('mainfrmwindow')">
               <!--  -->
               horizontal_rule
             </span>
@@ -1460,7 +1460,7 @@ try {
             <p class="text-white fs-5 align-end me-4z text-center comfortaa-font"> <span style="font-size: 10px;">Crafted by
                 AdaptivConcept&trade; NPC
                 &copy;
-                2022</span> | <a href="http://www.AdaptivConcept.co.za" class="comfortaa-font" style=" color: #ffa500;">Support</a>
+                2022</span> | <a href="http://www.AdaptivConcept.co.za" class="comfortaa-font" style=" color: var(--primary-color);">Support</a>
             </p>
           </div>
         </div>
@@ -1471,18 +1471,18 @@ try {
 
         <div id="main-form-window-scroll-container" class="down-top-grad-white p-4 mb-4 w3-animate-top" style="max-height: 80vh; width: 100%; border-radius: 25px !important; border-bottom: #ffa500 solid 5px; overflow-y: auto; overflow-x: hidden;">
 
-          <div class="p-4 shadow text-center mb-4 comfortaa-font border-5 border-start border-end top-down-grad-dark sticky-topz" style="border-radius: 25px; border-color: #ffa500 !important;">
-            <!-- background-color: #343434;  -->
+          <div class="p-4 shadow text-center mb-4 comfortaa-font border-5 border-start border-end top-down-grad-dark sticky-topz" style="border-radius: 25px; border-color: var(--primary-color) !important;">
+            <!-- background-color: var(--secondary-color);  -->
             <h1 class="align-middle" id="user-welcome-header">
-              <span class="material-icons material-icons-outlined align-middle" style="color: var(--tahitigold) !important; font-size: 40px;">account_circle</span>
+              <span class="material-icons material-icons-outlined align-middle" style="color: var(--primary-color) !important; font-size: 40px;">account_circle</span>
               Hi <?php echo "$current_user_name $current_user_surname"; ?>.
             </h1>
-            <hr style="color: var(--white);">
+            <hr style="color: var(--text-color);">
             <p class="comfortaa-font" style="font-size: 12px !important;">Please provide us with a few more details so that we can understand more about you
               and your preferences.
             </p>
             <div id="tab-title-header-display">
-              <h1 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center mt-4 border-5 border-start border-end sticky-top" style="border-radius: 25px;background-color: var(--mineshaft);color: var(--white) !important;border-color: var(--tahitigold) !important;"> About You </h1>
+              <h1 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center mt-4 border-5 border-start border-end sticky-top" style="border-radius: 25px;background-color: var(--secondary-color);color: var(--text-color) !important;border-color: var(--primary-color) !important;"> About You </h1>
             </div>
           </div>
 
@@ -1509,7 +1509,7 @@ try {
 
                 <div class="my-4" id="category-about-you-tab-questions-pane">
                   <div class="p-4 content-panel-border-style shadow" style="border-radius: 25px; background: #343434;">
-                    <h2 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4" style="border-radius: 25px; background-color: #343434; color: #fff; margin-bottom: 60px !important;">
+                    <h2 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4" style="border-radius: 25px; background-color: var(--secondary-color); color: #fff; margin-bottom: 60px !important;">
                       Tell us about yourself.
                     </h2>
 
@@ -1531,10 +1531,10 @@ try {
                       <div class="col-lg">
                         <div class="text-start d-grid gap-2" id="user-account-details">
                           <div id="question-variable">
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">1)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">1)</span>
                               Your name</p>
 
-                            <p class="fs-5" style="color: #ffa500;">
+                            <p class="fs-5" style="color: var(--primary-color);">
                               <?php echo $current_user_name; ?>
                             </p>
                           </div>
@@ -1543,10 +1543,10 @@ try {
 
                         <div class="text-start d-grid gap-2" id="user-account-details">
                           <div id="question-variable">
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">2)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">2)</span>
                               Your surname</p>
 
-                            <p class="fs-5" style="color: #ffa500;">
+                            <p class="fs-5" style="color: var(--primary-color);">
                               <?php echo $current_user_surname; ?>
                             </p>
                           </div>
@@ -1555,10 +1555,10 @@ try {
 
                         <div class="text-start d-grid gap-2" id="user-account-details">
                           <div id="question-variable">
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">3)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">3)</span>
                               Your email address</p>
 
-                            <p class="fs-5" style="color: #ffa500;">
+                            <p class="fs-5" style="color: var(--primary-color);">
                               <?php echo $current_user_email; ?>
                             </p>
                           </div>
@@ -1567,10 +1567,10 @@ try {
 
                         <div class="text-start d-grid gap-2" id="user-account-details">
                           <div id="question-variable">
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">4)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">4)</span>
                               Your contact number</p>
 
-                            <p class="fs-5" style="color: #ffa500;">
+                            <p class="fs-5" style="color: var(--primary-color);">
                               <?php echo $current_user_contact; ?>
                             </p>
                           </div>
@@ -1581,10 +1581,10 @@ try {
                       <div class="col-lg">
                         <div class="text-start d-grid gap-2" id="user-account-details">
                           <div id="question-variable">
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">5)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">5)</span>
                               Your date of birth</p>
 
-                            <p class="fs-5" style="color: #ffa500;">
+                            <p class="fs-5" style="color: var(--primary-color);">
                               <?php echo $current_user_dob; ?>
                             </p>
                           </div>
@@ -1593,10 +1593,10 @@ try {
 
                         <div class="text-start d-grid gap-2" id="user-account-details">
                           <div id="question-variable">
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">6)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">6)</span>
                               Your gender</p>
 
-                            <p class="fs-5" style="color: #ffa500;">
+                            <p class="fs-5" style="color: var(--primary-color);">
                               <?php echo $current_user_gender; ?>
                             </p>
                           </div>
@@ -1605,10 +1605,10 @@ try {
 
                         <div class="text-start d-grid gap-2" id="user-account-details">
                           <div id="question-variable">
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">7)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">7)</span>
                               Your race</p>
 
-                            <p class="fs-5" style="color: #ffa500;">
+                            <p class="fs-5" style="color: var(--primary-color);">
                               <?php echo $current_user_race; ?>
                             </p>
                           </div>
@@ -1617,10 +1617,10 @@ try {
 
                         <div class="text-start d-grid gap-2" id="user-account-details">
                           <div id="question-variable">
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">8)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">8)</span>
                               Your Nationality</p>
 
-                            <p class="fs-5" style="color: #ffa500;">
+                            <p class="fs-5" style="color: var(--primary-color);">
                               <?php echo $current_user_nation; ?>
                             </p>
                           </div>
@@ -1651,14 +1651,14 @@ try {
                           Height (in
                           Centimeters) and Weight (in Kilograms)</p>
 
-                        <p class="fs-5 comfortaa-font align-middle text-center"><span class="fs-2" style="color: #ffa500;">9)</span>
+                        <p class="fs-5 comfortaa-font align-middle text-center"><span class="fs-2" style="color: var(--primary-color);">9)</span>
                           Your weight (kg)</p>
 
                         <div class="form-group my-4">
                           <input class="form-control-text-input p-4" type="number" min="0" oninput="validity.valid||(value='');" step="2" name="category_1_weight_field" id="user-weight" placeholder="Weight (kg)" required />
                         </div>
 
-                        <p class="fs-5 comfortaa-font align-middle text-center"><span class="fs-2" style="color: #ffa500;">10)</span>
+                        <p class="fs-5 comfortaa-font align-middle text-center"><span class="fs-2" style="color: var(--primary-color);">10)</span>
                           Your height (cm)</p>
 
                         <div class="form-group my-4">
@@ -1673,10 +1673,10 @@ try {
                       <div class="comfortaa-font text-center mt-4" style="margin-bottom: 40px; font-size: 20px;">
 
                         <div class="d-grid gap-0 w-100 text-white">
-                          <span class="rounded-pill p-4" style="background-color: #343434;">
-                            One<span style="color: #ffa500;">fit</span>.app
+                          <span class="rounded-pill p-4" style="background-color: var(--secondary-color);">
+                            One<span style="color: var(--primary-color);">fit</span>.app
                           </span>
-                          <span class="material-icons material-icons-outlined" style="color: #ffa500;">
+                          <span class="material-icons material-icons-outlined" style="color: var(--primary-color);">
                             horizontal_rule
                           </span>
                         </div>
@@ -1692,7 +1692,7 @@ try {
                           <div class="col-lg py-4">
                             <button type="button" class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow panel-nav-btn" id="goalsetting-next-panel-btn" onclick="survey_controller('aboutyou','goalsetting')" style="display:none;">
                               <div class="d-grid gap-2 justify-content-center text-center fw-bold">
-                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
+                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: var(--primary-color);">
                                   arrow_forward_ios </span>
                                 <span>Goal setting.</span>
                               </div>
@@ -1717,14 +1717,14 @@ try {
 
                 <div class="my-4" id="category-goal-setting-tab-questions-pane">
                   <div class="p-4 content-panel-border-style shadow" style="border-radius: 25px; background: #343434;">
-                    <h2 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4" style="border-radius: 25px; background-color: #343434; color: #fff; margin-bottom: 60px !important;">
+                    <h2 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4" style="border-radius: 25px; background-color: var(--secondary-color); color: #fff; margin-bottom: 60px !important;">
                       Set your Fitness Goals.
                     </h2>
 
                     <div form="main-submission-form" id="emailHelp" class="form-text text-center fw-bold my-4" style=" color: #fff">We have a responsibility
                       to
                       keep your keep your Identity &amp; Privacy safe! <br>
-                      - <a href="http://" style=" color: #ffa500;">Privacy
+                      - <a href="http://" style=" color: var(--primary-color);">Privacy
                         Policy</a> -
                     </div>
 
@@ -1764,7 +1764,7 @@ try {
                             <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                               sports_score
                             </span> -->
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">1)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">1)</span>
                               What are
                               your Fitness
                               Goals?</p>
@@ -1832,7 +1832,7 @@ try {
                             <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                            <p class="fs-5 comfortaa-font align-middle"><span class=" fs-2" style="color: #ffa500;">2)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class=" fs-2" style="color: var(--primary-color);">2)</span>
                               Please set
                               your own Goal statement</p>
                           </div>
@@ -1853,7 +1853,7 @@ try {
                             <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">3)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">3)</span>
                               By when do
                               you want to have realized this Goal?</p>
                             <!-- radio buttons to dynamically set date depending on selection of week range -->
@@ -1990,7 +1990,7 @@ try {
                             <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">4)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">4)</span>
                               Which areas
                               of your body do you want to work on?</p>
                           </div>
@@ -2083,7 +2083,7 @@ try {
                             <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">5)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">5)</span>
                               How many workouts per week do you want to do?</p>
                           </div>
                           <div class="col-lg -6 p-2">
@@ -2134,7 +2134,7 @@ try {
                             <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">6)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">6)</span>
                               How much time do you have to workout?</p>
                           </div>
                           <div class="col-lg -6 p-2">
@@ -2185,7 +2185,7 @@ try {
                             <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">7)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">7)</span>
                               How many weeks do you want to start with?</p>
                           </div>
                           <div class="col-lg -6 p-2">
@@ -2245,7 +2245,7 @@ try {
                             <div class="form-group mt-4 mb-0 w3-animate-right" id="category-2-question-8-specify" style="display: none;">
                               <input class="form-control-text-input p-4" type="number" value="specify" name="category_2_question_7_specify_weeks_field" id="specific-weeks" placeholder="Specify the number of weeks" />
                               <!-- style="position: relative;"  -->
-                              <p class="comfortaa-font text-center fs-5 mt-2 mb-0" style="color: #ffa500;" for="specific-weeks">
+                              <p class="comfortaa-font text-center fs-5 mt-2 mb-0" style="color: var(--primary-color);" for="specific-weeks">
                                 <!-- style="position: absolute; top: 50%; right: 20px; margin-top: -25%; transform: translate(10px, 10px) !important; -ms-transform: translate(10px, 10px) !important;" -->
                                 Weeks
                               </p>
@@ -2264,7 +2264,7 @@ try {
                             <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">8)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">8)</span>
                               Do you have any bad habits?</p>
                           </div>
                           <div class="col-lg -6 p-2">
@@ -2381,7 +2381,7 @@ try {
                             <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                             sports_score
                           </span> -->
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">9)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">9)</span>
                               Are you prepared to do what is necessay to let go of bed habits?</p>
                           </div>
                           <div class="col-lg -6 p-2">
@@ -2416,7 +2416,7 @@ try {
                             <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">10)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">10)</span>
                               Please select your prefarred "Cheat-Day".</p>
                           </div>
                           <div class="col-lg -6 p-2">
@@ -2470,7 +2470,7 @@ try {
                             <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">
                           sports_score
                         </span> -->
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">11)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">11)</span>
                               What will you do on your "Cheat-Day"?</p>
                           </div>
                           <div class="col-lg -6 p-2">
@@ -2493,11 +2493,11 @@ try {
                       <div class="comfortaa-font text-center mt-4" style="margin-bottom: 40px; font-size: 20px;">
 
                         <div class="d-grid gap-0 w-100 text-white">
-                          <span class="rounded-pill p-4" style="background-color: #343434;">
-                            One<span style="color: #ffa500;">fit</span>.app
+                          <span class="rounded-pill p-4" style="background-color: var(--secondary-color);">
+                            One<span style="color: var(--primary-color);">fit</span>.app
                           </span>
 
-                          <span class="material-icons material-icons-outlined" style="color: #ffa500;">
+                          <span class="material-icons material-icons-outlined" style="color: var(--primary-color);">
                             horizontal_rule
                           </span>
                         </div>
@@ -2513,7 +2513,7 @@ try {
                           <div class="col-lg py-4 d-grid">
                             <button type="button" class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow panel-nav-btn" id="aboutyou-back-panel-btn" onclick="survey_controller('goalsetting','aboutyou')" style="display: none;">
                               <div class="d-grid gap-2 justify-content-center text-center fw-bold">
-                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
+                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: var(--primary-color);">
                                   arrow_back_ios </span>
                                 <span>About you.</span>
                               </div>
@@ -2523,7 +2523,7 @@ try {
                           <div class="col-lg py-4 d-grid">
                             <button type="button" class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow panel-nav-btn" id="fitprefs-next-panel-btn" onclick="survey_controller('goalsetting','fitprefs')" style="display: none;">
                               <div class="d-grid gap-2 justify-content-center text-center fw-bold">
-                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
+                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: var(--primary-color);">
                                   arrow_forward_ios </span>
                                 <span>Fitness Preferances.</span>
                               </div>
@@ -2548,14 +2548,14 @@ try {
                 <div class="my-4" id="category-fitness-prefs-tab-questions-pane">
 
                   <div class="p-4 content-panel-border-style shadow" style="border-radius: 25px; background: #343434;">
-                    <h4 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end" style="border-radius: 25px; background-color: #343434; color: #fff; border-color: #ffa500; margin-bottom: 80px !important;">
+                    <h4 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end" style="border-radius: 25px; background-color: var(--secondary-color); color: #fff; border-color: var(--primary-color); margin-bottom: 80px !important;">
                       Tell us about your Training History and Fitness Preferances.
                     </h4>
 
                     <div form="main-submission-form" id="emailHelp" class="form-text text-center fw-bold my-4" style=" color: #fff">We have a responsibility
                       to
                       keep your keep your Identity &amp; Privacy safe! <br>
-                      - <a href="http://" style=" color: #ffa500;">Privacy
+                      - <a href="http://" style=" color: var(--primary-color);">Privacy
                         Policy</a> -
                     </div>
 
@@ -2591,7 +2591,7 @@ try {
                         <div class="row align-items-center">
                           <div class="col-lg -4 p-2">
 
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">1)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">1)</span>
                               How fit are you?</p>
 
                           </div>
@@ -2632,7 +2632,7 @@ try {
                         <div class="row align-items-center">
                           <div class="col-lg -4 p-2">
 
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">2)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">2)</span>
                               When was the last time you were at your Ideal weight?</p>
 
                           </div>
@@ -2681,7 +2681,7 @@ try {
                         <div class="row align-items-center">
                           <div class="col-lg -4 p-2">
 
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">3)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">3)</span>
                               What is your body type?</p>
 
                           </div>
@@ -2739,7 +2739,7 @@ try {
                         <div class="row align-items-center">
                           <div class="col-lg -4 p-2">
 
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">4)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">4)</span>
                               Do you suffer from any joint pain?</p>
 
                           </div>
@@ -2771,7 +2771,7 @@ try {
                         <div class="row align-items-center">
                           <div class="col-lg -4 p-2">
 
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">5)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">5)</span>
                               How active are you in your daily life?</p>
 
                           </div>
@@ -2820,7 +2820,7 @@ try {
                         <div class="row align-items-center">
                           <div class="col-lg -4 p-2">
 
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">6)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">6)</span>
                               How are your energy levels during the day?</p>
 
                           </div>
@@ -2861,7 +2861,7 @@ try {
                         <div class="row align-items-center">
                           <div class="col-lg -4 p-2">
 
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">7)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">7)</span>
                               How much do you sleep every night?</p>
 
                           </div>
@@ -2910,7 +2910,7 @@ try {
                         <div class="row align-items-center">
                           <div class="col-lg -4 p-2">
 
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">8)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">8)</span>
                               What is your daily water intake?</p>
 
                           </div>
@@ -2959,7 +2959,7 @@ try {
                         <div class="row align-items-center">
                           <div class="col-lg -4 p-2">
 
-                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: #ffa500;">9)</span>
+                            <p class="fs-5 comfortaa-font align-middle"><span class="fs-2" style="color: var(--primary-color);">9)</span>
                               Select the type of classes you are looing to do</p>
 
                           </div>
@@ -3082,11 +3082,11 @@ try {
                       <div class="comfortaa-font text-center mt-4" style="margin-bottom: 40px; font-size: 20px;">
 
                         <div class="d-grid gap-0 w-100 text-white">
-                          <span class="rounded-pill p-4" style="background-color: #343434;">
-                            One<span style="color: #ffa500;">fit</span>.app
+                          <span class="rounded-pill p-4" style="background-color: var(--secondary-color);">
+                            One<span style="color: var(--primary-color);">fit</span>.app
                           </span>
 
-                          <span class="material-icons material-icons-outlined" style="color: #ffa500;">
+                          <span class="material-icons material-icons-outlined" style="color: var(--primary-color);">
                             horizontal_rule
                           </span>
                         </div>
@@ -3103,7 +3103,7 @@ try {
                             <!--  gap-2 justify-content-center -->
                             <button type="button" class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow panel-nav-btn" id="goalsetting-back-panel-btn" onclick="survey_controller('fitprefs','goalsetting')" style="display: none;">
                               <div class="d-grid gap-2 justify-content-center text-center fw-bold">
-                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
+                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: var(--primary-color);">
                                   arrow_back_ios </span>
                                 <span>Goal setting.</span>
                               </div>
@@ -3114,7 +3114,7 @@ try {
                             <!--  gap-2 justify-content-center -->
                             <button type="button" class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow panel-nav-btn" id="eu-agreements-next-panel-btn" onclick="survey_controller('finish','finish')" style="display: none;">
                               <div class="d-grid gap-2 justify-content-center text-center fw-bold">
-                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
+                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: var(--primary-color);">
                                   check_circle_outline </span>
                                 <span>Finish.</span>
                               </div>
@@ -3140,8 +3140,8 @@ try {
                 <div class="my-4" id="category-eula-tab-questions-pane">
 
                   <div class="p-4 content-panel-border-style shadow" style="border-radius: 25px; background: #343434;">
-                    <h1 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end" style="border-radius: 25px; background-color: #343434; color: #fff; border-color: #ffa500; margin-bottom: 80px !important;">
-                      <span class="material-icons material-icons-round" style="color: #ffa500;">
+                    <h1 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end" style="border-radius: 25px; background-color: var(--secondary-color); color: #fff; border-color: var(--primary-color); margin-bottom: 80px !important;">
+                      <span class="material-icons material-icons-round" style="color: var(--primary-color);">
                         looks_3
                       </span>
                       <span class="comfortaa-font">
@@ -3204,11 +3204,11 @@ try {
                       <!-- Procession Buttons -->
                       <div class="comfortaa-font text-center mt-4" style="margin-bottom: 40px; font-size: 20px;">
                         <div class="d-grid gap-0 w-100 text-white">
-                          <span class="rounded-pill p-4" style="background-color: #343434;">
-                            One<span style="color: #ffa500;">fit</span>.app
+                          <span class="rounded-pill p-4" style="background-color: var(--secondary-color);">
+                            One<span style="color: var(--primary-color);">fit</span>.app
                           </span>
 
-                          <span class="material-icons material-icons-outlined" style="color: #ffa500;">
+                          <span class="material-icons material-icons-outlined" style="color: var(--primary-color);">
                             horizontal_rule
                           </span>
                         </div>
@@ -3232,7 +3232,7 @@ try {
                             <button form="tou-policy-info-form" class="onefit-buttons-style-dark p-4 text-center comfortaa-font shadow" type="submit" class="my-4 p-4 onefit-buttons-style-dark btn-lg" id="final-submit-data-btn" style="display: none;">
                               <!--  onclick="survey_controller('fwd','finish')" -->
                               <div class="d-grid gap-2 justify-content-center text-center fw-bold">
-                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: #ffa500;">
+                                <span class="material-icons material-icons-round" style="font-size: 40px !important; color: var(--primary-color);">
                                   workspace_premium </span>
                                 <span>Lets Go.</span>
                               </div>
@@ -3295,7 +3295,7 @@ try {
         <!-- style="border-bottom: #ffa500 5px solid;" -->
         <div class="modal-header border-0">
           <h5 class="modal-title align-middle" id="tabProfileImgModalLabel">
-            <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">
+            <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color);">
               account_circle
             </span>
             <span class=" align-middle">Upload your profle picture and banner image</span>
@@ -3327,8 +3327,8 @@ try {
           </style>
 
           <h1 class="text-center my-4">
-            <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">add_a_photo</span>
-            <span class="align-middle">Profle Picture</span><span style="color: #ffa500;">.</span>
+            <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color);">add_a_photo</span>
+            <span class="align-middle">Profle Picture</span><span style="color: var(--primary-color);">.</span>
           </h1>
 
           <!-- image preview -->
@@ -3371,8 +3371,8 @@ try {
           <hr class="text-white" style="margin: 40px 0;">
 
           <h1 class="text-center my-4">
-            <span class="material-icons material-icons-round align-middle" style="color: #ffa500;">wallpaper</span>
-            <span class="align-middle">Profle Banner</span><span style="color: #ffa500;">.</span>
+            <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color);">wallpaper</span>
+            <span class="align-middle">Profle Banner</span><span style="color: var(--primary-color);">.</span>
           </h1>
 
           <!-- image preview -->
@@ -3406,7 +3406,7 @@ try {
               type="button" data-bs-toggle="collapse" data-bs-target="#tab-nav-social-quickpost" aria-expanded="false"
               aria-controls="tab-nav-social-quickpost"><i class="fas fa-paper-plane"></i> | <span
                 style="color: #fff !important">One</span><span
-                style="color: #ffa500 !important">fit</span>.Social</button>
+                style="color: var(--primary-color) !important">fit</span>.Social</button>
           </div> -->
       </div>
     </div>
@@ -3612,22 +3612,22 @@ try {
 
       if (tab == "aboutyou") {
         // about you
-        document.getElementById("tab-title-header-display").innerHTML = `<h5 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end sticky-top" style="border-radius: 25px; background-color: var(--mineshaft);color: var(--white) !important;border-color: var(--tahitigold) !important;"> About You </h5>`; //"About You";
+        document.getElementById("tab-title-header-display").innerHTML = `<h5 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end sticky-top" style="border-radius: 25px; background-color: var(--secondary-color);color: var(--text-color) !important;border-color: var(--primary-color) !important;"> About You </h5>`; //"About You";
         document.getElementById("category-about-you-tab").click();
 
       } else if (tab == "goalsetting") {
         // goal setting
-        document.getElementById("tab-title-header-display").innerHTML = `<h5 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end sticky-top" style="border-radius: 25px; background-color: var(--mineshaft);color: var(--white) !important;border-color: var(--tahitigold) !important;"> Goal Setting </h5>`; //"Goal Setting";
+        document.getElementById("tab-title-header-display").innerHTML = `<h5 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end sticky-top" style="border-radius: 25px; background-color: var(--secondary-color);color: var(--text-color) !important;border-color: var(--primary-color) !important;"> Goal Setting </h5>`; //"Goal Setting";
         document.getElementById("category-goal-setting-tab").click();
 
       } else if (tab == "fitprefs") {
         // fitness preferences
-        document.getElementById("tab-title-header-display").innerHTML = `<h5 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end sticky-top" style="border-radius: 25px; background-color: var(--mineshaft);color: var(--white) !important;border-color: var(--tahitigold) !important;"> Fitness Preferences </h5>`; //"Fitness Preferences";
+        document.getElementById("tab-title-header-display").innerHTML = `<h5 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end sticky-top" style="border-radius: 25px; background-color: var(--secondary-color);color: var(--text-color) !important;border-color: var(--primary-color) !important;"> Fitness Preferences </h5>`; //"Fitness Preferences";
         document.getElementById("category-fitness-prefs-tab").click();
 
       } else if (tab == "finish" || tab == "eu-agreements") {
         // end-user agreements
-        document.getElementById("tab-title-header-display").innerHTML = `<h5 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end sticky-top" style="border-radius: 25px; background-color: var(--mineshaft);color: var(--white) !important;border-color: var(--tahitigold) !important;"> Terms of Use Policy </h5>`; //"Policy / Licence Agreements";
+        document.getElementById("tab-title-header-display").innerHTML = `<h5 class="d-grid gap-2 p-4 rounded-pillz align-items-center justify-content-center align-middle text-center my-4 border-5 border-start border-end sticky-top" style="border-radius: 25px; background-color: var(--secondary-color);color: var(--text-color) !important;border-color: var(--primary-color) !important;"> Terms of Use Policy </h5>`; //"Policy / Licence Agreements";
         document.getElementById("category-eu-agreements-tab").click();
       } else if (tab == "mainfrmwindow") {
         // toggle main form window

@@ -117,7 +117,7 @@ html {
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-attachment: fixed !important; */
-    background-color: var(--mineshaft);
+    background-color: var(--secondary-color);
     color: var(--white);
     padding: 0;
 }
@@ -125,7 +125,7 @@ html {
 body {
     font-family: "poppins", cursive !important;
     margin: 0;
-    background-color: var(--mineshaft);
+    background-color: var(--secondary-color);
     color: var(--white);
     /* top-down-grad-dark */
     /* background: rgb(255, 255, 255); */
@@ -183,7 +183,7 @@ body {
     text-align: center !important;
     border: 0;
     width: 100%;
-    color: var(--mineshaft);
+    color: var(--secondary-color);
 
     transition: 0.2s;
 }
@@ -211,7 +211,7 @@ body {
     outline: 0;
     border-left: var(--tahitigold) solid 10px;
     border-right: var(--tahitigold) solid 10px;
-    color: var(--tahitigold);
+    color: var(--primary-color);
 
     border-radius: 50rem;
 
@@ -228,13 +228,13 @@ body {
     height: 2em;
     border: var(--tahitigold) 3px solid;
     border-radius: 10px !important;
-    background-color: #333;
+    background-color: var(--secondary-color);
 }
 
 .form-check-input:checked {
-    color: var(--mineshaft);
-    background-color: var(--tahitigold);
-    border-color: var(--tahitigold);
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
     outline: 0 !important;
 }
 

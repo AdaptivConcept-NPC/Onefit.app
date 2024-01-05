@@ -66,33 +66,33 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                         <!---->
                     </div>
                     <div class="form-group my-4">
-                        <label for="add-to-calender-activity-title-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">Team
+                        <label for="add-to-calender-activity-title-value" class="poppins-font fs-4 mb-4" style="color: var(--primary-color);">Team
                             select:</label>
                         <select class="custom-select form-control-select-input p-4 team-selection-list" name="add-to-calender-team-select" id="add-to-calender-team-select" placeholder="Select your Team." required=""><option value="noselection" selected="">🏅 Switch Teams.</option><option value="tst_grp_0001" grp-category="teams"> Test Group - Teams </option><option value="tst_grp_0003" grp-category="pro"> Test Group - Pro Community </option></select>
                     </div>
                     <div class="form-group my-4">
-                        <label for="add-to-calender-activity-title-value" class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">1.
+                        <label for="add-to-calender-activity-title-value" class="poppins-font fs-4 fw-bold mb-4" style="color: var(--primary-color);">1.
                             Title:</label>
                         <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-title-value" id="add-to-calender-activity-title-value" placeholder="Title" required="">
                     </div>
                     <div class="form-group my-4">
-                        <label for="add-to-calender-activity-rpe-value" class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">2.
+                        <label for="add-to-calender-activity-rpe-value" class="poppins-font fs-4 fw-bold mb-4" style="color: var(--primary-color);">2.
                             RPE
                             (Auto)</label>
                         <input class="form-control-text-input p-4" type="number" value="0" name="add-to-calender-activity-rpe-value" id="add-to-calender-activity-rpe-value" placeholder="RPE" required="" readonly="">
                     </div>
                     <div class="form-group my-4">
-                        <label for="add-to-calender-activity-day-value" class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">3.
+                        <label for="add-to-calender-activity-day-value" class="poppins-font fs-4 fw-bold mb-4" style="color: var(--primary-color);">3.
                             Day:</label>
                         <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-day-value" id="add-to-calender-activity-day-value" placeholder="Day" required="" readonly="">
                     </div>
                     <div class="form-group my-4">
-                        <label for="add-to-calender-activity-date-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">4.
+                        <label for="add-to-calender-activity-date-value" class="poppins-font fs-4 mb-4" style="color: var(--primary-color);">4.
                             Date:</label>
                         <input class="form-control-text-input p-4" onchange="changeSelDateValues(this.value)" type="date" name="add-to-calender-activity-date-value" id="add-to-calender-activity-date-value" placeholder="Date" required="">
                     </div>
                     <div class="form-group my-4">
-                        <label for="add-to-calender-activity-colorcode-value" class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">
+                        <label for="add-to-calender-activity-colorcode-value" class="poppins-font fs-4 fw-bold mb-4" style="color: var(--primary-color);">
                             5. Assign color code:
                         </label>
                         <select class="custom-select form-control-select-input p-4" onchange="toggleCustomColorSelection(this.value)" name="add-to-calender-activity-colorcode-value" id="add-to-calender-activity-colorcode-value" placeholder="Select a color code" required="">
@@ -116,7 +116,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                     <div class="row justify-content-center align-items-center">
                         <div id="custom-color-selection" class="col-md-8 border-1 border-end w3-animate-left" style="display: none;">
                             <div class="form-group my-4 px-2">
-                                <label for="add-to-calender-activity-custom-colorcode-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">5.1.
+                                <label for="add-to-calender-activity-custom-colorcode-value" class="poppins-font fs-4 mb-4" style="color: var(--primary-color);">5.1.
                                     Custom Color Code:</label>
                                 <div class="d-flex gap-4 align-items-end justify-content-center">
                                     <div class="d-grid gap-1">
@@ -141,7 +141,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                         </div>
                         <div class="col-md-4 d-grid text-center">
                             <span id="color-preview" class="p-4 shadow align-middle text-truncate text-dark shadow" style="background-color: greenyellow; border-radius: 25px;">
-                                <span class="material-icons material-icons-round align-middle" style="color: var(--mineshaft);">
+                                <span class="material-icons material-icons-round align-middle" style="color: var(--secondary-color);">
                                     palette
                                 </span>
                             </span>
@@ -150,12 +150,12 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                     <!-- we will have a two-col row elem: left col is for either selecting existing activities to push them to the listbox on the right col / using a textarea field to type in activities to push them to the listbox on the right col --> 
                     <!-- question 6 actvities selection -->
                     <div id="question-6-activities" style="display: none;">
-                        <h5 class="poppins-font fs-4 fw-bold mb-4" style="color: var(--tahitigold) !important">6. Add Activities</h5>
+                        <h5 class="poppins-font fs-4 fw-bold mb-4" style="color: var(--primary-color) !important">6. Add Activities</h5>
                         <div class="row align-items-center">
                             <div class="col-md d-grid">
                                 <!-- select an existing exercise activity -->
                                 <div class="form-group d-grid gap-2">
-                                    <label for="add-to-calender-activity-selection" class="poppins-font fs-4 add-to-calender-activity-selection" style="color: #ffa500;">Exercises &amp;
+                                    <label for="add-to-calender-activity-selection" class="poppins-font fs-4 add-to-calender-activity-selection" style="color: var(--primary-color);">Exercises &amp;
                                         Activities.</label>
                                     <select class="custom-select form-control-select-input p-2 light-scroller" id="add-to-calender-activity-selection" style="border-radius:25px;height:290px;" multiple="multiple" rows="20"><option value="49"> 001. Test exercise  X[4]P RPE[2]R  </option><option value="50"> 001. Test exercise  X[4]P RPE[2]R  </option><option value="51"> 002. Test exercise  X[5]P RPE[2]R  </option><option value="52"> 002. Test exercise  X[5]P RPE[2]R  </option><option value="53"> 003. Test exercise  X[7]P RPE[0]R  </option><option value="54"> 003. Test exercise  X[7]P RPE[0]R  </option><option value="55"> 004. Another Test  X[3]P RPE[0]R  </option><option value="56"> 004. Another Test  X[3]P RPE[0]R  </option><option value="57"> 005. 97TYUTYT  X[8]P RPE[0]R  </option><option value="58"> 005. 97TYUTYT  X[8]P RPE[0]R  </option><option value="59"> 006. ITYUTY  X[8]P RPE[8]R  </option><option value="60"> 006. ITYUTY  X[8]P RPE[8]R  </option><option value="63"> 007. uitruufyufy  X[3]P RPE[0]R  </option><option value="64"> 007. uitruufyufy  X[3]P RPE[0]R  </option><option value="40"> 90/90 spiral with rotation (At-Home - Back Exercises - Cooldowns)  X[10]P RPE[1]R  </option><option value="35"> Bent-over double delt raises (At-Home - Back Exercises - Standing movements)  X[15]P RPE[2]R  </option><option value="36"> Bent-over row with resistance band (At-Home - Back Exercises - Standing movements)  X[10]P RPE[1]R  </option><option value="29"> Bird dog (At-Home - Back Exercises - Floor movements)  X[8]P RPE[1]R  </option><option value="2"> Cable crossover  X[75]P RPE[10]R  </option><option value="26"> Cat-Cow (At-Home - Back Exercises - Warmups)  X[6]P RPE[1]R  </option><option value="1"> Chest dip  X[45]P RPE[5]R  </option><option value="12"> Chest press (Upper-body bulk and sculpt)  X[48]P RPE[5]R  </option><option value="23"> Chest press (Upper-body tone and tighten)  X[45]P RPE[5]R  </option><option value="3"> Decline bench press  X[39]P RPE[4]R  </option><option value="24"> Deltoid raises (Upper-body tone and tighten)  X[45]P RPE[5]R  </option><option value="18"> Diamond pushups (Upper-body tone and tighten)  X[30]P RPE[3]R  </option><option value="20"> Dumbbell curls (Upper-body tone and tighten)  X[45]P RPE[5]R  </option><option value="25"> Dumbbell front raises (Upper-body tone and tighten)  X[45]P RPE[5]R  </option><option value="37"> Extend rotate At-Home - Back Exercises - (Standing movements)  X[10]P RPE[1]R  </option><option value="43"> false  X[9]P RPE[5]R  </option><option value="44"> false  X[9]P RPE[5]R  </option><option value="45"> false  X[9]P RPE[5]R  </option><option value="46"> false  X[9]P RPE[5]R  </option><option value="47"> false  X[9]P RPE[3]R  </option><option value="48"> false  X[9]P RPE[3]R  </option><option value="28"> Hammock (At-Home - Back Exercises - Warmups)  X[4]P RPE[0]R  </option><option value="19"> Hand release pushup (Upper-body tone and tighten)  X[30]P RPE[3]R  </option><option value="33"> Hip hinges (At-Home - Back Exercises - Standing movements)  X[20]P RPE[2]R  </option><option value="13"> Incline dumbbell flies (Upper-body bulk and sculpt)  X[48]P RPE[5]R  </option><option value="14"> Incline dumbbell triceps extension (Upper-body bulk and sculpt)  X[48]P RPE[5]R  </option><option value="4"> Incline push up  X[50]P RPE[5]R  </option><option value="61"> ioyugfjh  X[7]P RPE[0]R  </option><option value="62"> ioyugfjh  X[7]P RPE[0]R  </option><option value="34"> Isometric hip hinges (At-Home - Back Exercises - Standing movements)  X[3]P RPE[0]R  </option><option value="39"> Isometric neck extension (At-Home - Back Exercises - Chair exercises)  X[5]P RPE[1]R  </option><option value="27"> Lateral Wheel (At-Home - Back Exercises - Warmups)  X[3]P RPE[0]R  </option><option value="30"> Lunge rotate (At-Home - Back Exercises - Floor movements)  X[50]P RPE[5]R  </option><option value="17"> Mountain climbers (Upper-body tone and tighten)  X[60]P RPE[6]R  </option><option value="10"> Overhead dumbbell press (Upper-body bulk and sculpt)  X[40]P RPE[4]R  </option><option value="6"> Parallel Bar Dips (Upper-body bulk and sculpt)  X[36]P RPE[4]R  </option><option value="31"> Plank with lateral arm raise (At-Home - Back Exercises - Floor movements)  X[20]P RPE[2]R  </option><option value="8"> Plyometric Push-ups (Upper-body bulk and sculpt)  X[36]P RPE[4]R  </option><option value="7"> Push-ups (Upper-body bulk and sculpt)  X[36]P RPE[4]R  </option><option value="5"> Seated machine fly  X[90]P RPE[10]R  </option><option value="38"> Shoulder squeeze (At-Home - Back Exercises - Chair exercises)  X[5]P RPE[1]R  </option><option value="11"> Standing dumbbell upright row (Upper-body bulk and sculpt)  X[40]P RPE[4]R  </option><option value="32"> Superman (At-Home - Back Exercises - Floor movements)  X[10]P RPE[1]R  </option><option value="42"> Supine twist (At-Home - Back Exercises - Cooldowns)  X[2]P RPE[0]R  </option><option value="15"> Triceps dips (Upper-body tone and tighten)  X[45]P RPE[5]R  </option><option value="21"> Triceps kickbacks (Upper-body tone and tighten)  X[45]P RPE[5]R  </option><option value="22"> Two-arm dumbbell row (Upper-body tone and tighten)  X[36]P RPE[4]R  </option><option value="9"> Walking plank (Upper-body bulk and sculpt)  X[36]P RPE[4]R  </option><option value="16"> Wall angels (Upper-body tone and tighten)  X[60]P RPE[6]R  </option><option value="41"> Wind-relieving pose (At-Home - Back Exercises - Cooldowns)  X[2]P RPE[0]R  </option></select>
                                     <button type="button" id="add-selection-to-activities-selectlist-btn" class="onefit-buttons-style-light p-4">
@@ -182,12 +182,12 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                             <div id="new-exercise-activity-container" class="col-md-5 gap-4 collapse w3-animate-right">
                                 <!-- Textarea for typing out the exercises -->
                                 <div class="form-group d-grid gap-2">
-                                    <label for="add-to-calender-activity-specify-title" class="poppins-font fs-4" style="color: #ffa500;">Create
+                                    <label for="add-to-calender-activity-specify-title" class="poppins-font fs-4" style="color: var(--primary-color);">Create
                                         New
                                         Activities:</label>
                                     <br>
 
-                                    <label for="add-to-calender-activity-specify-xp" class="poppins-font" style="color: #ffa500;font-size:12px;">Exercise /
+                                    <label for="add-to-calender-activity-specify-xp" class="poppins-font" style="color: var(--primary-color);font-size:12px;">Exercise /
                                         activity
                                         name:</label>
                                     <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-specify-title" id="add-to-calender-activity-specify-title" placeholder="Exercise / activity name." style="border-radius:25px;font-size:12px!important;">
@@ -245,12 +245,12 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                                         </div>
                                     </div>
                                     <!-- ./ icon selection -->
-                                    <label for="add-to-calender-activity-specify-xp" class="poppins-font" style="color: #ffa500;font-size:12px;">Allocate xp pts
+                                    <label for="add-to-calender-activity-specify-xp" class="poppins-font" style="color: var(--primary-color);font-size:12px;">Allocate xp pts
                                         (1 -
                                         10):</label>
                                     <input class="form-control-text-input p-4" type="number" oninput="validity.valid||(value='');" min="1" max="10" name="add-to-calender-activity-specify-xp" id="add-to-calender-activity-specify-xp" placeholder="How much XP? 10xp max." style="border-radius:25px;">
                                     <div class="form-group">
-                                        <label for="sets-reps-rests" class="poppins-font" style="color: #ffa500;font-size:12px;">Select the
+                                        <label for="sets-reps-rests" class="poppins-font" style="color: var(--primary-color);font-size:12px;">Select the
                                             Sets,
                                             Reps &amp; Rests:</label>
                                         <div class="row" id="sets-reps-rests">
@@ -266,7 +266,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="add-to-calender-activity-specify-new-description" class="poppins-font" style="color: #ffa500;font-size:12px;">Please
+                                        <label for="add-to-calender-activity-specify-new-description" class="poppins-font" style="color: var(--primary-color);font-size:12px;">Please
                                             provide
                                             the Description &amp; Guidelines/Instructions of
                                             this
@@ -275,7 +275,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
 
                                         <textarea class="form-control-text-input p-2 text-dark light-scroller" rows="3" type="text" name="add-to-calender-activity-specify-new-guidelines" id="add-to-calender-activity-specify-new-guidelines" placeholder="Guidelines / Instructions..." style="border-radius:25px;font-size:12px!important;"></textarea>
                                     </div>
-                                    <label for="add-to-calender-specify-training-phase" class="poppins-font" style="color: #ffa500;font-size:12px;">Select the
+                                    <label for="add-to-calender-specify-training-phase" class="poppins-font" style="color: var(--primary-color);font-size:12px;">Select the
                                         Training
                                         level (L1 - L3):</label>
                                     <select class="custom-select form-control-select-input p-2 light-scroller" id="add-to-calender-specify-training-phase" name="add-to-calender-specify-training-phase" style="border-radius:25px;">
@@ -305,7 +305,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                             <!-- move items function buttons -->
                             <div class="d-flex justify-content-between gap-2 mb-2">
                                 <div class="d-grid">
-                                    <h1 id="selected-xp-counter" class="fs-5" style="color: var(--tahitigold);">Total xp: 0 | 0
+                                    <h1 id="selected-xp-counter" class="fs-5" style="color: var(--primary-color);">Total xp: 0 | 0
                                         activities.</h1>
                                 </div>
                                 <div class="d-flex justify-content-end gap-2">
@@ -380,35 +380,35 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                 <form id="new-exercise-activity-form" class="col-md-5 gap-4 w3-animate-right collapse show" style="">
                     <!-- $teams_weekly_schedule_id -->
                     <div class="form-group my-4">
-                        <label for="add-to-calender-activity-title-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">Team selected</label>
+                        <label for="add-to-calender-activity-title-value" class="poppins-font fs-4 mb-4" style="color: var(--primary-color);">Team selected</label>
                         <input class="form-control-text-input p-4" value="$groups_group_ref_code" readonly name="add-to-calender-team-select" id="add-to-calender-team-select" placeholder="Team GRCode." required="">
                     </div>
                     <!--  -->
                     <div class="form-group my-4">
-                        <label for="add-to-calender-activity-title-value" class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">1.
+                        <label for="add-to-calender-activity-title-value" class="poppins-font fs-4 fw-bold mb-4" style="color: var(--primary-color);">1.
                             Title:</label>
                         <input class="form-control-text-input p-4" value="$schedule_title" type="text" readonly name="add-to-calender-activity-title-value" id="add-to-calender-activity-title-value" placeholder="Title" required="">
                     </div>
                     <!--  -->
                     <div class="form-group my-4">
-                        <label for="add-to-calender-activity-rpe-value" class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">2. RPE
+                        <label for="add-to-calender-activity-rpe-value" class="poppins-font fs-4 fw-bold mb-4" style="color: var(--primary-color);">2. RPE
                             (Auto)</label>
                         <input class="form-control-text-input p-4" value="$schedule_rpe" type="number" readonly value="0" name="add-to-calender-activity-rpe-value" id="add-to-calender-activity-rpe-value" placeholder="RPE" required="">
                     </div>
                     <!--  -->
                     <div class="form-group my-4">
-                        <label for="add-to-calender-activity-day-value" class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">3.
+                        <label for="add-to-calender-activity-day-value" class="poppins-font fs-4 fw-bold mb-4" style="color: var(--primary-color);">3.
                             Day:</label>
                         <input class="form-control-text-input p-4" value="$schedule_day" type="text" readonly name="add-to-calender-activity-day-value" id="add-to-calender-activity-day-value" placeholder="Day" required="">
                     </div>
                     <!--  -->
                     <div class="form-group my-4">
-                        <label for="add-to-calender-activity-date-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">4. Date:</label>
+                        <label for="add-to-calender-activity-date-value" class="poppins-font fs-4 mb-4" style="color: var(--primary-color);">4. Date:</label>
                         <input class="form-control-text-input p-4" value="$schedule_date" readonly onchange="changeSelDateValues(this.value)" type="date" name="add-to-calender-activity-date-value" id="add-to-calender-activity-date-value" placeholder="Date" required="">
                     </div>
                     <!--  -->
                     <div class="form-group my-4">
-                        <label for="add-to-calender-activity-colorcode-value" class="poppins-font fs-4 fw-bold mb-4" style="color: #ffa500;">
+                        <label for="add-to-calender-activity-colorcode-value" class="poppins-font fs-4 fw-bold mb-4" style="color: var(--primary-color);">
                             5. Color code:
                         </label>
                         <select class="custom-select form-control-select-input p-4 d-none" onchange="toggleCustomColorSelection(this.value)" name="add-to-calender-activity-colorcode-value" id="add-to-calender-activity-colorcode-value" placeholder="Select a color code" required="">
@@ -428,7 +428,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                         <div class="row justify-content-center align-items-center">
                             <div id="custom-color-selection" class="col-md-8 border-1 border-end w3-animate-left" style="display: none;">
                                 <div class="form-group my-4 px-2">
-                                    <label for="add-to-calender-activity-custom-colorcode-value" class="poppins-font fs-4 mb-4" style="color: #ffa500;">5.1.
+                                    <label for="add-to-calender-activity-custom-colorcode-value" class="poppins-font fs-4 mb-4" style="color: var(--primary-color);">5.1.
                                         Custom Color Code:</label>
                                     <div class="d-flex gap-4 align-items-end justify-content-center">
                                         <div class="d-grid gap-1">
@@ -453,7 +453,7 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                             </div>
                             <div class="col-md-4 d-grid text-center">
                                 <span id="color-preview" class="p-4 shadow align-middle text-truncate text-dark shadow" style="background-color:  $ccs_color; border-radius: 25px;">
-                                    <span class="material-icons material-icons-round align-middle" style="color: var(--mineshaft);">
+                                    <span class="material-icons material-icons-round align-middle" style="color: var(--secondary-color);">
                                         palette
                                     </span>
                                 </span>
@@ -461,24 +461,24 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                         </div>
                     </div>
                     <div class="form-group d-grid gap-2">
-                        <label for="add-to-calender-activity-specify-title" class="poppins-font fs-4" style="color: #ffa500;">Create New
+                        <label for="add-to-calender-activity-specify-title" class="poppins-font fs-4" style="color: var(--primary-color);">Create New
                             Activities:
                         </label>
                         <!-- existing exercise select -->
                         <div class="form-group d-grid gap-2">
-                            <label for="add-to-calender-activity-selection" class="poppins-font fs-4 add-to-calender-activity-selection" style="color: #ffa500;">Select or create a new Exercises / Activity.</label>
+                            <label for="add-to-calender-activity-selection" class="poppins-font fs-4 add-to-calender-activity-selection" style="color: var(--primary-color);">Select or create a new Exercises / Activity.</label>
                             <select class="custom-select form-control-select-input p-2 light-scroller" id="add-to-calender-activity-selection" onchange="autopopulateExerciseInfo(this.id)" style="border-radius:25px;height:290px;" multiple="multiple" rows="20">
                                 <option value="new_item" selected> + New exercise </option>
                                 $workout_activities_list
                             </select>
                         </div>
                         <input class="form-control-text-input p-4" type="text" name="add-to-calender-activity-specify-title" id="add-to-calender-activity-specify-title" placeholder="Exercise / activity title." style="border-radius:25px;font-size:12px!important;">
-                        <label for="add-to-calender-activity-specify-xp" class="poppins-font" style="color: #ffa500;font-size:12px;">
+                        <label for="add-to-calender-activity-specify-xp" class="poppins-font" style="color: var(--primary-color);font-size:12px;">
                             Allocate xp pts (1 - 10):
                         </label>
                         <input class="form-control-text-input p-4" type="number" oninput="validity.valid||(value='');" min="1" max="10" name="add-to-calender-activity-specify-xp" id="add-to-calender-activity-specify-xp" placeholder="How much XP? 10xp max." style="border-radius:25px;">
                         <div class="form-group">
-                            <label for="sets-reps-rests" class="poppins-font" style="color: #ffa500;font-size:12px;">
+                            <label for="sets-reps-rests" class="poppins-font" style="color: var(--primary-color);font-size:12px;">
                                 Select the Sets, Reps &amp; Rests:
                             </label>
                             <div class="row" id="sets-reps-rests">
@@ -494,14 +494,14 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="add-to-calender-activity-specify-new-description" class="poppins-font" style="color: #ffa500;font-size:12px;">Please provide
+                            <label for="add-to-calender-activity-specify-new-description" class="poppins-font" style="color: var(--primary-color);font-size:12px;">Please provide
                                 the Description &amp; Guidelines/Instructions of this
                                 Exercise/Activty:</label>
                             <textarea class="form-control-text-input p-2 text-dark light-scroller" rows="3" type="text" name="add-to-calender-activity-specify-new-description" id="add-to-calender-activity-specify-new-description" placeholder="Description..." style="border-radius:25px;font-size:12px!important;"></textarea>
                             <br/>
                             <textarea class="form-control-text-input p-2 text-dark light-scroller" rows="3" type="text" name="add-to-calender-activity-specify-new-guidelines" id="add-to-calender-activity-specify-new-guidelines" placeholder="Guidelines / Instructions..." style="border-radius:25px;font-size:12px!important;"></textarea>
                         </div>
-                        <label for="add-to-calender-specify-training-phase" class="poppins-font" style="color: #ffa500;font-size:12px;">Select the Training
+                        <label for="add-to-calender-specify-training-phase" class="poppins-font" style="color: var(--primary-color);font-size:12px;">Select the Training
                             level (L1 - L3):</label>
                         <select class="custom-select form-control-select-input p-2 light-scroller" id="add-to-calender-specify-training-phase" name="add-to-calender-specify-training-phase" style="border-radius:25px;">
                             <option value="beginner" selected="">Beginner (L1).</option>

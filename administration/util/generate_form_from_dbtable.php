@@ -155,7 +155,7 @@ foreach ($fields as $key => $field) {
 
     $compile .= <<<_END
     <div class="form-group my-4">
-        <label for="$field" class="poppins-font fs-4 mb-4" style="color: #ffa500;" $visibilityState> $fieldName: </label>
+        <label for="$field" class="poppins-font fs-4 mb-4" style="color: var(--primary-color);" $visibilityState> $fieldName: </label>
         <input class="form-control-text-input p-4" type="$inputType" name="$field" id="$field" $maxLength value="$defaultValueString" placeholder="$fieldName" $requiredAttribute $visibilityState>
     </div>
     _END;

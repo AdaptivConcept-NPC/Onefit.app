@@ -1,0 +1,9 @@
+.image-map-container {
+    position: relative;
+}
+
+.highlight {
+    outline: 5px solid #0000ff;
+    /* Set the highlight color */
+    outline-offset: -5px;
+}

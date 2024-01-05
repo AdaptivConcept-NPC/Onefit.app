@@ -54,7 +54,7 @@ function checkCoreScriptLoadState() {
             "\n chartjs_js: " + coreScriptLoaded_chartjs_js);
         // show offline curtain and pass message of none-loaded scripts
         document.getElementById("output-msg-heading").innerHTML = "You are offline.";
-        document.getElementById("output-msg-text").innerHTML = "Some core scripts were not loaded. Please check your internet connection and try reloading the page.<br>If the error persists, please contact <a href='https://http://help.onefit.adaptivconcept.co.za/systems/?errortype=core_script_error' style='color:var(--tahitigold);'>support</a>";
+        document.getElementById("output-msg-text").innerHTML = "Some core scripts were not loaded. Please check your internet connection and try reloading the page.<br>If the error persists, please contact <a href='https://http://help.onefit.adaptivconcept.co.za/systems/?errortype=core_script_error' style='color: var(--primary-color);'>support</a>";
         document.getElementById("offline-curtain").style.display = 'block';
     }
 }

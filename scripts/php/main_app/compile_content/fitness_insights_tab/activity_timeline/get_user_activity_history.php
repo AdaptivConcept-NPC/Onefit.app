@@ -35,7 +35,7 @@ if (isset($_GET['usernm'])) {
             echo <<<_END
             <div class="text-center p-4">
                 <h1 class="fs-5">
-                    <span class="p-4" style="background-color:var(--tahitigold);color:var(--mineshaft);border-radius:15px;">No history to display.</span>
+                    <span class="p-4" style="background-color: var(--primary-color);color: var(--secondary-color);border-radius:15px;">No history to display.</span>
                 </h1>
             </div>
             _END;
@@ -107,7 +107,7 @@ if (isset($_GET['usernm'])) {
                         <p class="mb-4">
                             $action_description
                         </p>
-                        <p class="mt-4" style="color: #ffa500;">
+                        <p class="mt-4" style="color: var(--primary-color);">
                             <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
                                 schedule
                             </span>

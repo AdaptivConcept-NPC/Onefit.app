@@ -39,7 +39,7 @@ function listDirectory($path)
 
         $tabButtonsList .= <<<_END
         <button class="nav-link $btnActiveState" id="v-pills-$subFolderIndex-tab" data-bs-toggle="pill" data-bs-target="#v-pills-$subFolderIndex" type="button" role="tab" aria-controls="v-pills-$subFolderIndex" aria-selected="false">
-            <span class="material-icons material-icons-round align-middle" style="color: #ffa500; font-size: 60px !important">
+            <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color); font-size: 60px !important">
                 topic
             </span>
             <span class="align-middle w-100 text-truncate text-white">$lastIndexItem</span>
@@ -149,7 +149,7 @@ function noMediaItems($req)
             <span class="material-icons material-icons-round" style="font-size:100px!important;">
                 hourglass_empty
             </span>
-            <span>No media<!--in $req--><span style="color:var(--tahitigold);">.</span></span>
+            <span>No media<!--in $req--><span style="color: var(--primary-color);">.</span></span>
         </h5>
     </div>
     _END;
@@ -195,7 +195,7 @@ switch ($requestDir) {
     // echo "---> " . $item;
     $subFoldersList .= <<<_END
     <button class="nav-link" id="v-pills-$dirNameId-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-        <span class="material-icons material-icons-round align-middle" style="color: #ffa500; font-size: 60px !important">
+        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color); font-size: 60px !important">
             topic
         </span>
         <span class="align-middle w-100 text-truncate text-white">$item</span>
@@ -208,7 +208,7 @@ switch ($requestDir) {
 */
 
 /* 
-<div class="grid-tile" style="background-color: #343434;>
+<div class="grid-tile" style="background-color: var(--secondary-color);>
     <div class="media-item-tile p-2 mx-0 center-container shadow d-flex align-items-end justify-content-between" 
     style="border-radius:25px;overflow:hidden;">
         <img src="$fullPath" class="img-fluid" style="max-height: 30vh;border-radius:25px;" alt="$current_user_username's media - $item" />
@@ -220,7 +220,7 @@ switch ($requestDir) {
             <span class="align-middle" style="font-size: 10px !important;">View.</span>
         </button>
         <!-- media info collapse btn -->
-        <a style="text-decoration: none;color: #ffa500 !important;" data-bs-toggle="collapse"
+        <a style="text-decoration: none;color: var(--primary-color) !important;" data-bs-toggle="collapse"
             href="#friend-card-info-userid" role="button" aria-expanded="false"
             aria-controls="friend-card-info-userid" class="collapsed">
             <span class="material-icons material-icons-round align-middle text-white"

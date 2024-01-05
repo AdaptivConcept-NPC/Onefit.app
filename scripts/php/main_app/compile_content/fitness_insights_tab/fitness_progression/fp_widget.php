@@ -79,7 +79,7 @@ try {
             <!-- $user_loggedin_username - fitness progression progress bar -->
             <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle" style="color: #fff;">data_exploration</span> <span class="align-middle">Fitness Progression</span></h5>
             <div class="progress mt-4 bg-white" style="height:20px;border:1px solid white !important;">
-                <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: $fp_xp_progression_rate%; background-color: #343434 !important; border-right: #ffa500 10px solid;" aria-valuenow="$fp_xp_progression_rate" aria-valuemin="$user_current_fp_xp" aria-valuemax="$goal_fp_xp"></div>
+                <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: $fp_xp_progression_rate%; background-color: var(--secondary-color) !important; border-right: var(--primary-color) 10px solid;" aria-valuenow="$fp_xp_progression_rate" aria-valuemin="$user_current_fp_xp" aria-valuemax="$goal_fp_xp"></div>
             </div>
             <div class="mt-2 w-100 d-flex justify-content-between" style="margin-bottom: 60px;">
                 <p class="text-start m-0 poppins-font" style="font-size: 12px;">
@@ -96,17 +96,17 @@ try {
         case 'mini':
             # for mini fp progress stat
             $final_output = <<<_END
-                <p class="text-center m-0"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span></p>
+                <p class="text-center m-0"><span class="material-icons material-icons-outlined align-middle" style="color: var(--primary-color);">horizontal_rule</span></p>
                 <!-- $user_loggedin_username - display User XP -->
                 <div class="d-grid justify-content-center">
                     <p class="comfortaa-font mb-0 text-center" style="font-size: 10px;">Fitness Progression</p>
                     <div class="text-center px-4 py-0 d-inline comfortaa-font" id="userXPDisplay">
-                        <span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">data_exploration</span>
-                        <span class="align-middle fs-2"> $user_current_fp_xp </span><sup class="align-bottom" style="color: #ffa500;">xp</sup>
+                        <span class="material-icons material-icons-outlined align-middle" style="color: var(--primary-color);">data_exploration</span>
+                        <span class="align-middle fs-2"> $user_current_fp_xp </span><sup class="align-bottom" style="color: var(--primary-color);">xp</sup>
                     </div>
                 </div>
                 <!-- ./ $user_loggedin_username - display User XP -->
-                <p class="text-center m-0"><span class="material-icons material-icons-outlined align-middle" style="color: #ffa500;">horizontal_rule</span></p>
+                <p class="text-center m-0"><span class="material-icons material-icons-outlined align-middle" style="color: var(--primary-color);">horizontal_rule</span></p>
                 _END;
             break;
 

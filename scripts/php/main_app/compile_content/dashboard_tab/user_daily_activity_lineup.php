@@ -320,10 +320,10 @@ try {
                                     $privacy_icon 
                                     <span class="align-middle">$group_privacy</span>
                                 </p>
-                                <p><span style="color:var(--tahitigold)!important;">Activity title:</span><br/> $activity_title</p>
-                                <p><span style="color:var(--mineshaft)!important;">RPE:</span><br/> $teams_schedule_rpe</p>
-                                <p class="mb-4"><span style="color:var(--mineshaft)!important;">Date:</span><br/> $teams_schedule_day, $teams_schedule_date</p>
-                                <p class="m-0"><span style="color:var(--mineshaft)!important;">Description:</span></p>
+                                <p><span style="color: var(--primary-color)!important;">Activity title:</span><br/> $activity_title</p>
+                                <p><span style="color: var(--secondary-color)!important;">RPE:</span><br/> $teams_schedule_rpe</p>
+                                <p class="mb-4"><span style="color: var(--secondary-color)!important;">Date:</span><br/> $teams_schedule_day, $teams_schedule_date</p>
+                                <p class="m-0"><span style="color: var(--secondary-color)!important;">Description:</span></p>
                                 <p class="text-start light-scroller" style="max-height:100px;overflow-y:auto;font-size:12px;">$activity_description</p>
                             </div>
                         </div>
@@ -343,7 +343,7 @@ try {
         // if $recordsFound is false, no activities found
         $ui_output_elems = <<<_END
         <div class="d-flex align-items-center text-center justify-content-center mb-4" id="no-activities-banner-container" style="min-height: 100px;">
-            <p class="my-4 fs-5 fw-bold comfortaa-font" style="cursor: pointer;" onclick="openLink(event, 'TabStudio')">No community &amp; teams activities lined up. Go to the <span style="color: #ffa500;">.Studio</span> to get active.</p>
+            <p class="my-4 fs-5 fw-bold comfortaa-font" style="cursor: pointer;" onclick="openLink(event, 'TabStudio')">No community &amp; teams activities lined up. Go to the <span style="color: var(--primary-color);">.Studio</span> to get active.</p>
         </div>
         _END;
     } else {

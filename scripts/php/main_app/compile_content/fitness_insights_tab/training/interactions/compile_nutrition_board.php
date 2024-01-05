@@ -9,7 +9,7 @@ if ($dbconn->connect_error) die("Fatal Error");
 if (isset($_GET['uid'])) {
     echo <<<_END
     <div class="modal-body w3-animate-top rounded-5 top-down-grad-tahiti" style="/* background: var(--white); */">
-        <h1 class="fs-1 text-center text-white py-5 bg-dark poppins-font fw-bold shadow" style="color: var(--mineshaft);background-color: var(--mineshaft)!important;border-radius:25px;">
+        <h1 class="fs-1 text-center text-white py-5 bg-dark poppins-font fw-bold shadow" style="color: var(--secondary-color);background-color: var(--secondary-color)!important;border-radius:25px;">
             A. Match Day - Carbohydrate Fueling Plan.
         </h1>
         <hr class="text-white">
@@ -20,7 +20,7 @@ if (isset($_GET['uid'])) {
             </div>
         </div>
         <hr class="text-white">
-        <h1 class="fs-1 text-center text-white py-5 bg-dark poppins-font fw-bold shadow" style="color: var(--mineshaft);background-color: var(--mineshaft)!important;border-radius:25px;">
+        <h1 class="fs-1 text-center text-white py-5 bg-dark poppins-font fw-bold shadow" style="color: var(--secondary-color);background-color: var(--secondary-color)!important;border-radius:25px;">
             B. Post-Match Recovery Chart.
         </h1>
         <hr class="text-white">
@@ -172,7 +172,7 @@ if (isset($_GET['uid'])) {
     _END;
 
     $depr = <<<_END
-    <h1 class="fs-1 text-center py-5 bg-white poppins-font fw-bold shadow" style="color: var(--mineshaft);border-radius:25px;">
+    <h1 class="fs-1 text-center py-5 bg-white poppins-font fw-bold shadow" style="color: var(--secondary-color);border-radius:25px;">
         A. Match Day - Carbohydrate Fueling Plan.
     </h1>
     <hr class="text-white">
@@ -183,7 +183,7 @@ if (isset($_GET['uid'])) {
         </div>
     </div>
     <hr class="text-white">
-    <h1 class="fs-1 text-center py-5 bg-white poppins-font fw-bold shadow" style="color: var(--mineshaft);border-radius:25px;">
+    <h1 class="fs-1 text-center py-5 bg-white poppins-font fw-bold shadow" style="color: var(--secondary-color);border-radius:25px;">
         B. Post-Match Recovery Chart.
     </h1>
     <hr class="text-white">

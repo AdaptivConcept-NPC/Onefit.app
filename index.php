@@ -105,10 +105,10 @@ rememberMe();
     <div id="snackbar" class="w3-animate-bottom">No notification.</div>
 
     <!-- offline Curtain -->
-    <div class="offline-curtain" id="offline-curtain" style="display: none;background-color:var(--mineshaft);">
+    <div class="offline-curtain" id="offline-curtain" style="display: none;background-color: var(--secondary-color);">
         <nav class="navbar navbar-light stickyz fixed-top navbar-style bg-transparent" style="z-index: 10000;">
             <div class="container-fluid justify-content-center p-5">
-                <h1 class="navbar-brand fs-1 text-white comfortaa-font m-0">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></h1>
+                <h1 class="navbar-brand fs-1 text-white comfortaa-font m-0">One<span style="color: var(--primary-color)">fit</span>.app<span style="font-size: 10px">&trade;</span></h1>
             </div>
         </nav>
         <div class="d-flex align-items-center down-top-grad-white" style="width: 100%; height: 100%;">
@@ -123,13 +123,13 @@ rememberMe();
             </div>
         </div>
         <nav class="text-center text-center p-4 fixed-bottom" alt="">
-            <h1 id="output-msg-heading" class="navbar-brand fs-1 fw-bold comfortaa-font d-grid" style="color: var(--mineshaft);">
+            <h1 id="output-msg-heading" class="navbar-brand fs-1 fw-bold comfortaa-font d-grid" style="color: var(--secondary-color);">
                 <span class="material-icons material-icons-round align-middle" style="font-size:40px!important;">
                     offline_bolt
                 </span>
                 <span class="align-middle">You are offline.</span>
             </h1>
-            <p id="output-msg-text" class="text-center poppins-font" style="color: var(--mineshaft);">Please check your
+            <p id="output-msg-text" class="text-center poppins-font" style="color: var(--secondary-color);">Please check your
                 internet connection</p>
         </nav>
     </div>
@@ -148,7 +148,7 @@ rememberMe();
             </div>
         </div>
         <nav class="text-center text-center p-4 fixed-bottom" alt="">
-            <p class="navbar-brand fs-1 text-white comfortaa-font">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></p>
+            <p class="navbar-brand fs-1 text-white comfortaa-font">One<span style="color: var(--primary-color)">fit</span>.app<span style="font-size: 10px">&trade;</span></p>
             <p class="text-center comfortaa-font" style="font-size: 10px !important;">Loading. Please wait.</p>
         </nav>
     </div>
@@ -157,7 +157,7 @@ rememberMe();
     <!-- Navigation bar -->
     <nav class="navbar navbar-light stickyz fixed-top navbar-style bg-transparent top-down-grad-dark" style="z-index: 10000;">
         <div class="container-fluid">
-            <a class="navbar-brand fs-1 text-white comfortaa-font" href="#">One<span style="color: #ffa500">fit</span>.app<span style="font-size: 10px">&trade;</span></a>
+            <a class="navbar-brand fs-1 text-white comfortaa-font" href="#">One<span style="color: var(--primary-color)">fit</span>.app<span style="font-size: 10px">&trade;</span></a>
             <button class="navbar-toggler shadow onefit-buttons-style-dark bg-transparent p-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                 <!--<span class="navbar-toggler-icon"></span>-->
                 <!--<img src="./media/assets/One-Symbol-Logo-Two-Tone.svg" alt="" class="img-fluid logo-size-1" />-->
@@ -168,10 +168,10 @@ rememberMe();
             </button>
             <div class="offcanvas offcanvas-end offcanvas-menu-primary-style" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div id="offcanvas-menu" class="pb-4" style="border-radius: 0 0 25px 25px; overflow: hidden;">
-                    <div class="offcanvas-header fs-1" style="background-color: #343434; color: #fff">
+                    <div class="offcanvas-header fs-1" style="background-color: var(--secondary-color); color: #fff">
                         <img src="./media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;">
                         <h5 class="offcanvas-title text-center" id="offcanvasNavbarLabel">
-                            <span class="material-icons material-icons-round align-middle" style="color: #ffa500; cursor: pointer;font-size:20px!important;">
+                            <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color); cursor: pointer;font-size:20px!important;">
                                 public
                             </span>
                             Web.
@@ -189,10 +189,10 @@ rememberMe();
                                     access to
                                     Pro.Athlete level fitness tracking resources, guides, physical trainer and community
                                     support.</p>
-                                <a class="onefit-buttons-style-light p-4 text-center text-decoration-none shadow fw-bold fs-5" href="registration/" style="border-radius: 25px !important; font-size: 20px !important;transform:scale(1)!important;color:var(--mineshaft)!important;">Register
+                                <a class="onefit-buttons-style-light p-4 text-center text-decoration-none shadow fw-bold fs-5" href="registration/" style="border-radius: 25px !important; font-size: 20px !important;transform:scale(1)!important;color: var(--secondary-color)!important;">Register
                                     your account.
                                     <!-- <span class="material-icons material-icons-round align-middle"
-                    style="font-size: 25px !important; color: #ffa500;">
+                    style="font-size: 25px !important; color: var(--primary-color);">
                     login
                   </span> -->
                                     <i class="fas fa-file-signature"></i>
@@ -232,25 +232,25 @@ rememberMe();
         <div class="d-grid mb-2 w3-animate-top">
             <p class="text-white comfortaa-font fs-4 mb-0 fw-bold"> Presented by </p>
             <p class="text-white audiowide-font mt-1 mb-4 fw-bold" style="font-size: 8px !important;">
-                <span style="color: #ffa500;">
-                    One</span>-On-<span style="color: #ffa500;">One</span> Fitness Network<sup style="color: #ffa500;">&reg;</sup>
+                <span style="color: var(--primary-color);">
+                    One</span>-On-<span style="color: var(--primary-color);">One</span> Fitness Network<sup style="color: var(--primary-color);">&reg;</sup>
             </p>
 
             <!-- <i class="fas fa-grip-lines -vertical text-white"></i> -->
-            <span class="material-icons material-icons-round" style="color: #ffa500; cursor: pointer;">
+            <span class="material-icons material-icons-round" style="color: var(--primary-color); cursor: pointer;">
                 public
             </span>
         </div>
 
-        <img src="./media/assets/One-Logo-Vertical.png" class="border-5 border-start border-end p-4" alt="Onefit™.app Logo" style="max-height: 50vh; width: auto !important; border-radius: 25px; background-color: #343434;">
+        <img src="./media/assets/One-Logo-Vertical.png" class="border-5 border-start border-end p-4" alt="Onefit™.app Logo" style="max-height: 50vh; width: auto !important; border-radius: 25px; background-color: var(--secondary-color);">
     </div>
 
     <!-- <hr class="text-white m-0" /> -->
     <!-- Onefit.app Logo -->
 
-    <div class="text-center p-4 comfortaa-font fw-bold fs-1" style="color: var(--white);background-color: rgba(52, 55, 52, 0.8); margin: 40px 0;">
+    <div class="text-center p-4 comfortaa-font fw-bold fs-1" style="color: var(--text-color);background-color: rgba(52, 55, 52, 0.8); margin: 40px 0;">
         <span style="color:var(--white);">
-            #One<span style="color:var(--tahitigold);">fitness</span>ForAll
+            #One<span style="color: var(--primary-color);">fitness</span>ForAll
         </span>
     </div>
 
@@ -269,7 +269,7 @@ rememberMe();
                                 fingerprint </span>
 
                             <h1 class="py-0 px-4 text-truncate" style="color: #fff; font-size: 40px; border-radius: 00 25px 25px !important;">
-                                Members<span style="color: #ffa500;">.</span></h1>
+                                Members<span style="color: var(--primary-color);">.</span></h1>
                             <!-- Sign into
                                 your account -->
                         </div>
@@ -298,7 +298,7 @@ rememberMe();
                                 <span class="align-middle" style="font-size: 20px !important;">
                                     <span class="align-middle">Sign in.</span>
 
-                                    <span class="material-icons material-icons-round align-middle" style="font-size: 25px !important; color: #ffa500;">
+                                    <span class="material-icons material-icons-round align-middle" style="font-size: 25px !important; color: var(--primary-color);">
                                         login
                                     </span>
                                 </span>
@@ -335,7 +335,7 @@ rememberMe();
 
                         <a href="registration/" class="onefit-buttons-style-dark fw-bold p-4 comfortaa-font align-end" style="text-decoration: none;">Or
                             Create an Account.
-                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important; color: var(--tahitigold);">
+                            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important; color: var(--primary-color);">
                                 person_add
                             </span>
                         </a>
@@ -346,7 +346,7 @@ rememberMe();
             <!-- Carousal -->
             <div class="container-fluid m-0 p-4">
                 <span class="material-icons material-icons-outlined"> tv </span>
-                <p style="font-size: 10px">Latest Training Programs | <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span></p>
+                <p style="font-size: 10px">Latest Training Programs | <span class="comfortaa-font" style="color: var(--primary-color)">OnefitNet.TV</span></p>
 
                 <div class="video-card-container border-white border border-5 bg-white">
                     <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="" class="img-fluid shadow" style="filter: invert(0);">
@@ -369,9 +369,9 @@ rememberMe();
             <div class="col-md py-4">
                 <div class="content-panel-border-style p-4 tunnel-bg text-center" style="border-radius: 25px;background-color: rgba(52, 52, 52, 0.8)">
                     <div class="my-2 pt-4 site-description text-center">
-                        <h1>Welcome to the One<span style="color: #ffa500 !important">fit</span><span style="font-size: 10px">™</span> Community.</h1>
+                        <h1>Welcome to the One<span style="color: var(--primary-color) !important">fit</span><span style="font-size: 10px">™</span> Community.</h1>
                         <p class="mt-2 p-4 comfortaa-font">
-                            One<span style="color: #ffa500 !important">fit</span><span style="font-size: 10px">™</span>
+                            One<span style="color: var(--primary-color) !important">fit</span><span style="font-size: 10px">™</span>
                             is a
                             community based fitness, wellness and lifestyle platform. We aim to assist people from all
                             backgrounds
@@ -400,7 +400,7 @@ rememberMe();
             </div>
             <div class="col-md py-4 text-center" style="overflow-y: auto; overflow-x: hidden">
                 <!--<div class="content-panel-border-style login-form tunnel-bg mb-4 shadow" style="width: 100%">
-            <h2 class="text-center pt-4" style="color: #ffa500">Sign In</h2>
+            <h2 class="text-center pt-4" style="color: var(--primary-color)">Sign In</h2>
             <hr class="mx-4 bg-white" />
 
             <form class="text-center px-4 pb-4 pt-0">
@@ -416,15 +416,15 @@ rememberMe();
               <a href="" class="forgot-password">Forgot password?</a>
             </form>
             <div class="text-center">
-              <button type="button" class="mb-4" id="signin-btn"><i class="fas fa-sign-in-alt" style="color: #ffa500"></i> Sign In</button>
+              <button type="button" class="mb-4" id="signin-btn"><i class="fas fa-sign-in-alt" style="color: var(--primary-color)"></i> Sign In</button>
             </div>
             <div class="text-center">
-              <button type="button" class="mb-4" id="signup-btn"><i class="fas fa-file-signature" style="color: #ffa500"></i> Don't have an account? Sign Up Now</button>
+              <button type="button" class="mb-4" id="signup-btn"><i class="fas fa-file-signature" style="color: var(--primary-color)"></i> Don't have an account? Sign Up Now</button>
             </div>
           </div>-->
 
                 <div class="content-panel-border-style p-4 tunnel-bg -white shadow" style="border-radius: 25px;background-color: rgba(52, 52, 52, 0.8)">
-                    <h2 class="text-center mt-4" style="color: #ffa500">Social</h2>
+                    <h2 class="text-center mt-4" style="color: var(--primary-color)">Social</h2>
                     <hr class="bg-warning">
 
                     <h5 class="mt-4 text-center"><img src="../media/assets/icons/twitter-x-symbol-white.svg" style="height:40px;width:40px" alt="Twitter - X logo"> Twitter Feed</h5>
@@ -456,15 +456,15 @@ rememberMe();
 
                 <!-- Onefit.TV Horizontal Content Stream -->
                 <div class="mb-4" id="onefittv-footer-h-content-stream">
-                    <div class="content-panel-border-stylez p-4 shadow border-5 border-start border-end text-white" style="padding-bottom: 40px; border-radius: 25px; background-color: #343434; border-color: #ffa500 !important;">
+                    <div class="content-panel-border-stylez p-4 shadow border-5 border-start border-end text-white" style="padding-bottom: 40px; border-radius: 25px; background-color: var(--secondary-color); border-color: var(--primary-color) !important;">
 
-                        <h5 class="fs-1 h4 aligh-middle d-grid text-center" style="color: #ffa500;">
+                        <h5 class="fs-1 h4 aligh-middle d-grid text-center" style="color: var(--primary-color);">
                             <span class="material-icons material-icons-outlined" style="color: #fff;"> tv </span>
                             <span>OnefitNet.TV</span>
                         </h5>
                         <hr class="text-white">
 
-                        <p class="my-4 text-center" style=" font-size: 10px">Latest Training Programs | <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span></p>
+                        <p class="my-4 text-center" style=" font-size: 10px">Latest Training Programs | <span class="comfortaa-font" style="color: var(--primary-color)">OnefitNet.TV</span></p>
 
                         <div class="d-lg-none w3-animate-bottom">
                             <!-- d-block d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none -->
@@ -485,7 +485,7 @@ rememberMe();
                                     <span>View Playlist.</span>
                                     <span class="material-icons material-icons-round aligh-middle">playlist_play</span>
 
-                                    <span class="position-absolute top-0 start-100 translate-middle p-2 comfortaa-font border border-light rounded-pill align-middle shadow" style="background-color: #343434 !important; color: #ffa500 !important; border-color: #ffa500 !important;">
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 comfortaa-font border border-light rounded-pill align-middle shadow" style="background-color: var(--secondary-color) !important; color: var(--primary-color) !important; border-color: var(--primary-color) !important;">
                                         <span class="align-middle" style="font-size: 10px !important;">+3</span>
                                         <span class="visually-hidden">Latest Video Count</span>
                                     </span>
@@ -501,7 +501,7 @@ rememberMe();
 
                                 <div class="row my-2 align-items-center">
                                     <div class="col-sm-2 text-center">
-                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: var(--primary-color);">
                                     </div>
                                     <div class="col-sm">
                                         <h5>Ep.1 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
@@ -511,7 +511,7 @@ rememberMe();
                                         </p>
 
                                         <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                            Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                            Subscribe on <span class="comfortaa-font" style="color: var(--primary-color)">OnefitNet.TV</span>
                                         </button>
                                     </div>
                                 </div>
@@ -523,7 +523,7 @@ rememberMe();
 
                                 <div class="row my-2 align-items-center">
                                     <div class="col-sm-2 text-center">
-                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: var(--primary-color);">
                                     </div>
                                     <div class="col-sm">
                                         <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
@@ -533,7 +533,7 @@ rememberMe();
                                         </p>
 
                                         <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                            Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                            Subscribe on <span class="comfortaa-font" style="color: var(--primary-color)">OnefitNet.TV</span>
                                         </button>
                                     </div>
                                 </div>
@@ -545,7 +545,7 @@ rememberMe();
 
                                 <div class="row my-2 align-items-center">
                                     <div class="col-sm-2 text-center">
-                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: var(--primary-color);">
                                     </div>
                                     <div class="col-sm">
                                         <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
@@ -555,7 +555,7 @@ rememberMe();
                                         </p>
 
                                         <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                            Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                            Subscribe on <span class="comfortaa-font" style="color: var(--primary-color)">OnefitNet.TV</span>
                                         </button>
                                     </div>
                                 </div>
@@ -567,7 +567,7 @@ rememberMe();
 
                                 <div class="row my-2 align-items-center">
                                     <div class="col-sm-2 text-center">
-                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: var(--primary-color);">
                                     </div>
                                     <div class="col-sm">
                                         <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
@@ -577,7 +577,7 @@ rememberMe();
                                         </p>
 
                                         <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                            Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                            Subscribe on <span class="comfortaa-font" style="color: var(--primary-color)">OnefitNet.TV</span>
                                         </button>
                                     </div>
                                 </div>
@@ -589,7 +589,7 @@ rememberMe();
 
                                 <div class="row my-2 align-items-center">
                                     <div class="col-sm-2 text-center">
-                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: #ffa500;">
+                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder" style="border-radius: 5px; background-color: var(--primary-color);">
                                     </div>
                                     <div class="col-sm">
                                         <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
@@ -599,7 +599,7 @@ rememberMe();
                                         </p>
 
                                         <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                            Subscribe on <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                                            Subscribe on <span class="comfortaa-font" style="color: var(--primary-color)">OnefitNet.TV</span>
                                         </button>
                                     </div>
                                 </div>
@@ -618,12 +618,12 @@ rememberMe();
                 <div class="row my-2 align-items-center">
                   <div class="col-sm-2">
                     <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder"
-                      style="border-radius: 5px; background-color: #ffa500;">
+                      style="border-radius: 5px; background-color: var(--primary-color);">
                   </div>
                   <div class="col-sm">
                     <h5>Ep.1 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
                     <button class="onefit-buttons-style-dark shadow p-4 comfortaa-font">
-                      Subscribe to <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                      Subscribe to <span class="comfortaa-font" style="color: var(--primary-color)">OnefitNet.TV</span>
                     </button>
                   </div>
                 </div>
@@ -637,12 +637,12 @@ rememberMe();
                 <div class="row my-2 align-items-center">
                   <div class="col-sm-2">
                     <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder"
-                      style="border-radius: 5px; background-color: #ffa500;">
+                      style="border-radius: 5px; background-color: var(--primary-color);">
                   </div>
                   <div class="col-sm">
                     <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
                     <button class="onefit-buttons-style-dark shadow p-4 comfortaa-font">
-                      Subscribe to <span class="comfortaa-font" style="color: #ffa500">OnefitNet.TV</span>
+                      Subscribe to <span class="comfortaa-font" style="color: var(--primary-color)">OnefitNet.TV</span>
                     </button>
                   </div>
                 </div>
@@ -655,9 +655,9 @@ rememberMe();
                 <div class="row mt-4 text-center align-items-startz">
 
                     <div class="col-lg mb-4">
-                        <div class="content-panel-border-style p-4 h-100" style="padding-bottom: 40px; border-radius: 25px; background-color: #343434;">
+                        <div class="content-panel-border-style p-4 h-100" style="padding-bottom: 40px; border-radius: 25px; background-color: var(--secondary-color);">
                             <span class="material-icons material-icons-outlined" style="color: #fff;">tag</span>
-                            <h5 class="fs-1 h4" style="color: #ffa500;">Social</h5>
+                            <h5 class="fs-1 h4" style="color: var(--primary-color);">Social</h5>
                             <hr class="text-white">
                             <ul class="list-group bg-transparent comfortaa-font">
                                 <li class="list-group-item bg-transparent border-0 social-link-icon-insta my-2 shadow" style="cursor: pointer" onclick="launchLink('www.google.com')">
@@ -665,7 +665,7 @@ rememberMe();
                                         <div class="col-4 text-end">
                                             <i class="fab fa-instagram" style="font-size: 40px;" aria-hidden="true"></i>
                                         </div>
-                                        <div class="col text-center" style="color: #ffa500;">
+                                        <div class="col text-center" style="color: var(--primary-color);">
                                             |
                                         </div>
                                         <div class="col text-start">
@@ -678,7 +678,7 @@ rememberMe();
                                         <div class="col-4 text-end">
                                             <img src="../media/assets/icons/twitter-x-symbol-white.svg" style="height:40px;width:40px" alt="Twitter - X logo">
                                         </div>
-                                        <div class="col text-center" style="color: #ffa500;">
+                                        <div class="col text-center" style="color: var(--primary-color);">
                                             |
                                         </div>
                                         <div class="col text-start">
@@ -691,7 +691,7 @@ rememberMe();
                                         <div class="col-4 text-end">
                                             <i class="fab fa-facebook" style="font-size: 40px;" aria-hidden="true"></i>
                                         </div>
-                                        <div class="col text-center" style="color: #ffa500;">
+                                        <div class="col text-center" style="color: var(--primary-color);">
                                             |
                                         </div>
                                         <div class="col text-start">
@@ -704,7 +704,7 @@ rememberMe();
                                         <div class="col-4 text-end">
                                             <i class="fab fa-youtube" style="font-size: 40px;" aria-hidden="true"></i>
                                         </div>
-                                        <div class="col text-center" style="color: #ffa500;">
+                                        <div class="col text-center" style="color: var(--primary-color);">
                                             |
                                         </div>
                                         <div class="col text-start">
@@ -715,7 +715,7 @@ rememberMe();
                             </ul>
 
                             <span class="material-icons material-icons-outlined mt-4" style="color: #fff;">error_outline</span>
-                            <h5 class="fs-1 h4" style="color: #ffa500;">Important</h5>
+                            <h5 class="fs-1 h4" style="color: var(--primary-color);">Important</h5>
                             <hr class="text-white">
                             <ul class="list-group bg-transparent comfortaa-font">
                                 <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4" style="cursor: pointer" onclick="launchLink('www.google.com')">
@@ -734,9 +734,9 @@ rememberMe();
                         </div>
                     </div>
                     <div class="col-lg mb-4">
-                        <div class="content-panel-border-style p-4 h-100" style="padding-bottom: 40px; border-radius: 25px; background-color: #343434;">
+                        <div class="content-panel-border-style p-4 h-100" style="padding-bottom: 40px; border-radius: 25px; background-color: var(--secondary-color);">
                             <span class="material-icons material-icons-outlined" style="color: #fff;">touch_app</span>
-                            <h5 class="fs-1 h4" style="color: #ffa500;">Navigation</h5>
+                            <h5 class="fs-1 h4" style="color: var(--primary-color);">Navigation</h5>
                             <hr class="text-white">
                             <ul class="list-group justify-content-end flex-grow-1z pe-3 comfortaa-font fs-3">
                                 <li class="my-2 shadow general-dark-link-itemz d-grid gap-2" style="border-radius: 25px;">
@@ -788,7 +788,7 @@ rememberMe();
                 <span style="font-size: 10px;">
                     <span>Crafted by AdaptivConcept&trade; NPC &copy; 2022</span> |
                 </span>
-                <a href="https://www.adaptivconcept.co.za/" target="_blank" class="comfortaa-font" style="color:var(--tahitigold);">Support</a>
+                <a href="https://www.adaptivconcept.co.za/" target="_blank" class="comfortaa-font" style="color: var(--primary-color);">Support</a>
             </p>
         </div>
     </div>

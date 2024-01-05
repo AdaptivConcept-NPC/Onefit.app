@@ -119,13 +119,13 @@ if (isset($_GET["panel"])) {
         <div class="row align-items-center">
           <div class="col-lg-6 p-2 text-start">
             <!-- <span class="material-icons material-icons-outlined" style="font-size: 180px !important;">sports_score</span> -->
-            <p class="fs-5 comfortaa-font align-middle"><span class=" fs-2" style="color: #ffa500;">$questionNumber)</span>
+            <p class="fs-5 comfortaa-font align-middle"><span class=" fs-2" style="color: var(--primary-color);">$questionNumber)</span>
               $question
             </p>
           </div>
           <div class="col-lg p-2">
             <div class="form-group">
-              <p class="fs-5" style="color: #ffa500;"> $recordValue </p>
+              <p class="fs-5" style="color: var(--primary-color);"> $recordValue </p>
             </div>
           </div>
         </div>

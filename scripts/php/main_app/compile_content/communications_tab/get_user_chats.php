@@ -92,7 +92,7 @@ function getUserChats($conversation_ref)
                     <div class="col-sm-3 border-5z border-bottomz"></div>
                     <div class="col-sm text-end w3-animate-right p-0 pe-4 d-grid justify-content-end">
                         <div class="d-flex gap-2">
-                            <div class="talk-bubble shadow tri-right shadow right-top border border-5" style="border-radius: 25px 0 25px 25px !important;border-color:var(--mineshaft)!important;">
+                            <div class="talk-bubble shadow tri-right shadow right-top border border-5" style="border-radius: 25px 0 25px 25px !important;border-color: var(--secondary-color)!important;">
                                 <div class="talktext">
                                     <small class="text-white text-end d-flex gap-3 align-items-center justify-content-between mb-3">
                                         <button class="onefit-buttons-style-dark py-2 px-4 border-0" style="margin-left:-20px;">
@@ -109,7 +109,7 @@ function getUserChats($conversation_ref)
                                         $message
                                     </p>
                                     <div class="d-flex gap-2 justify-content-start align-items-center chat-bubble-footer">
-                                        <span class="material-icons material-icons-round align-middle $msg_read_indicator_display_state" style="font-size:20px!important;color:var(--tahitigold);">
+                                        <span class="material-icons material-icons-round align-middle $msg_read_indicator_display_state" style="font-size:20px!important;color: var(--primary-color);">
                                             mark_chat_read
                                         </span>
                                         <p class="text-muted text-end align-middle" style="color:var(--white)!important;font-size:12px;" data-msg-datetime="$send_date">
@@ -133,7 +133,7 @@ function getUserChats($conversation_ref)
                             <div class="text-start d-none">
                                 <img src="$profile_pic" class="rounded-5 shadow" style="height: 100px;width: 100px;filter: invert(0);z-index:2;position: relative;" alt="$user_name $user_surname's profile pic">
                             </div>
-                            <div class="talk-bubble shadow tri-right shadow left-top border border-5" style="border-radius: 0 25px 25px 25px !important;border-color:var(--mineshaft)!important;">
+                            <div class="talk-bubble shadow tri-right shadow left-top border border-5" style="border-radius: 0 25px 25px 25px !important;border-color: var(--secondary-color)!important;">
                                 <div class="talktext">
                                     <small class="text-white text-end d-flex gap-3 align-items-center justify-content-between mb-3">
                                         <div class="d-flex gap-2 align-items-center">
@@ -150,7 +150,7 @@ function getUserChats($conversation_ref)
                                         $message
                                     </p>
                                     <div class="d-flex gap-2 justify-content-start align-items-center chat-bubble-footer">
-                                        <span class="material-icons material-icons-round align-middle $msg_read_indicator_display_state" style="font-size:20px!important;color:var(--tahitigold);">
+                                        <span class="material-icons material-icons-round align-middle $msg_read_indicator_display_state" style="font-size:20px!important;color: var(--primary-color);">
                                             mark_chat_read
                                         </span>
                                         <p class="text-muted text-end align-middle" style="color:var(--white)!important;font-size:12px;" data-msg-datetime="$send_date">
