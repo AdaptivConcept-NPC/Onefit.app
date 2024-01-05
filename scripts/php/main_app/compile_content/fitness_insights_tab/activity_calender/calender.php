@@ -162,7 +162,7 @@ echo <<<_END
         <thead style="background: #fff; color: var(--secondary-color);">
             <tr>
                 <td class="px-4 py-2 text-center fw-bold fs-5" colspan="7"
-                    style="background:var(--tahitigold);color: var(--secondary-color);">
+                    style="background: var(--secondary-color);color: var(--primary-color);">
                     $cYear Training calender.
                 </td>
             </tr>

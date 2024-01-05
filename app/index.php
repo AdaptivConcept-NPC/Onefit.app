@@ -503,7 +503,8 @@ if (isset($_SESSION["currentUserAuth"])) {
         </div>
 
         <nav class="text-center text-center p-4 fixed-bottom d-grid justify-content-center down-top-grad-dark">
-            <p id="loadtime-output-label" class="text-center comfortaa-font mt-2 mb-4 d-none">Loading. Please wait.</p>
+            <p id="loadtime-output-label" class="text-center comfortaa-font mt-2 mb-4 d-none" style="max-width: 500px;">
+                Loading. Please wait.</p>
             <div class="progress my-4 rounded-pill shadow"
                 style="height:20px;max-width:500px;border-radius:50rem!important;background-color:var(--white)">
                 <div id="app-load-progressbar"
@@ -1402,13 +1403,15 @@ if (isset($_SESSION["currentUserAuth"])) {
             <div class="tab-container collapse show" id="tab-container">
                 <div id="TabHome" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: block">
-                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                    <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
                         style="border-radius: 25px; border-color: var(--primary-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
-                                style="color: var(--primary-color) !important; font-size: 40px;">dashboard</span> <span
-                                class="align-middle">Dashboard</span></h5>
-                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('dashboard')">
+                                style="color: var(--secondary-color) !important; font-size: 40px;">dashboard</span>
+                            <span class="align-middle">Dashboard</span>
+                        </h5>
+                        <button class="bg-transparent onefit-buttons-style-dark p-4 d-grid"
+                            onclick="reloadTab('dashboard')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--secondary-color)!important; */font-size:20px;"> sync
                             </span>
@@ -1416,8 +1419,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </button>
                     </div>
 
-                    <h5 class="text-center">Hi <?php echo $usrprof_name; ?>.</h5>
-                    <p class="my-4 text-center comfortaa-fontr">Welcome to the Dashboard Page. Here, you can find
+                    <h5 class="text-center" style="color: var(--secondary-color);">Hi <?php echo $usrprof_name; ?>.</h5>
+                    <p class="my-4 text-center comfortaa-fontr" style="color: var(--secondary-color);">Welcome to the
+                        Dashboard Page. Here, you can find
                         various feeds from the activities we will be doing in the OnefitNet Community.</p>
 
                     <hr class="text-white">
@@ -3556,15 +3560,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <div id="TabDiscovery" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
-                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                    <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
                         style="border-radius: 25px; border-color: var(--primary-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
-                                style="color: var(--primary-color) !important; font-size: 40px;">travel_explore</span>
+                                style="color: var(--secondary-color) !important; font-size: 40px;">travel_explore</span>
                             <span class="align-middle">Discovery</span>
                         </h5>
                         <p class="text-center" style="font-size: 10px">powered by AdaptEngine™</p>
-                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('discovery')">
+                        <button class="bg-transparent onefit-buttons-style-dark p-4 d-grid"
+                            onclick="reloadTab('discovery')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--secondary-color)!important; */font-size:20px;"> sync
                             </span>
@@ -3727,17 +3732,18 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <div id="TabStudio" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
-                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                    <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
                         style="border-radius: 25px; border-color: var(--primary-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle">
                             <span class="material-icons material-icons-outlined align-middle"
-                                style="color: var(--primary-color) !important; font-size: 40px;">play_circle_outline</span>
+                                style="color: var(--secondary-color) !important; font-size: 40px;">play_circle_outline</span>
                             <span style="color: var(--text-color) !important">
                                 <span class="align-middle">
                                     One<span style="color: var(--primary-color) !important">fit</span>.Studio
                                 </span>
                         </h5>
-                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('studio')">
+                        <button class="bg-transparent onefit-buttons-style-dark p-4 d-grid"
+                            onclick="reloadTab('studio')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--secondary-color)!important; */font-size:20px;"> sync
                             </span>
@@ -3846,15 +3852,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <div id="TabStore" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
-                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                    <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
                         style="border-radius: 25px; border-color: var(--primary-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
-                                style="color: var(--primary-color) !important; font-size: 40px;">storefront</span>
+                                style="color: var(--secondary-color) !important; font-size: 40px;">storefront</span>
                             <span class="align-middle"><span style="color: var(--text-color) !important">One</span>
                                 <span style="color: var(--primary-color) !important">fit</span>.Store</span>
                         </h5>
-                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('store')">
+                        <button class="bg-transparent onefit-buttons-style-dark p-4 d-grid"
+                            onclick="reloadTab('store')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--secondary-color)!important; */font-size:20px;"> sync
                             </span>
@@ -4189,10 +4196,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- Membership Sales Pricing Table -->
                     <h5 class="fs-1 d-grid fw-bold text-center my-4 py-4" style="color:var(--text-color);">
                         <span class="material-icons material-icons-round"
-                            style="font-size:80px!important;color:var(--primary-color);">
+                            style="font-size:80px!important;color:var(--secondary-color);">
                             verified_user
                         </span>
-                        <span><strong style="color:var(--primary-color);">Pro</strong> Membership</span>
+                        <span><strong style="color:var(--secondary-color);">Pro</strong> Membership</span>
                     </h5>
                     <div class="table-responsive light">
                         <table class="table table-stripedz shadow-lg align-middle"
@@ -4831,7 +4838,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
                     <!-- ./ tab section navigation -->
 
-                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                    <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
                         style="border-radius: 25px; border-color: var(--primary-color) !important;">
                         <h1 class="text-center comfortaa-font">
                             <span class="material-icons material-icons-outlined align-middle"
@@ -4842,7 +4849,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </h1>
                         <p class="text-center my-4 comfortaa-font">Use the Fitness Insights page to track your Training
                             progression and workout activities.</p>
-                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('insights')">
+                        <button class="bg-transparent onefit-buttons-style-dark p-4 d-grid"
+                            onclick="reloadTab('insights')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--secondary-color)!important; */font-size:20px;"> sync
                             </span>
@@ -4870,7 +4878,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <!-- Vertical Activity Timeline of user -->
 
-                    <div id="v-timeline" class="w-100 my-4 py-4 shadow border-5 border-bottom top-down-grad-tahiti"
+                    <div id="v-timeline" class="w-100 my-4 py-4 shadow border-5 border-bottom top-down-grad-white"
                         style="background-color: var(--secondary-color); border-radius: 25px; border-color: var(--primary-color) !important; overflow-x: auto;">
                         <div class="d-grid text-center">
                             <h5 id="activity-timeline-header" class="my-4 fs-1 text-center align-middle"
@@ -6773,7 +6781,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         style="max-height: 80vh; overflow-y: auto; min-height: 200px">
                         <h5>
                             <span class="material-icons material-icons-round align-middle"
-                                style="color: var(--primary-color);font-size:30px!important;">campaign</span>
+                                style="color: var(--secondary-color);font-size:30px!important;">campaign</span>
                             AdMarket<span style="color: var(--primary-color);">.</span>
                         </h5>
                         <div class="d-flex justify-content-center">
@@ -6790,11 +6798,13 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <!-- Training -->
                     <div id="training-header"
-                        class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                        class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
                         style="border-radius: 25px; border-color: var(--primary-color) !important;">
-                        <span class="material-icons material-icons-outlined">sports</span>
+                        <span class="material-icons material-icons-outlined"
+                            style="color: var(--secondary-color) !important;">sports</span>
                         <h5 class="mt-4 fs-1 text-center align-middle">Training.</h5>
-                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('training')">
+                        <button class="bg-transparent onefit-buttons-style-dark p-4 d-grid"
+                            onclick="reloadTab('training')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--secondary-color)!important; */font-size:20px;"> sync
                             </span>
@@ -10447,14 +10457,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <div id="TabAchievements" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
-                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                    <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
                         style="border-radius: 25px; border-color: var(--primary-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
-                                style="color: var(--primary-color) !important; font-size: 40px;">emoji_events</span>
+                                style="color: var(--secondary-color) !important; font-size: 40px;">emoji_events</span>
                             <span class="align-middle">Achievements</span>
                         </h5>
-                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('achievements')">
+                        <button class="bg-transparent onefit-buttons-style-dark p-4 d-grid"
+                            onclick="reloadTab('achievements')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--secondary-color)!important; */font-size:20px;"> sync
                             </span>
@@ -10665,13 +10676,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <div id="TabMedia" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
-                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                    <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
                         style="border-radius: 25px; border-color: var(--primary-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
-                                style="color: var(--primary-color) !important; font-size: 40px;">perm_media</span> <span
-                                class="align-middle">Media</span></h5>
-                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('media')">
+                                style="color: var(--secondary-color) !important; font-size: 40px;">perm_media</span>
+                            <span class="align-middle">Media</span>
+                        </h5>
+                        <button class="bg-transparent onefit-buttons-style-dark p-4 d-grid"
+                            onclick="reloadTab('media')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--secondary-color)!important; */font-size:20px;"> sync
                             </span>
@@ -10963,13 +10976,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <div id="TabCommunication" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
-                    <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
+                    <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
                         style="border-radius: 25px; border-color: var(--primary-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
-                                style="color: var(--primary-color) !important; font-size: 40px;">forum</span> <span
+                                style="color: var(--secondary-color) !important; font-size: 40px;">forum</span> <span
                                 class="align-middle">Communications</span></h5>
-                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('communications')">
+                        <button class="bg-transparent onefit-buttons-style-dark p-4 d-grid"
+                            onclick="reloadTab('communications')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--secondary-color)!important; */font-size:20px;"> sync
                             </span>
@@ -11116,7 +11130,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <hr class="text-white"> -->
 
                     <h2 class="mb-4"><span class="material-icons material-icons-round align-middle"
-                            style="color: var(--primary-color);">campaign</span> <span
+                            style="color: var(--secondary-color);">campaign</span> <span
                             class="align-middle">AdMarket</span></h2>
                 </div>
                 <div id="TabSettings" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
@@ -11125,10 +11139,11 @@ if (isset($_SESSION["currentUserAuth"])) {
                         style="border-radius: 25px; border-color: var(--primary-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
-                                style="color: var(--primary-color) !important; font-size: 40px;">settings_accessibility</span>
+                                style="color: var(--secondary-color) !important; font-size: 40px;">settings_accessibility</span>
                             <span class="align-middle">Preferences</span>
                         </h5>
-                        <button class="onefit-buttons-style-dark p-4 d-grid" onclick="reloadTab('preferences')">
+                        <button class="bg-transparent onefit-buttons-style-dark p-4 d-grid"
+                            onclick="reloadTab('preferences')">
                             <span class="material-icons material-icons-round align-middle"
                                 style="/* color:var(--secondary-color)!important; */font-size:20px;"> sync
                             </span>
@@ -11139,7 +11154,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <hr class="text-white" /> -->
 
                     <!-- accordion -->
-                    <div id="prefs-accordion-container" class="mb-4 down-top-grad-white p-4 rounded-4">
+                    <div id="prefs-accordion-container" class="mb-4 top-down-grad-dark p-4 rounded-4">
                         <div class="accordion accordion-flush" id="prefs-accordion">
                             <!-- setting: UI -->
                             <div class="accordion-item d-grid gap-2 p-0 my-2 border-0 shadow down-top-grad-tahiti">
@@ -11205,6 +11220,46 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             onclick="applyThemeColors(true)">Reset</button>
                                                     </div>
                                                 </div>
+
+                                                <hr>
+
+                                                <h2 class="fs-5">Set Panel Opacity</h2>
+                                                <div class="form-group">
+                                                    <label id="panel-opaciy-lbl" for="panelOpacityRange"
+                                                        class="form-label">80%</label>
+                                                    <input type="range" class="form-range" min="80" max="100" step="0.5"
+                                                        value="95" id="panelOpacityRange">
+                                                </div>
+                                                <script>
+                                                var slider = document.getElementById("panelOpacityRange");
+                                                var output = document.getElementById("panel-opaciy-lbl");
+
+                                                // get panel opacity from localstorage
+                                                if (localStorage.getItem("panelOpacity") === null) {
+                                                    localStorage.setItem("panelOpacity", slider.value);
+                                                    output.innerHTML = slider.value +
+                                                        "%"; // Display the default slider value
+                                                } else {
+                                                    slider.value = localStorage.getItem("panelOpacity");
+                                                    output.innerHTML = slider.value +
+                                                        "%"; // Display the default slider value
+                                                }
+
+                                                function setPanelOpacity() {
+                                                    // update css variable --content-panel-opacity
+                                                    document.documentElement.style.setProperty(
+                                                        "--content-panel-opacity", slider.value / 100);
+
+                                                    // store slider value on localstorage panelOpacity
+                                                    localStorage.setItem("panelOpacity", slider.value)
+                                                }
+
+                                                // Update the current slider value (each time you drag the slider handle)
+                                                slider.oninput = function() {
+                                                    output.innerHTML = this.value + "%";
+                                                    setPanelOpacity();
+                                                }
+                                                </script>
                                             </div>
                                         </div>
                                         <hr>
@@ -11396,7 +11451,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ Main Content -->
 
     <!-- App version -->
-    <h1 class="fs-3 poppins-font text-white text-center">App Version: v0.1-Alpha <sub
+    <h1 class="fs-3 poppins-font text-white text-center pb-5">App Version: v0.1-Alpha <sub
             style="color:var(--primary-color)!important;"><small>Jan
                 2024</small></sub></h1>
 
@@ -11875,7 +11930,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="container-fluid">
                                         <div class="row align-items-center" style="font-size: 40px;">
                                             <div class="col m">
-                                                <button class="border-0 social-link-icon-insta-light p-4 my-4 shadow"
+                                                <button class="border-0 social-link-icon-insta-dark p-4 my-4 shadow"
                                                     style="cursor: pointer" onclick="launchLink('www.google.com')">
                                                     <div class="d-grid gap-2">
                                                         <i class="fab fa-instagram" aria-hidden="true"></i>
@@ -11885,7 +11940,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </div>
 
                                             <div class="col">
-                                                <button class="border-0 social-link-icon-twitter-light p-4 my-4 shadow"
+                                                <button class="border-0 social-link-icon-twitter-dark p-4 my-4 shadow"
                                                     style="cursor: pointer" onclick="launchLink('www.google.com')">
                                                     <div class="d-grid gap-2">
                                                         <img src="../media/assets/icons/twitter-x-symbol-white.svg"
@@ -11896,7 +11951,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </div>
 
                                             <div class="col">
-                                                <button class="border-0 social-link-icon-fb-light p-4 my-4 shadow"
+                                                <button class="border-0 social-link-icon-fb-dark p-4 my-4 shadow"
                                                     style="cursor: pointer" onclick="launchLink('www.google.com')">
                                                     <div class="d-grid gap-2">
                                                         <i class="fab fa-facebook" aria-hidden="true"></i>
@@ -11906,7 +11961,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             </div>
 
                                             <div class="col">
-                                                <button class="border-0 social-link-icon-yt-light p-4 my-4 shadow"
+                                                <button class="border-0 social-link-icon-yt-dark p-4 my-4 shadow"
                                                     style="cursor: pointer" onclick="launchLink('www.google.com')">
                                                     <div class="d-grid gap-2">
                                                         <i class="fab fa-youtube" aria-hidden="true"></i>
@@ -12143,8 +12198,8 @@ if (isset($_SESSION["currentUserAuth"])) {
 
 
     <!-- >>>>>>>>>> 1. Tab Navigation Modal -->
-    <div class="modal fade show" id="tabNavModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="tabNavModalLabel" style="display: block;" aria-modal="true" role="dialog">
+    <div class="modal fade" id="tabNavModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="tabNavModalLabel" aria-modal="true" role="dialog">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
             <div class="modal-content feature-tab-nav-content">
                 <div class="modal-header border-0">
@@ -12156,145 +12211,181 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <span class="material-icons material-icons-round"> close </span>
                     </button>
                 </div>
-                <hr class="text-white m-0">
-                <div class="modal-body border-0" style="overflow-x: hidden">
+                <hr class="text-white m-0 d-nonez">
+                <div class="modal-body border-0 down-top-grad-tahiti light- no-scroller pb-5"
+                    style="overflow-x: hidden">
                     <!-- Tab Navigation Buttons Container -->
                     <div class="grid-container text-center">
-                        <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" id="app-dashboard-btn"
-                                data-bs-dismiss="modal" onclick="openLink(event, 'TabHome')">
+                        <div class="d-grid grid-tile modal-grid-tile-transform">
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                                id="app-dashboard-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabHome')">
                                 <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> dashboard </span>
-                                    <div class="d-inline">
-                                        <i class="fas fa-home" aria-hidden="true"></i> <span
-                                            style="color: var(--text-color) !important;">Dashboard</span>
+                                    <span class="material-icons material-icons-round" style="color: var(--text-color);">
+                                        dashboard </span>
+                                    <div class="d-inline text-white">
+                                        <i class="fas fa-home align-middle" aria-hidden="true"></i> <span
+                                            style="color: var(--text-color) !important;"
+                                            class="fs-5 align-middle">Dashboard</span>
                                     </div>
                                 </div>
                             </button>
                         </div>
-                        <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" id="app-profile-btn"
-                                data-bs-dismiss="modal" onclick="openLink(event, 'TabProfile')">
+                        <div class="d-grid grid-tile modal-grid-tile-transform">
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                                id="app-profile-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabProfile')">
                                 <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> account_circle </span>
-                                    <span style="color: var(--text-color) !important;">Profile
+                                    <span class="material-icons material-icons-round" style="
+                                                color: var(--text-color);
+                                            "> account_circle </span>
+                                    <span style="color: var(--text-color) !important;" class="fs-5">Profile
                                     </span>
                                 </div>
                             </button>
                         </div>
-                        <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" id="app-discovery-btn"
-                                data-bs-dismiss="modal" onclick="openLink(event, 'TabDiscovery')">
+                        <div class="d-grid grid-tile modal-grid-tile-transform">
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                                id="app-discovery-btn" data-bs-dismiss="modal"
+                                onclick="openLink(event, 'TabDiscovery')">
                                 <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> travel_explore </span>
-                                    <span style="color: var(--text-color) !important;">Discovery</span>
+                                    <span class="material-icons material-icons-round" style="
+                                                    color: var(--text-color);
+                                                "> travel_explore </span>
+                                    <span style="color: var(--text-color) !important;" class="fs-5">Discovery</span>
                                 </div>
                             </button>
                         </div>
-                        <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" id="app-studio-btn"
-                                data-bs-dismiss="modal" onclick="openLink(event, 'TabStudio')">
+                        <div class="d-grid grid-tile modal-grid-tile-transform">
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                                id="app-studio-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabStudio')">
                                 <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> play_circle_outline </span>
-                                    <span style="color: var(--text-color) !important;">Onefit.Studio</span>
+                                    <span class="material-icons material-icons-round" style="
+                                                color: var(--text-color);
+                                            "> play_circle_outline </span>
+                                    <span style="color: var(--text-color) !important;" class="fs-5">Onefit.Studio</span>
                                 </div>
                             </button>
                         </div>
-                        <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" id="app-store-btn"
-                                data-bs-dismiss="modal" onclick="openLink(event, 'TabStore')">
+                        <div class="d-grid grid-tile modal-grid-tile-transform">
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                                id="app-store-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabStore')">
                                 <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> storefront </span>
-                                    <span style="color: var(--text-color) !important;">Onefit.Store</span>
+                                    <span class="material-icons material-icons-round" style="
+                                            color: var(--text-color);
+                                        "> storefront </span>
+                                    <span style="color: var(--text-color) !important;" class="fs-5">Onefit.Store</span>
                                 </div>
                             </button>
                         </div>
                         <!-- removed onefit.social selection button here -->
-                        <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" id="app-insights-btn"
-                                data-bs-dismiss="modal" onclick="openLink(event, 'TabData')">
+                        <div class="d-grid grid-tile modal-grid-tile-transform">
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                                id="app-insights-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabData')">
                                 <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> insights </span>
-                                    <span style="color: var(--text-color) !important;">Fitness Insights</span>
+                                    <span class="material-icons material-icons-round" style="
+                                            color: var(--text-color);
+                                        "> insights </span>
+                                    <span style="color: var(--text-color) !important;" class="fs-5">Fitness
+                                        Insights</span>
                                 </div>
                             </button>
                         </div>
-                        <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" id="app-training-btn"
-                                data-bs-dismiss="modal" onclick="openLink(event, 'TabTraining')">
+                        <div class="d-grid grid-tile modal-grid-tile-transform">
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                                id="app-training-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabTraining')">
                                 <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> sports </span>
-                                    <span style="color: var(--text-color) !important;">Training</span>
+                                    <span class="material-icons material-icons-round" style="
+                                                color: var(--text-color);
+                                            "> sports </span>
+                                    <span style="color: var(--text-color) !important;" class="fs-5">Training</span>
                                 </div>
                             </button>
                         </div>
-                        <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" id="app-achievements-btn"
-                                data-bs-dismiss="modal" onclick="openLink(event, 'TabAchievements')">
+                        <div class="d-grid grid-tile modal-grid-tile-transform">
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                                id="app-achievements-btn" data-bs-dismiss="modal"
+                                onclick="openLink(event, 'TabAchievements')">
                                 <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> emoji_events </span>
-                                    <span class="align-middle" style="color: var(--text-color) !important;">Achievements
+                                    <span class="material-icons material-icons-round" style="
+                                            color: var(--text-color);
+                                        "> emoji_events </span>
+                                    <span class="align-middle fs-5"
+                                        style="color: var(--text-color) !important;">Achievements
                                         <span class="material-icons material-icons-round text-muted"
-                                            style="font-size: 12px !important;"> lock </span></span>
+                                            style="font-size: 12px !important;color: var(--text-color)!important;"> lock
+                                        </span></span>
                                 </div>
                             </button>
                         </div>
-                        <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" id="app-media-btn"
-                                data-bs-dismiss="modal" onclick="openLink(event, 'TabMedia')">
+                        <div class="d-grid grid-tile modal-grid-tile-transform">
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                                id="app-media-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabMedia')">
                                 <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> perm_media </span>
-                                    <span class="align-middle" style="color: var(--text-color) !important;">Media <span
-                                            class="material-icons material-icons-round text-muted"
-                                            style="font-size: 12px !important;"> lock </span></span>
+                                    <span class="material-icons material-icons-round" style="
+                                            color: var(--text-color);
+                                        "> perm_media </span>
+                                    <span class="align-middle fs-5" style="color: var(--text-color) !important;">Media
+                                        <span class="material-icons material-icons-round text-muted"
+                                            style="font-size: 12px !important;color: var(--text-color)!important;"> lock
+                                        </span></span>
                                 </div>
                             </button>
                         </div>
-                        <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" id="app-comms-btn"
-                                data-bs-dismiss="modal" onclick="openLink(event, 'TabCommunication')">
+                        <div class="d-grid grid-tile modal-grid-tile-transform">
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                                id="app-comms-btn" data-bs-dismiss="modal"
+                                onclick="openLink(event, 'TabCommunication')">
                                 <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> newspaper </span>
-                                    <span style="color: var(--text-color) !important;">Communications</span>
+                                    <span class="material-icons material-icons-round" style="
+                                            color: var(--text-color);
+                                        "> newspaper </span>
+                                    <span style="color: var(--text-color) !important;"
+                                        class="fs-5">Communications</span>
                                 </div>
                             </button>
                         </div>
-                        <div class="grid-tile modal-grid-tile-transform">
+                        <div class="d-grid grid-tile modal-grid-tile-transform">
                             <!-- open chat modal -->
-                            <button class="onefit-buttons-style-dark-modal p-4" id="app-msgs-btn"
-                                onclick="openLink(event, 'OffcanvasMessages')">
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                                id="app-msgs-btn" onclick="openLink(event, 'OffcanvasMessages')">
                                 <!-- type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat" -->
                                 <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> forum </span>
-                                    <span style="color: var(--text-color) !important;">Messages</span>
+                                    <span class="material-icons material-icons-round" style="
+                                            color: var(--text-color);
+                                        "> forum </span>
+                                    <span style="color: var(--text-color) !important;" class="fs-5">Messages</span>
                                 </div>
                             </button>
                         </div>
-                        <div class="grid-tile modal-grid-tile-transform">
-                            <button class="onefit-buttons-style-dark-modal p-4" id="app-preferences-btn"
-                                data-bs-dismiss="modal" onclick="openLink(event, 'TabSettings')">
+                        <div class="d-grid grid-tile modal-grid-tile-transform">
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                                id="app-preferences-btn" data-bs-dismiss="modal"
+                                onclick="openLink(event, 'TabSettings')">
                                 <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"> settings_accessibility </span>
-                                    <span style="color: var(--text-color) !important;">Preferences</span>
+                                    <span class="material-icons material-icons-round" style="
+                                            color: var(--text-color);
+                                        "> settings_accessibility </span>
+                                    <span style="color: var(--text-color) !important;" class="fs-5">Preferences</span>
                                 </div>
                             </button>
                         </div>
                     </div>
                     <!-- ./ Tab Navigation Buttons Container -->
                 </div>
-                <hr class="text-white m-0">
-                <div class="modal-footer border-0 d-inline-block">
+                <hr class="text-white m-0 d-none">
+                <div class="modal-footer border-0 d-inline-block top-down-grad-tahiti d-nonez" style="
+                        /* background-color: var(--white); */
+                    ">
 
-                    <div class="d-grid gap-2 justify-content-start">
+                    <div class="d-grid gap-2 justify-content-center">
                         <button
-                            class="btnz onefit-buttons-style-light fs-5 fw-bold my-4 p-4 text-center comfortaa-font border-0 shadowz"
+                            class="btnz onefit-buttons-style-light fs-5 fw-bold my-4 p-4 text-center comfortaa-font border-0 shadowz text-darkz collapsed"
                             type="button" data-bs-toggle="collapse" data-bs-target="#tab-nav-social-quickpost"
-                            aria-expanded="true" aria-controls="tab-nav-social-quickpost"><i class="fas fa-paper-plane"
+                            aria-expanded="false" aria-controls="tab-nav-social-quickpost"><i class="fas fa-paper-plane"
                                 aria-hidden="true"></i> | <span style="">One</span><span
                                 style="color: var(--primary-color) !important">fit</span>.Social</button>
                     </div>
 
-                    <div class="top-down-grad-tahiti rounded-5 collapse show" id="tab-nav-social-quickpost" style="">
+                    <div class="top-down-grad-dark rounded-5 collapse" id="tab-nav-social-quickpost" style="">
                         <div class="d-grid gap-2 p-4">
                             <!-- Quick Post to Social -->
                             <div class="social-quick-post d-grid comfortaa-font">
@@ -18121,6 +18212,20 @@ if (isset($_SESSION["currentUserAuth"])) {
         // apply colors
         applyThemeColors();
     }
+
+    // check if panel opacity has been set, if not set default at 95%
+    if (localStorage.getItem('panelOpacity') == null) {
+        // set default opacity
+        document.documentElement.style.setProperty('--content-panel-opacity', '0.95');
+        // save opacity to localStorage
+        localStorage.setItem('panelOpacity', '95');
+    } else {
+        // set opacity from localStorage
+        document.documentElement.style.setProperty('--content-panel-opacity', localStorage.getItem('panelOpacity') /
+            100);
+    }
+
+
 
     // js countup for 60 seconds
     let timeleft = 0;

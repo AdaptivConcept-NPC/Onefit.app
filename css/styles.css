@@ -680,7 +680,7 @@ sup {
 
 /* light version */
 .social-link-icon-fb-light {
-	color: var(--text-color) !important;
+	color: var(--secondary-color) !important;
 	background-color: var(--white);
 	transition: 0.3s;
 	border-radius: 15px !important;
@@ -694,7 +694,7 @@ sup {
 }
 
 .social-link-icon-yt-light {
-	color: var(--text-color) !important;
+	color: var(--secondary-color) !important;
 	background-color: var(--text-color);
 	transition: 0.3s;
 	border-radius: 15px !important;
@@ -708,7 +708,7 @@ sup {
 }
 
 .social-link-icon-insta-light {
-	color: var(--text-color) !important;
+	color: var(--secondary-color) !important;
 	background-color: var(--white);
 	transition: 0.3s;
 	border-radius: 15px !important;
@@ -729,7 +729,7 @@ sup {
 }
 
 .social-link-icon-twitter-light {
-	color: var(--text-color) !important;
+	color: var(--secondary-color) !important;
 	background-color: var(--white);
 	transition: 0.3s;
 	border-radius: 15px !important;
@@ -1961,6 +1961,7 @@ h6 {
 	color: var(--text-color);
 	/*border: var(--white) solid 5px;*/
 	border-radius: 25px !important;
+	border-color: var(--primary-color) !important;
 	overflow: hidden;
 }
 
