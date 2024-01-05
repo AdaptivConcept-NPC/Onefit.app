@@ -281,7 +281,7 @@ try {
                 $output_user_account_profile_img
             </div>
             <!-- ./ Profile Picture -->
-            <div id="profile-verification-strip" class="p-4 pb-0 d-grid gap-4" style="background:#343434;">
+            <div id="profile-verification-strip" class="p-4 pb-0 d-grid gap-4" style="background:var(--secondary-color);">
                 <p class="poppins-font p-4 pb-0 m-0 fs-1">$usrdetails_name $usrdetails_surname</p>
                 <div class="d-grid gap-2 mb-4">
                     <div class="text-center mb-3 d-none">
