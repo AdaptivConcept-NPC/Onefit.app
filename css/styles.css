@@ -745,7 +745,7 @@ sup {
 
 .onefit-buttons-style-light-twitter {
 	background: var(--white);
-	color: var(--secondary-color) !important;
+	color: var(--twitter) !important;
 
 	border: 0;
 	border-radius: 15px;
@@ -773,6 +773,16 @@ sup {
 	border-bottom: solid var(--twitter) 5px;
 
 	transform: scale(1.02, 1.02);
+}
+
+.app-nav-btn {
+	transition: 0.3s;
+}
+
+.app-nav-btn:hover {
+	transform: scale(1.02, 1.02) !important;
+	border-bottom: var(--primary-color) solid 5px !important;
+	color: var(--secondary-color) !important;
 }
 
 /* inputs with grad bg styling */
@@ -2124,26 +2134,20 @@ div.horizontal-scroll-card-nav {
 .create-btn-container {
 	z-index: 1999;
 	position: fixed;
-	top: 5vh
-		/* 20vh */
-	;
+	top: 5vh;
 	right: 10px;
 	background-color: var(--secondary-color) !important;
 	color: var(--text-color) !important;
 	border-radius: 25px !important;
 
-	border-left: 5px solid var(--primary-color);
-	border-right: 5px solid var(--primary-color);
+	border-top: 5px solid var(--primary-color);
+	border-bottom: 5px solid var(--primary-color);
 	overflow: hidden;
 
 	transition: 0.3s;
 }
 
 .create-btn-container-static {
-	/* z-index: 1999; */
-	/* position: fixed; */
-	/* top: 50vh;
-  right: 10px; */
 	background-color: var(--secondary-color) !important;
 	color: var(--text-color) !important;
 	border-radius: 25px !important;
@@ -2154,17 +2158,16 @@ div.horizontal-scroll-card-nav {
 .load-curtain-social-btn-panel {
 	z-index: 10001;
 	position: fixed;
-	top: 5vh
-		/* 20vh */
-	;
-	left: 0px;
-	/* background-color: var(--secondary-color) !important; */
-	background-color: rgba(54, 54, 54, 0.8);
+	top: 5vh;
+	left: 10px;
+	
+	background-color: var(--secondary-color) !important;
 	color: var(--text-color) !important;
-	border-radius: 0 25px 25px 0 !important;
+	border-radius: 25px !important;
 	max-height: 70vh !important;
 
-	border-right: 5px solid var(--twitter);
+	border-top: 5px solid var(--primary-color);
+	border-bottom: 5px solid var(--primary-color);
 
 	transition: 0.3s;
 }
