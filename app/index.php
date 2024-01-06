@@ -350,18 +350,18 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <!-- outer - twitter social panel -->
     <div id="twitter-social-panel"
-        class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4 pb-0 d-nonez d-lg-blockz right-left-grad-tahiti-mineshaft bg-darkz shadow-lgz">
+        class="load-curtain-social-btn-panel comfortaa-font d-grid gap-2 p-4 pb-0 d-lg-blockz top-down-grad-tahiti">
         <!--  d-none d-lg-block p-4 -->
         <div class="position-relative d-flex gap-2 w-100 justify-content-center mb-4">
             <button
-                class="show-left-side-panels p-4 m-0 shadow onefit-buttons-style-dark-twitter onefit-buttons-style-light-twitterz"
+                class="show-left-side-panels p-5 pt-3 m-0 shadow-lg onefit-buttons-style-dark-twitterz bg-transparent onefit-buttons-style-light-twitter collapsed"
                 type="button" data-bs-toggle="collapse" data-bs-target="#collapseloadCurtainTweetFeed"
                 aria-expanded="false" aria-controls="collapseloadCurtainTweetFeed">
                 <div class="d-grid">
                     <span class="material-icons material-icons-round" style="font-size: 48px !important;">
                         <!-- <i class="fab fa-twitter" style="font-size: 40px;"></i> -->
-                        <img src="../media/assets/icons/twitter-x-symbol-white.svg" style="height:40px;width:40px"
-                            alt="Twitter - X logo">
+                        <img src="../media/assets/icons/twitter-x-symbol-white.svg"
+                            style="height: 40px; width: 40px; filter: invert(0);" alt="Twitter - X logo">
                     </span>
                     <p class="comfortaa-font mt-1 mb-0" style="font-size: 10px;color: var(--text-color)!important;">
                         <span style="color:var(--twitter)!important;">@</span>onefitnet
@@ -371,14 +371,14 @@ if (isset($_SESSION["currentUserAuth"])) {
             <!-- close button badge -->
             <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill p-2"
                 onclick="$.hideSingleSidePanel('#twitter-social-panel','left')"
-                style="cursor: pointer;background-color:var(--secondary-color)!important;color:var(--twitter)!important;">
+                style="cursor: pointer;color: var(--text-color)!important;">
                 <span class="material-icons material-icons-outlined align-middle" style="font-size: 15px !important;">
                     hide_source
                 </span>
                 <span class="align-middle" style="font-size: 8px!important;">hide.</span>
             </span>
         </div>
-        <div class="collapse no-scroller pb-4 w3-animate-bottom" id="collapseloadCurtainTweetFeed"
+        <div class="no-scroller pb-4 w3-animate-bottom collapse" id="collapseloadCurtainTweetFeed"
             style="overflow-y: auto;">
             <div class="pb-4 no-scroller"
                 style="border-radius: 25px !important; overflow-y: auto; max-height: 90vh; min-width: 500px;">
@@ -386,7 +386,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <!-- <a class="twitter-timeline comfortaa-font" href="https://twitter.com/OnefitNet?ref_src=twsrc%5Etfw">
                     Tweets by <span style="color: var(--primary-color)!important;">@OnefitNet</span>
                 </a> -->
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 <div class="d-flex justify-content-center">
                     <div class="spinner-grow grow text-light my-4" style="width: 3rem; height: 3rem;" role="status">
                         <span class="visually-hidden">Loading...</span>
@@ -399,15 +399,15 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <!-- Create Button - hidden on screens smaller than lg -->
     <div id="creation-tools-content-panel"
-        class="create-btn-container my-pulse-animation-tahiti comfortaa-font d-grid gap-2 d-nonez d-lg-blockz">
-        <div class="collapse p-4 w3-animate-bottom" id="collapseCreateCommandList">
+        class="create-btn-container comfortaa-font d-grid gap-2 d-nonez d-lg-blockz top-down-grad-tahiti p-4">
+        <div class="px-4 pb-4 w3-animate-bottom collapse" id="collapseCreateCommandList" style="">
             <ul class="list-groupz list-group-flush list-group border-0 text-white fw-bold text-center comfortaa-font"
                 style="overflow: initial !important;">
                 <li class="list-group-item bg-transparent d-grid justify-content-center p-0">
                     <!-- close button badge -->
-                    <span class="badge rounded-pill bg-danger p-2"
+                    <span class="badge rounded-pill p-4 bg-transparent"
                         onclick="$.hideSingleSidePanel('#creation-tools-content-panel','right')"
-                        style="cursor: pointer;background-color:var(--secondary-color)!important;color:var(--primary-color)!important">
+                        style="cursor: pointer;/* background-color: var(--text-color)!important; */color: var(--text-color)!important;">
                         <span class="material-icons material-icons-outlined align-middle"
                             style="font-size: 15px !important;">
                             hide_source
@@ -416,24 +416,26 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </span>
                 </li>
                 <li class="list-group-item bg-transparent d-grid"><button type="button"
-                        class="onefit-buttons-style-dark text-white">Social Update</button></li>
+                        class="onefit-buttons-style-light text-white p-4">Social Update</button></li>
                 <li class="list-group-item bg-transparent d-grid"><button type="button"
-                        class="onefit-buttons-style-dark text-white">Community Resource</button></li>
+                        class="onefit-buttons-style-light text-white p-4">Community Resource</button></li>
                 <li class="list-group-item bg-transparent d-grid"><button type="button"
-                        class="onefit-buttons-style-dark text-white">Share Media</button></li>
+                        class="onefit-buttons-style-light text-white p-4">Share Media</button></li>
                 <li class="list-group-item bg-transparent d-grid"><button type="button"
-                        class="onefit-buttons-style-dark text-white">Chat Message</button></li>
+                        class="onefit-buttons-style-light text-white p-4">Chat Message</button></li>
             </ul>
         </div>
         <div class="d-grid gap-2 w-100">
-            <button class="show-right-side-panels p-4 m-0 shadow onefit-buttons-style-dark border-0" type="button"
-                data-bs-toggle="collapse" data-bs-target="#collapseCreateCommandList" aria-expanded="false"
-                aria-controls="collapseCreateCommandList">
+            <button
+                class="show-right-side-panels p-4 m-0 shadow-lg onefit-buttons-style-light border-0 my-pulse-animation-dark collapsed"
+                type="button" data-bs-toggle="collapse" data-bs-target="#collapseCreateCommandList"
+                aria-expanded="false" aria-controls="collapseCreateCommandList">
                 <div class="d-grid">
-                    <span class="material-icons material-icons-round" style="font-size: 48px !important;">
+                    <span class="material-icons material-icons-round"
+                        style="font-size: 48px !important;color:var(--text-color);">
                         brush
                     </span>
-                    <p class="comfortaa-font" style="font-size: 20px;">Create.</p>
+                    <p class="comfortaa-font" style="font-size: 20px;color:var(--text-color);">Create.</p>
                 </div>
             </button>
         </div>
@@ -510,7 +512,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div id="app-load-progressbar"
                     class="progress-bar text-center px-1 fw-bold rounded-pillz my-pulse-animation-tahiti"
                     role="progressbar" aria-label="App load progress"
-                    style="width: 15%; border-right: 0px solid rgb(255, 165, 0); background-color: var(--primary-color) !important;color:var(--secondary-color)!important;font-size:8px;"
+                    style="width: 15%; border-right: 0px solid rgb(255, 165, 0); background-color: var(--primary-color) !important;color:var(--text-color)!important;font-size:8px;"
                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                     <span class="align-middle">15%</span>
                     <!-- <div class="spinner-grow" style="width:10px;height:10px;color:var(--text-color)" role="status">
@@ -1105,11 +1107,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </button>
 
                 <!-- Navigation Menu Offcanvas -->
-                <div class="offcanvas offcanvas-end offcanvas-menu-primary-style w-50 fitness-bg-containerz"
+                <div class="offcanvas offcanvas-end offcanvas-menu-primary-style w-100 fitness-bg-containerz"
                     tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div class="no-scroller" id="offcanvas-menu">
-                        <div class="offcanvas-header fs-1"
-                            style="background-color: var(--secondary-color); color: var(--text-color)">
+                        <div class="offcanvas-header fs-1" style="color: var(--text-color)">
                             <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2"
                                 style="max-width:100px;">
                             <h5 class="offcanvas-title text-center" id="offcanvasNavbarLabel">
@@ -1133,10 +1134,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <p class="text-white comfortaa-font fs-4 mb-0 fw-bold"> Presented by </p>
                                         <p class="text-white audiowide-font mt-1 mb-0 fw-bold"
                                             style="font-size: 8px !important;">
-                                            <span style="color: var(--primary-color);">
-                                                One</span>-On-<span style="color: var(--primary-color);">One</span>
+                                            <span style="color: var(--tahitigold);">
+                                                One</span>-On-<span style="color: var(--tahitigold);">One</span>
                                             Fitness
-                                            Network<sup style="color: var(--primary-color);">®</sup>
+                                            Network<sup style="color: var(--tahitigold);">®</sup>
                                         </p>
                                         <span class="material-icons material-icons-round d-none"
                                             style="color: var(--primary-color); cursor: pointer;">
@@ -1147,19 +1148,19 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4 text-center down-top-grad-dark"
+                                    <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
                                         style="border-radius: 25px !important;font-size:16px;"
                                         href="https://onefitnet.co.za/" target="_blank">One-On-One
                                         Fitness Network<span style="color:var(--primary-color);">™</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4 text-center down-top-grad-dark"
+                                    <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
                                         style="border-radius: 25px !important;font-size:16px;"
                                         href="https://onefitnet.co.za/redirect/?linkref=null" target="_blank">LMM 1-On-1
                                         Trainer<span style="color:var(--primary-color);">™</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4 text-center down-top-grad-dark"
+                                    <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
                                         style="border-radius: 25px !important;font-size:16px;"
                                         href="https://adaptivconcept.co.za/" target="_blank">AdaptivConcept<span
                                             style="color:var(--primary-color);">™</span>
@@ -1259,7 +1260,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         Rewards Program</span>
                                 </p>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4 text-center down-top-grad-dark"
+                                    <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
                                         style="border-radius: 25px !important;font-size:16px;" href="#">
                                         <span
                                             class="material-icons material-icons-round align-middle">card_giftcard</span>
@@ -1267,14 +1268,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             style="color:var(--primary-color);font-size:8px!important;">Alpha</sub></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4 text-center down-top-grad-dark"
+                                    <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
                                         style="border-radius: 25px !important;font-size:16px;" href="#">
                                         <span
                                             class="material-icons material-icons-round align-middle">auto_stories</span>
                                         Onefit.blog<span style="color:var(--primary-color);">™</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link p-4 text-center down-top-grad-dark"
+                                    <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
                                         style="border-radius: 25px !important;font-size:16px;" href="#">
                                         <span class="material-icons material-icons-round align-middle">storefront</span>
                                         Onefit.Shop<span style="color:var(--primary-color);">™</span></a>
@@ -11451,8 +11452,8 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ Main Content -->
 
     <!-- App version -->
-    <h1 class="fs-3 poppins-font text-white text-center pb-5">App Version: v0.1-Alpha <sub
-            style="color:var(--primary-color)!important;"><small>Jan
+    <h1 class="fs-3 poppins-font text-white text-center py-5" style="background-color:var(--secondary-color);">App
+        Version: v0.1-Alpha <sub style="color:var(--primary-color)!important;"><small>Jan
                 2024</small></sub></h1>
 
     <!-- Footer -->
@@ -12211,13 +12212,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <span class="material-icons material-icons-round"> close </span>
                     </button>
                 </div>
-                <hr class="text-white m-0 d-nonez">
-                <div class="modal-body border-0 down-top-grad-tahiti light- no-scroller pb-5"
+                <hr class="text-white m-0 d-none">
+                <div class="modal-body border-0 down-top-grad-tahiti light- no-scroller pb-5 px-5"
                     style="overflow-x: hidden">
                     <!-- Tab Navigation Buttons Container -->
                     <div class="grid-container text-center">
                         <div class="d-grid grid-tile modal-grid-tile-transform">
-                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg app-nav-btn"
                                 id="app-dashboard-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabHome')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round" style="color: var(--text-color);">
@@ -12231,7 +12232,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </button>
                         </div>
                         <div class="d-grid grid-tile modal-grid-tile-transform">
-                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg app-nav-btn"
                                 id="app-profile-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabProfile')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round" style="
@@ -12243,7 +12244,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </button>
                         </div>
                         <div class="d-grid grid-tile modal-grid-tile-transform">
-                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg app-nav-btn"
                                 id="app-discovery-btn" data-bs-dismiss="modal"
                                 onclick="openLink(event, 'TabDiscovery')">
                                 <div class="d-grid gap-2">
@@ -12255,7 +12256,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </button>
                         </div>
                         <div class="d-grid grid-tile modal-grid-tile-transform">
-                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg app-nav-btn"
                                 id="app-studio-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabStudio')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round" style="
@@ -12266,7 +12267,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </button>
                         </div>
                         <div class="d-grid grid-tile modal-grid-tile-transform">
-                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg app-nav-btn"
                                 id="app-store-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabStore')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round" style="
@@ -12278,7 +12279,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <!-- removed onefit.social selection button here -->
                         <div class="d-grid grid-tile modal-grid-tile-transform">
-                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg app-nav-btn"
                                 id="app-insights-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabData')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round" style="
@@ -12290,7 +12291,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </button>
                         </div>
                         <div class="d-grid grid-tile modal-grid-tile-transform">
-                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg app-nav-btn"
                                 id="app-training-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabTraining')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round" style="
@@ -12301,7 +12302,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </button>
                         </div>
                         <div class="d-grid grid-tile modal-grid-tile-transform">
-                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg app-nav-btn"
                                 id="app-achievements-btn" data-bs-dismiss="modal"
                                 onclick="openLink(event, 'TabAchievements')">
                                 <div class="d-grid gap-2">
@@ -12317,7 +12318,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </button>
                         </div>
                         <div class="d-grid grid-tile modal-grid-tile-transform">
-                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg app-nav-btn"
                                 id="app-media-btn" data-bs-dismiss="modal" onclick="openLink(event, 'TabMedia')">
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round" style="
@@ -12331,7 +12332,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </button>
                         </div>
                         <div class="d-grid grid-tile modal-grid-tile-transform">
-                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg app-nav-btn"
                                 id="app-comms-btn" data-bs-dismiss="modal"
                                 onclick="openLink(event, 'TabCommunication')">
                                 <div class="d-grid gap-2">
@@ -12345,7 +12346,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <div class="d-grid grid-tile modal-grid-tile-transform">
                             <!-- open chat modal -->
-                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg app-nav-btn"
                                 id="app-msgs-btn" onclick="openLink(event, 'OffcanvasMessages')">
                                 <!-- type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat" -->
                                 <div class="d-grid gap-2">
@@ -12357,7 +12358,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </button>
                         </div>
                         <div class="d-grid grid-tile modal-grid-tile-transform">
-                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg"
+                            <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg app-nav-btn"
                                 id="app-preferences-btn" data-bs-dismiss="modal"
                                 onclick="openLink(event, 'TabSettings')">
                                 <div class="d-grid gap-2">
@@ -12372,13 +12373,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- ./ Tab Navigation Buttons Container -->
                 </div>
                 <hr class="text-white m-0 d-none">
-                <div class="modal-footer border-0 d-inline-block top-down-grad-tahiti d-nonez" style="
-                        /* background-color: var(--white); */
-                    ">
+                <div class="modal-footer border-0 d-inline-block top-down-grad-tahiti d-nonez"
+                    style="/* background-color: var(--white); */">
 
                     <div class="d-grid gap-2 justify-content-center">
                         <button
-                            class="btnz onefit-buttons-style-light fs-5 fw-bold my-4 p-4 text-center comfortaa-font border-0 shadowz text-darkz collapsed"
+                            class="btnz onefit-buttons-style-dark fs-5 fw-bold my-4 p-4 text-center comfortaa-font border-0 shadowz text-darkz collapsed"
                             type="button" data-bs-toggle="collapse" data-bs-target="#tab-nav-social-quickpost"
                             aria-expanded="false" aria-controls="tab-nav-social-quickpost"><i class="fas fa-paper-plane"
                                 aria-hidden="true"></i> | <span style="">One</span><span
@@ -14874,13 +14874,13 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                 if (priority === true) {
                     document.getElementById('notification-indicator-icon').classList.add(
-                        "my-pulse-animation-tahiti");
+                        "my-pulse-animation-light");
                 }
             } else {
                 $('#notification-indicator').hide();
                 $('#notification-indicator-icon').html('pending');
                 document.getElementById('notification-indicator-icon').classList.remove(
-                    "my-pulse-animation-tahiti");
+                    "my-pulse-animation-light");
             }
         }
 

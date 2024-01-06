@@ -120,7 +120,10 @@ $cart_widget_html_template = <<<_END
 <!-- Cart Container  -->
 <div class="container py-4 d-nonez">
     <div class="text-center">
-        <button class="navbar-toggler shadowz onefit-buttons-style-dark rounded-5z p-0 hide-side-panels shadow-lg collapsed border-5 border-bottom" style="overflow:hidden;" type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel" aria-expanded="false" id="main-cart-toggle-btn">
+        <button class="navbar-toggler shadowz onefit-buttons-style-dark rounded-5z p-0 hide-side-panels shadow-lg collapsed border-5 border-bottom" 
+            style="overflow:hidden;border-color: var(--primary-color) !important;" 
+            type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" 
+            aria-controls="cart-panel" aria-expanded="false" id="main-cart-toggle-btn">
             <div class="row px-4z py-2 m-0 align-items-center rounded-3 top-down-grad-tahiti">
                 <div class="col-lg fw-bold comfortaa-font border-startz border-endz border-light p-4 fs-4 d-grid gap-2 text-center text-white" style="min-width:100px;">
                     <span class="material-icons material-icons-round align-middle" style="font-size: 50px !important;">
