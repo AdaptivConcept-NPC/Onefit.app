@@ -11192,6 +11192,431 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <div id="color-form">
                                                 <h2 class="fs-5">Set App Theme Colors</h2>
 
+                                                <!-- list group to show themes -->
+                                                <ul class="list-group rounded-4">
+                                                    <li class="list-group-item p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-gridz justify-content-center">
+                                                                <div class="form-check  d-flex gap-4">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="theme-select-list"
+                                                                        id="theme-select-default" checked>
+                                                                    <label class="form-check-label fs-4"
+                                                                        for="theme-select-default">
+                                                                        OnefitNet (Default)
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-prclr-default" value="#ffa500">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-scclr-default" value="#343434">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-acclr-default" value="#ffa500">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-txtclr-default" value="#ffffff">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-gridz justify-content-center">
+                                                                <div class="form-check  d-flex gap-4">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="theme-select-list"
+                                                                        id="theme-select-onefitnetlight">
+                                                                    <label class="form-check-label fs-4"
+                                                                        for="theme-select-onefitnetlight">
+                                                                        OnefitNet Light
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-prclr-onefitnetlight" value="#ffffff">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-scclr-onefitnetlight" value="#343434">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-acclr-onefitnetlight" value="#ffa500">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-txtclr-onefitnetlight" value="#ffffff">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-gridz justify-content-center">
+                                                                <div class="form-check  d-flex gap-4">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="theme-select-list"
+                                                                        id="theme-select-onefitnetdark1">
+                                                                    <label class="form-check-label fs-4"
+                                                                        for="theme-select-onefitnetdark1">
+                                                                        OnefitNet Dark (1)
+                                                                    </label>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-prclr-onefitnetdark1" value="#343434">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-scclr-onefitnetdark1" value="#000000">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-acclr-onefitnetdark1" value="#ffffff">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-txtclr-onefitnetdark1" value="#ffffff">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-gridz justify-content-center">
+                                                                <div class="form-check  d-flex gap-4">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="theme-select-list"
+                                                                        id="theme-select-onefitnetdark2">
+                                                                    <label class="form-check-label fs-4"
+                                                                        for="theme-select-onefitnetdark2">
+                                                                        OnefitNet Dark (2)
+                                                                    </label>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-prclr-onefitnetdark2" value="#000000">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-scclr-onefitnetdark2" value="#343434">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-acclr-onefitnetdark2" value="#ffffff">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-txtclr-onefitnetdark2" value="#ffffff">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-gridz justify-content-center">
+                                                                <div class="form-check  d-flex gap-4">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="theme-select-list"
+                                                                        id="theme-select-noirlight">
+                                                                    <label class="form-check-label fs-4"
+                                                                        for="theme-select-noirlight">
+                                                                        Noir (Light)
+                                                                    </label>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-prclr-noirlight" value="#C7C7C7">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-scclr-noirlight" value="#343434">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-acclr-noirlight" value="#C7C7C7">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-txtclr-noirlight" value="#ffffff">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-gridz justify-content-center">
+                                                                <div class="form-check  d-flex gap-4">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="theme-select-list"
+                                                                        id="theme-select-noirgrey1">
+                                                                    <label class="form-check-label fs-4"
+                                                                        for="theme-select-noirgrey1">
+                                                                        Noir (Grey 1)
+                                                                    </label>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-prclr-noirgrey1" value="#858585">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-scclr-noirgrey1" value="#343434">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-acclr-noirgrey1" value="#858585">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-txtclr-noirgrey1" value="#ffffff">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-gridz justify-content-center">
+                                                                <div class="form-check  d-flex gap-4">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="theme-select-list"
+                                                                        id="theme-select-noirgrey2">
+                                                                    <label class="form-check-label fs-4"
+                                                                        for="theme-select-noirgrey2">
+                                                                        Noir (Grey 2)
+                                                                    </label>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-prclr-noirgrey2" value="#343434">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-scclr-noirgrey2" value="#858585">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-acclr-noirgrey2" value="#343434">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-txtclr-noirgrey2" value="#ffffff">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-gridz justify-content-center">
+                                                                <div class="form-check  d-flex gap-4">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="theme-select-list" id="theme-select-mint">
+                                                                    <label class="form-check-label fs-4"
+                                                                        for="theme-select-mint">
+                                                                        Mint
+                                                                    </label>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-prclr-mint" value="#00DB0F">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-scclr-mint" value="#0A5C0F">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-acclr-mint" value="#00DB0F">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-txtclr-mint" value="#ffffff">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-gridz justify-content-center">
+                                                                <div class="form-check  d-flex gap-4">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="theme-select-list" id="theme-select-ruby">
+                                                                    <label class="form-check-label fs-4"
+                                                                        for="theme-select-ruby">
+                                                                        Ruby
+                                                                    </label>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-prclr-ruby" value="#DB0000">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-scclr-ruby" value="#5C0A0A">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-acclr-ruby" value="#DB0000">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-txtclr-ruby" value="#ffffff">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-gridz justify-content-center">
+                                                                <div class="form-check  d-flex gap-4">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="theme-select-list"
+                                                                        id="theme-select-blutheme">
+                                                                    <label class="form-check-label fs-4"
+                                                                        for="theme-select-blutheme">
+                                                                        bLU
+                                                                    </label>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-prclr-blutheme" value="#00AFDB">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-scclr-blutheme" value="#0A1F5C">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-acclr-blutheme" value="#00AFDB">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-txtclr-blutheme" value="#ffffff">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-gridz justify-content-center">
+                                                                <div class="form-check  d-flex gap-4">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="theme-select-list"
+                                                                        id="theme-select-alttheme">
+                                                                    <label class="form-check-label fs-4"
+                                                                        for="theme-select-alttheme">
+                                                                        aLT
+                                                                    </label>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-prclr-alttheme" value="#8400DB">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-scclr-alttheme" value="#0A1F5C">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-acclr-alttheme" value="#8400DB">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-txtclr-alttheme" value="#ffffff">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-gridz justify-content-center">
+                                                                <div class="form-check  d-flex gap-4">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="theme-select-list"
+                                                                        id="theme-select-bumbletheme">
+                                                                    <label class="form-check-label fs-4"
+                                                                        for="theme-select-bumbletheme">
+                                                                        Bumble
+                                                                    </label>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-prclr-bumbletheme" value="#DBD400">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-scclr-bumbletheme" value="#343434">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-acclr-bumbletheme" value="#DBD400">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-txtclr-bumbletheme" value="#ffffff">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-gridz justify-content-center">
+                                                                <div class="form-check  d-flex gap-4">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="theme-select-list"
+                                                                        id="theme-select-powerRaidtheme">
+                                                                    <label class="form-check-label fs-4"
+                                                                        for="theme-select-powerRaidtheme">
+                                                                        Power Raid
+                                                                    </label>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-prclr-powerRaidtheme" value="#0081D1">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-scclr-powerRaidtheme" value="#000000">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-acclr-powerRaidtheme" value="#0081D1">
+                                                            </div>
+                                                            <div class="col-md d-gridz justify-content-center">
+                                                                <input type="color" class="w-100 theme-color-input"
+                                                                    id="pallette-txtclr-powerRaidtheme" value="#ffffff">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                                <hr>
+
+                                                <div class="form-check d-flex gap-4">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="theme-select-list" id="theme-select-custom">
+                                                    <label class="form-check-label fs-4" for="theme-select-custom">
+                                                        Custom Colors:
+                                                    </label>
+                                                </div>
                                                 <div class="row g-3">
                                                     <div class="col-md">
 
@@ -11208,10 +11633,15 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                                     </div>
                                                     <div class="col-md">
+                                                        <label for="accent-color" class="color-input">Accent
+                                                            Color:</label>
+                                                        <input type="color" id="accent-color" value="#ffa500">
+                                                        <!-- </label> -->
+                                                    </div>
+                                                    <div class="col-md">
                                                         <label for="text-color" class="color-input">Text Color:</label>
                                                         <input type="color" id="text-color" value="#ffffff">
                                                         <!-- </label> -->
-
                                                     </div>
                                                     <div class="col-md-12">
                                                         <button class="onefit-buttons-style-light p-4"
@@ -11231,36 +11661,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <input type="range" class="form-range" min="80" max="100" step="0.5"
                                                         value="95" id="panelOpacityRange">
                                                 </div>
-                                                <script>
-                                                var slider = document.getElementById("panelOpacityRange");
-                                                var output = document.getElementById("panel-opaciy-lbl");
 
-                                                // get panel opacity from localstorage
-                                                if (localStorage.getItem("panelOpacity") === null) {
-                                                    localStorage.setItem("panelOpacity", slider.value);
-                                                    output.innerHTML = slider.value +
-                                                        "%"; // Display the default slider value
-                                                } else {
-                                                    slider.value = localStorage.getItem("panelOpacity");
-                                                    output.innerHTML = slider.value +
-                                                        "%"; // Display the default slider value
-                                                }
-
-                                                function setPanelOpacity() {
-                                                    // update css variable --content-panel-opacity
-                                                    document.documentElement.style.setProperty(
-                                                        "--content-panel-opacity", slider.value / 100);
-
-                                                    // store slider value on localstorage panelOpacity
-                                                    localStorage.setItem("panelOpacity", slider.value)
-                                                }
-
-                                                // Update the current slider value (each time you drag the slider handle)
-                                                slider.oninput = function() {
-                                                    output.innerHTML = this.value + "%";
-                                                    setPanelOpacity();
-                                                }
-                                                </script>
                                             </div>
                                         </div>
                                         <hr>
@@ -18170,6 +18571,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         if (reset == true) {
             document.documentElement.style.setProperty('--primary-color', '#ffa500');
             document.documentElement.style.setProperty('--secondary-color', '#343434');
+            document.documentElement.style.setProperty('--accent-color', '#ffa500');
             document.documentElement.style.setProperty('--text-color', '#ffffff');
         } else {
             document.documentElement.style.setProperty('--primary-color',
@@ -18179,28 +18581,32 @@ if (isset($_SESSION["currentUserAuth"])) {
                 document.getElementById(
                     'secondary-color')
                 .value);
+            document.documentElement.style.setProperty('--accent-color',
+                document.getElementById(
+                    'accent-color').value);
             document.documentElement.style.setProperty('--text-color',
                 document.getElementById('text-color')
                 .value);
         }
 
-
-
         // save colors to localstorge
         localStorage.setItem('theme-primary-color', document.getElementById('primary-color').value);
         localStorage.setItem('theme-secondary-color', document.getElementById('secondary-color').value);
+        localStorage.setItem('theme-secondary-color', document.getElementById('accent-color').value);
         localStorage.setItem('theme-text-color', document.getElementById('text-color').value);
 
-        // show snackbar
-        // showSnackbar("Theme colors applied.", "alert_success");
+        // log the theme colors applied
+        console.log("Theme colors applied. ", "theme name: " + localStorage.getItem('selectedThemeName'));
     }
 
     // check if theme color have been set, if not set default/main colors
     if (localStorage.getItem('theme-primary-color') == null || localStorage.getItem(
-            'theme-secondary-color') == null || localStorage.getItem('theme-text-color') == null) {
+            'theme-secondary-color') == null || localStorage.getItem('theme-accent-color') == null || localStorage
+        .getItem('theme-text-color') == null) {
         // set default colors
         document.getElementById('primary-color').value = '#ffa500';
         document.getElementById('secondary-color').value = '#343434';
+        document.getElementById('accent-color').value = '#ffa500';
         document.getElementById('text-color').value = '#ffffff';
         // apply colors
         applyThemeColors();
@@ -18208,23 +18614,140 @@ if (isset($_SESSION["currentUserAuth"])) {
         // set colors from localstorage
         document.getElementById('primary-color').value = localStorage.getItem('theme-primary-color');
         document.getElementById('secondary-color').value = localStorage.getItem('theme-secondary-color');
+        document.getElementById('accent-color').value = localStorage.getItem('theme-accent-color');
         document.getElementById('text-color').value = localStorage.getItem('theme-text-color');
         // apply colors
         applyThemeColors();
     }
 
-    // check if panel opacity has been set, if not set default at 95%
-    if (localStorage.getItem('panelOpacity') == null) {
-        // set default opacity
-        document.documentElement.style.setProperty('--content-panel-opacity', '0.95');
-        // save opacity to localStorage
-        localStorage.setItem('panelOpacity', '95');
+
+    // tab panel opacity slider
+    const slider = document.getElementById("panelOpacityRange");
+    const output = document.getElementById("panel-opaciy-lbl");
+
+    // get panel opacity from localstorage
+    if (localStorage.getItem("panelOpacity") === null) {
+        // if null create ls item and set default value
+        localStorage.setItem("panelOpacity", slider.value);
+        output.innerHTML = slider.value +
+            "%"; // Display the default slider value
+
+        // set css opacity from localStorage
+        document.documentElement.style.setProperty('--content-panel-opacity', localStorage.getItem('panelOpacity') /
+            100);
     } else {
-        // set opacity from localStorage
+        slider.value = localStorage.getItem("panelOpacity");
+        output.innerHTML = slider.value +
+            "%"; // Display the default slider value
+
+        // set css opacity from localStorage
         document.documentElement.style.setProperty('--content-panel-opacity', localStorage.getItem('panelOpacity') /
             100);
     }
 
+    function setPanelOpacity() {
+        // update css variable --content-panel-opacity
+        document.documentElement.style.setProperty(
+            "--content-panel-opacity", slider.value / 100);
+
+        // store slider value on localstorage panelOpacity
+        localStorage.setItem("panelOpacity", slider.value)
+    }
+
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+        output.innerHTML = this.value + "%";
+        setPanelOpacity();
+    }
+
+    // event listener for when the user changes selected theme via radio buttons
+    var themeSelectList = document.getElementsByName(
+        "theme-select-list");
+    for (var i = 0; i < themeSelectList.length; i++) {
+        themeSelectList[i].addEventListener("change",
+            function() {
+                // get the selected theme
+                var selectedTheme = document.querySelector(
+                    'input[name="theme-select-list"]:checked').id;
+
+                // store selected theme on localstorage
+                localStorage.setItem("selectedTheme",
+                    selectedTheme);
+
+                // get the selected theme name from the selectedTheme variable: theme-select-mint
+                var selectedThemeName = selectedTheme.split("-")[2];
+
+                // store selected theme name on localstorage
+                localStorage.setItem("selectedThemeName",
+                    selectedThemeName);
+
+                if (selectedThemeName == "custom") {
+                    // custom theme
+                    // update #primary-color, #secondary-color, #accent-color, #text-color inputs with the local stored theme colors
+                    document.getElementById("primary-color").value =
+                        localStorage.getItem("theme-primary-color");
+                    document.getElementById("secondary-color").value =
+                        dlocalStorage.getItem("theme-secondary-color");
+                    document.getElementById("accent-color").value =
+                        localStorage.getItem("theme-accent-color");
+                    document.getElementById("text-color").value =
+                        localStorage.getItem("theme-text-color")
+                } else {
+                    // theme pallette
+                    // update #primary-color, #secondary-color, #accent-color, #text-color inputs with the selected theme colors
+                    document.getElementById("primary-color").value =
+                        document.getElementById("pallette-prclr-" +
+                            selectedThemeName).value;
+                    document.getElementById("secondary-color").value =
+                        document.getElementById("pallette-scclr-" +
+                            selectedThemeName).value;
+                    document.getElementById("accent-color").value =
+                        document.getElementById("pallette-acclr-" +
+                            selectedThemeName).value;
+                    document.getElementById("text-color").value =
+                        document.getElementById("pallette-txtclr-" +
+                            selectedThemeName).value;
+                }
+
+                // click apply colors button	
+                // apply theme colors 
+                applyThemeColors(false);
+
+                // snackbar
+                showSnackbar(selectedThemeName + " theme selected.", "alert_success")
+            });
+    }
+
+    // check relevent selected theme radio button
+    if (localStorage.getItem('selectedTheme') == null) {
+        // set default theme
+        document.getElementById('theme-select-default').checked = true;
+        // store selected theme on localstorage
+        localStorage.setItem("selectedTheme", "theme-select-default");
+        // store selected theme name on localstorage
+        localStorage.setItem("selectedThemeName", "default");
+    } else {
+        // set selected theme from localstorage
+        document.getElementById(localStorage.getItem(
+            'selectedTheme')).checked = true;
+        // update #primary-color, #secondary-color, #accent-color, #text-color inputs with the selected theme colors
+        console.log("Theme Pallete-in-LocalStorage: ", "pallette-prclr-" + localStorage.getItem(
+            'selectedThemeName')); // debug
+        document.getElementById("primary-color").value =
+            document.getElementById("pallette-prclr-" +
+                localStorage.getItem('selectedThemeName')).value;
+        document.getElementById("secondary-color").value =
+            document.getElementById("pallette-scclr-" +
+                localStorage.getItem('selectedThemeName')).value;
+        document.getElementById("accent-color").value =
+            document.getElementById("pallette-acclr-" +
+                localStorage.getItem('selectedThemeName')).value;
+        document.getElementById("text-color").value =
+            document.getElementById("pallette-txtclr-" +
+                localStorage.getItem('selectedThemeName')).value;
+        // apply theme colors 
+        applyThemeColors(false);
+    }
 
 
     // js countup for 60 seconds
