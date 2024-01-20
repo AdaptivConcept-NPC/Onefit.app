@@ -118,7 +118,7 @@ for ($i = 1; $i <= 5; $i++) {
 
 $cart_widget_html_template = <<<_END
 <!-- Cart Container  -->
-<div class="container py-4 d-nonez">
+<div class="container">
     <!-- hide button / add a close button -->
     <!-- <div class="text-center">
         <button class="navbar-toggler shadowz onefit-buttons-style-dark rounded-5z p-0 hide-side-panels shadow-lg collapsed border-5 border-bottom" 
@@ -166,9 +166,9 @@ $cart_widget_html_template = <<<_END
                 <span class="material-icons material-icons-round"> close </span>
             </button>
         </div>
-        <div class="offcanvas-body">
+        <div class="offcanvas-body p-0">
             <!-- store and checkout buttons -->
-            <div class="text-center d-flex justify-content-between align-items-center sticky-top">
+            <div class="text-center d-flex justify-content-between align-items-center p-4 top-down-grad-dark sticky-top">
                 <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4 w3-animate-right d-grid gap-1" type="button" onclick="openLink(event, 'TabStore');document.getElementById('main-cart-toggle-btn').click()">
                     <span class="material-icons material-icons-round align-middle">
                         storefront
@@ -207,7 +207,7 @@ $cart_widget_html_template = <<<_END
                                         shopping_cart </span> Items ordered ($listItemNumber).
                                 </h1>
                                 <!-- Cart items vertical list -->
-                                <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numberedz shadow py-2 px-0 w3-animate-left no-scroller top-down-grad-dark gap-4" style="/* background-color: var(--primary-color); */overflow-y: auto;border-radius: 25px !important;max-height: 80vh !important;">
+                                <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numberedz shadow py-2 px-0 w3-animate-left no-scrollerz top-down-grad-dark gap-4" style="/* background-color: var(--primary-color); */overflow-y: auto;border-radius: 25px !important;">
                                     $cartItemsVList
                                 </ul>
                                 <!-- ./ Cart items vertical list -->

@@ -576,7 +576,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             <div class="progress my-4 rounded-pill shadow"
                 style="height:20px;max-width:400px;border-radius:50rem!important;background-color:var(--white)">
                 <div id="app-load-progressbar"
-                    class="progress-bar rounded-pillz text-end px-1 fw-bold rounded-pillz my-pulse-animation-tahiti"
+                    class="progress-bar rounded-pillz text-center px-1 fw-bold rounded-pillz my-pulse-animation-tahiti"
                     role="progressbar" aria-label="App load progress" style="width: 15%; border-right: 0px solid var(--secondary-color);
                         background-color:var(--white)!important;color:var(--secondary-color)!important;
                         font-size:8px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
@@ -605,12 +605,12 @@ if (isset($_SESSION["currentUserAuth"])) {
         </a>
 
         <!-- toggle cart button -->
-        <div class="text-center">
+        <div class="text-center my-5">
             <button id="toggle-cart-button"
-                class="navbar-toggler shadowz onefit-buttons-style-dark p-2 hide-side-panels" type="button"
-                data-bs-toggle="offcanvas" data-bs-target="#offcanvas-cart-panel" aria-controls="offcanvas-cart-panel"
-                aria-expanded="false">
-                <div class="row px-4z py-2 m-0 align-items-center rounded-3 top-down-grad-tahiti">
+                class="navbar-toggler shadowz onefit-buttons-style-dark rounded-5 p-0 hide-side-panels shadow-lg border-5 border-bottom"
+                type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-cart-panel"
+                aria-controls="offcanvas-cart-panel" aria-expanded="false">
+                <div class="row p-4 m-0 align-items-center rounded-3 top-down-grad-tahiti rounded-5">
                     <div class="col-lg fw-bold comfortaa-font border-startz border-endz border-light p-4 fs-4 d-grid gap-2 text-center text-white"
                         style="min-width:100px;">
                         <span class="material-icons material-icons-round align-middle"
@@ -649,7 +649,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         <!-- Cart Container  -->
         <div id="dynamic-user-cart">
-            <div class="container py-4 d-none">
+            <div class="containerd-none">
                 <!-- template -->
                 <!-- convert to offcanvas panel -->
                 <div class="offcanvas offcanvas-bottom offcanvas-menu-primary-style fitness-bg-containerz w-100 show"
