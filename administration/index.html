@@ -1334,11 +1334,11 @@
 							</button>
 						</li>
 						<li class="nav-item d-grid align-items-center" role="presentation">
-							<button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill"
-								data-bs-target="#pills-disabled" style="color: var(--primary-color) !important"
-								type="button" role="tab" aria-controls="pills-disabled" aria-selected="false"
-								disabled="" tabindex="-1" onclick="document.getElementById('toggle-menu-btn').click();">
-								<div class="d-grid gap-2">
+							<button class="nav-link" id="pills-datatools-tab" data-bs-toggle="pill"
+								data-bs-target="#pills-datatools" style="color: var(--primary-color) !important"
+								type="button" role="tab" aria-controls="pills-datatools" aria-selected="false"
+								tabindex="-1" onclick="document.getElementById('toggle-menu-btn').click();">
+								<div class="d-grid gap-2 text-white">
 									<span class="material-icons material-icons-round" style="
 												font-size: 30px !important;
 												color: var(--primary-color);
@@ -3607,7 +3607,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab"
+				<div class="tab-pane fade" id="pills-datatools" role="tabpanel" aria-labelledby="pills-datatools-tab"
 					tabindex="0">
 					<h1 class="comfortaa-font fw-bold text-center text-white down-top-grad-dark p-4 rounded-5 shadow">
 						<span class="material-icons material-icons-round align-middle p-2 rounded-circle text-dark"
@@ -3621,6 +3621,96 @@
 						<span class="align-middle"> Data Tools.</span>
 					</h1>
 					<hr />
+					<div>
+						<h1>AI assistance. </h1>
+						<small class="text-muted">Powered by OpenAI</small>
+						<br>
+						<div>
+							<h1>AI Text Prompt.</h1>
+							<form id="ai-text-prompt-form" action="../web_php_api/OpenAI/ai_text.php" method="post">
+								<div>
+									<input type="text" name="prompt" placeholder="What do you need assistance with?">
+								</div>
+								<br>
+								<div>
+									<input type="submit" value="Generate">
+								</div>
+							</form>
+						</div>
+						<hr>
+						<div>
+							<h1>AI Image Generate.</h1>
+							<form id="ai-image-prompt-form" action="../web_php_api/OpenAI/ai_image.php" method="post">
+								<div>
+									<input type="text" name="prompt" placeholder="What do you need assistance with?">
+								</div>
+								<br>
+								<div>
+									<input type="submit" value="Generate">
+								</div>
+							</form>
+						</div>
+
+						<!-- script to submit forms -->
+
+						<script>
+							$(document).ready(function () {
+								$("#ai-text-prompt-form").submit(function (e) {
+									e.preventDefault();
+									var prompt = $("#ai-text-prompt-form>input[name=prompt]").val();
+									$.ajax({
+										type: "POST",
+										url: "../web_php_api/OpenAI/ai_text.php?prompt=" + encodeURIComponent(prompt) /* "https://api.openai.com/v1/engines/davinci/completions" */,
+										headers: {
+											"Content-Type": "application/json",
+										},
+										data: JSON.stringify({
+											prompt: prompt,
+										}),
+										success: function (data) {
+											console.log("Response:", data);
+											alert("Success /n: " + data);
+										},
+										error: function (xhr, status, error) {
+											console.log("Error:", error);
+											alert("Error /n: " + error);
+										},
+										complete: function (xhr, status) {
+											console.log("Response Status:", status);
+											alert("Complete /n: " + status);
+										},
+									});
+								});
+
+								$("#ai-image-prompt-form").submit(function (e) {
+									e.preventDefault();
+									var prompt = $("#ai-image-prompt-form>input[name=prompt]").val();
+									$.ajax({
+										type: "POST",
+										url: "../web_php_api/OpenAI/ai_image.php?prompt=" + encodeURIComponent(prompt) /* "https://api.openai.com/v1/engines/davinci/completions" */,
+										headers: {
+											"Content-Type": "application/json",
+										},
+										data: JSON.stringify({
+											prompt: prompt,
+										}),
+										success: function (data) {
+											console.log("Response:", data);
+											alert("Success /n: " + data);
+										},
+										error: function (xhr, status, error) {
+											console.log("Error:", error);
+											alert("Error /n: " + error);
+										},
+										complete: function (xhr, status) {
+											console.log("Response Status:", status);
+											alert("Complete /n: " + status);
+										},
+									});
+								});
+							});
+						</script>
+					</div>
 				</div>
 			</div>
 			<!-- ./main tab container -->

@@ -18,17 +18,39 @@
 
     <!-- general css -->
     <link rel="stylesheet" href="../css/styles.css">
+
+    <!-- pre-set the root theme colors immediately after loading in styles.css -->
+    <script>
+    // if (localStorage.getItem('theme-primary-color')) {
+    //     document.documentElement.style.setProperty('--primary-color', localStorage.getItem('theme-primary-color'));
+    //     document.documentElement.style.setProperty('--content-tab-primary-color', localStorage.getItem(
+    //         'theme-primary-color') + 'b8');
+    // }
+    // if (localStorage.getItem('theme-secondary-color')) {
+    //     document.documentElement.style.setProperty('--secondary-color', localStorage.getItem('theme-secondary-color'));
+    //     // "#343434"
+    // }
+    // if (localStorage.getItem('theme-accent-color')) {
+    //     document.documentElement.style.setProperty('--accent-color', localStorage.getItem('theme-accent-color'));
+    // }
+    // if (localStorage.getItem('theme-text-color')) {
+    //     document.documentElement.style.setProperty('--text-color', localStorage.getItem('theme-text-color'));
+    // }
+    </script>
+
     <style>
-        /* body {
-            font-family: Arial, sans-serif;
+        html body {
+            /* font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        } */
+             */
+             height: auto !important;
+             overflow-y: auto !important;
+            background: var(--secondary-color) !important;
+        }
 
         .quadrant {
             margin: 10px;
@@ -38,11 +60,11 @@
             border-radius: 25px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             background-color: var(--secondary-color);
-            color: #fff;
+            color: var(--text-color);
             /* Text color for better contrast */
             overflow: hidden;
-            min-height: 50vh;
-            border-bottom: var(--tahitigold) 5px solid;
+            min-height: 10vh;
+            border-bottom: var(--primary-color) 5px solid;
         }
 
         #whatToDo,

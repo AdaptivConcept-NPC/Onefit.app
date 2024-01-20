@@ -77,11 +77,11 @@ try {
             # for bar type fp progress bar
             $final_output = <<<_END
             <!-- $user_loggedin_username - fitness progression progress bar -->
-            <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle" style="color: var(--secondary-color);">data_exploration</span> <span class="align-middle"  style="color: var(--secondary-color);">Fitness Progression</span></h5>
+            <h5 class="mt-4 fs-5"><span class="material-icons material-icons-outlined align-middle" style="color: var(--text-color);">data_exploration</span> <span class="align-middle"  style="color: var(--primary-color);">Fitness Progression</span></h5>
             <div class="progress mt-4 bg-white" style="height:20px;border:1px solid white !important;">
                 <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: $fp_xp_progression_rate%; background-color: var(--secondary-color) !important; border-right: var(--primary-color) 10px solid;" aria-valuenow="$fp_xp_progression_rate" aria-valuemin="$user_current_fp_xp" aria-valuemax="$goal_fp_xp"></div>
             </div>
-            <div class="mt-2 w-100 d-flex justify-content-between" style="margin-bottom: 60px;color: var(--secondary-color);">
+            <div class="mt-2 w-100 d-flex justify-content-between" style="margin-bottom: 60px;color: var(--text-color);">
                 <p class="text-start m-0 poppins-font" style="font-size: 12px;">
                     Current XP <strong>($user_current_fp_xp)</strong>
                 </p>

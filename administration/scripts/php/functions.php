@@ -932,8 +932,9 @@ function getUserNotifications()
 
     if ($result = mysqli_query($dbconn, $sql)) {
         $communicationUserNotifications = <<<_END
-        <div class="my-4 text-dark top-down-grad-dark p-4 border-5 border-top"
-        style="border-radius: 25px;">
+        <div id="notifcation-list" 
+            class="my-4 top-down-grad-dark p-4 border-5 border-top" 
+            style="border-radius: 25px;color:var(--secondary-color)!important;background-color:var(--primary-color);">
         _END;
         while ($row = mysqli_fetch_assoc($result)) {
             //`notification_id`, `notification_title`, `notification_message`, `notify_user`, `users_username`, `notification_date`, `notification_read`
@@ -946,12 +947,14 @@ function getUserNotifications()
             $time_ago = get_time_ago($notif_date);
 
             $communicationUserNotifications .= <<<_END
-            <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-$notif_id" style="border-radius: 25px !important;">
+            <a id="notifcation-$notif_id" 
+                href="#" class="list-group-item list-group-item-action gap-4" 
+                aria-current="true" style="border-radius: 25px !important;color:var(--white)!important;">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1 fw-bold text-truncate"> $notif_title </h5>
-                    <small class="text-end" style="font-size:10px;"> $notif_date<br/>$time_ago</small>
+                    <h5 class="mb-1 fw-bold text-truncate fs-3 text-truncate"> $notif_title </h5>
+                    <small class="text-end fs-6" style="font-size:10px;"> $notif_date<br/>$time_ago</small>
                 </div>
-                <p class="mb-1 text-truncate" style="min-height:30px;max-height:100px;"> $notif_message </p>
+                <p class="mb-1 text-truncatez text-wrap fs-5 pt-2" style="min-height:30px;max-height:100px;"> $notif_message </p>
             </a>
             _END;
         }

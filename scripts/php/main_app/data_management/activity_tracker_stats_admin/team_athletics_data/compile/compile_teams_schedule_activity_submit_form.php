@@ -56,7 +56,17 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
             if ($rows <= 0) {
                 //there is no existing schedule for this day
                 // return / echo the full schedule creation form
-                $mockForm = <<<_END
+
+
+                // tws
+                $teams_weekly_schedule_id = 0;
+                $schedule_title = "Capture Title";
+                $schedule_rpe = 0;
+                $schedule_day = $getDay; //ucfirst($row["schedule_day"]);
+                $schedule_date = date("d/m/Y", strtotime("$getDay this week"));
+                $groups_group_ref_code = $getGrpRef;
+
+                $form_html = <<<_END
                 <form id="add-new-schedule-form" class="text-start d-grid gap-2 comfortaa-font fs-5" style="border-radius: 25px;" method="post" action="../scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/add_to_teams_training_schedule.php" autocomplete="off">
                     <h5 class="fs-2 p-4 fw-bold text-center comfortaa-font shadow my-4 border-5 border-start border-end" style="border-radius:25px;">
                         Capture New Activity.
@@ -342,17 +352,6 @@ if (isset($_GET['day']) && isset($_GET['gref'])) {
                     <!-- hidden="" aria-hidden="true" -->
                 </form>
                 _END;
-                $form_html = <<<_END
-                new_schedule_form
-                _END;
-
-                // tws
-                $teams_weekly_schedule_id = 0;
-                $schedule_title = "Capture Title";
-                $schedule_rpe = 0;
-                $schedule_day = $getDay; //ucfirst($row["schedule_day"]);
-                $schedule_date = date("d/m/Y", strtotime("$getDay this week"));
-                $groups_group_ref_code = "no_refcode";
 
                 echo $form_html;
             } else {

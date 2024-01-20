@@ -119,7 +119,8 @@ for ($i = 1; $i <= 5; $i++) {
 $cart_widget_html_template = <<<_END
 <!-- Cart Container  -->
 <div class="container py-4 d-nonez">
-    <div class="text-center">
+    <!-- hide button / add a close button -->
+    <!-- <div class="text-center">
         <button class="navbar-toggler shadowz onefit-buttons-style-dark rounded-5z p-0 hide-side-panels shadow-lg collapsed border-5 border-bottom" 
             style="overflow:hidden;border-color: var(--primary-color) !important;" 
             type="button" data-bs-toggle="collapse" data-bs-target="#cart-panel" 
@@ -148,11 +149,26 @@ $cart_widget_html_template = <<<_END
                 </div>
             </div>
         </button>
-    </div>
+    </div> -->
     <!-- ./ -->
-    <div class="showz down-top-grad-dark w3-animate-top comfortaa-font text-white collapse" style="border-radius: 25px; overflow: hidden;" id="cart-panel">
-        <div class="p-4 shadow" id="">
-            <div class="text-center d-flex justify-content-between align-items-center">
+    <!-- convert to offcanvas panel -->
+    <div class="offcanvas offcanvas-bottom offcanvas-menu-primary-style fitness-bg-containerz w-100 h-100" 
+        tabindex="-1" id="offcanvas-cart-panel" 
+        aria-labelledby="offcanvasNotificationsLabel" aria-modal="true" role="dialog">
+        <div class="offcanvas-header fs-1" style="background-color: var(--secondary-color); color: var(--text-color)">
+            <h1 class="offcanvas-title">
+                <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
+                    shopping_cart
+                </span>
+                <span>Shopping cart.</span>
+            </h1>
+            <button id="shopping-cart-close-btn" type="button" class="onefit-buttons-style-light p-2" data-bs-dismiss="offcanvas" aria-label="Close">
+                <span class="material-icons material-icons-round"> close </span>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <!-- store and checkout buttons -->
+            <div class="text-center d-flex justify-content-between align-items-center sticky-top">
                 <button class="navbar-toggler shadow onefit-buttons-style-light p-4 mb-4 w3-animate-right d-grid gap-1" type="button" onclick="openLink(event, 'TabStore');document.getElementById('main-cart-toggle-btn').click()">
                     <span class="material-icons material-icons-round align-middle">
                         storefront
@@ -178,176 +194,181 @@ $cart_widget_html_template = <<<_END
                     </span><span class="d-lg-none" style="color: var(--primary-color) !important;">Pay.</span>
                 </button>
             </div>
-            <!-- ./ -->
-            <div class="row">
-                <div class="col-xlg-6 py-4 d-grid gap-4">
-                    <!-- Cart items vertical list -->
-                    <div class="container-fluid p-2 pt-4 top-down-grad-white border-3z border-topz" style="border-radius: 25px;border-color: var(--primary-color) !important;">
-                        <h1 class="text-dark w3-animate-left mb-4 fs-5 text-center">
-                            <span class="material-icons material-icons-round align-middle" 
-                                style="font-size: 40px !important">
-                                shopping_cart </span> Items ordered ($listItemNumber).
-                        </h1>
-                        <!-- Cart items vertical list -->
-                        <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numberedz shadow py-2 px-0 w3-animate-left no-scroller top-down-grad-dark gap-4" style="/* background-color: var(--primary-color); */overflow-y: auto;border-radius: 25px !important;max-height: 80vh !important;">
-                            $cartItemsVList
-                        </ul>
-                        <!-- ./ Cart items vertical list -->
-                    </div>
-                    <!-- ./ Cart items vertical list -->
-                    <!-- cart / invoice totals -->
-                    <div class="container-fluid p-2 py-5 down-top-grad-white border-3z border-topz" style="border-radius: 25px;border-color: var(--primary-color) !important;">
-                        <!-- invoice number barcode display -->
-                        <div id="cart-invoice-ref">
-                            <p class="text-dark text-center w3-animate-left comfortaa-font d-grid" style="min-height: 30px;color: var(--text-color)!important;">
-                                <span class="material-icons material-icons-round align-middle mb-4" style="font-size:60px !important;">
-                                    receipt_long
-                                </span>
-                                <span>Invoice Details.</span>
-                                <span> <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);">20220201-879ds6fsdf_id</span> </span> 
-                            </p>
-                        </div>
-                        <!-- ./ invoice number barcode display -->
-                        <h1 class="text-dark w3-animate-left mb-4">Cart Totals.</h1>
-                        <div class="row p-4 pb-0 align-items-center down-top-grad-tahitiz text-dark" style="border-radius: 0 0 25px 25px;">
-                            <div class="col-md w3-animate-left poppins-font">
-                                <h1>R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 12px;color: var(--primary-color);">ZAR</span></h1>
+            <!-- ./ store and checkout buttons -->
+            <div class="down-top-grad-dark w3-animate-top comfortaa-font text-white" style="border-radius: 25px; overflow: hidden;" id="cart-panel">
+                <div class="p-4 shadow" id="">
+                    <div class="row">
+                        <div class="col-xlg-6 py-4 d-grid gap-4">
+                            <!-- Cart items vertical list -->
+                            <div class="container-fluid p-2 pt-4 top-down-grad-white border-3z border-topz" style="border-radius: 25px;border-color: var(--primary-color) !important;">
+                                <h1 class="text-dark w3-animate-left mb-4 fs-5 text-center">
+                                    <span class="material-icons material-icons-round align-middle" 
+                                        style="font-size: 40px !important">
+                                        shopping_cart </span> Items ordered ($listItemNumber).
+                                </h1>
+                                <!-- Cart items vertical list -->
+                                <ul id="main-cart-items-list" class="list-group list-group-flush list-group-numberedz shadow py-2 px-0 w3-animate-left no-scroller top-down-grad-dark gap-4" style="/* background-color: var(--primary-color); */overflow-y: auto;border-radius: 25px !important;max-height: 80vh !important;">
+                                    $cartItemsVList
+                                </ul>
+                                <!-- ./ Cart items vertical list -->
                             </div>
-                            <div class="col-md -4 border-1 border-start border-end border-dark">
-                                <h1><span id="shop-cart-total-items">4</span> <span class="align-top" style="font-size: 12px;color: var(--primary-color);">Items</span></h1>
-                            </div>
-                            <div class="col-md d-flex justify-content-center w3-animate-right">
-                                <button id="clear-all-cart-item-btn" class="onefit-buttons-style-danger bg-transparentz p-3 text-center" style="border-color: var(--red);">
-                                    <div class="d-grid">
-                                        <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
-                                            delete
+                            <!-- ./ Cart items vertical list -->
+                            <!-- cart / invoice totals -->
+                            <div class="container-fluid p-2 py-5 down-top-grad-white border-3z border-topz" style="border-radius: 25px;border-color: var(--primary-color) !important;">
+                                <!-- invoice number barcode display -->
+                                <div id="cart-invoice-ref">
+                                    <p class="text-dark text-center w3-animate-left comfortaa-font d-grid" style="min-height: 30px;color: var(--text-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle mb-4" style="font-size:60px !important;">
+                                            receipt_long
                                         </span>
-                                        <span class="align-middle" style="font-size:10px;">
-                                            Empty Cart!
-                                        </span>
+                                        <span>Invoice Details.</span>
+                                        <span> <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);">20220201-879ds6fsdf_id</span> </span> 
+                                    </p>
+                                </div>
+                                <!-- ./ invoice number barcode display -->
+                                <h1 class="text-dark w3-animate-left mb-4">Cart Totals.</h1>
+                                <div class="row p-4 pb-0 align-items-center down-top-grad-tahitiz text-dark" style="border-radius: 0 0 25px 25px;">
+                                    <div class="col-md w3-animate-left poppins-font">
+                                        <h1>R<span id="shop-cart-total-amt">0.00</span> <span class="align-top" style="font-size: 12px;color: var(--primary-color);">ZAR</span></h1>
                                     </div>
-                                </button>
+                                    <div class="col-md -4 border-1 border-start border-end border-dark">
+                                        <h1><span id="shop-cart-total-items">4</span> <span class="align-top" style="font-size: 12px;color: var(--primary-color);">Items</span></h1>
+                                    </div>
+                                    <div class="col-md d-flex justify-content-center w3-animate-right">
+                                        <button id="clear-all-cart-item-btn" class="onefit-buttons-style-danger bg-transparentz p-3 text-center" style="border-color: var(--red);">
+                                            <div class="d-grid">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 40px !important">
+                                                    delete
+                                                </span>
+                                                <span class="align-middle" style="font-size:10px;">
+                                                    Empty Cart!
+                                                </span>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- ./ cart / invoice totals -->
                         </div>
-                    </div>
-                    <!-- ./ cart / invoice totals -->
-                </div>
-                <!-- hidden: horizontal list -->
-                <div class="col-xlg-6 py-4 d-none">
-                    <p class="text-center w3-animate-right comfortaa-font" style="min-height: 30px;">
-                        <span class="material-icons material-icons-round align-middle">
-                            shopping_cart
-                        </span>
-                        Cart Items (<span id="mini-cart-item-count" style="color: var(--primary-color);">4</span>)
-                    </p>
-                    <hr class="text-white">
-                    <div class="horizontal-scroll p-5 w3-animate-right collapse">
-                        <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: var(--primary-color) !important;">
-                            <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
-                                1
-                            </div>
-                            <div class="d-grid gap-2 justify-content-center">
-                                <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">sell</span>
-                                <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
-                                <div class="text-center">
-                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh; filter: invert(0);" alt="placeholder">
+                        <!-- hidden: horizontal list -->
+                        <div class="col-xlg-6 py-4 d-none">
+                            <p class="text-center w3-animate-right comfortaa-font" style="min-height: 30px;">
+                                <span class="material-icons material-icons-round align-middle">
+                                    shopping_cart
+                                </span>
+                                Cart Items (<span id="mini-cart-item-count" style="color: var(--primary-color);">4</span>)
+                            </p>
+                            <hr class="text-white">
+                            <div class="horizontal-scroll p-5 w3-animate-right collapse">
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: var(--primary-color) !important;">
+                                    <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
+                                        1
+                                    </div>
+                                    <div class="d-grid gap-2 justify-content-center">
+                                        <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">sell</span>
+                                        <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                        <div class="text-center">
+                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh; filter: invert(0);" alt="placeholder">
+                                        </div>
+                                        <!-- ./ -->
+                                        <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                            <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                            <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: var(--primary-color);">R149.00</span> | Aiwa Smart Band ASB-40
+                                        </p>
+                                        <div class="d-grid">
+                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                                    highlight_off
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- ./ -->
                                 </div>
-                                <!-- ./ -->
-                                <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
-                                    <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
-                                    <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: var(--primary-color);">R149.00</span> | Aiwa Smart Band ASB-40
-                                </p>
-                                <div class="d-grid">
-                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
-                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
-                                            highlight_off
-                                        </span>
-                                    </button>
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: var(--primary-color) !important;">
+                                    <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
+                                        2
+                                    </div>
+                                    <div class="d-grid gap-2 justify-content-center">
+                                        <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">sell</span>
+                                        <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                        <div class="text-center">
+                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh; filter: invert(0);" alt="placeholder">
+                                        </div>
+                                        <!-- ./ -->
+                                        <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                            <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                            <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: var(--primary-color);">R149.00</span> | Aiwa Smart Band ASB-40
+                                        </p>
+                                        <div class="d-grid">
+                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                                    highlight_off
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- ./ -->
                                 </div>
-                            </div>
-                            <!-- ./ -->
-                        </div>
-                        <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: var(--primary-color) !important;">
-                            <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
-                                2
-                            </div>
-                            <div class="d-grid gap-2 justify-content-center">
-                                <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">sell</span>
-                                <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
-                                <div class="text-center">
-                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh; filter: invert(0);" alt="placeholder">
-                                </div>
-                                <!-- ./ -->
-                                <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
-                                    <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
-                                    <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: var(--primary-color);">R149.00</span> | Aiwa Smart Band ASB-40
-                                </p>
-                                <div class="d-grid">
-                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
-                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
-                                            highlight_off
-                                        </span>
-                                    </button>
-                                </div>
-                            </div>
-                            <!-- ./ -->
-                        </div>
-                        <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: var(--primary-color) !important;">
-                            <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
-                                3
-                            </div>
-                            <div class="d-grid gap-2 justify-content-center">
-                                <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">sell</span>
-                                <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
-                                <div class="text-center">
-                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh; filter: invert(0);" alt="placeholder">
-                                </div>
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: var(--primary-color) !important;">
+                                    <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
+                                        3
+                                    </div>
+                                    <div class="d-grid gap-2 justify-content-center">
+                                        <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">sell</span>
+                                        <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                        <div class="text-center">
+                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh; filter: invert(0);" alt="placeholder">
+                                        </div>
 
-                                <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
-                                    <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
-                                    <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: var(--primary-color);">R149.00</span> | Aiwa Smart Band ASB-40
-                                </p>
-                                <div class="d-grid">
-                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
-                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
-                                            highlight_off
-                                        </span>
-                                    </button>
+                                        <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                            <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                            <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: var(--primary-color);">R149.00</span> | Aiwa Smart Band ASB-40
+                                        </p>
+                                        <div class="d-grid">
+                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                                    highlight_off
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- ./ -->
+                                </div>
+                                <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: var(--primary-color) !important;">
+                                    <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
+                                        4
+                                    </div>
+                                    <div class="d-grid gap-2 justify-content-center">
+                                        <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">sell</span>
+                                        <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                        <div class="text-center">
+                                            <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh; filter: invert(0);" alt="placeholder">
+                                        </div>
+                                        <!-- ./ -->
+                                        <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                            <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
+                                            <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: var(--primary-color);">R149.00</span> | Aiwa Smart Band ASB-40
+                                        </p>
+                                        <div class="d-grid">
+                                            <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
+                                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
+                                                    highlight_off
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- ./ -->
                                 </div>
                             </div>
-                            <!-- ./ -->
                         </div>
-                        <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white" style="border-color: var(--primary-color) !important;">
-                            <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center" style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
-                                4
-                            </div>
-                            <div class="d-grid gap-2 justify-content-center">
-                                <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">sell</span>
-                                <span class="barcode-font text-truncate" id="cart-invoice-number-barcode" style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
-                                <div class="text-center">
-                                    <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png" class="img-fluid shadow" style="border-radius: 15px; max-height: 20vh; filter: invert(0);" alt="placeholder">
-                                </div>
-                                <!-- ./ -->
-                                <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
-                                    <span class="material-icons material-icons-round text-muted" style="font-size: 10px !important;">monetization_on</span>
-                                    <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price" style="color: var(--primary-color);">R149.00</span> | Aiwa Smart Band ASB-40
-                                </p>
-                                <div class="d-grid">
-                                    <button id="remove-cart-item-itemid" class="onefit-buttons-style-tahiti p-2 text-center">
-                                        <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important">
-                                            highlight_off
-                                        </span>
-                                    </button>
-                                </div>
-                            </div>
-                            <!-- ./ -->
-                        </div>
+                        <!-- hidden: horizontal list -->
                     </div>
                 </div>
-                <!-- hidden: horizontal list -->
             </div>
         </div>
     </div>
+    <!-- ./ convert to offcanvas panel -->
 </div>
 <!-- ,/ Cart Container  -->
 _END;

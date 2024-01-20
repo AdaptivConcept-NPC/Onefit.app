@@ -26,6 +26,41 @@
     transform: rotate(-90deg);
 }
 
+.fixed-clock {
+    position: fixed;
+    left: 0;
+    top: 0;
+    /* max- */
+    /* min-width: 400px;
+    max-width: 500px; */
+    width: auto;
+    min-height: 158.47px;
+    /* background-color: var(--primary-color); */
+    color: var(--white);
+    border-radius: 0 0 25px 0;
+    border-color: var(--primary-color) !important;
+    z-index: 1000;
+    transition: all 200ms ease-in-out;
+}
+
+#fc-date {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--white);
+    text-align: center;
+    margin: 0;
+    /* padding-left: 10px; */
+}
+
+#fc-time {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+    text-align: center;
+    margin: 0;
+    /* padding-left: 10px; */
+}
+
 /* Vertical Timeline */
 .timeline *,
 .timeline *::before,
@@ -44,8 +79,8 @@
 .timeline::after {
     content: '';
     position: absolute;
-    width: 2px;
-    background: var(--primary-color);
+    width: 5px;
+    background: var(--text-color); /* --primary-color */
     top: 0;
     bottom: 0;
     left: 50%;
@@ -59,6 +94,7 @@
     width: 50%;
 }
 
+/* vertical line */
 .timeline-container::after {
     content: '';
     position: absolute;
@@ -66,8 +102,8 @@
     height: 16px;
     top: calc(50% - 8px);
     right: -8px;
-    background: var(--text-color)fff;
-    border: 2px solid var(--primary-color);
+    background: var(--text-color);
+    border: 2px solid var(--text-color); /* --secondary-color */
     border-radius: 16px;
     z-index: 1;
 }
@@ -84,14 +120,15 @@
     left: -8px;
 }
 
+/* connecting line */
 .timeline-container::before {
     content: '';
     position: absolute;
     width: 50px;
-    height: 2px;
+    height: 5px;
     top: calc(50% - 1px);
     right: 8px;
-    background: var(--primary-color);
+    background: var(--text-color); /* --primary-color */
     z-index: 1;
 }
 
@@ -127,8 +164,8 @@
     height: 40px;
     padding: 9px 0;
     top: calc(50% - 20px);
-    background: var(--secondary-color);
-    border: 2px solid var(--primary-color);
+    background: var(--text-color); /* --secondary-color */
+    border: 2px solid var(--text-color); /* --primary-color */
     border-radius: 50%;
     text-align: center;
     font-size: 18px;
@@ -151,8 +188,10 @@
     /* border-radius: 0 500px 500px 0; */
     border-radius: 25px;
 
-    border-left: var(--primary-color) 2px solid;
-    border-right: var(--primary-color) 2px solid;
+    background-color: var(--secondary-color);
+
+    border-left: var(--secondary-color) 2px solid; /* --primary-color */
+    border-right: var(--secondary-color) 2px solid; /* --primary-color */
 }
 
 .timeline-container.right .content {
@@ -164,7 +203,7 @@
     margin: 0 0 10px 0;
     font-size: 18px;
     font-weight: normal;
-    color: var(--primary-color);
+    color: var(--text-color);
 }
 
 .timeline-container .content p {

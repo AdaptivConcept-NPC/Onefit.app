@@ -190,7 +190,24 @@ if (isset($_SESSION["currentUserAuth"])) {
     <link rel="stylesheet" href="../css/timeline-styles.css" onload="coreScriptLoaded_timeline_css=true;" />
     <link rel="stylesheet" href="../css/chat.css" onload="coreScriptLoaded_chat_css=true;" />
 
-
+    <!-- pre-set the root theme colors immediately after loading in styles.css -->
+    <script>
+    if (localStorage.getItem('theme-secondary-color')) {
+        document.documentElement.style.setProperty('--secondary-color', "#343434");
+        // localStorage.getItem('theme-secondary-color')
+    }
+    if (localStorage.getItem('theme-primary-color')) {
+        document.documentElement.style.setProperty('--primary-color', localStorage.getItem('theme-primary-color'));
+        document.documentElement.style.setProperty('--content-tab-primary-color', localStorage.getItem(
+            'theme-primary-color') + 'b8');
+    }
+    if (localStorage.getItem('theme-accent-color')) {
+        document.documentElement.style.setProperty('--accent-color', localStorage.getItem('theme-accent-color'));
+    }
+    if (localStorage.getItem('theme-text-color')) {
+        document.documentElement.style.setProperty('--text-color', localStorage.getItem('theme-text-color'));
+    }
+    </script>
 
     <!-- For Digital Clock Plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"
@@ -290,7 +307,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         /* background-color: var(--primary-color); */
         color: var(--text-color);
         border-radius: 25px 0 0 25px;
-        border-color: var(--primary-color) !important;
+        border-color: var(--accent-color) !important;
         z-index: 1000;
         transition: all 200ms ease-in-out;
     }
@@ -304,6 +321,19 @@ if (isset($_SESSION["currentUserAuth"])) {
         top: 35px;
         left: 0;
         transform: rotate(-90deg);
+    }
+
+    /* bootstrap text-white, text-light, text-dark override */
+    .text-white {
+        color: var(--text-color) !important;
+    }
+
+    .text-light {
+        color: var(--text-color) !important;
+    }
+
+    .text-dark {
+        color: var(--secondary-color) !important;
     }
     </style>
 </head>
@@ -327,13 +357,47 @@ if (isset($_SESSION["currentUserAuth"])) {
         window.imbaApi.load();
     </script> -->
 
+    <!-- fixed clock widget -->
+    <div class="fixed-clock d-grid gap-1 align-items-center p-4 px-5 left-right-grad-tahiti">
+        <div id="fc-date">Today</div>
+        <div id="fc-time">now.</div>
+    </div>
+
+    <!-- widget to control theme and sound settings -->
+    <div class="tab-quick-nav d-grid gap-2" style="position:fixed;top: 0px;right: 0px;height:100px;width:112px;">
+        <div class="quick-nav-heading text-center visually-hidden">
+            <span class="material-icons material-icons-round d-none" style="font-size: 40px !important;">
+                settings
+            </span>
+        </div>
+        <div class="d-flex gap-4 px-3 py-4 right-left-grad-tahiti" style="border-bottom-left-radius: 25px !important;">
+            <button class="bg-transparentz onefit-buttons-style-tahiti shadow btn-lg p-4 flex-fill" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseSoundSettings" aria-expanded="false"
+                aria-controls="collapseSoundSettings">
+                <span class="material-icons material-icons-round" style="font-size: 40px !important;">
+                    volume_up
+                </span>
+                <span style="font-size:10px;">Sound.</span>
+            </button>
+            <button class="bg-transparentz onefit-buttons-style-tahiti shadow btn-lg p-4 flex-fill" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseThemeSettings" aria-expanded="false"
+                aria-controls="collapseThemeSettings">
+                <span class="material-icons material-icons-round" style="font-size: 40px !important;">
+                    color_lens
+                </span>
+                <span style="font-size:10px;">Mood.</span>
+            </button>
+        </div>
+
+    </div>
+    <!-- ./ widget to control theme and sound settings -->
 
     <!-- loading wait screen -->
     <div id="load-wait-screen-curtain" class="wait-load-curtain" style="display: none;">
         <div class="d-grid justify-content-center align-items-center h-100 w-100">
             <div class="d-grid gap-4 justify-content-center text-center p-4 shadow-lgz" style="border-radius:25px;">
                 <div class="spinner-border text-white justify-content-center shadow -lg" role="status"
-                    style="width:10rem;height:10rem;border-width:10px;border-right: 10px var(--primary-color) solid">
+                    style="width:10rem;height:10rem;border-width:10px;border-right: 10px var(--accent-color) solid">
                     <span class="visually-hidden">Loading...</span>
                 </div>
                 <p class="text-center fs-5 fw-bold text-white m-0" style="border-radius:25px;">Just a moment<span
@@ -416,13 +480,13 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </span>
                 </li>
                 <li class="list-group-item bg-transparent d-grid"><button type="button"
-                        class="onefit-buttons-style-light text-white p-4">Social Update</button></li>
+                        class="onefit-buttons-style-light p-4">Social Update</button></li>
                 <li class="list-group-item bg-transparent d-grid"><button type="button"
-                        class="onefit-buttons-style-light text-white p-4">Community Resource</button></li>
+                        class="onefit-buttons-style-light p-4">Community Resource</button></li>
                 <li class="list-group-item bg-transparent d-grid"><button type="button"
-                        class="onefit-buttons-style-light text-white p-4">Share Media</button></li>
+                        class="onefit-buttons-style-light p-4">Share Media</button></li>
                 <li class="list-group-item bg-transparent d-grid"><button type="button"
-                        class="onefit-buttons-style-light text-white p-4">Chat Message</button></li>
+                        class="onefit-buttons-style-light p-4">Chat Message</button></li>
             </ul>
         </div>
         <div class="d-grid gap-2 w-100">
@@ -448,7 +512,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         <nav class="navbar navbar-light stickyz fixed-top navbar-style bg-transparent" style="z-index: 10000;">
             <div class="container-fluid justify-content-center p-5">
                 <h1 class="navbar-brand fs-1 text-white comfortaa-font m-0">One<span
-                        style="color: var(--primary-color)">fit</span>.app<span style="font-size: 10px">&trade;</span>
+                        style="color: var(--accent-color)">fit</span>.app<span style="font-size: 10px">&trade;</span>
                 </h1>
             </div>
         </nav>
@@ -485,7 +549,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
         <div class="d-flex align-items-center top-down-grad-tahiti" style="width: 100%; height: 100%;">
             <div class="text-center w-100">
-                <div class="ring d-flex align-items-center p-4 my-pulse-animation-light">
+                <div class="ring d-flex align-items-center p-4 my-pulse-animation-tahiti">
                     <!-- <span></span> -->
                     <div style="width: 100%;">
                         <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid p-4"
@@ -495,34 +559,36 @@ if (isset($_SESSION["currentUserAuth"])) {
             </div>
         </div>
 
-        <div class="fixed-top text-end p-4" id="load-countdown-container">
-            <label class="text-end">
+        <div class="fixed-top text-end p-4" id="load-countdown-container" style="color:var(--text-color) !important;">
+            <label class="text-end fs-5">
                 <span id="load-curtain-duration-indicator-icon"
                     class="material-icons material-icons-outline align-middle"
-                    style="font-size:20px!important;">timer</span>
+                    style="font-size:30px!important;">timer</span>
                 <span class="align-middle" id="load-countdown">0s.</span>
             </label>
         </div>
 
         <nav class="text-center text-center p-4 fixed-bottom d-grid justify-content-center down-top-grad-dark">
-            <p id="loadtime-output-label" class="text-center comfortaa-font mt-2 mb-4 d-none" style="max-width: 500px;">
+            <p id="loadtime-output-label"
+                class="text-center poppins-font mt-2 mb-4 d-none w3-animate-bottom top-down-grad-dark p-4 rounded-4"
+                style="max-width: 400px;">
                 Loading. Please wait.</p>
             <div class="progress my-4 rounded-pill shadow"
-                style="height:20px;max-width:500px;border-radius:50rem!important;background-color:var(--white)">
+                style="height:20px;max-width:400px;border-radius:50rem!important;background-color:var(--white)">
                 <div id="app-load-progressbar"
-                    class="progress-bar text-center px-1 fw-bold rounded-pillz my-pulse-animation-tahiti"
-                    role="progressbar" aria-label="App load progress"
-                    style="width: 15%; border-right: 0px solid rgb(255, 165, 0); background-color: var(--primary-color) !important;color:var(--text-color)!important;font-size:8px;"
-                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                    <span class="align-middle">15%</span>
+                    class="progress-bar rounded-pillz text-end px-1 fw-bold rounded-pillz my-pulse-animation-tahiti"
+                    role="progressbar" aria-label="App load progress" style="width: 15%; border-right: 0px solid var(--secondary-color);
+                        background-color:var(--white)!important;color:var(--secondary-color)!important;
+                        font-size:8px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <span class="align-middle poppins-font">15%</span>
                     <!-- <div class="spinner-grow" style="width:10px;height:10px;color:var(--text-color)" role="status">
                         <span class="visually-hidden">Loading App Data...</span>
                     </div> -->
                 </div>
             </div>
 
-            <p class="navbar-brand fs-1 text-white comfortaa-font mb-5">One<span
-                    style="color: var(--primary-color)">fit</span>.app<span style="font-size: 10px">™</span></p>
+            <p class="navbar-brand fs-1 text-white comfortaa-font mb-4">One<span
+                    style="color: var(--accent-color)">fit</span>.app<span style="font-size: 10px">™</span></p>
         </nav>
     </div>
     <!-- ./Load Curtain -->
@@ -535,490 +601,566 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- Navigation bar, Cart & Other functions -->
     <header id="nav-bar-header" class="container-xlg -fluid text-center pt-5 px-4">
         <a class="navbar-brand my-4 mx-0 p-4 fs-1 text-white comfortaa-font" href="#">
-            One<span style="color: var(--primary-color)">fit</span>.app<span style="font-size: 10px">&trade;</span>
+            One<span style="color: var(--accent-color)">fit</span>.app<span style="font-size: 10px">&trade;</span>
         </a>
+
+        <!-- toggle cart button -->
+        <div class="text-center">
+            <button id="toggle-cart-button"
+                class="navbar-toggler shadowz onefit-buttons-style-dark p-2 hide-side-panels" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvas-cart-panel" aria-controls="offcanvas-cart-panel"
+                aria-expanded="false">
+                <div class="row px-4z py-2 m-0 align-items-center rounded-3 top-down-grad-tahiti">
+                    <div class="col-lg fw-bold comfortaa-font border-startz border-endz border-light p-4 fs-4 d-grid gap-2 text-center text-white"
+                        style="min-width:100px;">
+                        <span class="material-icons material-icons-round align-middle"
+                            style="font-size: 50px !important;">
+                            card_membership
+                        </span>
+                        <span class="align-middle text-truncate" id="cart-user-coupons-count"
+                            style="font-size: 15px;color: var(--text-color);">0 Coupons.</span>
+                    </div>
+                    <div class="col-sm border-0 border-startz border-endz border-lightz rounded-3 p-4 text-white"
+                        style="border-color: var(--text-color) !important;">
+                        <div class="d-grid gap-2">
+                            <span class="material-icons material-icons-round" style="font-size: 20px !important">
+                                shopping_cart </span>
+                            <span class="fw-bold comfortaa-font" id="cart-items-count"
+                                style="color: var(--text-color);font-size: 20px;">
+                                <?php echo $listItemNumber ?? '---';?>
+                            </span>
+                            <span class="d-nonez d-lg-blockz" style="font-size: 15px;">Items.</span>
+                        </div>
+                    </div>
+                    <div class="col-sm fw-bold comfortaa-font border-startz border-endz border-light p-4 fs-4 d-grid gap-2 text-center text-white"
+                        style="min-width:100px;">
+                        <span class="material-icons material-icons-round align-middle"
+                            style="font-size: 50px !important;">
+                            toll
+                        </span>
+                        <span class="align-middle text-truncate" id="cart-items-total-amt"
+                            style="font-size: 20px;color: var(--text-color);">R 0.00</span>
+                        <span class="align-middle d-none" id="cart-currency"
+                            style="font-size: 10px;color: var(--text-color);">ZAR</span>
+                    </div>
+                </div>
+            </button>
+        </div>
 
         <!-- Cart Container  -->
         <div id="dynamic-user-cart">
             <div class="container py-4 d-none">
-                <div class="text-center">
-                    <button class="navbar-toggler shadowz onefit-buttons-style-dark p-2 hide-side-panels" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#cart-panel" aria-controls="cart-panel">
-                        <div class="row px-4 py-2 align-items-centerz">
-                            <div class="col-sm border-start border-end border-light p-2">
-                                <span class="material-icons material-icons-round align-middle"
-                                    style="font-size: 50px !important;">
-                                    verified_user
-                                </span>
-                            </div>
-                            <div class="col-sm border-start border-end border-light p-2">
-                                <div class="d-grid gap-2">
-                                    <span class="material-icons material-icons-round"
-                                        style="font-size: 20px !important">
-                                        shopping_cart </span>
-                                    <span class="d-nonez d-lg-blockz" id="" style="font-size: 10px;">Cart (<span
-                                            class="fw-bold comfortaa-font"
-                                            style="color: var(--primary-color);">4</span>)</span>
-                                </div>
-                            </div>
-                            <div class="col-sm fw-bold comfortaa-font border-start border-end border-light p-2">
-                                <span class="align-middle"
-                                    style="font-size: 10px; color: var(--primary-color);">ZAR</span><br> 0.00
-                            </div>
-                        </div>
-                    </button>
-                </div>
+                <!-- template -->
+                <!-- convert to offcanvas panel -->
+                <div class="offcanvas offcanvas-bottom offcanvas-menu-primary-style fitness-bg-containerz w-100 show"
+                    tabindex="-1" id="offcanvas-cart-panel" aria-labelledby="offcanvasNotificationsLabel"
+                    aria-modal="true" role="dialog">
+                    <div class="offcanvas-header fs-1"
+                        style="background-color: var(--secondary-color); color: var(--text-color)">
+                        <h1>Shopping cart.</h1>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="collapsez showz down-top-grad-dark w3-animate-top comfortaa-font text-white"
+                            style="border-radius: 25px; overflow: hidden;" id="cart-panel">
+                            <div class="p-4 shadow" id="">
+                                <div class="text-center d-flex justify-content-between align-items-center">
+                                    <button
+                                        class="navbar-toggler shadow onefit-buttons-style-dark p-4 mb-4 w3-animate-right d-grid gap-1"
+                                        type="button" onclick="openLink(event, 'TabStore')">
+                                        <span class="material-icons material-icons-round align-middle">
+                                            storefront
+                                        </span>
+                                        <span class="align-middle"><span class="d-none d-lg-block">Visit the
+                                            </span><span
+                                                style="color: var(--primary-color) !important;">.Store</span></span>
+                                    </button>
 
-                <div class="collapse showz down-top-grad-dark w3-animate-top comfortaa-font text-white"
-                    style="border-radius: 25px; overflow: hidden;" id="cart-panel">
-                    <div class="p-4 shadow" id="">
-                        <div class="text-center d-flex justify-content-between align-items-center">
-                            <button
-                                class="navbar-toggler shadow onefit-buttons-style-dark p-4 mb-4 w3-animate-right d-grid gap-1"
-                                type="button" onclick="openLink(event, 'TabStore')">
-                                <span class="material-icons material-icons-round align-middle">
-                                    storefront
-                                </span>
-                                <span class="align-middle"><span class="d-none d-lg-block">Visit the </span><span
-                                        style="color: var(--primary-color) !important;">.Store</span></span>
-                            </button>
-
-                            <div class="w3-animate-top text-center">
-                                <!-- <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="max-height: 50px;" alt="logo"> -->
-                                <div class="d-grid text-center">
-                                    <p class="m-0 fs-5 comfortaa-font text-muted">Shopping</p>
-                                    <p class="m-0 fs-1 comfortaa-font text-muted">Cart.</p>
-                                </div>
-
-                            </div>
-
-                            <button
-                                class="navbar-toggler shadow onefit-buttons-style-dark p-4 mb-4 w3-animate-left d-grid gap-1"
-                                type="button">
-                                <span class="material-icons material-icons-round align-middle">
-                                    point_of_sale
-                                </span>
-                                <span class="align-middle">
-                                    <span class="d-none d-lg-block">Proceed to </span><span class="d-none d-lg-block"
-                                        style="color: var(--primary-color) !important;">Payment.</span>
-                                </span><span class="d-lg-none"
-                                    style="color: var(--primary-color) !important;">Pay.</span>
-                            </button>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xlg-6 py-4">
-                                <p class="text-center w3-animate-left comfortaa-font" style="min-height: 30px;">
-                                    <span class="material-icons material-icons-round align-middle">
-                                        checklist
-                                    </span>
-                                    Invoice [ <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
-                                        style="color: var(--primary-color);">20220201-879ds6fsdf_id</span> ]
-                                </p>
-                                <hr class="text-white">
-
-                                <!-- invoice totals -->
-                                <div class="container p-2 pt-4 top-down-grad-dark" style="border-radius: 25px;">
-                                    <h1 class="">Cart Totals.</h1>
-                                    <div class="row p-4 align-items-center">
-                                        <div class="col-md">
-                                            <h1>R<span id="shop-cart-total-amt">0.00</span> <span class="align-top"
-                                                    style="font-size: 10px; color: var(--primary-color);">ZAR</span>
-                                            </h1>
+                                    <div class="w3-animate-top text-center">
+                                        <!-- <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="max-height: 50px;" alt="logo"> -->
+                                        <div class="d-grid text-center">
+                                            <p class="m-0 fs-5 comfortaa-font text-muted">Shopping</p>
+                                            <p class="m-0 fs-1 comfortaa-font text-muted">Cart.</p>
                                         </div>
-                                        <div class="col-md -4 border-1 border-start border-end">
-                                            <h1><span id="shop-cart-total-items">4</span> <span class="align-top"
-                                                    style="font-size: 10px; color: var(--primary-color);">Items</span>
-                                            </h1>
-                                        </div>
-                                        <div class="col-md -2 d-grid">
-                                            <button id="clear-all-cart-item-btn"
-                                                class="onefit-buttons-style-danger bg-transparent p-3 text-center">
-                                                <div class="d-grid">
-                                                    <span class="material-icons material-icons-round align-middle"
-                                                        style="font-size: 40px !important">
-                                                        delete
-                                                    </span>
-                                                    <span class="align-middle" style="font-size:10px;">
-                                                        Clear Cart
-                                                    </span>
-                                                </div>
-                                            </button>
-                                        </div>
+
                                     </div>
+
+                                    <button
+                                        class="navbar-toggler shadow onefit-buttons-style-dark p-4 mb-4 w3-animate-left d-grid gap-1"
+                                        type="button">
+                                        <span class="material-icons material-icons-round align-middle">
+                                            point_of_sale
+                                        </span>
+                                        <span class="align-middle">
+                                            <span class="d-none d-lg-block">Proceed to </span><span
+                                                class="d-none d-lg-block"
+                                                style="color: var(--primary-color) !important;">Payment.</span>
+                                        </span><span class="d-lg-none"
+                                            style="color: var(--primary-color) !important;">Pay.</span>
+                                    </button>
                                 </div>
 
-                                <ul id="main-cart-items-list"
-                                    class="list-group list-group-flush list-group-numbered shadow py-4 px-4 w3-animate-left"
-                                    style="background-color: var(--secondary-color); overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
-                                    <li id="main-cart-items-list-item-idvalue"
-                                        class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
-                                        style="border-radius: 10px;">
-                                        <div class="w-100 align-items-center justify-content-between">
+                                <div class="row">
+                                    <div class="col-xlg-6 py-4">
+                                        <p class="text-center w3-animate-left comfortaa-font" style="min-height: 30px;">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                checklist
+                                            </span>
+                                            Invoice [ <span class="barcode-font text-truncate"
+                                                id="cart-invoice-number-barcode"
+                                                style="color: var(--primary-color);">20220201-879ds6fsdf_id</span> ]
+                                        </p>
+                                        <hr class="text-white">
 
-                                            <div class="row align-items-center gap-4">
+                                        <!-- invoice totals -->
+                                        <div class="container p-2 pt-4 top-down-grad-dark" style="border-radius: 25px;">
+                                            <h1 class="">Cart Totals.</h1>
+                                            <div class="row p-4 align-items-center">
                                                 <div class="col-md">
-                                                    <div class="d-grid gap-2 text-start px-4 pb-2">
-                                                        <div class="comfortaa-font">
-                                                            <span id="main-cart-items-list-item-name"
-                                                                class="align-middle">Aiwa Smart Band ASB-40</span>
-                                                        </div>
-                                                        <div class="comfortaa-font">
-                                                            <span class="material-icons material-icons-round text-muted"
-                                                                style="font-size: 10px !important;">monetization_on</span>
-                                                            <span class="fs-5" id="main-cart-items-list-item-price"
-                                                                style="color: var(--primary-color);">R149.00</span>
-                                                        </div>
-                                                    </div>
+                                                    <h1>R<span id="shop-cart-total-amt">0.00</span> <span
+                                                            class="align-top"
+                                                            style="font-size: 10px; color: var(--primary-color);">ZAR</span>
+                                                    </h1>
                                                 </div>
-                                                <div class="col-md-2 border-5 border-start border-end"
-                                                    style="border-radius:25px;">
-                                                    <div class="d-grid justify-content-center my-4">
-                                                        <!-- quantity -->
-                                                        <div class="input-group m-0">
-                                                            <span class="input-group-text"
-                                                                id="cart-item-quantity-cartitemid"
-                                                                style="font-size: 10px;color:#ffa500!important;background-color: var(--secondary-color)">Qty</span>
-                                                            <input type="number" class="form-control text-center"
-                                                                min="0" step="1" oninput="validity.valid||(value='');"
-                                                                placeholder="qty" aria-label="quantity"
-                                                                aria-describedby="cart-item-quantity-cartitemid"
-                                                                style="border-radius: 0 50rem 50rem 0 !important;background-color: var(--secondary-color); color: var(--text-color);max-width:80px;">
-                                                        </div>
-                                                    </div>
+                                                <div class="col-md -4 border-1 border-start border-end">
+                                                    <h1><span id="shop-cart-total-items">4</span> <span
+                                                            class="align-top"
+                                                            style="font-size: 10px; color: var(--primary-color);">Items</span>
+                                                    </h1>
                                                 </div>
-                                                <div class="col-md-2 p-4">
-                                                    <div class="d-flex justify-content-center">
-                                                        <button id="remove-cart-item-itemid"
-                                                            class="onefit-buttons-style-tahiti p-4 text-center">
+                                                <div class="col-md -2 d-grid">
+                                                    <button id="clear-all-cart-item-btn"
+                                                        class="onefit-buttons-style-danger bg-transparent p-3 text-center">
+                                                        <div class="d-grid">
                                                             <span
                                                                 class="material-icons material-icons-round align-middle"
                                                                 style="font-size: 40px !important">
-                                                                highlight_off
+                                                                delete
                                                             </span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </li>
-                                    <li id="main-cart-items-list-item-idvalue"
-                                        class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
-                                        style="border-radius: 10px;">
-                                        <div class="w-100 align-items-center justify-content-between">
-
-                                            <div class="row align-items-center gap-4">
-                                                <div class="col-md">
-                                                    <div class="d-grid gap-2 text-start px-4 pb-2">
-                                                        <div class="comfortaa-font">
-                                                            <span id="main-cart-items-list-item-name"
-                                                                class="align-middle">Aiwa Smart Band ASB-40</span>
-                                                        </div>
-                                                        <div class="comfortaa-font">
-                                                            <span class="material-icons material-icons-round text-muted"
-                                                                style="font-size: 10px !important;">monetization_on</span>
-                                                            <span class="fs-5" id="main-cart-items-list-item-price"
-                                                                style="color: var(--primary-color);">R149.00</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 border-5 border-start border-end"
-                                                    style="border-radius:25px;">
-                                                    <div class="d-grid justify-content-center my-4">
-                                                        <!-- quantity -->
-                                                        <div class="input-group m-0">
-                                                            <span class="input-group-text"
-                                                                id="cart-item-quantity-cartitemid"
-                                                                style="font-size: 10px;color:#ffa500!important;background-color: var(--secondary-color)">Qty</span>
-                                                            <input type="number" class="form-control text-center"
-                                                                min="0" step="1" oninput="validity.valid||(value='');"
-                                                                placeholder="qty" aria-label="quantity"
-                                                                aria-describedby="cart-item-quantity-cartitemid"
-                                                                style="border-radius: 0 50rem 50rem 0 !important;background-color: var(--secondary-color); color: var(--text-color);max-width:80px;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 p-4">
-                                                    <div class="d-flex justify-content-center">
-                                                        <button id="remove-cart-item-itemid"
-                                                            class="onefit-buttons-style-tahiti p-4 text-center">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle"
-                                                                style="font-size: 40px !important">
-                                                                highlight_off
+                                                            <span class="align-middle" style="font-size:10px;">
+                                                                Clear Cart
                                                             </span>
-                                                        </button>
-                                                    </div>
+                                                        </div>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
 
-                                    </li>
-                                    <li id="main-cart-items-list-item-idvalue"
-                                        class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
-                                        style="border-radius: 10px;">
-                                        <div class="w-100 align-items-center justify-content-between">
+                                        <ul id="main-cart-items-list"
+                                            class="list-group list-group-flush list-group-numbered shadow py-4 px-4 w3-animate-left"
+                                            style="background-color: var(--secondary-color); overflow-y: auto; border-radius: 25px !important; max-height: 50vh !important;">
+                                            <li id="main-cart-items-list-item-idvalue"
+                                                class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
+                                                style="border-radius: 10px;">
+                                                <div class="w-100 align-items-center justify-content-between">
 
-                                            <div class="row align-items-center gap-4">
-                                                <div class="col-md">
-                                                    <div class="d-grid gap-2 text-start px-4 pb-2">
-                                                        <div class="comfortaa-font">
-                                                            <span id="main-cart-items-list-item-name"
-                                                                class="align-middle">Aiwa Smart Band ASB-40</span>
+                                                    <div class="row align-items-center gap-4">
+                                                        <div class="col-md">
+                                                            <div class="d-grid gap-2 text-start px-4 pb-2">
+                                                                <div class="comfortaa-font">
+                                                                    <span id="main-cart-items-list-item-name"
+                                                                        class="align-middle">Aiwa Smart Band
+                                                                        ASB-40</span>
+                                                                </div>
+                                                                <div class="comfortaa-font">
+                                                                    <span
+                                                                        class="material-icons material-icons-round text-muted"
+                                                                        style="font-size: 10px !important;">monetization_on</span>
+                                                                    <span class="fs-5"
+                                                                        id="main-cart-items-list-item-price"
+                                                                        style="color: var(--primary-color);">R149.00</span>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="comfortaa-font">
-                                                            <span class="material-icons material-icons-round text-muted"
-                                                                style="font-size: 10px !important;">monetization_on</span>
-                                                            <span class="fs-5" id="main-cart-items-list-item-price"
-                                                                style="color: var(--primary-color);">R149.00</span>
+                                                        <div class="col-md-2 border-5 border-start border-end"
+                                                            style="border-radius:25px;">
+                                                            <div class="d-grid justify-content-center my-4">
+                                                                <!-- quantity -->
+                                                                <div class="input-group m-0">
+                                                                    <span class="input-group-text"
+                                                                        id="cart-item-quantity-cartitemid"
+                                                                        style="font-size: 10px;color:#ffa500!important;background-color: var(--secondary-color)">Qty</span>
+                                                                    <input type="number"
+                                                                        class="form-control text-center" min="0"
+                                                                        step="1" oninput="validity.valid||(value='');"
+                                                                        placeholder="qty" aria-label="quantity"
+                                                                        aria-describedby="cart-item-quantity-cartitemid"
+                                                                        style="border-radius: 0 50rem 50rem 0 !important;background-color: var(--secondary-color); color: var(--text-color);max-width:80px;">
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 border-5 border-start border-end"
-                                                    style="border-radius:25px;">
-                                                    <div class="d-grid justify-content-center my-4">
-                                                        <!-- quantity -->
-                                                        <div class="input-group m-0">
-                                                            <span class="input-group-text"
-                                                                id="cart-item-quantity-cartitemid"
-                                                                style="font-size: 10px;color:#ffa500!important;background-color: var(--secondary-color)">Qty</span>
-                                                            <input type="number" class="form-control text-center"
-                                                                min="0" step="1" oninput="validity.valid||(value='');"
-                                                                placeholder="qty" aria-label="quantity"
-                                                                aria-describedby="cart-item-quantity-cartitemid"
-                                                                style="border-radius: 0 50rem 50rem 0 !important;background-color: var(--secondary-color); color: var(--text-color);max-width:80px;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 p-4">
-                                                    <div class="d-flex justify-content-center">
-                                                        <button id="remove-cart-item-itemid"
-                                                            class="onefit-buttons-style-tahiti p-4 text-center">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle"
-                                                                style="font-size: 40px !important">
-                                                                highlight_off
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- ***delete ../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/get_user_stats_activity_tracker.php -->
-                                    </li>
-                                    <li id="main-cart-items-list-item-idvalue"
-                                        class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
-                                        style="border-radius: 10px;">
-                                        <div class="w-100 align-items-center justify-content-between">
-                                            <div class="row align-items-center gap-4">
-                                                <div class="col-md">
-                                                    <div class="d-grid gap-2 text-start px-4 pb-2">
-                                                        <div class="comfortaa-font">
-                                                            <span id="main-cart-items-list-item-name"
-                                                                class="align-middle">Aiwa Smart Band ASB-40</span>
-                                                        </div>
-                                                        <div class="comfortaa-font">
-                                                            <span class="material-icons material-icons-round text-muted"
-                                                                style="font-size: 10px !important;">monetization_on</span>
-                                                            <span class="fs-5" id="main-cart-items-list-item-price"
-                                                                style="color: var(--primary-color);">R149.00</span>
+                                                        <div class="col-md-2 p-4">
+                                                            <div class="d-flex justify-content-center">
+                                                                <button id="remove-cart-item-itemid"
+                                                                    class="onefit-buttons-style-tahiti p-4 text-center">
+                                                                    <span
+                                                                        class="material-icons material-icons-round align-middle"
+                                                                        style="font-size: 40px !important">
+                                                                        highlight_off
+                                                                    </span>
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2 border-5 border-start border-end"
-                                                    style="border-radius:25px;">
-                                                    <div class="d-grid justify-content-center my-4">
-                                                        <!-- quantity -->
-                                                        <div class="input-group m-0">
-                                                            <span class="input-group-text"
-                                                                id="cart-item-quantity-cartitemid"
-                                                                style="font-size: 10px;color:#ffa500!important;background-color: var(--secondary-color)">Qty</span>
-                                                            <input type="number" class="form-control text-center"
-                                                                min="0" step="1" oninput="validity.valid||(value='');"
-                                                                placeholder="qty" aria-label="quantity"
-                                                                aria-describedby="cart-item-quantity-cartitemid"
-                                                                style="border-radius: 0 50rem 50rem 0 !important;background-color: var(--secondary-color); color: var(--text-color);max-width:80px;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 p-4">
-                                                    <div class="d-flex justify-content-center">
-                                                        <button id="remove-cart-item-itemid"
-                                                            class="onefit-buttons-style-tahiti p-4 text-center">
-                                                            <span
-                                                                class="material-icons material-icons-round align-middle"
-                                                                style="font-size: 40px !important">
-                                                                highlight_off
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-xlg-6 py-4">
-                                <p class="text-center w3-animate-right comfortaa-font" style="min-height: 30px;">
-                                    <span class="material-icons material-icons-round align-middle">
-                                        shopping_cart
-                                    </span>
-                                    Cart Items (<span id="mini-cart-item-count"
-                                        style="color: var(--primary-color);">4</span>)
-                                </p>
-                                <hr class="text-white">
-                                <div class="horizontal-scroll p-5 w3-animate-right">
-                                    <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
-                                        style="border-color: var(--primary-color) !important;">
-                                        <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
-                                            style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
-                                            1
-                                        </div>
-                                        <div class="d-grid gap-2 justify-content-center">
-                                            <span class="material-icons material-icons-round text-muted"
-                                                style="font-size: 10px !important;">sell</span>
-                                            <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
-                                                style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
-                                            <div class="text-center">
-                                                <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
-                                                    Class="img-fluid shadow"
-                                                    style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
-                                            </div>
+                                            </li>
+                                            <li id="main-cart-items-list-item-idvalue"
+                                                class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
+                                                style="border-radius: 10px;">
+                                                <div class="w-100 align-items-center justify-content-between">
 
-                                            <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
-                                                <span class="material-icons material-icons-round text-muted"
-                                                    style="font-size: 10px !important;">monetization_on</span>
-                                                <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price"
-                                                    style="color: var(--primary-color);">R149.00</span> | Aiwa Smart
-                                                Band ASB-40
-                                            </p>
-                                            <div class="d-grid">
-                                                <button id="remove-cart-item-itemid"
-                                                    class="onefit-buttons-style-tahiti p-2 text-center">
-                                                    <span class="material-icons material-icons-round align-middle"
-                                                        style="font-size: 20px !important">
-                                                        highlight_off
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </div>
+                                                    <div class="row align-items-center gap-4">
+                                                        <div class="col-md">
+                                                            <div class="d-grid gap-2 text-start px-4 pb-2">
+                                                                <div class="comfortaa-font">
+                                                                    <span id="main-cart-items-list-item-name"
+                                                                        class="align-middle">Aiwa Smart Band
+                                                                        ASB-40</span>
+                                                                </div>
+                                                                <div class="comfortaa-font">
+                                                                    <span
+                                                                        class="material-icons material-icons-round text-muted"
+                                                                        style="font-size: 10px !important;">monetization_on</span>
+                                                                    <span class="fs-5"
+                                                                        id="main-cart-items-list-item-price"
+                                                                        style="color: var(--primary-color);">R149.00</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 border-5 border-start border-end"
+                                                            style="border-radius:25px;">
+                                                            <div class="d-grid justify-content-center my-4">
+                                                                <!-- quantity -->
+                                                                <div class="input-group m-0">
+                                                                    <span class="input-group-text"
+                                                                        id="cart-item-quantity-cartitemid"
+                                                                        style="font-size: 10px;color:#ffa500!important;background-color: var(--secondary-color)">Qty</span>
+                                                                    <input type="number"
+                                                                        class="form-control text-center" min="0"
+                                                                        step="1" oninput="validity.valid||(value='');"
+                                                                        placeholder="qty" aria-label="quantity"
+                                                                        aria-describedby="cart-item-quantity-cartitemid"
+                                                                        style="border-radius: 0 50rem 50rem 0 !important;background-color: var(--secondary-color); color: var(--text-color);max-width:80px;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 p-4">
+                                                            <div class="d-flex justify-content-center">
+                                                                <button id="remove-cart-item-itemid"
+                                                                    class="onefit-buttons-style-tahiti p-4 text-center">
+                                                                    <span
+                                                                        class="material-icons material-icons-round align-middle"
+                                                                        style="font-size: 40px !important">
+                                                                        highlight_off
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
+                                            </li>
+                                            <li id="main-cart-items-list-item-idvalue"
+                                                class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
+                                                style="border-radius: 10px;">
+                                                <div class="w-100 align-items-center justify-content-between">
+
+                                                    <div class="row align-items-center gap-4">
+                                                        <div class="col-md">
+                                                            <div class="d-grid gap-2 text-start px-4 pb-2">
+                                                                <div class="comfortaa-font">
+                                                                    <span id="main-cart-items-list-item-name"
+                                                                        class="align-middle">Aiwa Smart Band
+                                                                        ASB-40</span>
+                                                                </div>
+                                                                <div class="comfortaa-font">
+                                                                    <span
+                                                                        class="material-icons material-icons-round text-muted"
+                                                                        style="font-size: 10px !important;">monetization_on</span>
+                                                                    <span class="fs-5"
+                                                                        id="main-cart-items-list-item-price"
+                                                                        style="color: var(--primary-color);">R149.00</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 border-5 border-start border-end"
+                                                            style="border-radius:25px;">
+                                                            <div class="d-grid justify-content-center my-4">
+                                                                <!-- quantity -->
+                                                                <div class="input-group m-0">
+                                                                    <span class="input-group-text"
+                                                                        id="cart-item-quantity-cartitemid"
+                                                                        style="font-size: 10px;color:#ffa500!important;background-color: var(--secondary-color)">Qty</span>
+                                                                    <input type="number"
+                                                                        class="form-control text-center" min="0"
+                                                                        step="1" oninput="validity.valid||(value='');"
+                                                                        placeholder="qty" aria-label="quantity"
+                                                                        aria-describedby="cart-item-quantity-cartitemid"
+                                                                        style="border-radius: 0 50rem 50rem 0 !important;background-color: var(--secondary-color); color: var(--text-color);max-width:80px;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 p-4">
+                                                            <div class="d-flex justify-content-center">
+                                                                <button id="remove-cart-item-itemid"
+                                                                    class="onefit-buttons-style-tahiti p-4 text-center">
+                                                                    <span
+                                                                        class="material-icons material-icons-round align-middle"
+                                                                        style="font-size: 40px !important">
+                                                                        highlight_off
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- ***delete ../scripts/php/main_app/data_management/activity_tracker_stats_admin/compile/get_user_stats_activity_tracker.php -->
+                                            </li>
+                                            <li id="main-cart-items-list-item-idvalue"
+                                                class="list-group-item border-light bg-transparent text-white fs-5 d-flex"
+                                                style="border-radius: 10px;">
+                                                <div class="w-100 align-items-center justify-content-between">
+                                                    <div class="row align-items-center gap-4">
+                                                        <div class="col-md">
+                                                            <div class="d-grid gap-2 text-start px-4 pb-2">
+                                                                <div class="comfortaa-font">
+                                                                    <span id="main-cart-items-list-item-name"
+                                                                        class="align-middle">Aiwa Smart Band
+                                                                        ASB-40</span>
+                                                                </div>
+                                                                <div class="comfortaa-font">
+                                                                    <span
+                                                                        class="material-icons material-icons-round text-muted"
+                                                                        style="font-size: 10px !important;">monetization_on</span>
+                                                                    <span class="fs-5"
+                                                                        id="main-cart-items-list-item-price"
+                                                                        style="color: var(--primary-color);">R149.00</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 border-5 border-start border-end"
+                                                            style="border-radius:25px;">
+                                                            <div class="d-grid justify-content-center my-4">
+                                                                <!-- quantity -->
+                                                                <div class="input-group m-0">
+                                                                    <span class="input-group-text"
+                                                                        id="cart-item-quantity-cartitemid"
+                                                                        style="font-size: 10px;color:#ffa500!important;background-color: var(--secondary-color)">Qty</span>
+                                                                    <input type="number"
+                                                                        class="form-control text-center" min="0"
+                                                                        step="1" oninput="validity.valid||(value='');"
+                                                                        placeholder="qty" aria-label="quantity"
+                                                                        aria-describedby="cart-item-quantity-cartitemid"
+                                                                        style="border-radius: 0 50rem 50rem 0 !important;background-color: var(--secondary-color); color: var(--text-color);max-width:80px;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 p-4">
+                                                            <div class="d-flex justify-content-center">
+                                                                <button id="remove-cart-item-itemid"
+                                                                    class="onefit-buttons-style-tahiti p-4 text-center">
+                                                                    <span
+                                                                        class="material-icons material-icons-round align-middle"
+                                                                        style="font-size: 40px !important">
+                                                                        highlight_off
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
-                                        style="border-color: var(--primary-color) !important;">
-                                        <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
-                                            style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
-                                            2
-                                        </div>
-                                        <div class="d-grid gap-2 justify-content-center">
-                                            <span class="material-icons material-icons-round text-muted"
-                                                style="font-size: 10px !important;">sell</span>
-                                            <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
-                                                style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
-                                            <div class="text-center">
-                                                <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
-                                                    Class="img-fluid shadow"
-                                                    style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
-                                            </div>
+                                    <div class="col-xlg-6 py-4">
+                                        <p class="text-center w3-animate-right comfortaa-font"
+                                            style="min-height: 30px;">
+                                            <span class="material-icons material-icons-round align-middle">
+                                                shopping_cart
+                                            </span>
+                                            Cart Items (<span id="mini-cart-item-count"
+                                                style="color: var(--primary-color);">4</span>)
+                                        </p>
+                                        <hr class="text-white">
+                                        <div class="horizontal-scroll p-5 w3-animate-right">
+                                            <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
+                                                style="border-color: var(--accent-color) !important;">
+                                                <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
+                                                    style="height: 20px; width: 20px; font-size: 10px; border-color: var(--accent-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
+                                                    1
+                                                </div>
+                                                <div class="d-grid gap-2 justify-content-center">
+                                                    <span class="material-icons material-icons-round text-muted"
+                                                        style="font-size: 10px !important;">sell</span>
+                                                    <span class="barcode-font text-truncate"
+                                                        id="cart-invoice-number-barcode"
+                                                        style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                                    <div class="text-center">
+                                                        <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
+                                                            Class="img-fluid shadow"
+                                                            style="border-radius: 15px; max-height: 20vh;"
+                                                            alt="placeholder">
+                                                    </div>
 
-                                            <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
-                                                <span class="material-icons material-icons-round text-muted"
-                                                    style="font-size: 10px !important;">monetization_on</span>
-                                                <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price"
-                                                    style="color: var(--primary-color);">R149.00</span> | Aiwa Smart
-                                                Band ASB-40
-                                            </p>
-                                            <div class="d-grid">
-                                                <button id="remove-cart-item-itemid"
-                                                    class="onefit-buttons-style-tahiti p-2 text-center">
-                                                    <span class="material-icons material-icons-round align-middle"
-                                                        style="font-size: 20px !important">
-                                                        highlight_off
-                                                    </span>
-                                                </button>
+                                                    <p
+                                                        class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                                        <span class="material-icons material-icons-round text-muted"
+                                                            style="font-size: 10px !important;">monetization_on</span>
+                                                        <span class="fs-5"
+                                                            id="main-cart-items-horizontal-sub-list-item-price"
+                                                            style="color: var(--primary-color);">R149.00</span> | Aiwa
+                                                        Smart
+                                                        Band ASB-40
+                                                    </p>
+                                                    <div class="d-grid">
+                                                        <button id="remove-cart-item-itemid"
+                                                            class="onefit-buttons-style-tahiti p-2 text-center">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 20px !important">
+                                                                highlight_off
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
+                                                style="border-color: var(--accent-color) !important;">
+                                                <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
+                                                    style="height: 20px; width: 20px; font-size: 10px; border-color: var(--accent-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
+                                                    2
+                                                </div>
+                                                <div class="d-grid gap-2 justify-content-center">
+                                                    <span class="material-icons material-icons-round text-muted"
+                                                        style="font-size: 10px !important;">sell</span>
+                                                    <span class="barcode-font text-truncate"
+                                                        id="cart-invoice-number-barcode"
+                                                        style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                                    <div class="text-center">
+                                                        <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
+                                                            Class="img-fluid shadow"
+                                                            style="border-radius: 15px; max-height: 20vh;"
+                                                            alt="placeholder">
+                                                    </div>
+
+                                                    <p
+                                                        class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                                        <span class="material-icons material-icons-round text-muted"
+                                                            style="font-size: 10px !important;">monetization_on</span>
+                                                        <span class="fs-5"
+                                                            id="main-cart-items-horizontal-sub-list-item-price"
+                                                            style="color: var(--primary-color);">R149.00</span> | Aiwa
+                                                        Smart
+                                                        Band ASB-40
+                                                    </p>
+                                                    <div class="d-grid">
+                                                        <button id="remove-cart-item-itemid"
+                                                            class="onefit-buttons-style-tahiti p-2 text-center">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 20px !important">
+                                                                highlight_off
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
+                                                style="border-color: var(--accent-color) !important;">
+                                                <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
+                                                    style="height: 20px; width: 20px; font-size: 10px; border-color: var(--accent-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
+                                                    3
+                                                </div>
+                                                <div class="d-grid gap-2 justify-content-center">
+                                                    <span class="material-icons material-icons-round text-muted"
+                                                        style="font-size: 10px !important;">sell</span>
+                                                    <span class="barcode-font text-truncate"
+                                                        id="cart-invoice-number-barcode"
+                                                        style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                                    <div class="text-center">
+                                                        <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
+                                                            Class="img-fluid shadow"
+                                                            style="border-radius: 15px; max-height: 20vh;"
+                                                            alt="placeholder">
+                                                    </div>
+
+                                                    <p
+                                                        class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                                        <span class="material-icons material-icons-round text-muted"
+                                                            style="font-size: 10px !important;">monetization_on</span>
+                                                        <span class="fs-5"
+                                                            id="main-cart-items-horizontal-sub-list-item-price"
+                                                            style="color: var(--primary-color);">R149.00</span> | Aiwa
+                                                        Smart
+                                                        Band ASB-40
+                                                    </p>
+                                                    <div class="d-grid">
+                                                        <button id="remove-cart-item-itemid"
+                                                            class="onefit-buttons-style-tahiti p-2 text-center">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 20px !important">
+                                                                highlight_off
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
+                                                style="border-color: var(--accent-color) !important;">
+                                                <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
+                                                    style="height: 20px; width: 20px; font-size: 10px; border-color: var(--accent-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
+                                                    4
+                                                </div>
+                                                <div class="d-grid gap-2 justify-content-center">
+                                                    <span class="material-icons material-icons-round text-muted"
+                                                        style="font-size: 10px !important;">sell</span>
+                                                    <span class="barcode-font text-truncate"
+                                                        id="cart-invoice-number-barcode"
+                                                        style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
+                                                    <div class="text-center">
+                                                        <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
+                                                            Class="img-fluid shadow"
+                                                            style="border-radius: 15px; max-height: 20vh;"
+                                                            alt="placeholder">
+                                                    </div>
+
+                                                    <p
+                                                        class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
+                                                        <span class="material-icons material-icons-round text-muted"
+                                                            style="font-size: 10px !important;">monetization_on</span>
+                                                        <span class="fs-5"
+                                                            id="main-cart-items-horizontal-sub-list-item-price"
+                                                            style="color: var(--primary-color);">R149.00</span> | Aiwa
+                                                        Smart
+                                                        Band ASB-40
+                                                    </p>
+                                                    <div class="d-grid">
+                                                        <button id="remove-cart-item-itemid"
+                                                            class="onefit-buttons-style-tahiti p-2 text-center">
+                                                            <span
+                                                                class="material-icons material-icons-round align-middle"
+                                                                style="font-size: 20px !important">
+                                                                highlight_off
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
-
-                                    </div>
-                                    <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
-                                        style="border-color: var(--primary-color) !important;">
-                                        <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
-                                            style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
-                                            3
-                                        </div>
-                                        <div class="d-grid gap-2 justify-content-center">
-                                            <span class="material-icons material-icons-round text-muted"
-                                                style="font-size: 10px !important;">sell</span>
-                                            <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
-                                                style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
-                                            <div class="text-center">
-                                                <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
-                                                    Class="img-fluid shadow"
-                                                    style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
-                                            </div>
-
-                                            <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
-                                                <span class="material-icons material-icons-round text-muted"
-                                                    style="font-size: 10px !important;">monetization_on</span>
-                                                <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price"
-                                                    style="color: var(--primary-color);">R149.00</span> | Aiwa Smart
-                                                Band ASB-40
-                                            </p>
-                                            <div class="d-grid">
-                                                <button id="remove-cart-item-itemid"
-                                                    class="onefit-buttons-style-tahiti p-2 text-center">
-                                                    <span class="material-icons material-icons-round align-middle"
-                                                        style="font-size: 20px !important">
-                                                        highlight_off
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="horizontal-scroll-card p-4 shadow border-5 border-start border-top border-end me-4 position-relative down-top-grad-white"
-                                        style="border-color: var(--primary-color) !important;">
-                                        <div class="position-absolute top-0 start-0 translate-middle badge rounded-pillz border-2 border ps-3 pe-4 pt-3 pb-4 align-middle text-center"
-                                            style="height: 20px; width: 20px; font-size: 10px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important; border-radius: 5px;">
-                                            4
-                                        </div>
-                                        <div class="d-grid gap-2 justify-content-center">
-                                            <span class="material-icons material-icons-round text-muted"
-                                                style="font-size: 10px !important;">sell</span>
-                                            <span class="barcode-font text-truncate" id="cart-invoice-number-barcode"
-                                                style="color: var(--primary-color);font-size: 5px;">20220201-879ds6fsdf_id</span>
-                                            <div class="text-center">
-                                                <img src="../media/assets/smartwatches/Aiwa Smart Band ASB-40 R149.png"
-                                                    Class="img-fluid shadow"
-                                                    style="border-radius: 15px; max-height: 20vh;" alt="placeholder">
-                                            </div>
-
-                                            <p class="fw-bold text-truncate text-center text-dark py-4 poppins-font">
-                                                <span class="material-icons material-icons-round text-muted"
-                                                    style="font-size: 10px !important;">monetization_on</span>
-                                                <span class="fs-5" id="main-cart-items-horizontal-sub-list-item-price"
-                                                    style="color: var(--primary-color);">R149.00</span> | Aiwa Smart
-                                                Band ASB-40
-                                            </p>
-                                            <div class="d-grid">
-                                                <button id="remove-cart-item-itemid"
-                                                    class="onefit-buttons-style-tahiti p-2 text-center">
-                                                    <span class="material-icons material-icons-round align-middle"
-                                                        style="font-size: 20px !important">
-                                                        highlight_off
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- ./ convert to offcanvas panel -->
+
             </div>
         </div>
 
@@ -1029,7 +1171,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- Main Content -->
     <main id="main-content-container" class="container-lg" style="padding-bottom: 50px">
         <!-- Main Navigation Bar -->
-        <nav id="main-navbar" class="navbar sticky-topz w-100 mb-4 p-4 top-down-grad-dark"
+        <nav id="main-navbar" class="navbar w-100 mb-4 p-4 top-down-grad-dark"
             style="border-radius: 25px; max-height: 100vh !important; border-top: var(--secondary-color) solid 0px;">
             <!-- App Function Buttons -->
             <div class="container d-flex gap-1 align-items-center w3-animate-top">
@@ -1069,7 +1211,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <div class="text-center">
                                 <img src="../media/assets/One-Symbol-Logo-White.svg" alt="Onefit Logo"
                                     class="p-1 img-fluid my-pulse-animation-tahitiz"
-                                    style="height: 50px; width: 50px; border-radius: 15px; border-color: var(--primary-color) !important">
+                                    style="height: 50px; width: 50px; border-radius: 15px; border-color: var(--accent-color) !important">
                             </div>
                             <span class="d-none d-lg-block text-truncate">Refresh</span>
                         </div>
@@ -1128,176 +1270,205 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <div class="offcanvas-body"
                             style="padding-bottom: 40px; overflow-y: auto; overflow-x: hidden; max-height: 86.9vh;">
-                            <ul class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
-                                <li class="nav-item text-center">
-                                    <div class="d-grid mb-2 w3-animate-top">
-                                        <p class="text-white comfortaa-font fs-4 mb-0 fw-bold"> Presented by </p>
-                                        <p class="text-white audiowide-font mt-1 mb-0 fw-bold"
-                                            style="font-size: 8px !important;">
-                                            <span style="color: var(--tahitigold);">
-                                                One</span>-On-<span style="color: var(--tahitigold);">One</span>
-                                            Fitness
-                                            Network<sup style="color: var(--tahitigold);">®</sup>
+
+                            <div class="row">
+                                <div class="col-md">
+                                    <ul
+                                        class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
+                                        <li class="nav-item text-center">
+                                            <div class="d-grid mb-2 w3-animate-top">
+                                                <p class="text-white comfortaa-font fs-4 mb-0 fw-bold"> Presented by
+                                                </p>
+                                                <p class="text-white audiowide-font mt-1 mb-0 fw-bold"
+                                                    style="font-size: 8px !important;">
+                                                    <span style="color: var(--tahitigold);">
+                                                        One</span>-On-<span style="color: var(--tahitigold);">One</span>
+                                                    Fitness
+                                                    Network<sup style="color: var(--tahitigold);">®</sup>
+                                                </p>
+                                                <span class="material-icons material-icons-round d-none"
+                                                    style="color: var(--primary-color); cursor: pointer;">
+                                                    public
+                                                </span>
+                                                <img src="../media/assets/One-Logo.png" class="img-fluid px-4"
+                                                    alt="onefitnet logo" style="filter: invert(0);">
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                                style="border-radius: 25px !important;font-size:16px;"
+                                                href="https://onefitnet.co.za/" target="_blank">One-On-One
+                                                Fitness Network<span style="color:var(--primary-color);">™</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                                style="border-radius: 25px !important;font-size:16px;"
+                                                href="https://onefitnet.co.za/redirect/?linkref=null"
+                                                target="_blank">LMM 1-On-1
+                                                Trainer<span style="color:var(--primary-color);">™</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                                style="border-radius: 25px !important;font-size:16px;"
+                                                href="https://adaptivconcept.co.za/" target="_blank">AdaptivConcept<span
+                                                    style="color:var(--primary-color);">™</span>
+                                                FL</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md">
+                                    <ul
+                                        class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
+                                        <h5 class="text-center fs-1 fw-bold text-white d-grid gap-2">
+                                            <span class="material-icons material-icons-round align-middle"
+                                                style="color:var(--primary-color);">fitness_center</span>
+                                            <span class="align-middle">Join a gym.</span>
+                                        </h5>
+                                        <!-- affiliate links -->
+                                        <p class="text-mutedz fw-bold text-center mb-4"
+                                            style="font-size:10px;color:var(--text-color);">
+                                            <span class="material-icons material-icons-round align-middle"
+                                                style="font-size:20px!important;color:var(--primary-color);">
+                                                warning
+                                            </span>
+                                            The links below are intended for demonstration purposed only.
+                                            <span class="material-icons material-icons-round align-middle"
+                                                style="font-size:20px!important;color:var(--primary-color);">
+                                                warning
+                                            </span>
                                         </p>
-                                        <span class="material-icons material-icons-round d-none"
-                                            style="color: var(--primary-color); cursor: pointer;">
-                                            public
-                                        </span>
-                                        <img src="../media/assets/One-Logo.png" class="img-fluid px-4"
-                                            alt="onefitnet logo" style="filter: invert(0);">
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
-                                        style="border-radius: 25px !important;font-size:16px;"
-                                        href="https://onefitnet.co.za/" target="_blank">One-On-One
-                                        Fitness Network<span style="color:var(--primary-color);">™</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
-                                        style="border-radius: 25px !important;font-size:16px;"
-                                        href="https://onefitnet.co.za/redirect/?linkref=null" target="_blank">LMM 1-On-1
-                                        Trainer<span style="color:var(--primary-color);">™</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
-                                        style="border-radius: 25px !important;font-size:16px;"
-                                        href="https://adaptivconcept.co.za/" target="_blank">AdaptivConcept<span
-                                            style="color:var(--primary-color);">™</span>
-                                        FL</a>
-                                </li>
-                                <hr>
-                                <h5 class="text-center fs-1 fw-bold text-white d-grid gap-2">
-                                    <span class="material-icons material-icons-round align-middle"
-                                        style="color:var(--primary-color);">fitness_center</span>
-                                    <span class="align-middle">Join a gym.</span>
-                                </h5>
-                                <!-- affiliate links -->
-                                <p class="text-mutedz fw-bold text-center mb-4"
-                                    style="font-size:10px;color:var(--text-color);">
-                                    <span class="material-icons material-icons-round align-middle"
-                                        style="font-size:20px!important;color:var(--primary-color);">
-                                        warning
-                                    </span>
-                                    The links below are intended for demonstration purposed only.
-                                    <span class="material-icons material-icons-round align-middle"
-                                        style="font-size:20px!important;color:var(--primary-color);">
-                                        warning
-                                    </span>
-                                </p>
-                                <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
-                                    <div class="row w-100">
-                                        <div class="col-md">
-                                            <img src="../administration/media/affiliate/logos/gym_company_logo.png"
-                                                class="img-fluid rounded-4 shadow"
-                                                style="/* width:200px;height:100px; */filter: invert(0);"
-                                                alt="Gym Company logo - not affiliated">
-                                        </div>
-                                        <div class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
-                                            <p style="font-size:16px;" class="text-white text-start">gym4free is a
-                                                rewards programme exclusive to Gym Company members.</p>
-                                            <a class="nav-link p-0 text-start"
-                                                style="border-radius: 25px !important;font-size:8px;"
-                                                href="https://www.gymcompany.co.za/" target="_blank">Visit
-                                                gymcompany.co.za for more info.</a>
-                                        </div>
-                                    </div>
+                                        <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
+                                            <div class="row w-100">
+                                                <div class="col-md">
+                                                    <img src="../administration/media/affiliate/logos/gym_company_logo.png"
+                                                        class="img-fluid rounded-4 shadow"
+                                                        style="/* width:200px;height:100px; */filter: invert(0);"
+                                                        alt="Gym Company logo - not affiliated">
+                                                </div>
+                                                <div
+                                                    class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
+                                                    <p style="font-size:16px;" class="text-white text-start">gym4free is
+                                                        a
+                                                        rewards programme exclusive to Gym Company members.</p>
+                                                    <a class="nav-link p-0 text-start"
+                                                        style="border-radius: 25px !important;font-size:8px;"
+                                                        href="https://www.gymcompany.co.za/" target="_blank">Visit
+                                                        gymcompany.co.za for more info.</a>
+                                                </div>
+                                            </div>
 
 
-                                </li>
-                                <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
-                                    <div class="row w-100">
-                                        <div class="col-md">
-                                            <img src="../administration/media/affiliate/logos/planet_fitness_logo.png"
-                                                class="img-fluid rounded-4 shadow"
-                                                style="/* width:200px;height:100px; */filter: invert(0);"
-                                                alt="Planet Fitness logo - not affiliated">
-                                        </div>
-                                        <div class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
-                                            <p style="font-size:16px;" class="text-white text-start">Get your one week
-                                                free trial at your nearest PlanetFitness.</p>
-                                            <a class="nav-link p-0 poppins-font text-start"
-                                                style="border-radius: 25px !important;font-size:10px;"
-                                                href="https://www.planetfitness.co.za/" target="_blank">Visit
-                                                planetfitness.co.za for more info.</a>
-                                        </div>
-                                    </div>
+                                        </li>
+                                        <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
+                                            <div class="row w-100">
+                                                <div class="col-md">
+                                                    <img src="../administration/media/affiliate/logos/planet_fitness_logo.png"
+                                                        class="img-fluid rounded-4 shadow"
+                                                        style="/* width:200px;height:100px; */filter: invert(0);"
+                                                        alt="Planet Fitness logo - not affiliated">
+                                                </div>
+                                                <div
+                                                    class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
+                                                    <p style="font-size:16px;" class="text-white text-start">Get your
+                                                        one week
+                                                        free trial at your nearest PlanetFitness.</p>
+                                                    <a class="nav-link p-0 poppins-font text-start"
+                                                        style="border-radius: 25px !important;font-size:10px;"
+                                                        href="https://www.planetfitness.co.za/" target="_blank">Visit
+                                                        planetfitness.co.za for more info.</a>
+                                                </div>
+                                            </div>
 
 
-                                </li>
-                                <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
-                                    <div class="row w-100">
-                                        <div class="col-md">
-                                            <img src="../administration/media/affiliate/logos/virgin_active_logo.png"
-                                                class="img-fluid rounded-4 shadow"
-                                                style="/* width:100px;height:100px; */filter: invert(0);"
-                                                alt="Virgin Active logo - not affiliated">
-                                        </div>
-                                        <div class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
-                                            <p style="font-size:16px;" class="text-white text-start">Virgin Active
-                                                Rewards.</p>
-                                            <a class="nav-link p-0 text-start"
-                                                style="border-radius: 25px !important;font-size:10px;"
-                                                href="https://www.virginactive.co.za/club-loyalty-benefits"
-                                                target="_blank">Visit
-                                                virginactive.co.za for more info.</a>
-                                        </div>
-                                    </div>
+                                        </li>
+                                        <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
+                                            <div class="row w-100">
+                                                <div class="col-md">
+                                                    <img src="../administration/media/affiliate/logos/virgin_active_logo.png"
+                                                        class="img-fluid rounded-4 shadow"
+                                                        style="/* width:100px;height:100px; */filter: invert(0);"
+                                                        alt="Virgin Active logo - not affiliated">
+                                                </div>
+                                                <div
+                                                    class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
+                                                    <p style="font-size:16px;" class="text-white text-start">Virgin
+                                                        Active
+                                                        Rewards.</p>
+                                                    <a class="nav-link p-0 text-start"
+                                                        style="border-radius: 25px !important;font-size:10px;"
+                                                        href="https://www.virginactive.co.za/club-loyalty-benefits"
+                                                        target="_blank">Visit
+                                                        virginactive.co.za for more info.</a>
+                                                </div>
+                                            </div>
 
 
-                                </li>
-                                <h5 class="text-center fs-5 fw-bold text-white d-grid gap-2">
-                                    <span class="material-icons material-icons-round align-middle"
-                                        style="color:var(--primary-color);">card_membership</span>
-                                    <span class="align-middle">Earn, Learn and Gear up!</span>
-                                </h5>
-                                <p class="fs-5z mb-4 text-center" style="font-size:12px;color:var(--text-color);">
-                                    OneFitNet
-                                    offers members
-                                    the chance to earn essential training
-                                    equipement and vouchers. Commit to your fitness journey with us and be rewarded.
-                                    <br><span style="color:var(--primary-color);" class="fw-bold">OneFitNet Community
-                                        Rewards Program</span>
-                                </p>
-                                <li class="nav-item">
-                                    <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
-                                        style="border-radius: 25px !important;font-size:16px;" href="#">
-                                        <span
-                                            class="material-icons material-icons-round align-middle">card_giftcard</span>
-                                        OnefitNet CRP<sub
-                                            style="color:var(--primary-color);font-size:8px!important;">Alpha</sub></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
-                                        style="border-radius: 25px !important;font-size:16px;" href="#">
-                                        <span
-                                            class="material-icons material-icons-round align-middle">auto_stories</span>
-                                        Onefit.blog<span style="color:var(--primary-color);">™</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
-                                        style="border-radius: 25px !important;font-size:16px;" href="#">
-                                        <span class="material-icons material-icons-round align-middle">storefront</span>
-                                        Onefit.Shop<span style="color:var(--primary-color);">™</span></a>
-                                </li>
-                                <hr class="text-dark my-5" style="height: 5px;">
-                                <li class="nav-item d-grid gap-2">
-                                    <button
-                                        class="onefit-buttons-style-light rounded-pill p-4 text-center shadow fw-bold"
-                                        style="transform: translate(0) !important; border-radius:25px!important;"
-                                        onclick="launchLink('../scripts/php/destroy_session.php')">
-                                        <div class="align-items-center">
-                                            <span class="material-icons material-icons-outlined align-middle"
-                                                style="color: var(--primary-color);font-size:20px!important;">
-                                                logout
-                                            </span>
-                                            <span class="align-middle" style="font-size:20px!important;">
-                                                Logout.
-                                            </span>
-                                        </div>
-                                    </button>
-                                </li>
-                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md">
+                                    <ul
+                                        class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
+                                        <h5 class="text-center fs-5 fw-bold text-white d-grid gap-2">
+                                            <span class="material-icons material-icons-round align-middle"
+                                                style="color:var(--primary-color);">card_membership</span>
+                                            <span class="align-middle">Earn, Learn and Gear up!</span>
+                                        </h5>
+                                        <p class="fs-5z mb-4 text-center"
+                                            style="font-size:12px;color:var(--text-color);">
+                                            OneFitNet
+                                            offers members
+                                            the chance to earn essential training
+                                            equipement and vouchers. Commit to your fitness journey with us and be
+                                            rewarded.
+                                            <br><span style="color:var(--primary-color);" class="fw-bold">OneFitNet
+                                                Community
+                                                Rewards Program</span>
+                                        </p>
+                                        <li class="nav-item">
+                                            <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                                style="border-radius: 25px !important;font-size:16px;" href="#">
+                                                <span
+                                                    class="material-icons material-icons-round align-middle">card_giftcard</span>
+                                                OnefitNet CRP<sub
+                                                    style="color:var(--primary-color);font-size:8px!important;">Alpha</sub></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                                style="border-radius: 25px !important;font-size:16px;" href="#">
+                                                <span
+                                                    class="material-icons material-icons-round align-middle">auto_stories</span>
+                                                Onefit.blog<span style="color:var(--primary-color);">™</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                                style="border-radius: 25px !important;font-size:16px;" href="#">
+                                                <span
+                                                    class="material-icons material-icons-round align-middle">storefront</span>
+                                                Onefit.Shop<span style="color:var(--primary-color);">™</span></a>
+                                        </li>
+                                        <hr class="text-dark my-5" style="height: 5px;">
+                                        <li class="nav-item d-grid gap-2">
+                                            <button
+                                                class="onefit-buttons-style-light rounded-pill p-4 text-center shadow fw-bold"
+                                                style="transform: translate(0) !important; border-radius:25px!important;"
+                                                onclick="launchLink('../scripts/php/destroy_session.php')">
+                                                <div class="align-items-center">
+                                                    <span class="material-icons material-icons-outlined align-middle"
+                                                        style="color: var(--primary-color);font-size:20px!important;">
+                                                        logout
+                                                    </span>
+                                                    <span class="align-middle" style="font-size:20px!important;">
+                                                        Logout.
+                                                    </span>
+                                                </div>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -1311,20 +1482,20 @@ if (isset($_SESSION["currentUserAuth"])) {
                     Notifications
                 </button>
 
-                <div class="offcanvas offcanvas-start offcanvas-menu-primary-style fitness-bg-containerz w-50"
+                <div class="offcanvas offcanvas-start offcanvas-menu-primary-style fitness-bg-containerz w-100"
                     tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
                     <div class="offcanvas-header fs-1"
                         style="background-color: var(--secondary-color); color: var(--text-color)">
                         <!-- <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;"> -->
-                        <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2"
-                            data-bs-dismiss="offcanvas" aria-label="Close"
-                            onclick="$.toggleNotificationIndicator(false, 'pending', false)">
+                        <button id="app-notifications-close-btn" type="button"
+                            class="onefit-buttons-style-light rounded-pill shadow p-2" data-bs-dismiss="offcanvas"
+                            aria-label="Close" onclick="$.toggleNotificationIndicator(false, 'pending', false)">
                             <span class="material-icons material-icons-round align-middle"
                                 style="font-size:20px!important;"> close </span>
                         </button>
-                        <h5 class="offcanvas-title text-center text-truncate" id="offcanvasNavbarLabel">
+                        <h5 class="offcanvas-title text-center text-truncate fs-2" id="offcanvasNavbarLabel">
                             <span class="material-icons material-icons-round align-middle"
-                                style="color: var(--primary-color); cursor: pointer;font-size:20px!important;">
+                                style="color: var(--primary-color);cursor: pointer;font-size: 40px!important;">
                                 notifications
                             </span>
                             Alerts &amp; Notifications.
@@ -1335,10 +1506,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <div class="offcanvas-body top-down-grad-dark">
                         <!-- style="background-color: rgba(255, 255, 255, 0.8);" -->
 
-                        <h5 class="fs-5 text-white poppins-font">Notifications.</h5>
-                        <div id="communicationUserNotifications">
-                            <?php echo $outputProfileUserNotifications; ?>
-                            <!-- <div class="my-4 text-dark top-down-grad-tahiti p-4" style="border-radius: 25px;">
+                        <div class="row">
+                            <div class="col-md">
+                                <h5 class="fs-5 text-white poppins-font">Notifications.</h5>
+                                <div id="communicationUserNotifications">
+                                    <?php echo $outputProfileUserNotifications; ?>
+                                    <!-- <div class="my-4 text-dark top-down-grad-tahiti p-4" style="border-radius: 25px;">
                                 <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true"
                                     id="notifcation-1" style="border-radius: 25px !important;">
                                     <div class="d-flex w-100 justify-content-between">
@@ -1352,34 +1525,39 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </p>
                                 </a>
                             </div> -->
-                        </div>
-
-                        <hr class="text-white">
-
-                        <h5 class="fs-5 text-white poppins-font visually-hidden">Alerts. <span
-                                class="alert-count">0</span></h5>
-                        <ol class="list-group list-group-flush shadow light-scroller" id="alert-list"
-                            style="border-radius: 25px; max-height: 60vh;overflow-y:auto;">
-                            <li id="alert-settings-header" s
-                                class="list-group-item border-dark bg-darkz top-down-grad-dark sticky-top text-white py-4">
-                                <div class="d-flex gap-0 justify-content-between align-items-center w-100">
-                                    <div>
-                                        <span class="alert-count">0</span>
-                                        <span> alerts.</span>
-                                    </div>
-
-
-                                    <div class="d-flex gap-0 justify-content-end align-items-center">
-                                        <span style="font-size: 16px;">settings.</span>
-                                        <span class="material-icons material-icons-round p-2"
-                                            style="font-size:20px !important;">
-                                            tune
-                                        </span>
-                                    </div>
                                 </div>
-                            </li>
-                            <li class="list-group-item border-dark noalert">No alerts.</li>
-                        </ol>
+
+                                <hr class="text-white">
+
+                                <h5 class="fs-5 text-white poppins-font visually-hidden">Alerts. <span
+                                        class="alert-count">0</span></h5>
+                                <ol class="list-group list-group-flush shadow light-scroller" id="alert-list"
+                                    style="border-radius: 25px; max-height: 60vh;overflow-y:auto;">
+                                    <li id="alert-settings-header" s
+                                        class="list-group-item border-dark bg-darkz top-down-grad-dark sticky-top text-white py-4">
+                                        <div class="d-flex gap-0 justify-content-between align-items-center w-100">
+                                            <div>
+                                                <span class="alert-count">0</span>
+                                                <span> alerts.</span>
+                                            </div>
+
+
+                                            <div class="d-flex gap-0 justify-content-end align-items-center">
+                                                <span style="font-size: 16px;">settings.</span>
+                                                <span class="material-icons material-icons-round p-2"
+                                                    style="font-size:20px !important;">
+                                                    tune
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item border-dark noalert">No alerts.</li>
+                                </ol>
+                            </div>
+                            <div class="col-md top-down-grad-dark rounded-5 p-4">
+                                <h5>RSS / News.</h5>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -1405,7 +1583,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div id="TabHome" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: block">
                     <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: var(--secondary-color) !important; font-size: 40px;">dashboard</span>
@@ -1420,130 +1598,140 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </button>
                     </div>
 
-                    <h5 class="text-center" style="color: var(--secondary-color);">Hi <?php echo $usrprof_name; ?>.</h5>
-                    <p class="my-4 text-center comfortaa-fontr" style="color: var(--secondary-color);">Welcome to the
-                        Dashboard Page. Here, you can find
-                        various feeds from the activities we will be doing in the OnefitNet Community.</p>
+                    <div class="top-down-grad-dark rounded-5 mt-4 p-4 border-top border-5"
+                        style="border-color:var(--accent-color)!important;">
+                        <h5 class="text-center fs-1" style="color: var(--text-color);">Hi
+                            <?php echo $usrprof_name; ?>.</h5>
+                        <p class="my-4 text-center fs-5" style="color: var(--text-color);">Welcome to the
+                            Dashboard Page. Here, you can find
+                            various feeds from the activities we will be doing in the OnefitNet Community.</p>
 
-                    <hr class="text-white">
+                        <hr class="text-white">
 
-                    <div class="variable-grid-container">
-                        <div class="full-wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
+                        <div class="variable-grid-container">
+                            <div class="full-wide-grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
 
-                            <!-- fitness progression progress bar -->
-                            <div id="fitness-progression-progress-bar-dashboard" class="bar-fpwidget">
-                                <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle"
-                                        style="color: var(--primary-color);">data_exploration</span> <span
-                                        class="align-middle">Fitness Progression</span></h5>
-                                <div class="progress mt-4" style="height: 4px;">
-                                    <div class="progress-bar" role="progressbar" aria-label="Example 1px high"
-                                        style="width: 25%; background-color: var(--primary-color) !important; border-right: #343434 10px solid;"
-                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="row mt-2" style="margin-bottom: 60px;">
-                                    <div class="col text-start comfortaa-font" style="font-size: 12px;">
-                                        Current XP <strong>(112)</strong>
+                                <!-- fitness progression progress bar -->
+                                <div id="fitness-progression-progress-bar-dashboard" class="bar-fpwidget">
+                                    <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle"
+                                            style="color: var(--primary-color);">data_exploration</span> <span
+                                            class="align-middle">Fitness Progression</span></h5>
+                                    <div class="progress mt-4" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" aria-label="Example 1px high"
+                                            style="width: 25%; background-color: var(--primary-color) !important; border-right: var(--accent-color) 10px solid;"
+                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <div class="col text-end comfortaa-font" style="font-size: 12px;">
-                                        Target XP <strong>(150)</strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- ./ fitness progression progress bar -->
-
-                            <hr class="text-white">
-
-                            <h5 class="align-middle text-center"><span
-                                    class="material-icons material-icons-outlined align-middle">today</span><br>
-                                <?php echo date("l"); ?><br> <span style="color: var(--primary-color);">[</span>
-                                <?php echo date("d/m/Y"); ?> <span style="color: var(--primary-color);">]</span></h5>
-                            <!-- Digital Clock -->
-                            <div id="dashboard-tab-clock">
-                                <div id="clock" class="dark my-4 shadow">
-                                    <div class="display no-scroller">
-                                        <div class="weekdays"></div>
-                                        <div class="ampm"></div>
-                                        <div class="alarm"></div>
-                                        <div class="digits"></div>
+                                    <div class="row mt-2" style="margin-bottom: 60px;">
+                                        <div class="col text-start comfortaa-font" style="font-size: 12px;">
+                                            Current XP <strong>(112)</strong>
+                                        </div>
+                                        <div class="col text-end comfortaa-font" style="font-size: 12px;">
+                                            Target XP <strong>(150)</strong>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- ./. Digital Clock -->
+                                <!-- ./ fitness progression progress bar -->
 
-                            <div class="mt-4" id="dashboard-activity-lineup-container">
-                                <div class="p-4 text-center down-top-grad-dark border-5 border-end border-start"
-                                    style="border-radius: 25px; border-color: var(--primary-color) !important; margin-top: 60px !important;">
-                                    <h4 class="d-grid p-4 text-center border-5 border-top border-bottom"
-                                        style="background-color: var(--secondary-color); color: var(--text-color); border-color: var(--primary-color) !important;border-radius: 15px;">
-                                        <span class="material-icons material-icons-round align-middle"
-                                            style="color: var(--primary-color) !important">timeline</span>
-                                        <span class="p-4 align-middle">Activities lined up.</span>
-                                    </h4>
+                                <hr class="text-white">
 
-                                    <div id="week-activities-list-container">
+                                <h5 class="align-middle text-center"><span
+                                        class="material-icons material-icons-outlined align-middle">today</span><br>
+                                    <?php echo date("l"); ?><br> <span style="color: var(--primary-color);">[</span>
+                                    <?php echo date("d/m/Y"); ?> <span style="color: var(--primary-color);">]</span>
+                                </h5>
+                                <!-- Digital Clock -->
+                                <div id="dashboard-tab-clock">
+                                    <div id="clock" class="dark my-4 shadow">
+                                        <div class="display no-scroller">
+                                            <div class="weekdays"></div>
+                                            <div class="ampm"></div>
+                                            <div class="alarm"></div>
+                                            <div class="digits"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ./. Digital Clock -->
 
-                                        <div class="grid-container">
-                                            <div class="grid-tile down-top-grad-dark p-4 shadow">
-                                                <p class="my-4 fs-5 fw-bold comfortaa-font" style="cursor: pointer;"
-                                                    onclick="openLink(event, 'TabStudio')">No activities lined up. Go to
-                                                    the <span style="color: var(--primary-color);">.Studio</span> to get
-                                                    active.</p>
-                                            </div>
+                                <div class="mt-4" id="dashboard-activity-lineup-container">
+                                    <div class="p-4 text-center down-top-grad-dark border-5 border-end border-start"
+                                        style="border-radius: 25px; border-color: var(--accent-color) !important; margin-top: 60px !important;">
+                                        <h4 class="d-grid p-4 text-center border-5 border-top border-bottom"
+                                            style="background-color: var(--secondary-color); color: var(--text-color); border-color: var(--accent-color) !important;border-radius: 15px;">
+                                            <span class="material-icons material-icons-round align-middle"
+                                                style="color: var(--primary-color) !important">timeline</span>
+                                            <span class="p-4 align-middle">Activities lined up.</span>
+                                        </h4>
 
-                                            <div id="daily-activity-tile-"
-                                                class="grid-tile down-top-grad-tahiti p-4 shadow border-5 border-bottom border-white"
-                                                hidden>
-                                                <div class="d-flex gap-2 align-items-center justify-content-between text-center mb-2"
-                                                    id="no-activities-banner-container" style="min-height: 100px;">
-                                                    <div
-                                                        class="activity-icon rounded-circle shadow p-4 border border-white border-5">
-                                                        <img src="../media/assets/icons/icons8-bench-press-50.png"
-                                                            class="img-fluid rounded" alt="" height="50" width="50">
+                                        <div id="week-activities-list-container">
+
+                                            <div class="grid-container">
+                                                <div class="grid-tile down-top-grad-dark p-4 shadow">
+                                                    <p class="my-4 fs-5 fw-bold comfortaa-font" style="cursor: pointer;"
+                                                        onclick="openLink(event, 'TabStudio')">No activities lined up.
+                                                        Go to
+                                                        the <span style="color: var(--primary-color);">.Studio</span> to
+                                                        get
+                                                        active.</p>
+                                                </div>
+
+                                                <div id="daily-activity-tile-"
+                                                    class="grid-tile down-top-grad-tahiti p-4 shadow border-5 border-bottom border-white"
+                                                    hidden>
+                                                    <div class="d-flex gap-2 align-items-center justify-content-between text-center mb-2"
+                                                        id="no-activities-banner-container" style="min-height: 100px;">
+                                                        <div
+                                                            class="activity-icon rounded-circle shadow p-4 border border-white border-5">
+                                                            <img src="../media/assets/icons/icons8-bench-press-50.png"
+                                                                class="img-fluid rounded" alt="" height="50" width="50">
+                                                        </div>
+                                                        <div class="activity-details text-end">
+                                                            <p>Activity title:<br> </p>
+                                                            <p>RPE:<br> </p>
+                                                            <p>Date:<br> (01/01/1970)</p>
+                                                        </div>
                                                     </div>
-                                                    <div class="activity-details text-end">
-                                                        <p>Activity title:<br> </p>
-                                                        <p>RPE:<br> </p>
-                                                        <p>Date:<br> (01/01/1970)</p>
+                                                    <div class="d-grid">
+                                                        <button type="button"
+                                                            class="onefit-buttons-style-light p-2 shadow"
+                                                            aria-current="false" onclick="goTrainer('', '')">
+                                                            Start.
+                                                        </button>
                                                     </div>
                                                 </div>
-                                                <div class="d-grid">
-                                                    <button type="button" class="onefit-buttons-style-light p-2 shadow"
-                                                        aria-current="false" onclick="goTrainer('', '')">
-                                                        Start.
-                                                    </button>
-                                                </div>
+
                                             </div>
 
                                         </div>
 
                                     </div>
-
                                 </div>
+
                             </div>
 
-                        </div>
-
-                        <!-- Content Card - Dashboard -->
-                        <div class="grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
-                            <h4>News, Resources, Blog and Ads Feed</h4>
-                            <small class="text-muted" id="">Content</small>
-                            <p style="color: var(--primary-color);">Stay tuned for helpful resources, media content and
-                                the latest
-                                news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
-                            <div class="text-center">
-                                <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
-                                    <span class="visually-hidden">Loading...</span>
+                            <!-- Content Card - Dashboard -->
+                            <div class="grid-tile down-top-grad-dark p-4 shadow" style="border-radius: 25px">
+                                <h4>News, Resources, Blog and Ads Feed</h4>
+                                <small class="text-muted" id="">Content</small>
+                                <p style="color: var(--primary-color);">Stay tuned for helpful resources, media content
+                                    and
+                                    the latest
+                                    news in Sports, Health, Wellness, Lifestyle and Current Affairs News.</p>
+                                <div class="text-center">
+                                    <div class="spinner-border text-light" role="status"
+                                        style="width: 5rem; height: 5rem;">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Content Card - Dashboard -->
+                            <!-- Content Card - Dashboard -->
 
+                        </div>
                     </div>
                 </div>
                 <div id="TabProfile" class="shadow w3-container w3-animate-right content-tab py-4 px-2 app-tab"
                     style="display: none">
                     <!-- Hide this Tab Label -->
-                    <!-- <div class="p-4 m-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                    <!-- <div class="p-4 m-4 d-grid text-center down-top-grad-dark border-5 border-end border-start" style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span class="material-icons material-icons-outlined align-middle" style="color: var(--primary-color) !important; font-size: 40px;">account_circle</span> <span class="align-middle">Profile</span></h5>
 
                         <span class="material-icons material-icons-round" style="color: var(--primary-color) !important">keyboard_arrow_down</span>
@@ -1682,7 +1870,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <!-- inline/flex profile tab subtabs controller btns -->
                             <div id="inline-profile-content-tab-btns"
                                 class="d-grid justify-content-center w3-animate-bottom p-2"
-                                style="background: #333; border-radius: 25px; overflow: hidden;">
+                                style="background: var(--secondary-color); border-radius: 25px; overflow: hidden;">
                                 <style>
                                 .force-inline-nav {
                                     flex-wrap: nowrap !important;
@@ -1694,7 +1882,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <nav class="m-0">
                                         <div class="nav force-inline-nav nav-tabs border-0 justify-content-centerz pb-2"
                                             id="nav-tab-profiletab-subtabs-controller-container" role="tablist"
-                                            style="border-color: var(--primary-color) !important">
+                                            style="border-color: var(--accent-color) !important">
                                             <button
                                                 class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative active"
                                                 style="border-radius: 25px !important;min-width: 130px;"
@@ -1908,7 +2096,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 style="border-bottom: #ffa500 solid 5px;"
                                                                 id="post-' . $usrposts_postid . '-' . $usrposts_user . '">
                                                                 <div class="row align-items-top p-0 m-0 display-profile-banner-container border-5 border-top"
-                                                                    style="border-radius: 25px!important; max-height: 200px !important; border-color: var(--primary-color) !important;">
+                                                                    style="border-radius: 25px!important; max-height: 200px !important; border-color: var(--accent-color) !important;">
                                                                     <div
                                                                         class="col-md -4 d-grid justify-content-center text-center p-4 down-top-grad-dark">
                                                                         <!-- Profile Picture -->
@@ -2237,7 +2425,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         <span class="align-middle d-none d-lg-block"
                                                                             style="font-size: 10px;">
                                                                             <span
-                                                                                style="color: var(--primary-color) !important;">+</span>
+                                                                                style="color: var(--secondary-color) !important;">+</span>
                                                                             feeling</span>
                                                                     </button>
                                                                     <!--  -->
@@ -2250,7 +2438,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         <span class="align-middle d-none d-lg-block"
                                                                             style="font-size: 10px;">
                                                                             <span
-                                                                                style="color: var(--primary-color) !important;">+</span>
+                                                                                style="color: var(--secondary-color) !important;">+</span>
                                                                             resource</span>
                                                                     </button>
                                                                     <!--  -->
@@ -2263,7 +2451,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         <span class="align-middle d-none d-lg-block"
                                                                             style="font-size: 10px;">
                                                                             <span
-                                                                                style="color: var(--primary-color) !important;">+</span>
+                                                                                style="color: var(--secondary-color) !important;">+</span>
                                                                             media</span>
                                                                     </button>
                                                                     <!--  -->
@@ -2275,7 +2463,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         <span class="align-middle d-none d-lg-block"
                                                                             style="font-size: 10px;">
                                                                             <span
-                                                                                style="color: var(--primary-color) !important;">+</span>
+                                                                                style="color: var(--secondary-color) !important;">+</span>
                                                                             web</span>
                                                                     </button>
                                                                     <!--  -->
@@ -2287,7 +2475,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                         <span class="align-middle d-none d-lg-block"
                                                                             style="font-size: 10px;">
                                                                             <span
-                                                                                style="color: var(--primary-color) !important;">+</span>
+                                                                                style="color: var(--secondary-color) !important;">+</span>
                                                                             quote</span>
                                                                     </button>
                                                                 </div>
@@ -2323,7 +2511,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             style="border-bottom: #ffa500 solid 5px;"
                                                             id="post-' . $usrposts_postid . '-' . $usrposts_user . '">
                                                             <div class="row align-items-top p-0 m-0 display-profile-banner-container border-5 border-top"
-                                                                style="border-radius: 25px!important; max-height: 200px !important; border-color: var(--primary-color) !important;">
+                                                                style="border-radius: 25px!important; max-height: 200px !important; border-color: var(--accent-color) !important;">
                                                                 <div
                                                                     class="col-md -4 d-grid justify-content-center text-center p-4 down-top-grad-dark">
                                                                     <!-- Profile Picture -->
@@ -2640,7 +2828,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             role="tabpanel" aria-labelledby="v-sub-tab-pills-profile-subtab-media">
 
                                             <div class="p-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
-                                                style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                                                style="border-radius: 25px; border-color: var(--accent-color) !important;">
                                                 <h5 class="mt-4 fs-1 text-center align-middle"><span
                                                         class="material-icons material-icons-outlined align-middle"
                                                         style="color: var(--primary-color) !important; font-size: 40px;">perm_media</span>
@@ -2652,7 +2840,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <!-- inline/flex media tab subtabs controller btns -->
                                             <div id="inline-media-content-tab-btns"
                                                 class="d-grid justify-content-center w3-animate-bottom p-2 sticky-topz"
-                                                style="background: #333; border-radius: 25px; overflow: hidden;">
+                                                style="background: var(--secondary-color); border-radius: 25px 25px 0 0; overflow: hidden;">
                                                 <style>
                                                 .force-inline-nav {
                                                     flex-wrap: nowrap !important;
@@ -2665,7 +2853,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         <div class="nav force-inline-nav nav-tabs border-0 gap-4"
                                                             id="nav-tab-mediatab-subtabs-controller-container"
                                                             role="tablist"
-                                                            style="border-color: var(--primary-color) !important">
+                                                            style="border-color: var(--accent-color) !important">
                                                             <button
                                                                 class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative"
                                                                 style="border-radius: 25px !important;min-width: 130px;"
@@ -2744,7 +2932,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 <!-- #v-sub-tab-pills-profile-media-subtab-sharedmedia -->
                                                 <div id="v-sub-tab-pills-profile-media-subtab-sharedmedia"
                                                     class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
-                                                    role="tabpanel"
+                                                    style="border-radius: 0 0 25px 25px !important;" role="tabpanel"
                                                     aria-labelledby="v-sub-tab-pills-profile-media-subtab-sharedmedia">
                                                     <!-- style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" -->
 
@@ -2769,7 +2957,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 <!-- #v-sub-tab-pills-profile-media-subtab-privatemedia -->
                                                 <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4 active show"
                                                     id="v-sub-tab-pills-profile-media-subtab-privatemedia"
-                                                    role="tabpanel"
+                                                    style="border-radius: 0 0 25px 25px !important;" role="tabpanel"
                                                     aria-labelledby="v-sub-tab-pills-profile-media-subtab-privatemedia">
                                                     <!-- style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" -->
 
@@ -2794,7 +2982,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </div>
                                                 <!-- #v-sub-tab-pills-profile-media-subtab-videos -->
                                                 <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
-                                                    id="v-sub-tab-pills-profile-media-subtab-videos" role="tabpanel"
+                                                    id="v-sub-tab-pills-profile-media-subtab-videos"
+                                                    style="border-radius: 0 0 25px 25px !important;" role="tabpanel"
                                                     aria-labelledby="v-sub-tab-pills-profile-media-subtab-videos">
                                                     <!-- style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" -->
 
@@ -2925,7 +3114,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <div class="row align-items-start">
                                                 <!-- help. focus column -->
                                                 <div class="col-xlg border-5 border-start border-end py-4 no-scroller"
-                                                    style="max-height: 90vh;border-radius: 25px;border-color: var(--primary-color) !important;">
+                                                    style="max-height: 90vh;border-radius: 25px;border-color: var(--accent-color) !important;">
                                                     <!-- Help section also has sub-sections: ( Help Requests, Trainer Support, Trainee Support, Enquiries ) -->
                                                     <!-- friends list grid section -->
                                                     <h5
@@ -3562,7 +3751,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div id="TabDiscovery" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
                     <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: var(--secondary-color) !important; font-size: 40px;">travel_explore</span>
@@ -3602,145 +3791,159 @@ if (isset($_SESSION["currentUserAuth"])) {
                         by AdaptEngine™
                     </span>
 
-                    <nav>
-                        <div class="nav nav-tabs" id="nav-tab-discovery" role="tablist"
-                            style="border-color: var(--primary-color) !important">
-                            <button class="nav-link p-4 active" id="nav-discovery-trainers-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-discovery-trainers" type="button" role="tab"
-                                aria-controls="nav-discovery-trainers" aria-selected="true"
-                                onclick="$('#discover-search-input').attr('placeholder','Search Trainers.')">Trainers</button>
+                    <div class="top-down-grad-dark p-4 rounded-5">
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab-discovery" role="tablist"
+                                style="border-color: var(--accent-color) !important">
+                                <button class="nav-link p-4 active" id="nav-discovery-trainers-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-discovery-trainers" type="button" role="tab"
+                                    aria-controls="nav-discovery-trainers" aria-selected="true"
+                                    onclick="$('#discover-search-input').attr('placeholder','Search Trainers.')">Trainers</button>
 
-                            <button class="nav-link p-4" id="nav-discovery-trainees-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-discovery-trainees" type="button" role="tab"
-                                aria-controls="nav-discovery-trainees" aria-selected="false"
-                                onclick="$('#discover-search-input').attr('placeholder','Search Trainees.')">Trainees</button>
+                                <button class="nav-link p-4" id="nav-discovery-trainees-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-discovery-trainees" type="button" role="tab"
+                                    aria-controls="nav-discovery-trainees" aria-selected="false"
+                                    onclick="$('#discover-search-input').attr('placeholder','Search Trainees.')">Trainees</button>
 
-                            <button class="nav-link p-4" id="nav-discovery-groups-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-discovery-groups" type="button" role="tab"
-                                aria-controls="nav-discovery-groups" aria-selected="false"
-                                onclick="$('#discover-search-input').attr('placeholder','Search Groups.')">Groups</button>
+                                <button class="nav-link p-4" id="nav-discovery-groups-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-discovery-groups" type="button" role="tab"
+                                    aria-controls="nav-discovery-groups" aria-selected="false"
+                                    onclick="$('#discover-search-input').attr('placeholder','Search Groups.')">Groups</button>
 
-                            <!-- <button class="nav-link p-4" id="nav-discovery-posts-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-posts" type="button" role="tab" aria-controls="nav-discovery-posts" aria-selected="false">Community Updates</button> -->
+                                <!-- <button class="nav-link p-4" id="nav-discovery-posts-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-posts" type="button" role="tab" aria-controls="nav-discovery-posts" aria-selected="false">Community Updates</button> -->
 
-                            <!-- <button class="nav-link p-4" id="nav-discovery-fit-progs-indi-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-fit-progs-indi" type="button" role="tab" aria-controls="nav-discovery-fit-progs-indi" aria-selected="false">Indi-Fitness</button> -->
+                                <!-- <button class="nav-link p-4" id="nav-discovery-fit-progs-indi-tab" data-bs-toggle="tab" data-bs-target="#nav-discovery-fit-progs-indi" type="button" role="tab" aria-controls="nav-discovery-fit-progs-indi" aria-selected="false">Indi-Fitness</button> -->
 
-                            <button class="nav-link p-4" id="nav-discovery-fit-progs-team-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-discovery-fit-progs-team" type="button" role="tab"
-                                aria-controls="nav-discovery-fit-progs-team" aria-selected="false"
-                                onclick="$('#discover-search-input').attr('placeholder','Search Training programs.')">
-                                Teams Training
-                            </button>
+                                <button class="nav-link p-4" id="nav-discovery-fit-progs-team-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-discovery-fit-progs-team" type="button" role="tab"
+                                    aria-controls="nav-discovery-fit-progs-team" aria-selected="false"
+                                    onclick="$('#discover-search-input').attr('placeholder','Search Training programs.')">
+                                    Teams Training
+                                </button>
 
-                            <button class="nav-link p-4" id="nav-discovery-well-progs-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-discovery-well-progs" type="button" role="tab"
-                                aria-controls="nav-discovery-well-progs" aria-selected="false"
-                                onclick="$('#discover-search-input').attr('placeholder','Search Wellness programs.')">Wellness.</button>
+                                <button class="nav-link p-4" id="nav-discovery-well-progs-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-discovery-well-progs" type="button" role="tab"
+                                    aria-controls="nav-discovery-well-progs" aria-selected="false"
+                                    onclick="$('#discover-search-input').attr('placeholder','Search Wellness programs.')">Wellness.</button>
 
-                            <button class="nav-link p-4" id="nav-discovery-nutrition-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-discovery-nutrition" type="button" role="tab"
-                                aria-controls="nav-discovery-nutrition" aria-selected="false"
-                                onclick="$('#discover-search-input').attr('placeholder','Search Nutrition guides.')">Nutrition.</button>
+                                <button class="nav-link p-4" id="nav-discovery-nutrition-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-discovery-nutrition" type="button" role="tab"
+                                    aria-controls="nav-discovery-nutrition" aria-selected="false"
+                                    onclick="$('#discover-search-input').attr('placeholder','Search Nutrition guides.')">Nutrition.</button>
 
-                            <button class="nav-link p-4" id="nav-discovery-fitengine-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-discovery-fitengine" type="button" role="tab"
-                                aria-controls="nav-discovery-fitengine" aria-selected="false">FitEngine&trade;</button>
-                        </div>
-                    </nav>
-                    <div class="tab-content" id="nav-tab-DiscoveryContent">
-                        <div class="tab-pane fade show active" id="nav-discovery-trainers" role="tabpanel"
-                            aria-labelledby="nav-discovery-trainers-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">OnefitNet trainers.</h1>
-
-                            <div class="grid-container">
-                                <?php echo $discoveryAllTrainers; ?>
+                                <button class="nav-link p-4" id="nav-discovery-fitengine-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-discovery-fitengine" type="button" role="tab"
+                                    aria-controls="nav-discovery-fitengine"
+                                    aria-selected="false">FitEngine&trade;</button>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="nav-discovery-trainees" role="tabpanel"
-                            aria-labelledby="nav-discovery-trainees-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">OnefitNet trainees.</h1>
+                        </nav>
+                        <div class="tab-content" id="nav-tab-DiscoveryContent">
+                            <div class="tab-pane fade show active" id="nav-discovery-trainers" role="tabpanel"
+                                aria-labelledby="nav-discovery-trainers-tab">
+                                <h1 class="text-center p-4 shadow rounded-pill"
+                                    style="background-color: var(--secondary-color);">OnefitNet trainers.</h1>
 
-                            <div class="grid-container">
-                                <?php echo $discoveryAllTrainees; ?>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade show" id="nav-discovery-groups" role="tabpanel"
-                            aria-labelledby="nav-discovery-groups-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">OnefitNet groups.</h1>
-
-                            <div class="grid-container">
-                                <?php echo $outputCommunityGroups; ?>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="nav-discovery-posts" role="tabpanel"
-                            aria-labelledby="nav-discovery-posts-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">OnefitNet community updates.</h1>
-
-                            <div class="text-center" id="comm-updates-search-container">
-                                <?php echo $outputCommunityUpdates; ?>
-                            </div>
-                        </div>
-
-                        <!-- <div class="tab-pane fade" id="nav-discovery-fit-progs-indi" role="tabpanel" aria-labelledby="nav-discovery-fit-progs-indi-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">Indi.Fitness Programs</h1>
-                            <div class="grid-container">
-                                <php echo $discoveryFitProgsIndi; ?>
-                            </div>
-                        </div> -->
-                        <div class="tab-pane fade" id="nav-discovery-fit-progs-team" role="tabpanel"
-                            aria-labelledby="nav-discovery-fit-progs-team-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">Teams training.</h1>
-                            <div class="grid-container">
-                                <?php echo $discoveryFitProgsTeams; ?>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="nav-discovery-nutrition" role="tabpanel"
-                            aria-labelledby="nav-discovery-nutrition-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">Nutrition guides</h1>
-
-                            <div class="d-flex justify-content-center my-4">
-                                <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
-                                    <span class="visually-hidden">Loading...</span>
+                                <div class="grid-container">
+                                    <?php echo $discoveryAllTrainers; ?>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="nav-discovery-well-progs" role="tabpanel"
-                            aria-labelledby="nav-discovery-well-progs-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">Wellness resources</h1>
+                            <div class="tab-pane fade" id="nav-discovery-trainees" role="tabpanel"
+                                aria-labelledby="nav-discovery-trainees-tab">
+                                <h1 class="text-center p-4 shadow rounded-pill"
+                                    style="background-color: var(--secondary-color);">OnefitNet trainees.</h1>
 
-                            <div class="d-flex justify-content-center my-4">
-                                <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
-                                    <span class="visually-hidden">Loading...</span>
+                                <div class="grid-container">
+                                    <?php echo $discoveryAllTrainees; ?>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="nav-discovery-fitengine" role="tabpanel"
-                            aria-labelledby="nav-discovery-fitengine-tab">
-                            <h1 class="text-center p-4 shadow rounded-pill">FitEngine Resources</h1>
+                            <div class="tab-pane fade show" id="nav-discovery-groups" role="tabpanel"
+                                aria-labelledby="nav-discovery-groups-tab">
+                                <h1 class="text-center p-4 shadow rounded-pill"
+                                    style="background-color: var(--secondary-color);">OnefitNet groups.</h1>
 
-                            <div class="d-flex justify-content-center my-4">
-                                <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem;">
-                                    <span class="visually-hidden">Loading...</span>
+                                <div class="grid-container">
+                                    <?php echo $outputCommunityGroups; ?>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-discovery-posts" role="tabpanel"
+                                aria-labelledby="nav-discovery-posts-tab">
+                                <h1 class="text-center p-4 shadow rounded-pill"
+                                    style="background-color: var(--secondary-color);">OnefitNet community updates.</h1>
+
+                                <div class="text-center" id="comm-updates-search-container">
+                                    <?php echo $outputCommunityUpdates; ?>
                                 </div>
                             </div>
 
-                            <div class="grid-container">
-                                <?php echo $outputCommunityResources; ?>
+                            <!-- <div class="tab-pane fade" id="nav-discovery-fit-progs-indi" role="tabpanel" aria-labelledby="nav-discovery-fit-progs-indi-tab">
+                                <h1 class="text-center p-4 shadow rounded-pill">Indi.Fitness Programs</h1>
+                                <div class="grid-container">
+                                    <php echo $discoveryFitProgsIndi; ?>
+                                </div>
+                            </div> -->
+                            <div class="tab-pane fade" id="nav-discovery-fit-progs-team" role="tabpanel"
+                                aria-labelledby="nav-discovery-fit-progs-team-tab">
+                                <h1 class="text-center p-4 shadow rounded-pill"
+                                    style="background-color: var(--secondary-color);">Teams training.</h1>
+                                <div class="grid-container">
+                                    <?php echo $discoveryFitProgsTeams; ?>
+                                </div>
                             </div>
+                            <div class="tab-pane fade" id="nav-discovery-nutrition" role="tabpanel"
+                                aria-labelledby="nav-discovery-nutrition-tab">
+                                <h1 class="text-center p-4 shadow rounded-pill"
+                                    style="background-color: var(--secondary-color);">Nutrition guides</h1>
+
+                                <div class="d-flex justify-content-center my-4">
+                                    <div class="spinner-border text-light" role="status"
+                                        style="width: 5rem; height: 5rem;">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-discovery-well-progs" role="tabpanel"
+                                aria-labelledby="nav-discovery-well-progs-tab">
+                                <h1 class="text-center p-4 shadow rounded-pill"
+                                    style="background-color: var(--secondary-color);">Wellness resources</h1>
+
+                                <div class="d-flex justify-content-center my-4">
+                                    <div class="spinner-border text-light" role="status"
+                                        style="width: 5rem; height: 5rem;">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-discovery-fitengine" role="tabpanel"
+                                aria-labelledby="nav-discovery-fitengine-tab">
+                                <h1 class="text-center p-4 shadow rounded-pill"
+                                    style="background-color: var(--secondary-color);">FitEngine Resources</h1>
+
+                                <div class="d-flex justify-content-center my-4">
+                                    <div class="spinner-border text-light" role="status"
+                                        style="width: 5rem; height: 5rem;">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+
+                                <div class="grid-container">
+                                    <?php echo $outputCommunityResources; ?>
+                                </div>
+                            </div>
+
+
                         </div>
-
-
                     </div>
                 </div>
                 <div id="TabStudio" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
                     <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle">
                             <span class="material-icons material-icons-outlined align-middle"
                                 style="color: var(--secondary-color) !important; font-size: 40px;">play_circle_outline</span>
                             <span style="color: var(--text-color) !important">
                                 <span class="align-middle">
-                                    One<span style="color: var(--primary-color) !important">fit</span>.Studio
+                                    One<span style="color: var(--accent-color) !important">fit</span>.Studio
                                 </span>
                         </h5>
                         <button class="bg-transparent onefit-buttons-style-dark p-4 d-grid"
@@ -3751,7 +3954,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <span class="align-middle">Sync.</span>
                         </button>
                     </div>
-                    <!-- <h1 class="text-center"><span style="color: var(--text-color) !important">One</span><span style="color: var(--primary-color) !important">fit</span>.Studio
+                    <!-- <h1 class="text-center"><span style="color: var(--text-color) !important">One</span><span style="color: var(--accent-color) !important">fit</span>.Studio
                     </h1>
                     <hr class="text-white" /> -->
 
@@ -3781,7 +3984,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <!-- -100 max-100vh-->
                             <h2 class="text-center"><span class="material-icons material-icons-outlined"> tv </span>
                                 <span style="color: var(--text-color) !important">One</span><span
-                                    style="color: var(--primary-color) !important">fit</span>.Community Streams
+                                    style="color: var(--accent-color) !important">fit</span>.Community Streams
                                 (Onefit.tv)
                             </h2>
                             <p>Live stream sessions of scheduled Community (public) & Group-based fitness program
@@ -3829,7 +4032,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="grid-tile max-100vh shadow p-4 down-top-grad-dark wide-grid-tile"
                             style="overflow-y: auto;">
                             <h4><span style="color: var(--text-color) !important">One</span><span
-                                    style="color: var(--primary-color) !important">fit</span> Sound Station<span
+                                    style="color: var(--accent-color) !important">fit</span> Sound Station<span
                                     class="material-icons material-icons-round">
                                     equalizer
                                 </span>
@@ -3854,12 +4057,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div id="TabStore" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
                     <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: var(--secondary-color) !important; font-size: 40px;">storefront</span>
                             <span class="align-middle"><span style="color: var(--text-color) !important">One</span>
-                                <span style="color: var(--primary-color) !important">fit</span>.Store</span>
+                                <span style="color: var(--accent-color) !important">fit</span>.Store</span>
                         </h5>
                         <button class="bg-transparent onefit-buttons-style-dark p-4 d-grid"
                             onclick="reloadTab('store')">
@@ -3869,7 +4072,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <span class="align-middle">Sync.</span>
                         </button>
                     </div>
-                    <!-- <h1 class="text-center"><span style="color: var(--text-color) !important">One</span><span style="color: var(--primary-color) !important">fit</span>.Store
+                    <!-- <h1 class="text-center"><span style="color: var(--text-color) !important">One</span><span style="color: var(--accent-color) !important">fit</span>.Store
                     </h1>
                     <hr class="text-white" /> -->
 
@@ -4840,7 +5043,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- ./ tab section navigation -->
 
                     <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <h1 class="text-center comfortaa-font">
                             <span class="material-icons material-icons-outlined align-middle"
                                 style="color: var(--primary-color) !important; font-size: 40px;">
@@ -4864,7 +5067,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- Timelines and Calender -->
                     <div id="training-calender-header"
                         class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <span class="material-icons material-icons-round">calendar_month</span>
                         <h5 class="my-4 fs-1 text-center">Training Calender</h5>
                         <span class="material-icons material-icons-round"
@@ -4879,13 +5082,13 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                     <!-- Vertical Activity Timeline of user -->
 
-                    <div id="v-timeline" class="w-100 my-4 py-4 shadow border-5 border-bottom top-down-grad-white"
-                        style="background-color: var(--secondary-color); border-radius: 25px; border-color: var(--primary-color) !important; overflow-x: auto;">
+                    <div id="v-timeline" class="w-100 my-4 py-4 shadow border-5 border-bottom top-down-grad-dark"
+                        style="background-color: var(--primary-color); border-radius: 25px; border-color: var(--accent-color) !important; overflow-x: auto;">
                         <div class="d-grid text-center">
                             <h5 id="activity-timeline-header" class="my-4 fs-1 text-center align-middle"
-                                style="color: var(--secondary-color) !important;">
+                                style="color: var(--text-color) !important;">
                                 <span class="material-icons material-icons-outlined align-middle"
-                                    style="color: var(--secondary-color) !important;font-size: 80px;">
+                                    style="color: var(--primary-color) !important;font-size: 80px;">
                                     timeline
                                 </span> Activity Timeline.
                             </h5>
@@ -5060,7 +5263,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- User Smart Device Activity Tracking -->
                     <div id="activity-tracking-header"
                         class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <span class="material-icons material-icons-round">track_changes</span>
                         <h5 class="mt-4 fs-1 text-center">Vitals Tracking</h5>
                         <span class="material-icons material-icons-round"
@@ -5068,7 +5271,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
 
                     <div class="container-fluid p-4 shadow-lg d-inline-block border-5 border-start border-end"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important; background-color: var(--secondary-color)">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important; background-color: var(--secondary-color)">
                         <div class="row align-items-center text-center comfortaa-font border-5 border-start border-end"
                             style="border-radius:25px;border-color:var(--primary-color)!important;">
                             <div class="col-sm py-2 text-truncate">
@@ -5213,7 +5416,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <!-- detailed metric list -->
                         <ul class="list-group list-group-flush text-white border-0">
                             <li class="list-group-item bg-transparent text-white"
-                                style="border-color: var(--primary-color);border-radius: 25px;">
+                                style="border-color: var(--accent-color);border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md-4 text-center">
                                         <h1 class="text-truncate">Heart Rate</h1>
@@ -5276,7 +5479,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- submit heartrate data form -->
                                         <div id="heartrate-data-input-form-container"
                                             class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom"
-                                            style="border-color: var(--primary-color) !important; border-radius: 25px;">
+                                            style="border-color: var(--accent-color) !important; border-radius: 25px;">
                                             <div id="heartrate-expand-icon" class="text-center w3-animate-bottom my-4">
                                                 <span class="material-icons material-icons-round">
                                                     add_task
@@ -5366,7 +5569,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </div>
                             </li>
                             <li class="list-group-item bg-transparent text-white"
-                                style="border-color: var(--primary-color);border-radius: 25px;">
+                                style="border-color: var(--accent-color);border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md-4 text-center">
                                         <h1 class="text-truncate">Body Temp</h1>
@@ -5430,7 +5633,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- submit heartrate data form -->
                                         <div id="bodytemp-data-input-form-container"
                                             class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom"
-                                            style="border-color: var(--primary-color) !important; border-radius: 25px;">
+                                            style="border-color: var(--accent-color) !important; border-radius: 25px;">
                                             <div id="bodytemp-expand-icon" class="text-center w3-animate-bottom my-4">
                                                 <span class="material-icons material-icons-round">
                                                     add_task
@@ -5519,7 +5722,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </div>
                             </li>
                             <li class="list-group-item bg-transparent text-white"
-                                style="border-color: var(--primary-color);border-radius: 25px;">
+                                style="border-color: var(--accent-color);border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md-4 text-center">
                                         <h1 class="text-truncate">Avg. Speed</h1>
@@ -5585,7 +5788,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- submit speed data form -->
                                         <div id="speedmonitor-data-input-form-container"
                                             class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom"
-                                            style="border-color: var(--primary-color) !important; border-radius: 25px;">
+                                            style="border-color: var(--accent-color) !important; border-radius: 25px;">
                                             <div id="speedmonitor-expand-icon"
                                                 class="text-center w3-animate-bottom my-4">
                                                 <span class="material-icons material-icons-round">
@@ -5674,7 +5877,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </div>
                             </li>
                             <li class="list-group-item bg-transparent text-white"
-                                style="border-color: var(--primary-color);border-radius: 25px;">
+                                style="border-color: var(--accent-color);border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md -4 text-center">
                                         <h1 class="text-truncate">Step Count</h1>
@@ -5732,7 +5935,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </div>
                             </li>
                             <li class="list-group-item bg-transparent text-white"
-                                style="border-color: var(--primary-color);border-radius: 25px;">
+                                style="border-color: var(--accent-color);border-radius: 25px;">
                                 <div class="row align-items-center">
                                     <div class="col-md-4 text-center">
                                         <h1 class="text-truncate">Weight &amp; BMI</h1>
@@ -5796,7 +5999,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <!-- submit bmiweight data form -->
                                         <div id="bmiweight-data-input-form-container"
                                             class="collapse mt-4 p-4 mb-4 w3-animate-bottom border-5 border-top border-bottom"
-                                            style="border-color: var(--primary-color) !important; border-radius: 25px;">
+                                            style="border-color: var(--accent-color) !important; border-radius: 25px;">
 
                                             <div id="bmiweight-expand-icon" class="text-center w3-animate-bottom my-4">
                                                 <span class="material-icons material-icons-round">
@@ -5895,7 +6098,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- Weekly Activities -->
                     <div id="weekly-assessments-header"
                         class="p-4 my-4 text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <div class="d-grid text-center">
                             <span class="material-icons material-icons-outlined"> pending_actions </span>
                             <h5 class="mt-4 fs-1 text-center">Weekly Assessments</h5>
@@ -6800,7 +7003,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- Training -->
                     <div id="training-header"
                         class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <span class="material-icons material-icons-outlined"
                             style="color: var(--secondary-color) !important;">sports</span>
                         <h5 class="mt-4 fs-1 text-center align-middle">Training.</h5>
@@ -6859,7 +7062,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <!-- inline/flex more insights tab controller btns -->
                             <div id="inline-more-insights-tab-btns"
                                 class="d-grid align-items-centerz d-lg-none d-xl-none d-xxl-none w3-animate-bottom p-2 pb-0"
-                                style="background: #333; border-radius: 25px; overflow: hidden;">
+                                style="background: var(--secondary-color); border-radius: 25px; overflow: hidden;">
                                 <div class="d-flex gap-2 pt-0 pb-4 justify-content-center">
                                     <button class="onefit-buttons-style-dark p-4 border-5 border-bottom border-white"
                                         type="button" data-bs-toggle="collapse"
@@ -6878,7 +7081,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <nav class="mt-0 mx-0 mb-4">
                                         <div class="nav force-inline-nav nav-tabs border-0 d-flex justify-content-between"
                                             id="nav-tab-insightsSubFeatureCategories" role="tablist"
-                                            style="border-color: var(--primary-color) !important">
+                                            style="border-color: var(--accent-color) !important">
                                             <button
                                                 class="nav-link p-4 comfortaa-font fw-bold active position-relative shadow"
                                                 style="border-radius: 25px !important;"
@@ -6887,7 +7090,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 Challenges.
                                                 <span
                                                     class="position-absolute top-50 start-0 translate-middle badge rounded-pill border-2 border p-1  my-pulse-animation-tahiti"
-                                                    style="height: 20px; width: 20px; font-size: 8px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important;">
+                                                    style="height: 20px; width: 20px; font-size: 8px; border-color: var(--accent-color) !important; background-color: var(--secondary-color) !important;">
                                                 </span>
 
                                                 <br>
@@ -7028,14 +7231,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <nav class="d-none d-lg-block mt-4">
                                 <div class="nav nav-tabs justify-content-center"
                                     id="nav-tab-insightsSubFeatureCategories" role="tablist"
-                                    style="border-color: var(--primary-color) !important">
+                                    style="border-color: var(--accent-color) !important">
                                     <button class="nav-link p-4 comfortaa-font fw-bold active position-relative shadow"
                                         style="min-width:170px" id="nav-trainingProgramCategories-challenges-tab"
                                         onclick="setCurrentInsightsTrainingProgramTab('challenges')">
                                         Challenges.
                                         <span
                                             class="position-absolute top-50 start-0 translate-middle badge rounded-pill border-2 border p-1  my-pulse-animation-tahiti"
-                                            style="height: 20px; width: 20px; font-size: 8px; border-color: var(--primary-color) !important; background-color: var(--secondary-color) !important;">
+                                            style="height: 20px; width: 20px; font-size: 8px; border-color: var(--accent-color) !important; background-color: var(--secondary-color) !important;">
                                         </span>
 
                                         <br>
@@ -7118,7 +7321,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <h5 class="mt-4">Fitness Progression</h5>
                                         <div class="progress mt-4" style="height: 4px;">
                                             <div class="progress-bar" role="progressbar" aria-label="Example 1px high"
-                                                style="width: 25%; background-color: var(--primary-color) !important; border-right: #343434 10px solid;"
+                                                style="width: 25%; background-color: var(--primary-color) !important; border-right: ar(--secondary-color) 10px solid;"
                                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                         <div class="row mt-2" style="margin-bottom: 60px;">
@@ -7212,7 +7415,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <hr class="text-white">
 
                                         <div class="p-4 my-4 d-grid text-center down-top-grad-tahiti border-5 border-end border-start"
-                                            style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                                            style="border-radius: 25px; border-color: var(--accent-color) !important;">
                                             <h5 class="fs-1 text-center my-4">Wellness Tracking</h5>
                                         </div>
 
@@ -7236,7 +7439,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <hr class="text-white" style="height: 5px;">
 
                                         <div class="p-4 my-4 d-grid text-center down-top-grad-tahiti border-5 border-end border-start"
-                                            style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                                            style="border-radius: 25px; border-color: var(--accent-color) !important;">
                                             <h5 class="mt-4 fs-1 text-center mb-4">Load Monitoring</h5>
                                         </div>
 
@@ -7316,10 +7519,10 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <!-- moved match_analysis.css and match_analysis.js refs below the jquery.js reference -->
 
-                                    <div class="offcanvas offcanvas-end w-100 match-analyse-offcanvasz top-down-grad-dark"
+                                    <div class="offcanvas offcanvas-end w-100 match-analyse-offcanvasz top-down-grad-dark show"
                                         data-bs-backdrop="static" tabindex="-1" id="offcanvasAnalyzeMatch"
                                         aria-labelledby="analyseMatchLabel" aria-modal="true" role="dialog">
-                                        <div class="offcanvas-header">
+                                        <div class="offcanvas-header top-down-grad-dark">
                                             <h1 class="offcanvas-title" id="analyseMatchLabel">
                                                 <span class="material-icons material-icons-round align-middle fs-3"
                                                     style="font-size: 60px !important;color: var(--primary-color);">
@@ -7327,7 +7530,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </span>
                                                 <span class=" align-middle">Match Analysis.</span>
                                             </h1>
-                                            <button type="button" class="onefit-buttons-style-danger p-2"
+                                            <button type="button" class="onefit-buttons-style-tahiti p-2"
                                                 data-bs-dismiss="offcanvas" aria-label="Close">
                                                 <span class="material-icons material-icons-round"> close </span>
                                             </button>
@@ -7336,9 +7539,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                             <div class="row align-items-start top-down-grad-tahiti rounded-4 shadow"
                                                 style="overflow: hidden;">
                                                 <!-- scoreboard and duration controls -->
-                                                <div class="col-md pb-5 down-top-grad-dark rounded-0 light-scroller"
+                                                <div class="col-md py-5 down-top-grad-dark rounded-0 light-scroller"
                                                     style="height: 86vh;overflow-y: auto;">
-                                                    <h5 class="align-middle fs-5 down-top-grad-dark rounded-4 p-4">
+                                                    <h5
+                                                        class="align-middle fs-5 top-down-grad-dark rounded-4 p-4 sticky-top">
                                                         <span class="material-icons material-icons-rounded align-middle"
                                                             style="font-size:40px!important;">
                                                             scoreboard
@@ -7347,15 +7551,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <div id="analysis-scoreboard"
                                                         class="my-4 down-top-grad-darkz rounded-4 sticky-top">
                                                         <div
-                                                            class="d-flex gap-2 align-items-center justify-content-between down-top-grad-tahiti rounded-4">
+                                                            class="d-flex gap-2 align-items-start justify-content-between down-top-grad-tahiti rounded-4">
                                                             <div
-                                                                class="team-one-title p-4 d-grid gap-2 text-center top-down-grad-dark rounded-4">
+                                                                class="team-one-title p-4 d-grid gap-2 text-center rounded-4">
                                                                 <img src="../media/teams/TEC_United_FC/logo.png"
                                                                     class="img-fluid rounded-4 shadow bg-white"
                                                                     alt="Team A Logo" style="filter: invert(0);">
                                                                 <span id="scoreboard-team-one-name-label">Team A</span>
                                                             </div>
-                                                            <div class="match-score col-4 p-4 fs-1 text-center">
+                                                            <div
+                                                                class="match-score col-4 p-4 fs-1 text-center top-down-grad-dark rounded-4">
                                                                 <div
                                                                     class="row align-items-center justify-content-between">
                                                                     <!-- Team A goals / points -->
@@ -7366,7 +7571,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 </div>
                                                             </div>
                                                             <div
-                                                                class="team-two-title p-4 d-grid gap-2 text-center top-down-grad-dark rounded-4">
+                                                                class="team-two-title p-4 d-grid gap-2 text-center rounded-4">
                                                                 <img src="../media/teams/TEC_United_FC/logo.png"
                                                                     class="img-fluid rounded-4 shadow bg-white"
                                                                     alt="Team B Logo" style="filter: invert(0);">
@@ -7384,7 +7589,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     <div id="duration-controls" class="p-4 rounded-4"
                                                         style="color: var(--primary-color) !important;background: var(--secondary-color);">
                                                         <div class="timer p-4 my-4 text-truncate"
-                                                            style="border: 3px var(--primary-color) solid;">
+                                                            style="border: 10px var(--text-color) solid;color:var(--text-white);">
                                                             <span class="hour">00</span>:<span
                                                                 class="minute">00</span>:<span class="second">00</span>
                                                         </div>
@@ -7433,32 +7638,52 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </div>
                                                 <!-- ./ scoreboard and duration controls -->
                                                 <!-- mini match timeline widget and match events button controls -->
-                                                <div class="col-md pb-5 down-top-grad-dark rounded-0 light-scroller"
+                                                <div class="col-md py-5 down-top-grad-dark rounded-0 light-scroller"
                                                     style="
                                                         height: 86vh;
                                                         overflow-y: auto;
                                                     ">
-                                                    <div id="match-event-timeline">
-                                                        <h5 class="align-middle fs-5 down-top-grad-dark rounded-4 p-4">
-                                                            <span
-                                                                class="material-icons material-icons-rounded align-middle"
-                                                                style="font-size:40px!important;">
-                                                                view_timeline
-                                                            </span>
-                                                            Match Timeline.
-                                                        </h5>
+                                                    <div id="match-event-timeline"
+                                                        class="top-down-grad-dark p-4 pb-0 rounded-4 sticky-top">
+                                                        <div
+                                                            class="d-flex gap-4 justify-content-between align-items-center">
+                                                            <h5
+                                                                class="align-middle fs-5 top-down-grad-dark rounded-4 p-4">
+                                                                <span
+                                                                    class="material-icons material-icons-rounded align-middle"
+                                                                    style="font-size:40px!important;">
+                                                                    view_timeline
+                                                                </span>
+                                                                Match Timeline.
+                                                            </h5>
+
+                                                            <button type="button"
+                                                                class="bg-transparent onefit-buttons-style-dark p-2"
+                                                                onclick="document.getElementById('match-event-timeline').classList.remove('sticky-top');">
+                                                                <span class="material-icons material-icons-round">
+                                                                    do_not_disturb_on_total_silence
+                                                                    do_not_disturb_on</span>
+                                                            </button>
+                                                        </div>
                                                         <img src="../media/assets/41597_2019_247_Fig1_HTML.png"
                                                             alt="event timeline reference - https://www.nature.com/articles/s41597-019-0247-7/figures/1"
-                                                            style="filter: invert(0);" class="img-fluid">
+                                                            style="filter: invert(0);"
+                                                            class="img-fluid rounded-4 p-4 bg-dark">
 
                                                         <!-- toggle timeline editor collapse panel -->
-                                                        <button class="onefit-buttons-style-white p-4 shadow"
-                                                            type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#match-timeline-editor-widget-panel"
-                                                            aria-expanded="false"
-                                                            aria-controls="match-timeline-editor-widget-panel">
-                                                            Open timeline editor.
-                                                        </button>
+                                                        <div class="d-grid">
+                                                            <button
+                                                                class="onefit-buttons-style-light my-4 p-4 shadow collapsed"
+                                                                type="button" data-bs-toggle="collapse"
+                                                                data-bs-target="#match-timeline-editor-widget-panel"
+                                                                aria-expanded="false"
+                                                                aria-controls="match-timeline-editor-widget-panel"
+                                                                id="toggle-match-timeline-editor">
+                                                                Open timeline editor.
+                                                            </button>
+                                                            <hr>
+
+                                                        </div>
                                                     </div>
 
                                                     <h5 class="align-middle fs-5 down-top-grad-dark rounded-4 p-4">
@@ -7881,7 +8106,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                             <td class="text-start">full-time: 91'</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="text-start">Extra-time: +3' ->
+                                                                            <td class="text-start">Extra-time: +3' -&gt;
                                                                                 94'</td>
                                                                         </tr>
                                                                         <tr>
@@ -7896,9 +8121,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                 </div>
                                                 <!-- ./ mini match timeline widget and match events button controls -->
                                                 <!-- match stats and match momentum -->
-                                                <div class="col-md pb-5 down-top-grad-dark rounded-0 light-scroller"
+                                                <div class="col-md py-5 down-top-grad-dark rounded-0 light-scroller"
                                                     style="height: 86vh;overflow-y: auto;">
-                                                    <h5 class="align-middle fs-5 down-top-grad-dark rounded-4 p-4">
+                                                    <h5
+                                                        class="align-middle fs-5 top-down-grad-dark rounded-4 p-4 sticky-top">
                                                         <span class="material-icons material-icons-rounded align-middle"
                                                             style="font-size:40px!important;">
                                                             auto_graph
@@ -7934,7 +8160,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"
                                                                 style="width: 27%; height: 50px;background-color:var(--secondary-color);">
                                                                 <div
-                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-5">
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-3">
                                                                     27%
                                                                 </div>
                                                             </div>
@@ -7943,7 +8169,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 aria-valuenow="73" aria-valuemin="0" aria-valuemax="100"
                                                                 style="width: 73%; height: 50px;background-color:var(--secondary-color);">
                                                                 <div
-                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-5">
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-3">
                                                                     73%
                                                                 </div>
                                                             </div>
@@ -7964,7 +8190,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"
                                                                 style="width: 27%; height: 50px;background-color:var(--secondary-color);">
                                                                 <div
-                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-5">
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-3">
                                                                     27%
                                                                 </div>
                                                             </div>
@@ -7973,7 +8199,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 aria-valuenow="63" aria-valuemin="0" aria-valuemax="100"
                                                                 style="width: 73%; height: 50px;background-color:var(--secondary-color);">
                                                                 <div
-                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-5">
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-3">
                                                                     73%
                                                                 </div>
                                                             </div>
@@ -7994,7 +8220,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 aria-valuenow="13" aria-valuemin="0" aria-valuemax="100"
                                                                 style="width: 13%; height: 50px;background-color:var(--secondary-color);">
                                                                 <div
-                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-5">
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-3">
                                                                     13%
                                                                 </div>
                                                             </div>
@@ -8003,7 +8229,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"
                                                                 style="width: 87%; height: 50px;background-color:var(--secondary-color);">
                                                                 <div
-                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-5">
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-3">
                                                                     87%
                                                                 </div>
                                                             </div>
@@ -8024,7 +8250,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"
                                                                 style="width: 40%; height: 50px;background-color:var(--secondary-color);">
                                                                 <div
-                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-5">
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-3">
                                                                     30%
                                                                 </div>
                                                             </div>
@@ -8033,7 +8259,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
                                                                 style="width: 70%; height: 50px;background-color:var(--secondary-color);">
                                                                 <div
-                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-5">
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-3">
                                                                     70%
                                                                 </div>
                                                             </div>
@@ -8054,7 +8280,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
                                                                 style="width: 50%; height: 50px;background-color:var(--secondary-color);">
                                                                 <div
-                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-5">
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-onez left-right-grad-tahiti text-white w-100 text-start p-3 fs-3">
                                                                     50%
                                                                 </div>
                                                             </div>
@@ -8063,7 +8289,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                                 aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
                                                                 style="width: 50%; height: 50px;background-color:var(--secondary-color);">
                                                                 <div
-                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-5">
+                                                                    class="progress-bar bg-transparentz analysis-progressbar-team-twoz right-left-grad-tahiti text-white w-100 text-end p-3 fs-3">
                                                                     50%
                                                                 </div>
                                                             </div>
@@ -8106,39 +8332,123 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         </div>
 
                                         <div id="match-timeline-editor-widget-panel"
-                                            class="offcanvas-footer top-down-grad-dark p-4 collapse show">
+                                            class="offcanvas-footer top-down-grad-dark p-4 collapse" style="">
 
                                             <div class="light-scroller h-100" style="max-height:80vh;overflow-y:auto">
-                                                <h1>Match timeline editor.</h1>
+                                                <div class="offcanvas-header">
+                                                    <h1 class="offcanvas-title" id="analyseMatchLabel">
+                                                        <span
+                                                            class="material-icons material-icons-round align-middle fs-3"
+                                                            style="font-size: 60px !important;color: var(--primary-color);">
+                                                            analytics
+                                                        </span>
+                                                        <span class="align-middle">Timeline editor.</span>
+                                                    </h1>
+                                                    <button type="button" class="onefit-buttons-style-dark p-2"
+                                                        onclick="document.getElementById('toggle-match-timeline-editor').click();">
+                                                        <span class="material-icons material-icons-round"> close </span>
+                                                    </button>
+                                                </div>
                                                 <div class="row align-items-start">
                                                     <!-- video player -->
                                                     <div class="col-md">
                                                         <div class="container p-0">
-                                                            <video id="analysis-timeline-video" class="w-100"
-                                                                controls="" crossorigin="" playsinline=""
-                                                                poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"
-                                                                data-plyr-config="{ &quot;ratio&quot;: &quot;16:9&quot; }"
-                                                                style="filter: invert(0);">
-                                                                <source
-                                                                    src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
-                                                                    type="video/mp4" size="576">
-                                                                <source
-                                                                    src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4"
-                                                                    type="video/mp4" size="720">
-                                                                <source
-                                                                    src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4"
-                                                                    type="video/mp4" size="1080">
+                                                            <div
+                                                                class="plyr plyr--video plyr--fullscreen-enabled plyr--captions-enabled plyr--stopped">
+                                                                <div class="plyr__video-wrapper"
+                                                                    style="cursor: pointer;">
+                                                                    <div class="plyr__captions"></div><video
+                                                                        id="analysis-timeline-video" class="w-100"
+                                                                        crossorigin="" playsinline=""
+                                                                        poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"
+                                                                        data-plyr-config="{ &quot;ratio&quot;: &quot;16:9&quot; }"
+                                                                        style="filter: invert(0);">
+                                                                        <source
+                                                                            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
+                                                                            type="video/mp4" size="576">
+                                                                        <source
+                                                                            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4"
+                                                                            type="video/mp4" size="720">
+                                                                        <source
+                                                                            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4"
+                                                                            type="video/mp4" size="1080">
 
-                                                                <!-- Caption files -->
-                                                                <track kind="captions" label="English" srclang="en"
-                                                                    src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
-                                                                    default="">
-                                                                <track kind="captions" label="Français" srclang="fr"
-                                                                    src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt">
-                                                                <!-- Fallback for browsers that don't support the <video> element -->
-                                                                <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
-                                                                    download="">Download</a>
-                                                            </video>
+                                                                        <!-- Caption files -->
+                                                                        <track kind="captions" label="English"
+                                                                            srclang="en"
+                                                                            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
+                                                                            default="">
+                                                                        <track kind="captions" label="Français"
+                                                                            srclang="fr"
+                                                                            src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt">
+                                                                        <!-- Fallback for browsers that don't support the <video> element -->
+                                                                        <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
+                                                                            download="">Download</a>
+                                                                    </video>
+                                                                </div><button type="button" data-plyr="play"
+                                                                    class="plyr__play-large" aria-label="Play"><svg>
+                                                                        <use xlink:href="#plyr-play"></use>
+                                                                    </svg><span
+                                                                        class="plyr__sr-only">Play</span></button>
+                                                                <div class="plyr__controls"><button type="button"
+                                                                        data-plyr="play" aria-label="Play"><svg>
+                                                                            <use xlink:href="#plyr-play"></use>
+                                                                        </svg><span
+                                                                            class="plyr__sr-only">Play</span></button><button
+                                                                        type="button" data-plyr="pause"><svg>
+                                                                            <use xlink:href="#plyr-pause"></use>
+                                                                        </svg><span
+                                                                            class="plyr__sr-only">Pause</span></button><span
+                                                                        class="plyr__progress"><label for="seek3541"
+                                                                            class="plyr__sr-only">Seek</label><input
+                                                                            id="seek3541" class="plyr__progress--seek"
+                                                                            type="range" min="0" max="100" step="0.1"
+                                                                            value="0" data-plyr="seek"><progress
+                                                                            class="plyr__progress--played" max="100"
+                                                                            value="2.44"
+                                                                            role="presentation"></progress><progress
+                                                                            class="plyr__progress--buffer" max="100"
+                                                                            value="12.6"><span>12.60</span>%
+                                                                            buffered</progress><span
+                                                                            class="plyr__tooltip"
+                                                                            style="left: 98.687%;">03:00</span></span><span
+                                                                        class="plyr__time"><span
+                                                                            class="plyr__sr-only">Current
+                                                                            time</span><span
+                                                                            class="plyr__time--current">00:04</span></span><button
+                                                                        type="button" data-plyr="mute"
+                                                                        aria-pressed="false"><svg class="icon--muted">
+                                                                            <use xlink:href="#plyr-muted"></use>
+                                                                        </svg><svg>
+                                                                            <use xlink:href="#plyr-volume"></use>
+                                                                        </svg><span class="plyr__sr-only">Toggle
+                                                                            Mute</span></button><span
+                                                                        class="plyr__volume"><label for="volume3541"
+                                                                            class="plyr__sr-only">Volume</label><input
+                                                                            id="volume3541" class="plyr__volume--input"
+                                                                            type="range" min="0" max="10" value="5"
+                                                                            data-plyr="volume"><progress
+                                                                            class="plyr__volume--display" max="10"
+                                                                            value="5"
+                                                                            role="presentation"></progress></span><button
+                                                                        type="button" data-plyr="captions"><svg
+                                                                            class="icon--captions-on">
+                                                                            <use xlink:href="#plyr-captions-on"></use>
+                                                                        </svg><svg>
+                                                                            <use xlink:href="#plyr-captions-off"></use>
+                                                                        </svg><span class="plyr__sr-only">Toggle
+                                                                            Captions</span></button><button
+                                                                        type="button" data-plyr="fullscreen"
+                                                                        aria-pressed="false"><svg
+                                                                            class="icon--exit-fullscreen">
+                                                                            <use xlink:href="#plyr-exit-fullscreen">
+                                                                            </use>
+                                                                        </svg><svg>
+                                                                            <use xlink:href="#plyr-enter-fullscreen">
+                                                                            </use>
+                                                                        </svg><span class="plyr__sr-only">Toggle
+                                                                            Fullscreen</span></button></div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!-- timeline table -->
@@ -10459,7 +10769,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div id="TabAchievements" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
                     <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: var(--secondary-color) !important; font-size: 40px;">emoji_events</span>
@@ -10474,211 +10784,218 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </button>
                     </div>
 
-                    <hr class="text-white" />
-                    <h5>Goals</h5>
-                    <!-- iframe to show goal_setting.html -->
-                    <iframe id="goals-iframe" class="shadow mb-5" src="goal_setting.html" frameborder="0"
-                        style="width: 100%; height: 100vh; border-radius: 25px;"></iframe>
-                    <!-- ./ iframe to show goal_setting.html -->
-                    <hr class="text-white">
-                    <h5>Timeframes</h5>
-                    <hr class="text-white">
-                    <h5>Challenges</h5>
-                    <hr class="text-white">
+                    <div class="top-down-grad-dark rounded-5">
+                        <div class="down-top-grad-dark p-4 rounded-5 h-100 w-100">
+                            <h1 class="fs-1">Goal-setting.</h1>
+                            <!-- iframe to show goal_setting.html -->
+                            <iframe id="goals-iframe" class="shadow mb-5" src="goal_setting.html" frameborder="0"
+                                style="width: 100%; height: 100vh; border-radius: 25px;"></iframe>
+                            <!-- ./ iframe to show goal_setting.html -->
+                            <hr class="text-white">
+                            <h1>Timeframes</h1>
+                            <hr class="text-white">
+                            <h1>Challenges</h1>
+                            <hr class="text-white">
 
-                    <!-- fitness progression progress bar -->
-                    <div id="fitness-progression-progress-bar-achievements" class="bar-fpwidget">
-                        <h5 class="mt-4"><span class="material-icons material-icons-outlined align-middle"
-                                style="color: var(--primary-color);">data_exploration</span> <span
-                                class="align-middle">Fitness
-                                Progression</span></h5>
-                        <div class="progress mt-4" style="height: 4px;">
-                            <div class="progress-bar" role="progressbar" aria-label="Example 1px high"
-                                style="width: 25%; background-color: var(--primary-color) !important; border-right: #343434 10px solid;"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <div class="row mt-2" style="margin-bottom: 60px;">
-                            <div class="col text-start comfortaa-font" style="font-size: 12px;">
-                                Current XP <strong>(112)</strong>
+                            <!-- fitness progression progress bar -->
+                            <div id="fitness-progression-progress-bar-achievements" class="bar-fpwidget">
+                                <h1 class="mt-4"><span class="material-icons material-icons-outlined align-middle"
+                                        style="color: var(--primary-color);">data_exploration</span> <span
+                                        class="align-middle">Fitness
+                                        Progression</span></h1>
+                                <div class="progress mt-4" style="height: 4px;">
+                                    <div class="progress-bar" role="progressbar" aria-label="Example 1px high"
+                                        style="width: 25%; background-color: var(--primary-color) !important; border-right: var(--secondary-color) 10px solid;"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="row mt-2" style="margin-bottom: 60px;">
+                                    <div class="col text-start comfortaa-font" style="font-size: 12px;">
+                                        Current XP <strong>(112)</strong>
+                                    </div>
+                                    <div class="col text-end comfortaa-font" style="font-size: 12px;">
+                                        Target XP <strong>(150)</strong>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col text-end comfortaa-font" style="font-size: 12px;">
-                                Target XP <strong>(150)</strong>
+                            <!-- ./ fitness progression progress bar -->
+
+                            <h1 class="my-4">Daily Challenges</h1>
+
+                            <div id="daily-challenges-grid" class="daily-challenges-grid grid-container mb-4">
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-bench-press-50.png"
+                                        class="img-fluid rounded mb-4" alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-body-50.png" class="img-fluid rounded mb-4"
+                                        alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-deadlift-50.png"
+                                        class="img-fluid rounded mb-4" alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-muscle-flexing-50.png"
+                                        class="img-fluid rounded mb-4" alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-exercise-50.png"
+                                        class="img-fluid rounded mb-4" alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-fit-50.png" class="img-fluid rounded mb-4"
+                                        alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-workout-50.png"
+                                        class="img-fluid rounded mb-4" alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
                             </div>
+
+                            <h1 class="my-4">Weekly Challenges</h1>
+
+                            <div id="weekly-challenges-grid" class="weekly-challenges-grid grid-container mb-4">
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-bench-press-50.png"
+                                        class="img-fluid rounded mb-4" alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-body-50.png" class="img-fluid rounded mb-4"
+                                        alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-deadlift-50.png"
+                                        class="img-fluid rounded mb-4" alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-muscle-flexing-50.png"
+                                        class="img-fluid rounded mb-4" alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-exercise-50.png"
+                                        class="img-fluid rounded mb-4" alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-fit-50.png" class="img-fluid rounded mb-4"
+                                        alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
+                                <div class="grid-tile p-4 shadow text-center border-1 border"
+                                    style="background-color: var(--secondary-color);">
+                                    <img src="../media/assets/icons/icons8-workout-50.png"
+                                        class="img-fluid rounded mb-4" alt="">
+                                    <p>Challenge Title</p>
+                                    <small>Workout / Exercise</small>
+                                    <small>Category</small>
+                                    <!-- progress bar -->
+                                    <p>15 / 25 xp</p>
+                                </div>
+                            </div>
+
+                            <!-- removed monthly challenges section -->
+
+                            <h1>Diary</h1>
+                            <!-- turn.js plugin -->
+                            <div class="flipbook" id="main-diary-flipbook">
+                                <div class="hard"> Turn.js (not functional) </div>
+                                <div class="hard"></div>
+                                <div> Page 1 </div>
+                                <div> Page 2 </div>
+                                <div> Page 3 </div>
+                                <div> Page 4 </div>
+                                <div class="hard"></div>
+                                <div class="hard"></div>
+                            </div>
+
+
+                            <hr class="text-white">
+                            <h1>Resources</h1>
+                            (bookmarked resources, posts or search engine links)
+                            <hr class="text-white">
                         </div>
                     </div>
-                    <!-- ./ fitness progression progress bar -->
-
-                    <h5 class="my-4">Daily Challenges</h5>
-
-                    <div id="daily-challenges-grid" class="daily-challenges-grid grid-container mb-4">
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4"
-                                alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-body-50.png" class="img-fluid rounded mb-4" alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-deadlift-50.png" class="img-fluid rounded mb-4"
-                                alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-muscle-flexing-50.png" class="img-fluid rounded mb-4"
-                                alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-exercise-50.png" class="img-fluid rounded mb-4"
-                                alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-fit-50.png" class="img-fluid rounded mb-4" alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-workout-50.png" class="img-fluid rounded mb-4"
-                                alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                    </div>
-
-                    <h5 class="my-4">Weekly Challenges</h5>
-
-                    <div id="weekly-challenges-grid" class="weekly-challenges-grid grid-container mb-4">
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-bench-press-50.png" class="img-fluid rounded mb-4"
-                                alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-body-50.png" class="img-fluid rounded mb-4" alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-deadlift-50.png" class="img-fluid rounded mb-4"
-                                alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-muscle-flexing-50.png" class="img-fluid rounded mb-4"
-                                alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-exercise-50.png" class="img-fluid rounded mb-4"
-                                alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-fit-50.png" class="img-fluid rounded mb-4" alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                        <div class="grid-tile p-4 shadow text-center border-1 border"
-                            style="background-color: var(--secondary-color);">
-                            <img src="../media/assets/icons/icons8-workout-50.png" class="img-fluid rounded mb-4"
-                                alt="">
-                            <p>Challenge Title</p>
-                            <small>Workout / Exercise</small>
-                            <small>Category</small>
-                            <!-- progress bar -->
-                            <p>15 / 25 xp</p>
-                        </div>
-                    </div>
-
-                    <!-- removed monthly challenges section -->
-
-                    <h5>Diary</h5>
-                    <!-- turn.js plugin -->
-                    <div class="flipbook" id="main-diary-flipbook">
-                        <div class="hard"> Turn.js (not functional) </div>
-                        <div class="hard"></div>
-                        <div> Page 1 </div>
-                        <div> Page 2 </div>
-                        <div> Page 3 </div>
-                        <div> Page 4 </div>
-                        <div class="hard"></div>
-                        <div class="hard"></div>
-                    </div>
-
-
-                    <hr class="text-white">
-                    <h5>Resources</h5>
-                    (bookmarked resources, posts or search engine links)
-                    <hr class="text-white">
                 </div>
                 <div id="TabMedia" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
                     <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: var(--secondary-color) !important; font-size: 40px;">perm_media</span>
@@ -10713,7 +11030,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- inline/flex media tab subtabs controller btns -->
                     <div id="inline-media-content-tab-btns"
                         class="d-grid justify-content-center w3-animate-bottom p-2 sticky-topz"
-                        style="background: #333; border-radius: 25px; overflow: hidden;">
+                        style="background: var(--secondary-color); border-radius: 25px 25px 0 0; overflow: hidden;">
                         <style>
                         .force-inline-nav {
                             flex-wrap: nowrap !important;
@@ -10725,7 +11042,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <nav class="m-0">
                                 <div class="nav force-inline-nav nav-tabs border-0 gap-4"
                                     id="nav-tab-mediatab-subtabs-controller-container" role="tablist"
-                                    style="border-color: var(--primary-color) !important">
+                                    style="border-color: var(--accent-color) !important">
                                     <button
                                         class="nav-link p-4 comfortaa-font fw-bold border-top border-5 position-relative active"
                                         style="border-radius: 25px !important;min-width: 130px;"
@@ -10791,7 +11108,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <!-- #v-sub-tab-pills-media-subtab-sharedmedia -->
                         <div id="v-sub-tab-pills-media-subtab-sharedmedia"
                             class="tab-pane fade show active content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
-                            role="tabpanel" aria-labelledby="v-sub-tab-pills-media-subtab-sharedmedia">
+                            style="border-radius: 0 0 25px 25px !important;" role="tabpanel"
+                            aria-labelledby="v-sub-tab-pills-media-subtab-sharedmedia">
                             <!-- style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" -->
 
                             <h1 class="text-center d-gridz fs-1">
@@ -10813,7 +11131,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <!-- #v-sub-tab-pills-media-subtab-privatemedia -->
                         <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
-                            id="v-sub-tab-pills-media-subtab-privatemedia" role="tabpanel"
+                            id="v-sub-tab-pills-media-subtab-privatemedia"
+                            style="border-radius: 0 0 25px 25px !important;" role="tabpanel"
                             aria-labelledby="v-sub-tab-pills-media-subtab-privatemedia">
                             <!-- style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" -->
 
@@ -10837,8 +11156,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <!-- #v-sub-tab-pills-media-subtab-videos -->
                         <div class="tab-pane fade content-panel-border-style-dark-bg w3-animate-bottom no-scroller p-4 gap-4"
-                            id="v-sub-tab-pills-media-subtab-videos" role="tabpanel"
-                            aria-labelledby="v-sub-tab-pills-media-subtab-videos">
+                            id="v-sub-tab-pills-media-subtab-videos" style="border-radius: 0 0 25px 25px !important;"
+                            role="tabpanel" aria-labelledby="v-sub-tab-pills-media-subtab-videos">
                             <!-- style="max-height: 100vh!important; overflow-y: auto; overflow-x: hidden;" -->
 
                             <h1 class="text-center d-gridz fs-1"><span
@@ -10978,7 +11297,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div id="TabCommunication" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
                     <div class="p-4 my-4 d-grid justify-content-center text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: var(--secondary-color) !important; font-size: 40px;">forum</span> <span
@@ -11036,86 +11355,92 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <!-- ./ twitter social panel -->
                     <!-- ./ Twitter social buttons / section -->
 
-                    <h2 class="mt-5"><span class="material-icons material-icons-round align-middle"
-                            style="color: var(--primary-color);">notifications</span> <span
-                            class="align-middle">Notifications.</span>
-                    </h2>
-                    <div id="comms-communicationUserNotifications" class="mb-4 down-top-grad-white p-4 rounded-4">
-                        <?php echo $outputProfileUserNotificationsAccordion; ?>
-                    </div>
-
-                    <hr class="text-white">
-
-                    <h2><span class="material-icons material-icons-round align-middle"
-                            style="color: var(--primary-color);">newspaper</span> <span class="align-middle">Updates /
-                            News
-                            Feeds.</span>
-                    </h2>
-                    <div class="mb-4" id="communicationNews">
-                        <?php echo $outputCommunityNews; ?>
-                    </div>
-                    <div class="mb-4 py-4" id="communicationRSSImagebrd">
-                        <!-- #FitnessandDiet -->
-                        <h5><span class="material-icons material-icons-round align-middle"
-                                style="font-size: 22px !important;">rss_feed</span> <span class="align-middle"
-                                style="color: var(--primary-color);"><span class="text-muted">RSS.</span>
-                                #FitnessandDiet</span></h5>
-                        <div class="mb-4 p-4"
-                            style="overflow: hidden; background-color: var(--secondary-color)333; border-radius: 25px;">
-                            <!-- <rssapp-magazine id="tRprB0QxQKySE340"></rssapp-magazine>
-                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
-                            <span class="text-muted">RSS is down.</span>
+                    <div class="top-down-grad-dark p-4 rounded-5">
+                        <h2 class="fs-1"><span class="material-icons material-icons-round align-middle"
+                                style="color: var(--primary-color);">notifications</span> <span
+                                class="align-middle">Notifications.</span>
+                        </h2>
+                        <div id="comms-communicationUserNotifications" class="mb-4 top-down-grad-dark p-4 rounded-5">
+                            <?php echo $outputProfileUserNotificationsAccordion; ?>
                         </div>
 
-                        <!-- #Wellness -->
-                        <h5><span class="material-icons material-icons-round align-middle"
-                                style="font-size: 22px !important;">rss_feed</span> <span class="align-middle"
-                                style="color: var(--primary-color);"><span class="text-muted">RSS.</span>
-                                #Wellness</span></h5>
-                        <div class="mb-4 p-4"
-                            style="overflow: hidden; background-color: var(--secondary-color)333; border-radius: 25px;">
-                            <!-- <rssapp-magazine id="tdSnePzUjMvFu4nu"></rssapp-magazine>
-                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
-                            <span class="text-muted">RSS is down.</span>
+                        <hr class="text-white">
+
+                        <h2 class="fs-1"><span class="material-icons material-icons-round align-middle"
+                                style="color: var(--primary-color);">newspaper</span> <span class="align-middle">Updates
+                                /
+                                News
+                                Feeds.</span>
+                        </h2>
+                        <div class="mb-4" id="communicationNews">
+                            <?php echo $outputCommunityNews; ?>
                         </div>
 
-                        <!-- #worldofsport feed -->
-                        <h5><span class="material-icons material-icons-round align-middle"
-                                style="font-size: 22px !important;">rss_feed</span> <span class="align-middle"
-                                style="color: var(--primary-color);"><span class="text-muted">RSS.</span>
-                                #WorldofSports</span></h5>
-                        <div class="mb-4 p-4"
-                            style="overflow: hidden; background-color: var(--secondary-color)333; border-radius: 25px;">
-                            <!-- <rssapp-magazine id="tqX4YEeGEu1eOKAT"></rssapp-magazine>
-                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
-                            <span class="text-muted">RSS is down.</span>
-                        </div>
+                        <!-- RSS Feeds -->
+                        <div class="mb-4 py-4" id="communicationRSSImagebrd">
+                            <!-- #FitnessandDiet -->
+                            <h5><span class="material-icons material-icons-round align-middle"
+                                    style="font-size: 22px !important;">rss_feed</span> <span class="align-middle"
+                                    style="color: var(--text-color);"><span class="text-muted">RSS.</span>
+                                    #FitnessandDiet</span></h5>
+                            <div class="mb-4 p-4"
+                                style="overflow: hidden; background-color: var(--secondary-color)333; border-radius: 25px;">
+                                <!-- <rssapp-magazine id="tRprB0QxQKySE340"></rssapp-magazine>
+                                <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
+                                <span class="text-muted">RSS is unavailable.</span>
+                            </div>
 
-                        <!-- #footballfocus feed -->
-                        <h5><span class="material-icons material-icons-round align-middle"
-                                style="font-size: 22px !important;">rss_feed</span> <span class="align-middle"
-                                style="color: var(--primary-color);"><span class="text-muted">RSS.</span>
-                                #FootballFocus</span></h5>
-                        <div class="mb-4 p-4"
-                            style="overflow: hidden; background-color: var(--secondary-color)333; border-radius: 25px;">
-                            <!-- <rssapp-magazine id="omltJunAYvJxQiZc"></rssapp-magazine>
-                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
-                            <span class="text-muted">RSS is down.</span>
-                        </div>
+                            <!-- #Wellness -->
+                            <h5><span class="material-icons material-icons-round align-middle"
+                                    style="font-size: 22px !important;">rss_feed</span> <span class="align-middle"
+                                    style="color: var(--text-color);"><span class="text-muted">RSS.</span>
+                                    #Wellness</span></h5>
+                            <div class="mb-4 p-4"
+                                style="overflow: hidden; background-color: var(--secondary-color)333; border-radius: 25px;">
+                                <!-- <rssapp-magazine id="tdSnePzUjMvFu4nu"></rssapp-magazine>
+                                <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
+                                <span class="text-muted">RSS is unavailable.</span>
+                            </div>
 
-                        <!-- #HealthandLifestyle -->
-                        <h5><span class="material-icons material-icons-round align-middle"
-                                style="font-size: 22px !important;">rss_feed</span> <span class="align-middle"
-                                style="color: var(--primary-color);"><span class="text-muted">RSS.</span>
-                                #HealthandLifestyle</span>
-                        </h5>
-                        <div class="mb-4 p-4"
-                            style="overflow: hidden; background-color: var(--secondary-color)333; border-radius: 25px;">
-                            <!-- <rssapp-magazine id="tUyOEDFpWEUsTIO4"></rssapp-magazine>
-                            <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
-                            <span class="text-muted">RSS is down.</span>
-                        </div>
+                            <!-- #worldofsport feed -->
+                            <h5><span class="material-icons material-icons-round align-middle"
+                                    style="font-size: 22px !important;">rss_feed</span> <span class="align-middle"
+                                    style="color: var(--text-color);"><span class="text-muted">RSS.</span>
+                                    #WorldofSports</span></h5>
+                            <div class="mb-4 p-4"
+                                style="overflow: hidden; background-color: var(--secondary-color)333; border-radius: 25px;">
+                                <!-- <rssapp-magazine id="tqX4YEeGEu1eOKAT"></rssapp-magazine>
+                                <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
+                                <span class="text-muted">RSS is unavailable.</span>
+                            </div>
 
+                            <!-- #footballfocus feed -->
+                            <h5><span class="material-icons material-icons-round align-middle"
+                                    style="font-size: 22px !important;">rss_feed</span> <span class="align-middle"
+                                    style="color: var(--text-color);"><span class="text-muted">RSS.</span>
+                                    #FootballFocus</span></h5>
+                            <div class="mb-4 p-4"
+                                style="overflow: hidden; background-color: var(--secondary-color)333; border-radius: 25px;">
+                                <!-- <rssapp-magazine id="omltJunAYvJxQiZc"></rssapp-magazine>
+                                <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
+                                <span class="text-muted">RSS is unavailable.</span>
+                            </div>
+
+                            <!-- #HealthandLifestyle -->
+                            <h5><span class="material-icons material-icons-round align-middle"
+                                    style="font-size: 22px !important;">rss_feed</span> <span class="align-middle"
+                                    style="color: var(--text-color);"><span class="text-muted">RSS.</span>
+                                    #HealthandLifestyle</span>
+                            </h5>
+                            <div class="mb-4 p-4"
+                                style="overflow: hidden; background-color: var(--secondary-color)333; border-radius: 25px;">
+                                <!-- <rssapp-magazine id="tUyOEDFpWEUsTIO4"></rssapp-magazine>
+                                <script src="https://widget.rss.app/v1/magazine.js" type="text/javascript" async></script> -->
+                                <span class="text-muted">RSS is unavailable.</span>
+                            </div>
+
+                        </div>
+                        <!-- ./ RSS Feeds -->
                     </div>
 
                     <hr class="text-white">
@@ -11137,7 +11462,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 <div id="TabSettings" class="shadow w3-container w3-animate-right content-tab p-4 app-tab"
                     style="display: none">
                     <div class="p-4 my-4 d-grid text-center down-top-grad-dark border-5 border-end border-start"
-                        style="border-radius: 25px; border-color: var(--primary-color) !important;">
+                        style="border-radius: 25px; border-color: var(--accent-color) !important;">
                         <h5 class="mt-4 fs-1 text-center align-middle"><span
                                 class="material-icons material-icons-outlined align-middle"
                                 style="color: var(--secondary-color) !important; font-size: 40px;">settings_accessibility</span>
@@ -11167,15 +11492,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         data-bs-target="#pref-flush-panel-setting-1" aria-expanded="false"
                                         aria-controls="pref-flush-panel-setting-1">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex gap-2 justify-content-start align-items-center"
-                                                style="color: var(--secondary-color)!important;">
+                                            <div class="d-flex gap-2 justify-content-start align-items-center">
+                                                <!-- style="color: var(--secondary-color)!important;" -->
                                                 <span class="material-icons material-icons-round align-middle d-none">
                                                     icon_name </span>
                                                 <span class="align-middle fw-bold fs-5 poppins-font"> User Interface
                                                     (UI) </span>
                                             </div>
                                             <div class="pin-item-icon shadow p-2"
-                                                style="border-radius:15px;font-size:10px!important;color: var(--secondary-color)!important;">
+                                                style="border-radius:15px;font-size:10px!important;">
                                                 <span class="material-icons material-icons-round align-middle d-nones"
                                                     style="font-size:30px !important;"> visibility_off </span>
                                                 <span class="poppins-font">Options.</span>
@@ -11610,16 +11935,18 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                                 <hr>
 
-                                                <div class="form-check d-flex gap-4">
-                                                    <input class="form-check-input" type="radio"
-                                                        name="theme-select-list" id="theme-select-custom">
-                                                    <label class="form-check-label fs-4" for="theme-select-custom">
-                                                        Custom Colors:
-                                                    </label>
-                                                </div>
-                                                <div class="row g-3">
+                                                <div class="row g-3 mb-4">
+                                                    <div class="col-md-6">
+                                                        <div class="form-check d-flex gap-4">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="theme-select-list" id="theme-select-custom">
+                                                            <label class="form-check-label fs-4"
+                                                                for="theme-select-custom">
+                                                                Custom Colors:
+                                                            </label>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-md">
-
                                                         <label for="primary-color" class="color-input">Primary
                                                             Color:</label>
                                                         <input type="color" id="primary-color" value="#ffa500">
@@ -11652,16 +11979,64 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     </div>
                                                 </div>
 
+                                                <!-- Theme Randomizer -->
+                                                <div class="row">
+                                                    <div class="col-md">
+                                                        <div class="form-check d-flex gap-4">
+                                                            <div>
+                                                                <label class="form-check-label fs-4"
+                                                                    for="theme-select-random">
+                                                                    Randomize Colors?
+                                                                </label>
+                                                                <input class="form-check-input visually-hidden"
+                                                                    type="radio" name="theme-select-list"
+                                                                    id="theme-select-random">
+                                                                <p class="text-muted" style="font-size:11px">*Change the
+                                                                    colors every 3 seconds.</p>
+                                                            </div>
+                                                            <div>
+                                                                <!-- called by event listener -->
+                                                                <div id="theme-randomizer-btn"
+                                                                    style="cursor:pointer;font-size:60px !important;"
+                                                                    class="material-icons material-icons-round align-middle"
+                                                                    for="theme-select-random">
+                                                                    toggle_off
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md d-gridz justify-content-center">
+                                                        <input type="color" class="w-100 theme-color-input"
+                                                            id="pallette-prclr-random" value="#ffa500">
+                                                    </div>
+                                                    <div class="col-md d-gridz justify-content-center">
+                                                        <input type="color" class="w-100 theme-color-input"
+                                                            id="pallette-scclr-random" value="#343434">
+                                                    </div>
+                                                    <div class="col-md d-gridz justify-content-center">
+                                                        <input type="color" class="w-100 theme-color-input"
+                                                            id="pallette-acclr-random" value="#0081D1">
+                                                    </div>
+                                                    <div class="col-md d-gridz justify-content-center">
+                                                        <input type="color" class="w-100 theme-color-input"
+                                                            id="pallette-txtclr-random" value="#ffffff">
+                                                    </div>
+                                                </div>
+                                                <!-- ./ Theme Randomizer -->
+
                                                 <hr>
 
-                                                <h2 class="fs-5">Set Panel Opacity</h2>
-                                                <div class="form-group">
-                                                    <label id="panel-opaciy-lbl" for="panelOpacityRange"
-                                                        class="form-label">80%</label>
-                                                    <input type="range" class="form-range" min="80" max="100" step="0.5"
-                                                        value="95" id="panelOpacityRange">
+                                                <!-- panel opacity -->
+                                                <div class="d-none">
+                                                    <h2 class="fs-5">Set Panel Opacity</h2>
+                                                    <div class="form-group">
+                                                        <label id="panel-opaciy-lbl" for="panelOpacityRange"
+                                                            class="form-label">80%</label>
+                                                        <input type="range" class="form-range" min="80" max="100"
+                                                            step="0.5" value="95" id="panelOpacityRange">
+                                                    </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                         <hr>
@@ -11678,15 +12053,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         data-bs-target="#pref-flush-panel-setting-2" aria-expanded="false"
                                         aria-controls="pref-flush-panel-setting-2">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex gap-2 justify-content-start align-items-center"
-                                                style="color: var(--secondary-color)!important;">
+                                            <div class="d-flex gap-2 justify-content-start align-items-center">
+                                                <!-- style="color: var(--secondary-color)!important;" -->
                                                 <span class="material-icons material-icons-round align-middle d-none">
                                                     icon_name </span>
                                                 <span class="align-middle fw-bold fs-5 poppins-font"> User Account
                                                 </span>
                                             </div>
                                             <div class="pin-item-icon shadow p-2"
-                                                style="border-radius:15px;font-size:10px!important;color: var(--secondary-color)!important;">
+                                                style="border-radius:15px;font-size:10px!important;">
                                                 <span class="material-icons material-icons-round align-middle d-nones"
                                                     style="font-size:30px !important;"> visibility_off </span>
                                                 <span class="poppins-font">Options.</span>
@@ -11719,14 +12094,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         data-bs-target="#pref-flush-panel-setting-3" aria-expanded="false"
                                         aria-controls="pref-flush-panel-setting-3">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex gap-2 justify-content-start align-items-center"
-                                                style="color: var(--secondary-color)!important;">
+                                            <div class="d-flex gap-2 justify-content-start align-items-center">
+                                                <!-- style="color: var(--secondary-color)!important;" -->
                                                 <span class="material-icons material-icons-round align-middle d-none">
                                                     icon_name </span>
                                                 <span class="align-middle fw-bold fs-5 poppins-font"> Privacy </span>
                                             </div>
                                             <div class="pin-item-icon shadow p-2"
-                                                style="border-radius:15px;font-size:10px!important;color: var(--secondary-color)!important;">
+                                                style="border-radius:15px;font-size:10px!important;">
                                                 <span class="material-icons material-icons-round align-middle d-nones"
                                                     style="font-size:30px !important;"> visibility_off </span>
                                                 <span class="poppins-font">Options.</span>
@@ -11761,15 +12136,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         data-bs-target="#pref-flush-panel-setting-4" aria-expanded="false"
                                         aria-controls="pref-flush-panel-setting-4">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex gap-2 justify-content-start align-items-center"
-                                                style="color: var(--secondary-color)!important;">
+                                            <div class="d-flex gap-2 justify-content-start align-items-center">
+                                                <!-- style="color: var(--secondary-color)!important;" -->
                                                 <span class="material-icons material-icons-round align-middle d-none">
                                                     icon_name </span>
                                                 <span class="align-middle fw-bold fs-5 poppins-font"> Content
                                                     Referencing </span>
                                             </div>
                                             <div class="pin-item-icon shadow p-2"
-                                                style="border-radius:15px;font-size:10px!important;color: var(--secondary-color)!important;">
+                                                style="border-radius:15px;font-size:10px!important;">
                                                 <span class="material-icons material-icons-round align-middle d-nones"
                                                     style="font-size:30px !important;"> visibility_off </span>
                                                 <span class="poppins-font">Options.</span>
@@ -11804,14 +12179,14 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         data-bs-target="#pref-flush-panel-setting-5" aria-expanded="false"
                                         aria-controls="pref-flush-panel-setting-5">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex gap-2 justify-content-start align-items-center"
-                                                style="color: var(--secondary-color)!important;">
+                                            <div class="d-flex gap-2 justify-content-start align-items-center">
+                                                <!-- style="color: var(--secondary-color)!important;" -->
                                                 <span class="material-icons material-icons-round align-middle d-none">
                                                     icon_name </span>
                                                 <span class="align-middle fw-bold fs-5 poppins-font"> About us </span>
                                             </div>
                                             <div class="pin-item-icon shadow p-2"
-                                                style="border-radius:15px;font-size:10px!important;color: var(--secondary-color)!important;">
+                                                style="border-radius:15px;font-size:10px!important;">
                                                 <span class="material-icons material-icons-round align-middle d-nones"
                                                     style="font-size:30px !important;"> visibility_off </span>
                                                 <span class="poppins-font">Options.</span>
@@ -11881,7 +12256,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
 
                 <!-- Widget: User Profile Preview List (Widget: UPPL - It is hidden on lg screens) -->
-                <!-- <iframe id="iframe-load-profile-header-section" class="w-100 mx-4 d-lg-none border-5 border-bottom" src="../scripts/php/main_app/compile_content/profile_tab/user_profile_header.php?usnm=KING_001" frameborder="0" style="height: 50vh; border-radius: 25px;border-color: var(--primary-color) !important;"></iframe> -->
+                <!-- <iframe id="iframe-load-profile-header-section" class="w-100 mx-4 d-lg-none border-5 border-bottom" src="../scripts/php/main_app/compile_content/profile_tab/user_profile_header.php?usnm=KING_001" frameborder="0" style="height: 50vh; border-radius: 25px;border-color: var(--accent-color) !important;"></iframe> -->
                 <!-- ./ Widget: User Profile Preview List -->
 
                 <div class="row align-items-start mb-4">
@@ -11889,7 +12264,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <!-- Widget: mini profile header -->
                         <div id="mini-profile-header"
                             class="d-nonez d-lg-blockz mb-4 container-xlg border-5 border-start border-end"
-                            style="border-radius: 25px; overflow: hidden;border-color: var(--primary-color) !important;">
+                            style="border-radius: 25px; overflow: hidden;border-color: var(--accent-color) !important;">
                             <div class='text-center'>
                                 <!-- Users Profile Banner -->
                                 <div class="shadow-lg display-profile-banner-container">
@@ -11987,7 +12362,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <!-- Widget: activity tracker quick capture and view -->
                         <div class="activity-tracker-stats-widget-container">
                             <div class="container-xlg p-4 shadow-lg d-inline-blockz border-5 border-start border-end"
-                                style="border-radius: 25px; border-color: var(--primary-color) !important; background-color: var(--secondary-color)">
+                                style="border-radius: 25px; border-color: var(--accent-color) !important; background-color: var(--secondary-color)">
                                 <div class="row align-items-center text-center comfortaa-font">
                                     <div class="col-sm py-2 d-grid gap-2">
                                         <!--<i class="fas fa-heart"></i>-->
@@ -12055,8 +12430,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
                     <div class="col-lg-4 text-center">
                         <!-- remove this widget style -->
-                        <!-- <div class="py-4 shadow border-start border-end" style="border-radius: 25px; border-color: var(--primary-color) !important; background-color: var(--secondary-color)">
-                            <h5>One<span style="color: var(--primary-color)">fit</span>.Muse <span class="material-icons material-icons-round">
+                        <!-- <div class="py-4 shadow border-start border-end" style="border-radius: 25px; border-color: var(--accent-color) !important; background-color: var(--secondary-color)">
+                            <h5>One<span style="color: var(--accent-color)">fit</span>.Muse <span class="material-icons material-icons-round">
                                     equalizer
                                 </span></h5>
                             <hr class="text-white" />
@@ -12079,12 +12454,12 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <!-- onefit.muse music widget (new widget style) -->
                         <div class="p-0 darkpads-bg-container-static shadow border-5 border"
                             id="track-info-visualizer-container"
-                            style="border-color: var(--primary-color) !important; border-radius: 25px !important; overflow: hidden;">
+                            style="border-color: var(--accent-color) !important; border-radius: 25px !important; overflow: hidden;">
                             <div class="down-top-grad-tahiti p-4 h-100 w-100">
                                 <!-- widget title -->
                                 <h5 class="fs-5">
                                     <span class="align-middle">One<span
-                                            style="color: var(--primary-color)">fit</span>.Muse</span>
+                                            style="color: var(--accent-color)">fit</span>.Muse</span>
                                     <span class="material-icons material-icons-round align-middle"
                                         style="font-size:30px!important;">
                                         equalizer
@@ -12097,7 +12472,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="col-md -4 text-center">
                                         <!--Thumbnail-->
                                         <div id="media-player-thumbnail" class="p-0 shadow border-bottom"
-                                            style="min-height: 20vh; border-radius: 25px; color: var(--text-color); background-color: black; border-color: var(--primary-color) !important; border-width: 5px !important; overflow: hidden;">
+                                            style="min-height: 20vh; border-radius: 25px; color: var(--text-color); background-color: black; border-color: var(--accent-color) !important; border-width: 5px !important; overflow: hidden;">
                                             <div class="card bg-dark text-white border-0">
                                                 <!-- style="border-radius: 25px !important;" -->
                                                 <img src="../media/assets/OnefitNet Profile PicArtboard 3.jpg"
@@ -12132,7 +12507,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div class="d-grid gap-2 justify-content-centerz">
                                             <button
                                                 class="onefit-buttons-style-darkz rounded-pill shadow p-2 mt-4 d-grid border border-5 collapsed"
-                                                style="transform: translate(0) !important;border-color: var(--primary-color) !important;background-color: transparent;"
+                                                style="transform: translate(0) !important;border-color: var(--accent-color) !important;background-color: transparent;"
                                                 id="museplayer-togglebtn" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#track-playid-songid" aria-expanded="false"
                                                 aria-controls="track-playid-songid">
@@ -12277,7 +12652,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     style="margin-top: -100px; height: 200px; border-radius: 55px; background-color: var(--secondary-color); border-color: rgb(255, 165, 0) !important; filter: invert(0);">
                                 <!-- ./ Profile Picture -->
                                 <p class="mt-2 mt-4 fs-1 fw-bold comfortaa-font">One<span
-                                        style="color: var(--primary-color);">fit</span>.app</p>
+                                        style="color: var(--accent-color);">fit</span>.app</p>
                             </div>
                             <!-- ./ UPPL Header (with Banner and Profile Pic) -->
 
@@ -12398,7 +12773,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <!-- ./ Twitter feed -->
                                 </div>
                                 <div class="col-md text-center border-start border-end border-warning"
-                                    style="border-color: var(--primary-color) !important;">
+                                    style="border-color: var(--accent-color) !important;">
                                     <h4>Facebook Feed</h4>
                                     <div class="d-flex align-items-center">
                                         <div style="display: none;">
@@ -12547,8 +12922,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                         </div>
                         <div class="grid-tile d-grid">
                             <!-- 5. Button trigger modal>>>>>>>>>> Calender Activity Form Modal -->
-                            <button id="toggleCalenderActivityFormeModalBtn" onclick="openCalenderActivityForm()"
-                                type="button" class="btnz btn-lightz onefit-buttons-style-light p-4 d-grid shadow"
+                            <button id="toggleCalenderActivityFormeModalBtn" type="button"
+                                class="btnz btn-lightz onefit-buttons-style-light p-4 d-grid shadow"
                                 data-bs-toggle="modal" data-bs-target="#CalenderActivityFormeModal">
                                 <!--  -->
                                 <span class="material-icons material-icons-round align-middle">
@@ -12614,7 +12989,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </button>
                 </div>
                 <hr class="text-white m-0 d-none">
-                <div class="modal-body border-0 down-top-grad-tahiti light- no-scroller pb-5 px-5"
+                <div class="modal-body border-0 down-top-grad-tahiti light- no-scroller py-4 px-5"
                     style="overflow-x: hidden">
                     <!-- Tab Navigation Buttons Container -->
                     <div class="grid-container text-center">
@@ -12775,15 +13150,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                 </div>
                 <hr class="text-white m-0 d-none">
                 <div class="modal-footer border-0 d-inline-block top-down-grad-tahiti d-nonez"
-                    style="/* background-color: var(--white); */">
+                    style="background-color: var(--primary-color);">
 
                     <div class="d-grid gap-2 justify-content-center">
                         <button
-                            class="btnz onefit-buttons-style-dark fs-5 fw-bold my-4 p-4 text-center comfortaa-font border-0 shadowz text-darkz collapsed"
+                            class="btnz onefit-buttons-style-dark fs-5 fw-bold p-4 text-center comfortaa-font border-0 shadowz text-darkz collapsed"
                             type="button" data-bs-toggle="collapse" data-bs-target="#tab-nav-social-quickpost"
                             aria-expanded="false" aria-controls="tab-nav-social-quickpost"><i class="fas fa-paper-plane"
                                 aria-hidden="true"></i> | <span style="">One</span><span
-                                style="color: var(--primary-color) !important">fit</span>.Social</button>
+                                style="color: var(--accent-color) !important">fit</span>.Social</button>
                     </div>
 
                     <div class="top-down-grad-dark rounded-5 collapse" id="tab-nav-social-quickpost" style="">
@@ -12842,7 +13217,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         </button>
                                     </div>
                                     <!--  -->
-                                    <button type="button" class="onefit-buttons-style-light p-3 m-1 border-1">
+                                    <button type="button" class="onefit-buttons-style-dark p-3 m-1 border-1 mt-3">
                                         <!-- <i class="fas fa-paper-plane" style="font-size: 38px !important"></i> -->
                                         <span class="material-icons material-icons-round align-middle"
                                             style="font-size: 40px !important;color: var(--primary-color);"> post_add
@@ -12893,10 +13268,10 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 <!-- Profile Picture -->
                                 <img src="../media/assets/One-Symbol-Logo-Two-Tone.svg" alt="Onefit Logo"
                                     class="p-3 img-fluid my-pulse-animation-darkz shadow"
-                                    style="margin-top: -100px; height: 200px; border-radius: 50%; border-color: var(--primary-color) !important; background-color: var(--secondary-color)" />
+                                    style="margin-top: -100px; height: 200px; border-radius: 50%; border-color: var(--accent-color) !important; background-color: var(--secondary-color)" />
                                 <!-- ./ Profile Picture -->
                                 <p class="mt-2 mt-4 fs-1 fw-bold comfortaa-font">One<span
-                                        style="color: var(--primary-color);">fit</span>.app</p>
+                                        style="color: var(--accent-color);">fit</span>.app</p>
                             </div>
                             <!-- ./ UPPL Header (with Banner and Profile Pic) -->
 
@@ -13018,7 +13393,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <!-- ./ Twitter feed -->
                                 </div>
                                 <div class="col-md text-center border-start border-end border-warning"
-                                    style="border-color: var(--primary-color) !important;">
+                                    style="border-color: var(--accent-color) !important;">
                                     <h4>Facebook Feed</h4>
                                     <div class="d-flex align-items-center">
                                         <div style="display: none;">
@@ -13065,7 +13440,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             aria-expanded="false" aria-controls="tab-nav-social-quickpost"><i
                                 class="fas fa-paper-plane"></i> | <span
                                 style="color: var(--text-color) !important">One</span><span
-                                style="color: var(--primary-color) !important">fit</span>.Social</button>
+                                style="color: var(--accent-color) !important">fit</span>.Social</button>
                     </div>
 
                     <div class="row align-items-end collapse no-scroller shadow"
@@ -13200,8 +13575,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                                         <div class="row align-items-center h-100 d-grid align-items-center">
                                             <div class="col">
                                                 <h1 class="fw-bold fs-1 text-white">
-                                                    One<span
-                                                        style="color:var(--primary-color)!important;">fit</span>.app
+                                                    One<span style="color:var(--accent-color)!important;">fit</span>.app
                                                 </h1>
                                             </div>
                                         </div>
@@ -13564,7 +13938,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <!-- ./ js submitting activity tracker data foms -->
 
                         <li class="list-group-item bg-transparent text-white pt-4"
-                            style="border-color: var(--primary-color);border-radius: 25px;">
+                            style="border-color: var(--accent-color);border-radius: 25px;">
                             <div class="row align-items-center mt-4">
                                 <div class="col-xlg -4 text-center">
                                     <h1 class="text-truncate">Heart Rate</h1>
@@ -13598,7 +13972,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <div id="heartrate-data-input-form-container"
                                         class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-start border-end"
-                                        style="border-color: var(--primary-color) !important; border-radius: 25px;">
+                                        style="border-color: var(--accent-color) !important; border-radius: 25px;">
                                         <div class="align-middle comfortaa-font text-center">
                                             <span class="material-icons material-icons-round align-middle">today</span>
 
@@ -13674,7 +14048,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </div>
                         </li>
                         <li class="list-group-item bg-transparent text-white pt-4"
-                            style="border-color: var(--primary-color);border-radius: 25px;">
+                            style="border-color: var(--accent-color);border-radius: 25px;">
                             <div class="row align-items-center mt-4">
                                 <div class="col-xlg -4 text-center">
                                     <h1 class="text-truncate">Body Temp</h1>
@@ -13708,7 +14082,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <div id="bodytemp-data-input-form-container"
                                         class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-start border-end"
-                                        style="border-color: var(--primary-color) !important; border-radius: 25px;">
+                                        style="border-color: var(--accent-color) !important; border-radius: 25px;">
                                         <div class="align-middle comfortaa-font text-center">
                                             <span class="material-icons material-icons-round align-middle">today</span>
 
@@ -13783,7 +14157,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </div>
                         </li>
                         <li class="list-group-item bg-transparent text-white pt-4"
-                            style="border-color: var(--primary-color);border-radius: 25px;">
+                            style="border-color: var(--accent-color);border-radius: 25px;">
                             <div class="row align-items-center mt-4">
                                 <div class="col-xlg -4 text-center">
                                     <h1 class="text-truncate">Avg. Speed</h1>
@@ -13817,7 +14191,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <div id="speedmonitor-data-input-form-container"
                                         class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-start border-end"
-                                        style="border-color: var(--primary-color) !important; border-radius: 25px;">
+                                        style="border-color: var(--accent-color) !important; border-radius: 25px;">
                                         <div class="align-middle comfortaa-font text-center">
                                             <span class="material-icons material-icons-round align-middle">today</span>
 
@@ -13892,7 +14266,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </div>
                         </li>
                         <li class="list-group-item bg-transparent text-white pt-4"
-                            style="border-color: var(--primary-color);border-radius: 25px;">
+                            style="border-color: var(--accent-color);border-radius: 25px;">
                             <div class="row align-items-center mt-4">
                                 <div class="col-md -4 text-center">
                                     <h1 class="text-truncate">Step Count</h1>
@@ -13919,7 +14293,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </div>
                         </li>
                         <li class="list-group-item bg-transparent text-white pt-4"
-                            style="border-color: var(--primary-color);border-radius: 25px;">
+                            style="border-color: var(--accent-color);border-radius: 25px;">
                             <div class="row align-items-center mt-4">
                                 <div class="col-xlg -4 text-center">
                                     <h1 class="text-truncate">Weight & (BMI)</h1>
@@ -13953,7 +14327,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                                     <div id="bmiweight-data-input-form-container"
                                         class="d-grid justify-content-center p-4 mb-4 w3-animate-bottom border-5 border-start border-end"
-                                        style="border-color: var(--primary-color) !important; border-radius: 25px;">
+                                        style="border-color: var(--accent-color) !important; border-radius: 25px;">
                                         <div class="align-middle comfortaa-font text-center">
                                             <span class="material-icons material-icons-round align-middle">today</span>
 
@@ -14068,7 +14442,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="accordion-item p-2 my-2 border-0 shadow">
                             <h2 class="accordion-header m-0" id="cav-flush-header-activity_lineup">
                                 <button
-                                    class="accordion-button fs-5 fw-bold text-truncate gap-2 d-grid align-items-center collapsed"
+                                    class="accordion-button fs-5 fw-bold text-truncate gap-2 d-grid align-items-center"
                                     type="button" data-bs-toggle="collapse"
                                     data-bs-target="#cav-flush-panel-activity_lineup" aria-expanded="false"
                                     aria-controls="cav-flush-panel-activity_lineup">
@@ -14258,6 +14632,9 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     }
 
                                     function toggleCustomColorSelection(value, newTag) {
+                                        console.log("toggleCustomColorSelection function called", "Value: " + value +
+                                            " | newTag: " + newTag); //debug
+
                                         newTag = newTag || false;
                                         var colorExtract;
                                         if (value === 'custom') {
@@ -15094,7 +15471,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             <div class="modal-content"
                 style="color: var(--text-color); background-color: var(--secondary-color)!important;">
                 <div class="modal-header bg-transparent p-4 border-5 border-bottom top-down-grad-tahiti w3-animate-top"
-                    style="border-radius: 0 0 25px 25px !important;border-color: var(--primary-color)!important;">
+                    style="border-radius: 0 0 25px 25px !important;border-color: var(--accent-color)!important;">
                     <button type="button" class="onefit-buttons-style-light p-4 shadow w3-animate-left"
                         data-bs-dismiss="modal">
                         <div class="d-grid">
@@ -15160,6 +15537,12 @@ if (isset($_SESSION["currentUserAuth"])) {
 
     <!-- JQuery local 3.6.3 -->
     <script src="../node_modules/jquery/dist/jquery.min.js" onload="coreScriptLoaded_jquery_local_js=true;"></script>
+
+    <!-- load in my jquery functions script -->
+
+    <script src="../scripts/js/script_jquery.js"
+        onload="coreScriptLoaded_custom_jquery_func_js = true;console.log('script_jquery.js loaded.')"></script>
+
     <!-- Map Highlight -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js"
@@ -15189,3071 +15572,7 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- A Lot of Javascript here!!! - should be in external js files -->
     <script>
     // **************************** js_start: my custom js😎👌
-
-    // jquery ondocument ready
-    $(document).ready(function() {
-
-        // load the chat conversations
-        $.loadChatConversation = function(conversationId, currentUserUsrnm, conversationRef) {
-            // show #load-wait-screen-curtain 
-            $('#load-wait-screen-curtain').show();
-            $.get("../scripts/php/main_app/compile_content/communications_tab/get_user_chats.php?cref=" +
-                conversationRef + "&cid=" +
-                conversationId,
-                function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.loadChatConversation returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        // alert("Get Req Failed -> $.loadChatConversation returned: \n[Status]: " + status + "\n[Data]: " + data);
-                    } else {
-                        // pass returned data to #chat-message-container
-                        $('#chat-message-container').html(data);
-                        // smooth scroll to the last .row div in #chat-message-container
-                        $('#chat-message-container').animate({
-                            scrollTop: $('#chat-message-container').prop("scrollHeight")
-                        }, 1000);
-                    }
-                    setTimeout(() => {
-                        // hide #load-wait-screen-curtain 
-                        $('#load-wait-screen-curtain').hide();
-                    }, 2000);
-                }
-            );
-            // post request for the chat conversation
-            // $.ajax({
-            //     url: '../scripts/php/main_app/data_management/chat_data/get_chat_conversation.php',
-            //     type: 'POST',
-            //     data: {
-            //         conversationId: conversationId,
-            //         currentUserUsrnm: currentUserUsrnm,
-            //         conversationRef: conversationRef
-            //     },
-            //     success: function(data) {
-            //         //console.log(data);
-            //         // parse the json data
-            //         var chatConversation = JSON.parse(data);
-            //         //console.log(chatConversation);
-            //         //console.log(chatConversation[0].conversation_id);
-            //         //console.log(chatConversation[0].conversation_title);
-            //         //console.log(chatConversation[0].conversation_description);
-            //         //console.log(chatConversation[0].conversation_created_by);
-            //         //console.log(chatConversation[0].conversation_created_on);
-            //         //console.log(chatConversation[0].conversation_last_updated);
-            //         //console.log(chatConversation[0].conversation_last_updated_by);
-            //         //console.log(chatConversation[0].conversation_last_updated_on);
-            //         //console.log(chatConversation[0].conversation_status);
-            //         //console.log(chatConversation[0].conversation_type);
-            //         //console.log(chatConversation[0].conversation_members);
-            //         //console.log(chatConversation[0].conversation_messages);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_id);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_content);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_created_by);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_created_on);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_status);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_type);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_attachments);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[0].attachment_id);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[0].attachment_name);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[0].attachment_type);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[0].attachment_size);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[0].attachment_url);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[0].attachment_created_by);
-            //         //console.log(chatConversation[0].conversation_messages[0].message_attachments[
-            //     }
-            // });
-        }
-
-        // toggle notification indicator
-        // state is a bool, icon is a string, priority is a bool
-        $.toggleNotificationIndicator = function(state, icon, priority) {
-
-            priority = priority || false;
-            if (state === true) {
-                $('#notification-indicator').show();
-                $('#notification-indicator-icon').html(icon);
-
-                if (priority === true) {
-                    document.getElementById('notification-indicator-icon').classList.add(
-                        "my-pulse-animation-light");
-                }
-            } else {
-                $('#notification-indicator').hide();
-                $('#notification-indicator-icon').html('pending');
-                document.getElementById('notification-indicator-icon').classList.remove(
-                    "my-pulse-animation-light");
-            }
-        }
-
-        // transfer activity calender html to #activities-calender-container
-        $('#app-insights-btn').click(function() {
-            // if #activities-calender-container is empty, move calender from training to ##activities-calender-container, else do nothing
-            // !$.trim( $('#leftmenu').html() ).length src: http://stackoverflow.com/questions/4665466/ddg#4665468
-            if ($.trim($('#activities-calender-container').html()).length) {
-                var calenderLocationIndicator =
-                    `<div class="text-center fs-5 text-muted comfortaa-font my-5 p-4 border-1 border" style="border-radius: 15px;"> <span class="material-icons material-icons-round" style="font-size: 24px !important"> sports </span> Training tab. </div>`;
-
-                var calenderHTML = localStorage.getItem(
-                    'activity_calender_output'); // $('#training-tab-calender-container').html();
-
-                $('#activities-calender-container').html(
-                    `<div id="activities-calender">${calenderHTML}</div>`);
-                // replace with "Check widgets panel"
-                $('#training-tab-calender-container').html(calenderLocationIndicator);
-            }
-
-        });
-
-        // transfer activity calender html to #training-tab-calender-container
-        $('#app-training-btn').click(function() {
-            // if #activities-calender-container is empty, move calender from training to ##activities-calender-container, else do nothing
-            // !$.trim( $('#leftmenu').html() ).length src: http://stackoverflow.com/questions/4665466/ddg#4665468
-            if ($.trim($('#activities-calender-container').html()).length) {
-                var calenderLocationIndicator =
-                    `<div class="text-center fs-5 text-muted comfortaa-font my-5 p-4 border-1 border" style="border-radius: 15px;"> <span class="material-icons material-icons-round" style="font-size: 24px !important"> sports </span> Training tab. </div>`;
-
-                var calenderHTML = localStorage.getItem(
-                    'activity_calender_output'); //$('#activities-calender-container').html();
-
-                $('#training-tab-calender-container').html(
-                    `<div id="activities-calender">${calenderHTML}</div>`);
-                // replace with "Check widgets panel"
-                $('#activities-calender-container').html(calenderLocationIndicator);
-            }
-        });
-
-        // jquery evelnt listerner for #open-widgets-panel-btn click
-        $('#open-widgets-panel-btn').click(function() {
-            // transfer #clock html content into #widgets-panel-clock, 
-            var clockHtml = `
-                <div id="clock" class="dark my-4 shadow">
-                    <div class="display no-scroller">
-                        <div class="weekdays"></div>
-                        <div class="ampm"></div>
-                        <div class="alarm"></div>
-                        <div class="digits"></div>
-                    </div>
-                </div>`;
-
-            var widgetLocationIndicator =
-                `<div class="text-center fs-5 text-muted comfortaa-font my-5 p-4 border-1 border" style="border-radius: 15px;"> <span class="material-icons material-icons-round" style="font-size: 24px !important"> interests </span> Widgets panel. </div>`;
-
-            $('#widgets-panel-clock').html(clockHtml);
-            // replace with "Check widgets panel"
-            $('#dashboard-tab-clock').html(widgetLocationIndicator);
-
-            // reload the digital clock script
-            //source: https://stackoverflow.com/questions/9642205/how-to-force-a-script-reload-and-re-execute
-            function reloadJs(src) {
-                src = $('script[src$="' + src + '"]').attr("src");
-                $('script[src$="' + src + '"]').remove();
-                $('<script/>').attr('src', src).appendTo('head');
-                //console log the script selector (test)
-                console.log('moving clock from Dashboard tab to Widgets panel | script[src$="' + src +
-                    '"]');
-            };
-
-            reloadJs('../scripts/js/digital-clock.js');
-        });
-
-        // jquery evelnt listerner for #close-widgets-panel  click
-        $('#close-widgets-panel').click(function() {
-            // transfer #clock html content from #widgets-panel-clock, back to #dashboard-tab-clock
-            var clockHtml = `
-                <div id="clock" class="dark my-4 shadow">
-                    <div class="display no-scroller">
-                        <div class="weekdays"></div>
-                        <div class="ampm"></div>
-                        <div class="alarm"></div>
-                        <div class="digits"></div>
-                    </div>
-                </div>`;
-
-            var widgetLocationIndicator =
-                `<div class="text-center fs-5 text-muted comfortaa-font my-5 p-4 border-1 border" style="border-radius: 15px;"> <span class="material-icons material-icons-round" style="font-size: 24px !important"> dashboard </span> Dashboard tab. </div>`;
-
-            $('#dashboard-tab-clock').html(clockHtml);
-            // replace with "Check widgets panel"
-            $('#widgets-panel-clock').html(widgetLocationIndicator);
-
-            // reload the digital clock script
-            //source: https://stackoverflow.com/questions/9642205/how-to-force-a-script-reload-and-re-execute
-            function reloadJs(src) {
-                src = $('script[src$="' + src + '"]').attr("src");
-                $('script[src$="' + src + '"]').remove();
-                $('<script/>').attr('src', src).appendTo('head');
-                //console log the script selector (test)
-                console.log('moving clock back to Dashboard tab | script[src$="' + src + '"]');
-            };
-
-            reloadJs('../scripts/js/digital-clock.js');
-        });
-
-        // *** script.js functions
-
-        // form validation
-        // .needs-validation
-        // (https://getbootstrap.com/docs/5.3/forms/validation/#server-side) Example starter JavaScript for disabling form submissions if there are invalid fields
-        (() => {
-            'use strict'
-
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
-
-
-        // *** ./ script.js functions
-
-        // *** script_jquery.js functions
-
-
-        // add todays date as the default to all output labels with #training-week-date-range-input
-        // document.getElementById('training-week-date-range-input').value = new Date().toDateInputValue();
-        $('.training-week-date-range-input').val(new Date().toDateInputValue());
-
-        // function to smooth scroll
-        $.smoothScroll = function(containerElemID, scrollToElemID, scrollSpeed) {
-            // scrollDirection = scrollDirection || "pageUp";
-            scrollSpeed = scrollSpeed || 100;
-            if (!containerElemID.startsWith("#")) {
-                containerElemID = "#" + containerElemID;
-            }
-            if (!scrollToElemID.startsWith("#")) {
-                scrollToElemID = "#" + scrollToElemID;
-            }
-            $(containerElemID)
-                .animate({ // "#main-form-window-scroll-container" [document.documentElement, document.body]
-                    scrollTop: $(scrollToElemID).offset().top // "#user-welcome-header"
-                }, scrollSpeed);
-            console.log("smoothScroll: window.offset().top => " + $(scrollToElemID).offset().top);
-        }
-
-        // run function when scrolled to #main-content-container
-        $(window).scroll(function() {
-            // var left_side_panel_visibility_state = localStorage.getItem('left_side_panel_visibility_state');
-            // var right_side_panel_visibility_state = localStorage.getItem('right_side_panel_visibility_state');
-
-            var hT = $('#nav-bar-header').offset().top,
-                hH = $('#nav-bar-header').outerHeight(),
-                wH = $(window).height(),
-                wS = $(this).scrollTop();
-            // console.log('hT:\n' + hT + '\nhH:\n' + hH + '\nwH:\n' + wH + '\nwS:\n' + wS);
-            if (wS == 0) { //(hT + hH - wH) | < is at the start (top) of element
-                console.log('#nav-bar-header is in view! at the top');
-
-                // assign top:5vh if wS is equal to 0
-                $('#twitter-social-panel').css('top', '5vh');
-                $('#creation-tools-content-panel').css('top', '5vh');
-
-                // make sure to reset the margins to 0xp (deprecated)
-                // $('#twitter-social-panel').css('margin-left', '0px');
-                // $('#creation-tools-content-panel').css('margin-right', '0px');
-
-                // remove fixed top class from main navbar
-                if ($('#main-navbar').hasClass('fixed-top')) {
-                    $('#main-navbar').fadeOut(100);
-                    setTimeout(function() {
-                        $('#main-navbar').removeClass('fixed-top');
-                        $('#main-navbar').fadeIn(300);
-                    }, 300);
-                }
-
-            } else {
-                $('#twitter-social-panel').css('top', '20vh');
-                $('#creation-tools-content-panel').css('top', '20vh');
-
-                // make sure to reset the margins to 0xp (deprecated)
-                // $('#twitter-social-panel').css('margin-left', '0px');
-                // $('#creation-tools-content-panel').css('margin-right', '0px');
-
-                // add fixed top class to main navbar
-                if (!$('#main-navbar').hasClass('fixed-top')) {
-                    $('#main-navbar').fadeOut(100);
-                    setTimeout(function() {
-                        $('#main-navbar').addClass('fixed-top');
-                        $('#main-navbar').fadeIn(300);
-                    }, 300);
-                }
-            }
-        });
-
-        // event listener for click on elems with .hide-side-panels
-        $('.hide-side-panels').on('click', () => {
-            // call $.hideSidePanelsDisplay function
-            $.hideSidePanelsDisplay();
-        });
-
-        $('.hide-left-side-panels').on('click', () => {
-            // hide only the left side panel
-            $('#twitter-social-panel').addClass('d-none');
-            localStorage.setItem('left_side_panel_visibility_state', false);
-
-        });
-
-        $('.hide-right-side-panels').on('click', () => {
-            // hide only the right side panel
-            $('#creation-tools-content-panel').addClass('d-none');
-            localStorage.setItem('right_side_panel_visibility_state', false);
-
-        });
-
-        $.hideSidePanelsDisplay = function() {
-            // $('#twitter-social-panel').css('margin-left', '-300px');
-            // $('#creation-tools-content-panel').css('margin-right', '-300px');
-            $('#twitter-social-panel').addClass('d-none');
-            $('#creation-tools-content-panel').addClass('d-none');
-
-            localStorage.setItem('left_side_panel_visibility_state', false);
-            localStorage.setItem('right_side_panel_visibility_state', false);
-
-            console.log('($.hideSidePanelsDisplay) side panels have been hidden');
-        }
-
-        // event listener for click on elems with .show-side-panels
-        $('.show-side-panels').on('click', () => {
-            // call $.showSidePanelsDisplay function
-            $.showSidePanelsDisplay();
-        });
-
-        $('.show-left-side-panels').on('click', () => {
-            // show only the left side panel
-            $('#twitter-social-panel').removeClass('d-none');
-            localStorage.setItem('left_side_panel_visibility_state', true);
-
-        });
-
-        $('.show-right-side-panels').on('click', () => {
-            // show only the right side panel
-            $('#creation-tools-content-panel').removeClass('d-none');
-            localStorage.setItem('right_side_panel_visibility_state', true);
-
-        });
-
-        $.showSidePanelsDisplay = function() {
-            // $('#twitter-social-panel').css('margin-left', '0px');
-            // $('#creation-tools-content-panel').css('margin-right', '-0px');
-            $('#twitter-social-panel').removeClass('d-none');
-            $('#creation-tools-content-panel').removeClass('d-none');
-
-            localStorage.setItem('left_side_panel_visibility_state', true);
-            localStorage.setItem('right_side_panel_visibility_state', true);
-
-            console.log('($.showSidePanelsDisplay) side panels have been shown');
-        }
-
-        // function for hiding single side panel
-        $.hideSingleSidePanel = function(panelId, position) {
-            // alert("panelId: " + panelId);
-            if (!panelId.startsWith('#')) panelId = '#' + panelId;
-            if (position === 'left' || position === 'right') {
-                // update left_side_panel_visibility_state on localstorage
-                switch (position) {
-                    case 'left':
-                        localStorage.setItem('left_side_panel_visibility_state', false);
-                        break;
-                    case 'right':
-                        localStorage.setItem('right_side_panel_visibility_state', false);
-                        break;
-
-                    default:
-                        break;
-                }
-                // change the margin to move panel out of viewport
-                // $(panelId).css(`margin-${position}`, '-300px');
-                $(panelId).addClass('d-none');
-                console.log("($.hideSingleSidePanel) panel has been hidden: " + panelId);
-            }
-        }
-
-        // onclick event listeners for apps tray open and close buttons
-        $("#apps-tray-open-btn").on('click', () => {
-            // $('#twitter-social-panel').css('margin-left', '-300px');
-            // $('#creation-tools-content-panel').css('margin-right', '-300px');
-
-            $.hideSidePanelsDisplay();
-
-            console.log('#apps-tray-open-btn was clicked');
-        });
-
-        $("#apps-tray-close-btn").on('click', () => {
-            // $('#twitter-social-panel').css('margin-left', '0px');
-            // $('#creation-tools-content-panel').css('margin-right', '0px');
-
-            $.showSidePanelsDisplay();
-
-            console.log('#apps-tray-close-btn was clicked');
-        });
-
-        $("#main-nav-notifications-btn").on('click', () => {
-            // $('#twitter-social-panel').css('margin-left', '-300px');
-
-            $.hideSingleSidePanel('#twitter-social-panel', 'left');
-
-            console.log('#main-nav-notifications-btn was clicked');
-        });
-
-        $("#main-nav-ext-links-btn").on('click', () => {
-            // $('#creation-tools-content-panel').css('margin-right', '-300px');
-
-            $.hideSingleSidePanel('#creation-tools-content-panel', 'right');
-
-            console.log('#main-nav-ext-links-btn was clicked');
-        });
-
-        // Main App Refresh button onclick lister - function to toggle pulse animation from #main-app-refresh-btn
-        $('#main-app-refresh-btn').on('click', () => {
-            $('#main-app-refresh-btn').removeClass('my-pulse-animation-light');
-            $('#main-app-refresh-btn').addClass('shadow');
-        });
-
-
-        // get store product items
-        $.getStoreProducts = function(request, elemid) {
-            var elemid = elemid ||
-                '#store-products-list'; // initialize output elemid if it was not passed through params
-            $.get("../scripts/php/main_app/compile_content/store_tab/wearables.php?giveme=" + request,
-                function(data,
-                    status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.getStoreProducts returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                    } else {
-                        // console log if json was requested
-                        if (request == 'json') console.log('Store Products Json: \n' + data);
-                        else $(elemid).html(data); // '#store-products-list'
-                    }
-                });
-        }
-
-        $.getUserCart = function() {
-            //$.get function that load content from php into #dynamic-user-cart on status: success
-            $.get("../scripts/php/main_app/compile_content/store_tab/user_cart_widget.php", function(data,
-                status) {
-                if (status != "success") {
-                    console.log("Get Req Failed -> $.getUserCart returned: \n[Status]: " + status +
-                        "\n[Data]: " +
-                        data);
-                } else {
-                    $('#dynamic-user-cart').html(data);
-                }
-            });
-        };
-
-        $.getFitnessProgressionUIWidgets = function(username, widgetType) {
-            // widgetType should either be bar or mini - strictly
-            // scripts/php/main_app/compile_content/fitness_insights_tab/fitness_progression
-            $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/fitness_progression/fp_widget.php?usnm=" +
-                username + "&wtype=" + widgetType,
-                function(data, status) {
-                    if (status != "success") {
-                        console.log(
-                            "Get Req Failed -> $.getFitnessProgressionUIWidgets returned: \n[Status]: " +
-                            status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getFitnessProgressionUIWidgets returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                    } else {
-                        switch (widgetType) {
-                            case 'bar':
-                                $('.bar-fpwidget').html(data);
-                                break;
-
-                            case 'mini':
-                                $('.mini-fpwidget').html(data);
-                                break;
-
-                            default:
-                                var nowidget = `Please specify the widget type to display.`;
-                                $('.bar-fpwidget').html(nowidget);
-                                $('.mini-fpwidget').html(nowidget);
-                                break;
-                        }
-
-                    }
-                });
-        }
-
-        // get store products json - test
-        $.getStoreProducts('json');
-
-        // get Dashboard content - ajax
-        $.getUserWeekActivities = function(username, elemId, queryDate) {
-            elemId = elemId || '.general-weekly-activities-container';
-            queryDate = formatDate(queryDate) || formatDate(Date.now()); // default: date today
-            console.log(queryDate);
-            $.get("../scripts/php/main_app/compile_content/dashboard_tab/user_daily_activity_lineup.php?usnm=" +
-                username + "&qdate=" + queryDate,
-                function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.getUserWeekActivities returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getUserWeekActivities returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                    } else {
-                        $(elemId).html(data);
-                    }
-                });
-        }
-
-        // get team match schedule
-        function getSchedule(grcode, elemId, periodRequest) {
-            // if grcode is 'r' the assign grcode from localstorage
-            if (grcode == 'r') grcode = localStorage.getItem('grcode');
-
-            $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/weekly_assesments_and_activities/get_match_schedules.php?grcode=" +
-                grcode + "&period_req=" + periodRequest,
-                function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.getTeamMatchSchedule returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getTeamMatchSchedule returned: \n[Status]: " + status +
-                            "\n[Data]: " + data);
-                    } else {
-                        $(elemId).html(data);
-                        console.log("Match schedule loaded:" + periodRequest);
-                    }
-                }
-            );
-
-            showSnackbar("Match schedule loaded:" + periodRequest, "alert_general", "short_5000");
-        }
-        $.getTeamMatchSchedule = function(grcode) {
-            grcode = grcode || localStorage.getItem('grcode');
-
-            const periods = ["upcoming", "history"];
-
-            periods.forEach(period => {
-                switch (period) {
-                    case 'upcoming':
-                        getSchedule(grcode, '#teams-upcoming-match-schedule-tbody', 'upcoming');
-                        break;
-                    case 'history':
-                        getSchedule(grcode, '#teams-match-history-tbody', 'played');
-                        break;
-
-                    default:
-                        showSnackbar(
-                            'Error while compiling match schedules. Check console for more information.',
-                            'alert_general', 'long_15000');
-                        console.log(
-                            'Invalid period selector: Error while computing match schedules. Check console for more information -> ' +
-                            period);
-                        break;
-                }
-            });
-
-        }
-
-        // get Profile content - ajax
-        // user group subscriptions
-        $.getUserProfileHeader = function(username) {
-
-            $.get("../scripts/php/main_app/compile_content/profile_tab/user_profile_header.php?usnm=" +
-                username,
-                function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.getUserProfileHeader returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getUserProfileHeader returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                    } else {
-                        $('#profile-header-container').html(data);
-                    }
-                });
-        }
-
-        // get user media files for profile tab and media tab
-        $.getUsersMediaFiles = function() {
-            var dirs = ["shared", "private", "video", "audio"];
-
-            dirs.forEach(dir => {
-                // scripts/php/main_app/compile_content/media_tab/main_user_media_gallery.php
-                $.get("../scripts/php/main_app/compile_content/media_tab/main_user_media_gallery.php?dir=" +
-                    dir,
-                    function(data, status) {
-                        if (status != "success") {
-                            console.log(
-                                "Get Req Failed -> $.getUsersMediaFiles returned: \n[Status]: " +
-                                status + "\n[Data]: " + data);
-                            alert("Get Req Failed -> $.getUsersMediaFiles returned: \n[Status]: " +
-                                status +
-                                "\n[Data]: " + data);
-                        } else {
-                            switch (dir) {
-                                case 'shared':
-                                    $('.shared-media-grid-container').html(data);
-                                    break;
-                                case 'private':
-                                    $('.private-media-grid-container').html(data);
-                                    break;
-                                case 'video':
-                                    $('.video-media-grid-container').html(data);
-                                    break;
-                                case 'audio':
-                                    // $('#').html(data); do nothing, no container available atm
-                                    console.log(
-                                        "$.getUsersMediaFiles -> Audio gallery unavailable."
-                                    );
-                                    break;
-
-                                default:
-                                    break;
-                            }
-                        }
-
-                    });
-            });
-
-        }
-
-        $.getUserCommunityGroupSubs = function() {
-            $.get("../scripts/php/main_app/compile_content/profile_tab/get_user_community_group_subs.php?entry=init",
-                function(data, status) {
-                    if (status != "success") {
-                        console.log(
-                            "Get Req Failed -> $.getUserCommunityGroupSubs returned: \n[Status]: " +
-                            status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getUserCommunityGroupSubs returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                    } else {
-                        $('#user-community-groups-subs-list').html(data);
-                    }
-
-
-                });
-        }
-        $.getUserTeamsGroupSubs = function() {
-            $.get("../scripts/php/main_app/compile_content/profile_tab/get_user_teams_group_subs.php?entry=init",
-                function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.getUserTeamsGroupSubs returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getUserTeamsGroupSubs returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                    } else {
-                        $('#user-teams-groups-subs-list').html(data);
-                    }
-
-
-                });
-        }
-        $.getUserProGroupSubs = function() {
-            $.get("../scripts/php/main_app/compile_content/profile_tab/get_user_pro_group_subs.php?entry=init",
-                function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.getUserProGroupSubs returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getUserProGroupSubs returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                    } else {
-                        $('#user-pro-groups-subs-list').html(data);
-                    }
-
-
-                });
-        }
-
-        // complete group lists
-        $.getCommunityGroups = function() {
-            $.get("../scripts/php/main_app/compile_content/community_content/community_groups.php?entry=init",
-                function(
-                    data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status +
-                            "\n[Data]: " + data);
-                    } else {
-                        $('#community-groups-full-list').html(data);
-                    }
-
-
-                });
-        }
-        $.getTeamsGroups = function() {
-            $.get("../scripts/php/main_app/compile_content/teams_content/teams_groups.php?entry=init",
-                function(data,
-                    status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.getTeamsGroups returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getTeamsGroups returned: \n[Status]: " + status +
-                            "\n[Data]: " +
-                            data);
-                    } else {
-                        $('#teams-groups-full-list').html(data);
-                    }
-
-
-                });
-        }
-        $.getProGroups = function() {
-            $.get("../scripts/php/main_app/compile_content/premium_content/pro_groups.php?entry=init",
-                function(data,
-                    status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.getProGroups returned: \n[Status]: " + status +
-                            "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getProGroups returned: \n[Status]: " + status +
-                            "\n[Data]: " +
-                            data);
-                    } else {
-                        $('#pro-groups-full-list').html(data);
-                    }
-
-
-                });
-        }
-        // get user profile header
-        $.getUserProfileHeader();
-        // get full groups list
-        $.getCommunityGroups();
-        $.getTeamsGroups();
-        $.getProGroups();
-        // get user group subs
-        $.getUserCommunityGroupSubs();
-        $.getUserTeamsGroupSubs();
-        $.getUserProGroupSubs();
-
-        // compile Discovery content - ajax
-
-        // compile Studio content - ajax
-
-        // compile Store content - ajax
-
-        // compile Social content - ajax
-
-        // compile Fitness Insights content - ajax
-
-        // compile Achievements content - ajax
-
-        // compile Media content - ajax
-        $.getMediaTabContent = function() {
-            // shared-media-grid-container
-            // private-media-grid-container
-            // video-media-grid-container
-            var mediaClassArray = ['shared', 'private', 'videos'];
-
-            mediaClassArray.forEach(mClass => {
-                $.get("../scripts/php/main_app/compile_content/media_tab/main_user_media_gallery.php?dir=" +
-                    mClass,
-                    function(data, status) {
-
-                        if (status != "success") {
-                            console.log(
-                                "Get Req Failed -> $.getMediaTabContent returned: \n[Status]: " +
-                                status + "\n[Data]: " + data);
-                            alert("Get Req Failed -> $.getMediaTabContent returned: \n[Status]: " +
-                                status +
-                                "\n[Data]: " + data);
-                        } else {
-                            switch (weekday) {
-                                case "shared":
-                                    $('#shared-media-grid-container').html(data);
-                                    break;
-                                case "private":
-                                    $('#private-media-grid-container').html(data);
-                                    break;
-                                case "videos":
-                                    $('#video-media-grid-container').html(data);
-                                    break;
-
-                                default:
-                                    console.log(
-                                        "Error [$.getMediaTabContent]: mClass/Directory: " +
-                                        mClass);
-                                    break;
-                            }
-                        }
-                    });
-
-            });
-
-        }
-
-        // compile Communications content - ajax
-
-        // compile Messages content - ajax
-
-        // compile Preferences content - ajax
-
-        // get teams group information - select input list
-        $.getTeamsSelectInputList = function(privacyType) {
-            // 
-            $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/training/teams/get_teams_groups_list.php?get_privacy=" +
-                privacyType,
-                function(data, status) {
-
-                    if (status != "success") {
-                        console.log(
-                            "Get Req Failed -> $.getTeamsSelectInputList returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getTeamsSelectInputList returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                    } else {
-                        $('#formation-team-selection').html(data);
-                        $('.team-selection-list').html(data);
-                    }
-                });
-        }
-
-        // get sports information - select input list
-        $.getSportsSelectInputList = function(sportCategory) {
-            sportCategory = sportCategory || 'all';
-            // 
-            $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/training/teams/get_sports_list.php?sp-category=" +
-                sportCategory,
-                function(data, status) {
-
-                    if (status != "success") {
-                        console.log(
-                            "Get Req Failed -> $.getSportsSelectInputList returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getSportsSelectInputList returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                    } else {
-                        $('.sport-selection-list').html(data);
-                    }
-                });
-        }
-
-        // get teams group information - table of group members
-        $.getTeamsGroupMembersTableItems = function(grcode) {
-            const membersReqArray = ["starting", "benched", "reserve", "technical"];
-
-            var outputElemId = null;
-            var output = null;
-
-            function getRequestedGMList(grcode, memberItem, outputElemId) {
-                $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/training/teams/get_teams_group_members.php?grc=" +
-                    grcode + "&memtype=" + memberItem,
-                    function(data, status) {
-                        if (status != "success") {
-                            console.log(
-                                "Get Req Failed -> $.getRequestedGMList returned: \n[Status]: " +
-                                status +
-                                "\n[Data]: " + data);
-                            alert("Get Req Failed -> $.getRequestedGMList returned: \n[Status]: " +
-                                status +
-                                "\n[Data]: " + data);
-                        } else {
-                            $(outputElemId).html(data);
-                        }
-                    });
-            }
-
-            membersReqArray.forEach(memberItem => {
-                switch (memberItem) {
-                    case "starting":
-                        outputElemId = "#teams-formation-starting-lineup-table-list";
-                        break;
-                    case "benched":
-                        outputElemId = "#teams-formation-substitutes-table-list";
-                        break;
-                    case "reserve":
-                        outputElemId = "#teams-formation-reserves-table-list";
-                        break;
-                    case "technical":
-                        outputElemId = "#teams-formation-technical-team-table-list";
-                        break;
-
-                    default:
-                        return alert(
-                            "($.getTeamsGroupMembersTableItems) Requested type not supported. type:[ " +
-                            memberItem + " ]");
-                        // break;
-                }
-
-                // update tbody of outputElemId to show loading spinner.
-                $(outputElemId).html(`
-                    <tr>
-                        <td class="text-center" colspan="5">
-                            <div class="spinner-border text-success" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                        </td>
-                    </tr>`);
-
-                getRequestedGMList(grcode, memberItem, outputElemId);
-
-                // if (output === false) {
-                //     // if output received is false then alert user
-                //     console.log("$.getRequestedGMList -> $.getTeamsGroupMembersTableItems data output:\n outputElemID: " + outputElemId + " \n Data: " + output);
-                //     showSnackbar("An error occurred while compiling the requested teams data. Please contact the administrator.", 'alert_error', 'long_15000')
-                // } else {
-                //     console.log("outputing to " + outputElemId + " \n Html Data: " + output);
-                //     $(outputElemId).html(output);
-                // }
-
-            });
-
-        }
-
-        // get json data for players
-        // function getRequestedGMJSONList(grcode) {}
-        function getRequestedGMJSONList(grcode) {
-            const memtype = 'starting';
-            $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/training/teams/get_teams_group_members.php?returntype=json&grc=" +
-                grcode + "&memtype=" + memtype,
-                function(data, status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.getRequestedGMJSONList returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getRequestedGMJSONList returned: \n[Status]: " + status +
-                            "\n[Data]: " + data);
-                        return false;
-                    } else {
-                        console.log("Successfull response: \n" + JSON.stringify(data));
-
-                        let responseJSONData =
-                            data; // data; //we used JSON_PRETTY_PRINT param on json_encode in php 
-                        console.log("responseJSONData:");
-                        console.log(responseJSONData);
-
-                        return responseJSONData;
-
-                        // let responseJSONData = data; //JSON.parse(data); 
-                        // console.log("responseJSONData");
-                        // console.log(responseJSONData);
-
-
-                        // var playerData = [];
-                        // // responseJSONData.forEach(record => {
-                        // //     playerData.push(`{name: '${responseJSONData['user_name']} ${responseJSONData['user_surname']}', position: '${responseJSONData['field_position']}', img: '../media/profiles/0_default/soccer-player.png'}`);
-                        // // });
-                        // // this is the way!!! - source: https://www.sitepoint.com/loop-through-json-response-javascript/
-                        // // https://masteringjs.io/tutorials/fundamentals/foreach-object
-                        // Object.entries(responseJSONData).forEach((entry) => {
-                        //     const [key, value] = entry;
-                        //     var user_name, user_surname, field_position;
-                        //     // console.log(entry);
-                        //     console.log(`${key}: ${value}`);
-                        //     if (key === 'user_name') {
-                        //         user_name = value;
-                        //     } else if (key === 'user_surname') {
-                        //         user_surname = value;
-                        //     } else if (key === 'field_position') {
-                        //         field_position = value;
-                        //     }
-                        //     playerData.push(`{name: '${user_name} ${user_surname}', position: '${field_position}', img: '../media/profiles/0_default/soccer-player.png'}`);
-                        // });
-                        // console.log("players array (mapped): \n" + playerData);
-                        // *** TESTING ********************************
-                    }
-                });
-        }
-
-        $.initializeSoccerfieldFormation = function(grcode) {
-            // soccer field player formation
-
-            var playerPositionData = [];
-            // {
-            //     name: 'KEYLOR NAVAS',
-            //     position: 'C_GK',
-            //     img: '../media/profiles/0_default/soccer-player.png'
-            // },
-            // {
-            //     name: 'MARCELO',
-            //     position: 'LC_B',
-            //     img: '../media/profiles/0_default/soccer-player.png'
-            // },
-            // {
-            //     name: 'SERGIO RAMOS',
-            //     position: 'C_B',
-            //     img: '../media/profiles/0_default/soccer-player.png'
-            // },
-            // {
-            //     name: 'CARVAJAL',
-            //     position: 'RC_B',
-            //     img: '../media/profiles/0_default/soccer-player.png'
-            // },
-            // {
-            //     name: 'CASEMIRO',
-            //     position: 'C_DM',
-            //     img: '../media/profiles/0_default/soccer-player.png'
-            // },
-            // {
-            //     name: 'KROOS',
-            //     position: 'L_M',
-            //     img: '../media/profiles/0_default/soccer-player.png'
-            // },
-            // {
-            //     name: 'ISCO',
-            //     position: 'LC_M',
-            //     img: '../media/profiles/0_default/soccer-player.png'
-            // },
-            // {
-            //     name: 'ASENSIO',
-            //     position: 'RC_M',
-            //     img: '../media/profiles/0_default/soccer-player.png'
-            // },
-            // {
-            //     name: 'MODRIC',
-            //     position: 'R_M',
-            //     img: '../media/profiles/0_default/soccer-player.png'
-            // },
-            // {
-            //     name: 'RONALDO',
-            //     position: 'LC_F',
-            //     img: '../media/profiles/0_default/soccer-player.png'
-            // },
-            // {
-            //     name: 'BENZEMA',
-            //     position: 'RC_F',
-            //     img: '../media/profiles/0_default/soccer-player.png'
-            // },
-
-
-            const memtype = 'starting';
-            $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/training/teams/get_teams_group_members.php?returntype=json&grc=" +
-                grcode + "&memtype=" + memtype,
-                function(data, status) {
-                    if (status != "success") {
-                        console.log(
-                            "Get Req Failed -> $.getRequestedGMJSONList returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getRequestedGMJSONList returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        return false;
-                    } else {
-                        console.log("Successfull response: \n" + JSON.stringify(data));
-
-                        let responseJSONData =
-                            data; // data; //we used JSON_PRETTY_PRINT param on json_encode in php 
-                        console.log("responseJSONData:");
-                        console.log(responseJSONData);
-
-                        playerPositionData.push(responseJSONData);
-                        console.log(playerPositionData);
-                    }
-                });
-
-
-            // let getPlayerPosJSON = getRequestedGMJSONList(grcode);
-
-            // playerPositionData.push(getPlayerPosJSON);
-            // console.log(playerPositionData);
-
-            function getKeyByValue(object, value) {
-                return Object.keys(object).find(key => object[key] === value);
-            }
-
-
-
-            // let fieldPositionDataArray = [];
-
-
-            // fieldPositionDataArray = JSON.parse(getRequestedGMJSONList(grcode));
-            // console.log("fieldPositionDataArray \n" + fieldPositionDataArray);
-
-            // create api to get json data from our database
-            // run getRequestedGMJSONList function to test what output we get
-            // let compiledPlayerPositionData = getRequestedGMJSONList(grcode);
-
-            // console.log("compiledPlayerPositionData: \n" + compiledPlayerPositionData);
-
-            if (playerPositionData !== false) {
-                // clear the #soccefield container
-                $('#soccerfield').empty();
-                // compile initialize soccerfield
-                $("#soccerfield").soccerfield(playerPositionData, {
-                    field: {
-                        width: "960px",
-                        height: "600px",
-                        img: '../media/assets/field_diagrams/soccer-field-dimensions-1.jpg',
-                        startHidden: false,
-                        animate: false,
-                        fadeTime: 1000,
-                        autoReveal: false,
-                        onReveal: function() {
-                            // triggered on reveal
-                            showSnackbar("Field - Soccerfield loaded.")
-                            console.log("Field - Soccerfield loaded.")
-                        }
-                    },
-                    players: {
-                        font_size: 16,
-                        reveal: false,
-                        sim: true, // reveal simultaneously
-                        timeout: 1000,
-                        fadeTime: 1000,
-                        img: true,
-                        onReveal: function() {
-                            // triggered on reveal
-                            showSnackbar("Players - Soccerfield plugin has been loaded.");
-                            console.log("Players - soccerfield plugin has been loaded.");
-                        }
-                    }
-                });
-            }
-
-        }
-
-        $.fetchTeamData = function(grcode) {
-            //alert("($.fetchTeamData) group ref code from this.value: " + grcode);
-
-            // compile player position data array from a php.get function for starting lineup players
-            $.initializeSoccerfieldFormation(grcode);
-
-
-            // retrieve the text of the selected team item in the #formation-team-selection elem - http://stackoverflow.com/questions/610336/ddg#610344
-            function getSelectedText(elementId) {
-                var elt = document.getElementById(elementId);
-
-                if (elt.selectedIndex == -1)
-                    return null;
-
-                return elt.options[elt.selectedIndex].text;
-            }
-
-            var panelHeaderText = getSelectedText('formation-team-selection');
-
-            // show #formation-guidelines-container
-            $('#formation-guidelines-container').show();
-            // show #formation-title
-            $('#formation-title').show();
-
-            $('#offcanvasTeamFormationLabel').text(panelHeaderText);
-
-            $('#loading-formation-data-spinner').show();
-            $.getTeamsGroupMembersTableItems(grcode);
-            $('#loading-formation-data-spinner').hide();
-            // $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/training/teams/get_teams_formation_data.php?grc=" + grcode, function (data, status) {
-
-            //     if (status != "success") {
-            //         console.log("Get Req Failed -> $.fetchTeamData returned: \n[Status]: " + status + "\n[Data]: " + data);
-            //         alert("Get Req Failed -> $.fetchTeamData returned: \n[Status]: " + status + "\n[Data]: " + data);
-            //     } else {
-            //         $('#addOutputIDHere').html(data);
-            //     }
-            // });
-        }
-
-        // get user activity timeline
-        $.getUserActivityTimeline = function(username) {
-            // scripts/php/main_app/compile_content/fitness_insights_tab/activity_timeline/get_user_activity_history.php
-            $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/activity_timeline/get_user_activity_history.php?usernm=" +
-                username,
-                function(data, status) {
-                    // console.log("getUserActivityTimeline returned: \n[Status]: " + status + "\n[Data]: " + data);
-
-                    if (status != "success") {
-                        // provide an error message
-                        console.log(
-                            "Get Req Failed -> $.getUserActivityTimeline returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.getUserActivityTimeline returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                    } else {
-                        // populate the activity timeline container
-                        $('#user-activity-timeline').html(data);
-
-                        // enclose the entry ref (attr: data-barcode) in the description container with a class, barcode-font 
-                        // $('[data-barcode=true]')
-                        $('span[data-barcode]').attr('class', 'barcode-font');
-                        $('span[data-barcode]').attr('style', 'font-size: 10px!important;');
-                    }
-                });
-        }
-
-        // *** training interactions tabs
-        // get users challenges
-        $.getUserChallenges = function(username) {
-            // perform a for loop to loop through workoutFreq array
-            const workoutCycle = ['daily', 'weekly'];
-            workoutCycle.forEach(cycle => {
-                // scripts/php/main_app/compile_content/fitness_insights_tab/training/challenges/get_user_challenges.php
-                $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/training/challenges/get_user_challenges.php?usernm=" +
-                    username + "&cycle=" + cycle,
-                    function(data, status) {
-                        // console.log("getUserChallenges returned: \n[Status]: " + status + "\n[Data]: " + data);
-
-                        if (status != "success") {
-                            // provide an error message
-                            console.log(
-                                "Get Req Failed -> $.getUserChallenges returned: \n[Status]: " +
-                                status + "\n[Data]: " + data);
-                            alert("Get Req Failed -> $.getUserChallenges returned: \n[Status]: " +
-                                status +
-                                "\n[Data]: " + data);
-                        } else {
-                            switch (cycle) {
-                                case 'daily':
-                                    // populate the #daily-challenges-grid containers
-                                    $('.daily-challenges-grid').html(data);
-
-                                    break;
-                                case 'weekly':
-                                    // populate the #weekly-challenges-grid containers
-                                    $('.weekly-challenges-grid').html(data);
-                                    break;
-
-                                default:
-                                    return console.log(
-                                        'error: unknown frequency detected ($.getUserChallenges)'
-                                    );
-                            }
-                        }
-                    });
-            });
-        }
-
-        // function for getting the max/highest requested prop (property/key) value from a json object or array - source: https://stackoverflow.com/questions/22949597/getting-max-values-in-json-array
-        function getMax(arr, prop) {
-            var max;
-            for (var i = 0; i < arr.length; i++) {
-                if (max == null || parseInt(arr[i][prop]) > parseInt(max[prop]))
-                    max = arr[i];
-            }
-            return max;
-        }
-
-        $.getActivityTrackerStatsSummaryWidget = function() {
-            function compileWidget(requestFormat) {
-                // if request format value can either be: ui_default / json. If request format is not passed default it to ui_default
-                requestFormat = requestFormat || 'ui_default';
-
-                $.get("../scripts/php/main_app/compile_content/fitness_insights_tab/activity_tracking/tracker_stats_widget.php?request=" +
-                    requestFormat,
-                    function(data, status) {
-                        // console.log("getActivityTrackerStatsWidget returned: \n[Status]: " + status + "\n[Data]: " + data);
-
-                        if (status != "success") {
-                            // provide an error message
-                            console.log(
-                                "Get Req Failed -> $.getActivityTrackerStatsSummaryWidget returned: \n[Status]: " +
-                                status + "\n[Data]: " + data);
-                            alert("Get Req Failed -> $.getActivityTrackerStatsSummaryWidget returned: \n[Status]: " +
-                                status + "\n[Data]: " + data);
-                        } else {
-                            // update the stats in the main widget on the insights tab. We will call a specific function that get the stats in json format and stores the json to localstorage
-                            switch (requestFormat) {
-                                case 'ui_default':
-                                    // ui returns and push it to the elems with .activity-tracker-stats-widget-container
-                                    $('.activity-tracker-stats-widget-container').html(data);
-                                    break;
-                                case 'json':
-                                    // store results in localstorage and push/map values to the ui elems on the main widget on the insights tab 
-                                    localStorage.setItem('ActivityTrackerStatsSummaryJson', data);
-                                    console.log(
-                                        "($.getActivityTrackerStatsSummaryWidget) Returned JSON: \n" +
-                                        data);
-                                    // alert("Output Test - Check JSON output on the console."); //test notification
-                                    // we will take the values returned from the json object and pass them to the main activity tracker stats widget ui on the insights tab
-                                    let summaryStatsJsonData = JSON.parse(data);
-
-                                    // 'averageHeartrate' => null, 'averageTemp' => null, 'averageSpeed' => null, 'totalSteps' => null
-                                    $('.heartrate-avg-stat').html(summaryStatsJsonData[
-                                        'averageHeartrate']);
-                                    $('.temp-avg-stat').html(summaryStatsJsonData['averageTemp']);
-                                    $('.speed-avg-stat').html(summaryStatsJsonData['averageSpeed']);
-                                    $('.steps-taken-stat').html(summaryStatsJsonData['totalSteps']);
-                                    $('.avg-bmi-stat').html(summaryStatsJsonData['averageBMI']);
-
-                                    // go back to the locally stored chart js json data and get the latest entries or max entries according to the requirments of the various tracked data types
-                                    // heartrate - get the highest heart rate
-                                    let highestHeartrateEntry = getMax(JSON.parse(localStorage.getItem(
-                                        'heart_rate_monitor_chart_data')), 'bpm');
-                                    $('.latest-heartrate-entry-value').html(highestHeartrateEntry[
-                                        'bpm'] + " bpm");
-                                    $('.avg-heartrate-latest-update-datetime').html(moment(
-                                            highestHeartrateEntry[
-                                                'date'] + " " + highestHeartrateEntry['time'])
-                                        .fromNow());
-                                    // temperature
-                                    let highestTempEntry = getMax(JSON.parse(localStorage.getItem(
-                                        'body_temp_monitor_chart_data')), 'temperature');
-                                    $('.latest-temp-entry-value').html(highestTempEntry['temperature'] +
-                                        " °C");
-                                    $('.avg-temp-latest-update-datetime').html(moment(highestTempEntry[
-                                            'date'] +
-                                        " " + highestTempEntry['time']).fromNow());
-                                    // speed
-                                    let highestSpeedEntry = getMax(JSON.parse(localStorage.getItem(
-                                        'speed_monitor_chart_data')), 'speed');
-                                    $('.highest-speed-entry-value').html(highestSpeedEntry['speed'] +
-                                        " m/s");
-                                    $('.highest-speed-entry-datetime').html(moment(highestSpeedEntry[
-                                            'date'] + " " +
-                                        highestSpeedEntry['time']).fromNow());
-                                    // steps - using fitbit data if available
-                                    // weight / bmi
-                                    let highestBMIEntry = getMax(JSON.parse(localStorage.getItem(
-                                        'bmi_weight_monitor_chart_data')), 'bmi');
-                                    $('.latest-bmi-entry-value').html(highestBMIEntry['bmi'] +
-                                        " (weight: " +
-                                        highestBMIEntry['weight'] + ")");
-                                    $('.bmi-latest-update-datetime').html(moment(highestBMIEntry[
-                                            'date'] + " " +
-                                        highestBMIEntry['time']).fromNow());
-                                    break;
-
-                                default:
-                                    // request format is unknown. console log and notify user
-                                    console.log(
-                                        '($.getActivityTrackerStatsSummaryWidget) Requested unknown request format: ' +
-                                        requestFormat);
-                                    alert('Activity Tracker Summary Stats Widget Error \nRequested unknown request format: ' +
-                                        requestFormat);
-                                    break;
-                            }
-
-                        }
-                    });
-            }
-
-            const requestFormats = ["ui_default", "json"];
-
-            requestFormats.forEach(reqformat => {
-                compileWidget(reqformat);
-            });
-        }
-
-        $.trainingSubTabMainTeamSelection = function(team_grcode) {
-            let mainTeamSelectionGRCode = team_grcode;
-
-            if (mainTeamSelectionGRCode == 'noselection') {
-                alert('Please select a team from the Switch Team Selection.');
-                // console.log focus event
-                console.log(
-                    '[$.trainingSubTabMainTeamSelection] focus event: #trainingSubTabMainTeamSelection')
-                $('#trainingSubTabMainTeamSelection').focus();
-            } else {
-                // store grpRefcode locally so we can access it later
-                grpRefcode = mainTeamSelectionGRCode;
-                // localStorage.setItem('teams_training_main_grcode', grpRefcode);
-                $.setDefaultTeamSelect(grpRefcode);
-
-                // *** fetch training data for selected team (grcode) and update the UI ***
-
-            }
-        }
-
-        // load Teams Activity Capturing Form
-        $.loadTeamsActivityCaptureForm = function(day, grpRefcode) {
-            console.log("$.loadTeamsActivityCaptureForm Day: " + day);
-            // alert("../scripts/php/main_app/data_management/system_admin/team_athletics_data/compile_teams_add_new_activity_day_form.php?day=" + day + "&gref=" + grpRefcode);
-
-            // get the currently selected teams grcode from #trainingSubTabMainTeamSelection :. onchange func for this elem is $.trainingSubTabMainTeamSelection
-            let mainTeamSelectionGRCode = $('#trainingSubTabMainTeamSelection').val(); // or
-            // let mainTeamSelectionGRCode = localStorage.getItem('teams_training_main_grcode');
-
-            if (mainTeamSelectionGRCode == 'noselection') {
-                alert('Please select a team from the Switch Team Selection and try again.');
-                // smooth scroll - do not smooth scroll to the #trainingSubTabMainTeamSelection elem as it is already in view
-                // $.smoothScroll('#v-sub-tab-pills-insights-teamathletics', '#trainingSubTabMainTeamSelection');
-                // click the #collapseTeamSelectBtn elem to show the collapseed team selection panel
-                $('#collapseTeamSelectBtn').click();
-                // console.log focus event
-                console.log(
-                    '[$.loadTeamsActivityCaptureForm] focus event: #trainingSubTabMainTeamSelection')
-                // set focus
-                $('#trainingSubTabMainTeamSelection').focus();
-            } else {
-                // store grpRefcode locally so we can access it later
-                grpRefcode = mainTeamSelectionGRCode;
-                localStorage.setItem('grcode', grpRefcode);
-
-                // get - compile the preview column-bar content
-                $.get("../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/compile/compile_teams_day_activities_preview_column_bar.php?day=" +
-                    day + "&gref=" + grpRefcode,
-                    function(data, status) {
-                        console.log("loadTeamsActivityCaptureForm returned [GET 1]: \n[Status]: " +
-                            status +
-                            "\n[Data]: " +
-                            data);
-
-                        if (status != "success") {
-                            // provide an error message
-                            console.log(
-                                "Get Req Failed -> $.loadTeamsActivityCaptureForm returned [GET 1]: \n[Status]: " +
-                                status + "\n[Data]: " + data);
-                            alert("Get Req Failed -> $.loadTeamsActivityCaptureForm returned [GET 1]: \n[Status]: " +
-                                status + "\n[Data]: " + data);
-                            showSnackbar("Failed to Load Activities Bar Preview.");
-                        } else {
-                            // populate the modal body
-                            $('#display-activity-bar-preview').html(data);
-                            // $('#toggleTabeditWeeklyTeamsTrainingScheduleModalBtn').click();
-                            // showSnackbar("Activities Bar Preview Loaded.");
-                        }
-                    });
-
-                // get - compile the data update form from 
-                $.get("../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/compile/compile_teams_schedule_activity_submit_form.php?day=" +
-                    day + "&gref=" + grpRefcode,
-                    function(data, status) {
-                        console.log("loadTeamsActivityCaptureForm returned [GET 2]: \n[Status]: " +
-                            status +
-                            "\n[Data]: " +
-                            data);
-
-                        if (status != "success") {
-                            // provide an error message
-                            console.log(
-                                "Get Req Failed -> $.loadTeamsActivityCaptureForm returned [GET 2]: \n[Status]: " +
-                                status + "\n[Data]: " + data);
-                            alert("Get Req Failed -> $.loadTeamsActivityCaptureForm returned [GET 2]: \n[Status]: " +
-                                status + "\n[Data]: " + data);
-                            showSnackbar("Failed to Load Activities Bar Preview.");
-                        } else {
-                            // check the returned result, if equals to "new_schedule_form" then transfer form html inside #add-new-schedule-form-container elem to #add-new-day-activity-form-container elem
-                            if (data == "new_schedule_form") {
-                                // transfer form html inside #add-new-schedule-form-container elem to #add-new-day-activity-form-container elem
-                                let newScheduleForm = $('#add-new-schedule-form-container').html();
-                                console.log("New Schedule Form: \n" + newScheduleForm);
-                                $('#add-new-day-activity-form-container').html(newScheduleForm);
-                                // update the date and day
-                                $('#add-to-calender-activity-day-value').val(day);
-                                $('#add-to-calender-activity-date-value').val(formatDate(Date.now()));
-
-                            } else {
-                                console.log("Returned data: \n" + data);
-                                // populate the modal body
-                                $('#add-new-day-activity-form-container').html(data);
-                            }
-
-                            // showSnackbar("Add exercise / activity form loaded.");
-                        }
-                    });
-
-                // 
-                $('#toggleTabeditWeeklyTeamsTrainingScheduleModalBtn').click();
-            }
-
-        }
-
-        $.setDefaultTeamSelect = function(grcode) {
-            // location: 'main','fixture' 
-            localStorage.setItem('teams_training_main_grcode', grcode);
-        }
-
-        $.getDefaultTeamSelect = function() {
-            // if 'teams_training_main_grcode' is not set in localstorage, set "noselection"
-            if (localStorage.getItem('teams_training_main_grcode') == null) {
-                localStorage.setItem('teams_training_main_grcode', "noselection");
-            } else {
-                let DefaultTeamSelect = localStorage.getItem('teams_training_main_grcode');
-
-                // select item with value=DefaultTeamSelect .team-selection-list
-                // $('.team-selection-list').val(DefaultTeamSelect).change();
-
-                // foreach node in .team-selection-list, change selected item with value
-                $('.team-selection-list').each(function() {
-                    if ($(this).val() == DefaultTeamSelect) {
-                        $(this).attr('selected', 'selected');
-                    }
-                });
-            }
-        }
-
-        // function for switching weekly view of assessment cards and the activity chart
-        $.switchWeeklyActivityView = (when, grcode) => {
-            const testgrcode = "tst_grp_0001";
-            grcode = grcode || testgrcode;
-
-            // update the weekly date range label
-            getCurrentWeekStartEndDates(when);
-
-            // initialize the activity bar chart
-            $.populateWeeklyActivityBarChart(when, grcode);
-            // initialize the assessment cards
-            $.populateWeeklyAssessmentsHorizCardContainer(when, grcode);
-        }
-
-        // function to get the #training-week-date-range-input selected date and sync the Weekly Training Activities in the activity bar chart
-        $.getRequestedTrainingWeekActivities = function() {
-            // get the #training-week-date-range-input selected date 
-            var rangeDate = new Date($('#training-week-date-range-input').val());
-
-            // call function to sync the Weekly Training Activities in the activity bar chart
-            $.populateWeeklyActivityBarChart('specific_range', null, true, rangeDate);
-        }
-
-        $.populateWeeklyActivityBarChart = function(when, grcode, dateQuery,
-            dateQueryStr) { // when is the week request (this/last/next week)
-            when = when || 'this';
-            grcode = grcode || localStorage.getItem(
-                'teams_training_main_grcode'); // 'test_grp_001'; // get the local stored global grcode    
-            // dateQuery flag variables for fetching training week activity data of dateQueryStr date. (function (when = null, *grcode, *bool = dateQuery, *date = dateQueryStr))
-            dateQuery = dateQuery || null;
-            dateQueryStr = dateQueryStr || null;
-
-            // inner bar activity containers
-            // $('#teams-weekly-activity-barchart-bar-day1').html(data);
-            // $('#teams-weekly-activity-barchart-bar-day2').html(data);
-            // $('#teams-weekly-activity-barchart-bar-day3').html(data);
-            // $('#teams-weekly-activity-barchart-bar-day4').html(data);
-            // $('#teams-weekly-activity-barchart-bar-day5').html(data);
-            // $('#teams-weekly-activity-barchart-bar-day6').html(data);
-            // $('#teams-weekly-activity-barchart-bar-day7').html(data);
-
-            // bar cols
-            // $('#day-1-col').html(data);
-            // $('#day-2-col').html(data);
-            // $('#day-3-col').html(data);
-            // $('#day-4-col').html(data);
-            // $('#day-5-col').html(data);
-            // $('#day-6-col').html(data);
-            // $('#day-7-col').html(data);
-
-            // show the loading indicator/spinners on each card / bar
-            const loadingIndicator =
-                `<div class="d-flex justify-content-center">
-                        <div class="spinner-grow" style="width:3rem;height3rem;" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                    </div>`;
-            $('#day-1-col').html(loadingIndicator);
-            $('#day-2-col').html(loadingIndicator);
-            $('#day-3-col').html(loadingIndicator);
-            $('#day-4-col').html(loadingIndicator);
-            $('#day-5-col').html(loadingIndicator);
-            $('#day-6-col').html(loadingIndicator);
-            $('#day-7-col').html(loadingIndicator);
-
-            showSnackbar(`Loading ${when} weeks activities.`);
-
-            // var weekDaysArray = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-
-            // alert("JQuery AJAX populateWeeklyActivityBarChart");
-
-
-            function getDayActivityData(dateStr, grcode, elemId) {
-                $.get("../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/compile/compile_teams_daily_activities.php?date=" +
-                    dateStr + "&grcode=" + grcode,
-                    function(data, status) {
-                        if (status != "success") {
-                            console.log(
-                                "Get Req Failed -> $.populateWeeklyActivityBarChart returned: \n[Status]: " +
-                                status + "\n[Data]: " + data);
-                            alert("Get Req Failed -> $.populateWeeklyActivityBarChart returned: \n[Status]: " +
-                                status + "\n[Data]: " + data);
-                        } else {
-                            $(elemId).html(data);
-                        }
-                    });
-            };
-
-            // for each date from getWeekRange array we received, make a request for the bar/column data
-            // use -1 for last week, 0 for this week and 1 for next week
-            var snackbarOutput = "";
-            var weekDatesArray = [];
-            switch (when) {
-                case "last":
-                    weekDatesArray = getWeekRange(-1);
-                    snackbarOutput =
-                        `${capitalizeFirstLetter(when)} weeks actvities bar chart has been loaded.`;
-                    break;
-                case "this":
-                    weekDatesArray = getWeekRange(0);
-                    snackbarOutput =
-                        `${capitalizeFirstLetter(when)} weeks actvities bar chart has been loaded.`;
-                    break;
-                case "next":
-                    weekDatesArray = getWeekRange(1);
-                    snackbarOutput =
-                        `${capitalizeFirstLetter(when)} weeks actvities bar chart has been loaded.`;
-                    break;
-                case "specific_range":
-                    // get weekdays array of the specific date passed in
-                    weekDatesArray = getSpecificWeekRange(dateQueryStr);
-                    snackbarOutput =
-                        `Training week actvities bar chart has been loaded for [ ${dateQueryStr} ].`;
-                    break;
-
-                default:
-                    return false;
-            }
-
-            // after we get the weekDatesArray, we loop through each item using a foreach loop and call getDayActivityData function to get data for that specific day
-            weekDatesArray.forEach(dateStr => {
-                var dayName = getDayName(dateStr, "en-ZA");
-
-                switch (dayName) {
-                    case "Monday":
-                        // execute function to get the current dates activity data
-                        getDayActivityData(dateStr, grcode, '#day-1-col');
-
-                        break;
-                    case "Tuesday":
-                        getDayActivityData(dateStr, grcode, '#day-2-col');
-                        break;
-                    case "Wednesday":
-                        getDayActivityData(dateStr, grcode, '#day-3-col');
-                        break;
-                    case "Thursday":
-                        getDayActivityData(dateStr, grcode, '#day-4-col');
-                        break;
-                    case "Friday":
-                        getDayActivityData(dateStr, grcode, '#day-5-col');
-                        break;
-                    case "Saturday":
-                        getDayActivityData(dateStr, grcode, '#day-6-col');
-                        break;
-                    case "Sunday":
-                        getDayActivityData(dateStr, grcode, '#day-7-col');
-                        break;
-
-                    default:
-                        console.log("Error [$.populateWeeklyActivityBarChart]: Day: " + dayName +
-                            " | grcode" +
-                            grcode);
-                        // alert("Error [$.populateWeeklyActivityBarChart]: Day: " + dayName + " | grcode" + grcode);
-                        break;
-                }
-            });
-
-            showSnackbar(snackbarOutput);
-        }
-
-        $.populateWeeklyAssessmentsHorizCardContainer = function(when, grcode) {
-            when = when || 'this';
-            grcode = grcode || 'all';
-
-            // show the loading indicator/spinners on each card / bar
-            const loadingIndicator =
-                `<div class="d-flex justify-content-center">
-                        <div class="spinner-border" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                    </div>`;
-            $('#weekly-assessment-h-scroll-weekday-card-varmonday').html(loadingIndicator);
-            $('#weekly-assessment-h-scroll-weekday-card-vartuesday').html(loadingIndicator);
-            $('#weekly-assessment-h-scroll-weekday-card-varwednesday').html(loadingIndicator);
-            $('#weekly-assessment-h-scroll-weekday-card-varthursday').html(loadingIndicator);
-            $('#weekly-assessment-h-scroll-weekday-card-varfriday').html(loadingIndicator);
-            $('#weekly-assessment-h-scroll-weekday-card-varsaturday').html(loadingIndicator);
-            $('#weekly-assessment-h-scroll-weekday-card-varsunday').html(loadingIndicator);
-
-            showSnackbar(`Loading ${when} weeks assessments.`);
-
-            function getDayAssessmentData(dateStr, grcode, elemId) {
-                $.get("../scripts/php/main_app/compile_content/profile_tab/get_users_daily_assessments_and_activities_list.php?date=" +
-                    dateStr + "&grcode=" + grcode,
-                    function(data, status) {
-
-                        if (status != "success") {
-                            console.log(
-                                "Get Req Failed -> $.populateWeeklyAssessmentsHorizCardContainer returned: \n[Status]: " +
-                                status + "\n[Data]: " + data);
-                            alert("Get Req Failed -> $.populateWeeklyAssessmentsHorizCardContainer returned: \n[Status]: " +
-                                status + "\n[Data]: " + data);
-                        } else {
-                            $(elemId).html(data);
-                        }
-                    });
-            }
-
-            var weekDatesArray = [];
-            switch (when) {
-                case "last":
-                    var weekDatesArray = getWeekRange(-2);
-                    break;
-                case "this":
-                    var weekDatesArray = getWeekRange(-1);
-                    break;
-                case "next":
-                    var weekDatesArray = getWeekRange(0);
-                    break;
-
-                default:
-                    return false;
-            }
-
-            // after we get the weekDatesArray, we loop through each item using a foreach loop and call getDayActivityData function to get data for that specific day
-            weekDatesArray.forEach(dateStr => {
-                var dayName = getDayName(dateStr, "en-ZA");
-
-                switch (dayName) {
-                    case "Monday":
-                        getDayAssessmentData(dateStr, grcode,
-                            '#weekly-assessment-h-scroll-weekday-card-varmonday');
-                        break;
-                    case "Tuesday":
-                        getDayAssessmentData(dateStr, grcode,
-                            '#weekly-assessment-h-scroll-weekday-card-vartuesday');
-                        break;
-                    case "Wednesday":
-                        getDayAssessmentData(dateStr, grcode,
-                            '#weekly-assessment-h-scroll-weekday-card-varwednesday');
-                        break;
-                    case "Thursday":
-                        getDayAssessmentData(dateStr, grcode,
-                            '#weekly-assessment-h-scroll-weekday-card-varthursday');
-                        break;
-                    case "Friday":
-                        getDayAssessmentData(dateStr, grcode,
-                            '#weekly-assessment-h-scroll-weekday-card-varfriday');
-                        break;
-                    case "Saturday":
-                        getDayAssessmentData(dateStr, grcode,
-                            '#weekly-assessment-h-scroll-weekday-card-varsaturday');
-                        break;
-                    case "Sunday":
-                        getDayAssessmentData(dateStr, grcode,
-                            '#weekly-assessment-h-scroll-weekday-card-varsunday');
-                        break;
-                    default:
-                        console.log(
-                            "Error: no weekday output to pass to card. [$.populateWeeklyAssessmentsHorizCardContainer]: Day: " +
-                            dayName + " | grcode" + grcode);
-                        // alert("Error: no weekday output to pass to card. [$.populateWeeklyAssessmentsHorizCardContainer]: Day: " + dayName + " | grcode" + grcode);
-                        break;
-                }
-            });
-
-            showSnackbar(`${capitalizeFirstLetter(when)} weeks assessment cards have been loaded.`);
-        }
-
-        // ***** Locaion: Modal
-        // ajax jquery - submit activity tracking data [Heart Rate]
-        $("#modal-heartrate-insights-activitytracker-data-form").on("submit", function(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            // get the localy stored user_usnm
-            let user_usnm = localStorage.getItem('user_usnm');
-
-            var form_data = new FormData($('#modal-heartrate-insights-activitytracker-data-form')[0]);
-            setTimeout(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_heartrate.php',
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    cache: false,
-                    data: form_data,
-                    beforeSend: function() {
-                        console.log(
-                            'beforeSend: submitting activity tracking data [Heart Rate]'
-                        );
-                        // disable the form submit btn
-                        $('#modal-heartrate-insights-activitytracker-data-form > [type="submit"]')
-                            .attr('disabled', true);
-                        // show #load-wait-screen-curtain 
-                        $('#load-wait-screen-curtain').show();
-                    },
-                    success: function(response) {
-                        if (response.startsWith("success")) {
-                            console.log(
-                                'success: returning response - activity tracking data [Heart Rate]'
-                            );
-                            console.log("Response: " + response);
-
-                            // run sync function for heartrate chart
-                            var dateToday = new Date('Y-m-d');
-                            syncUserActivityTrackerChart(heartRateChart, user_usnm,
-                                'heart_rate_monitor_chart', null, dateToday);
-
-                            // reset the form
-                            // $('#modal-heartrate-insights-activitytracker-data-form :input').val('');
-                            $('#modal-heartrate-insights-activitytracker-data-form[name=checkListItem]')
-                                .val('');
-                        } else {
-                            console.log(
-                                "error: returning response - activity tracking data [Heart Rate]"
-                            );
-                            console.log("Response: " + response);
-                        }
-
-                        // enable the form submit btn
-                        $('#modal-heartrate-insights-activitytracker-data-form > [type="submit"]')
-                            .attr('disabled', false);
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        console.log("exception error: " + thrownError + "\r\n" + xhr
-                            .statusText + "\r\n" + xhr.responseText);
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    }
-                });
-            }, 1000);
-
-            e.stopImmediatePropagation();
-            return false;
-        });
-        // ./ ajax jquery - submit activity tracking data [Heart Rate]
-
-        // ajax jquery - submit activity tracking data [Body Temp]
-        $("#modal-bodytemp-insights-activitytracker-data-form").on("submit", function(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            // get the localy stored user_usnm
-            let user_usnm = localStorage.getItem('user_usnm');
-
-            var form_data = new FormData($('#modal-bodytemp-insights-activitytracker-data-form')[0]);
-            setTimeout(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_bodytemp.php',
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    cache: false,
-                    data: form_data,
-                    beforeSend: function() {
-                        console.log(
-                            'beforeSend: submitting activity tracking data [Body Temp]'
-                        );
-                        // show #load-wait-screen-curtain 
-                        $('#load-wait-screen-curtain').show();
-                    },
-                    success: function(response) {
-
-                        if (response.startsWith("success")) {
-                            console.log(
-                                'success: returning response - activity tracking data [Body Temp]'
-                            );
-                            console.log("Response: " + response);
-                            // get the profile image name and append it to the src attribute str
-                            // var str = response;
-                            // var imgSrcStr = str.split('[').pop().split(']')[0];
-                        } else {
-                            console.log(
-                                "error: returning response - activity tracking data [Body Temp]"
-                            );
-                            console.log("Response: " + response);
-                        }
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        console.log("exception error: " + thrownError + "\r\n" + xhr
-                            .statusText + "\r\n" + xhr.responseText);
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    }
-                });
-            }, 1000);
-
-            e.stopImmediatePropagation();
-            return false;
-        });
-        // ./ ajax jquery - submit activity tracking data [Body Temp]
-
-        // ajax jquery - submit activity tracking data [Speed]
-        $("#modal-speed-insights-activitytracker-data-form").on("submit", function(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            // get the localy stored user_usnm
-            let user_usnm = localStorage.getItem('user_usnm');
-
-            var form_data = new FormData($('#modal-speed-insights-activitytracker-data-form')[0]);
-            setTimeout(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_speed.php',
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    cache: false,
-                    data: form_data,
-                    beforeSend: function() {
-                        console.log(
-                            'beforeSend: submitting activity tracking data [Speed]'
-                        );
-                        // show #load-wait-screen-curtain 
-                        $('#load-wait-screen-curtain').show();
-                    },
-                    success: function(response) {
-
-                        if (response.startsWith("success")) {
-                            console.log(
-                                'success: returning response - activity tracking data [Speed]'
-                            );
-                            console.log("Response: " + response);
-                            // get the profile image name and append it to the src attribute str
-                            // var str = response;
-                            // var imgSrcStr = str.split('[').pop().split(']')[0];
-                        } else {
-                            console.log(
-                                "error: returning response - activity tracking data [Speed]"
-                            );
-                            console.log("Response: " + response);
-                        }
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        console.log("exception error: " + thrownError + "\r\n" + xhr
-                            .statusText + "\r\n" + xhr.responseText);
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    }
-                });
-            }, 1000);
-
-            e.stopImmediatePropagation();
-            return false;
-        });
-        // ./ ajax jquery - submit activity tracking data [Speed]
-
-        // ajax jquery - submit activity tracking data [BMI Weight]
-        $("#modal-weight-insights-activitytracker-data-form").on("submit", function(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            // get the localy stored user_usnm
-            let user_usnm = localStorage.getItem('user_usnm');
-
-            var form_data = new FormData($('#modal-weight-insights-activitytracker-data-form')[0]);
-            setTimeout(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_bmiweight.php',
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    cache: false,
-                    data: form_data,
-                    beforeSend: function() {
-                        console.log(
-                            'beforeSend: submitting activity tracking data [BMI Weight]'
-                        );
-                        // show #load-wait-screen-curtain 
-                        $('#load-wait-screen-curtain').show();
-                    },
-                    success: function(response) {
-
-                        if (response.startsWith("success")) {
-                            console.log(
-                                'success: returning response - activity tracking data [BMI Weight]'
-                            );
-                            console.log("Response: " + response);
-                            // get the profile image name and append it to the src attribute str
-                            // var str = response;
-                            // var imgSrcStr = str.split('[').pop().split(']')[0];
-                        } else {
-                            console.log(
-                                "error: returning response - activity tracking data [BMI Weight]"
-                            );
-                            console.log("Response: " + response);
-                        }
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        console.log("exception error: " + thrownError + "\r\n" + xhr
-                            .statusText + "\r\n" + xhr.responseText);
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    }
-                });
-            }, 1000);
-
-            e.stopImmediatePropagation();
-            return false;
-        });
-        // ./ ajax jquery - submit activity tracking data [BMI Weight]
-
-        // ***** Locaion: Single
-        // ajax jquery - submit activity tracking data [Heart Rate]
-        $("#single-heartrate-insights-activitytracker-data-form").on("submit", function(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            // get the localy stored user_usnm
-            let user_usnm = localStorage.getItem('user_usnm');
-
-            var form_data = new FormData($('#single-heartrate-insights-activitytracker-data-form')[0]);
-            setTimeout(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_heartrate.php',
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    cache: false,
-                    data: form_data,
-                    beforeSend: function() {
-                        console.log(
-                            'beforeSend: submitting activity tracking data [Heart Rate]'
-                        );
-                        // show #load-wait-screen-curtain 
-                        $('#load-wait-screen-curtain').show();
-                    },
-                    success: function(response) {
-                        if (response.startsWith("success")) {
-                            console.log(
-                                'success: returning response - activity tracking data [Heart Rate]'
-                            );
-                            console.log("Response: " + response);
-
-                            // run sync function for heartrate chart
-                            var dateToday = new Date();
-                            syncUserActivityTrackerChart(heartRateChart, user_usnm,
-                                'heart_rate_monitor_chart', null, dateToday);
-
-                            // reset the form
-                            $('#single-heartrate-insights-activitytracker-data-form :input')
-                                .val('');
-
-                        } else {
-                            console.log(
-                                "error: returning response - activity tracking data [Heart Rate]"
-                            );
-                            console.log("Response: " + response);
-                        }
-
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        console.log("exception error: " + thrownError + "\r\n" + xhr
-                            .statusText + "\r\n" + xhr.responseText);
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    }
-                });
-            }, 1000);
-
-            e.stopImmediatePropagation();
-            return false;
-        });
-        // ./ ajax jquery - submit activity tracking data [Heart Rate]
-
-        // ajax jquery - submit activity tracking data [Body Temp]
-        $("#single-bodytemp-insights-activitytracker-data-form").on("submit", function(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            // get the localy stored user_usnm
-            let user_usnm = localStorage.getItem('user_usnm');
-
-            var form_data = new FormData($('#single-bodytemp-insights-activitytracker-data-form')[0]);
-            setTimeout(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_bodytemp.php',
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    cache: false,
-                    data: form_data,
-                    beforeSend: function() {
-                        console.log(
-                            'beforeSend: submitting activity tracking data [Body Temp]'
-                        );
-                        // show #load-wait-screen-curtain 
-                        $('#load-wait-screen-curtain').show();
-                    },
-                    success: function(response) {
-
-                        if (response.startsWith("success")) {
-                            console.log(
-                                'success: returning response - activity tracking data [Body Temp]'
-                            );
-                            console.log("Response: " + response);
-                            // get the profile image name and append it to the src attribute str
-                            // var str = response;
-                            // var imgSrcStr = str.split('[').pop().split(']')[0];
-                        } else {
-                            console.log(
-                                "error: returning response - activity tracking data [Body Temp]"
-                            );
-                            console.log("Response: " + response);
-                        }
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        console.log("exception error: " + thrownError + "\r\n" + xhr
-                            .statusText + "\r\n" + xhr.responseText);
-                        // hide #load-wait-screen-curtain
-                        // show #load-wait-screen-curtain 
-                        $('#load-wait-screen-curtain').show();
-                    }
-                });
-            }, 1000);
-
-            e.stopImmediatePropagation();
-            return false;
-        });
-        // ./ ajax jquery - submit activity tracking data [Body Temp]
-
-        // ajax jquery - submit activity tracking data [Speed]
-        $("#single-speed-insights-activitytracker-data-form").on("submit", function(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            // get the localy stored user_usnm
-            let user_usnm = localStorage.getItem('user_usnm');
-
-            var form_data = new FormData($('#single-speed-insights-activitytracker-data-form')[0]);
-            setTimeout(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_speed.php',
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    cache: false,
-                    data: form_data,
-                    beforeSend: function() {
-                        console.log(
-                            'beforeSend: submitting activity tracking data [Speed]'
-                        );
-                        // show #load-wait-screen-curtain 
-                        $('#load-wait-screen-curtain').show();
-                    },
-                    success: function(response) {
-
-                        if (response.startsWith("success")) {
-                            console.log(
-                                'success: returning response - activity tracking data [Speed]'
-                            );
-                            console.log("Response: " + response);
-                            // get the profile image name and append it to the src attribute str
-                            // var str = response;
-                            // var imgSrcStr = str.split('[').pop().split(']')[0];
-                        } else {
-                            console.log(
-                                "error: returning response - activity tracking data [Speed]"
-                            );
-                            console.log("Response: " + response);
-                        }
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        console.log("exception error: " + thrownError + "\r\n" + xhr
-                            .statusText + "\r\n" + xhr.responseText);
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    }
-                });
-            }, 1000);
-
-            e.stopImmediatePropagation();
-            return false;
-        });
-        // ./ ajax jquery - submit activity tracking data [Speed]
-
-        // ajax jquery - submit activity tracking data [BMI Weight]
-        $("#single-weight-insights-activitytracker-data-form").on("submit", function(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            // get the localy stored user_usnm
-            let user_usnm = localStorage.getItem('user_usnm');
-
-            var form_data = new FormData($('#single-weight-insights-activitytracker-data-form')[0]);
-            setTimeout(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/user_capture_stats_bmiweight.php',
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    cache: false,
-                    data: form_data,
-                    beforeSend: function() {
-                        console.log(
-                            'beforeSend: submitting activity tracking data [BMI Weight]'
-                        );
-                        // show #load-wait-screen-curtain 
-                        $('#load-wait-screen-curtain').show();
-                    },
-                    success: function(response) {
-
-                        if (response.startsWith("success")) {
-                            console.log(
-                                'success: returning response - activity tracking data [BMI Weight]'
-                            );
-                            console.log("Response: " + response);
-
-                            // run sync function for heartrate chart
-                            var dateToday = new Date();
-                            syncUserActivityTrackerChart(bmiWeightChart, user_usnm,
-                                'heart_rate_monitor_chart', null, dateToday);
-
-                            // reset the form
-                            $('#modal-heartrate-insights-activitytracker-data-form :input')
-                                .val(
-                                    '');
-
-                        } else {
-                            console.log(
-                                "error: returning response - activity tracking data [BMI Weight]"
-                            );
-                            console.log("Response: " + response);
-                        }
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        console.log("exception error: " + thrownError + "\r\n" + xhr
-                            .statusText + "\r\n" + xhr.responseText);
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    }
-                });
-            }, 1000);
-
-            e.stopImmediatePropagation();
-            return false;
-        });
-        // ./ ajax jquery - submit activity tracking data [BMI Weight]
-
-
-        // ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
-        $("#teams-add-new-day-activity-data-form").on("submit", function(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            var form_data = new FormData($('#teams-add-new-day-activity-data-form')[0]);
-            setTimeout(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '../scripts/php/main_app/data_management/activity_tracker_stats_admin/team_athletics_data/capture/teams_add_new_activity_day_form_submit.php',
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    cache: false,
-                    data: form_data,
-                    beforeSend: function() {
-                        console.log(
-                            'beforeSend: submit edited weekly teams activity data [Teams Submit Edited Activities Form]'
-                        );
-                        // show #load-wait-screen-curtain 
-                        $('#load-wait-screen-curtain').show();
-                    },
-                    success: function(response) {
-
-                        if (response.startsWith("success")) {
-                            console.log(
-                                'success: returning response - submit edited weekly teams activity data [Teams Submit Edited Activities Form]'
-                            );
-                            console.log("Response: " + response);
-                            // get the profile image name and append it to the src attribute str
-                            // var str = response;
-                            // var imgSrcStr = str.split('[').pop().split(']')[0];
-
-                            // call the function/code to populate the modal body - use jquery ajax
-                            var local_grpRefcode = localStorage.setItem('grcode');
-                            $.loadTeamsActivityCaptureForm(day, local_grpRefcode);
-                        } else {
-                            console.log(
-                                "error: returning response - submit edited weekly teams activity data [Teams Submit Edited Activities Form]"
-                            );
-                            console.log("Response: " + response);
-                        }
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        console.log("exception error: " + thrownError + "\r\n" + xhr
-                            .statusText + "\r\n" + xhr.responseText);
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    }
-                });
-            }, 1000);
-
-            e.stopImmediatePropagation();
-            return false;
-        });
-        // ./ ajax jquery - submit edited weekly teams activity data [Teams Submit Edited Activities Form]
-
-        // ajax jquery - submit add new activity data form on the calender view modal
-        $("#add-new-schedule-form").on("submit", function(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            // get the localy stored user_usnm
-            let user_usnm = localStorage.getItem('user_usnm');
-
-            var form_data = new FormData($('#add-new-schedule-form')[0]);
-            setTimeout(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '../scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/add_to_teams_training_schedule.php?submitted_by=' +
-                        user_usnm,
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    cache: false,
-                    data: form_data,
-                    beforeSend: function() {
-                        console.log(
-                            'beforeSend: submitting add new activity data form on the calender view modal'
-                        );
-
-                        // show #load-wait-screen-curtain 
-                        $('#load-wait-screen-curtain').show();
-
-                        // check if team has been selected from #add-to-calender-team-select
-                        if ($('#add-to-calender-team-select').val() ==
-                            "noselection") {
-                            alert(
-                                'Please select a team to assign this schedule to.'
-                            );
-                            $('#add-to-calender-team-select').focus();
-                            // hide #load-wait-screen-curtain 
-                            $('#load-wait-screen-curtain').hide();
-                            return false;
-                        }
-                    },
-                    success: function(response) {
-                        if (response.startsWith("success")) {
-                            console.log(
-                                'success: returning response - added new activity data form on the calender view modal'
-                            );
-                            console.log("Response: " + response);
-
-                            showSnackbar('Schedule created successfully.',
-                                'alert_success');
-
-                            // test output
-                            // alert("Success: returning response - added new activity data form on the calender view modal \nResponse: " + response);
-                            // 
-                            $('#add-new-schedule-form > #output-container').html(`<div class="alert alert-success p-4 text-center" style="border-radius:25px;">
-                            <span class="material-icons material-icons-round align-middle text-success" style="color:var(--secondary-color);font-size:48px!important;">
-                            check_circle
-                            </span> 
-                            Schedule created  successfully.
-                            </div>`);
-
-
-                            // reset the form
-                            // click the "Remove all selected" btn #remove-all-from-selected-activities-list-btn
-                            $('remove-all-from-selected-activities-list-btn')
-                                .click();
-                            // reset the form using .trigger("change"): $('form#myform select, form input[type=checkbox]') | source: https://stackoverflow.com/questions/16452699/how-to-reset-a-form-using-jquery-with-reset-method
-                            $('form #add-new-activity-form select:not("#add-to-calender-team-select"), form input[type=checkbox], *')
-                                .trigger("change");
-
-                            // loop through this form and clear all inputs / reset them to default values
-                            // $('#add-new-activity-form *').filter(':input').each(function(this) {
-                            //     //set each input value to ''
-                            //     $(this).val('');
-                            // });
-                            // $('#id="add-new-schedule-form :input').val(''); // alternative one-liner
-                            // $('#id="add-new-schedule-form[name=checkListItem]').val(''); // alternative one-liner
-                        } else {
-                            console.log(
-                                "error: returning response - add new activity data form on the calender view modal"
-                            );
-                            console.log("Response: " + response);
-                            $('#add-new-schedule-form > #output-container').html(`<div class="alert alert-danger p-4 text-center" style="border-radius:25px;">
-                            <span class="material-icons material-icons-round align-middle text-danger" style="color:var(--text-color);font-size:48px!important;">
-                            error_outline
-                            </span> 
-                            ${response}
-                            </div>`);
-
-                            // test output
-                            // alert("Failure: returning response - failed to add new activity data form on the calender view modal \nResponse: " + response);
-                        }
-
-                        // set 2 second timeout to hide the loading indicator curtain
-                        setTimeout(function() {
-                            // scroll to the output-container for the form - params (containerElemID, scrollToElemID, scrollSpeed)
-                            $.smoothScroll(
-                                '#CalenderActivityFormeModal_body',
-                                '#output-container',
-                                1000);
-                            // hide #load-wait-screen-curtain
-                            $('#load-wait-screen-curtain').hide();
-                        }, 2000);
-
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        var errorMsg = "exception error: " + thrownError + "\r\n" +
-                            xhr
-                            .statusText + "\r\n" + xhr.responseText
-                        console.log(errorMsg);
-
-                        // output error message on form
-                        $('#add-new-schedule-form > #output-container').html(`<div class="alert alert-danger p-4 text-center" style="border-radius:25px;">
-                            <span class="material-icons material-icons-round align-middle text-danger" style="color:var(--text-color);font-size:48px!important;">
-                            error_outline
-                            </span> 
-                            An error has occurred. Please contact <a href="#">support.</a>.
-                            </div>`);
-
-                        // show error snackbar to notify the user
-                        showSnackbar(errorMsg, 'alert_error', 'medium_10000');
-
-                        // set 2 second timeout to hide the loading indicator curtain
-                        setTimeout(function() {
-                            // scroll to the output-container for the form - params (containerElemID, scrollToElemID, scrollSpeed)
-                            $.smoothScroll(
-                                '#CalenderActivityFormeModal_body',
-                                '#output-container', 1000);
-                            // hide #load-wait-screen-curtain
-                            $('#load-wait-screen-curtain').hide();
-                        }, 2000);
-                    }
-                });
-            }, 1000);
-
-            e.stopImmediatePropagation();
-            return false;
-        });
-        // ./ ajax jquery - submit add new activity data form on the calender view modal
-
-        // ajax jquery - submit add match to fixture data form
-        $("#add-match-fixture-form").on("submit", function(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            // get the localy stored user_usnm
-            let user_usnm = localStorage.getItem('user_usnm');
-
-            // scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/create/add_match_to_fixture.php
-            var form_data = new FormData($('#add-match-fixture-form')[0]);
-            setTimeout(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/create/add_match_to_fixture.php?submitted_by=' +
-                        user_usnm,
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    cache: false,
-                    data: form_data,
-                    beforeSend: function() {
-                        console.log(
-                            'beforeSend: submitting add match to fixture data form'
-                        );
-                        // show #load-wait-screen-curtain 
-                        $('#load-wait-screen-curtain').show();
-                    },
-                    success: function(response) {
-                        if (response.startsWith("success")) {
-                            console.log(
-                                'success: returning response - added add match to fixture data form'
-                            );
-                            console.log("Response: " + response);
-
-                            // test output
-                            // alert("Success: returning response - added new activity data form on the calender view modal \nResponse: " + response);
-                            // 
-                            $('#add-match-fixture-form > #output-container').html(`
-                            <div class="alert alert-success p-4 text-center" style="border-radius:25px;">
-                            <span class="material-icons material-icons-round align-middle" 
-                            style="color:var(--secondary-color);font-size:48px!important;">
-                            check_circle
-                            </span> 
-                            Data saved successfully.
-                            </div>
-                            `);
-
-                            // // scroll to the output-container for the form - params (containerElemID, scrollToElemID, scrollSpeed)
-                            $.smoothScroll('#add-match-fixture-body-container',
-                                '#output-container', 1000);
-
-                            // // reset the form
-                            // // loop through this form and clear all inputs / reset them to default values
-                            // $('#add-new-activity-form *').filter(':input').each(function(key, value) {
-                            //     //set each input value to ''
-                            //     $(this).val('');
-                            // });
-                            // $('#id="add-match-fixture-form :input').val(''); // alternative one-liner
-                            // $('#id="add-match-fixture-form[name=checkListItem]').val(''); // alternative one-liner
-                        } else {
-                            console.log(
-                                "error: returning response - add match to fixture data form"
-                            );
-                            console.log("Response: " + response);
-                            $('#add-match-fixture-form > #output-container').html(`
-                            <div class="alert alert-danger p-4 text-center" style="border-radius:25px;">
-                            <span class="material-icons material-icons-round align-middle" style="color:var(--text-color);font-size:48px!important;">
-                            error_outline
-                            </span> 
-                            ${response}
-                            </div>
-                            `);
-
-                            // // scroll to the output-container for the form - params (containerElemID, scrollToElemID, scrollSpeed - ms)
-                            $.smoothScroll('#add-match-fixture-body-container',
-                                '#output-container', 1000);
-
-                            // test output
-                            // alert("Failure: returning response - failed to add new activity data form on the calender view modal \nResponse: " + response);
-                        }
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        console.log("exception error: " + thrownError + "\r\n" + xhr
-                            .statusText + "\r\n" + xhr.responseText);
-                        // hide #load-wait-screen-curtain
-                        $('#load-wait-screen-curtain').hide();
-                    }
-                });
-            }, 1000);
-
-            e.stopImmediatePropagation();
-            return false;
-        });
-        // ./ ajax jquery - submit add match to fixture data form
-
-        // initialize image map highlighting plugin - interactions physical assessment
-        function initMapHighlight() {
-            console.log("initializing Map Highlight");
-            // Initialize maphilight plugin
-            $('img[usemap]').maphilight();
-
-            // Handle area click events
-            $('area').on('click', function() {
-                // Get the value of the 'onclick' attribute and execute the function
-                var onClickFunction = $(this).attr('onclick');
-                if (onClickFunction) {
-                    eval(onClickFunction);
-                }
-
-                // Add your custom code here, for example, show an alert
-                alert("Area clicked: " + $(this).attr('alt'));
-            });
-
-            // area mouseover
-            const imageMap = document.getElementById("image-map-front");
-            // const areas = $('image-map-front > area'); //document.querySelectorAll('area');
-
-            // areas = query get area elements from name="image-map-male-front-indi"
-            const areas = Array.from($('#map-area-front[name="image-map-male-front-indi"]'));
-
-            areas.forEach(function(area) {
-                area.addEventListener("mouseover", function() {
-                    area.classList.add('highlight');
-                });
-
-                area.addEventListener("mouseout", function() {
-                    area.classList.remove('highlight');
-                });
-
-                area.addEventListener("click", function() {
-                    alert("Area clicked: " + area.getAttribute('alt'));
-                    // createMarker(); // Call your function here
-                });
-            });
-
-            // save state to localstorage
-            localStorage.setItem('imageMapState', true);
-
-        }
-
-        // load interaction model content
-        $.loadInteractionContent = function(loadContent) {
-            let user_id = localStorage.getItem('user_usnm');
-            var getRequestLink, modalHeader = null;
-
-            // show the interaction modal
-            // $('#show-interaction-modal-btn').click();
-
-            // set loading display
-            $('#interactionsContentContainer').html(
-                `<div class="d-flex justify-content-center">
-                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </div>
-            <p class="text-center">Loading. Please wait.</p>`
-            );
-
-            switch (loadContent) {
-                case "TrainingDrillsWorkouts":
-                    modalHeader = `<span class="material-icons material-icons-round align-middle">shuffle_on</span>
-            <span class="align-middle d-none d-md-block"> Training Drills &amp; Workouts.</span>`;
-                    getRequestLink =
-                        '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_training_drills_workouts.php?uid=' +
-                        user_id;
-                    break;
-                case "PhysicalAssessment":
-                    modalHeader = `<span class="material-icons material-icons-round align-middle">personal_injury</span>
-            <span class="align-middle d-none d-md-block"> Physical Assessment</span>`;
-                    getRequestLink =
-                        '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_physical_assessment.php?uid=' +
-                        user_id;
-                    break;
-                case "NutritionBoard":
-                    modalHeader = `<span class="material-icons material-icons-round align-middle">developer_board</span>
-            <span class="align-middle d-none d-md-block"> Nutrition Board.</span>`;
-                    getRequestLink =
-                        '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_nutrition_board.php?uid=' +
-                        user_id;
-                    break;
-                case "CreationTools":
-                    modalHeader = `<span class="material-icons material-icons-round align-middle">brush</span>
-            <span class="align-middle d-none d-md-block"> Creation Tools.</span>`;
-                    getRequestLink =
-                        '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_creation_tools.php?uid=' +
-                        user_id;
-                    break;
-                case "AdminDataMgmt":
-                    modalHeader = `<span class="material-icons material-icons-round align-middle">account_tree</span>
-            <span class="align-middle d-none d-md-block"> Data Management.</span>`;
-                    getRequestLink =
-                        '../scripts/php/main_app/compile_content/fitness_insights_tab/training/interactions/compile_data_mgmt.php?uid=' +
-                        user_id;
-                    break;
-
-                default:
-                    modalHeader = `<span class="material-icons material-icons-round align-middle">account_tree</span>
-            <span class="align-middle d-none d-md-block"> Data Management.</span>`;
-                    getRequestLink = 'abort operation';
-                    console.log(
-                        "Error: no content request received. [$.loadInteractionContent]: loadContent Param: " +
-                        loadContent);
-                    alert("Error: no content request received. [$.loadInteractionContent]: loadContent Param: " +
-                        loadContent);
-                    break;
-            }
-
-            if (loadContent == "PhysicalAssessment") {
-                // call initMapHighlight function
-                initMapHighlight();
-            }
-
-            if (getRequestLink != 'abort operation') {
-                $.get(getRequestLink, function(data, status) {
-
-                    if (status.startsWith('return')) {
-                        console.log(
-                            "Get Req Failed -> $.loadInteractionContent returned: \n[Status]: " +
-                            status + "\n[Data]: " + data);
-                        alert("Get Req Failed -> $.loadInteractionContent returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                    } else {
-                        // show the interaction modal
-                        // $('#show-interaction-modal-btn').click();
-                        // load the interaction modal with requested content
-                        $('#trainingInteractionsContentModalLabel').html(modalHeader);
-                        // update the onclick function for the modal header label
-                        $('#trainingInteractionsContentModalLabel').attr('onclick',
-                            `$.loadInteractionContent('${loadContent}')`);
-                        $('#interactionsContentContainer').html(data);
-                    }
-                });
-            }
-
-        }
-
-        //<!-- script for loading edit forms for weekly teams activities -->
-        $.editAddNewActivityModal = function(day, grpRefcode) {
-            // open the modal
-            // $("#toggleTabeditWeeklyTeamsTrainingScheduleModalBtn").click();
-
-            // call the function/code to populate the modal body - use jquery ajax
-            $.loadTeamsActivityCaptureForm(day, grpRefcode);
-
-            // update the modal header label
-            $('#tabeditWeeklyTeamsTrainingScheduleModalLabelText').html('Edit weekly training schedule ( ' +
-                day +
-                ' )');
-        }
-
-        $.toggleEditDayBar = function(day, groupRefCode) {
-            // open the modal
-            // $("#toggleTabeditWeeklyTeamsTrainingScheduleModalBtn").click();
-
-            // call the function/code to populate the modal body - use jquery ajax - "editbar" value (grpRefcode) will load a form for updating the title and rpe
-            var initVal = "editbar";
-            $.loadTeamsActivityCaptureForm(day, initVal);
-        }
-
-        $.removeWeeklyTrainingActivity = function(day, groupRefCode, exerciseID) {
-            alert(
-                `Flag: $.removeWeeklyTrainingActivity \n day: ${day} | grcode: ${groupRefCode} | exerciseID: ${exerciseID}`
-            );
-        }
-        // <!-- ./ script for loading edit forms for weekly teams activities -->
-
-        // function to save custom color tag to db on form #add-new-activity-form
-        $.newCustomColorTag = function(tagColor) {
-            try {
-                var tagTitle = $('#add-to-calender-activity-custom-colorcode-title-value').val();
-                tagTitle = tagTitle.split(' ').join(
-                    '_'); // .replace(/ /g,"_"); replace empty space with underscore 
-                var saveTagValue = $('#add-to-calender-activity-custom-colorcode-save-tag').val();
-                var saveTag = false;
-
-                if (tagTitle == "") {
-                    tagTitle = "color_tag";
-                }
-
-                switch (saveTagValue) {
-                    case 0:
-                        saveTag = false;
-                        break;
-                    case 1:
-                        saveTag = true;
-                        break;
-
-                    default:
-                        saveTag = false;
-                        break;
-                }
-                // create option child element inside #add-to-calender-activity-colorcode-value select element before the last child element (create custom tag option)
-                $('#add-to-calender-activity-colorcode-value > option:last').before(
-                    `<option value="${tagTitle}[${tagColor}]" style="color: ${tagColor};"> ${tagTitle} </option>`
-                );
-                $("#add-to-calender-activity-colorcode-value").val(`${tagTitle}[${tagColor}]`);
-                console.log(
-                    `$.newCustomColorTag\n tagTitle: ${tagTitle}\n saveTagValue: ${saveTagValue}\n saveTag: ${saveTag}`
-                );
-                return true;
-
-                $.post('scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/new_teams_color_tag.php', // url 
-                    {
-                        tag_name: tagTitle,
-                        tag_color: tagColor,
-                        save_tag: saveTag
-                    }, // data to be submit
-                    function(data, status, xhr) { // success callback function
-                        alert('status: ' + status + ', data: ' + data.responseData);
-                    },
-                    'json'); // response data format
-            } catch (error) {
-                console.log("Exception Error: [$.newCustomColorTag] \n" + error);
-                return false;
-            }
-        }
-
-        // function for sorting the select options - https://stackoverflow.com/questions/278089/javascript-to-sort-contents-of-select-element
-        function sortSelect(selElemID) {
-            let selElem = document.getElementById(selElemID);
-            var tmpAry = new Array();
-            for (var i = 0; i < selElem.options.length; i++) {
-                tmpAry[i] = new Array();
-                tmpAry[i][0] = selElem.options[i].text;
-                tmpAry[i][1] = selElem.options[i].value;
-            }
-            tmpAry.sort();
-            while (selElem.options.length > 0) {
-                selElem.options[0] = null;
-            }
-            for (var i = 0; i < tmpAry.length; i++) {
-                var op = new Option(tmpAry[i][0], tmpAry[i][1]);
-                selElem.options[i] = op;
-            }
-            return;
-        }
-
-        // move multiple list items between two multi-select elements
-        function moveItems(origin, dest) {
-            $(origin).find(':selected').appendTo(dest);
-        }
-
-        function moveAllItems(origin, dest) {
-            $(origin).children().appendTo(dest);
-            $('#selected-xp-counter').html(`Total xp: 0 | 0 activities.`); //reset the selected xp count
-        }
-
-        function calculateWorkoutTotalXP() {
-            // reinitialize the sumXP
-            var sumXP = 0;
-            var sumRPE = 0;
-            var listCount = 0;
-            $("#select-workout-exercises-selected > option").each(function() {
-                // console.log(this.text + ' ' + this.value);
-                // extract the exercise xp value from this.text
-                var selectedExerciseText = this.text;
-
-                sumXP += parseInt(selectedExerciseText.split('X[').pop().split(']P')[0])
-
-                // calculate the total / sumRPE
-                sumRPE += parseInt(selectedExerciseText.split('RPE[').pop().split(']R')[0])
-
-                listCount += 1;
-            });
-
-            // update #selected-xp-counter field with sumXP value
-            $('#selected-xp-counter').html(`Total xp: ${sumXP} | ${listCount} activities.`);
-            // assign sumRPE to #add-to-calender-activity-rpe-value
-            $('#add-to-calender-activity-rpe-value').val(sumRPE);
-
-        }
-
-        // move/add to selected list
-        $('#add-selection-to-activities-selectlist-btn').on('click', function() {
-            // direction:  init to selected list
-            moveItems('#add-to-calender-activity-selection', '#select-workout-exercises-selected');
-            calculateWorkoutTotalXP();
-        });
-
-        $.resetThisForm = function(formElemId, elemType) {
-            // loop through all option elems in #add-to-calender-activity-selection and remove the selected attribute
-            $(`${formElemId} *`).filter(`:${elemType}`).each(function(key, value) {
-                //set each input value to ''
-                switch (elemType) {
-                    case "input":
-                        // 
-                        $(this).val("");
-                        break;
-                    case "option":
-                        // 
-                        $(this).removeAttr("selected");
-                        break;
-
-                    default:
-                        alert(
-                            "Unable to reset the requested form. Check the console for more details."
-                        );
-                        console.log("Cannot find/reset this element: <" + elemType + " />");
-                        break;
-                }
-
-            });
-        }
-
-        // text-input: pass title and definitionstrings to selected list
-        $('#add-selection-to-activities-textinput-btn').on('click', function(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            let newExerciseTitle = $('#add-to-calender-activity-specify-title').val();
-
-            let newExerciseDescription = $('#add-to-calender-activity-specify-new-description').val();
-            let newExerciseGuidelines = $('#add-to-calender-activity-specify-new-guidelines').val();
-
-            let newExerciseSets = $('#add-to-calender-activity-specify-sets').val();
-            let newExerciseReps = $('#add-to-calender-activity-specify-reps').val();
-            let newExerciseRests = $('#add-to-calender-activity-specify-rests').val();
-
-            let newExerciseXP = $('#add-to-calender-activity-specify-xp').val();
-            let newExerciseTrainingPhase = $('#add-to-calender-specify-training-phase').val();
-
-            var exerciseSaveStatus = null;
-
-            // check if input fields are empty, if true the warning alert message is displayed
-            if (newExerciseTitle == "" ||
-                newExerciseDescription == "" ||
-                newExerciseSets <= 0 ||
-                newExerciseReps <= 0 ||
-                newExerciseRests < 0 ||
-                newExerciseXP <= 0 ||
-                newExerciseTrainingPhase == "") {
-                alert('Please provide information in all fields.');
-            } else {
-                // add the exercise/activity to the db 
-                try {
-                    $.post("../administration/scripts/php/capture/new_exercise.php", {
-                                exerciseTitle: newExerciseTitle,
-                                exerciseDescription: newExerciseDescription,
-                                exerciseGuidelines: newExerciseGuidelines,
-                                exerciseSets: newExerciseSets,
-                                exerciseReps: newExerciseReps,
-                                exerciseRests: newExerciseRests,
-                                xp_points: newExerciseXP,
-                                trainingPhase: newExerciseTrainingPhase
-                            },
-                            function(data, status) {
-                                console.log(
-                                    "$.post(../administration/scripts/php/capture/new_exercise.php) status: \n" +
-                                    status);
-                                // data returned is the exercise_id
-                                let exercise_id = data;
-                                if (status == 'success') {
-                                    exerciseSaveStatus = "success";
-                                    console.log(
-                                        '$(#add-selection-to-activities-textinput-btn) -> status: ' +
-                                        status + ', \ndata: ' + data);
-                                    // alert('Successfull. \n$(#add-selection-to-activities-textinput-btn) -> status: ' + status + ', \ndata: ' + data);
-                                } else {
-                                    exerciseSaveStatus = "fail";
-                                    console.log(
-                                        "$(#add-selection-to-activities-textinput-btn) -> fail returned: " +
-                                        status + ', \ndata: ' + data);
-                                    // alert("Failure. \n$(#add-selection-to-activities-textinput-btn) -> fail returned: " + status + ', \ndata: ' + data);
-                                }
-
-                                // and then create new <options>  node to #add-to-calender-activity-selection, and then move the added node to #select-workout-exercises-selected
-                                switch (exerciseSaveStatus) {
-                                    case "success":
-                                        // loop through all option elems in #add-to-calender-activity-selection and remove the selected attribute
-                                        // $('#add-to-calender-activity-selection *').filter(':option')
-                                        $("#add-to-calender-activity-selection > option").each(function(
-                                            key,
-                                            value) {
-                                            //remove the selected attribute from all select child nodes
-                                            $(this).removeAttr("selected");
-                                        });
-                                        // so that we can set the selected attribute to the new exercise/activity record item we have created in the db
-                                        // $('#add-to-calender-activity-selection').append(`<option value="${exercise_id}" flagnew> ${newExerciseTitle} - ( ${newExerciseDescription} ) X[${newExerciseXP}]P </option>`);
-                                        // after which we add the option item to the '#select-workout-exercises-selected list
-                                        $('#select-workout-exercises-selected').append(
-                                            `<option value="${parseInt(exercise_id)}" flagnew> ${newExerciseTitle} - ( ${newExerciseDescription} ) X[${newExerciseXP}]P </option>`
-                                        );
-                                        // and then we sort the list
-                                        sortSelect('select-workout-exercises-selected');
-                                        // recalculate the total xp
-                                        calculateWorkoutTotalXP();
-                                        // reset/clear all inputs
-                                        $('#add-to-calender-activity-specify-title').val('');
-
-                                        $('#add-to-calender-activity-specify-new-description').val('');
-                                        $('#add-to-calender-activity-specify-new-guidelines').val('');
-
-                                        $('#add-to-calender-activity-specify-sets').val('1');
-                                        $('#add-to-calender-activity-specify-reps').val('1');
-                                        $('#add-to-calender-activity-specify-rests').val('0');
-
-                                        $('#add-to-calender-activity-specify-xp').val('');
-                                        $('#add-to-calender-specify-training-phase').val('beginner');
-
-                                        showSnackbar("New Exercise was saved successfully.",
-                                            'alert_success',
-                                            'medium_5000');
-
-                                        break;
-                                    case "fail":
-                                        showSnackbar(
-                                            "A fail error has occured. We are unable to save your new exercise entry. Contact Support.",
-                                            'alert_error', 'long_15000');
-                                        console.log(
-                                            "A fail error has occured. We are unable to save your new exercise entry. Contact Support."
-                                        );
-                                        break;
-
-                                    default:
-                                        // error - status unknown
-                                        showSnackbar(
-                                            "Default Error: status unknown. Contact Support. \nStatus: " +
-                                            status, 'alert_error', 'long_15000');
-                                        console.log("Default Error: status unknown. Contact Support.");
-                                        break;
-                                }
-
-                            }
-                        )
-                        .done(function() {
-                            console.log("New exercise entry submission is complete.");
-                        })
-                        .fail(function() {
-                            console.log(
-                                "$(#add-selection-to-activities-textinput-btn) -> post fail error"
-                            );
-                            alert(
-                                "Failure. \n$(#add-selection-to-activities-textinput-btn) -> post fail error"
-                            );
-                        });
-                } catch (error) {
-                    console.log("$(#add-selection-to-activities-textinput-btn) -> Exception error: \n" +
-                        error);
-                    console.log(
-                        "An exception error occured. We are unable to save your new exercise entry. Contact Support."
-                    );
-                    showSnackbar(
-                        "An exception error occured. We are unable to save your new exercise entry. Contact Support.",
-                        'alert_error', 'long_15000');
-                }
-            }
-
-            e.stopImmediatePropagation();
-            return false;
-
-        });
-
-        // remove selected item from selected list
-        $('#remove-selection-from-selected-activities-list-btn').on('click', function() {
-            // direction: selected to init list
-            moveItems('#select-workout-exercises-selected', '#add-to-calender-activity-selection');
-            sortSelect('add-to-calender-activity-selection');
-            calculateWorkoutTotalXP();
-        });
-        // remove all items in selected list to initial
-        $('#remove-all-from-selected-activities-list-btn').on('click', function() {
-            // direction: selected to init list
-            moveAllItems('#select-workout-exercises-selected', '#add-to-calender-activity-selection');
-            sortSelect('add-to-calender-activity-selection');
-            calculateWorkoutTotalXP();
-        });
-
-        // ** admin requests **
-        // get indi exercises items (called from app/index.php)
-        $.getIndiExercises = function(request, elemid) {
-
-            var elemid = elemid ||
-                '#add-to-calender-activity-selection'; // initialize output elemid if it was not passed through params
-            $.get("../administration/scripts/php/get_items/get_indi_exercises.php?giveme=" + request,
-                function(data,
-                    status) {
-                    if (status != "success") {
-                        console.log("Get Req Failed -> $.getIndiExercises returned: \n[Status]: " +
-                            status +
-                            "\n[Data]: " + data);
-                        // alert("Get Req Failed -> $.getCommunityGroups returned: \n[Status]: " + status + "\n[Data]: " + data);
-                    } else {
-                        if (request == 'json') {
-                            console.log('Indi Exercises Json: \n' + data);
-                        } else {
-                            $(elemid).html(data); // '#add-to-calender-activity-selection'
-                        }
-                    }
-                });
-        }
-
-        // function to auto-hide/show the side panels on page load
-        $.checkSidePanelVisibility = function() {
-            var left_side_panel_visibility_state = localStorage.getItem('left_side_panel_visibility_state');
-            var right_side_panel_visibility_state = localStorage.getItem(
-                'right_side_panel_visibility_state');
-
-            if (left_side_panel_visibility_state != true) {
-                $('#twitter-social-panel').addClass('d-none');
-                // $.hideSingleSidePanel('#twitter-social-panel', 'left');
-            } else {
-                $('#twitter-social-panel').removeClass('d-none');
-                // $.showSingleSidePanel('#twitter-social-panel', 'left');
-            }
-
-            if (right_side_panel_visibility_state != true) {
-                $('#creation-tools-content-panel').addClass('d-none');
-                // $.hideSingleSidePanel('#creation-tools-content-panel', 'left');
-            } else {
-                $('#creation-tools-content-panel').removeClass('d-none');
-                // $.showSingleSidePanel('#creation-tools-content-panel', 'left');
-            }
-        }
-
-
-
-        // *** ./ script_jquery.js functions
-    });
+    // jquery ondocument ready moved to external file
 
     // check core script loaded state
     function checkCoreScriptLoadState() {
@@ -18272,7 +15591,6 @@ if (isset($_SESSION["currentUserAuth"])) {
             coreScriptLoaded_digiclock_css =
             coreScriptLoaded_digiclock_js = 
             coreScriptLoaded_timeline_css = 
-            coreScriptLoaded_custom_jquery_func_js =
             coreScriptLoaded_custom_script_js = 
             coreScriptLoaded_custom_api_req_js = 
             coreScriptLoaded_jquery_local_js =
@@ -18332,6 +15650,9 @@ if (isset($_SESSION["currentUserAuth"])) {
         if (coreScriptLoaded_jquery_local_js == false) {
             falseVariables.push('coreScriptLoaded_jquery_local_js');
         }
+        if (coreScriptLoaded_custom_jquery_func_js == false) {
+            falseVariables.push('coreScriptLoaded_custom_jquery_func_js');
+        }
         if (coreScriptLoaded_moment_js == false) {
             falseVariables.push('coreScriptLoaded_moment_js');
         }
@@ -18348,68 +15669,13 @@ if (isset($_SESSION["currentUserAuth"])) {
             falseVariables.push('coreScriptLoaded_chartjs_js');
         }
 
-
         // if falseVariables is empty, do not console log
         if (falseVariables.length > 0) {
-            console.log(
+            console.error(
                 "Some core scripts were not loaded. Please check your internet connection. \nScripts that did not load: ",
                 JSON.stringify(falseVariables));
         }
 
-        // coreScriptLoaded_bootstrap_bundle_cdn_js == false ||
-        // coreScriptLoaded_bootstrap_bundle_local_js == false ||
-        /* coreScriptLoaded_googlefonts_fonts == false || */
-        /* coreScriptLoaded_custom_jquery_func_js == false ||
-            coreScriptLoaded_custom_script_js == false || */
-        /*  
-         # deprecated    
-        if (coreScriptLoaded_googlefont_icons_css == false ||
-             coreScriptLoaded_plyrio_css == false ||
-             coreScriptLoaded_plyrio_js == false ||
-             coreScriptLoaded_hls_js == false ||
-             coreScriptLoaded_bootstrap_local_css == false ||
-             coreScriptLoaded_w3_css == false ||
-             coreScriptLoaded_custom_styles_css == false ||
-             coreScriptLoaded_digiclock_css == false ||
-             coreScriptLoaded_digiclock_js == false ||
-             coreScriptLoaded_timeline_css == false ||
-             coreScriptLoaded_custom_api_req_js == false ||
-             coreScriptLoaded_jquery_local_js == false ||
-             coreScriptLoaded_moment_js == false ||
-             coreScriptLoaded_googlefonts_css == false ||
-             coreScriptLoaded_soccerfield_css == false ||
-             coreScriptLoaded_soccerfield_js == false ||
-             coreScriptLoaded_chartjs_js == false) {
-             console.log("Some core scripts were not loaded. Please check your internet connection. \n" +
-                 "\n googlefont_icons_css: " + coreScriptLoaded_googlefont_icons_css +
-                 "\n plyrio_css: " + coreScriptLoaded_plyrio_css +
-                 "\n plyrio_js: " + coreScriptLoaded_plyrio_js +
-                 "\n hls_js: " + coreScriptLoaded_hls_js +
-                 "\n bootstrap_local_css: " + coreScriptLoaded_bootstrap_local_css +
-                 "\n bootstrap_bundle_local_js*not in condition*: " +
-                 coreScriptLoaded_bootstrap_bundle_local_js +
-                 "\n w3_css: " + coreScriptLoaded_w3_css +
-                 "\n custom_styles_css: " + coreScriptLoaded_custom_styles_css +
-                 "\n digiclock_css: " + coreScriptLoaded_digiclock_css +
-                 "\n digiclock_js: " + coreScriptLoaded_digiclock_js +
-                 "\n timeline_css: " + coreScriptLoaded_timeline_css +
-                 "\n custom_jquery_func_js: " + coreScriptLoaded_custom_jquery_func_js +
-                 "\n custom_script_js: " + coreScriptLoaded_custom_script_js +
-                 "\n custom_api_req_js: " + coreScriptLoaded_custom_api_req_js +
-                 "\n jquery_local_js: " + coreScriptLoaded_jquery_local_js +
-                 "\n custom_jquery_func_js: " + coreScriptLoaded_custom_jquery_func_js +
-                 "\n moment_js: " + coreScriptLoaded_moment_js +
-                 "\n googlefonts_fonts*not in condition*: " + coreScriptLoaded_googlefonts_fonts +
-                 "\n googlefonts_css: " + coreScriptLoaded_googlefonts_css +
-                 "\n soccerfield_css: " + coreScriptLoaded_soccerfield_css +
-                 "\n soccerfield_js: " + coreScriptLoaded_soccerfield_js +
-                 "\n chartjs_js: " + coreScriptLoaded_chartjs_js);
-             // show offline curtain and pass message of none-loaded scripts
-             document.getElementById("output-msg-heading").innerHTML = "You are offline.";
-             document.getElementById("output-msg-text").innerHTML =
-                 "Some core scripts were not loaded. Please check your internet connection and try reloading the page.<br>If the error persists, please contact <a href='https://http://help.onefit.adaptivconcept.co.za/systems/?errortype=core_script_error' style='color:var(--primary-color);'>support</a>";
-             document.getElementById("offline-curtain").style.display = 'block';
-         } */
     }
 
     function formatAMPM(date) {
@@ -18563,17 +15829,88 @@ if (isset($_SESSION["currentUserAuth"])) {
         }, displayLength);
     }
 
+    // Function to determine contrast color based on secondary color
+    function getContrastColor(secondaryColor) {
+        // Convert secondary color to RGB
+        var rgb = hexToRgb(secondaryColor);
+
+        // console.log("secondary color: " + secondaryColor); // debug
+        // console.log("RGB: " + rgb); // debug
+
+        // Calculate the relative luminance
+        var luminance = (0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b) / 255;
+
+        // console.log("Luminance: " + luminance); // debug    
+
+        // Determine contrast color based on luminance
+        var contrastColor = (luminance > 0.5) ? '#000000' : '#ffffff';
+
+        // console.log("Contrast color: " + contrastColor); // debug
+
+        return contrastColor;
+    }
+
+    // Function to convert hex color to RGB
+    function hexToRgb(hex) {
+        var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+        hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+            return r + r + g + g + b + b;
+        });
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
+    }
+
+    // Function to randomly change the theme every 5 seconds
+    function randomizeTheme(switchOn) {
+        // Check if switchOn parameter is true
+        if (switchOn) {
+            // Generate a random theme color
+            var randomColorPrimary = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            // var randomColorSecondary = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            // var randomColorAccent = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            // var randomColorText = '#' + Math.floor(Math.random() * 16777215).toString(16);
+
+            // Get the contrast color of the random color
+            var baseDarkContrast = getContrastColor(randomColorPrimary);
+
+            // Apply the random color to the theme
+            document.documentElement.style.setProperty('--primary-color', randomColorPrimary);
+            document.documentElement.style.setProperty('--secondary-color', '#000000'); // baseDarkContrast
+            document.documentElement.style.setProperty('--accent-color', baseDarkContrast);
+            document.documentElement.style.setProperty('--text-color',
+                "#ffffff"); // getContrastColor(baseDarkContrast) should be either #000000 or #ffffff
+            document.documentElement.style.setProperty('--content-tab-primary-color', randomColorPrimary + 'b8');
+        } else {
+            // Reset the theme to default colors
+            applyThemeColors(true);
+        }
+    }
+
+    // Declare the randomizeTheme interval variable (moved to higher scope)
+    var themeInterval;
+
     // function to apply the theme color by changing the root declared color values
     function applyThemeColors(reset) {
         // turnary statement: if 'reset' is a parameter value, true then assign default colors
         reset = reset || false;
 
+        // clear/initialize the themeInterval variable
+        clearInterval(themeInterval);
+
         if (reset == true) {
+            // true
             document.documentElement.style.setProperty('--primary-color', '#ffa500');
             document.documentElement.style.setProperty('--secondary-color', '#343434');
             document.documentElement.style.setProperty('--accent-color', '#ffa500');
             document.documentElement.style.setProperty('--text-color', '#ffffff');
+            document.documentElement.style.setProperty('--content-tab-primary-color',
+                '#ffa500b8');
         } else {
+            // false
             document.documentElement.style.setProperty('--primary-color',
                 document.getElementById(
                     'primary-color').value);
@@ -18585,24 +15922,44 @@ if (isset($_SESSION["currentUserAuth"])) {
                 document.getElementById(
                     'accent-color').value);
             document.documentElement.style.setProperty('--text-color',
-                document.getElementById('text-color')
-                .value);
+                getContrastColor(document.getElementById(
+                        'secondary-color')
+                    .value));
+            // document.getElementById('text-color').value
+            document.documentElement.style.setProperty('--content-tab-primary-color',
+                document.getElementById(
+                    'primary-color').value + 'b8');
         }
 
         // save colors to localstorge
         localStorage.setItem('theme-primary-color', document.getElementById('primary-color').value);
         localStorage.setItem('theme-secondary-color', document.getElementById('secondary-color').value);
         localStorage.setItem('theme-secondary-color', document.getElementById('accent-color').value);
-        localStorage.setItem('theme-text-color', document.getElementById('text-color').value);
+        localStorage.setItem('theme-text-color', getContrastColor(document.getElementById('secondary-color').value));
+        // document.getElementById('text-color').value
+        localStorage.setItem('theme-content-tab-primary-color', `${document.getElementById('primary-color').value}b8`)
+
+        // if theme name is 'random', call 
+        if (localStorage.getItem('selectedThemeName') == 'random') {
+            // Call the randomizeTheme function every 6 seconds and assign it to the interval variable
+            themeInterval = setInterval(function() {
+                randomizeTheme(true);
+            }, 6000);
+        } else {
+            // Stop the interval by calling clearInterval and passing the interval variable
+            clearInterval(themeInterval);
+            console.log("Theme randomizer stopped. \n", themeInterval); // debug
+        }
 
         // log the theme colors applied
         console.log("Theme colors applied. ", "theme name: " + localStorage.getItem('selectedThemeName'));
     }
 
     // check if theme color have been set, if not set default/main colors
-    if (localStorage.getItem('theme-primary-color') == null || localStorage.getItem(
-            'theme-secondary-color') == null || localStorage.getItem('theme-accent-color') == null || localStorage
-        .getItem('theme-text-color') == null) {
+    if (localStorage.getItem('theme-primary-color') == null ||
+        localStorage.getItem('theme-secondary-color') == null ||
+        localStorage.getItem('theme-accent-color') == null ||
+        localStorage.getItem('theme-text-color') == null) {
         // set default colors
         document.getElementById('primary-color').value = '#ffa500';
         document.getElementById('secondary-color').value = '#343434';
@@ -18620,10 +15977,15 @@ if (isset($_SESSION["currentUserAuth"])) {
         applyThemeColors();
     }
 
-
     // tab panel opacity slider
     const slider = document.getElementById("panelOpacityRange");
     const output = document.getElementById("panel-opaciy-lbl");
+
+    // Get the current slider value
+    var sliderValue = slider.value;
+
+    // Convert the slider value to a decimal between 0 and 1
+    var opacity = parseInt(sliderValue) / 100;
 
     // get panel opacity from localstorage
     if (localStorage.getItem("panelOpacity") === null) {
@@ -18635,6 +15997,11 @@ if (isset($_SESSION["currentUserAuth"])) {
         // set css opacity from localStorage
         document.documentElement.style.setProperty('--content-panel-opacity', localStorage.getItem('panelOpacity') /
             100);
+
+        // Update the opacity of --content-tab-primary-color
+        /* document.documentElement.style.setProperty('--content-tab-primary-color',
+            `${document.getElementById('primary-color').value}${opacity.toString(16)}`); // testing */
+
     } else {
         slider.value = localStorage.getItem("panelOpacity");
         output.innerHTML = slider.value +
@@ -18643,12 +16010,28 @@ if (isset($_SESSION["currentUserAuth"])) {
         // set css opacity from localStorage
         document.documentElement.style.setProperty('--content-panel-opacity', localStorage.getItem('panelOpacity') /
             100);
+
+        // Update the opacity of --content-tab-primary-color
+        /* document.documentElement.style.setProperty('--content-tab-primary-color', */
+        /*     `${document.getElementById('primary-color').value}${opacity.toString(16)}`); // testing */
     }
 
     function setPanelOpacity() {
         // update css variable --content-panel-opacity
-        document.documentElement.style.setProperty(
-            "--content-panel-opacity", slider.value / 100);
+        /* document.documentElement.style.setProperty(
+            "--content-panel-opacity", slider.value / 100); */
+
+
+
+        // Get the current slider value
+        var sliderValue = slider.value; // depr
+
+        // Convert the slider value to a decimal between 0 and 1
+        var opacity = parseInt(sliderValue) / 100; // depr
+
+        // Update the opacity of --content-tab-primary-color
+        document.documentElement.style.setProperty('--content-tab-primary-color',
+            `${document.getElementById('primary-color').value}b8`);
 
         // store slider value on localstorage panelOpacity
         localStorage.setItem("panelOpacity", slider.value)
@@ -18659,6 +16042,44 @@ if (isset($_SESSION["currentUserAuth"])) {
         output.innerHTML = this.value + "%";
         setPanelOpacity();
     }
+
+    // event listener for theme-randomizer-btn, to toggle random theme
+    document.getElementById("theme-randomizer-btn").addEventListener("click", function() {
+        // change the text button of the theme-randomizer-btn
+        $themeRandomizerBtnText = document.querySelector("#theme-randomizer-btn .material-icons").textContent;
+        console.log("theme-randomizer-btn text: ", $themeRandomizerBtnText); // debug
+        if ($themeRandomizerBtnText == "toggle_on") {
+            // turn off random theme: toggle_off
+            document.getElementById("theme-randomizer-btn").innerHTML =
+                `<label
+                    class="material-icons material-icons-round align-middle"
+                    for="theme-select-random">
+                    toggle_off
+                </label>`;
+            // store selected theme on localstorage
+            localStorage.setItem("selectedTheme", "theme-select-default");
+            localStorage.setItem("selectedThemeName", "default");
+            // apply theme colors (true = reset)
+            applyThemeColors(true);
+            // snackbar
+            showSnackbar("Random theme is off.", "alert_general")
+        } else {
+            // turn on random theme: toggle_on
+            document.getElementById("theme-randomizer-btn").innerHTML =
+                `<label
+                    class="material-icons material-icons-round align-middle"
+                    for="theme-select-random">
+                    toggle_on
+                </label>`;
+            // store selected theme on localstorage
+            localStorage.setItem("selectedTheme", "theme-select-random");
+            localStorage.setItem("selectedThemeName", "random");
+            // apply theme colors (false = do not reset)
+            applyThemeColors(false);
+            // snackbar
+            showSnackbar("Random theme is on.", "alert_success")
+        }
+    });
 
     // event listener for when the user changes selected theme via radio buttons
     var themeSelectList = document.getElementsByName(
@@ -18727,25 +16148,42 @@ if (isset($_SESSION["currentUserAuth"])) {
         // store selected theme name on localstorage
         localStorage.setItem("selectedThemeName", "default");
     } else {
+        const selectedThemeName = localStorage.getItem('selectedThemeName');
+
+
         // set selected theme from localstorage
         document.getElementById(localStorage.getItem(
             'selectedTheme')).checked = true;
         // update #primary-color, #secondary-color, #accent-color, #text-color inputs with the selected theme colors
-        console.log("Theme Pallete-in-LocalStorage: ", "pallette-prclr-" + localStorage.getItem(
-            'selectedThemeName')); // debug
-        document.getElementById("primary-color").value =
-            document.getElementById("pallette-prclr-" +
-                localStorage.getItem('selectedThemeName')).value;
-        document.getElementById("secondary-color").value =
-            document.getElementById("pallette-scclr-" +
-                localStorage.getItem('selectedThemeName')).value;
-        document.getElementById("accent-color").value =
-            document.getElementById("pallette-acclr-" +
-                localStorage.getItem('selectedThemeName')).value;
-        document.getElementById("text-color").value =
-            document.getElementById("pallette-txtclr-" +
-                localStorage.getItem('selectedThemeName')).value;
-        // apply theme colors 
+        console.log("Theme Pallete-in-LocalStorage: ",
+            "pallette-prclr-" + selectedThemeName); // debug 15787 - 15792
+
+        // if selected theme is custom, set the theme colors from localstorage
+        if (selectedThemeName == "custom") {
+            // custom theme - get from localstorage
+            document.getElementById("primary-color").value = localStorage.getItem("theme-primary-color");
+            document.getElementById("secondary-color").value = localStorage.getItem("theme-secondary-color");
+            document.getElementById("accent-color").value = localStorage.getItem("theme-accent-color");
+            document.getElementById("text-color").value = localStorage.getItem("theme-text-color");
+
+        } else {
+            // theme pallette
+            // update #primary-color, #secondary-color, #accent-color, #text-color inputs with the selected theme colors
+            document.getElementById("primary-color").value =
+                document.getElementById("pallette-prclr-" +
+                    selectedThemeName).value;
+            document.getElementById("secondary-color").value =
+                document.getElementById("pallette-scclr-" +
+                    selectedThemeName).value;
+            document.getElementById("accent-color").value =
+                document.getElementById("pallette-acclr-" +
+                    selectedThemeName).value;
+            document.getElementById("text-color").value =
+                document.getElementById("pallette-txtclr-" +
+                    selectedThemeName).value;
+
+        }
+        // apply theme colors (false = do not reset)
         applyThemeColors(false);
     }
 
@@ -18804,17 +16242,35 @@ if (isset($_SESSION["currentUserAuth"])) {
         const timeElapsed = Date.now('yyyy-MM-dd');
 
         // assign year value to dateYear if dateYear parameter was not passed as a parameter
-        var dateYear = dateYear || new Date(timeElapsed).getFullYear();
+        dateYear = dateYear || new Date(timeElapsed).getFullYear();
 
         // assign month value to dateMonth if dateMonth parameter was not passed as a parameter
-        var dateMonth = dateMonth || new Date(timeElapsed).getMonth() + 1;
+        dateMonth = dateMonth || new Date(timeElapsed).getMonth() + 1;
 
         // assign day value to dateDay if dateDay parameter was not passed as a parameter
-        var dateDay = dateDay || new Date(timeElapsed).getDate();
+        dateDay = dateDay || new Date(timeElapsed).getDate();
+
+        // move html inside #add-new-day-activity-form-container to #add-new-schedule-form-container
+        /* $("#add-new-schedule-form-container").html(
+            $("#add-new-day-activity-form-container").html()
+        ); */
+
+        // clear #add-new-day-activity-form-container
+        $("#add-new-day-activity-form-container").html("");
+
+        // place location indicator in the #add-new-schedule-form-container
+        /* var widgetLocationIndicator = `
+            <div class="text-center fs-5 text-muted comfortaa-font my-5 p-4 border-1 border" 
+            style="border-radius: 15px;"> 
+                <span class="material-icons material-icons-round" style="font-size: 24px !important"> 
+                calender </span> New Activity from Calender. 
+            </div>`;
+        $("#add-new-day-activity-form-container").html(widgetLocationIndicator); */
 
         // '2023/3/10'
         // alert(`Show modal for calender day: ${dateYear}/${dateMonth}/${dateDay}`);
 
+        console.log(`openCalenderActivityForm() Date Y/M/D: \n${dateYear}/${dateMonth}/${dateDay}`)
 
         // create date object
         var dateQueried = new Date(`${dateYear}/${dateMonth}/${dateDay}`);
@@ -19993,7 +17449,7 @@ if (isset($_SESSION["currentUserAuth"])) {
 
             // add .my-pulse-animation-light class and remove .shadow class from #main-app-refresh-btn
             document.getElementById('main-app-refresh-btn').classList.remove('shadow');
-            document.getElementById('main-app-refresh-btn').classList.add('my-pulse-animation-light');
+            document.getElementById('main-app-refresh-btn').classList.add('my-pulse-animation-tahiti');
             // $('#main-app-refresh-btn').removeClass('shadow');
             // $('#main-app-refresh-btn').addClass('my-pulse-animation-light');
 
@@ -21052,16 +18508,25 @@ if (isset($_SESSION["currentUserAuth"])) {
     }
     /* Step_13: finalize the App loading by providing users with access to interaction with UI */
     function finalizeAppLoading(currentUser) {
+
+
         // hide the loading curtain - fade out
-        // var curtain = document.getElementById("LoadCurtain");
-        // curtain.style.display = "none";
         // set timeout and then fadeout after 3000ms / 3s
         setTimeout(() => {
-            $('#LoadCurtain').fadeOut('2500');
-        }, 3000);
+            document.getElementById('offcanvasNotifications').classList.add(
+                "visually-hidden"); // wrap it in this class to temp hide #offcanvasNotifications 
 
-        // Show snackbar at the end of this function
-        showSnackbar('Data has been refreshed.', 'alert_general', 'long_15000');
+            // fadeout the curtain over 2.5sec
+            $('#LoadCurtain').fadeOut(2500);
+
+            // *18/01/2024*: toggle notification panel to correct a new bug that has the overflow-y of the #ohtml tag container
+            // loses its overflow / length / scroller. This is a temporary fix until the root cause is found and fixed. 
+
+            document.getElementById('app-notifications-btn').click(); // or #app-notifications-btn
+            document.getElementById('app-notifications-close-btn').click();
+            document.getElementById('offcanvasNotifications').classList.remove(
+                "visually-hidden"); // remove the visually-hidden class from notification panel 
+        }, 3000);
 
         console.log("finalizeAppLoading");
 
@@ -21098,6 +18563,11 @@ if (isset($_SESSION["currentUserAuth"])) {
         // stop downloadTimer to lock in the load duration
         clearInterval(downloadTimer);
         document.getElementById("load-curtain-duration-indicator-icon").innerHTML = " bolt ";
+        document.getElementById("load-curtain-duration-indicator-icon").classList.add(
+            "flash"); // add a flash bounce-in-animation
+
+        // Show snackbar at the end of this function
+        showSnackbar('Data has been refreshed.', 'alert_general', 'long_15000');
     }
 
     // tab reloading function
@@ -21211,7 +18681,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         usernm = usernm || "init";
 
         // check online connectivity log on console - if offline show the offline curtain
-        // checkConnection();
+        checkConnection();
 
         // function for checking if the core scripts were loaded, if not then the func will display the offline curtain
         checkCoreScriptLoadState();

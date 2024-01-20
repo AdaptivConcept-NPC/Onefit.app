@@ -948,11 +948,11 @@ function getUserNotifications($listType)
     // switch $listType
     switch ($listType) {
         case "div":
-            $openingElem = '<div id="notifcation-list" class="my-4 text-dark top-down-grad-dark p-4 border-5 border-top" style="border-radius: 25px;">';
+            $openingElem = '<div id="notifcation-list" class="my-4 top-down-grad-tahiti p-4 border-5 border-top" style="border-radius: 25px;color:var(--secondary-color);">';
             $closingElem = '</div>';
             break;
         case "ul":
-            $openingElem = '<ul class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-list" style="border-radius: 25px !important;">';
+            $openingElem = '<ul class="list-group-item list-group-item-action" aria-current="true" id="notifcation-list" style="border-radius: 25px !important;border-color:var(--primary-color)!important;">';
             $closingElem = '</ul>';
             break;
         case "accordion":
@@ -960,7 +960,7 @@ function getUserNotifications($listType)
             $closingElem = '</div>';
             break;
         default:
-            $openingElem = '<div id="notifcation-list" class="my-4 text-dark top-down-grad-dark p-4 border-5 border-top" style="border-radius: 25px;">';
+            $openingElem = '<div id="notifcation-list" class="my-4 top-down-grad-dark p-4 border-5 border-top" style="border-radius: 25px;">';
             $closingElem = '</div>';
             break;
     }
@@ -986,7 +986,7 @@ function getUserNotifications($listType)
             switch ($listType) {
                 case "div":
                     $communicationUserNotifications .= <<<_END
-                    <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-$notif_id" style="border-radius: 25px !important;">
+                    <a href="#" class="list-group-item list-group-item-action" aria-current="true" id="notifcation-$notif_id" style="border-radius: 25px !important;">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1 fw-bold text-truncate"> $notif_title </h5>
                             <small class="text-end" style="font-size:10px;"> $notif_date<br/>$time_ago </small>
@@ -998,7 +998,7 @@ function getUserNotifications($listType)
                 case "li":
                     $communicationUserNotifications .= <<<_END
                     <li class="list-item">
-                        <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-$notif_id" style="border-radius: 25px !important;">
+                        <a href="#" class="list-group-item list-group-item-action" aria-current="true" id="notifcation-$notif_id" style="border-radius: 25px !important;">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1 fw-bold text-truncate"> $notif_title </h5>
                                 <small class="text-end" style="font-size:10px;"> $notif_date<br/>$time_ago </small>
@@ -1014,11 +1014,12 @@ function getUserNotifications($listType)
                         <h2 class="accordion-header m-0 p-0" id="cav-flush-header-notifcation-$notif_id">
                             <button class="accordion-button fs-5 fw-bold text-truncate gap-2 d-grid align-items-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cav-flush-panel-notifcation-$notif_id" aria-expanded="false" aria-controls="cav-flush-panel-notifcation-$notif_id">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="d-flex gap-2 justify-content-start align-items-center" style="color: var(--secondary-color)!important;">
+                                    <div class="d-flex gap-2 justify-content-start align-items-center">
+                                        <!--  style="color: var(--secondary-color)!important;" -->
                                         <span class="material-icons material-icons-round align-middle d-none"> notifications </span>
                                         <span class="align-middle fw-bold fs-5 poppins-font">  $notif_title </span>
                                     </div>
-                                    <div class="pin-item-icon shadow p-2" style="border-radius:15px;font-size:10px!important;color: var(--secondary-color)!important;">
+                                    <div class="pin-item-icon shadow p-2" style="border-radius:15px;font-size:10px!important;color: var(--accent-color)!important;">
                                         <span class="material-icons material-icons-round align-middle d-nones" style="font-size:30px !important;"> visibility_off </span>
                                         <span class="poppins-font">Unread.</span>
                                     </div>
@@ -1043,7 +1044,7 @@ function getUserNotifications($listType)
                     break;
                 default:
                     $communicationUserNotifications .= <<<_END
-                    <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true" id="notifcation-$notif_id" style="border-radius: 25px !important;">
+                    <a href="#" class="list-group-item list-group-item-action" aria-current="true" id="notifcation-$notif_id" style="border-radius: 25px !important;">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1 fw-bold text-truncate"> $notif_title </h5>
                             <small class="text-end" style="font-size:10px;"> $notif_date<br/>$time_ago </small>

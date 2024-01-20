@@ -269,7 +269,7 @@ try {
             background-image: url('../media/profiles/$usrdetails_profile_banner_url');
         }
     </style>
-    <div style="background-color: rgba(52, 52, 52, 0.8);">
+    <div style="background-color: var(--secondary-color);">
         <div class="text-center">
             <!-- Users Profile Banner -->
             <div class="shadow-lg display-profile-banner-container">

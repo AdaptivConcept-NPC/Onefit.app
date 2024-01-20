@@ -1,106 +1,103 @@
 $(function () {
+  // Cache some selectors
 
-    // Cache some selectors
+  var clock = $("#clock"),
+    alarm = clock.find(".alarm"),
+    ampm = clock.find(".ampm");
 
-    var clock = $('#clock'),
-        alarm = clock.find('.alarm'),
-        ampm = clock.find('.ampm');
+  // Map digits to their names (this will be an array)
+  var digit_to_name = "zero one two three four five six seven eight nine".split(
+    " "
+  );
 
-    // Map digits to their names (this will be an array)
-    var digit_to_name = 'zero one two three four five six seven eight nine'.split(' ');
+  // This object will hold the digit elements
+  var digits = {};
 
-    // This object will hold the digit elements
-    var digits = {};
+  // Positions for the hours, minutes, and seconds
+  var positions = ["h1", "h2", ":", "m1", "m2", ":", "s1", "s2"];
 
-    // Positions for the hours, minutes, and seconds
-    var positions = [
-        'h1', 'h2', ':', 'm1', 'm2', ':', 's1', 's2'
-    ];
+  // Generate the digits with the needed markup,
+  // and add them to the clock
 
-    // Generate the digits with the needed markup,
-    // and add them to the clock
+  var digit_holder = clock.find(".digits");
 
-    var digit_holder = clock.find('.digits');
+  $.each(positions, function () {
+    if (this == ":") {
+      digit_holder.append('<div class="dots">');
+    } else {
+      var pos = $("<div>");
 
-    $.each(positions, function () {
+      for (var i = 1; i < 8; i++) {
+        pos.append('<span class="d' + i + '">');
+      }
 
-        if (this == ':') {
-            digit_holder.append('<div class="dots">');
-        }
-        else {
+      // Set the digits as key:value pairs in the digits object
+      digits[this] = pos;
 
-            var pos = $('<div>');
+      // Add the digit elements to the page
+      digit_holder.append(pos);
+    }
+  });
 
-            for (var i = 1; i < 8; i++) {
-                pos.append('<span class="d' + i + '">');
-            }
+  // Add the weekday names
 
-            // Set the digits as key:value pairs in the digits object
-            digits[this] = pos;
+  var weekday_names = "MON TUE WED THU FRI SAT SUN".split(" "),
+    weekday_holder = clock.find(".weekdays");
 
-            // Add the digit elements to the page
-            digit_holder.append(pos);
-        }
+  $.each(weekday_names, function () {
+    weekday_holder.append("<span>" + this + "</span>");
+  });
 
-    });
+  var weekdays = clock.find(".weekdays span");
 
-    // Add the weekday names
+  // Run a timer every second and update the clock
 
-    var weekday_names = 'MON TUE WED THU FRI SAT SUN'.split(' '),
-        weekday_holder = clock.find('.weekdays');
+  (function update_time() {
+    // Use moment.js to output the current time as a string
+    // hh is for the hours in 12-hour format,
+    // mm - minutes, ss-seconds (all with leading zeroes),
+    // d is for day of week and A is for AM/PM
 
-    $.each(weekday_names, function () {
-        weekday_holder.append('<span>' + this + '</span>');
-    });
+    var now = moment().format("hhmmssdA");
 
-    var weekdays = clock.find('.weekdays span');
+    // set now in #fc-time in format 00:00:00
+    $("#fc-time").text(moment().format("HH:mm")); // :ss
+    // set date in #fc-date in format 01 Jan 2020
+    $("#fc-date").text(moment().format("DD MMM YYYY"));
 
-    // Run a timer every second and update the clock
+    digits.h1.attr("class", digit_to_name[now[0]]);
+    digits.h2.attr("class", digit_to_name[now[1]]);
+    digits.m1.attr("class", digit_to_name[now[2]]);
+    digits.m2.attr("class", digit_to_name[now[3]]);
+    digits.s1.attr("class", digit_to_name[now[4]]);
+    digits.s2.attr("class", digit_to_name[now[5]]);
 
-    (function update_time() {
+    // The library returns Sunday as the first day of the week.
+    // Stupid, I know. Lets shift all the days one position down,
+    // and make Sunday last
 
-        // Use moment.js to output the current time as a string
-        // hh is for the hours in 12-hour format,
-        // mm - minutes, ss-seconds (all with leading zeroes),
-        // d is for day of week and A is for AM/PM
+    var dow = now[6];
+    dow--;
 
-        var now = moment().format("hhmmssdA");
+    // Sunday!
+    if (dow < 0) {
+      // Make it last
+      dow = 6;
+    }
 
-        digits.h1.attr('class', digit_to_name[now[0]]);
-        digits.h2.attr('class', digit_to_name[now[1]]);
-        digits.m1.attr('class', digit_to_name[now[2]]);
-        digits.m2.attr('class', digit_to_name[now[3]]);
-        digits.s1.attr('class', digit_to_name[now[4]]);
-        digits.s2.attr('class', digit_to_name[now[5]]);
+    // Mark the active day of the week
+    weekdays.removeClass("active").eq(dow).addClass("active");
 
-        // The library returns Sunday as the first day of the week.
-        // Stupid, I know. Lets shift all the days one position down, 
-        // and make Sunday last
+    // Set the am/pm text:
+    ampm.text(now[7] + now[8]);
 
-        var dow = now[6];
-        dow--;
+    // Schedule this function to be run again in 1 sec
+    setTimeout(update_time, 1000);
+  })();
 
-        // Sunday!
-        if (dow < 0) {
-            // Make it last
-            dow = 6;
-        }
+  // Switch the theme
 
-        // Mark the active day of the week
-        weekdays.removeClass('active').eq(dow).addClass('active');
-
-        // Set the am/pm text:
-        ampm.text(now[7] + now[8]);
-
-        // Schedule this function to be run again in 1 sec
-        setTimeout(update_time, 1000);
-
-    })();
-
-    // Switch the theme
-
-    $('a.button').click(function () {
-        clock.toggleClass('light dark');
-    });
-
+  $("a.button").click(function () {
+    clock.toggleClass("light dark");
+  });
 });

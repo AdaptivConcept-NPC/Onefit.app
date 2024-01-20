@@ -1,12 +1,24 @@
 # ignore ALL .log files
 *.log
+```
 
 # ignore media folder as it is too big for upload to the server
 media/
 node_modules
+```
 
 # ignore Googel OAuth folder
 scripts/php/api/OAuth/GoogleOAuth_CS
+```
 
 # ignore google api services folder
 node_modules/
+```
+
+# ignore .env files
+.env
+```
+
+# ignore config files
+config.php
+```

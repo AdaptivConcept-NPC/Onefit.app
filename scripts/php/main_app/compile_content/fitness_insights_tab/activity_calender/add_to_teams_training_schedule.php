@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // get submitted_by username from get parameter
     $is_Admin = false;
     if (!isset($_GET['submitted_by'])) {
-        if (!isset($_SESSION['currentUserUsername'])) $submitted_by_username = $_SESSION['currentUserUsername'];
+        if (isset($_SESSION['currentUserUsername'])) $submitted_by_username = $_SESSION['currentUserUsername'];
         else die("No user identity found");
     } else {
         $submitted_by_username = sanitizeMySQL($dbconn, $_GET['submitted_by']);
