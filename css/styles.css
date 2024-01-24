@@ -2176,7 +2176,7 @@ div.horizontal-scroll-card-nav {
 .create-btn-container {
 	z-index: 1999;
 	position: fixed;
-	top: 18vh;
+	top: 180px;
 	right: 10px;
 	background-color: var(--secondary-color) !important;
 	color: var(--text-color) !important;
@@ -2200,7 +2200,7 @@ div.horizontal-scroll-card-nav {
 .load-curtain-social-btn-panel {
 	z-index: 10001;
 	position: fixed;
-	top: 18vh;
+	top: 180px;
 	left: 10px;
 	
 	background-color: var(--secondary-color) !important;

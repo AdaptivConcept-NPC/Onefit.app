@@ -15880,10 +15880,28 @@ if (isset($_SESSION["currentUserAuth"])) {
             // Apply the random color to the theme
             document.documentElement.style.setProperty('--primary-color', randomColorPrimary);
             document.documentElement.style.setProperty('--secondary-color', '#000000'); // baseDarkContrast
-            document.documentElement.style.setProperty('--accent-color', baseDarkContrast);
+            document.documentElement.style.setProperty('--accent-color', '#ffffff'); // baseDarkContrast
             document.documentElement.style.setProperty('--text-color',
                 "#ffffff"); // getContrastColor(baseDarkContrast) should be either #000000 or #ffffff
             document.documentElement.style.setProperty('--content-tab-primary-color', randomColorPrimary + 'b8');
+
+            // save colors to localstorge
+            localStorage.setItem('theme-primary-color', randomColorPrimary);
+            localStorage.setItem('theme-secondary-color', '#000000');
+            localStorage.setItem('theme-secondary-color', '#ffffff');
+            localStorage.setItem('theme-text-color', '#ffffff');
+            // document.getElementById('text-color').value
+            localStorage.setItem('theme-content-tab-primary-color', `${randomColorPrimary}b8`)
+
+            // update #primary-color, #secondary-color, #accent-color, #text-color inputs with the local stored theme colors
+            document.getElementById("primary-color").value =
+                localStorage.getItem("theme-primary-color");
+            document.getElementById("secondary-color").value =
+                dlocalStorage.getItem("theme-secondary-color");
+            document.getElementById("accent-color").value =
+                localStorage.getItem("theme-accent-color");
+            document.getElementById("text-color").value =
+                localStorage.getItem("theme-text-color")
         } else {
             // Reset the theme to default colors
             applyThemeColors(true);

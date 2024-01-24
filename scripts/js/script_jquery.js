@@ -281,8 +281,8 @@ $(document).ready(function () {
       console.log("#nav-bar-header is in view! at the top");
 
       // assign top:5vh if wS is equal to 0
-      $("#twitter-social-panel").css("top", "18vh");
-      $("#creation-tools-content-panel").css("top", "18vh");
+      $("#twitter-social-panel").css("top", "180px");
+      $("#creation-tools-content-panel").css("top", "180px");
 
       // make sure to reset the margins to 0xp (deprecated)
       // $('#twitter-social-panel').css('margin-left', '0px');
