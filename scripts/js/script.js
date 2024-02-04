@@ -1,6 +1,14 @@
 // *** Vanilla JS
 // *** index.php script
 
+// export function basicJunitTestFunction(a, b)
+function basicJunitTestFunction(a, b) {
+  return a + b;
+}
+
+// export function
+// export default basicJunitTestFunction;
+module.exports = basicJunitTestFunction;
 
 
 // *** app.php script
@@ -583,270 +591,333 @@ function getCurrentWeekStartEndDates(when) {
     localStorage.setItem('weekly-training-date-duration', weekDatesArray[0] + ' to ' + weekDatesArray[6]);
 }
 
-function openLink(evt, tabName) {
-    var i, x, tabContainer, tablinks;
-    var tabBtnIco = document.getElementById("apps-tray-open-btn-icon");
-    var tabBtnTxt = document.getElementById("apps-tray-open-btn-text");
+function openLink(tabName) {
+  var i, x, tabContainer;
+  var tabBtnIco = document.getElementById("apps-tray-open-btn-icon");
+  var tabBtnTxt = document.getElementById("apps-tray-open-btn-text");
 
+  //Change the #apps-tray-open-btn icon and text
+  if (tabName == "TabHome") {
+    tabBtnTxt.innerHTML = "Dashboard";
+    tabBtnIco.innerHTML = " dashboard ";
+    tabContainer = document.getElementsByClassName("content-tab");
+  } else if (tabName == "TabProfile") {
+    tabBtnTxt.innerHTML = "Profile";
+    tabBtnIco.innerHTML = " account_circle ";
+    tabContainer = document.getElementsByClassName("content-tab");
+  } else if (tabName == "TabDiscovery") {
+    tabBtnTxt.innerHTML = "Discovery";
+    tabBtnIco.innerHTML = " travel_explore ";
+    tabContainer = document.getElementsByClassName("content-tab");
+  } else if (tabName == "TabStudio") {
+    tabBtnTxt.innerHTML = ".Studio";
+    tabBtnIco.innerHTML = " play_circle_outline ";
+    tabContainer = document.getElementsByClassName("content-tab");
+  } else if (tabName == "TabStore") {
+    tabBtnTxt.innerHTML = ".Store";
+    tabBtnIco.innerHTML = " storefront ";
+    tabContainer = document.getElementsByClassName("content-tab");
+  } else if (tabName == "TabSocial") {
+    tabBtnTxt.innerHTML = ".Social";
+    tabBtnIco.innerHTML = " hub ";
+    tabContainer = document.getElementsByClassName("content-tab");
+  } else if (tabName == "TabData") {
+    tabBtnTxt.innerHTML = "Insights";
+    tabBtnIco.innerHTML = " insights ";
+    tabContainer = document.getElementsByClassName("content-tab");
+  } else if (tabName == "TabAchievements") {
+    tabBtnTxt.innerHTML = "Achievements";
+    tabBtnIco.innerHTML = " emoji_events ";
+    tabContainer = document.getElementsByClassName("content-tab");
+  } else if (tabName == "TabMedia") {
+    tabBtnTxt.innerHTML = "Media";
+    tabBtnIco.innerHTML = " perm_media ";
+    tabContainer = document.getElementsByClassName("content-tab");
+  } else if (tabName == "TabCommunication") {
+    tabBtnTxt.innerHTML = "Communication";
+    tabBtnIco.innerHTML = " forum ";
+    tabContainer = document.getElementsByClassName("content-tab");
+  } else if (tabName == "TabSettings") {
+    tabBtnTxt.innerHTML = "Preferences";
+    tabBtnIco.innerHTML = " settings_accessibility ";
+    tabContainer = document.getElementsByClassName("content-tab");
+  } else if (tabName == "InsightsTabGCS") {
+    /* Insigts sub features app tabs */
+    tabContainer = null;
+    document
+      .getElementById("v-sub-tab-pills-insights-googlesurveys-tab")
+      .click();
 
-    //Change the #apps-tray-open-btn icon and text
-    if (tabName == "TabHome") {
-        tabBtnTxt.innerHTML = "Dashboard";
-        tabBtnIco.innerHTML = " dashboard ";
-        tabContainer = document.getElementsByClassName("content-tab");
-    } else if (tabName == "TabProfile") {
-        tabBtnTxt.innerHTML = "Profile";
-        tabBtnIco.innerHTML = " account_circle ";
-        tabContainer = document.getElementsByClassName("content-tab");
-    } else if (tabName == "TabDiscovery") {
-        tabBtnTxt.innerHTML = "Discovery";
-        tabBtnIco.innerHTML = " travel_explore ";
-        tabContainer = document.getElementsByClassName("content-tab");
-    } else if (tabName == "TabStudio") {
-        tabBtnTxt.innerHTML = ".Studio";
-        tabBtnIco.innerHTML = " play_circle_outline ";
-        tabContainer = document.getElementsByClassName("content-tab");
-    } else if (tabName == "TabStore") {
-        tabBtnTxt.innerHTML = ".Store";
-        tabBtnIco.innerHTML = " storefront ";
-        tabContainer = document.getElementsByClassName("content-tab");
-    } else if (tabName == "TabSocial") {
-        tabBtnTxt.innerHTML = ".Social";
-        tabBtnIco.innerHTML = " hub ";
-        tabContainer = document.getElementsByClassName("content-tab");
-    } else if (tabName == "TabData") {
-        tabBtnTxt.innerHTML = "Insights";
-        tabBtnIco.innerHTML = " insights ";
-        tabContainer = document.getElementsByClassName("content-tab");
-    } else if (tabName == "TabAchievements") {
-        tabBtnTxt.innerHTML = "Achievements";
-        tabBtnIco.innerHTML = " emoji_events ";
-        tabContainer = document.getElementsByClassName("content-tab");
-    } else if (tabName == "TabMedia") {
-        tabBtnTxt.innerHTML = "Media";
-        tabBtnIco.innerHTML = " perm_media ";
-        tabContainer = document.getElementsByClassName("content-tab");
-    } else if (tabName == "TabCommunication") {
-        tabBtnTxt.innerHTML = "Communication";
-        tabBtnIco.innerHTML = " forum ";
-        tabContainer = document.getElementsByClassName("content-tab");
-    } else if (tabName == "TabSettings") {
-        tabBtnTxt.innerHTML = "Preferences";
-        tabBtnIco.innerHTML = " settings_accessibility ";
-        tabContainer = document.getElementsByClassName("content-tab");
-    } else if (tabName == "InsightsTabGCS") {
-        /* Insigts sub features app tabs */
-        tabContainer = null;
-        document.getElementById("v-sub-tab-pills-insights-googlesurveys-tab").click();
+    document.getElementById("horizontal-rule-icon-challenges").style.display =
+      "none";
+    document.getElementById(
+      "horizontal-rule-icon-googlesurveys"
+    ).style.display = "block";
+    // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+    document.getElementById(
+      "horizontal-rule-icon-teamathletics"
+    ).style.display = "none";
+    document.getElementById("horizontal-rule-icon-wellness").style.display =
+      "none";
+    document.getElementById("horizontal-rule-icon-nutrition").style.display =
+      "none";
+  } else if (tabName == "InsightsTabIAT") {
+    tabContainer = null;
+    document.getElementById("v-sub-tab-pills-insights-indiathlete-tab").click();
 
-        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
-        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "block";
-        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
-        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
-        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
-        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
-    } else if (tabName == "InsightsTabIAT") {
-        tabContainer = null;
-        document.getElementById("v-sub-tab-pills-insights-indiathlete-tab").click();
+    document.getElementById("horizontal-rule-icon-challenges").style.display =
+      "none";
+    document.getElementById(
+      "horizontal-rule-icon-googlesurveys"
+    ).style.display = "none";
+    // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "block";
+    document.getElementById(
+      "horizontal-rule-icon-teamathletics"
+    ).style.display = "none";
+    document.getElementById("horizontal-rule-icon-wellness").style.display =
+      "none";
+    document.getElementById("horizontal-rule-icon-nutrition").style.display =
+      "none";
+  } else if (tabName == "InsightsTabCTA") {
+    tabContainer = null;
+    document
+      .getElementById("v-sub-tab-pills-insights-teamathletics-tab")
+      .click();
 
-        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
-        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
-        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "block";
-        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
-        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
-        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
-    } else if (tabName == "InsightsTabCTA") {
-        tabContainer = null;
-        document.getElementById("v-sub-tab-pills-insights-teamathletics-tab").click();
+    document.getElementById("horizontal-rule-icon-challenges").style.display =
+      "none";
+    document.getElementById(
+      "horizontal-rule-icon-googlesurveys"
+    ).style.display = "none";
+    // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+    document.getElementById(
+      "horizontal-rule-icon-teamathletics"
+    ).style.display = "block";
+    document.getElementById("horizontal-rule-icon-wellness").style.display =
+      "none";
+    document.getElementById("horizontal-rule-icon-nutrition").style.display =
+      "none";
+  } else if (tabName == "InsightsTabChallenges") {
+    tabContainer = null;
+    document.getElementById("v-sub-tab-pills-insights-challenges-tab").click();
 
-        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
-        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
-        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
-        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "block";
-        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
-        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
-    } else if (tabName == "InsightsTabChallenges") {
-        tabContainer = null;
-        document.getElementById("v-sub-tab-pills-insights-challenges-tab").click();
+    document.getElementById("horizontal-rule-icon-challenges").style.display =
+      "block";
+    document.getElementById(
+      "horizontal-rule-icon-googlesurveys"
+    ).style.display = "none";
+    // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+    document.getElementById(
+      "horizontal-rule-icon-teamathletics"
+    ).style.display = "none";
+    document.getElementById("horizontal-rule-icon-wellness").style.display =
+      "none";
+    document.getElementById("horizontal-rule-icon-nutrition").style.display =
+      "none";
+  } else if (tabName == "InsightsTabWellness") {
+    tabContainer = null;
+    document.getElementById("v-sub-tab-pills-insights-challenges-tab").click();
 
-        document.getElementById("horizontal-rule-icon-challenges").style.display = "block";
-        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
-        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
-        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
-        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
-        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
-    } else if (tabName == "InsightsTabWellness") {
-        tabContainer = null;
-        document.getElementById("v-sub-tab-pills-insights-challenges-tab").click();
+    document.getElementById("horizontal-rule-icon-challenges").style.display =
+      "none";
+    document.getElementById(
+      "horizontal-rule-icon-googlesurveys"
+    ).style.display = "none";
+    // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+    document.getElementById(
+      "horizontal-rule-icon-teamathletics"
+    ).style.display = "none";
+    document.getElementById("horizontal-rule-icon-wellness").style.display =
+      "block";
+    document.getElementById("horizontal-rule-icon-nutrition").style.display =
+      "none";
+  } else if (tabName == "InsightsTabNutrition") {
+    tabContainer = null;
+    document.getElementById("v-sub-tab-pills-insights-challenges-tab").click();
 
-        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
-        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
-        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
-        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
-        document.getElementById("horizontal-rule-icon-wellness").style.display = "block";
-        document.getElementById("horizontal-rule-icon-nutrition").style.display = "none";
-    } else if (tabName == "InsightsTabNutrition") {
-        tabContainer = null;
-        document.getElementById("v-sub-tab-pills-insights-challenges-tab").click();
+    document.getElementById("horizontal-rule-icon-challenges").style.display =
+      "none";
+    document.getElementById(
+      "horizontal-rule-icon-googlesurveys"
+    ).style.display = "none";
+    // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
+    document.getElementById(
+      "horizontal-rule-icon-teamathletics"
+    ).style.display = "none";
+    document.getElementById("horizontal-rule-icon-wellness").style.display =
+      "none";
+    document.getElementById("horizontal-rule-icon-nutrition").style.display =
+      "block";
+  } else if (tabName == "OffcanvasMessages") {
+    document.getElementById("toggle-messages-offcanvas").click();
+  }
 
-        document.getElementById("horizontal-rule-icon-challenges").style.display = "none";
-        document.getElementById("horizontal-rule-icon-googlesurveys").style.display = "none";
-        // document.getElementById("horizontal-rule-icon-indiathlete").style.display = "none";
-        document.getElementById("horizontal-rule-icon-teamathletics").style.display = "none";
-        document.getElementById("horizontal-rule-icon-wellness").style.display = "none";
-        document.getElementById("horizontal-rule-icon-nutrition").style.display = "block";
-    } else if (tabName == "OffcanvasMessages") {
-        document.getElementById("toggle-messages-offcanvas").click();
+  // InsightsTabGCS
+  // InsightsTabIAT
+  // InsightsTabCTA
+  // InsightsTabChallenges
+  // v-sub-tab-pills-insights-googlesurveys-tab
+  // v-sub-tab-pills-insights-indiathlete-tab
+  // v-sub-tab-pills-insights-teamathletics-tab
+  // v-sub-tab-pills-insights-challenges-tab
+
+  //x = document.getElementsByClassName("content-tab");
+  x = tabContainer;
+
+  if (x) {
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
     }
+    document.getElementById(tabName).style.display = "block";
 
-    // InsightsTabGCS
-    // InsightsTabIAT
-    // InsightsTabCTA
-    // InsightsTabChallenges
-    // v-sub-tab-pills-insights-googlesurveys-tab
-    // v-sub-tab-pills-insights-indiathlete-tab
-    // v-sub-tab-pills-insights-teamathletics-tab
-    // v-sub-tab-pills-insights-challenges-tab
-
-    //x = document.getElementsByClassName("content-tab");
-    x = tabContainer;
-
-    if (x) {
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        document.getElementById(tabName).style.display = "block";
-
-        // set current App Tab ID
-        setCurrentAppTabID(tabName);
-    }
+    // set current App Tab ID
+    setCurrentAppTabID(tabName);
+  }
 }
 
-function loadActivityCalender(monthName) {
-    //load the activities calender
-    //?month='.$prev_month.'&year='.$prev_year."'
-    //get current month
+function loadActivityCalender() {
+  //load the activities calender
+  //?month='.$prev_month.'&year='.$prev_year."'
+  //get current month
 
-    var dateNow = new Date();
-    var currMonth = dateNow.getMonth() + 1;
-    var currYear = dateNow.getFullYear();
+  var dateNow = new Date();
+  var currMonth = dateNow.getMonth() + 1;
+  var currYear = dateNow.getFullYear();
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var output = this.responseText;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      var output = this.responseText;
 
-            if (output.startsWith("|[System Error]|")) {
-                messengerLoader.style.display = "none";
-                //alert(output);
+      if (output.startsWith("|[System Error]|")) {
+        messengerLoader.style.display = "none";
+        //alert(output);
 
-                convoContainer.innerHTML = `
+        convoContainer.innerHTML =
+          `
     <div class="application-error-msg shadow d-grid gap-2 d-block" id="application-error-msg">
     <h3 class=" d-block" style="color: red">An error has occured</h3>
-    <p class=" d-block">It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport('` + userParam + `','` + output + `')">support</a></p>
-    <div class="application-error-msg-output d-block" style="font-size: 10px">` + output + `</div>
+    <p class=" d-block">It seems that an error has occured while loading the app. Please try again and if the problem persists, contact <a class="text-decoration-none" onclick="contactSupport('` +
+          userParam +
+          `','` +
+          output +
+          `')">support</a></p>
+    <div class="application-error-msg-output d-block" style="font-size: 10px">` +
+          output +
+          `</div>
     </div>
     `;
 
-                var applicationErrMsg = document.getElementById('application-error-msg');
+        var applicationErrMsg = document.getElementById(
+          "application-error-msg"
+        );
 
-                applicationErrMsg.addEventListener('click', function () {
-                    applicationErrMsg.style.display = "none";
-                });
-            } else {
-                //alert(output);
-                document.getElementById('activities-calender').innerHTML = output;
-            }
-        }
-    };
-    xhttp.open("GET", "../scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/calender.php?month=" + currMonth + "&year=" + currYear, true);
-    xhttp.send();
+        applicationErrMsg.addEventListener("click", function () {
+          applicationErrMsg.style.display = "none";
+        });
+      } else {
+        //alert(output);
+        document.getElementById("activities-calender").innerHTML = output;
+      }
+    }
+  };
+  xhttp.open(
+    "GET",
+    "../scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/calender.php?month=" +
+      currMonth +
+      "&year=" +
+      currYear,
+    true
+  );
+  xhttp.send();
 }
 
 function reloadActivityCalender(nMonth, nYear) {
-    //reload the activities calender
-    var dateNow = new Date();
-    //nMonth = dateNow.getMonth() + 1;
-    //nYear = dateNow.getFullYear();
+  //reload the activities calender
+  //nMonth = dateNow.getMonth() + 1;
+  //nYear = dateNow.getFullYear();
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var output = this.responseText;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      var output = this.responseText;
 
-            if (output.startsWith("|[System Error]|")) {
-                // Output error
-                alert(output);
-            } else {
-                //alert(output);
-                document.getElementById('activities-calender').innerHTML = output;
-            }
-        }
-    };
-    xhttp.open("GET", "../scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/calender.php?month=" + nMonth + "&year=" + nYear, true);
-    xhttp.send();
+      if (output.startsWith("|[System Error]|")) {
+        // Output error
+        alert(output);
+      } else {
+        //alert(output);
+        document.getElementById("activities-calender").innerHTML = output;
+      }
+    }
+  };
+  xhttp.open(
+    "GET",
+    "../scripts/php/main_app/compile_content/fitness_insights_tab/activity_calender/calender.php?month=" +
+      nMonth +
+      "&year=" +
+      nYear,
+    true
+  );
+  xhttp.send();
 }
 
 //executes on button today, next or prev btn click
 function navCalender(nMonth, nYear, cmd) {
-    // if cmd is today then we want to reset the calender to this month and year
-    if (cmd === "today") {
-        var date = new Date();
-        // get this month number
-        nMonth = date.getMonth();
-        // get this years number
-        nYear = date.getFullYear();
-    }
-    // alert("clicked: " + cmd + " | Month: " + nMonth + " | Year: " + nYear);
+  // if cmd is today then we want to reset the calender to this month and year
+  if (cmd === "today") {
+    var date = new Date();
+    // get this month number
+    nMonth = date.getMonth();
+    // get this years number
+    nYear = date.getFullYear();
+  }
+  // alert("clicked: " + cmd + " | Month: " + nMonth + " | Year: " + nYear);
 
-    reloadActivityCalender(nMonth, nYear);
+  reloadActivityCalender(nMonth, nYear);
 }
 
 // Make the DIV element draggable:
 // dragElement(document.getElementById("drag-player-pinheader")); // hide this for now
 
 function dragElement(elmnt) {
-    var pos1 = 0,
-        pos2 = 0,
-        pos3 = 0,
-        pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
-        // if present, the header is where you move the DIV from:
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    } else {
-        // otherwise, move the DIV from anywhere inside the DIV:
-        elmnt.onmousedown = dragMouseDown;
-    }
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
 
-    function dragMouseDown(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // get the mouse cursor position at startup:
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
-    }
+  function dragMouseDown(e) {
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    var pos3 = e.clientX;
+    var pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = function (event) {
+      elementDrag(event, pos3, pos4);
+    };
+  }
 
-    function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        // set the element's new position:
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-    }
+  function elementDrag(e, pos3, pos4) {
+    e.preventDefault();
+    // calculate the new cursor position:
+    var pos1 = pos3 - e.clientX;
+    var pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+  }
 
-    function closeDragElement() {
-        // stop moving when mouse button is released:
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
 }
 
 // *** 
@@ -1063,21 +1134,6 @@ function loadUserSaves() {
     xhttp.send();
 }
 
-function loadUserGroups() {
-    //Declaring variables
-    //// var contentContainer = document.getElementById("");
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var output = this.responseText;
-            alert(output);
-        }
-    };
-    xhttp.open("GET", "../scripts/php/userprofile/user_groups.php", true);
-    xhttp.send();
-}
-
 function loadCommunityGroups() {
     //Declaring variables
     //// var contentContainer = document.getElementById("");
@@ -1258,21 +1314,21 @@ function getDayName(dateStr, locale) {
 }
 // *** date functions (end)
 
-//Plyr.io JS Code
-(function () {
-    var video = document.querySelector('#player');
+//Plyr.io JS Code // commented out due to test conflict
+// (function () {
+//     var video = document.querySelector('#player');
 
-    if (Hls.isSupported()) {
-        var hls = new Hls();
-        hls.loadSource('https://content.jwplatform.com/manifests/vM7nH0Kl.m3u8');
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, function () {
-            video.play();
-        });
-    }
+//     if (Hls.isSupported()) {
+//         var hls = new Hls();
+//         hls.loadSource('https://content.jwplatform.com/manifests/vM7nH0Kl.m3u8');
+//         hls.attachMedia(video);
+//         hls.on(Hls.Events.MANIFEST_PARSED, function () {
+//             video.play();
+//         });
+//     }
 
-    plyr.setup(video);
-})();
+//     plyr.setup(video);
+// })();
 
 //get twitter trends
 /*var xhttp = new XMLHttpRequest();
@@ -1400,8 +1456,8 @@ function capitalizeFirstLetter(string) {
 }
 
 // formation & tactics functions
-function tacticalPlanModification(action, playerId) {
-    // params: 'action-','player_id'
+function tacticalPlanModification() {
+  // params: 'action-','player_id'
 }
 
 function modifyFormationPlayerRecord(changeReq, playerId) {
