@@ -9,7 +9,8 @@
 	--red: #c20000;
 	--green: #119400;
 	--content-panel-opacity: 0.95;
-	--content-tab-primary-color: #343434b8; /* this variable must be 95% transparent - b8 */
+	--content-tab-primary-color: #343434b8;
+	/* this variable must be 95% transparent - b8 */
 	--bg-wallpaper: url("../media/assets/fitness-colage.png");
 
 	/* base colors */
@@ -1138,7 +1139,7 @@ h6 {
 
 .onefit-buttons-style-light:hover {
 	color: var(--primary-color) !important;
-	border-bottom: var(--primary-color) solid 5px  !important;
+	border-bottom: var(--primary-color) solid 5px !important;
 	border-top: 0px !important;
 	border-left: 0px !important;
 	border-right: 0px !important;
@@ -1580,7 +1581,7 @@ h6 {
 }
 
 .form-control-select-input {
-	border-radius: 50rem;
+	border-radius: 25px;
 	font-size: 20px;
 	text-align: center !important;
 	border: 0;
@@ -1588,6 +1589,87 @@ h6 {
 
 	transition: .2s;
 }
+
+/* custom select elem styling */
+.selectdiv {
+	position: relative;
+	/*Don't really need this just for demo styling*/
+
+	float: left;
+	min-width: 200px;
+	margin: 50px 33%;
+}
+
+/* IE11 hide native button (thanks Matt!) */
+select::-ms-expand {
+	display: none;
+}
+
+.selectdiv:after {
+	content: '<>';
+	font: 17px "Consolas", monospace;
+	color: #333;
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
+	right: 11px;
+	/*Adjust for position however you want*/
+
+	top: 18px;
+	padding: 0 0 2px;
+	border-bottom: 1px solid #999;
+	/*left line */
+
+	position: absolute;
+	pointer-events: none;
+}
+
+.selectdiv select {
+	/* -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none; */
+	/* Add some styling */
+
+	/* display: block;
+	width: 100%;
+	max-width: 320px;
+	height: 50px;
+	float: right;
+	margin: 5px 0px;
+	padding: 0px 24px;
+	font-size: 16px;
+	line-height: 1.75;
+	color: #333;
+	background-color: #ffffff;
+	background-image: none;
+	border: 1px solid #cccccc;
+	-ms-word-break: normal;
+	word-break: normal; */
+
+	/*  */
+	border-radius: 50rem;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: block;
+	width: 100%;
+	/* max-width: 320px; */
+	height: 75px;
+	float: right;
+	margin: 5px 0px;
+	padding: 0px 24px;
+	font-size: 16px;
+	line-height: 1.75;
+	color: var(--secondary-color) !important;
+	background-color: var(--white);
+	background-image: none;
+	border: 0px;
+	-ms-word-break: normal;
+	word-break: normal;
+}
+
+/* ./ custom select elem styling */
 
 .form-check-input {
 	width: 2em;
@@ -2096,28 +2178,28 @@ div.horizontal-scroll-card-nav {
 
 /* bootstrap accordion override */
 .accordion {
-    --bs-accordion-color: var(--primary-color);
-    --bs-accordion-bg: var(--secondary-color);
-    --bs-accordion-transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out,border-radius 0.15s ease;
-    --bs-accordion-border-color: var(--accent-color);
-    --bs-accordion-border-width: 1px;
-    --bs-accordion-border-radius: 0.375rem;
-    --bs-accordion-inner-border-radius: calc(0.375rem - 1px);
-    --bs-accordion-btn-padding-x: 1.25rem;
-    --bs-accordion-btn-padding-y: 1rem;
-    --bs-accordion-btn-color: var(--secondary-color);
-    --bs-accordion-btn-bg: var(--secondary-color);
-    --bs-accordion-btn-icon: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
-    --bs-accordion-btn-icon-width: 1.25rem;
-    --bs-accordion-btn-icon-transform: rotate(-180deg);
-    --bs-accordion-btn-icon-transition: transform 0.2s ease-in-out;
-    --bs-accordion-btn-active-icon: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230c63e4'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
-    --bs-accordion-btn-focus-border-color: var(--accent-color);
-    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-    --bs-accordion-body-padding-x: 1.25rem;
-    --bs-accordion-body-padding-y: 1rem;
-    --bs-accordion-active-color: var(--accent-color);
-    --bs-accordion-active-bg: var(--primary-color);
+	--bs-accordion-color: var(--primary-color);
+	--bs-accordion-bg: var(--secondary-color);
+	--bs-accordion-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease;
+	--bs-accordion-border-color: var(--accent-color);
+	--bs-accordion-border-width: 1px;
+	--bs-accordion-border-radius: 0.375rem;
+	--bs-accordion-inner-border-radius: calc(0.375rem - 1px);
+	--bs-accordion-btn-padding-x: 1.25rem;
+	--bs-accordion-btn-padding-y: 1rem;
+	--bs-accordion-btn-color: var(--secondary-color);
+	--bs-accordion-btn-bg: var(--secondary-color);
+	--bs-accordion-btn-icon: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
+	--bs-accordion-btn-icon-width: 1.25rem;
+	--bs-accordion-btn-icon-transform: rotate(-180deg);
+	--bs-accordion-btn-icon-transition: transform 0.2s ease-in-out;
+	--bs-accordion-btn-active-icon: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230c63e4'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
+	--bs-accordion-btn-focus-border-color: var(--accent-color);
+	--bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+	--bs-accordion-body-padding-x: 1.25rem;
+	--bs-accordion-body-padding-y: 1rem;
+	--bs-accordion-active-color: var(--accent-color);
+	--bs-accordion-active-bg: var(--primary-color);
 }
 
 .accordion-button {
@@ -2202,7 +2284,7 @@ div.horizontal-scroll-card-nav {
 	position: fixed;
 	top: 180px;
 	left: 10px;
-	
+
 	background-color: var(--secondary-color) !important;
 	color: var(--text-color) !important;
 	border-radius: 25px !important;
@@ -2482,7 +2564,7 @@ div.horizontal-scroll-card-nav {
 
 /*Animations Only!*/
 .my-pulse-animation-tahiti {
-	background: transparent;
+	/* background: transparent; */
 	/* border-radius: 50rem; */
 	animation: animate-primary 4s linear infinite;
 	cursor: pointer;
@@ -2507,7 +2589,7 @@ div.horizontal-scroll-card-nav {
 }
 
 .my-pulse-animation-dark {
-	background: transparent;
+	/* background: transparent; */
 	/* border-radius: 50rem; */
 	animation: animate-dark 4s linear infinite;
 	cursor: pointer;
@@ -2532,7 +2614,7 @@ div.horizontal-scroll-card-nav {
 }
 
 .my-pulse-animation-light {
-	background: transparent;
+	/* background: transparent; */
 	/* border-radius: 50rem; */
 	animation: animate-light 4s linear infinite;
 	cursor: pointer;
@@ -2557,7 +2639,7 @@ div.horizontal-scroll-card-nav {
 }
 
 .my-pulse-animation-fitbit {
-	background: transparent;
+	/* background: transparent; */
 	/* border-radius: 50rem; */
 	animation: animate-fitbit 4s linear infinite;
 	cursor: pointer;

@@ -142,7 +142,7 @@ for ($i = 0; $i < ($maxday + $startday); $i++) {
         // $cDay = $i - $startday + 1;
         $output .= <<<_END
         <td class="calender-day-item position-relative $todayClass" style="coursor:pointer;$tdStyling" align="center" valign="middle" height="20px" 
-            onclick="openCalenderActivityForm('$cYear','$cMonth','$cDay');">
+            onclick="openCalenderActivityForm('$cYear','$cMonth','$cDay','calender');">
             <span data-countBadgeTag> $countBadgeTag </span>
             <span data-cDay> $cDay </span>
             <span data-scheduleTitleBadgeTag> $scheduleTitleBadgeTag </span>

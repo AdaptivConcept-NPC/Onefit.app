@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="reference">
+        <!-- classic - hide -->
+        <div class="container d-flexz d-none gap-1 align-items-center w3-animate-top">
+            <button id="app-notifications-btn" main-data-bs-target="#tabLatestSonav-notifications-btn"
+                style="border-color:var(--primary-color)!important;min-width: 85.69px;"
+                class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels d-none d-sm-block border-bottom border-5"
+                type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications"
+                aria-controls="offcanvasNotifications">
+                <div class="d-grid gap-2">
+                    <span class="material-icons material-icons-round" style="font-size: 24px !important">
+                        notifications </span>
+                    <span class="d-none d-lg-block text-truncate"
+                        style="font-size: 10px;max-width:55.69px;">Notifications</span>
+                </div>
+            </button>
+        
+            <button type="button" id="apps-tray-open-btn"
+                style="border-color:var(--primary-color)!important;min-width: 85.69px;"
+                class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font hide-side-panels border-topz border-bottom border-5"
+                style="max-width:87px;" data-bs-toggle="modal" data-bs-target="#tabNavModal">
+                <div class="d-grid gap-2">
+                    <span class="material-icons material-icons-round" style="font-size: 24px !important;"
+                        id="apps-tray-open-btn-icon"> dashboard </span>
+                    <span class="d-none d-lg-block text-truncate" id="apps-tray-open-btn-text"
+                        style="font-size: 10px;max-width:55.69px;"> Dashboard.</span>
+                </div>
+            </button>
+        
+            <!-- Main App Content Refresh button -->
+            <div class="d-inline gap-2">
+                <button id="main-app-refresh-btn" style="border-color:var(--primary-color)!important"
+                    class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz border-start border-end border-5"
+                    style="overflow: hidden; font-size: 10px;" type="button"
+                    onclick="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
+                    <!--  data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal" -->
+                    <div class="d-grid gap-2 text-center">
+                        <div class="text-center">
+                            <img src="../media/assets/One-Symbol-Logo-White.svg" alt="Onefit Logo"
+                                class="p-1 img-fluid my-pulse-animation-tahitiz"
+                                style="height: 50px; width: 50px; border-radius: 15px; border-color: var(--accent-color) !important">
+                        </div>
+                        <span class="d-none d-lg-block text-truncate">Refresh</span>
+                    </div>
+                </button>
+            </div>
+            <!-- ./ Main App Content Refresh button -->
+        
+            <button id="open-widgets-panel-btn" type="button"
+                style="border-color:var(--primary-color)!important;min-width: 85.69px;"
+                class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font show-side-panels border-topz border-bottom border-5"
+                data-bs-toggle="collapse" data-bs-target="#widget-rows-container" aria-controls="widget-rows-container"
+                onclick="$('#toggle-tab-container').click();">
+                <div class="d-grid gap-2">
+                    <span class="material-icons material-icons-round" style="font-size: 24px !important"> interests
+                    </span>
+                    <span class="d-none d-lg-block text-truncate" style="font-size: 10px;max-width:55.69px;">Widgets</span>
+                </div>
+                <!--<span class="material-icons material-icons-round" style="font-size: 24px !important"> linear_scale </span>-->
+            </button>
+        
+            <button id="main-nav-ext-links-btn" style="border-color:var(--primary-color)!important;min-width: 85.69px;"
+                class="navbar-toggler shadow onefit-buttons-style-dark p-3 hide-right-side-panels d-none d-sm-block border-topz border-bottom border-5"
+                type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <div class="d-grid gap-2">
+                    <span class="material-icons material-icons-round align-middle" style="font-size: 28px !important"> public
+                        <!-- menu_open -->
+                    </span>
+                    <span class="d-none d-lg-block text-truncate" style="font-size: 10px;max-width:55.69px;">Web.nav</span>
+                </div>
+            </button>
+        
+            <!-- Navigation Menu Offcanvas -->
+            <div class="offcanvas offcanvas-end offcanvas-menu-primary-style w-100 fitness-bg-containerz" tabindex="-1"
+                id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="no-scroller" id="offcanvas-menu">
+                    <div class="offcanvas-header fs-1" style="color: var(--text-color)">
+                        <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;">
+                        <h5 class="offcanvas-title text-center" id="offcanvasNavbarLabel">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="color: var(--primary-color); cursor: pointer;font-size:20px!important;">
+                                public
+                            </span>
+                            Web.nav
+                        </h5>
+                        <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2"
+                            data-bs-dismiss="offcanvas" aria-label="Close">
+                            <span class="material-icons material-icons-round align-middle" style="font-size:20px!important;">
+                                close </span>
+                        </button>
+                    </div>
+                    <div class="offcanvas-body"
+                        style="padding-bottom: 40px; overflow-y: auto; overflow-x: hidden; max-height: 86.9vh;">
+        
+                        <div class="row">
+                            <div class="col-md">
+                                <ul class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
+                                    <li class="nav-item text-center">
+                                        <div class="d-grid mb-2 w3-animate-top">
+                                            <p class="text-white comfortaa-font fs-4 mb-0 fw-bold"> Presented by
+                                            </p>
+                                            <p class="text-white audiowide-font mt-1 mb-0 fw-bold"
+                                                style="font-size: 8px !important;">
+                                                <span style="color: var(--tahitigold);">
+                                                    One</span>-On-<span style="color: var(--tahitigold);">One</span>
+                                                Fitness
+                                                Network<sup style="color: var(--tahitigold);">®</sup>
+                                            </p>
+                                            <span class="material-icons material-icons-round d-none"
+                                                style="color: var(--primary-color); cursor: pointer;">
+                                                public
+                                            </span>
+                                            <img src="../media/assets/One-Logo.png" class="img-fluid px-4" alt="onefitnet logo"
+                                                style="filter: invert(0);">
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                            style="border-radius: 25px !important;font-size:16px;"
+                                            href="https://onefitnet.co.za/" target="_blank">One-On-One
+                                            Fitness Network<span style="color:var(--primary-color);">™</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                            style="border-radius: 25px !important;font-size:16px;"
+                                            href="https://onefitnet.co.za/redirect/?linkref=null" target="_blank">LMM 1-On-1
+                                            Trainer<span style="color:var(--primary-color);">™</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                            style="border-radius: 25px !important;font-size:16px;"
+                                            href="https://adaptivconcept.co.za/" target="_blank">AdaptivConcept<span
+                                                style="color:var(--primary-color);">™</span>
+                                            FL</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md">
+                                <ul class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
+                                    <h5 class="text-center fs-1 fw-bold text-white d-grid gap-2">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--primary-color);">fitness_center</span>
+                                        <span class="align-middle">Join a gym.</span>
+                                    </h5>
+                                    <!-- affiliate links -->
+                                    <p class="text-mutedz fw-bold text-center mb-4"
+                                        style="font-size:10px;color:var(--text-color);">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="font-size:20px!important;color:var(--primary-color);">
+                                            warning
+                                        </span>
+                                        The links below are intended for demonstration purposed only.
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="font-size:20px!important;color:var(--primary-color);">
+                                            warning
+                                        </span>
+                                    </p>
+                                    <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
+                                        <div class="row w-100">
+                                            <div class="col-md">
+                                                <img src="../administration/media/affiliate/logos/gym_company_logo.png"
+                                                    class="img-fluid rounded-4 shadow"
+                                                    style="/* width:200px;height:100px; */filter: invert(0);"
+                                                    alt="Gym Company logo - not affiliated">
+                                            </div>
+                                            <div class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
+                                                <p style="font-size:16px;" class="text-white text-start">gym4free is
+                                                    a
+                                                    rewards programme exclusive to Gym Company members.</p>
+                                                <a class="nav-link p-0 text-start"
+                                                    style="border-radius: 25px !important;font-size:8px;"
+                                                    href="https://www.gymcompany.co.za/" target="_blank">Visit
+                                                    gymcompany.co.za for more info.</a>
+                                            </div>
+                                        </div>
+        
+        
+                                    </li>
+                                    <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
+                                        <div class="row w-100">
+                                            <div class="col-md">
+                                                <img src="../administration/media/affiliate/logos/planet_fitness_logo.png"
+                                                    class="img-fluid rounded-4 shadow"
+                                                    style="/* width:200px;height:100px; */filter: invert(0);"
+                                                    alt="Planet Fitness logo - not affiliated">
+                                            </div>
+                                            <div class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
+                                                <p style="font-size:16px;" class="text-white text-start">Get your
+                                                    one week
+                                                    free trial at your nearest PlanetFitness.</p>
+                                                <a class="nav-link p-0 poppins-font text-start"
+                                                    style="border-radius: 25px !important;font-size:10px;"
+                                                    href="https://www.planetfitness.co.za/" target="_blank">Visit
+                                                    planetfitness.co.za for more info.</a>
+                                            </div>
+                                        </div>
+        
+        
+                                    </li>
+                                    <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
+                                        <div class="row w-100">
+                                            <div class="col-md">
+                                                <img src="../administration/media/affiliate/logos/virgin_active_logo.png"
+                                                    class="img-fluid rounded-4 shadow"
+                                                    style="/* width:100px;height:100px; */filter: invert(0);"
+                                                    alt="Virgin Active logo - not affiliated">
+                                            </div>
+                                            <div class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
+                                                <p style="font-size:16px;" class="text-white text-start">Virgin
+                                                    Active
+                                                    Rewards.</p>
+                                                <a class="nav-link p-0 text-start"
+                                                    style="border-radius: 25px !important;font-size:10px;"
+                                                    href="https://www.virginactive.co.za/club-loyalty-benefits"
+                                                    target="_blank">Visit
+                                                    virginactive.co.za for more info.</a>
+                                            </div>
+                                        </div>
+        
+        
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md">
+                                <ul class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
+                                    <h5 class="text-center fs-5 fw-bold text-white d-grid gap-2">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--primary-color);">card_membership</span>
+                                        <span class="align-middle">Earn, Learn and Gear up!</span>
+                                    </h5>
+                                    <p class="fs-5z mb-4 text-center" style="font-size:12px;color:var(--text-color);">
+                                        OneFitNet
+                                        offers members
+                                        the chance to earn essential training
+                                        equipement and vouchers. Commit to your fitness journey with us and be
+                                        rewarded.
+                                        <br><span style="color:var(--primary-color);" class="fw-bold">OneFitNet
+                                            Community
+                                            Rewards Program</span>
+                                    </p>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                            style="border-radius: 25px !important;font-size:16px;" href="#">
+                                            <span class="material-icons material-icons-round align-middle">card_giftcard</span>
+                                            OnefitNet CRP<sub
+                                                style="color:var(--primary-color);font-size:8px!important;">Alpha</sub></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                            style="border-radius: 25px !important;font-size:16px;" href="#">
+                                            <span class="material-icons material-icons-round align-middle">auto_stories</span>
+                                            Onefit.blog<span style="color:var(--primary-color);">™</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                            style="border-radius: 25px !important;font-size:16px;" href="#">
+                                            <span class="material-icons material-icons-round align-middle">storefront</span>
+                                            Onefit.Shop<span style="color:var(--primary-color);">™</span></a>
+                                    </li>
+                                    <hr class="text-dark my-5" style="height: 5px;">
+                                    <li class="nav-item d-grid gap-2">
+                                        <button class="onefit-buttons-style-light rounded-pill p-4 text-center shadow fw-bold"
+                                            style="transform: translate(0) !important; border-radius:25px!important;"
+                                            onclick="launchLink('../scripts/php/destroy_session.php')">
+                                            <div class="align-items-center">
+                                                <span class="material-icons material-icons-outlined align-middle"
+                                                    style="color: var(--primary-color);font-size:20px!important;">
+                                                    logout
+                                                </span>
+                                                <span class="align-middle" style="font-size:20px!important;">
+                                                    Logout.
+                                                </span>
+                                            </div>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+        
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+            <!-- ./Navigation Menu Offcanvas -->
+        </div>
+        <!-- ./ classic -->
+    </div>
+</body>
+</html>

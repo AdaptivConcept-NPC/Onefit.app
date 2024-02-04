@@ -444,48 +444,52 @@ function getScheduledTrainingDayActivities($Year, $Month, $Day, $grcode)
 {
     global $dbconn;
 
+    // initialize variables
     $badgeColor =
         $groupGRC =
         $groupName = null;
     $colorTagString = "white";
     $grcode = $grcode || "tst_grp_0001";
     $result_array = array();
+
     try {
-        //code...
-        $query = "SELECT DISTINCT(twa.activity_title), 
-        twa.teams_activity_id AS twa_id, 
+        // query the db (teams_weekly_schedules) for the scheduled activities for the selected date
+        $query = "SELECT DISTINCT(twa.teams_activity_id) AS twa_id, 
+        twa.activity_title, 
         twa.activity_description,
         twa.activity_icon,
         twa.teams_weekly_schedules_teams_weekly_schedule_id,
         twa.exercises_exercise_id,
         tws.teams_weekly_schedule_id AS tws_id, tws.schedule_title, 
-        tws.schedule_rpe, tws.schedule_day, tws.schedule_date, tws.color_code, tws.groups_group_ref_code, grps.*
+        tws.schedule_rpe, tws.schedule_day, tws.schedule_date, tws.color_code, tws.groups_group_ref_code, 
+        grps.*
         FROM teams_weekly_schedules tws 
         LEFT JOIN team_weekly_activities twa ON twa.teams_weekly_schedules_teams_weekly_schedule_id = tws.teams_weekly_schedule_id 
         LEFT JOIN groups grps ON tws.groups_group_ref_code = grps.group_ref_code
         WHERE tws.schedule_date = '$Year-$Month-$Day'";
         // AND grps.group_ref_code = '$grcode'
+
+        // query the db
         $result = $dbconn->query($query);
+
         // $result = mysqli_query($dbconn, $query);
         if (!$result) die("Fatal error [2]: " . $dbconn->error);
 
+        // get the number of rows in the $result 
         $rows = $result->num_rows;
 
+        // loop through the result to create a custom array which we will return as a json object
         if ($rows > 0) {
             for ($j = 0; $j < $rows; ++$j) {
+                // fetch one row as an associative array (elements named after columns):
                 $row = $result->fetch_array(MYSQLI_ASSOC);
 
+                // add the row to the end of the array
                 $result_array[] = $row;
-
-                // $colorTagString = $row["color_code"];
-                // $groupGRC = $row["groups_group_ref_code"];
-                // $groupName = $row["group_name"];
-
-                // // extract color name/code
-                // $badgeColor = get_string_between($colorTagString, "[", "]");
             }
         }
 
+        // return the json object
         return json_encode($result_array);
     } catch (\Throwable $th) {
         throw "error: " . $th;

@@ -358,35 +358,41 @@ if (isset($_SESSION["currentUserAuth"])) {
     </script> -->
 
     <!-- fixed clock widget -->
-    <div class="fixed-clock d-grid gap-1 align-items-center p-4 px-5 left-right-grad-tahiti">
-        <div id="fc-date">Today</div>
-        <div id="fc-time">now.</div>
+    <div id="top-left-widget-clock" class="fixed-clock p-4 px-5 left-right-grad-tahiti d-none d-lg-block">
+        <div class="d-grid gap-1 align-items-center">
+            <div id="fc-date">Today</div>
+            <div id="fc-time">now.</div>
+        </div>
     </div>
 
     <!-- widget to control theme and sound settings -->
-    <div class="tab-quick-nav d-grid gap-2" style="position:fixed;top: 0px;right: 0px;height:100px;width:112px;">
-        <div class="quick-nav-heading text-center visually-hidden">
-            <span class="material-icons material-icons-round d-none" style="font-size: 40px !important;">
-                settings
-            </span>
-        </div>
-        <div class="d-flex gap-4 px-3 py-4 right-left-grad-tahiti" style="border-bottom-left-radius: 25px !important;">
-            <button class="bg-transparentz onefit-buttons-style-tahiti shadow btn-lg p-4 flex-fill" type="button"
-                data-bs-toggle="collapse" data-bs-target="#collapseSoundSettings" aria-expanded="false"
-                aria-controls="collapseSoundSettings">
-                <span class="material-icons material-icons-round" style="font-size: 40px !important;">
-                    volume_up
+    <div id="top-right-widget-controls" class="tab-quick-nav d-none d-lg-block"
+        style="position:fixed;top: 0px;right: 0px;height:100px;width:112px;">
+        <div class="d-grid gap-2">
+            <div class="quick-nav-heading text-center visually-hidden">
+                <span class="material-icons material-icons-round d-none" style="font-size: 40px !important;">
+                    settings
                 </span>
-                <span style="font-size:10px;">Sound.</span>
-            </button>
-            <button class="bg-transparentz onefit-buttons-style-tahiti shadow btn-lg p-4 flex-fill" type="button"
-                data-bs-toggle="collapse" data-bs-target="#collapseThemeSettings" aria-expanded="false"
-                aria-controls="collapseThemeSettings">
-                <span class="material-icons material-icons-round" style="font-size: 40px !important;">
-                    color_lens
-                </span>
-                <span style="font-size:10px;">Mood.</span>
-            </button>
+            </div>
+            <div class="d-flex gap-4 px-3 py-4 right-left-grad-tahiti"
+                style="border-bottom-left-radius: 25px !important;">
+                <button class="bg-transparentz onefit-buttons-style-tahiti shadow btn-lg p-4 flex-fill" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapseSoundSettings" aria-expanded="false"
+                    aria-controls="collapseSoundSettings">
+                    <span class="material-icons material-icons-round" style="font-size: 40px !important;">
+                        volume_up
+                    </span>
+                    <span style="font-size:10px;">Sound.</span>
+                </button>
+                <button class="bg-transparentz onefit-buttons-style-tahiti shadow btn-lg p-4 flex-fill" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapseThemeSettings" aria-expanded="false"
+                    aria-controls="collapseThemeSettings">
+                    <span class="material-icons material-icons-round" style="font-size: 40px !important;">
+                        color_lens
+                    </span>
+                    <span style="font-size:10px;">Mood.</span>
+                </button>
+            </div>
         </div>
 
     </div>
@@ -491,7 +497,7 @@ if (isset($_SESSION["currentUserAuth"])) {
         </div>
         <div class="d-grid gap-2 w-100">
             <button
-                class="show-right-side-panels p-4 m-0 shadow-lg onefit-buttons-style-light border-0 my-pulse-animation-dark collapsed"
+                class="show-right-side-panels p-4 m-0 shadow-lg onefit-buttons-style-light bg-transparent border-0 my-pulse-animation-dark collapsed"
                 type="button" data-bs-toggle="collapse" data-bs-target="#collapseCreateCommandList"
                 aria-expanded="false" aria-controls="collapseCreateCommandList">
                 <div class="d-grid">
@@ -678,8 +684,16 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     <div class="w3-animate-top text-center">
                                         <!-- <img src="../media/assets/One-Symbol-Logo-White.svg" class="img-fluid" style="max-height: 50px;" alt="logo"> -->
                                         <div class="d-grid text-center">
-                                            <p class="m-0 fs-5 comfortaa-font text-muted">Shopping</p>
-                                            <p class="m-0 fs-1 comfortaa-font text-muted">Cart.</p>
+                                            <!-- <p class="m-0 fs-5 comfortaa-font text-muted">Shopping</p>
+                                            <p class="m-0 fs-1 comfortaa-font text-muted">Cart.</p> -->
+                                            <button
+                                                class="navbar-toggler shadow onefit-buttons-style-dark bg-transparent p-4 mb-4 w3-animate-right d-grid gap-1"
+                                                type="button" onclick="openLink(event, 'TabStore')">
+                                                <span class="material-icons material-icons-round align-middle">
+                                                    support_agent
+                                                </span>
+                                                <span class="align-middle"><span class="d-none d-lg-block">Sales.</span>
+                                            </button>
                                         </div>
 
                                     </div>
@@ -1169,18 +1183,19 @@ if (isset($_SESSION["currentUserAuth"])) {
     <!-- ./ Navigation bar, Cart & Other functions -->
 
     <!-- Main Content -->
-    <main id="main-content-container" class="container-lg" style="padding-bottom: 50px">
+    <main id="main-content-container" class="container" style="padding-bottom: 50px">
         <!-- Main Navigation Bar -->
-        <nav id="main-navbar" class="navbar w-100 mb-4 p-4 top-down-grad-dark"
+        <nav id="main-navbar" class="navbar w-100 mb-4 p-4 down-top-grad-dark"
             style="border-radius: 25px; max-height: 100vh !important; border-top: var(--secondary-color) solid 0px;">
             <!-- App Function Buttons -->
-            <div class="container d-flex gap-1 align-items-center w3-animate-top">
+            <!-- tight - new grid button layout -->
+            <div class="container d-flex gap-4 align-items-center justify-content-between w3-animate-top">
                 <button id="app-notifications-btn" main-data-bs-target="#tabLatestSonav-notifications-btn"
                     style="border-color:var(--primary-color)!important;min-width: 85.69px;"
-                    class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels d-none d-sm-block border-bottom border-5"
+                    class="onefit-buttons-style-dark p-3 shadow hide-left-side-panels d-none d-sm-block border-bottom border-5 flex-fill"
                     type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotifications"
                     aria-controls="offcanvasNotifications">
-                    <div class="d-grid gap-2">
+                    <div class="d-grid gap-2 justify-content-center">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important">
                             notifications </span>
                         <span class="d-none d-lg-block text-truncate"
@@ -1190,28 +1205,27 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                 <button type="button" id="apps-tray-open-btn"
                     style="border-color:var(--primary-color)!important;min-width: 85.69px;"
-                    class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font hide-side-panels border-topz border-bottom border-5"
-                    style="max-width:87px;" data-bs-toggle="modal" data-bs-target="#tabNavModal">
-                    <div class="d-grid gap-2">
+                    class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font hide-side-panels border-topz border-bottom border-5 flex-fill"
+                    data-bs-toggle="modal" data-bs-target="#tabNavModal">
+                    <div class="d-grid gap-2 justify-content-center">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important;"
-                            id="apps-tray-open-btn-icon"> dashboard </span>
+                            id="apps-tray-open-btn-icon"> settings_accessibility </span>
                         <span class="d-none d-lg-block text-truncate" id="apps-tray-open-btn-text"
-                            style="font-size: 10px;max-width:55.69px;"> Dashboard.</span>
+                            style="font-size: 10px;max-width:55.69px;">Preferences</span>
                     </div>
                 </button>
 
                 <!-- Main App Content Refresh button -->
-                <div class="d-inline gap-2">
+                <div class="d-grid gap-2">
                     <button id="main-app-refresh-btn" style="border-color:var(--primary-color)!important"
-                        class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz border-start border-end border-5"
-                        style="overflow: hidden; font-size: 10px;" type="button"
-                        onclick="initializeContent('<?php echo $userAuth; ?>','<?php echo $currentUser_Usrnm; ?>')">
+                        class="onefit-buttons-style-dark p-4 shadow d-nonez d-lg-blockz border-start border-end border-5 flex-fill"
+                        type="button" onclick="initializeContent('1','KING_001')">
                         <!--  data-bs-toggle="modal" data-bs-target="#tabLatestSocialModal" -->
                         <div class="d-grid gap-2 text-center">
                             <div class="text-center">
                                 <img src="../media/assets/One-Symbol-Logo-White.svg" alt="Onefit Logo"
                                     class="p-1 img-fluid my-pulse-animation-tahitiz"
-                                    style="height: 50px; width: 50px; border-radius: 15px; border-color: var(--accent-color) !important">
+                                    style="height: 50px; width: 50px; border-radius: 15px; border-color: var(--accent-color) !important; filter: invert(0);">
                             </div>
                             <span class="d-none d-lg-block text-truncate">Refresh</span>
                         </div>
@@ -1221,10 +1235,10 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                 <button id="open-widgets-panel-btn" type="button"
                     style="border-color:var(--primary-color)!important;min-width: 85.69px;"
-                    class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font show-side-panels border-topz border-bottom border-5"
+                    class="onefit-buttons-style-dark p-3 my-4z shadow comfortaa-font show-side-panels border-topz border-bottom border-5 flex-fill"
                     data-bs-toggle="collapse" data-bs-target="#widget-rows-container"
                     aria-controls="widget-rows-container" onclick="$('#toggle-tab-container').click();">
-                    <div class="d-grid gap-2">
+                    <div class="d-grid gap-2 justify-content-center">
                         <span class="material-icons material-icons-round" style="font-size: 24px !important"> interests
                         </span>
                         <span class="d-none d-lg-block text-truncate"
@@ -1235,10 +1249,10 @@ if (isset($_SESSION["currentUserAuth"])) {
 
                 <button id="main-nav-ext-links-btn"
                     style="border-color:var(--primary-color)!important;min-width: 85.69px;"
-                    class="navbar-toggler shadow onefit-buttons-style-dark p-3 hide-right-side-panels d-none d-sm-block border-topz border-bottom border-5"
+                    class="navbar-toggler shadow onefit-buttons-style-dark p-3 hide-right-side-panels d-none d-sm-block border-topz border-bottom border-5 flex-fill"
                     type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                     aria-controls="offcanvasNavbar">
-                    <div class="d-grid gap-2">
+                    <div class="d-grid gap-2 justify-content-center">
                         <span class="material-icons material-icons-round align-middle"
                             style="font-size: 28px !important"> public
                             <!-- menu_open -->
@@ -1248,270 +1262,48 @@ if (isset($_SESSION["currentUserAuth"])) {
                     </div>
                 </button>
 
-                <!-- Navigation Menu Offcanvas -->
-                <div class="offcanvas offcanvas-end offcanvas-menu-primary-style w-100 fitness-bg-containerz"
-                    tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                    <div class="no-scroller" id="offcanvas-menu">
-                        <div class="offcanvas-header fs-1" style="color: var(--text-color)">
-                            <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2"
-                                style="max-width:100px;">
-                            <h5 class="offcanvas-title text-center" id="offcanvasNavbarLabel">
-                                <span class="material-icons material-icons-round align-middle"
-                                    style="color: var(--primary-color); cursor: pointer;font-size:20px!important;">
-                                    public
-                                </span>
-                                Web.nav
-                            </h5>
-                            <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2"
-                                data-bs-dismiss="offcanvas" aria-label="Close">
-                                <span class="material-icons material-icons-round align-middle"
-                                    style="font-size:20px!important;"> close </span>
-                            </button>
-                        </div>
-                        <div class="offcanvas-body"
-                            style="padding-bottom: 40px; overflow-y: auto; overflow-x: hidden; max-height: 86.9vh;">
 
-                            <div class="row">
-                                <div class="col-md">
-                                    <ul
-                                        class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
-                                        <li class="nav-item text-center">
-                                            <div class="d-grid mb-2 w3-animate-top">
-                                                <p class="text-white comfortaa-font fs-4 mb-0 fw-bold"> Presented by
-                                                </p>
-                                                <p class="text-white audiowide-font mt-1 mb-0 fw-bold"
-                                                    style="font-size: 8px !important;">
-                                                    <span style="color: var(--tahitigold);">
-                                                        One</span>-On-<span style="color: var(--tahitigold);">One</span>
-                                                    Fitness
-                                                    Network<sup style="color: var(--tahitigold);">®</sup>
-                                                </p>
-                                                <span class="material-icons material-icons-round d-none"
-                                                    style="color: var(--primary-color); cursor: pointer;">
-                                                    public
-                                                </span>
-                                                <img src="../media/assets/One-Logo.png" class="img-fluid px-4"
-                                                    alt="onefitnet logo" style="filter: invert(0);">
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
-                                                style="border-radius: 25px !important;font-size:16px;"
-                                                href="https://onefitnet.co.za/" target="_blank">One-On-One
-                                                Fitness Network<span style="color:var(--primary-color);">™</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
-                                                style="border-radius: 25px !important;font-size:16px;"
-                                                href="https://onefitnet.co.za/redirect/?linkref=null"
-                                                target="_blank">LMM 1-On-1
-                                                Trainer<span style="color:var(--primary-color);">™</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
-                                                style="border-radius: 25px !important;font-size:16px;"
-                                                href="https://adaptivconcept.co.za/" target="_blank">AdaptivConcept<span
-                                                    style="color:var(--primary-color);">™</span>
-                                                FL</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md">
-                                    <ul
-                                        class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
-                                        <h5 class="text-center fs-1 fw-bold text-white d-grid gap-2">
-                                            <span class="material-icons material-icons-round align-middle"
-                                                style="color:var(--primary-color);">fitness_center</span>
-                                            <span class="align-middle">Join a gym.</span>
-                                        </h5>
-                                        <!-- affiliate links -->
-                                        <p class="text-mutedz fw-bold text-center mb-4"
-                                            style="font-size:10px;color:var(--text-color);">
-                                            <span class="material-icons material-icons-round align-middle"
-                                                style="font-size:20px!important;color:var(--primary-color);">
-                                                warning
-                                            </span>
-                                            The links below are intended for demonstration purposed only.
-                                            <span class="material-icons material-icons-round align-middle"
-                                                style="font-size:20px!important;color:var(--primary-color);">
-                                                warning
-                                            </span>
-                                        </p>
-                                        <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
-                                            <div class="row w-100">
-                                                <div class="col-md">
-                                                    <img src="../administration/media/affiliate/logos/gym_company_logo.png"
-                                                        class="img-fluid rounded-4 shadow"
-                                                        style="/* width:200px;height:100px; */filter: invert(0);"
-                                                        alt="Gym Company logo - not affiliated">
-                                                </div>
-                                                <div
-                                                    class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
-                                                    <p style="font-size:16px;" class="text-white text-start">gym4free is
-                                                        a
-                                                        rewards programme exclusive to Gym Company members.</p>
-                                                    <a class="nav-link p-0 text-start"
-                                                        style="border-radius: 25px !important;font-size:8px;"
-                                                        href="https://www.gymcompany.co.za/" target="_blank">Visit
-                                                        gymcompany.co.za for more info.</a>
-                                                </div>
-                                            </div>
+            </div>
+            <!-- ./tight -->
 
+            <!-- Notifocation List Offcanvas -->
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications" hidden="">
+                <span class="material-icons material-icons-round" style="font-size: 48px !important"> notifications
+                </span>
+                Notifications
+            </button>
 
-                                        </li>
-                                        <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
-                                            <div class="row w-100">
-                                                <div class="col-md">
-                                                    <img src="../administration/media/affiliate/logos/planet_fitness_logo.png"
-                                                        class="img-fluid rounded-4 shadow"
-                                                        style="/* width:200px;height:100px; */filter: invert(0);"
-                                                        alt="Planet Fitness logo - not affiliated">
-                                                </div>
-                                                <div
-                                                    class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
-                                                    <p style="font-size:16px;" class="text-white text-start">Get your
-                                                        one week
-                                                        free trial at your nearest PlanetFitness.</p>
-                                                    <a class="nav-link p-0 poppins-font text-start"
-                                                        style="border-radius: 25px !important;font-size:10px;"
-                                                        href="https://www.planetfitness.co.za/" target="_blank">Visit
-                                                        planetfitness.co.za for more info.</a>
-                                                </div>
-                                            </div>
-
-
-                                        </li>
-                                        <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
-                                            <div class="row w-100">
-                                                <div class="col-md">
-                                                    <img src="../administration/media/affiliate/logos/virgin_active_logo.png"
-                                                        class="img-fluid rounded-4 shadow"
-                                                        style="/* width:100px;height:100px; */filter: invert(0);"
-                                                        alt="Virgin Active logo - not affiliated">
-                                                </div>
-                                                <div
-                                                    class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
-                                                    <p style="font-size:16px;" class="text-white text-start">Virgin
-                                                        Active
-                                                        Rewards.</p>
-                                                    <a class="nav-link p-0 text-start"
-                                                        style="border-radius: 25px !important;font-size:10px;"
-                                                        href="https://www.virginactive.co.za/club-loyalty-benefits"
-                                                        target="_blank">Visit
-                                                        virginactive.co.za for more info.</a>
-                                                </div>
-                                            </div>
-
-
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md">
-                                    <ul
-                                        class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
-                                        <h5 class="text-center fs-5 fw-bold text-white d-grid gap-2">
-                                            <span class="material-icons material-icons-round align-middle"
-                                                style="color:var(--primary-color);">card_membership</span>
-                                            <span class="align-middle">Earn, Learn and Gear up!</span>
-                                        </h5>
-                                        <p class="fs-5z mb-4 text-center"
-                                            style="font-size:12px;color:var(--text-color);">
-                                            OneFitNet
-                                            offers members
-                                            the chance to earn essential training
-                                            equipement and vouchers. Commit to your fitness journey with us and be
-                                            rewarded.
-                                            <br><span style="color:var(--primary-color);" class="fw-bold">OneFitNet
-                                                Community
-                                                Rewards Program</span>
-                                        </p>
-                                        <li class="nav-item">
-                                            <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
-                                                style="border-radius: 25px !important;font-size:16px;" href="#">
-                                                <span
-                                                    class="material-icons material-icons-round align-middle">card_giftcard</span>
-                                                OnefitNet CRP<sub
-                                                    style="color:var(--primary-color);font-size:8px!important;">Alpha</sub></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
-                                                style="border-radius: 25px !important;font-size:16px;" href="#">
-                                                <span
-                                                    class="material-icons material-icons-round align-middle">auto_stories</span>
-                                                Onefit.blog<span style="color:var(--primary-color);">™</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
-                                                style="border-radius: 25px !important;font-size:16px;" href="#">
-                                                <span
-                                                    class="material-icons material-icons-round align-middle">storefront</span>
-                                                Onefit.Shop<span style="color:var(--primary-color);">™</span></a>
-                                        </li>
-                                        <hr class="text-dark my-5" style="height: 5px;">
-                                        <li class="nav-item d-grid gap-2">
-                                            <button
-                                                class="onefit-buttons-style-light rounded-pill p-4 text-center shadow fw-bold"
-                                                style="transform: translate(0) !important; border-radius:25px!important;"
-                                                onclick="launchLink('../scripts/php/destroy_session.php')">
-                                                <div class="align-items-center">
-                                                    <span class="material-icons material-icons-outlined align-middle"
-                                                        style="color: var(--primary-color);font-size:20px!important;">
-                                                        logout
-                                                    </span>
-                                                    <span class="align-middle" style="font-size:20px!important;">
-                                                        Logout.
-                                                    </span>
-                                                </div>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
+            <div class="offcanvas offcanvas-start offcanvas-menu-primary-style fitness-bg-containerz w-100"
+                tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
+                <div class="offcanvas-header fs-1"
+                    style="background-color: var(--secondary-color); color: var(--text-color)">
+                    <!-- <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;"> -->
+                    <button id="app-notifications-close-btn" type="button"
+                        class="onefit-buttons-style-light rounded-pill shadow p-2" data-bs-dismiss="offcanvas"
+                        aria-label="Close" onclick="$.toggleNotificationIndicator(false, 'pending', false)">
+                        <span class="material-icons material-icons-round align-middle"
+                            style="font-size:20px!important;"> close </span>
+                    </button>
+                    <h5 class="offcanvas-title text-center text-truncate fs-2" id="offcanvasNavbarLabel">
+                        <span class="material-icons material-icons-round align-middle"
+                            style="color: var(--primary-color);cursor: pointer;font-size: 40px!important;">
+                            notifications
+                        </span>
+                        Alerts &amp; Notifications.
+                    </h5>
+                    <img src="../media/assets/One-Logo.svg" alt="onefitnet logo" class="img-fluid logo-size-2 d-none"
+                        style="max-width:100px;">
                 </div>
-                <!-- ./Navigation Menu Offcanvas -->
+                <div class="offcanvas-body top-down-grad-dark">
+                    <!-- style="background-color: rgba(255, 255, 255, 0.8);" -->
 
-                <!-- Notifocation List Offcanvas -->
-                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNotifications" aria-controls="offcanvasNotifications" hidden="">
-                    <span class="material-icons material-icons-round" style="font-size: 48px !important"> notifications
-                    </span>
-                    Notifications
-                </button>
-
-                <div class="offcanvas offcanvas-start offcanvas-menu-primary-style fitness-bg-containerz w-100"
-                    tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
-                    <div class="offcanvas-header fs-1"
-                        style="background-color: var(--secondary-color); color: var(--text-color)">
-                        <!-- <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2" style="max-width:100px;"> -->
-                        <button id="app-notifications-close-btn" type="button"
-                            class="onefit-buttons-style-light rounded-pill shadow p-2" data-bs-dismiss="offcanvas"
-                            aria-label="Close" onclick="$.toggleNotificationIndicator(false, 'pending', false)">
-                            <span class="material-icons material-icons-round align-middle"
-                                style="font-size:20px!important;"> close </span>
-                        </button>
-                        <h5 class="offcanvas-title text-center text-truncate fs-2" id="offcanvasNavbarLabel">
-                            <span class="material-icons material-icons-round align-middle"
-                                style="color: var(--primary-color);cursor: pointer;font-size: 40px!important;">
-                                notifications
-                            </span>
-                            Alerts &amp; Notifications.
-                        </h5>
-                        <img src="../media/assets/One-Logo.svg" alt="onefitnet logo"
-                            class="img-fluid logo-size-2 d-none" style="max-width:100px;">
-                    </div>
-                    <div class="offcanvas-body top-down-grad-dark">
-                        <!-- style="background-color: rgba(255, 255, 255, 0.8);" -->
-
-                        <div class="row">
-                            <div class="col-md">
-                                <h5 class="fs-5 text-white poppins-font">Notifications.</h5>
-                                <div id="communicationUserNotifications">
-                                    <?php echo $outputProfileUserNotifications; ?>
-                                    <!-- <div class="my-4 text-dark top-down-grad-tahiti p-4" style="border-radius: 25px;">
+                    <div class="row">
+                        <div class="col-md">
+                            <h5 class="fs-5 text-white poppins-font">Notifications.</h5>
+                            <div id="communicationUserNotifications">
+                                <?php echo $outputProfileUserNotifications; ?>
+                                <!-- <div class="my-4 text-dark top-down-grad-tahiti p-4" style="border-radius: 25px;">
                                 <a href="#" class="list-group-item list-group-item-action text-dark" aria-current="true"
                                     id="notifcation-1" style="border-radius: 25px !important;">
                                     <div class="d-flex w-100 justify-content-between">
@@ -1525,44 +1317,262 @@ if (isset($_SESSION["currentUserAuth"])) {
                                     </p>
                                 </a>
                             </div> -->
-                                </div>
+                            </div>
 
-                                <hr class="text-white">
+                            <hr class="text-white">
 
-                                <h5 class="fs-5 text-white poppins-font visually-hidden">Alerts. <span
-                                        class="alert-count">0</span></h5>
-                                <ol class="list-group list-group-flush shadow light-scroller" id="alert-list"
-                                    style="border-radius: 25px; max-height: 60vh;overflow-y:auto;">
-                                    <li id="alert-settings-header" s
-                                        class="list-group-item border-dark bg-darkz top-down-grad-dark sticky-top text-white py-4">
-                                        <div class="d-flex gap-0 justify-content-between align-items-center w-100">
-                                            <div>
-                                                <span class="alert-count">0</span>
-                                                <span> alerts.</span>
-                                            </div>
+                            <h5 class="fs-5 text-white poppins-font visually-hidden">Alerts. <span
+                                    class="alert-count">0</span></h5>
+                            <ol class="list-group list-group-flush shadow light-scroller" id="alert-list"
+                                style="border-radius: 25px; max-height: 60vh;overflow-y:auto;">
+                                <li id="alert-settings-header" s
+                                    class="list-group-item border-dark bg-darkz top-down-grad-dark sticky-top text-white py-4">
+                                    <div class="d-flex gap-0 justify-content-between align-items-center w-100">
+                                        <div>
+                                            <span class="alert-count">0</span>
+                                            <span> alerts.</span>
+                                        </div>
 
 
-                                            <div class="d-flex gap-0 justify-content-end align-items-center">
-                                                <span style="font-size: 16px;">settings.</span>
-                                                <span class="material-icons material-icons-round p-2"
-                                                    style="font-size:20px !important;">
-                                                    tune
-                                                </span>
-                                            </div>
+                                        <div class="d-flex gap-0 justify-content-end align-items-center">
+                                            <span style="font-size: 16px;">settings.</span>
+                                            <span class="material-icons material-icons-round p-2"
+                                                style="font-size:20px !important;">
+                                                tune
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item border-dark noalert">No alerts.</li>
+                            </ol>
+                        </div>
+                        <div class="col-md top-down-grad-dark rounded-5 p-4">
+                            <h5>RSS / News.</h5>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ./Notifocation List Offcanvas -->
+
+            <!-- Navigation Menu Offcanvas -->
+            <div class="offcanvas offcanvas-end offcanvas-menu-primary-style w-100 fitness-bg-containerz" tabindex="-1"
+                id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="no-scroller" id="offcanvas-menu">
+                    <div class="offcanvas-header fs-1" style="color: var(--text-color)">
+                        <img src="../media/assets/One-Logo.svg" alt="" class="img-fluid logo-size-2"
+                            style="max-width: 100px; filter: invert(0);">
+                        <h5 class="offcanvas-title text-center" id="offcanvasNavbarLabel">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="color: var(--primary-color); cursor: pointer;font-size:20px!important;">
+                                public
+                            </span>
+                            Web.nav
+                        </h5>
+                        <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2"
+                            data-bs-dismiss="offcanvas" aria-label="Close">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="font-size:20px!important;"> close </span>
+                        </button>
+                    </div>
+                    <div class="offcanvas-body"
+                        style="padding-bottom: 40px; overflow-y: auto; overflow-x: hidden; max-height: 86.9vh;">
+
+                        <div class="row">
+                            <div class="col-md">
+                                <ul class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
+                                    <li class="nav-item text-center">
+                                        <div class="d-grid mb-2 w3-animate-top">
+                                            <p class="text-white comfortaa-font fs-4 mb-0 fw-bold"> Presented by
+                                            </p>
+                                            <p class="text-white audiowide-font mt-1 mb-0 fw-bold"
+                                                style="font-size: 8px !important;">
+                                                <span style="color: var(--tahitigold);">
+                                                    One</span>-On-<span style="color: var(--tahitigold);">One</span>
+                                                Fitness
+                                                Network<sup style="color: var(--tahitigold);">®</sup>
+                                            </p>
+                                            <span class="material-icons material-icons-round d-none"
+                                                style="color: var(--primary-color); cursor: pointer;">
+                                                public
+                                            </span>
+                                            <img src="../media/assets/One-Logo.png" class="img-fluid px-4"
+                                                alt="onefitnet logo" style="filter: invert(0);">
                                         </div>
                                     </li>
-                                    <li class="list-group-item border-dark noalert">No alerts.</li>
-                                </ol>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                            style="border-radius: 25px !important;font-size:16px;"
+                                            href="https://onefitnet.co.za/" target="_blank">One-On-One
+                                            Fitness Network<span style="color:var(--primary-color);">™</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                            style="border-radius: 25px !important;font-size:16px;"
+                                            href="https://onefitnet.co.za/redirect/?linkref=null" target="_blank">LMM
+                                            1-On-1
+                                            Trainer<span style="color:var(--primary-color);">™</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                            style="border-radius: 25px !important;font-size:16px;"
+                                            href="https://adaptivconcept.co.za/" target="_blank">AdaptivConcept<span
+                                                style="color:var(--primary-color);">™</span>
+                                            FL</a>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="col-md top-down-grad-dark rounded-5 p-4">
-                                <h5>RSS / News.</h5>
+                            <div class="col-md">
+                                <ul class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
+                                    <h5 class="text-center fs-1 fw-bold text-white d-grid gap-2">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--primary-color);">fitness_center</span>
+                                        <span class="align-middle">Join a gym.</span>
+                                    </h5>
+                                    <!-- affiliate links -->
+                                    <p class="text-mutedz fw-bold text-center mb-4"
+                                        style="font-size:10px;color:var(--text-color);">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="font-size:20px!important;color:var(--primary-color);">
+                                            warning
+                                        </span>
+                                        The links below are intended for demonstration purposed only.
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="font-size:20px!important;color:var(--primary-color);">
+                                            warning
+                                        </span>
+                                    </p>
+                                    <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
+                                        <div class="row w-100">
+                                            <div class="col-md">
+                                                <img src="../administration/media/affiliate/logos/gym_company_logo.png"
+                                                    class="img-fluid rounded-4 shadow"
+                                                    style="/* width:200px;height:100px; */filter: invert(0);"
+                                                    alt="Gym Company logo - not affiliated">
+                                            </div>
+                                            <div class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
+                                                <p style="font-size:16px;" class="text-white text-start">gym4free is
+                                                    a
+                                                    rewards programme exclusive to Gym Company members.</p>
+                                                <a class="nav-link p-0 text-start"
+                                                    style="border-radius: 25px !important;font-size:8px;"
+                                                    href="https://www.gymcompany.co.za/" target="_blank">Visit
+                                                    gymcompany.co.za for more info.</a>
+                                            </div>
+                                        </div>
+
+
+                                    </li>
+                                    <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
+                                        <div class="row w-100">
+                                            <div class="col-md">
+                                                <img src="../administration/media/affiliate/logos/planet_fitness_logo.png"
+                                                    class="img-fluid rounded-4 shadow"
+                                                    style="/* width:200px;height:100px; */filter: invert(0);"
+                                                    alt="Planet Fitness logo - not affiliated">
+                                            </div>
+                                            <div class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
+                                                <p style="font-size:16px;" class="text-white text-start">Get your
+                                                    one week
+                                                    free trial at your nearest PlanetFitness.</p>
+                                                <a class="nav-link p-0 poppins-font text-start"
+                                                    style="border-radius: 25px !important;font-size:10px;"
+                                                    href="https://www.planetfitness.co.za/" target="_blank">Visit
+                                                    planetfitness.co.za for more info.</a>
+                                            </div>
+                                        </div>
+
+
+                                    </li>
+                                    <li class="nav-item text-center d-flex gap-2 justify-content-center mb-4">
+                                        <div class="row w-100">
+                                            <div class="col-md">
+                                                <img src="../administration/media/affiliate/logos/virgin_active_logo.png"
+                                                    class="img-fluid rounded-4 shadow"
+                                                    style="/* width:100px;height:100px; */filter: invert(0);"
+                                                    alt="Virgin Active logo - not affiliated">
+                                            </div>
+                                            <div class="col-md poppins-font d-grid gap-1 down-top-grad-dark rounded-4">
+                                                <p style="font-size:16px;" class="text-white text-start">Virgin
+                                                    Active
+                                                    Rewards.</p>
+                                                <a class="nav-link p-0 text-start"
+                                                    style="border-radius: 25px !important;font-size:10px;"
+                                                    href="https://www.virginactive.co.za/club-loyalty-benefits"
+                                                    target="_blank">Visit
+                                                    virginactive.co.za for more info.</a>
+                                            </div>
+                                        </div>
+
+
+                                    </li>
+                                </ul>
                             </div>
+                            <div class="col-md">
+                                <ul class="navbar-nav justify-content-end flex-grow-1 py-3 comfortaa-font fs-3 gap-4">
+                                    <h5 class="text-center fs-5 fw-bold text-white d-grid gap-2">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color:var(--primary-color);">card_membership</span>
+                                        <span class="align-middle">Earn, Learn and Gear up!</span>
+                                    </h5>
+                                    <p class="fs-5z mb-4 text-center" style="font-size:12px;color:var(--text-color);">
+                                        OneFitNet
+                                        offers members
+                                        the chance to earn essential training
+                                        equipement and vouchers. Commit to your fitness journey with us and be
+                                        rewarded.
+                                        <br><span style="color:var(--primary-color);" class="fw-bold">OneFitNet
+                                            Community
+                                            Rewards Program</span>
+                                    </p>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                            style="border-radius: 25px !important;font-size:16px;" href="#">
+                                            <span
+                                                class="material-icons material-icons-round align-middle">card_giftcard</span>
+                                            OnefitNet CRP<sub
+                                                style="color:var(--primary-color);font-size:8px!important;">Alpha</sub></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                            style="border-radius: 25px !important;font-size:16px;" href="#">
+                                            <span
+                                                class="material-icons material-icons-round align-middle">auto_stories</span>
+                                            Onefit.blog<span style="color:var(--primary-color);">™</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-4 py-5 text-center down-top-grad-tahiti"
+                                            style="border-radius: 25px !important;font-size:16px;" href="#">
+                                            <span
+                                                class="material-icons material-icons-round align-middle">storefront</span>
+                                            Onefit.Shop<span style="color:var(--primary-color);">™</span></a>
+                                    </li>
+                                    <hr class="text-dark my-5" style="height: 5px;">
+                                    <li class="nav-item d-grid gap-2">
+                                        <button
+                                            class="onefit-buttons-style-light rounded-pill p-4 text-center shadow fw-bold"
+                                            style="transform: translate(0) !important; border-radius:25px!important;"
+                                            onclick="launchLink('../scripts/php/destroy_session.php')">
+                                            <div class="align-items-center">
+                                                <span class="material-icons material-icons-outlined align-middle"
+                                                    style="color: var(--primary-color);font-size:20px!important;">
+                                                    logout
+                                                </span>
+                                                <span class="align-middle" style="font-size:20px!important;">
+                                                    Logout.
+                                                </span>
+                                            </div>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+
                         </div>
 
                     </div>
                 </div>
-                <!-- ./Notifocation List Offcanvas -->
             </div>
+            <!-- ./Navigation Menu Offcanvas -->
             <!-- ./ App Function Buttons -->
         </nav>
         <!-- ./ Main Navigation Bar -->
@@ -5094,8 +5104,6 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </h5>
                         </div>
 
-                        <hr style="color: var(--primary-color);">
-
                         <div id="vertical-timeline-varusername" class="light-scroller"
                             style="max-height: 90vh; overflow: auto; border-radius: 25px;">
                             <div id="user-activity-timeline" class="timeline"
@@ -5334,7 +5342,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <div class="col-sm py-2 text-center">
                                 <div class="d-grid justify-content-center">
                                     <button
-                                        class="onefit-buttons-style-tahiti d-grid gap-2 justify-content-center p-4 my-pulse-animation-whitez border-5 border hide-side-panels"
+                                        class="onefit-buttons-style-dark d-grid gap-2 justify-content-center p-4 my-pulse-animation-whitez border-5 border hide-side-panels"
                                         style="border-radius: 25px !important;border: solid 5px var(--white) !important;min-width: 120px;"
                                         type="button" data-bs-toggle="modal"
                                         data-bs-target="#tabCaptureActivityTrackerDataModal">
@@ -12817,8 +12825,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                     <hr class="text-white mb-5" />
                     | Privacy |
                     <p class="m-0 p-0">
-                        <span class="m-0 float-right" style="font-size: 10px">Crafted by AdaptivConcept &copy;
-                            2021
+                        <span class="m-0 float-right" style="font-size: 10px">Crafted by AdaptivConcept FL &copy;
+                            2021. All rights reserved.
                         </span>
                     </p>
                 </div>
@@ -12937,7 +12945,7 @@ if (isset($_SESSION["currentUserAuth"])) {
                             <!-- 6. Button trigger modal>>>>>>>>>> Tab Edit weekly training schedule for Teams Modal -->
                             <button id="toggleTabeditWeeklyTeamsTrainingScheduleModalBtn" type="button"
                                 class="btnz btn-lightz onefit-buttons-style-light p-4 d-grid shadow"
-                                data-bs-toggle="modal" data-bs-target="#tabeditWeeklyTeamsTrainingScheduleModal">
+                                onclick="openCalenderActivityForm('today', 'today', 'today', 'quicknav')">
                                 <!-- hidden aria-hidden="true" -->
                                 <span class="material-icons material-icons-round align-middle">
                                     edit_calendar
@@ -13123,7 +13131,8 @@ if (isset($_SESSION["currentUserAuth"])) {
                         <div class="d-grid grid-tile modal-grid-tile-transform">
                             <!-- open chat modal -->
                             <button class="bg-transparent onefit-buttons-style-dark-modal p-4 shadow-lg app-nav-btn"
-                                id="app-msgs-btn" onclick="openLink(event, 'OffcanvasMessages')">
+                                id="app-msgs-btn"
+                                onclick="openLink(event, 'OffcanvasMessages');document.getElementById('apps-tray-close-btn').click();">
                                 <!-- type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomOnefitChat" aria-controls="offcanvasBottomOnefitChat" -->
                                 <div class="d-grid gap-2">
                                     <span class="material-icons material-icons-round" style="
@@ -14416,18 +14425,68 @@ if (isset($_SESSION["currentUserAuth"])) {
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
             <div class="modal-content feature-tab-nav-content content-panel-border-stylez">
                 <!-- style="border-bottom: #ffa500 5px solid;" -->
-                <div class="modal-header border-0">
-                    <div class="d-flex gap-2 justify-content-start align-items-middle">
-                        <span class="material-icons material-icons-round align-middle"
-                            style="color: var(--primary-color);font-size:48px!important;">
-                            calendar_month
-                        </span>
-                        <h5 class="modal-title align-middle d-grid m-0 fs-4"
-                            id="tabCaptureActivityTrackerDataModalLabel">
-                            <span class=" align-middle"> Fitness Calender. </span>
-                            <small class="text-muted">My activities for <span
-                                    class="calender-date-selected-label text-white fw-bold">Date</span>.</small>
-                        </h5>
+                <div class="modal-header border-0 align-items-start">
+                    <div class="d-grid gap-2 flex-fill">
+                        <div class="d-flex gap-2 justify-content-start align-items-center">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="color: var(--primary-color);font-size:88px!important;">
+                                calendar_month
+                            </span>
+                            <h5 class="modal-title align-middle m-0 fs-4" id="tabCaptureActivityTrackerDataModalLabel">
+                                <div class="d-flex gap-2">
+                                    <span class="d-grid gap-2">
+                                        <span class="align-middle fs-5">Fitness Calender.</span>
+                                        <small class="text-muted">My activities for
+                                            <u>
+                                                <span
+                                                    class="calender-date-selected-label text-white fw-bold">Date</span>.
+                                            </u>
+                                        </small>
+                                    </span>
+                                    <button class="onefit-buttons-style-tahiti p-2 text-center" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#calender-modal-date-range-selector"
+                                        aria-controls="calender-modal-date-range-selector" aria-expanded="false">
+                                        <div class="d-grid">
+                                            <span class="material-icons material-icons-round align-middle"
+                                                style="font-size: 40px !important">
+                                                date_range
+                                            </span>
+                                            <span class="align-middle poppins-font text-truncate"
+                                                style="font-size: 10px !important">
+                                                Change date.
+                                            </span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </h5>
+                        </div>
+                        <!-- date select -->
+                        <div id="calender-modal-date-range-selector" class="date-range-selector pt-4 mb-4 collapse">
+                            <p class="m-0 text-center">Change calender date.</p>
+                            <div class="input-group mb-0 fixed-bottomz down-top-grad-tahiti px-5 py-4"
+                                style="border-radius: 25px;">
+                                <span
+                                    class="material-icons material-icons-round align-middle p-2 d-flex align-items-center">calendar_month</span>
+                                <input id="calender-modal-training-week-date-range-input"
+                                    name="training-week-date-range-input" type="date"
+                                    class="training-week-date-range-input form-control fs-2 align-middle border-white text-center p-4"
+                                    placeholder="Training Week Date Sync" aria-label="Training Week Date Sync"
+                                    aria-describedby="#training-week-date-range-select-btn"
+                                    style="border-radius:15px 0 0 15px;">
+                                <button id="calender-modal-training-week-date-range-select-btn"
+                                    class="btn btn-outline-light border-5 p-2" type="button"
+                                    onclick="$.getRequestedTrainingWeekActivities()"
+                                    style="border-radius: 0 15px 15px 0;">
+                                    <span class="material-icons material-icons-round align-middle"
+                                        style="font-size: 30px !important;">
+                                        sync
+                                    </span>
+                                    <span class="align-middle" style="font-size:10px;">Select Date.</span>
+                                </button>
+                            </div>
+                            <hr class="mb-0">
+                        </div>
+                        <!-- ./ date select -->
                     </div>
 
                     <button type="button" class="onefit-buttons-style-danger p-2" data-bs-dismiss="modal"
@@ -14485,109 +14544,6 @@ if (isset($_SESSION["currentUserAuth"])) {
                             </div>
                         </div>
                         <div class="accordion-item p-2 my-2 border-0 shadow">
-                            <h2 class="accordion-header m-0" id="cav-flush-header-diary_notes">
-                                <button
-                                    class="accordion-button fs-5 fw-bold text-truncate gap-2 d-grid align-items-center collapsed"
-                                    type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#cav-flush-panel-diary_notes" aria-expanded="false"
-                                    aria-controls="cav-flush-panel-diary_notes">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex gap-2 justify-content-start align-items-center">
-                                            <span class="material-icons material-icons-round align-middle">book</span>
-                                            <span class="align-middle">Trainer guides.</span>
-                                        </div>
-
-                                        <div class="pin-item-icon shadow p-2"
-                                            style="border-radius:15px;font-size:10px!important;">
-                                            <span class="material-icons material-icons-round align-middle"
-                                                style="font-size:30px !important;">layers</span>
-                                            <span class="poppins-font">No new entries</span>
-                                        </div>
-                                    </div>
-                                </button>
-                            </h2>
-                            <div id="cav-flush-panel-diary_notes" class="accordion-collapse w3-animate-bottom collapse"
-                                aria-labelledby="cav-flush-header-diary_notes"
-                                data-bs-parent="#accordionFlushCalenderActivityViewer">
-                                <div class="accordion-body">
-                                    <h5 class="fs-2 p-4 fw-bold text-center comfortaa-font shadow my-4 border-5 border-start border-end"
-                                        style="border-radius:25px;">
-                                        Diary &amp; Trainer Notes.
-                                    </h5>
-                                    <hr class="text-white">
-                                    <div id="calender-activity-viewer-diary-entries-container">
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <!-- Tab for separation of Diary entries and Trainer Notes -->
-                                                <ul class="nav nav-tabs"
-                                                    style="border-bottom: 1px solid var(--primary-color);"
-                                                    id="diary-notes-tab" role="tablist">
-                                                    <li class="nav-item" role="presentation">
-                                                        <button class="nav-link p-4 shadow active"
-                                                            style="border-radius: 15px 15px 0 0 !important;"
-                                                            id="diary-entries-tab" data-bs-toggle="tab"
-                                                            data-bs-target="#diary-entries-tab-pane" type="button"
-                                                            role="tab" aria-controls="diary-entries-tab-pane"
-                                                            aria-selected="true">Diary.</button>
-                                                    </li>
-                                                    <li class="nav-item" role="presentation">
-                                                        <button class="nav-link p-4 shadow"
-                                                            style="border-radius: 15px 15px 0 0 !important;"
-                                                            id="trainer-notes-tab" data-bs-toggle="tab"
-                                                            data-bs-target="#trainer-notes-tab-pane" type="button"
-                                                            role="tab" aria-controls="trainer-notes-tab-pane"
-                                                            aria-selected="false">Trainer Notes.</button>
-                                                    </li>
-                                                </ul>
-                                                <div class="tab-content" id="diary-notes-tab-content">
-                                                    <div class="tab-pane fade shadow active show"
-                                                        id="diary-entries-tab-pane"
-                                                        style="border-radius: 0 0 25px 25px;" role="tabpanel"
-                                                        aria-labelledby="diary-entries-tab" tabindex="0">
-                                                        <div
-                                                            class="h-100 w-100 p-4 d-grid justify-content-center align-items-center">
-                                                            <div class="spinner-border text-white"
-                                                                style="width:3rem;height:3rem;" role="status">
-                                                                <span class="visually-hidden">Awaiting Diary
-                                                                    Entries...</span>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="tab-pane fade shadow" id="trainer-notes-tab-pane"
-                                                        style="border-radius: 0 0 25px 25px;" role="tabpanel"
-                                                        aria-labelledby="trainer-notes-tab" tabindex="0">
-                                                        <div
-                                                            class="h-100 w-100 p-4 d-grid justify-content-center align-items-center">
-                                                            <div class="spinner-border text-white"
-                                                                style="width:3rem;height:3rem;" role="status">
-                                                                <span class="visually-hidden">Awaiting Trainer
-                                                                    Notes...</span>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <!-- ./ Tab for separation of Diary entries and Trainer Notes -->
-                                            </div>
-                                            <div class="col-md d-grid align-items-center shadow"
-                                                style="border-radius: 25px;">
-                                                <!-- view window for selected entry-->
-                                                <div id="selected-entry-view-window"
-                                                    class="w-100 h-100 d-grid justify-content-center align-items-center">
-                                                    <div class="spinner-border text-white"
-                                                        style="width:3rem;height:3rem;" role="status">
-                                                        <span class="visually-hidden">Awaiting Entry Selection...</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item p-2 my-2 border-0 shadow">
                             <h2 class="accordion-header m-0" id="cav-flush-header-new_activities">
                                 <button
                                     class="accordion-button fs-5 fw-bold text-truncate gap-2 d-grid align-items-center collapsed"
@@ -14615,75 +14571,6 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 aria-labelledby="cav-flush-header-new_activities"
                                 data-bs-parent="#accordionFlushCalenderActivityViewer">
                                 <div class="accordion-body">
-                                    <script>
-                                    function getDayName(dateStr, locale) {
-                                        var date = new Date(dateStr);
-                                        return date.toLocaleDateString(locale, {
-                                            weekday: 'long'
-                                        });
-                                    }
-
-                                    function changeSelDateValues(selDate) {
-                                        var dateStr = selDate;
-                                        console.log("$(#add-to-calender-activity-date-value).oninput: dateStr - " +
-                                            dateStr);
-                                        var day = getDayName(formatDate(dateStr), "en-ZA");
-                                        document.getElementById('add-to-calender-activity-day-value').value = day;
-                                    }
-
-                                    function toggleCustomColorSelection(value, newTag) {
-                                        console.log("toggleCustomColorSelection function called", "Value: " + value +
-                                            " | newTag: " + newTag); //debug
-
-                                        newTag = newTag || false;
-                                        var colorExtract;
-                                        if (value === 'custom') {
-                                            // set display value to block for #custom-color-selection
-                                            document.getElementById('custom-color-selection').style.display =
-                                                "block";
-                                            // default th bg value to white
-                                            document.getElementById('color-preview').style.backgroundColor =
-                                                "white";
-                                        } else {
-                                            if (newTag === true) {
-                                                // call $.newCustomColorTag(tagColor) to change the color
-                                                var tagState = $.newCustomColorTag(value);
-                                                if (tagState == true) {
-                                                    // hide the #custom-color-selection col and console log success message
-                                                    document.getElementById('custom-color-selection').style
-                                                        .display = "none";
-                                                    // colorExtract = value.split('[').pop().split(']')[0];
-                                                    document.getElementById('color-preview').style.backgroundColor =
-                                                        value;
-                                                } else {
-                                                    // consol log failure message
-                                                    console.log(
-                                                        "[toggleCustomColorSelection] failed to create color tag."
-                                                    );
-                                                }
-                                            } else {
-                                                // set display value to greenyellow as it it the first item/color code in our select input for #custom-color-selection
-                                                document.getElementById('custom-color-selection').style.display =
-                                                    "none";
-                                                // extract the color of the selection made/passed through the value parameter and set it as the backgroun color of #custom-color-selection
-                                                colorExtract = value.split('[').pop().split(']')[0];
-                                                document.getElementById('color-preview').style.backgroundColor =
-                                                    colorExtract;
-                                            }
-
-                                            // if value starts with off_day, hide #question-6-activities, else show #question-6-activities
-                                            if (value.startsWith('off_day')) {
-                                                document.getElementById('question-6-activities').style.display =
-                                                    "none";
-                                                // 
-                                            } else {
-                                                document.getElementById('question-6-activities').style.display =
-                                                    "block";
-                                            }
-
-                                        }
-                                    }
-                                    </script>
 
                                     <div id="add-new-schedule-form-container">
                                         <form id="add-new-schedule-form"
@@ -14856,13 +14743,15 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                     style="color: var(--primary-color) !important">6. Add Activities
                                                 </h5>
                                                 <div class="row align-items-center">
-                                                    <div class="col-md d-grid">
+                                                    <div id="select-exercise-activity-container"
+                                                        class="col-md p-5 rounded-5 collapse multi-collapse show w3-animate-zoom right-left-grad-tahiti">
                                                         <!-- select an existing exercise activity -->
-                                                        <div class="form-group d-grid gap-2">
+                                                        <div class="form-group d-grid gap-4">
                                                             <label for="add-to-calender-activity-selection"
-                                                                class="poppins-font fs-4 add-to-calender-activity-selection"
-                                                                style="color: var(--primary-color);">Exercises &amp;
-                                                                Activities.</label>
+                                                                class="poppins-font fs-4 fw-bold add-to-calender-activity-selection"
+                                                                style="color: var(--text-color);">Select Exercises
+                                                                &amp;
+                                                                Activities below.</label>
                                                             <select
                                                                 class="custom-select form-control-select-input p-2 light-scroller"
                                                                 id="add-to-calender-activity-selection"
@@ -14986,130 +14875,229 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                         </div>
                                                         <!-- ./ select an existing exercise activity -->
                                                     </div>
+
+                                                    <!-- side panels toggle buttons -->
                                                     <div class="col-md-2 py-4">
                                                         <div class="d-grid justify-content-center text-center">
-                                                            <button type="button"
-                                                                class="onefit-buttons-style-tahiti p-3 d-grid"
-                                                                data-bs-toggle="collapse"
-                                                                data-bs-target="#new-exercise-activity-container"
-                                                                aria-expanded="true"
-                                                                aria-controls="new-exercise-activity-container">
-                                                                <span
-                                                                    class="material-icons material-icons-round align-middle"
-                                                                    style="font-size: 30px!important;">
-                                                                    playlist_add
-                                                                </span>
-                                                                <span style="font-size:10px!important;"
-                                                                    class="text-truncate">
-                                                                    New Exercise/Activity.
-                                                                </span>
-                                                            </button>
+                                                            <!-- button column for switching to the right side of this input section -->
+                                                            <div id="toggle-right-input-group"
+                                                                class="collapse multi-collapse show w3-animate-top">
+                                                                <button type="button"
+                                                                    class="onefit-buttons-style-tahiti p-3 d-grid"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target=".multi-collapse"
+                                                                    aria-expanded="false"
+                                                                    aria-controls="new-exercise-activity-container select-exercise-activity-container toggle-left-input-group">
+                                                                    <span
+                                                                        class="material-icons material-icons-round align-middle"
+                                                                        style="font-size: 30px!important;">
+                                                                        playlist_add
+                                                                    </span>
+                                                                    <span style="font-size:10px!important;"
+                                                                        class="text-truncate">
+                                                                        Create an Exercise/Activity.
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                            <!-- ./ button column for switching to the right side of this input section -->
+                                                            <!-- button column for switching to the left side of this input section -->
+                                                            <div id="toggle-left-input-group"
+                                                                class="collapse multi-collapse w3-animate-bottom">
+                                                                <button type="button"
+                                                                    class="onefit-buttons-style-tahiti p-3 d-grid"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target=".multi-collapse"
+                                                                    aria-expanded="false"
+                                                                    aria-controls="new-exercise-activity-container select-exercise-activity-container toggle-right-input-group">
+                                                                    <span
+                                                                        class="material-icons material-icons-round align-middle"
+                                                                        style="font-size: 30px!important;">
+                                                                        playlist_add_check
+                                                                    </span>
+                                                                    <span style="font-size:10px!important;"
+                                                                        class="text-truncate">
+                                                                        Select Existing Exercise/Activity.
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                            <!-- ./ button column for switching to the left side of this input section -->
                                                         </div>
                                                     </div>
+                                                    <!-- ./ side panels toggle buttons -->
+
                                                     <div id="new-exercise-activity-container"
-                                                        class="col-md-5 gap-4 collapse w3-animate-right">
+                                                        class="col-md p-5 rounded-5 gap-4 collapse multi-collapse w3-animate-zoom left-right-grad-tahiti"
+                                                        style="">
                                                         <!-- Textarea for typing out the exercises -->
-                                                        <div class="form-group d-grid gap-2">
+                                                        <div class="form-group d-grid gap-4">
                                                             <label for="add-to-calender-activity-specify-title"
-                                                                class="poppins-font fs-4"
-                                                                style="color: var(--primary-color);">Create
-                                                                New
+                                                                class="poppins-font fs-4 fw-bold"
+                                                                style="color: var(--text-color);">Create New Exercises /
                                                                 Activities:</label>
-                                                            <br />
 
                                                             <label for="add-to-calender-activity-specify-xp"
-                                                                class="poppins-font"
-                                                                style="color: var(--primary-color);font-size:12px;">Exercise
+                                                                class="poppins-font fw-bold"
+                                                                style="color: var(--secondary-color);font-size: 20px;">Exercise
                                                                 /
                                                                 activity
                                                                 name:</label>
-                                                            <input class="form-control-text-input p-4" type="text"
+                                                            <input class="form-control-text-input p-4 fs-5" type="text"
                                                                 name="add-to-calender-activity-specify-title"
                                                                 id="add-to-calender-activity-specify-title"
                                                                 placeholder="Exercise / activity name."
-                                                                style="border-radius:25px;font-size:12px!important;">
+                                                                style="border-radius:25px;">
 
                                                             <!-- icon selection -->
-                                                            <div class="input-group gap-2 chart-col-bar-item"
-                                                                style="transform: scale(1,1) !important;">
-                                                                <div class="form-check form-check-inline">
+                                                            <div class="input-group gap-2 rounded-5 chart-col-bar-item p-5"
+                                                                style="transform: scale(1,1)!important;background-color: var(--white)!important;color:var(--secondary-color)!important;">
+                                                                <div class="form-check form-check-inline" style="
+                                                                        padding: 10px;
+                                                                        border-radius: 15px;
+                                                                        background-color: var(--secondary-color);
+                                                                        color: var(--text-color);
+                                                                    ">
                                                                     <input class="form-check-input me-2" type="radio"
                                                                         name="activity-icon" id="activity-icon-cycling"
                                                                         value="../media/assets/icons/cycling.png">
-                                                                    <label class="form-check-label"
-                                                                        for="activity-icon-cycling">
+                                                                    <label class="form-check-label poppins-font fs-3"
+                                                                        for="activity-icon-cycling" style="
+                                                                            padding: 10px;
+                                                                            border-radius: 15px;
+                                                                            background-color: var(--primary-color);
+                                                                            color: var(--text-color);
+                                                                        ">
                                                                         <img src="../media/assets/icons/cycling.png"
                                                                             alt="cycling/spinning"
                                                                             style="height: 50px; width: auto; filter: invert(0);">
                                                                         Cycling / Spinning
                                                                     </label>
                                                                 </div>
-                                                                <div class="form-check form-check-inline">
+                                                                <div class="form-check form-check-inline" style="
+                                                                        padding: 10px;
+                                                                        border-radius: 15px;
+                                                                        background-color: var(--secondary-color);
+                                                                        color: var(--text-color);
+                                                                    ">
                                                                     <input class="form-check-input me-2" type="radio"
                                                                         name="activity-icon" id="activity-icon-strength"
                                                                         value="../media/assets/icons/bodybuilder.png">
-                                                                    <label class="form-check-label"
-                                                                        for="activity-icon-strength">
+                                                                    <label class="form-check-label poppins-font fs-3"
+                                                                        for="activity-icon-strength" style="
+                                                                            padding: 10px;
+                                                                            border-radius: 15px;
+                                                                            background-color: var(--primary-color);
+                                                                            color: var(--text-color);
+                                                                        ">
                                                                         <img src="../media/assets/icons/bodybuilder.png"
                                                                             alt="strength"
                                                                             style="height: 50px; width: auto; filter: invert(0);">
                                                                         Strength
                                                                     </label>
                                                                 </div>
-                                                                <div class="form-check form-check-inline">
+                                                                <div class="form-check form-check-inline" style="
+                                                                        padding: 10px;
+                                                                        border-radius: 15px;
+                                                                        background-color: var(--secondary-color);
+                                                                        color: var(--text-color);
+                                                                    ">
                                                                     <input class="form-check-input me-2" type="radio"
                                                                         name="activity-icon" id="activity-icon-icebath"
                                                                         value="../media/assets/icons/bath-tub.png">
-                                                                    <label class="form-check-label"
-                                                                        for="activity-icon-icebath">
+                                                                    <label class="form-check-label poppins-font fs-3"
+                                                                        for="activity-icon-icebath" style="
+                                                                            padding: 10px;
+                                                                            border-radius: 15px;
+                                                                            background-color: var(--primary-color);
+                                                                            color: var(--text-color);
+                                                                        ">
                                                                         <img src="../media/assets/icons/bath-tub.png"
                                                                             alt="ice bath"
                                                                             style="height: 50px; width: auto; filter: invert(0);">
                                                                         Ice bath
                                                                     </label>
                                                                 </div>
-                                                                <div class="form-check form-check-inline">
+                                                                <div class="form-check form-check-inline" style="
+                                                                        padding: 10px;
+                                                                        border-radius: 15px;
+                                                                        background-color: var(--secondary-color);
+                                                                        color: var(--text-color);
+                                                                    ">
                                                                     <input class="form-check-input me-2" type="radio"
                                                                         name="activity-icon" id="activity-icon-running"
                                                                         value="../media/assets/icons/running.png">
-                                                                    <label class="form-check-label"
-                                                                        for="activity-icon-running">
+                                                                    <label class="form-check-label poppins-font fs-3"
+                                                                        for="activity-icon-running" style="
+                                                                            padding: 10px;
+                                                                            border-radius: 15px;
+                                                                            background-color: var(--primary-color);
+                                                                            color: var(--text-color);
+                                                                        ">
                                                                         <img src="../media/assets/icons/running.png"
                                                                             alt="running"
                                                                             style="height: 50px; width: auto; filter: invert(0);">
                                                                         Running
                                                                     </label>
                                                                 </div>
-                                                                <div class="form-check form-check-inline">
+                                                                <div class="form-check form-check-inline" style="
+                                                                        padding: 10px;
+                                                                        border-radius: 15px;
+                                                                        background-color: var(--secondary-color);
+                                                                        color: var(--text-color);
+                                                                    ">
                                                                     <input class="form-check-input me-2" type="radio"
                                                                         name="activity-icon" id="activity-icon-tactics"
                                                                         value="../media/assets/icons/thinking.png">
-                                                                    <label class="form-check-label"
-                                                                        for="activity-icon-tactics">
+                                                                    <label class="form-check-label poppins-font fs-3"
+                                                                        for="activity-icon-tactics" style="
+                                                                            padding: 10px;
+                                                                            border-radius: 15px;
+                                                                            background-color: var(--primary-color);
+                                                                            color: var(--text-color);
+                                                                        ">
                                                                         <img src="../media/assets/icons/thinking.png"
                                                                             alt="tactics"
                                                                             style="height: 50px; width: auto; filter: invert(0);">
                                                                         Tactics
                                                                     </label>
                                                                 </div>
-                                                                <div class="form-check form-check-inline">
+                                                                <div class="form-check form-check-inline" style="
+                                                                        padding: 10px;
+                                                                        border-radius: 15px;
+                                                                        background-color: var(--secondary-color);
+                                                                        color: var(--text-color);
+                                                                    ">
                                                                     <input class="form-check-input me-2" type="radio"
                                                                         name="activity-icon" id="activity-icon-kickoff"
                                                                         value="../media/assets/icons/soccer-ball.png">
-                                                                    <label class="form-check-label"
-                                                                        for="activity-icon-kickoff">
+                                                                    <label class="form-check-label poppins-font fs-3"
+                                                                        for="activity-icon-kickoff" style="
+                                                                            padding: 10px;
+                                                                            border-radius: 15px;
+                                                                            background-color: var(--primary-color);
+                                                                            color: var(--text-color);
+                                                                        ">
                                                                         <img src="../media/assets/icons/soccer-ball.png"
                                                                             alt="kick-off"
                                                                             style="height: 50px; width: auto; filter: invert(0);">
                                                                         Kick-off
                                                                     </label>
                                                                 </div>
-                                                                <div class="form-check form-check-inline">
+                                                                <div class="form-check form-check-inline" style="
+                                                                        padding: 10px;
+                                                                        border-radius: 15px;
+                                                                        background-color: var(--secondary-color);
+                                                                        color: var(--text-color);
+                                                                    ">
                                                                     <input class="form-check-input me-2" type="radio"
                                                                         name="activity-icon" id="activity-icon-multidir"
                                                                         value="../media/assets/icons/directions.png">
-                                                                    <label class="form-check-label"
-                                                                        for="activity-icon-multidir">
+                                                                    <label class="form-check-label poppins-font fs-3"
+                                                                        for="activity-icon-multidir" style="
+                                                                            padding: 10px;
+                                                                            border-radius: 15px;
+                                                                            background-color: var(--primary-color);
+                                                                            color: var(--text-color);
+                                                                        ">
                                                                         <img src="../media/assets/icons/directions.png"
                                                                             alt="multi-directional"
                                                                             style="height: 50px; width: auto; filter: invert(0);">
@@ -15120,57 +15108,59 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             <!-- ./ icon selection -->
 
                                                             <label for="add-to-calender-activity-specify-xp"
-                                                                class="poppins-font"
-                                                                style="color: var(--primary-color);font-size:12px;">Allocate
+                                                                class="poppins-font fw-bold"
+                                                                style="color: var(--secondary-color);font-size: 18px;">Allocate
                                                                 xp pts
                                                                 (1 -
                                                                 10):</label>
-                                                            <input class="form-control-text-input p-4" type="number"
-                                                                oninput="validity.valid||(value='');" min="1" max="10"
+                                                            <input class="form-control-text-input p-4 fs-1"
+                                                                type="number" oninput="validity.valid||(value='');"
+                                                                min="1" max="10"
                                                                 name="add-to-calender-activity-specify-xp"
                                                                 id="add-to-calender-activity-specify-xp"
                                                                 placeholder="How much XP? 10xp max."
                                                                 style="border-radius:25px;">
 
                                                             <div class="form-group">
-                                                                <label for="sets-reps-rests" class="poppins-font"
-                                                                    style="color: var(--primary-color);font-size:12px;">Select
+                                                                <label for="sets-reps-rests"
+                                                                    class="poppins-font  fw-bold"
+                                                                    style="color: var(--secondary-color);font-size: 20px;">Select
                                                                     the
                                                                     Sets,
                                                                     Reps &amp; Rests:</label>
                                                                 <div class="row" id="sets-reps-rests">
                                                                     <div class="col-md">
                                                                         <input
-                                                                            class="form-control-text-input p-4 onefit-input-grad-white-dark border-0"
+                                                                            class="form-control-text-input p-4 onefit-input-grad-white-tahiti border-0 fs-1"
                                                                             type="number"
                                                                             oninput="validity.valid||(value='');"
                                                                             min="1" max="10" value="1"
                                                                             name="add-to-calender-activity-specify-sets"
                                                                             id="add-to-calender-activity-specify-sets"
                                                                             placeholder="How many Sets? 10 max sets."
-                                                                            style="border-radius:25px;">
+                                                                            style="border-radius:25px;color: var(--secondary-color);">
                                                                     </div>
                                                                     <div class="col-md">
                                                                         <input
-                                                                            class="form-control-text-input p-4 onefit-input-grad-white-dark border-0"
+                                                                            class="form-control-text-input p-4 onefit-input-grad-white-tahiti border-0 fs-1"
                                                                             type="number"
                                                                             oninput="validity.valid||(value='');"
                                                                             min="1" max="100" value="1"
                                                                             name="add-to-calender-activity-specify-reps"
                                                                             id="add-to-calender-activity-specify-reps"
                                                                             placeholder="How many Sets? 10 max reps."
-                                                                            style="border-radius:25px;">
+                                                                            style="border-radius:25px;color: var(--secondary-color);">
                                                                     </div>
                                                                     <div class="col-md">
                                                                         <input
-                                                                            class="form-control-text-input p-4 onefit-input-grad-white-dark border-0"
+                                                                            class="form-control-text-input p-4 onefit-input-grad-white-tahiti border-0 fs-1"
                                                                             type="number"
                                                                             oninput="validity.valid||(value='');"
                                                                             min="0" max="10" value="0"
                                                                             name="add-to-calender-activity-specify-rests"
                                                                             id="add-to-calender-activity-specify-rests"
                                                                             placeholder="How many Sets? 5 max sets."
-                                                                            style="border-radius:25px;">
+                                                                            style="border-radius:25px;color: var(--secondary-color);">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -15178,42 +15168,38 @@ if (isset($_SESSION["currentUserAuth"])) {
                                                             <div class="form-group">
                                                                 <label
                                                                     for="add-to-calender-activity-specify-new-description"
-                                                                    class="poppins-font"
-                                                                    style="color: var(--primary-color);font-size:12px;">Please
-                                                                    provide
-                                                                    the Description &amp; Guidelines/Instructions of
-                                                                    this
-                                                                    Exercise/Activty:</label>
+                                                                    class="poppins-font fw-bold"
+                                                                    style="color: var(--secondary-color);font-size: 20px;">Description
+                                                                    &amp; Guidelines/Instructions:</label>
                                                                 <textarea
                                                                     class="form-control-text-input p-2 text-dark light-scroller"
-                                                                    rows="3" type="text"
+                                                                    rows="6" type="text"
                                                                     name="add-to-calender-activity-specify-new-description"
                                                                     id="add-to-calender-activity-specify-new-description"
-                                                                    placeholder="Description..."
-                                                                    style="border-radius:25px;font-size:12px!important;"></textarea>
+                                                                    placeholder="Please provide the Description for this Exercise/Activty"
+                                                                    style="border-radius: 25px;font-size: 16px !important;"></textarea>
 
                                                                 <textarea
                                                                     class="form-control-text-input p-2 text-dark light-scroller"
-                                                                    rows="3" type="text"
+                                                                    rows="6" type="text"
                                                                     name="add-to-calender-activity-specify-new-guidelines"
                                                                     id="add-to-calender-activity-specify-new-guidelines"
-                                                                    placeholder="Guidelines / Instructions..."
-                                                                    style="border-radius:25px;font-size:12px!important;"></textarea>
+                                                                    placeholder="Please provide the Guidelines / Instructions for this Exercise/Activty"
+                                                                    style="border-radius: 25px;font-size: 16px !important;"></textarea>
                                                             </div>
 
-
                                                             <label for="add-to-calender-specify-training-phase"
-                                                                class="poppins-font"
-                                                                style="color: var(--primary-color);font-size:12px;">Select
+                                                                class="poppins-font  fw-bold"
+                                                                style="color: var(--secondary-color);font-size: 20px;">Select
                                                                 the
                                                                 Training
                                                                 level (L1 - L3):</label>
                                                             <select
-                                                                class="custom-select form-control-select-input p-2 light-scroller"
+                                                                class="custom-select form-control-select-input p-4 light-scroller fs-5"
                                                                 id="add-to-calender-specify-training-phase"
                                                                 name="add-to-calender-specify-training-phase"
                                                                 style="border-radius:25px;">
-                                                                <option value="beginner" selected>Beginner (L1).
+                                                                <option value="beginner" selected="">Beginner (L1).
                                                                 </option>
                                                                 <option value="intermediate">Intermediate (L2).</option>
                                                                 <option value="advanced">Advanced (L3).</option>
@@ -15306,7 +15292,109 @@ if (isset($_SESSION["currentUserAuth"])) {
                                 </div>
                             </div>
                         </div>
+                        <div class="accordion-item p-2 my-2 border-0 shadow">
+                            <h2 class="accordion-header m-0" id="cav-flush-header-diary_notes">
+                                <button
+                                    class="accordion-button fs-5 fw-bold text-truncate gap-2 d-grid align-items-center collapsed"
+                                    type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#cav-flush-panel-diary_notes" aria-expanded="false"
+                                    aria-controls="cav-flush-panel-diary_notes">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex gap-2 justify-content-start align-items-center">
+                                            <span class="material-icons material-icons-round align-middle">book</span>
+                                            <span class="align-middle">Trainer guides.</span>
+                                        </div>
 
+                                        <div class="pin-item-icon shadow p-2"
+                                            style="border-radius:15px;font-size:10px!important;">
+                                            <span class="material-icons material-icons-round align-middle"
+                                                style="font-size:30px !important;">layers</span>
+                                            <span class="poppins-font">No new entries</span>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="cav-flush-panel-diary_notes" class="accordion-collapse w3-animate-bottom collapse"
+                                aria-labelledby="cav-flush-header-diary_notes"
+                                data-bs-parent="#accordionFlushCalenderActivityViewer">
+                                <div class="accordion-body">
+                                    <h5 class="fs-2 p-4 fw-bold text-center comfortaa-font shadow my-4 border-5 border-start border-end"
+                                        style="border-radius:25px;">
+                                        Diary &amp; Trainer Notes.
+                                    </h5>
+                                    <hr class="text-white">
+                                    <div id="calender-activity-viewer-diary-entries-container">
+                                        <div class="row">
+                                            <div class="col-md">
+                                                <!-- Tab for separation of Diary entries and Trainer Notes -->
+                                                <ul class="nav nav-tabs"
+                                                    style="border-bottom: 1px solid var(--primary-color);"
+                                                    id="diary-notes-tab" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link p-4 shadow active"
+                                                            style="border-radius: 15px 15px 0 0 !important;"
+                                                            id="diary-entries-tab" data-bs-toggle="tab"
+                                                            data-bs-target="#diary-entries-tab-pane" type="button"
+                                                            role="tab" aria-controls="diary-entries-tab-pane"
+                                                            aria-selected="true">Diary.</button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link p-4 shadow"
+                                                            style="border-radius: 15px 15px 0 0 !important;"
+                                                            id="trainer-notes-tab" data-bs-toggle="tab"
+                                                            data-bs-target="#trainer-notes-tab-pane" type="button"
+                                                            role="tab" aria-controls="trainer-notes-tab-pane"
+                                                            aria-selected="false">Trainer Notes.</button>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content" id="diary-notes-tab-content">
+                                                    <div class="tab-pane fade shadow active show"
+                                                        id="diary-entries-tab-pane"
+                                                        style="border-radius: 0 0 25px 25px;" role="tabpanel"
+                                                        aria-labelledby="diary-entries-tab" tabindex="0">
+                                                        <div
+                                                            class="h-100 w-100 p-4 d-grid justify-content-center align-items-center">
+                                                            <div class="spinner-border text-white"
+                                                                style="width:3rem;height:3rem;" role="status">
+                                                                <span class="visually-hidden">Awaiting Diary
+                                                                    Entries...</span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane fade shadow" id="trainer-notes-tab-pane"
+                                                        style="border-radius: 0 0 25px 25px;" role="tabpanel"
+                                                        aria-labelledby="trainer-notes-tab" tabindex="0">
+                                                        <div
+                                                            class="h-100 w-100 p-4 d-grid justify-content-center align-items-center">
+                                                            <div class="spinner-border text-white"
+                                                                style="width:3rem;height:3rem;" role="status">
+                                                                <span class="visually-hidden">Awaiting Trainer
+                                                                    Notes...</span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <!-- ./ Tab for separation of Diary entries and Trainer Notes -->
+                                            </div>
+                                            <div class="col-md d-grid align-items-center shadow"
+                                                style="border-radius: 25px;">
+                                                <!-- view window for selected entry-->
+                                                <div id="selected-entry-view-window"
+                                                    class="w-100 h-100 d-grid justify-content-center align-items-center">
+                                                    <div class="spinner-border text-white"
+                                                        style="width:3rem;height:3rem;" role="status">
+                                                        <span class="visually-hidden">Awaiting Entry Selection...</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- ./ Calender Activity View Accordion -->
                 </div>
@@ -15568,6 +15656,78 @@ if (isset($_SESSION["currentUserAuth"])) {
     <link rel="stylesheet" href="../css/match_analysis.css" onload="var coreScriptLoaded_matchAnalysis_css=true">
     <script src="../administration/scripts/js/match_analysis.js" onload="var coreScriptLoaded_matchAnalysis_js=true">
     </script>
+
+    <!-- activity form scripts for adding activity form -->
+    <script>
+    function getDayName(dateStr, locale) {
+        var date = new Date(dateStr);
+        return date.toLocaleDateString(locale, {
+            weekday: 'long'
+        });
+    }
+
+    function changeSelDateValues(selDate) {
+        var dateStr = selDate;
+        console.log("$(#add-to-calender-activity-date-value).oninput: dateStr - " +
+            dateStr);
+        var day = getDayName(formatDate(dateStr), "en-ZA");
+        document.getElementById('add-to-calender-activity-day-value').value = day;
+    }
+
+    function toggleCustomColorSelection(value, newTag) {
+        console.log("toggleCustomColorSelection function called", "Value: " + value +
+            " | newTag: " + newTag); //debug
+
+        newTag = newTag || false;
+        var colorExtract;
+        if (value === 'custom') {
+            // set display value to block for #custom-color-selection
+            document.getElementById('custom-color-selection').style.display =
+                "block";
+            // default th bg value to white
+            document.getElementById('color-preview').style.backgroundColor =
+                "white";
+        } else {
+            if (newTag === true) {
+                // call $.newCustomColorTag(tagColor) to change the color
+                var tagState = $.newCustomColorTag(value);
+                if (tagState == true) {
+                    // hide the #custom-color-selection col and console log success message
+                    document.getElementById('custom-color-selection').style
+                        .display = "none";
+                    // colorExtract = value.split('[').pop().split(']')[0];
+                    document.getElementById('color-preview').style.backgroundColor =
+                        value;
+                } else {
+                    // consol log failure message
+                    console.log(
+                        "[toggleCustomColorSelection] failed to create color tag."
+                    );
+                }
+            } else {
+                // set display value to greenyellow as it it the first item/color code in our select input for #custom-color-selection
+                document.getElementById('custom-color-selection').style.display =
+                    "none";
+                // extract the color of the selection made/passed through the value parameter and set it as the backgroun color of #custom-color-selection
+                colorExtract = value.split('[').pop().split(']')[0];
+                document.getElementById('color-preview').style.backgroundColor =
+                    colorExtract;
+            }
+
+            // if value starts with off_day, hide #question-6-activities, else show #question-6-activities
+            if (value.startsWith('off_day')) {
+                document.getElementById('question-6-activities').style.display =
+                    "none";
+                // 
+            } else {
+                document.getElementById('question-6-activities').style.display =
+                    "block";
+            }
+
+        }
+    }
+    </script>
+    <!-- ./ activity form scripts for adding activity form -->
 
     <!-- A Lot of Javascript here!!! - should be in external js files -->
     <script>
@@ -15870,38 +16030,35 @@ if (isset($_SESSION["currentUserAuth"])) {
         if (switchOn) {
             // Generate a random theme color
             var randomColorPrimary = '#' + Math.floor(Math.random() * 16777215).toString(16);
-            // var randomColorSecondary = '#' + Math.floor(Math.random() * 16777215).toString(16);
-            // var randomColorAccent = '#' + Math.floor(Math.random() * 16777215).toString(16);
-            // var randomColorText = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            var randomColorSecondary = '#000000';
+            var randomColorAccent = '#ffffff';
+            var randomColorText = '#ffffff';
 
             // Get the contrast color of the random color
             var baseDarkContrast = getContrastColor(randomColorPrimary);
 
             // Apply the random color to the theme
             document.documentElement.style.setProperty('--primary-color', randomColorPrimary);
-            document.documentElement.style.setProperty('--secondary-color', '#000000'); // baseDarkContrast
-            document.documentElement.style.setProperty('--accent-color', '#ffffff'); // baseDarkContrast
+            document.documentElement.style.setProperty('--secondary-color', randomColorSecondary);
+            document.documentElement.style.setProperty('--accent-color', randomColorAccent);
             document.documentElement.style.setProperty('--text-color',
-                "#ffffff"); // getContrastColor(baseDarkContrast) should be either #000000 or #ffffff
+                randomColorText); // getContrastColor(baseDarkContrast) should be either #000000 or #ffffff
             document.documentElement.style.setProperty('--content-tab-primary-color', randomColorPrimary + 'b8');
 
             // save colors to localstorge
             localStorage.setItem('theme-primary-color', randomColorPrimary);
-            localStorage.setItem('theme-secondary-color', '#000000');
-            localStorage.setItem('theme-secondary-color', '#ffffff');
-            localStorage.setItem('theme-text-color', '#ffffff');
-            // document.getElementById('text-color').value
-            localStorage.setItem('theme-content-tab-primary-color', `${randomColorPrimary}b8`)
+            localStorage.setItem('theme-secondary-color', randomColorSecondary);
+
+            localStorage.setItem('theme-accent-color', randomColorAccent);
+            localStorage.setItem('theme-text-color', randomColorText);
+            localStorage.setItem(
+                'theme-content-tab-primary-color', `${randomColorPrimary}b8`)
 
             // update #primary-color, #secondary-color, #accent-color, #text-color inputs with the local stored theme colors
-            document.getElementById("primary-color").value =
-                localStorage.getItem("theme-primary-color");
-            document.getElementById("secondary-color").value =
-                dlocalStorage.getItem("theme-secondary-color");
-            document.getElementById("accent-color").value =
-                localStorage.getItem("theme-accent-color");
-            document.getElementById("text-color").value =
-                localStorage.getItem("theme-text-color")
+            document.getElementById("primary-color").value = randomColorPrimary;
+            document.getElementById("secondary-color").value = randomColorSecondary;
+            document.getElementById("accent-color").value = randomColorAccent;
+            document.getElementById("text-color").value = randomColorText;
         } else {
             // Reset the theme to default colors
             applyThemeColors(true);
@@ -15953,9 +16110,11 @@ if (isset($_SESSION["currentUserAuth"])) {
         localStorage.setItem('theme-primary-color', document.getElementById('primary-color').value);
         localStorage.setItem('theme-secondary-color', document.getElementById('secondary-color').value);
         localStorage.setItem('theme-secondary-color', document.getElementById('accent-color').value);
-        localStorage.setItem('theme-text-color', getContrastColor(document.getElementById('secondary-color').value));
+        localStorage.setItem('theme-text-color', getContrastColor(document.getElementById('secondary-color')
+            .value));
         // document.getElementById('text-color').value
-        localStorage.setItem('theme-content-tab-primary-color', `${document.getElementById('primary-color').value}b8`)
+        localStorage.setItem('theme-content-tab-primary-color',
+            `${document.getElementById('primary-color').value}b8`)
 
         // if theme name is 'random', call 
         if (localStorage.getItem('selectedThemeName') == 'random') {
@@ -16064,7 +16223,8 @@ if (isset($_SESSION["currentUserAuth"])) {
     // event listener for theme-randomizer-btn, to toggle random theme
     document.getElementById("theme-randomizer-btn").addEventListener("click", function() {
         // change the text button of the theme-randomizer-btn
-        $themeRandomizerBtnText = document.querySelector("#theme-randomizer-btn .material-icons").textContent;
+        $themeRandomizerBtnText = document.querySelector("#theme-randomizer-btn .material-icons")
+            .textContent;
         console.log("theme-randomizer-btn text: ", $themeRandomizerBtnText); // debug
         if ($themeRandomizerBtnText == "toggle_on") {
             // turn off random theme: toggle_off
@@ -16255,47 +16415,40 @@ if (isset($_SESSION["currentUserAuth"])) {
         return true;
     }
 
-    function openCalenderActivityForm(dateYear, dateMonth, dateDay) {
+    function openCalenderActivityForm(dateYear, dateMonth, dateDay, clickSrc) {
+        // clickSrc is a string that specifies the source of the click event
+        clickSrc = clickSrc || 'calender';
+
         // set the date values to todays date if they were not passed as a parameter
         const timeElapsed = Date.now('yyyy-MM-dd');
 
         // assign year value to dateYear if dateYear parameter was not passed as a parameter
-        dateYear = dateYear || new Date(timeElapsed).getFullYear();
+        dateYear = dateYear || (dateYear === 'today' ? new Date().getFullYear() : new Date(timeElapsed)
+            .getFullYear());
 
         // assign month value to dateMonth if dateMonth parameter was not passed as a parameter
-        dateMonth = dateMonth || new Date(timeElapsed).getMonth() + 1;
+        dateMonth = dateMonth || (dateMonth === 'today' ? new Date().getMonth() + 1 : new Date(timeElapsed)
+            .getMonth() +
+            1);
 
         // assign day value to dateDay if dateDay parameter was not passed as a parameter
-        dateDay = dateDay || new Date(timeElapsed).getDate();
-
-        // move html inside #add-new-day-activity-form-container to #add-new-schedule-form-container
-        /* $("#add-new-schedule-form-container").html(
-            $("#add-new-day-activity-form-container").html()
-        ); */
-
-        // clear #add-new-day-activity-form-container
-        $("#add-new-day-activity-form-container").html("");
-
-        // place location indicator in the #add-new-schedule-form-container
-        /* var widgetLocationIndicator = `
-            <div class="text-center fs-5 text-muted comfortaa-font my-5 p-4 border-1 border" 
-            style="border-radius: 15px;"> 
-                <span class="material-icons material-icons-round" style="font-size: 24px !important"> 
-                calender </span> New Activity from Calender. 
-            </div>`;
-        $("#add-new-day-activity-form-container").html(widgetLocationIndicator); */
+        dateDay = dateDay || (dateDay === 'today' ? new Date().getDate() : new Date(timeElapsed).getDate());
 
         // '2023/3/10'
-        // alert(`Show modal for calender day: ${dateYear}/${dateMonth}/${dateDay}`);
+        // alert(`Show modal for calender day: ${dateYear}/${dateMonth}/${dateDay}`); //debug
 
-        console.log(`openCalenderActivityForm() Date Y/M/D: \n${dateYear}/${dateMonth}/${dateDay}`)
+        console.log(`openCalenderActivityForm() Date Y/M/D: \n${dateYear}/${dateMonth}/${dateDay}`) //debug
 
         // create date object
         var dateQueried = new Date(`${dateYear}/${dateMonth}/${dateDay}`);
 
+        // get the user's username from localstorage
         let usernm = localStorage.getItem('user_usnm');
+
+        // get the user's activities for the week
         $.getUserWeekActivities(usernm, '#calender-activity-viewer-activity_lineup', dateQueried);
 
+        // pass the date value to #add-to-calender-activity-date-value and #add-to-calender-activity-day-value
         $('#add-to-calender-activity-date-value').val(formatDate(dateQueried));
         $('#add-to-calender-activity-day-value').val(getDayName(dateQueried));
 
@@ -16305,6 +16458,7 @@ if (isset($_SESSION["currentUserAuth"])) {
             elemLbl.innerHTML = dateQueried.toDateString();
         });
 
+        // click the toggleCalenderActivityFormeModalBtn button to open the modal
         const calenderActivityFormModalBtn = document.getElementById('toggleCalenderActivityFormeModalBtn');
         calenderActivityFormModalBtn.click();
 

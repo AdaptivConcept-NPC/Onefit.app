@@ -280,7 +280,11 @@ $(document).ready(function () {
       //(hT + hH - wH) | < is at the start (top) of element
       console.log("#nav-bar-header is in view! at the top");
 
-      // assign top:5vh if wS is equal to 0
+      // move #top-left-widget-clock and #top-right-widget-controls into viewport
+      $("#top-left-widget-clock").css("top", "0px");
+      $("#top-right-widget-controls").css("top", "0px");
+
+      // assign top:180px if wS is equal to 0
       $("#twitter-social-panel").css("top", "180px");
       $("#creation-tools-content-panel").css("top", "180px");
 
@@ -293,7 +297,7 @@ $(document).ready(function () {
         $("#main-navbar").fadeOut(100);
         setTimeout(function () {
           // change bg color to dark
-          $("#main-navbar").addClass("top-down-grad-dark");
+          $("#main-navbar").addClass("down-top-grad-dark");
           $("#main-navbar").removeClass("top-down-grad-tahiti");
 
           $("#main-navbar").css("border-radius", "25px");
@@ -302,6 +306,11 @@ $(document).ready(function () {
         }, 300);
       }
     } else {
+      // move #top-left-widget-clock and #top-right-widget-controls out of viewport
+      $("#top-left-widget-clock").css("top", "-200px");
+      $("#top-right-widget-controls").css("top", "-200px");
+
+      // assign top:25vh if wS is not equal to 0
       $("#twitter-social-panel").css("top", "25vh");
       $("#creation-tools-content-panel").css("top", "25vh");
 
@@ -315,7 +324,7 @@ $(document).ready(function () {
         setTimeout(function () {
           // change bg color to tahiti (or light color)
           $("#main-navbar").addClass("top-down-grad-tahiti");
-          $("#main-navbar").removeClass("top-down-grad-dark");
+          $("#main-navbar").removeClass("down-top-grad-dark");
 
           $("#main-navbar").css("border-radius", "0px");
           $("#main-navbar").addClass("fixed-top");
@@ -423,7 +432,7 @@ $(document).ready(function () {
     // $('#twitter-social-panel').css('margin-left', '0px');
     // $('#creation-tools-content-panel').css('margin-right', '0px');
 
-    $.showSidePanelsDisplay();
+    // $.showSidePanelsDisplay(); // deprecated
 
     console.log("#apps-tray-close-btn was clicked");
   });
@@ -1584,6 +1593,27 @@ $(document).ready(function () {
     }
   };
 
+  // debug function
+  var counter = 0;
+  function debugFuncBelow() {
+    counter++;
+    if (counter <= 50) {
+      console.log("debug flag - calls: " + counter);
+    }
+  }
+
+  $.trainingSubTabMainSportsSelection = function (sport_category) {
+    let mainSportSelection = sport_category;
+    debugFuncBelow;
+  };
+
+  // open the add new day activities modal
+  $.openAddNewDayActivitiesModal = function (day, grpRefcode) {
+    // get the html content of the modal from the server
+    // pass the html to the modal body
+    // show the modal
+  };
+
   // load Teams Activity Capturing Form
   $.loadTeamsActivityCaptureForm = function (day, grpRefcode) {
     console.log("$.loadTeamsActivityCaptureForm Day: " + day);
@@ -1602,6 +1632,7 @@ $(document).ready(function () {
       );
       // smooth scroll - do not smooth scroll to the #trainingSubTabMainTeamSelection elem as it is already in view
       // $.smoothScroll('#v-sub-tab-pills-insights-teamathletics', '#trainingSubTabMainTeamSelection');
+
       // click the #collapseTeamSelectBtn elem to show the collapseed team selection panel
       $("#collapseTeamSelectBtn").click();
       // console.log focus event

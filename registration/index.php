@@ -11,43 +11,45 @@
     <link rel="stylesheet" href="../css/styles.css" />
 
     <script>
-        // check if these core scripts are loaded for js check function
-        var coreScriptLoaded =
-            coreScriptLoaded_googlefont_icons_css =
-            coreScriptLoaded_bootstrap_local_css =
-            coreScriptLoaded_w3_css =
-            coreScriptLoaded_custom_styles_css =
-            coreScriptLoaded_custom_script_js =
-            coreScriptLoaded_jquery_local_js =
-            coreScriptLoaded_custom_jquery_func_js = false;
+    // check if these core scripts are loaded for js check function
+    var coreScriptLoaded =
+        coreScriptLoaded_googlefont_icons_css =
+        coreScriptLoaded_bootstrap_local_css =
+        coreScriptLoaded_w3_css =
+        coreScriptLoaded_custom_styles_css =
+        coreScriptLoaded_custom_script_js =
+        coreScriptLoaded_jquery_local_js =
+        coreScriptLoaded_custom_jquery_func_js = false;
 
-        // these core scripts are not available in this page so set them as true as not to interfere with js check function
-        var coreScriptLoaded_plyrio_css =
-            coreScriptLoaded_plyrio_js =
-            coreScriptLoaded_hls_js =
-            coreScriptLoaded_bootstrap_bundle_local_js =
-            coreScriptLoaded_digiclock_css =
-            coreScriptLoaded_digiclock_js =
-            coreScriptLoaded_timeline_css =
-            coreScriptLoaded_custom_jquery_func_js =
-            coreScriptLoaded_custom_api_req_js =
-            coreScriptLoaded_moment_js =
-            coreScriptLoaded_googlefonts_fonts =
-            coreScriptLoaded_googlefonts_css =
-            coreScriptLoaded_soccerfield_css =
-            coreScriptLoaded_soccerfield_css =
-            coreScriptLoaded_soccerfield_js =
-            coreScriptLoaded_chartjs_js = true;
+    // these core scripts are not available in this page so set them as true as not to interfere with js check function
+    var coreScriptLoaded_plyrio_css =
+        coreScriptLoaded_plyrio_js =
+        coreScriptLoaded_hls_js =
+        coreScriptLoaded_bootstrap_bundle_local_js =
+        coreScriptLoaded_digiclock_css =
+        coreScriptLoaded_digiclock_js =
+        coreScriptLoaded_timeline_css =
+        coreScriptLoaded_custom_jquery_func_js =
+        coreScriptLoaded_custom_api_req_js =
+        coreScriptLoaded_moment_js =
+        coreScriptLoaded_googlefonts_fonts =
+        coreScriptLoaded_googlefonts_css =
+        coreScriptLoaded_soccerfield_css =
+        coreScriptLoaded_soccerfield_css =
+        coreScriptLoaded_soccerfield_js =
+        coreScriptLoaded_chartjs_js = true;
     </script>
 
     <!--fontawesome-->
     <script src="https://kit.fontawesome.com/a2763a58b1.js"></script>
 
     <!-- Google Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" onload="coreScriptLoaded_googlefont_icons_css=true;" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+        onload="coreScriptLoaded_googlefont_icons_css=true;" />
 
     <!-- Bootstrap local -->
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" onload="coreScriptLoaded_bootstrap_local_css=true;">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
+        onload="coreScriptLoaded_bootstrap_local_css=true;">
 
     <!-- W3 CSS -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" onload="coreScriptLoaded_w3_css=true;" />
@@ -59,7 +61,8 @@
     <script src="../node_modules/jquery/dist/jquery.min.js" onload="coreScriptLoaded_jquery_local_js=true;"></script>
 
     <!-- JQuery CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        onload="coreScriptLoaded_custom_jquery_func_js=true;"></script>
     <!-- ./ JQuery CDN -->
 
     <!-- Custom Site Scripts -->
@@ -73,8 +76,11 @@
         <!-- Navigation bar -->
         <nav class="navbar navbar-light sticky-top navbar-style">
             <div class="container-fluid">
-                <a class="navbar-brand fs-1 text-white comfortaa-font" href="../index.php">One<span style="color: var(--primary-color)">fit</span>.app<span style="font-size: 10px">&trade;</span></a>
-                <button class="navbar-toggler shadow onefit-buttons-style-dark bg-transparent p-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <a class="navbar-brand fs-1 text-white comfortaa-font" href="../index.php">One<span
+                        style="color: var(--primary-color)">fit</span>.app<span
+                        style="font-size: 10px">&trade;</span></a>
+                <button class="navbar-toggler shadow onefit-buttons-style-dark bg-transparent p-4" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <!--<span class="navbar-toggler-icon"></span>-->
                     <!--<img src="./media/assets/One-Symbol-Logo-Two-Tone.svg" alt="" class="img-fluid logo-size-1" />-->
                     <span class="material-icons material-icons-round align-middle" style="font-size: 28px!important;">
@@ -82,11 +88,16 @@
                         <!-- menu_open -->
                     </span>
                 </button>
-                <div class="offcanvas offcanvas-end offcanvas-menu-primary-style" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas offcanvas-end offcanvas-menu-primary-style" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
                     <div class="h-100" id="offcanvas-menu">
-                        <div class="offcanvas-header fs-1" style="background-color: var(--secondary-color); color: #fff">
-                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="../media/assets/One-Symbol-Logo-White.svg" alt="" class="img-fluid logo-size-2" /> Navigation</h5>
-                            <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2" data-bs-dismiss="offcanvas" aria-label="Close">
+                        <div class="offcanvas-header fs-1"
+                            style="background-color: var(--secondary-color); color: #fff">
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img
+                                    src="../media/assets/One-Symbol-Logo-White.svg" alt=""
+                                    class="img-fluid logo-size-2" /> Navigation</h5>
+                            <button type="button" class="onefit-buttons-style-light rounded-pill shadow p-2"
+                                data-bs-dismiss="offcanvas" aria-label="Close">
                                 <span class="material-icons material-icons-round align-middle">
                                     close
                                 </span>
@@ -127,19 +138,26 @@
         <div class="row align-items-center">
             <div class="col-xl py-4">
                 <!-- collapsable logo panel -->
-                <div id="collapseLogoPanel" class="content-panel-border-style p-4 darkpads-bg-container text-center shadow collapse multi-collapse show w3-animate-top" style="border-radius: 25px">
-                    <img src="../media/assets/One-Logo-Vertical.svg" class="img-fluid my-4 screenz" alt="one fitness" style="max-height: 50vh" />
+                <div id="collapseLogoPanel"
+                    class="content-panel-border-style p-4 darkpads-bg-container text-center shadow collapse multi-collapse show w3-animate-top"
+                    style="border-radius: 25px">
+                    <img src="../media/assets/One-Logo-Vertical.svg" class="img-fluid my-4 screenz" alt="one fitness"
+                        style="max-height: 50vh" />
 
                     <p class="my-4 text-center comfortaa-font" style="color: #fff; font-size: 10px">Crafted by
-                        AdaptivConcept &copy;
-                        2021</p>
+                        AdaptivConcept FL &copy;
+                        2021. All rights reserved.</p>
                 </div>
                 <!-- ./ collapsable logo panel -->
 
                 <!-- collapsable plan comparison table panel -->
-                <div id="collapsePlanCompTblPanel" class="content-panel-border-style p-4 darkpads-bg-container text-center shadow collapse multi-collapse w3-animate-bottom no-scroller" style="border-radius: 25px;max-height: 80vh; overflow-y: auto;">
-                    <h5 class="fs-1 d-flexz gap-2 justify-content-center fw-bold text-center mt-4 mb-2" style="color:var(--white);">
-                        <span class="material-icons material-icons-round align-middle" style="font-size:80px!important;color: var(--primary-color);">
+                <div id="collapsePlanCompTblPanel"
+                    class="content-panel-border-style p-4 darkpads-bg-container text-center shadow collapse multi-collapse w3-animate-bottom no-scroller"
+                    style="border-radius: 25px;max-height: 80vh; overflow-y: auto;">
+                    <h5 class="fs-1 d-flexz gap-2 justify-content-center fw-bold text-center mt-4 mb-2"
+                        style="color:var(--white);">
+                        <span class="material-icons material-icons-round align-middle"
+                            style="font-size:80px!important;color: var(--primary-color);">
                             verified_user
                         </span>
                         <span class="align-middle"><strong style="color: var(--primary-color);">Pro</strong>
@@ -147,10 +165,12 @@
                     </h5>
                     <p class="text-center mb-5">Plan comparison.</p>
                     <div class="table-responsive light-scroller">
-                        <table class="table table-stripedz shadow-lg align-middle" style="border-radius: 25px;overflow-y:auto;background-color: var(--secondary-color);color: var(--text-color);">
+                        <table class="table table-stripedz shadow-lg align-middle"
+                            style="border-radius: 25px;overflow-y:auto;background-color: var(--secondary-color);color: var(--text-color);">
                             <thead>
                                 <tr>
-                                    <th colspan="5" scope="col p-4 text-start" style="background-color:var(--white)!important;color: var(--secondary-color);border-radius:25px 25px 0 0 !important;overflow:hidden;">
+                                    <th colspan="5" scope="col p-4 text-start"
+                                        style="background-color:var(--white)!important;color: var(--secondary-color);border-radius:25px 25px 0 0 !important;overflow:hidden;">
                                         <p class="text-center my-4 fs-3">Membership Benefits.</p>
                                     </th>
                                 </tr>
@@ -159,23 +179,28 @@
                                         <p class="align-middle my-4 text-start">Features</p>
                                     </th>
                                     <th scope="col p-4">
-                                        <p class="align-middle my-4">Community.<span style="color: var(--primary-color)">Indi</span></p>
+                                        <p class="align-middle my-4">Community.<span
+                                                style="color: var(--primary-color)">Indi</span></p>
                                     </th>
                                     <th scope="col p-4">
-                                        <p class="align-middle my-4">Pro.<span style="color: var(--primary-color)">Starter</span></p>
+                                        <p class="align-middle my-4">Pro.<span
+                                                style="color: var(--primary-color)">Starter</span></p>
                                     </th>
                                     <th scope="col p-4">
-                                        <p class="align-middle my-4">Pro.<span style="color: var(--primary-color)">Athlete</span></p>
+                                        <p class="align-middle my-4">Pro.<span
+                                                style="color: var(--primary-color)">Athlete</span></p>
                                     </th>
                                     <th scope="col p-4">
-                                        <p class="align-middle my-4">Teams.<span style="color: var(--primary-color)">Pro</span>
+                                        <p class="align-middle my-4">Teams.<span
+                                                style="color: var(--primary-color)">Pro</span>
                                         </p>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
                                 <tr>
-                                    <td colspan="5" class="text-center bg-white text-dark fw-bold fs-3" style="background-color: var(--primary-color);">For Individuals.</td>
+                                    <td colspan="5" class="text-center bg-white text-dark fw-bold fs-3"
+                                        style="background-color: var(--primary-color);">For Individuals.</td>
                                 </tr>
                                 <tr class="text-center">
                                     <!-- <th scope="row">1</th> -->
@@ -189,7 +214,8 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -222,12 +248,14 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -242,17 +270,20 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -262,22 +293,26 @@
                                     <!-- <th scope="row">1</th> -->
                                     <td class="text-start">Level-1 curated fitness programs.</td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -292,17 +327,20 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -322,12 +360,14 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -342,17 +382,20 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -362,7 +405,8 @@
                                     <!-- <th scope="row">1</th> -->
                                     <td class="text-start">Community rewards program (xp prizes).</td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -387,22 +431,26 @@
                                     <!-- <th scope="row">1</th> -->
                                     <td class="text-start">Community Live Streams.</td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -421,12 +469,14 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -436,22 +486,26 @@
                                     <!-- <th scope="row">1</th> -->
                                     <td class="text-start">Virtual training support.</td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -471,12 +525,14 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -486,22 +542,26 @@
                                     <!-- <th scope="row">1</th> -->
                                     <td class="text-start">Wellness tools and counselling. </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -516,17 +576,20 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -541,17 +604,20 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -579,7 +645,8 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -604,7 +671,8 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -629,7 +697,8 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -654,7 +723,8 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color)!important;">
+                                        <span class="material-icons material-icons-round align-middle"
+                                            style="color: var(--primary-color)!important;">
                                             check_circle_outline
                                         </span>
                                     </td>
@@ -663,22 +733,26 @@
                                 <tr class="py-4 border-0 text-center">
                                     <td class="border-0 fs-1">Subscribe today!</td>
                                     <td class="border-0 py-4">
-                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold shadowz fs-2">
+                                        <button
+                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold shadowz fs-2">
                                             Free
                                         </button>
                                     </td>
                                     <td class="border-0 py-4">
-                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold shadowz">
+                                        <button
+                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold shadowz">
                                             R1800 (3 Months)
                                         </button>
                                     </td>
                                     <td class="border-0 py-4">
-                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold shadowz">
+                                        <button
+                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold shadowz">
                                             R5200 (12 Months)
                                         </button>
                                     </td>
                                     <td class="border-0 py-4">
-                                        <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold shadowz">
+                                        <button
+                                            class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold shadowz">
                                             Contact Sales
                                         </button>
                                     </td>
@@ -688,14 +762,17 @@
                     </div>
 
                     <p class="my-4 text-center comfortaa-font" style="color: #fff; font-size: 10px">Crafted by
-                        AdaptivConcept &copy;
-                        2021</p>
+                        AdaptivConcept FL &copy;
+                        2021. All rights reserved.</p>
                 </div>
                 <!-- ./ collapsable plan comparison table panel -->
             </div>
-            <div class="col-xl py-4 text-center" style="max-height: 90vh; overflow-y: auto; overflow-x: hidden;border-radius:25px;">
-                <div class="content-panel-border-style registration-form tunnel-bg mb-4 shadow p-4" style="width: 100%; border-radius: 25px; background-color: var(--secondary-color);">
-                    <h2 class="text-center fs-1 pt-4" style="color: var(--primary-color)"><i class="fas fa-file-signature"></i> Sign
+            <div class="col-xl py-4 text-center"
+                style="max-height: 90vh; overflow-y: auto; overflow-x: hidden;border-radius:25px;">
+                <div class="content-panel-border-style registration-form tunnel-bg mb-4 shadow p-4"
+                    style="width: 100%; border-radius: 25px; background-color: var(--secondary-color);">
+                    <h2 class="text-center fs-1 pt-4" style="color: var(--primary-color)"><i
+                            class="fas fa-file-signature"></i> Sign
                         up for a
                         Community
                         account, it's free.</h2>
@@ -709,19 +786,25 @@
                         looking for.</p>
                     <hr class="mx-4 bg-white" />
 
-                    <form id="community-registration-form" name="community-registration-form" class="container text-center comfortaa-font fs-5 needs-validation" method="post" action="../scripts/php/main_app/data_management/system_admin/user_registration/register_user.php" autocomplete="off">
+                    <form id="community-registration-form" name="community-registration-form"
+                        class="container text-center comfortaa-font fs-5 needs-validation" method="post"
+                        action="../scripts/php/main_app/data_management/system_admin/user_registration/register_user.php"
+                        autocomplete="off">
                         <div class="output-container my-2" id="output-container">
                             <!--<?php echo $output; ?>-->
                         </div>
 
-                        <div id="emailHelp" class="form-text text-center d-grid gap-2 fw-bold my-4" style=" color: #fff">
+                        <div id="emailHelp" class="form-text text-center d-grid gap-2 fw-bold my-4"
+                            style=" color: #fff">
                             <p>We have a responsibility to
                                 keep your keep your Identity &amp; Privacy safe!
                             </p>
-                            <span class="material-icons material-icons-round align-middle" style="font-size: 28px!important;">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="font-size: 28px!important;">
                                 policy
                             </span>
-                            <a href="http://" class="fw-bold mx-2" style="color: var(--primary-color);">Feel free to read
+                            <a href="http://" class="fw-bold mx-2" style="color: var(--primary-color);">Feel free to
+                                read
                                 our Privacy
                                 Policy.</a>
                         </div>
@@ -729,30 +812,39 @@
                         <hr class="mx-4 bg-white" />
 
                         <div class="form-group mb-4 text-start">
-                            <label class="fw-bold poppins-font" for="reg-name" style="color: var(--primary-color);">First
+                            <label class="fw-bold poppins-font" for="reg-name"
+                                style="color: var(--primary-color);">First
                                 Name</label>
-                            <input class="form-control-text-input p-4" type="text" name="reg-name" id="reg-name" placeholder="Required." required />
+                            <input class="form-control-text-input p-4" type="text" name="reg-name" id="reg-name"
+                                placeholder="Required." required />
                         </div>
 
                         <div class="form-group mb-4 text-start">
-                            <label class="fw-bold poppins-font" for="reg-surname" style="color: var(--primary-color);">Last
+                            <label class="fw-bold poppins-font" for="reg-surname"
+                                style="color: var(--primary-color);">Last
                                 Name</label>
-                            <input class="form-control-text-input p-4" type="text" name="reg-surname" id="reg-surname" placeholder="Required." required />
+                            <input class="form-control-text-input p-4" type="text" name="reg-surname" id="reg-surname"
+                                placeholder="Required." required />
                         </div>
 
                         <div class="form-group mb-4 text-start">
-                            <label class="fw-bold poppins-font" for="reg-email" style="color: var(--primary-color);">Email
+                            <label class="fw-bold poppins-font" for="reg-email"
+                                style="color: var(--primary-color);">Email
                                 address</label>
-                            <input class="form-control-text-input p-4" type="email" name="reg-email" id="reg-email" placeholder="Required." required />
+                            <input class="form-control-text-input p-4" type="email" name="reg-email" id="reg-email"
+                                placeholder="Required." required />
                         </div>
 
                         <div class="form-group mb-4 text-start">
-                            <label class="fw-bold poppins-font" for="reg-contact" style="color: var(--primary-color);">Phone
+                            <label class="fw-bold poppins-font" for="reg-contact"
+                                style="color: var(--primary-color);">Phone
                                 number</label>
-                            <input class="form-control-text-input p-4" type="tel" value="+27" name="reg-contact" id="reg-contact" placeholder="Required." required />
+                            <input class="form-control-text-input p-4" type="tel" value="+27" name="reg-contact"
+                                id="reg-contact" placeholder="Required." required />
                             <!-- pattern="((\+|00)?[1-9]{2}|0)[0-9]{8}" must fix pattern, not working at the moment -->
                             <p class="text-center">
-                                <span class="material-icons material-icons-round align-middle" style="font-size: 20px!important;color: var(--primary-color);">
+                                <span class="material-icons material-icons-round align-middle"
+                                    style="font-size: 20px!important;color: var(--primary-color);">
                                     crisis_alert
                                 </span>
                                 <small class="align-middle">please use this format: <strong>+27
@@ -766,23 +858,29 @@
             </div> -->
 
                         <div class="form-group mb-4 text-start">
-                            <label class="fw-bold poppins-font" for="reg-dob" style="color: var(--primary-color);">Date of
+                            <label class="fw-bold poppins-font" for="reg-dob" style="color: var(--primary-color);">Date
+                                of
                                 birth</label>
-                            <input class="form-control-text-input p-4" type="date" name="reg-dob" id="reg-dob" placeholder="Required." required />
+                            <input class="form-control-text-input p-4" type="date" name="reg-dob" id="reg-dob"
+                                placeholder="Required." required />
                         </div>
 
                         <div class="form-group mb-4 text-start">
-                            <label class="fw-bold poppins-font" for="reg-gender" style="color: var(--primary-color);">Gender</label>
-                            <select class="custom-select form-control-select-input p-4" name="reg-gender" id="reg-gender" placeholder="Required." required>
+                            <label class="fw-bold poppins-font" for="reg-gender"
+                                style="color: var(--primary-color);">Gender</label>
+                            <select class="custom-select form-control-select-input p-4" name="reg-gender"
+                                id="reg-gender" placeholder="Required." required>
                                 <option value="Female">Female</option>
                                 <option value="Male">Male</option>
                             </select>
                         </div>
 
                         <div class="form-group mb-4 text-start">
-                            <label class="fw-bold poppins-font" for="reg-race" style="color: var(--primary-color);">Race /
+                            <label class="fw-bold poppins-font" for="reg-race" style="color: var(--primary-color);">Race
+                                /
                                 Ethnicity</label>
-                            <select class="custom-select form-control-select-input p-4" name="reg-race" id="reg-race" placeholder="Required." required>
+                            <select class="custom-select form-control-select-input p-4" name="reg-race" id="reg-race"
+                                placeholder="Required." required>
                                 <option value="black">Black</option>
                                 <option value="white">White</option>
                                 <option value="coloured">Coloured</option>
@@ -790,8 +888,10 @@
                             </select>
                         </div>
                         <div class="form-group mb-4 text-start">
-                            <label class="fw-bold poppins-font" for="reg-nationality" style="color: var(--primary-color);">Nationality</label>
-                            <select class="custom-select form-control-select-input p-4" name="reg-nationality" id="reg-nationality" placeholder="Required." required>
+                            <label class="fw-bold poppins-font" for="reg-nationality"
+                                style="color: var(--primary-color);">Nationality</label>
+                            <select class="custom-select form-control-select-input p-4" name="reg-nationality"
+                                id="reg-nationality" placeholder="Required." required>
                                 <option value='South Africa'>South Africa</option>
                                 <option value='Afghanistan'>Afghanistan</option>
                                 <option value='Akrotiri'>Akrotiri</option>
@@ -1065,18 +1165,25 @@
             </div> -->
 
                         <div class="form-group mb-4 text-start">
-                            <label class="fw-bold poppins-font" for="reg-password" style="color: var(--primary-color);">Create your password</label>
-                            <input class="form-control-text-input p-4" type="password" name="reg-password" id="reg-password" placeholder="Create your new password." required />
+                            <label class="fw-bold poppins-font" for="reg-password"
+                                style="color: var(--primary-color);">Create your password</label>
+                            <input class="form-control-text-input p-4" type="password" name="reg-password"
+                                id="reg-password" placeholder="Create your new password." required />
                         </div>
 
                         <div class="form-group mb-4 text-start">
-                            <label class="fw-bold poppins-font" for="reg-confirmpassword" style="color: var(--primary-color);">Repeat your password</label>
-                            <input class="form-control-text-input p-4" type="password" name="reg-confirmpassword" id="reg-confirmpassword" placeholder="Let's check if you have it down." required />
+                            <label class="fw-bold poppins-font" for="reg-confirmpassword"
+                                style="color: var(--primary-color);">Repeat your password</label>
+                            <input class="form-control-text-input p-4" type="password" name="reg-confirmpassword"
+                                id="reg-confirmpassword" placeholder="Let's check if you have it down." required />
                         </div>
 
-                        <div class="text-center d-gridz gap-2 py-2 down-top-grad-tahiti" style="border-radius:0 0 25px 25px;">
-                            <button type="submit" class="my-4 p-5 onefit-buttons-style-dark btn-lg shadow-lg" id="signup-btn">
-                                <span class="material-icons material-icons-round align-middle" style="color: var(--primary-color);">
+                        <div class="text-center d-gridz gap-2 py-2 down-top-grad-tahiti"
+                            style="border-radius:0 0 25px 25px;">
+                            <button type="submit" class="my-4 p-5 onefit-buttons-style-dark btn-lg shadow-lg"
+                                id="signup-btn">
+                                <span class="material-icons material-icons-round align-middle"
+                                    style="color: var(--primary-color);">
                                     how_to_reg
                                 </span>
                                 <span class="align-middle"> Create account.</span>
@@ -1090,20 +1197,25 @@
                         <!-- Membership Sales Card Grid -->
                         <p class="text-center">Or Sign Up for</p>
                         <h5 class="fs-1 d-grid fw-bold text-center my-4" style="color:var(--white);">
-                            <span class="material-icons material-icons-round" style="font-size:80px!important;color: var(--primary-color);">
+                            <span class="material-icons material-icons-round"
+                                style="font-size:80px!important;color: var(--primary-color);">
                                 verified_user
                             </span>
                             <span><strong style="color: var(--primary-color);">Pro</strong>.Membership</span>
                         </h5>
 
                         <!-- multi-collapse left panels to toggle membership plan comparison table -->
-                        <button class="onefit-buttons-style-tahiti shadow p-4 mt-0 mb-5" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="true" aria-controls="collapseLogoPanel collapsePlanCompTblPanel">
+                        <button class="onefit-buttons-style-tahiti shadow p-4 mt-0 mb-5" type="button"
+                            data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="true"
+                            aria-controls="collapseLogoPanel collapsePlanCompTblPanel">
                             Compare Plans.
                         </button>
 
                         <div class="card-groupz grid-container">
-                            <div class="card grid-tile shadow border-5 border-top border-bottom" style="border-color: var(--primary-color)!important;background-color: var(--secondary-color) !important; overflow: hidden;">
-                                <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
+                            <div class="card grid-tile shadow border-5 border-top border-bottom"
+                                style="border-color: var(--primary-color)!important;background-color: var(--secondary-color) !important; overflow: hidden;">
+                                <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top"
+                                    alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Pro.Starter Training (Basic) - 3 Months</h5>
                                     <p class="card-text">The Indi.Starter account offers Trainees access to Curated
@@ -1114,13 +1226,16 @@
                                         Process much easier.</p>
                                 </div>
                                 <div class="card-footer d-grid">
-                                    <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                    <button
+                                        class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
                                         R1800 (3 Months)
                                     </button>
                                 </div>
                             </div>
-                            <div class="card grid-tile shadow border-5 border-top border-bottom" style="border-color: var(--primary-color)!important;background-color: var(--secondary-color) !important; overflow: hidden;">
-                                <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
+                            <div class="card grid-tile shadow border-5 border-top border-bottom"
+                                style="border-color: var(--primary-color)!important;background-color: var(--secondary-color) !important; overflow: hidden;">
+                                <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top"
+                                    alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Pro.Athlete Training (Pro) - 12 Months</h5>
                                     <p class="card-text">This card has supporting text below as a natural lead-in to
@@ -1128,13 +1243,16 @@
                                     </p>
                                 </div>
                                 <div class="card-footer d-grid">
-                                    <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                    <button
+                                        class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
                                         R5200 (12 Months)
                                     </button>
                                 </div>
                             </div>
-                            <div class="card wide-grid-tile grid-tile shadow border-5 border-top border-bottom" style="border-color: var(--primary-color)!important;background-color: var(--secondary-color) !important; overflow: hidden;">
-                                <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top" alt="...">
+                            <div class="card wide-grid-tile grid-tile shadow border-5 border-top border-bottom"
+                                style="border-color: var(--primary-color)!important;background-color: var(--secondary-color) !important; overflow: hidden;">
+                                <img src="../media/assets/OnefitNet Profile Pic Redone.png" class="card-img-top"
+                                    alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Teams.Pro Training (Pro) - Contact Sales</h5>
                                     <p class="card-text">This is a wider card with supporting text below as a natural
@@ -1145,7 +1263,8 @@
                                         action.</p>
                                 </div>
                                 <div class="card-footer d-grid">
-                                    <button class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
+                                    <button
+                                        class="onefit-buttons-style-dark p-4 text-center comfortaa-font fs-5 fw-bold">
                                         Contact Sales
                                     </button>
                                 </div>
@@ -1160,19 +1279,20 @@
     </div>
 
     <div class="text-center fixed-bottom p-4" style="background: #ffa500; color: var(--secondary-color)" hidden>
-        <p>Crafted by Adaptiv Concept (Media) &copy; 2021</p>
+        <p>Crafted by AdaptivConcept FL &copy; 2021. All rights reserved.</p>
     </div>
 
     <script>
-        var signinbtn = document.getElementById("signup-btn");
-        //signupbtn.addEventListener("click", signin);
+    var signinbtn = document.getElementById("signup-btn");
+    //signupbtn.addEventListener("click", signin);
 
-        document.getElementById("output-container").addEventListener("click", function() {
-            document.getElementById("output-container").style.display = "none";
-        });
+    document.getElementById("output-container").addEventListener("click", function() {
+        document.getElementById("output-container").style.display = "none";
+    });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 </body>
 
