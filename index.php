@@ -198,7 +198,7 @@ rememberMe();
                                 style="font-size:20px!important;"> close </span>
                         </button>
                     </div>
-                    <div class="offcanvas-body pb-4 top-down-grad-dark" style="max-height: 80vh;">
+                    <div class="offcanvas-body pb-4 top-down-grad-dark" style="max-height: 100vh;">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 comfortaa-font fs-3 h-100"
                             style="overflow-y: auto;">
                             <li class="nav-item d-grid">
@@ -212,25 +212,21 @@ rememberMe();
                                     href="registration/"
                                     style="border-radius: 25px !important; font-size: 20px !important;transform:scale(1)!important;color: var(--secondary-color)!important;">Register
                                     your account.
-                                    <!-- <span class="material-icons material-icons-round align-middle"
-                    style="font-size: 25px !important; color: var(--primary-color);">
-                    login
-                  </span> -->
                                     <i class="fas fa-file-signature"></i>
                                 </a>
                             </li>
                             <hr class="text-white">
                             <li class="nav-item">
-                                <a class="nav-link active p-4" aria-current="page" href="#"
-                                    style="border-radius: 25px !important;">Home</a>
+                                <a class="nav-link active p-4" href="https://onefitnet.co.za/" aria-current="page"
+                                    href="#" style="border-radius: 25px !important;">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link p-4" href="https://onefitnet.co.za/about/" target="_blank"
                                     style="border-radius: 25px !important;">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link p-4" href="https://onefitnet.co.za/services/" target="_blank"
-                                    style="border-radius: 25px !important;">Services</a>
+                                <a class="nav-link p-4" href="https://onefitnet.co.za/training/" target="_blank"
+                                    style="border-radius: 25px !important;">Training Services</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link p-4" href="https://onefitnet.co.za/contact/" target="_blank"
@@ -238,9 +234,9 @@ rememberMe();
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link p-4" href="https://onefitnet.co.za/blog/" target="_blank"
-                                    style="border-radius: 25px !important;">Onefit.Edu™ (Blog)</a>
+                                    style="border-radius: 25px !important;">OnefitNet Blog</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item d-none">
                                 <a class="nav-link p-4" href="https://onefitnet.co.za/store/" target="_blank"
                                     style="border-radius: 25px !important;">Onefit.Store™</a>
                             </li>
@@ -252,9 +248,7 @@ rememberMe();
     </nav>
     <!-- ./ Navigation bar -->
 
-    <!-- Onefit.app Logo 
-    <hr class="text-white" />-->
-
+    <!-- one-on-one fitness network banner -->
     <div class="text-center pb-4" style="padding-top: 150px;">
         <div class="d-grid mb-2 w3-animate-top">
             <p class="text-white comfortaa-font fs-4 mb-0 fw-bold"> Presented by </p>
@@ -270,31 +264,29 @@ rememberMe();
             </span>
         </div>
 
-        <img src="./media/assets/One-Logo-Vertical.png" class="border-5 border-start border-end p-4"
+        <img src="./media/assets/One-Logo-Vertical.png" class="border-5 border-start border-end p-4 down-top-grad-dark"
             alt="Onefit™.app Logo"
             style="max-height: 50vh; width: auto !important; border-radius: 25px; background-color: var(--secondary-color);">
     </div>
 
-    <!-- <hr class="text-white m-0" /> -->
-    <!-- Onefit.app Logo -->
-
-    <div class="text-center p-4 comfortaa-font fw-bold fs-1"
+    <!-- slogan -->
+    <div class="text-center p-4 comfortaa-font fw-bold fs-1 sticky-top"
         style="color: var(--text-color);background-color: rgba(52, 55, 52, 0.8); margin: 40px 0;">
         <span style="color:var(--white);">
             #One<span style="color: var(--primary-color);">fitness</span>ForAll
         </span>
     </div>
+    <!-- ./ slogan -->
 
     <!-- User Sign in Section -->
-    <div class="container-fluid m-0 down-top-grad-tahiti">
+    <main class="container-fluid m-0 down-top-grad-dark">
         <div class="container text-center text-white mt-4 border-5z border-topz"
-            style="min-height: 100vh; padding-bottom: 40px; border-radius:25px;">
-            <div class="row align-items-center p-0 darkpads-bg-container"
+            style="min-height: 50vh; padding-bottom: 40px; border-radius:25px;">
+            <!-- member sig-in form -->
+            <div class="row align-items-center p-0 darkpads-bg-container shadow"
                 style="border-radius: 25px; background-color: rgba(52, 52, 52, 0.8);border-radius:25px;">
                 <div class="col-xlg d-flex justify-content-center py-5 top-down-grad-dark"
-                    style="border-radius:25px!important;;">
-
-
+                    style="border-radius:25px!important;">
                     <form class="text-center text-white comfortaa-font align-middle" method="post"
                         action="./scripts/php/main_app/compile_content/profile_tab/login.php" autocomplete="off"
                         style="max-width:50vw;">
@@ -348,8 +340,7 @@ rememberMe();
                         </div>
                     </form>
                 </div>
-
-                <div class="col-sm p-4 darkpads-bg-containerz shadow border-5z border-startz border-endz d-flex justify-content-center down-top-grad-dark"
+                <div class="col-sm p-4 py-5 darkpads-bg-containerz shadowz border-5z border-startz border-endz d-flex justify-content-center down-top-grad-dark"
                     style="border-radius:25px;">
                     <div class="d-grid gap-2 justify-content-center" style="min-width: 50vw!important;">
                         <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="googleOAuth2()">
@@ -361,39 +352,27 @@ rememberMe();
                                     style="color: #0F9D58;">l</span><span style="color: #DB4437;">e</span>
                             </strong>
                         </button>
-                        <!-- <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Twitter API is not available at the moment. Please use your email to login.','alert_twitter', 'short_5000')">
-              <img class="twitter-x-icon" src="../media/assets/icons/twitter-x-symbol-white.svg" style="height:40px;width:40px"
-                            alt="Twitter - X logo">
-              Sign in with
-              <strong class="fs-5 poppins-font">
-                <span style="color: #1DA1F2;">Twitter</span>
-              </strong>
-            </button> -->
-                        <!-- <button class="onefit-buttons-style-light py-4 shadow comfortaa-font" onclick="showSnackbar('Facebook API is not available at the moment. Please use your email to login.','alert_facebook', 'short_5000')">
-              <i class="fab fa-facebook"></i> Sign in with
-              <strong class="fs-5 poppins-font">
-                <span style="color: #4267B2;">Facebook</span>
-              </strong>
-            </button> -->
 
                         <hr class="text-white">
 
-                        <a href="registration/" class="onefit-buttons-style-dark fw-bold p-4 comfortaa-font align-end"
+                        <a href="registration/"
+                            class="onefit-buttons-style-tahiti fw-bold p-4 comfortaa-font align-end my-pulse-animation-tahiti text-dark"
                             style="text-decoration: none;">Or
                             Create an Account.
                             <span class="material-icons material-icons-round align-middle"
-                                style="font-size: 20px !important; color: var(--primary-color);">
+                                style="font-size: 20px !important; color: var(--secondary-color);">
                                 person_add
                             </span>
                         </a>
                     </div>
                 </div>
             </div>
+            <!-- ./ member sig-in form -->
 
-            <!-- Carousal -->
+            <!-- latest Carousal -->
             <div class="container-fluid m-0 p-4">
                 <span class="material-icons material-icons-outlined"> tv </span>
-                <p style="font-size: 10px">Latest Training Programs | <span class="comfortaa-font"
+                <p style="font-size: 10px">Latest Training Programs | <span class="comfortaa-font fs-5 align-middle"
                         style="color: var(--primary-color)">OnefitNet.TV</span></p>
 
                 <div class="video-card-container border-white border border-5 bg-white">
@@ -406,91 +385,68 @@ rememberMe();
                     </button>
                 </div>
             </div>
-            <!-- ./ Carousal -->
+            <!-- ./ latest Carousal -->
         </div>
-    </div>
-
+    </main>
     <!-- / User Sign in Section -->
 
     <!-- Main Content -->
-    <div class="container-fluid top-down-grad-dark"
+    <footer class="container-fluid top-down-grad-tahiti"
         style="border-radius:25px 25px 0 0;overflow:hidden;margin-top:-25px;">
-        <div class="row align-items-center text-white py-4" style="background-color: rgba(52, 52, 52, 0)">
-            <div class="col-md py-4">
+        <div class="row align-items-start text-white py-4" style="background-color: rgba(52, 52, 52, 0)">
+            <div class="col-lg py-4" style="overflow-y: auto;">
                 <div class="content-panel-border-style p-4 tunnel-bg text-center"
-                    style="border-radius: 25px;background-color: rgba(52, 52, 52, 0.8)">
+                    style="border-radius: 25px;background-color: rgba(52, 52, 52, 0.8);height: 80vh;">
                     <div class="my-2 pt-4 site-description text-center">
-                        <h1>Welcome to the One<span style="color: var(--primary-color) !important">fit</span><span
+                        <h1 class="text-center">Join the One<span
+                                style="color: var(--primary-color) !important">fit</span><span
                                 style="font-size: 10px">™</span> Community.</h1>
+                        <p class="mt-2 p-4 comfortaa-font text-center">OnefitNet<span
+                                style="color: rgb(249, 158, 0);">™</span>&nbsp;(One-On-One Fitness Network) is
+                            your community-centric destination for fitness, wellness, and lifestyle enhancement. Our
+                            mission is to guide individuals of diverse backgrounds toward a heightened state of
+                            well-being. Through a blend of inspirational content, expert guidance, and a thriving
+                            community, we facilitate connections between trainers and trainees while fostering
+                            fitness
+                            groups across various realms of physical activity and athleticism. Let us be your
+                            partner in
+                            achieving your fitness aspirations, making new connections, and gaining empowering
+                            knowledge. Sign up today to unlock a personalized journey featuring tailored training
+                            and
+                            nutrition plans crafted by professional trainers and dieticians, coupled with valuable
+                            insights from health professionals.</p>
                         <p class="mt-2 p-4 comfortaa-font">
-                            One<span style="color: var(--primary-color) !important">fit</span><span
-                                style="font-size: 10px">™</span>
-                            is a
-                            community based fitness, wellness and lifestyle platform. We aim to assist people from all
-                            backgrounds
-                            find a better state of being by accessing inspirational and instructional resources,
-                            connecting trainers
-                            with trainees and developing fitness groups in all spheres of physical activity and
-                            athletisism. We will
-                            help you reach your fitness goals, find friends, obtain knowledge about uplifting yourself.
-                            Register an
-                            account today to get a personalized training and eating plans from professional trainers and
-                            dieticians
-                            as
-                            well as resources from health professionals. Proudly brought to you by AdaptivConcept
-                            (Media), LMM
-                            1-ON-1
-                            Trainer and One-On-One Fitness Network. © 2021
+                            One-On-One Fitness Network. © 2024 Developed by AdaptivConcept FL in collaboration with
+                            LMM 1-ON-1 Trainer. All rights reserved.
                         </p>
                     </div>
                     <img src="./media/assets/OnefitNet Profile Pic Redone.png" class="img-fluid my-4 shadow"
-                        alt="one fitness" style="max-height: 50vh; border-radius: 25px">
-                    <p class="my-4 text-center comfortaa-font" style="font-size: 10px">Crafted by AdaptivConcept™ FL,
+                        alt="one fitness" style="max-height: 50vh; border-radius: 25px; filter: invert(0);">
+                    <p class="my-4 text-center comfortaa-font" style="font-size: 10px">Crafted by AdaptivConcept™
+                        FL,
                         <br>in Partneship
                         with One-On-One Fitness Network | © 2021. All rights reserved.
                     </p>
                     <hr class="text-white">
                 </div>
             </div>
-            <div class="col-md py-4 text-center" style="overflow-y: auto; overflow-x: hidden">
-                <!--<div class="content-panel-border-style login-form tunnel-bg mb-4 shadow" style="width: 100%">
-            <h2 class="text-center pt-4" style="color: var(--primary-color)">Sign In</h2>
-            <hr class="mx-4 bg-white" />
-
-            <form class="text-center px-4 pb-4 pt-0">
-              <div class="output-container my-2" id="output-container"></div>
-
-              <div class="form-group my-4">
-                <input type="text" id="username" placeholder="username/email" />
-              </div>
-
-              <div class="form-group">
-                <input type="password" id="password" placeholder="password" />
-              </div>
-              <a href="" class="forgot-password">Forgot password?</a>
-            </form>
-            <div class="text-center">
-              <button type="button" class="mb-4" id="signin-btn"><i class="fas fa-sign-in-alt" style="color: var(--primary-color)"></i> Sign In</button>
-            </div>
-            <div class="text-center">
-              <button type="button" class="mb-4" id="signup-btn"><i class="fas fa-file-signature" style="color: var(--primary-color)"></i> Don't have an account? Sign Up Now</button>
-            </div>
-          </div>-->
+            <div class="col-lg py-4 text-center" style="overflow-y: auto; overflow-x: hidden">
 
                 <div class="content-panel-border-style p-4 tunnel-bg -white shadow"
-                    style="border-radius: 25px;background-color: rgba(52, 52, 52, 0.8)">
-                    <h2 class="text-center mt-4" style="color: var(--primary-color)">Social</h2>
+                    style="border-radius: 25px;background-color: rgba(52, 52, 52, 0.8);height: 80vh;">
+                    <h2 class="text-center mt-4" style="color: var(--text-color)">Social.</h2>
                     <hr class="bg-warning">
 
-                    <h5 class="mt-4 text-center"><img src="../media/assets/icons/twitter-x-symbol-white.svg"
-                            style="height:40px;width:40px" alt="Twitter - X logo"> Twitter Feed</h5>
+                    <h5 class="mt-4 text-center"><img src="./media/assets/icons/twitter-x-symbol-white.svg"
+                            style="height: 40px; width: 40px; filter: invert(0);" alt="Twitter - X logo"> Feed
+                    </h5>
 
                     <div class="pb-4 no-scroller d-grid"
-                        style="border-radius: 25px !important; overflow-y: scroll; max-height: 90vh">
+                        style="border-radius: 25px !important; overflow-y: scroll; height: 50vh">
                         <div class="twitter-timeline twitter-timeline-rendered"
-                            style="display: flex; max-width: 100%; margin-top: 0px; margin-bottom: 0px;"><iframe
-                                id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true"
-                                allowfullscreen="true" class=""
+                            style="display: flex; max-width: 100%; margin-top: 0px; margin-bottom: 0px;"
+                            data-twitter-extracted-i1707553632810385545="true"><iframe id="twitter-widget-0"
+                                scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class=""
                                 style="position: static; visibility: visible; width: 334px; height: 7972px; display: block; flex-grow: 1;"
                                 title="Twitter Timeline"
                                 src="https://syndication.twitter.com/srv/timeline-profile/screen-name/OnefitNet?dnt=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=false&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;origin=http%3A%2F%2Flocalhost%3A8081%2FOnefit%2F%3Freturn%3Dsess_end&amp;sessionId=36bccd59108ca51751c04b11196860d0fbafdfd5&amp;showHeader=true&amp;showReplies=false&amp;transparent=false&amp;widgetsVersion=aaf4084522e3a%3A1674595607486"></iframe>
@@ -505,441 +461,855 @@ rememberMe();
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- ./ Main Content -->
-
-    <!-- Footer -->
-
-    <div class="navbar navbar-dark fixed-bottom navbar-stylez down-top-grad-dark py-4 justify-content-center">
-        <div class="no-scroller shadow border-5 border-start border-end mx-4 px-3 collapse top-down-grad-tahiti"
-            style="overflow-y: auto; border-radius: 25px; margin-bottom: 40px; padding-top: 100px; max-height: 90vh !important; border-color: rgb(255, 165, 0) !important;"
-            id="navbarToggleExternalContent">
-            <div class="p-0">
-                <div class="text-center pt-4 mb-4 top-down-grad-dark" style="border-radius: 25px 25px 0 0;">
-                    <img src="./media/assets/One-Symbol-Logo-White.svg" alt="logo"
-                        class="img-fluid my-4 p-4 my-pulse-animation-light"
-                        style="max-width: 150px;border-radius:25px;">
-                </div>
-
-                <!-- Onefit.TV Horizontal Content Stream -->
-                <div class="mb-4" id="onefittv-footer-h-content-stream">
-                    <div class="content-panel-border-stylez p-4 shadow border-5 border-start border-end text-white"
-                        style="padding-bottom: 40px; border-radius: 25px; background-color: var(--secondary-color); border-color: var(--primary-color) !important;">
-
-                        <h5 class="fs-1 h4 aligh-middle d-grid text-center" style="color: var(--primary-color);">
-                            <span class="material-icons material-icons-outlined" style="color: #fff;"> tv </span>
-                            <span>OnefitNet.TV</span>
-                        </h5>
-                        <hr class="text-white">
-
-                        <p class="my-4 text-center" style=" font-size: 10px">Latest Training Programs | <span
-                                class="comfortaa-font" style="color: var(--primary-color)">OnefitNet.TV</span></p>
-
-                        <div class="d-lg-none w3-animate-bottom">
-                            <!-- d-block d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none -->
-                            <!-- <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid"
-                > -->
-
-                            <div class="video-card-container">
-                                <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="latest video"
-                                    class="img-fluid shadow m-0" style="border-radius: 15px;">
-                                <button class="onefit-buttons-style-light shadow-lg play-btn p-2 aligh-middle"
-                                    onclick="playVideo()">
-                                    <span class="material-icons material-icons-round aligh-middle"
-                                        style="font-size: 20px !important;">
-                                        play_circle_outline
-                                    </span>
-                                </button>
+            <div class="col-md py-4 text-center" style="overflow-y: auto; overflow-x: auto">
+                <div class="content-panel-border-style p-4 tunnel-bg -white shadow"
+                    style="border-radius: 25px;background-color: rgba(52, 52, 52, 0.8);height: 80vh;">
+                    <h2 class="text-center mt-4" style="color: var(--text-color)">Updates.</h2>
+                    <hr class="bg-warning">
+                    <div class="no-scroller shadow top-down-grad-tahiti"
+                        style="border-radius: 25px;background: var(--secondary-color);">
+                        <div class="p-0">
+                            <div class="text-center py-4 top-down-grad-tahiti" style="border-radius: 25px 25px 0 0;">
+                                <img src="./media/assets/One-Symbol-Logo-White.svg" alt="logo" class="img-fluid p-4"
+                                    style="max-width: 150px; border-radius: 25px; filter: invert(0);">
                             </div>
 
-                            <div class="d-grid mt-4 w-100 justify-content-center">
-                                <button
-                                    class="onefit-buttons-style-dark shadow d-grid p-4 comfortaa-font text-center aligh-middle position-relative">
-                                    <span>View Playlist.</span>
-                                    <span class="material-icons material-icons-round aligh-middle">playlist_play</span>
+                            <!-- Onefit.TV Horizontal Content Stream -->
+                            <div class="mb-4" id="onefittv-footer-h-content-stream">
+                                <div class="content-panel-border-stylez p-4 shadow border-5 border-start border-end text-white"
+                                    style="padding-bottom: 40px; border-radius: 25px; background-color: var(--secondary-color); border-color: var(--primary-color) !important;">
 
-                                    <span
-                                        class="position-absolute top-0 start-100 translate-middle p-2 comfortaa-font border border-light rounded-pill align-middle shadow"
-                                        style="background-color: var(--secondary-color) !important; color: var(--primary-color) !important; border-color: var(--primary-color) !important;">
-                                        <span class="align-middle" style="font-size: 10px !important;">+3</span>
-                                        <span class="visually-hidden">Latest Video Count</span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
+                                    <h5 class="fs-1 h4 aligh-middle d-grid text-center"
+                                        style="color: var(--primary-color);">
+                                        <span class="material-icons material-icons-outlined" style="color: #fff;">
+                                            tv
+                                        </span>
+                                        <span>OnefitNet.TV</span>
+                                    </h5>
+                                    <hr class="text-white">
 
+                                    <p class="my-4 text-center" style=" font-size: 10px">Latest Training Programs |
+                                        <span class="comfortaa-font"
+                                            style="color: var(--primary-color)">OnefitNet.TV</span>
+                                    </p>
 
-                        <div class="horizontal-scroll d-none d-lg-block w3-animate-bottom">
-                            <div class="horizontal-scroll-card p-4">
-                                <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder"
-                                    class="img-fluid mb-4" style="border-radius: 25px;">
-                                <hr class="text-white" style="height: 5px;">
+                                    <div class=" d-none d-lg-block w3-animate-bottom">
+                                        <!-- d-block d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none -->
+                                        <!-- <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid"> -->
 
-                                <div class="row my-2 align-items-center">
-                                    <div class="col-sm-2 text-center">
-                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4"
-                                            alt="placeholder"
-                                            style="border-radius: 5px; background-color: var(--primary-color);">
+                                        <div class="video-card-container">
+                                            <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif"
+                                                alt="latest video" class="img-fluid shadow m-0"
+                                                style="border-radius: 15px; filter: invert(0);">
+                                            <button
+                                                class="onefit-buttons-style-light shadow-lg play-btn p-2 aligh-middle"
+                                                onclick="playVideo()">
+                                                <span class="material-icons material-icons-round aligh-middle"
+                                                    style="font-size: 20px !important;">
+                                                    play_circle_outline
+                                                </span>
+                                            </button>
+                                        </div>
+
+                                        <div class="d-grid mt-4 w-100 justify-content-center">
+                                            <button
+                                                class="onefit-buttons-style-dark shadow d-grid p-4 comfortaa-font text-center aligh-middle position-relative">
+                                                <span>View Playlist.</span>
+                                                <span
+                                                    class="material-icons material-icons-round aligh-middle">playlist_play</span>
+
+                                                <span
+                                                    class="position-absolute top-0 start-100 translate-middle p-2 comfortaa-font border border-light rounded-pill align-middle shadow"
+                                                    style="background-color: var(--secondary-color) !important; color: var(--primary-color) !important; border-color: var(--primary-color) !important;">
+                                                    <span class="align-middle"
+                                                        style="font-size: 10px !important;">+3</span>
+                                                    <span class="visually-hidden">Latest Video Count</span>
+                                                </span>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="col-sm">
-                                        <h5>Ep.1 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
-                                        <p class="align-middle comfortaa-font"><span
-                                                class="material-icons material-icons-round"
-                                                style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
-                                        <p class="align-middle comfortaa-font"><span
-                                                class="material-icons material-icons-round"
-                                                style="font-size: 20px !important;">category</span>
-                                            Category: Resistence
-                                        </p>
 
-                                        <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                            Subscribe on <span class="comfortaa-font"
-                                                style="color: var(--primary-color)">OnefitNet.TV</span>
-                                        </button>
+
+                                    <div class="horizontal-scroll d-lg-none w3-animate-bottom">
+                                        <div class="horizontal-scroll-card p-4">
+                                            <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif"
+                                                alt="placeholder" class="img-fluid mb-4"
+                                                style="border-radius: 25px; filter: invert(0);">
+                                            <hr class="text-white" style="height: 5px;">
+
+                                            <div class="row my-2 align-items-center">
+                                                <div class="col-sm-2 text-center">
+                                                    <img src="./media/assets/icons/icons8-sports-mode-50.png"
+                                                        class="img-fluid p-4" alt="placeholder"
+                                                        style="border-radius: 5px; background-color: var(--primary-color); filter: invert(0);">
+                                                </div>
+                                                <div class="col-sm">
+                                                    <h5>Ep.1 - Best Resistence Exercises | Head Trainer.:
+                                                        Lehlohonolo
+                                                        Matsoso
+                                                    </h5>
+                                                    <p class="align-middle comfortaa-font"><span
+                                                            class="material-icons material-icons-round"
+                                                            style="font-size: 20px !important;">timer</span>
+                                                        Duration: 1
+                                                        hour
+                                                    </p>
+                                                    <p class="align-middle comfortaa-font"><span
+                                                            class="material-icons material-icons-round"
+                                                            style="font-size: 20px !important;">category</span>
+                                                        Category: Resistence
+                                                    </p>
+
+                                                    <button
+                                                        class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                        Subscribe on <span class="comfortaa-font"
+                                                            style="color: var(--primary-color)">OnefitNet.TV</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="horizontal-scroll-card p-4">
+                                            <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif"
+                                                alt="placeholder" class="img-fluid mb-4"
+                                                style="border-radius: 25px; filter: invert(0);">
+                                            <hr class="text-white" style="height: 5px;">
+
+                                            <div class="row my-2 align-items-center">
+                                                <div class="col-sm-2 text-center">
+                                                    <img src="./media/assets/icons/icons8-sports-mode-50.png"
+                                                        class="img-fluid p-4" alt="placeholder"
+                                                        style="border-radius: 5px; background-color: var(--primary-color); filter: invert(0);">
+                                                </div>
+                                                <div class="col-sm">
+                                                    <h5>Ep.2 - Best Resistence Exercises | Head Trainer.:
+                                                        Lehlohonolo
+                                                        Matsoso
+                                                    </h5>
+                                                    <p class="align-middle comfortaa-font"><span
+                                                            class="material-icons material-icons-round"
+                                                            style="font-size: 20px !important;">timer</span>
+                                                        Duration: 1
+                                                        hour
+                                                    </p>
+                                                    <p class="align-middle comfortaa-font"><span
+                                                            class="material-icons material-icons-round"
+                                                            style="font-size: 20px !important;">category</span>
+                                                        Category: Resistence
+                                                    </p>
+
+                                                    <button
+                                                        class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                        Subscribe on <span class="comfortaa-font"
+                                                            style="color: var(--primary-color)">OnefitNet.TV</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="horizontal-scroll-card p-4">
+                                            <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif"
+                                                alt="placeholder" class="img-fluid mb-4"
+                                                style="border-radius: 25px; filter: invert(0);">
+                                            <hr class="text-white" style="height: 5px;">
+
+                                            <div class="row my-2 align-items-center">
+                                                <div class="col-sm-2 text-center">
+                                                    <img src="./media/assets/icons/icons8-sports-mode-50.png"
+                                                        class="img-fluid p-4" alt="placeholder"
+                                                        style="border-radius: 5px; background-color: var(--primary-color); filter: invert(0);">
+                                                </div>
+                                                <div class="col-sm">
+                                                    <h5>Ep.2 - Best Resistence Exercises | Head Trainer.:
+                                                        Lehlohonolo
+                                                        Matsoso
+                                                    </h5>
+                                                    <p class="align-middle comfortaa-font"><span
+                                                            class="material-icons material-icons-round"
+                                                            style="font-size: 20px !important;">timer</span>
+                                                        Duration: 1
+                                                        hour
+                                                    </p>
+                                                    <p class="align-middle comfortaa-font"><span
+                                                            class="material-icons material-icons-round"
+                                                            style="font-size: 20px !important;">category</span>
+                                                        Category: Resistence
+                                                    </p>
+
+                                                    <button
+                                                        class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                        Subscribe on <span class="comfortaa-font"
+                                                            style="color: var(--primary-color)">OnefitNet.TV</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="horizontal-scroll-card p-4">
+                                            <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif"
+                                                alt="placeholder" class="img-fluid mb-4"
+                                                style="border-radius: 25px; filter: invert(0);">
+                                            <hr class="text-white" style="height: 5px;">
+
+                                            <div class="row my-2 align-items-center">
+                                                <div class="col-sm-2 text-center">
+                                                    <img src="./media/assets/icons/icons8-sports-mode-50.png"
+                                                        class="img-fluid p-4" alt="placeholder"
+                                                        style="border-radius: 5px; background-color: var(--primary-color); filter: invert(0);">
+                                                </div>
+                                                <div class="col-sm">
+                                                    <h5>Ep.2 - Best Resistence Exercises | Head Trainer.:
+                                                        Lehlohonolo
+                                                        Matsoso
+                                                    </h5>
+                                                    <p class="align-middle comfortaa-font"><span
+                                                            class="material-icons material-icons-round"
+                                                            style="font-size: 20px !important;">timer</span>
+                                                        Duration: 1
+                                                        hour
+                                                    </p>
+                                                    <p class="align-middle comfortaa-font"><span
+                                                            class="material-icons material-icons-round"
+                                                            style="font-size: 20px !important;">category</span>
+                                                        Category: Resistence
+                                                    </p>
+
+                                                    <button
+                                                        class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                        Subscribe on <span class="comfortaa-font"
+                                                            style="color: var(--primary-color)">OnefitNet.TV</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="horizontal-scroll-card p-4">
+                                            <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif"
+                                                alt="placeholder" class="img-fluid mb-4"
+                                                style="border-radius: 25px; filter: invert(0);">
+                                            <hr class="text-white" style="height: 5px;">
+
+                                            <div class="row my-2 align-items-center">
+                                                <div class="col-sm-2 text-center">
+                                                    <img src="./media/assets/icons/icons8-sports-mode-50.png"
+                                                        class="img-fluid p-4" alt="placeholder"
+                                                        style="border-radius: 5px; background-color: var(--primary-color); filter: invert(0);">
+                                                </div>
+                                                <div class="col-sm">
+                                                    <h5>Ep.2 - Best Resistence Exercises | Head Trainer.:
+                                                        Lehlohonolo
+                                                        Matsoso
+                                                    </h5>
+                                                    <p class="align-middle comfortaa-font"><span
+                                                            class="material-icons material-icons-round"
+                                                            style="font-size: 20px !important;">timer</span>
+                                                        Duration: 1
+                                                        hour
+                                                    </p>
+                                                    <p class="align-middle comfortaa-font"><span
+                                                            class="material-icons material-icons-round"
+                                                            style="font-size: 20px !important;">category</span>
+                                                        Category: Resistence
+                                                    </p>
+
+                                                    <button
+                                                        class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                        Subscribe on <span class="comfortaa-font"
+                                                            style="color: var(--primary-color)">OnefitNet.TV</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- ./ Onefit.TV Horizontal Content Stream -->
+
+                            <div class="row mt-4 text-center align-items-startz" style="overflow-y: auto;">
+
+                                <div class="col-lg mb-4">
+                                    <div class="content-panel-border-style p-4 h-100"
+                                        style="padding-bottom: 40px; border-radius: 25px; background-color: var(--secondary-color);">
+                                        <span class="material-icons material-icons-outlined"
+                                            style="color: #fff;">tag</span>
+                                        <h5 class="fs-1 h4" style="color: var(--primary-color);">Social</h5>
+                                        <hr class="text-white">
+                                        <ul class="list-group bg-transparent comfortaa-font">
+                                            <li class="list-group-item bg-transparent border-0 social-link-icon-insta my-2 shadow"
+                                                style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                                <div class="row align-items-center">
+                                                    <div class="col-4 text-end">
+                                                        <i class="fab fa-instagram"
+                                                            style="font-size: 40px;color:var(--white);"
+                                                            aria-hidden="true"></i>
+                                                    </div>
+                                                    <div class="col text-center" style="color: var(--primary-color);">
+                                                        |
+                                                    </div>
+                                                    <div class="col text-start text-white">
+                                                        @onefit_net
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item bg-transparent border-0 social-link-icon-twitter my-2 shadow"
+                                                style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                                <div class="row align-items-center">
+                                                    <div class="col-4 text-end">
+                                                        <img src="./media/assets/icons/twitter-x-symbol-white.svg"
+                                                            style="height: 40px; width: 40px; filter: invert(0);"
+                                                            alt="Twitter - X logo">
+                                                    </div>
+                                                    <div class="col text-center" style="color: var(--primary-color);">
+                                                        |
+                                                    </div>
+                                                    <div class="col text-start text-white">
+                                                        @onefitnet_za
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item bg-transparent border-0 social-link-icon-fb my-2 shadow"
+                                                style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                                <div class="row align-items-center">
+                                                    <div class="col-4 text-end">
+                                                        <i class="fab fa-facebook"
+                                                            style="font-size: 40px;color: var(--white);"
+                                                            aria-hidden="true"></i>
+                                                    </div>
+                                                    <div class="col text-center" style="color: var(--primary-color);">
+                                                        |
+                                                    </div>
+                                                    <div class="col text-start text-white">
+                                                        /OnefitNetwork
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item bg-transparent border-0 social-link-icon-yt my-2 shadow"
+                                                style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                                <div class="row align-items-center">
+                                                    <div class="col-4 text-end">
+                                                        <i class="fab fa-youtube"
+                                                            style="font-size: 40px;element.style {font-size: 40px;color: var(--white);};color: var(--white);"
+                                                            aria-hidden="true"></i>
+                                                    </div>
+                                                    <div class="col text-center" style="color: var(--primary-color);">
+                                                        |
+                                                    </div>
+                                                    <div class="col text-start text-white">
+                                                        OnefitNet.TV
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <span class="material-icons material-icons-outlined mt-4"
+                                            style="color: #fff;">error_outline</span>
+                                        <h5 class="fs-1 h4" style="color: var(--primary-color);">Important</h5>
+                                        <hr class="text-white">
+                                        <ul class="list-group bg-transparent comfortaa-font">
+                                            <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
+                                                style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                                Our COVID-19 Responsibility
+                                            </li>
+                                            <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
+                                                style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                                Privacy Policy
+                                            </li>
+                                            <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
+                                                style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                                Terms of use
+                                            </li>
+                                            <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
+                                                style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                                Refund Policy
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg mb-4 d-none">
+                                    <div class="content-panel-border-style p-4 h-100"
+                                        style="padding-bottom: 40px; border-radius: 25px; background-color: var(--secondary-color);">
+                                        <span class="material-icons material-icons-outlined"
+                                            style="color: #fff;">touch_app</span>
+                                        <h5 class="fs-1 h4" style="color: var(--primary-color);">Navigation</h5>
+                                        <hr class="text-white">
+                                        <ul
+                                            class="list-group justify-content-end flex-grow-1z pe-3 comfortaa-font fs-3">
+                                            <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                                style="border-radius: 25px;">
+                                                <button class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                    href="#">Home</button>
+                                            </li>
+                                            <li class="my-2 m shadow general-dark-link-itemz d-grid gap-2"
+                                                style="border-radius: 25px;">
+                                                <button class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                    href="#">Services</button>
+                                            </li>
+                                            <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                                style="border-radius: 25px;">
+                                                <button class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                    href="#">About</button>
+                                            </li>
+                                            <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                                style="border-radius: 25px;">
+                                                <button class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                    href="#">Contact</button>
+                                            </li>
+                                            <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                                style="border-radius: 25px;">
+                                                <button
+                                                    class="nav-link onefit-buttons-style-dark p-4 text-center active"
+                                                    aria-current="page" href="#">Onefit.app™</button>
+                                            </li>
+                                            <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                                style="border-radius: 25px;">
+                                                <button class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                    href="#">Onefit.Edu™
+                                                    (Blog)</button>
+                                            </li>
+                                            <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                                style="border-radius: 25px;">
+                                                <button class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                    href="#">Onefit.Shop™</button>
+                                            </li>
+                                            <hr class="text-dark">
+                                            <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                                style="border-radius: 25px;">
+                                                <a class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                    href="registration/" style="border-bottom: 0 !important">Account
+                                                    Registration</a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="horizontal-scroll-card p-4">
-                                <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder"
-                                    class="img-fluid mb-4" style="border-radius: 25px;">
-                                <hr class="text-white" style="height: 5px;">
-
-                                <div class="row my-2 align-items-center">
-                                    <div class="col-sm-2 text-center">
-                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4"
-                                            alt="placeholder"
-                                            style="border-radius: 5px; background-color: var(--primary-color);">
-                                    </div>
-                                    <div class="col-sm">
-                                        <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
-                                        <p class="align-middle comfortaa-font"><span
-                                                class="material-icons material-icons-round"
-                                                style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
-                                        <p class="align-middle comfortaa-font"><span
-                                                class="material-icons material-icons-round"
-                                                style="font-size: 20px !important;">category</span>
-                                            Category: Resistence
-                                        </p>
-
-                                        <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                            Subscribe on <span class="comfortaa-font"
-                                                style="color: var(--primary-color)">OnefitNet.TV</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="horizontal-scroll-card p-4">
-                                <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder"
-                                    class="img-fluid mb-4" style="border-radius: 25px;">
-                                <hr class="text-white" style="height: 5px;">
-
-                                <div class="row my-2 align-items-center">
-                                    <div class="col-sm-2 text-center">
-                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4"
-                                            alt="placeholder"
-                                            style="border-radius: 5px; background-color: var(--primary-color);">
-                                    </div>
-                                    <div class="col-sm">
-                                        <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
-                                        <p class="align-middle comfortaa-font"><span
-                                                class="material-icons material-icons-round"
-                                                style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
-                                        <p class="align-middle comfortaa-font"><span
-                                                class="material-icons material-icons-round"
-                                                style="font-size: 20px !important;">category</span>
-                                            Category: Resistence
-                                        </p>
-
-                                        <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                            Subscribe on <span class="comfortaa-font"
-                                                style="color: var(--primary-color)">OnefitNet.TV</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="horizontal-scroll-card p-4">
-                                <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder"
-                                    class="img-fluid mb-4" style="border-radius: 25px;">
-                                <hr class="text-white" style="height: 5px;">
-
-                                <div class="row my-2 align-items-center">
-                                    <div class="col-sm-2 text-center">
-                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4"
-                                            alt="placeholder"
-                                            style="border-radius: 5px; background-color: var(--primary-color);">
-                                    </div>
-                                    <div class="col-sm">
-                                        <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
-                                        <p class="align-middle comfortaa-font"><span
-                                                class="material-icons material-icons-round"
-                                                style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
-                                        <p class="align-middle comfortaa-font"><span
-                                                class="material-icons material-icons-round"
-                                                style="font-size: 20px !important;">category</span>
-                                            Category: Resistence
-                                        </p>
-
-                                        <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                            Subscribe on <span class="comfortaa-font"
-                                                style="color: var(--primary-color)">OnefitNet.TV</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="horizontal-scroll-card p-4">
-                                <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder"
-                                    class="img-fluid mb-4" style="border-radius: 25px;">
-                                <hr class="text-white" style="height: 5px;">
-
-                                <div class="row my-2 align-items-center">
-                                    <div class="col-sm-2 text-center">
-                                        <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4"
-                                            alt="placeholder"
-                                            style="border-radius: 5px; background-color: var(--primary-color);">
-                                    </div>
-                                    <div class="col-sm">
-                                        <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
-                                        <p class="align-middle comfortaa-font"><span
-                                                class="material-icons material-icons-round"
-                                                style="font-size: 20px !important;">timer</span> Duration: 1 hour</p>
-                                        <p class="align-middle comfortaa-font"><span
-                                                class="material-icons material-icons-round"
-                                                style="font-size: 20px !important;">category</span>
-                                            Category: Resistence
-                                        </p>
-
-                                        <button class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
-                                            Subscribe on <span class="comfortaa-font"
-                                                style="color: var(--primary-color)">OnefitNet.TV</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- <ol class="list-group list-group-numberedz bg-transparent no-scroller horizontal-scroll"
-              style="max-height: 80vh !important; overflow-y: auto;">
-              <li class="list-group-item bg-transparentz border-0 general-dark-link-item shadow my-2"
-                style="cursor: pointer" onClick="launchLink('www.google.com')">
-                <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4"
-                  style="border-radius: 25px;">
-                <hr class="text-white" style="height: 5px;">
-
-                <div class="row my-2 align-items-center">
-                  <div class="col-sm-2">
-                    <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder"
-                      style="border-radius: 5px; background-color: var(--primary-color);">
-                  </div>
-                  <div class="col-sm">
-                    <h5>Ep.1 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
-                    <button class="onefit-buttons-style-dark shadow p-4 comfortaa-font">
-                      Subscribe to <span class="comfortaa-font" style="color: var(--primary-color)">OnefitNet.TV</span>
-                    </button>
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item bg-transparentz border-0 general-dark-link-item shadow my-2"
-                style="cursor: pointer" onClick="launchLink('www.google.com')">
-                <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid mb-4"
-                  style="border-radius: 25px;">
-                <hr class="text-white" style="height: 5px;">
-
-                <div class="row my-2 align-items-center">
-                  <div class="col-sm-2">
-                    <img src="./media/assets/icons/icons8-sports-mode-50.png" class="img-fluid p-4" alt="placeholder"
-                      style="border-radius: 5px; background-color: var(--primary-color);">
-                  </div>
-                  <div class="col-sm">
-                    <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo Matsoso</h5>
-                    <button class="onefit-buttons-style-dark shadow p-4 comfortaa-font">
-                      Subscribe to <span class="comfortaa-font" style="color: var(--primary-color)">OnefitNet.TV</span>
-                    </button>
-                  </div>
-                </div>
-              </li>
-            </ol> -->
-                    </div>
-                </div>
-                <!-- ./ Onefit.TV Horizontal Content Stream -->
-
-                <div class="row mt-4 text-center align-items-startz">
-
-                    <div class="col-lg mb-4">
-                        <div class="content-panel-border-style p-4 h-100"
-                            style="padding-bottom: 40px; border-radius: 25px; background-color: var(--secondary-color);">
-                            <span class="material-icons material-icons-outlined" style="color: #fff;">tag</span>
-                            <h5 class="fs-1 h4" style="color: var(--primary-color);">Social</h5>
-                            <hr class="text-white">
-                            <ul class="list-group bg-transparent comfortaa-font">
-                                <li class="list-group-item bg-transparent border-0 social-link-icon-insta my-2 shadow"
-                                    style="cursor: pointer" onclick="launchLink('www.google.com')">
-                                    <div class="row align-items-center">
-                                        <div class="col-4 text-end">
-                                            <i class="fab fa-instagram" style="font-size: 40px;" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="col text-center" style="color: var(--primary-color);">
-                                            |
-                                        </div>
-                                        <div class="col text-start">
-                                            @onefit_net
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item bg-transparent border-0 social-link-icon-twitter my-2 shadow"
-                                    style="cursor: pointer" onclick="launchLink('www.google.com')">
-                                    <div class="row align-items-center">
-                                        <div class="col-4 text-end">
-                                            <img src="../media/assets/icons/twitter-x-symbol-white.svg"
-                                                style="height:40px;width:40px" alt="Twitter - X logo">
-                                        </div>
-                                        <div class="col text-center" style="color: var(--primary-color);">
-                                            |
-                                        </div>
-                                        <div class="col text-start">
-                                            @onefitnet_za
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item bg-transparent border-0 social-link-icon-fb my-2 shadow"
-                                    style="cursor: pointer" onclick="launchLink('www.google.com')">
-                                    <div class="row align-items-center">
-                                        <div class="col-4 text-end">
-                                            <i class="fab fa-facebook" style="font-size: 40px;" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="col text-center" style="color: var(--primary-color);">
-                                            |
-                                        </div>
-                                        <div class="col text-start">
-                                            /OnefitNetwork
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item bg-transparent border-0 social-link-icon-yt my-2 shadow"
-                                    style="cursor: pointer" onclick="launchLink('www.google.com')">
-                                    <div class="row align-items-center">
-                                        <div class="col-4 text-end">
-                                            <i class="fab fa-youtube" style="font-size: 40px;" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="col text-center" style="color: var(--primary-color);">
-                                            |
-                                        </div>
-                                        <div class="col text-start">
-                                            OnefitNet.TV
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-
-                            <span class="material-icons material-icons-outlined mt-4"
-                                style="color: #fff;">error_outline</span>
-                            <h5 class="fs-1 h4" style="color: var(--primary-color);">Important</h5>
-                            <hr class="text-white">
-                            <ul class="list-group bg-transparent comfortaa-font">
-                                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
-                                    style="cursor: pointer" onclick="launchLink('www.google.com')">
-                                    Our COVID-19 Responsibility
-                                </li>
-                                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
-                                    style="cursor: pointer" onclick="launchLink('www.google.com')">
-                                    Privacy Policy
-                                </li>
-                                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
-                                    style="cursor: pointer" onclick="launchLink('www.google.com')">
-                                    Terms of use
-                                </li>
-                                <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
-                                    style="cursor: pointer" onclick="launchLink('www.google.com')">
-                                    Refund Policy
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg mb-4">
-                        <div class="content-panel-border-style p-4 h-100"
-                            style="padding-bottom: 40px; border-radius: 25px; background-color: var(--secondary-color);">
-                            <span class="material-icons material-icons-outlined" style="color: #fff;">touch_app</span>
-                            <h5 class="fs-1 h4" style="color: var(--primary-color);">Navigation</h5>
-                            <hr class="text-white">
-                            <ul class="list-group justify-content-end flex-grow-1z pe-3 comfortaa-font fs-3">
-                                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
-                                    style="border-radius: 25px;">
-                                    <button class="nav-link onefit-buttons-style-dark p-4 text-center"
-                                        href="#">Home</button>
-                                </li>
-                                <li class="my-2 m shadow general-dark-link-itemz d-grid gap-2"
-                                    style="border-radius: 25px;">
-                                    <button class="nav-link onefit-buttons-style-dark p-4 text-center"
-                                        href="#">Services</button>
-                                </li>
-                                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
-                                    style="border-radius: 25px;">
-                                    <button class="nav-link onefit-buttons-style-dark p-4 text-center"
-                                        href="#">About</button>
-                                </li>
-                                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
-                                    style="border-radius: 25px;">
-                                    <button class="nav-link onefit-buttons-style-dark p-4 text-center"
-                                        href="#">Contact</button>
-                                </li>
-                                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
-                                    style="border-radius: 25px;">
-                                    <button class="nav-link onefit-buttons-style-dark p-4 text-center active"
-                                        aria-current="page" href="#">Onefit.app™</button>
-                                </li>
-                                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
-                                    style="border-radius: 25px;">
-                                    <button class="nav-link onefit-buttons-style-dark p-4 text-center"
-                                        href="#">Onefit.Edu™
-                                        (Blog)</button>
-                                </li>
-                                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
-                                    style="border-radius: 25px;">
-                                    <button class="nav-link onefit-buttons-style-dark p-4 text-center"
-                                        href="#">Onefit.Shop™</button>
-                                </li>
-                                <hr class="text-dark">
-                                <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
-                                    style="border-radius: 25px;">
-                                    <a class="nav-link onefit-buttons-style-dark p-4 text-center" href="registration/"
-                                        style="border-bottom: 0 !important">Account
-                                        Registration</a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid px-4 align-items-center">
-            <button class="navbar-toggler shadow onefit-buttons-style-dark p-3 ms-4z" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
-                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <!--<span class="navbar-toggler-icon"></span>-->
-                <div class="d-grid gap-2">
-                    <span class="material-icons material-icons-round" style="font-size: 40px !important"> widgets
-                    </span>
-                    <span style="font-size: 10px!important;">More stuff...</span>
-                    <!-- <span class="material-icons material-icons-round" style="font-size: 20px !important"> more_horiz </span> -->
+            <!-- ./ Main Content -->
+
+            <!-- Footer -->
+            <div class="navbar navbar-dark fixed-bottom navbar-stylez down-top-grad-dark py-4 justify-content-center">
+                <div class="no-scroller shadow border-5 border-start border-end mx-4 px-3 collapse top-down-grad-tahiti"
+                    style="overflow-y: auto; border-radius: 25px; margin-bottom: 40px; padding-top: 100px; max-height: 90vh !important; border-color: rgb(255, 165, 0) !important;"
+                    id="navbarToggleExternalContent">
+                    <div class="p-0">
+                        <div class="text-center pt-4 mb-4 top-down-grad-dark" style="border-radius: 25px 25px 0 0;">
+                            <img src="./media/assets/One-Symbol-Logo-White.svg" alt="logo"
+                                class="img-fluid my-4 p-4 my-pulse-animation-light"
+                                style="max-width: 150px;border-radius:25px;">
+                        </div>
+
+                        <!-- Onefit.TV Horizontal Content Stream -->
+                        <div class="mb-4" id="onefittv-footer-h-content-stream">
+                            <div class="content-panel-border-stylez p-4 shadow border-5 border-start border-end text-white"
+                                style="padding-bottom: 40px; border-radius: 25px; background-color: var(--secondary-color); border-color: var(--primary-color) !important;">
+
+                                <h5 class="fs-1 h4 aligh-middle d-grid text-center"
+                                    style="color: var(--primary-color);">
+                                    <span class="material-icons material-icons-outlined" style="color: #fff;"> tv
+                                    </span>
+                                    <span>OnefitNet.TV</span>
+                                </h5>
+                                <hr class="text-white">
+
+                                <p class="my-4 text-center" style=" font-size: 10px">Latest Training Programs |
+                                    <span class="comfortaa-font" style="color: var(--primary-color)">OnefitNet.TV</span>
+                                </p>
+
+                                <div class="d-lg-none w3-animate-bottom">
+                                    <!-- d-block d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none -->
+                                    <!-- <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder" class="img-fluid"> -->
+                                    <div class="video-card-container">
+                                        <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="latest video"
+                                            class="img-fluid shadow m-0" style="border-radius: 15px;">
+                                        <button class="onefit-buttons-style-light shadow-lg play-btn p-2 aligh-middle"
+                                            onclick="playVideo()">
+                                            <span class="material-icons material-icons-round aligh-middle"
+                                                style="font-size: 20px !important;">
+                                                play_circle_outline
+                                            </span>
+                                        </button>
+                                    </div>
+
+                                    <div class="d-grid mt-4 w-100 justify-content-center">
+                                        <button
+                                            class="onefit-buttons-style-dark shadow d-grid p-4 comfortaa-font text-center aligh-middle position-relative">
+                                            <span>View Playlist.</span>
+                                            <span
+                                                class="material-icons material-icons-round aligh-middle">playlist_play</span>
+
+                                            <span
+                                                class="position-absolute top-0 start-100 translate-middle p-2 comfortaa-font border border-light rounded-pill align-middle shadow"
+                                                style="background-color: var(--secondary-color) !important; color: var(--primary-color) !important; border-color: var(--primary-color) !important;">
+                                                <span class="align-middle" style="font-size: 10px !important;">+3</span>
+                                                <span class="visually-hidden">Latest Video Count</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                                <div class="horizontal-scroll d-none d-lg-block w3-animate-bottom">
+                                    <div class="horizontal-scroll-card p-4">
+                                        <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder"
+                                            class="img-fluid mb-4" style="border-radius: 25px;">
+                                        <hr class="text-white" style="height: 5px;">
+
+                                        <div class="row my-2 align-items-center">
+                                            <div class="col-sm-2 text-center">
+                                                <img src="./media/assets/icons/icons8-sports-mode-50.png"
+                                                    class="img-fluid p-4" alt="placeholder"
+                                                    style="border-radius: 5px; background-color: var(--primary-color);">
+                                            </div>
+                                            <div class="col-sm">
+                                                <h5>Ep.1 - Best Resistence Exercises | Head Trainer.: Lehlohonolo
+                                                    Matsoso
+                                                </h5>
+                                                <p class="align-middle comfortaa-font"><span
+                                                        class="material-icons material-icons-round"
+                                                        style="font-size: 20px !important;">timer</span> Duration: 1
+                                                    hour
+                                                </p>
+                                                <p class="align-middle comfortaa-font"><span
+                                                        class="material-icons material-icons-round"
+                                                        style="font-size: 20px !important;">category</span>
+                                                    Category: Resistence
+                                                </p>
+
+                                                <button
+                                                    class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                    Subscribe on <span class="comfortaa-font"
+                                                        style="color: var(--primary-color)">OnefitNet.TV</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="horizontal-scroll-card p-4">
+                                        <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder"
+                                            class="img-fluid mb-4" style="border-radius: 25px;">
+                                        <hr class="text-white" style="height: 5px;">
+
+                                        <div class="row my-2 align-items-center">
+                                            <div class="col-sm-2 text-center">
+                                                <img src="./media/assets/icons/icons8-sports-mode-50.png"
+                                                    class="img-fluid p-4" alt="placeholder"
+                                                    style="border-radius: 5px; background-color: var(--primary-color);">
+                                            </div>
+                                            <div class="col-sm">
+                                                <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo
+                                                    Matsoso
+                                                </h5>
+                                                <p class="align-middle comfortaa-font"><span
+                                                        class="material-icons material-icons-round"
+                                                        style="font-size: 20px !important;">timer</span> Duration: 1
+                                                    hour
+                                                </p>
+                                                <p class="align-middle comfortaa-font"><span
+                                                        class="material-icons material-icons-round"
+                                                        style="font-size: 20px !important;">category</span>
+                                                    Category: Resistence
+                                                </p>
+
+                                                <button
+                                                    class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                    Subscribe on <span class="comfortaa-font"
+                                                        style="color: var(--primary-color)">OnefitNet.TV</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="horizontal-scroll-card p-4">
+                                        <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder"
+                                            class="img-fluid mb-4" style="border-radius: 25px;">
+                                        <hr class="text-white" style="height: 5px;">
+
+                                        <div class="row my-2 align-items-center">
+                                            <div class="col-sm-2 text-center">
+                                                <img src="./media/assets/icons/icons8-sports-mode-50.png"
+                                                    class="img-fluid p-4" alt="placeholder"
+                                                    style="border-radius: 5px; background-color: var(--primary-color);">
+                                            </div>
+                                            <div class="col-sm">
+                                                <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo
+                                                    Matsoso
+                                                </h5>
+                                                <p class="align-middle comfortaa-font"><span
+                                                        class="material-icons material-icons-round"
+                                                        style="font-size: 20px !important;">timer</span> Duration: 1
+                                                    hour
+                                                </p>
+                                                <p class="align-middle comfortaa-font"><span
+                                                        class="material-icons material-icons-round"
+                                                        style="font-size: 20px !important;">category</span>
+                                                    Category: Resistence
+                                                </p>
+
+                                                <button
+                                                    class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                    Subscribe on <span class="comfortaa-font"
+                                                        style="color: var(--primary-color)">OnefitNet.TV</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="horizontal-scroll-card p-4">
+                                        <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder"
+                                            class="img-fluid mb-4" style="border-radius: 25px;">
+                                        <hr class="text-white" style="height: 5px;">
+
+                                        <div class="row my-2 align-items-center">
+                                            <div class="col-sm-2 text-center">
+                                                <img src="./media/assets/icons/icons8-sports-mode-50.png"
+                                                    class="img-fluid p-4" alt="placeholder"
+                                                    style="border-radius: 5px; background-color: var(--primary-color);">
+                                            </div>
+                                            <div class="col-sm">
+                                                <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo
+                                                    Matsoso
+                                                </h5>
+                                                <p class="align-middle comfortaa-font"><span
+                                                        class="material-icons material-icons-round"
+                                                        style="font-size: 20px !important;">timer</span> Duration: 1
+                                                    hour
+                                                </p>
+                                                <p class="align-middle comfortaa-font"><span
+                                                        class="material-icons material-icons-round"
+                                                        style="font-size: 20px !important;">category</span>
+                                                    Category: Resistence
+                                                </p>
+
+                                                <button
+                                                    class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                    Subscribe on <span class="comfortaa-font"
+                                                        style="color: var(--primary-color)">OnefitNet.TV</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="horizontal-scroll-card p-4">
+                                        <img src="./media/assets/YouTube Thumbnail 1280x720 px.gif" alt="placeholder"
+                                            class="img-fluid mb-4" style="border-radius: 25px;">
+                                        <hr class="text-white" style="height: 5px;">
+
+                                        <div class="row my-2 align-items-center">
+                                            <div class="col-sm-2 text-center">
+                                                <img src="./media/assets/icons/icons8-sports-mode-50.png"
+                                                    class="img-fluid p-4" alt="placeholder"
+                                                    style="border-radius: 5px; background-color: var(--primary-color);">
+                                            </div>
+                                            <div class="col-sm">
+                                                <h5>Ep.2 - Best Resistence Exercises | Head Trainer.: Lehlohonolo
+                                                    Matsoso
+                                                </h5>
+                                                <p class="align-middle comfortaa-font"><span
+                                                        class="material-icons material-icons-round"
+                                                        style="font-size: 20px !important;">timer</span> Duration: 1
+                                                    hour
+                                                </p>
+                                                <p class="align-middle comfortaa-font"><span
+                                                        class="material-icons material-icons-round"
+                                                        style="font-size: 20px !important;">category</span>
+                                                    Category: Resistence
+                                                </p>
+
+                                                <button
+                                                    class="onefit-buttons-style-dark shadow p-4 mt-4 comfortaa-font">
+                                                    Subscribe on <span class="comfortaa-font"
+                                                        style="color: var(--primary-color)">OnefitNet.TV</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./ Onefit.TV Horizontal Content Stream -->
+
+                        <div class="row mt-4 text-center align-items-startz">
+
+                            <div class="col-lg mb-4">
+                                <div class="content-panel-border-style p-4 h-100"
+                                    style="padding-bottom: 40px; border-radius: 25px; background-color: var(--secondary-color);">
+                                    <span class="material-icons material-icons-outlined" style="color: #fff;">tag</span>
+                                    <h5 class="fs-1 h4" style="color: var(--primary-color);">Social</h5>
+                                    <hr class="text-white">
+                                    <ul class="list-group bg-transparent comfortaa-font">
+                                        <li class="list-group-item bg-transparent border-0 social-link-icon-insta my-2 shadow"
+                                            style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                            <div class="row align-items-center">
+                                                <div class="col-4 text-end">
+                                                    <i class="fab fa-instagram" style="font-size: 40px;"
+                                                        aria-hidden="true"></i>
+                                                </div>
+                                                <div class="col text-center" style="color: var(--primary-color);">
+                                                    |
+                                                </div>
+                                                <div class="col text-start">
+                                                    @onefit_net
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item bg-transparent border-0 social-link-icon-twitter my-2 shadow"
+                                            style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                            <div class="row align-items-center">
+                                                <div class="col-4 text-end">
+                                                    <img src="../media/assets/icons/twitter-x-symbol-white.svg"
+                                                        style="height:40px;width:40px" alt="Twitter - X logo">
+                                                </div>
+                                                <div class="col text-center" style="color: var(--primary-color);">
+                                                    |
+                                                </div>
+                                                <div class="col text-start">
+                                                    @onefitnet_za
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item bg-transparent border-0 social-link-icon-fb my-2 shadow"
+                                            style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                            <div class="row align-items-center">
+                                                <div class="col-4 text-end">
+                                                    <i class="fab fa-facebook" style="font-size: 40px;"
+                                                        aria-hidden="true"></i>
+                                                </div>
+                                                <div class="col text-center" style="color: var(--primary-color);">
+                                                    |
+                                                </div>
+                                                <div class="col text-start">
+                                                    /OnefitNetwork
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item bg-transparent border-0 social-link-icon-yt my-2 shadow"
+                                            style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                            <div class="row align-items-center">
+                                                <div class="col-4 text-end">
+                                                    <i class="fab fa-youtube" style="font-size: 40px;"
+                                                        aria-hidden="true"></i>
+                                                </div>
+                                                <div class="col text-center" style="color: var(--primary-color);">
+                                                    |
+                                                </div>
+                                                <div class="col text-start">
+                                                    OnefitNet.TV
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                    <span class="material-icons material-icons-outlined mt-4"
+                                        style="color: #fff;">error_outline</span>
+                                    <h5 class="fs-1 h4" style="color: var(--primary-color);">Important</h5>
+                                    <hr class="text-white">
+                                    <ul class="list-group bg-transparent comfortaa-font">
+                                        <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
+                                            style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                            Our COVID-19 Responsibility
+                                        </li>
+                                        <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
+                                            style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                            Privacy Policy
+                                        </li>
+                                        <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
+                                            style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                            Terms of use
+                                        </li>
+                                        <li class="list-group-item bg-transparent border-0 general-dark-link-item my-2 shadow p-4"
+                                            style="cursor: pointer" onclick="launchLink('www.google.com')">
+                                            Refund Policy
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg mb-4">
+                                <div class="content-panel-border-style p-4 h-100"
+                                    style="padding-bottom: 40px; border-radius: 25px; background-color: var(--secondary-color);">
+                                    <span class="material-icons material-icons-outlined"
+                                        style="color: #fff;">touch_app</span>
+                                    <h5 class="fs-1 h4" style="color: var(--primary-color);">Navigation</h5>
+                                    <hr class="text-white">
+                                    <ul class="list-group justify-content-end flex-grow-1z pe-3 comfortaa-font fs-3">
+                                        <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                            style="border-radius: 25px;">
+                                            <button class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                href="#">Home</button>
+                                        </li>
+                                        <li class="my-2 m shadow general-dark-link-itemz d-grid gap-2"
+                                            style="border-radius: 25px;">
+                                            <button class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                href="#">Services</button>
+                                        </li>
+                                        <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                            style="border-radius: 25px;">
+                                            <button class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                href="#">About</button>
+                                        </li>
+                                        <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                            style="border-radius: 25px;">
+                                            <button class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                href="#">Contact</button>
+                                        </li>
+                                        <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                            style="border-radius: 25px;">
+                                            <button class="nav-link onefit-buttons-style-dark p-4 text-center active"
+                                                aria-current="page" href="#">Onefit.app™</button>
+                                        </li>
+                                        <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                            style="border-radius: 25px;">
+                                            <button class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                href="#">Onefit.Edu™
+                                                (Blog)</button>
+                                        </li>
+                                        <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                            style="border-radius: 25px;">
+                                            <button class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                href="#">Onefit.Shop™</button>
+                                        </li>
+                                        <hr class="text-dark">
+                                        <li class="my-2 shadow general-dark-link-itemz d-grid gap-2"
+                                            style="border-radius: 25px;">
+                                            <a class="nav-link onefit-buttons-style-dark p-4 text-center"
+                                                href="registration/" style="border-bottom: 0 !important">Account
+                                                Registration</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="container-fluid px-4 align-items-center">
+                    <button class="navbar-toggler shadow onefit-buttons-style-dark p-3 ms-4z d-none" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
+                        aria-controls="navbarToggleExternalContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <!--<span class="navbar-toggler-icon"></span>-->
+                        <div class="d-grid gap-2">
+                            <span class="material-icons material-icons-round" style="font-size: 40px !important">
+                                widgets
+                            </span>
+                            <span style="font-size: 10px!important;">More stuff...</span>
+                            <!-- <span class="material-icons material-icons-round" style="font-size: 20px !important"> more_horiz </span> -->
+                        </div>
 
-            </button>
+                    </button>
 
-            <p class="text-white align-end me-4z text-center comfortaa-font py-4 m-0">
-                <span style="font-size: 10px;">
-                    <span>Crafted by AdaptivConcept&trade; FL &copy; 2022. All rights reserved.</span> |
-                </span>
-                <a href="https://www.adaptivconcept.co.za/" target="_blank" class="comfortaa-font"
-                    style="color: var(--primary-color);">Support</a>
-            </p>
-        </div>
-    </div>
-    <!-- ./ Footer -->
+                    <p class="text-white align-end me-4z text-center comfortaa-font py-4 m-0">
+                        <span style="font-size: 10px;">
+                            <span>Crafted by AdaptivConcept&trade; FL &copy; 2022. All rights reserved.</span> |
+                        </span>
+                        <a href="https://www.adaptivconcept.co.za/" target="_blank" class="comfortaa-font"
+                            style="color: var(--primary-color);">Support</a>
+                    </p>
+                </div>
+            </div>
+            <!-- ./ Footer -->
+    </footer>
 
     <script>
     function googleOAuth2() {
@@ -960,21 +1330,20 @@ rememberMe();
         // jq function for checking if the core scripts were loaded, if not then the func will display the offline curtain
         // $.checkCoreScriptLoadState();
 
-
         // *** perform curtain fade using jQuery instead
         // function toggleLoadCurtain() {
-        //   //Show / Hide the Load Curtain Container
-        //   var curtain = document.getElementById("LoadCurtain");
-        //   var toggleState = curtain.style.display.toString();
-        //   // alert("toggleState: " + toggleState);
+        // //Show / Hide the Load Curtain Container
+        // var curtain = document.getElementById("LoadCurtain");
+        // var toggleState = curtain.style.display.toString();
+        // // alert("toggleState: " + toggleState);
 
-        //   if (toggleState == "none") {
-        //     curtain.style.display = "block";
-        //   } else if (toggleState == "block") {
-        //     curtain.style.display = "none";
-        //   } else {
-        //     curtain.style.display = "none";
-        //   }
+        // if (toggleState == "none") {
+        // curtain.style.display = "block";
+        // } else if (toggleState == "block") {
+        // curtain.style.display = "none";
+        // } else {
+        // curtain.style.display = "none";
+        // }
         // }
 
         function checkLoginReturnParams() {

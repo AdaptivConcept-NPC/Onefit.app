@@ -103,29 +103,50 @@
                                 </span>
                             </button>
                         </div>
-                        <div class="offcanvas-body">
-                            <hr class="text-dark" />
-                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 comfortaa-font fs-3">
+                        <div class="offcanvas-body pb-4 top-down-grad-dark" style="max-height: 100vh;">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 comfortaa-font fs-3 h-100"
+                                style="overflow-y: auto;">
+                                <li class="nav-item d-grid">
+                                    <p class="text-white text-center" style="font-size:10px;">Get started with your
+                                        fitness
+                                        journey by
+                                        signing up for a free community account or subscribe to our Premium offering to
+                                        get
+                                        access to
+                                        Pro.Athlete level fitness tracking resources, guides, physical trainer and
+                                        community
+                                        support.</p>
+                                    <a class="onefit-buttons-style-light p-4 text-center text-decoration-none shadow fw-bold fs-5"
+                                        href="registration/"
+                                        style="border-radius: 25px !important; font-size: 20px !important;transform:scale(1)!important;color: var(--secondary-color)!important;">Register
+                                        your account.
+                                        <i class="fas fa-file-signature"></i>
+                                    </a>
+                                </li>
+                                <hr class="text-white">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../">Home</a>
+                                    <a class="nav-link active p-4" href="https://onefitnet.co.za/" aria-current="page"
+                                        href="#" style="border-radius: 25px !important;">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Services</a>
+                                    <a class="nav-link p-4" href="https://onefitnet.co.za/about/" target="_blank"
+                                        style="border-radius: 25px !important;">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">About</a>
+                                    <a class="nav-link p-4" href="https://onefitnet.co.za/training/" target="_blank"
+                                        style="border-radius: 25px !important;">Training Services</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Contact</a>
+                                    <a class="nav-link p-4" href="https://onefitnet.co.za/contact/" target="_blank"
+                                        style="border-radius: 25px !important;">Contact</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="../">Onefit.app&trade;</a>
+                                    <a class="nav-link p-4" href="https://onefitnet.co.za/blog/" target="_blank"
+                                        style="border-radius: 25px !important;">OnefitNet Blog</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Onefit.Edu&trade; (Blog)</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Onefit.Shop&trade;</a>
+                                <li class="nav-item d-none">
+                                    <a class="nav-link p-4" href="https://onefitnet.co.za/store/" target="_blank"
+                                        style="border-radius: 25px !important;">Onefit.Store™</a>
                                 </li>
                             </ul>
                         </div>
