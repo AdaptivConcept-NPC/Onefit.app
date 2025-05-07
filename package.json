@@ -4,7 +4,7 @@
     "chart.js": "^3.9.1",
     "debug": "^2.6.9",
     "jquery": "^3.6.3",
-    "jquery-validation": "^1.19.5",
+    "jquery-validation": "^1.20.0",
     "lodash": "^4.17.21",
     "merge": "^2.1.1",
     "ms": "^2.0.0",
