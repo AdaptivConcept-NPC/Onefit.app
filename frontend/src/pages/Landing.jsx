@@ -1,11 +1,27 @@
-
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import LatestTrainingSection from '../components/LatestTrainingSection';
 import HomeContent from '../components/HomeContent';
+import { authService } from '../services/authService';
 
 const Landing = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setError('');
+        try {
+            await authService.login(email, password);
+            navigate('/dashboard'); // creating this route next if not exists
+        } catch (err) {
+            setError(err.message || 'Login failed. Please check your credentials.');
+        }
+    };
+
     return (
         <div className="noselect">
             {/* Navigation bar */}
@@ -105,8 +121,9 @@ const Landing = () => {
                         style={{ borderRadius: '25px', backgroundColor: 'rgba(52, 52, 52, 0.8)' }}>
                         <div className="col-xlg d-flex justify-content-center py-5 top-down-grad-dark"
                             style={{ borderRadius: '25px !important' }}>
-                            <form className="text-center text-white comfortaa-font align-middle" method="post"
-                                action="#" autoComplete="off"
+                            <form className="text-center text-white comfortaa-font align-middle"
+                                onSubmit={handleLogin}
+                                autoComplete="off"
                                 style={{ maxWidth: '50vw' }}>
 
                                 <div id="sign-in-heading">
@@ -118,15 +135,31 @@ const Landing = () => {
                                         Members<span style={{ color: 'var(--primary-color)' }}>.</span></h1>
                                 </div>
                                 <hr />
+                                {error && <div className="alert alert-danger">{error}</div>}
                                 <div className="mb-3">
                                     <label htmlFor="onefitUserEmail" className="form-label fs-4">Email address</label>
-                                    <input type="email" className="form-controlz form-control-text-input shadow p-2"
-                                        id="onefitUserEmail" name="onefitUserEmail" aria-describedby="emailHelp" />
+                                    <input
+                                        type="email"
+                                        className="form-controlz form-control-text-input shadow p-2"
+                                        id="onefitUserEmail"
+                                        name="onefitUserEmail"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        aria-describedby="emailHelp"
+                                        required
+                                    />
                                 </div>
                                 <div className="mb-4">
                                     <label htmlFor="onefitUserPassword" className="form-label fs-4">Password</label>
-                                    <input type="password" className="form-controlz form-control-text-input shadow text-center p-2"
-                                        id="onefitUserPassword" name="onefitUserPassword" />
+                                    <input
+                                        type="password"
+                                        className="form-controlz form-control-text-input shadow text-center p-2"
+                                        id="onefitUserPassword"
+                                        name="onefitUserPassword"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                    />
                                 </div>
                                 <div className="mt-4 d-grid gap-2">
                                     <button type="submit" className="tnz onefit-buttons-style-light shadow align-items-center p-4">

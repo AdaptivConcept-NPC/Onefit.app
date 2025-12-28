@@ -7,17 +7,17 @@ export default defineConfig({
   server: {
     proxy: {
       '/scripts': {
-        target: 'http://localhost/Onefit.app',
+        target: 'http://localhost:81/Onefit.app',
         changeOrigin: true,
         secure: false,
       },
       '/administration': {
-        target: 'http://localhost/Onefit.app',
+        target: 'http://localhost:81/Onefit.app',
         changeOrigin: true,
         secure: false,
       },
       '/backend': {
-        target: 'http://localhost/Onefit.app',
+        target: 'http://localhost:81/Onefit.app',
         changeOrigin: true,
         secure: false,
       }
