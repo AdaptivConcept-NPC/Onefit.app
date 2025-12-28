@@ -2,20 +2,21 @@ const API_URL = ''; // Relative path because of proxy
 
 export const authService = {
     login: async (email, password) => {
-        const formData = new FormData();
-        formData.append('onefitUserEmail', email);
-        formData.append('onefitUserPassword', password);
-
         try {
-            const response = await fetch(`${API_URL}/scripts/php/main_app/compile_content/profile_tab/login.php`, {
+            // Point to the NEW backend API
+            const response = await fetch(`${API_URL}/backend/api/auth/login.php`, {
                 method: 'POST',
-                body: formData, // Fetch automatically sets Content-Type to multipart/form-data excluding boundary if we don't set it manually, which is correct
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ onefitUserEmail: email, onefitUserPassword: password }),
             });
 
-            // The PHP script likely redirects or returns HTML. 
-            // We will need to adapt the PHP to return JSON or handle the HTML response.
-            // For now, we return the text.
-            return await response.text();
+            const data = await response.json();
+            if (!data.success) {
+                throw new Error(data.message || "Login failed");
+            }
+            return data;
         } catch (error) {
             console.error("Login error:", error);
             throw error;
@@ -30,11 +31,16 @@ export const authService = {
         });
 
         try {
-            const response = await fetch(`${API_URL}/scripts/php/main_app/data_management/system_admin/user_registration/register_user.php`, {
+            // Using JSON for consistency with new backend
+            const response = await fetch(`${API_URL}/backend/api/auth/register.php`, {
                 method: 'POST',
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData),
             });
-            return await response.text();
+            const data = await response.json();
+            return data;
         } catch (error) {
             console.error("Registration error:", error);
             throw error;

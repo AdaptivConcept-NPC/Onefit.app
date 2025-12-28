@@ -15,6 +15,11 @@ export default defineConfig({
         target: 'http://localhost/Onefit.app',
         changeOrigin: true,
         secure: false,
+      },
+      '/backend': {
+        target: 'http://localhost/Onefit.app',
+        changeOrigin: true,
+        secure: false,
       }
     }
   }
