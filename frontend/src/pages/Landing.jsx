@@ -1,6 +1,9 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
+import LatestTrainingSection from '../components/LatestTrainingSection';
+import HomeContent from '../components/HomeContent';
 
 const Landing = () => {
     return (
@@ -141,7 +144,19 @@ const Landing = () => {
                     </div>
                 </div>
             </main>
-        </div>
+
+
+            <div className="container-fluid top-down-grad-tahiti" style={{ borderRadius: '25px 25px 0 0', overflow: 'hidden', marginTop: '-25px' }}>
+                {/* Latest Training Section */}
+                <LatestTrainingSection />
+
+                {/* Main Content */}
+                <HomeContent />
+
+                {/* Footer */}
+                <Footer />
+            </div>
+        </div >
     );
 };
 
