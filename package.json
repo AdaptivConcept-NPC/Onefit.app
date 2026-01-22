@@ -5,7 +5,7 @@
     "debug": "^2.6.9",
     "jquery": "^3.6.3",
     "jquery-validation": "^1.19.5",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "merge": "^2.1.1",
     "ms": "^2.0.0",
     "turn-js": "^0.1.3"
