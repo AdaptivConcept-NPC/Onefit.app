@@ -7,3 +7,7 @@ One-On-One Fitness Network / OnefitNet™ is your community-centric destination 
 Visit https://onefitnet.co.za/ for more info.
 
 Proudly brought to you by AdaptivConcept Freelancing, LMM 1-ON-1 Trainer and One-On-One Fitness Network. © 2024
+
+
+## Contributing
+Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for details on how to contribute to this project.
