@@ -171,6 +171,18 @@ const Landing = () => {
                                             </span>
                                         </span>
                                     </button>
+                                    <button type="button"
+                                        className="onefit-buttons-style-dark shadow align-items-center p-3 mt-2"
+                                        onClick={() => navigate('/dashboard')}
+                                        style={{ opacity: 0.7 }}>
+                                        <span className="align-middle" style={{ fontSize: '14px' }}>
+                                            <span className="material-icons material-icons-round align-middle"
+                                                style={{ fontSize: '18px !important', color: 'var(--primary-color)' }}>
+                                                developer_mode
+                                            </span>
+                                            <span className="align-middle ms-1">Dev Bypass</span>
+                                        </span>
+                                    </button>
                                 </div>
                             </form>
                         </div>
